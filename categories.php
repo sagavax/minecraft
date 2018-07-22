@@ -6,7 +6,7 @@
         if($cat_name=""){
             echo "<script>alert('Nic si nevlozil !!!');
             window.location.href='categories.php';
-            </script>" 
+            </script>";
         } else {
         $sql="INSERT INTO category (cat_name) VALUES ('$cat_name')";
         $result=mysqli_query($link, $sql);
