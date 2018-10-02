@@ -25,29 +25,6 @@
         header('location:videos.php',301, true);
 
       }
-
-         if(isset($_POST['edit_video'])){
-          $video_id=$_POST['video_id'];
-          header('location:video_edit.php?video_id='.$video_id);
-        }  
-
-        if(isset($_POST['delete_video'])){
-          $video_id=$_POST['video_id'];
-          $sql="DELETE from videos where video_id=$video_id";
-          $result=mysqli_query($link, $sql);
-
-        
-          //pridane do wallu;
-          $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
-          //$link1=mysqli_connect("localhost", "root", "", "brick_wall");
-          $curr_date=date('Y-m-d H:i:s');
-          $diary_text="Minecraft IS: Bolo pridane nove video s nazvom <strong>$video_name</strong>";
-          $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
-          $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
-          mysqli_close($link1);
-
-          echo "<script>altert('Video s id $video_id bolo zmazane')</script>";
-        }
 ?>      
 <!DOCTYPE html>
 <html lang="en">
@@ -131,7 +108,6 @@
                     $result=mysqli_query($link, $sql);
                         while ($row = mysqli_fetch_array($result)) {
                           $video_id=$row['video_id'];
-                          $eis_video_id=$row['eis_video_id'];
                           $video_name=$row['video_title'];
                           $video_url=$row['video_url'];
                           $mod_id=$row['cat_id'];
@@ -139,11 +115,7 @@
                           
                           
                             echo "<div class='video'>";
-                                    echo "<div class='video_name'><strong>$video_name";
-                                    if($eis_video_id<>0){
-                                     echo "-$eis_video_id<strong></div>"; 
-                                    } else {
-                                    echo "</strong></div>";}
+                                    echo "<div class='video_name'><strong>$video_name</strong></div>";
                                     echo "<div class='video_url' ><a href='$video_url'>$video_url</a></div>";
                                     echo "<div class='video_preview'></div>";
                                    
@@ -159,8 +131,8 @@
                                     
                                     echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
 
-                                    echo "<div class='videos_action'><form method='post' action=''><input type='hidden' name=eis_video_id value=$eis_video_id><input type='hidden' name=video_id value=$video_id><button name='edit_video' type='submit' class='button app_badge'>Edit</button><button name='delete_video' type='submit' class='button app_badge'>Delete</button></form></div>";
-                                    //echo "<div class='video_action'><span><a href='video_delete.php?id=$video_id'>x</a></span></div>";
+
+                                    echo "<div class='video_action'><span><a href='video_delete.php?id=$video_id'>x</a></span></div>";
                                     //echo "<div class='mod'>$mod_name</div>";
                                     echo "<div style='clear:both'></div>";             
                           echo "</div>";

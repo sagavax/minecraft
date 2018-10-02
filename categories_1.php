@@ -28,11 +28,11 @@
 
         //$link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
         //$link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
-      /*  $curr_date=date('Y-m-d H:i:s');
+        $curr_date=date('Y-m-d H:i:s');
         $diary_text="Do zoznamu bol pridany novy mod s nazvom <strong>$cat_name</strong>";
         $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
         $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
-        mysqli_close($link1);*/
+        mysqli_close($link1);
         echo "<script>
             alert('Novy mod $cat_name bol pridany');
             window.location.href='categories.php';

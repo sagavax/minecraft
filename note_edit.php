@@ -1,17 +1,31 @@
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
 
-      if(isset($_POST['task_edit'])){
-          var_dump($_POST);
-          $task_id=$_POST['task_id'];
-          $task_text=mysqli_real_escape_string($link, $_POST['task_text']);
-          $task_category=$_POST['category'];
-          $task_modpack=$_POST['modpack'];
+      if(isset($_POST['note_edit'])){
+          $note_id=$_POST['note_id'];
+          $note_text=mysqli_real_escape_string($link, $_POST['note_text']);
+          $note_title=mysqli_real_escape_string($link, $_POST['note_title']);
+          $note_category=$_POST['category'];
+          $note_modpack=$_POST['modpack'];
 
-          $sql="UPDATE to_do SET task_id=$task_id, cat_id=$task_category, modpack_id=$task_modpack, task_text='$task_text' where task_id=$task_id";
-          //echo $sql;
+          $sql="UPDATE notes SET note_id=$note_id, cat_id=$note_category, modpack_id=$note_modpack, note_text='$note_text',note_header='$note_title' where note_id=$note_id";
+         //echo $sql;
           $result=mysqli_query($link, $sql);
-          header('location:tasks.php');
+
+          //vlozit do wallu 
+         $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
+         //$link1=mysqli_connect("localhost", "root", "", "brick_wall");
+         $diary_text="Poznamka s id <strong>$note_id</strong> a nazvom <strong>$note_title</strong> bola upravena ";  
+        
+        $curr_date=date('Y-m-d H:i:s');
+        $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
+        $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
+        mysqli_close($link1);
+   
+          echo "<script>alert('Poznamka s id $note_id bola upravena');
+          window.location.href='notes.php'; 
+          </script>";
+          //header('location:notes.php');
       }
 ?>
 
@@ -50,8 +64,8 @@
             <div class='list'>
                 <?php
                     global $link; 
-                    $task_id=$_GET['task_id'];
-                    $sql="SELECT modpack_id,cat_id,eis_task_id,task_id, task_text from to_do where task_id=$task_id";
+                    $note_id=$_GET['note_id'];
+                    $sql="SELECT note_id,eis_note_id, note_text,note_header, modpack_id,cat_id from notes where note_id=$note_id";
                     //echo $sql;
                     $result=mysqli_query($link, $sql);
                     while($row = mysqli_fetch_array($result)){
@@ -59,14 +73,16 @@
                         $modpack_id=$row['modpack_id'];
                         $cat_name=GetModName($row['cat_id']);
                         $modpack_name=GetModPackName($row['modpack_id']);
-                        $task_text=$row['task_text'];
+                        $note_text=$row['note_text'];
+                        $note_title=$row['note_header'];
                   
                      
                     ?>
-                 <div id=task_edit>
+                 <div id=note_edit>
                      <form action="" method="post">
-                         <input type="hidden" name="task_id" value=<?php echo $task_id ?> />
-                         <div id="task_text"><textarea name="task_text"><?php echo $task_text ?></textarea></div>
+                         <input type="hidden" name="note_id" value=<?php echo $note_id ?> />
+                         <div id="note_title"><input name="note_title" value="<?php echo $note_title ?>"></div>
+                         <div id="note_text"><textarea name="note_text"><?php echo $note_text ?></textarea></div>
                          <div class='new_task_category'><select name='category'>
                          <?php if($cat_id==0){
                              echo "<option value=0>-- Select category -- </option>";
@@ -110,9 +126,24 @@
                     }
                    ?>
                 </div>
-                    <div class="edit_task_action"><button name="task_edit" type="submit" class="button middle_button pull-right"><i class="fa fa-pencil"></i></button></div>    
+                    <div class="edit_note_action"><button name="note_edit" type="submit" class="button middle_button pull-right"><i class="fa fa-pencil"></i></button></div>    
                     </form>    
                  </div><!--task edit -->   
             </div>    
-        </div>  
+        </div> 
+        <script>
+            var textarea = document.querySelector('textarea');
+
+            textarea.addEventListener('keydown', autosize);
+             
+            function autosize(){
+            var el = this;
+                setTimeout(function(){
+                el.style.cssText = 'height:auto; padding:0';
+                    // for box-sizing other than "content-box" use:
+                    // el.style.cssText = '-moz-box-sizing:content-box';
+                    el.style.cssText = 'height:' + el.scrollHeight + 'px';
+                },0);
+               }
+        </script>      
 </body>        

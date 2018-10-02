@@ -6,7 +6,8 @@ height: 100%;
 font-family: Noto Sans,sans-serif;
 font-size: 15px;
 color:#555;
-background: #eee;
+/*background: #eee;*/
+background: #f5f5f5;
 }
 
 a {
@@ -115,7 +116,7 @@ select {
 
 input {
 	float: left;
-	height:25px;
+	height:30px;
 	width:100%;
 	font-family: Noto Sans,sans-serif;
 	font-size: 15px;
@@ -162,10 +163,72 @@ textarea {
 	margin-left: 0px;
 }
 
-.note, .note_action, .task, .task_action,.task_edit, .task_text,.task_category, .subtask,.subtask_action,#new_task,.task_completed, .subtasks,.new_task_textarea, .new_task_action, #task_list, #new_cat, #categories_list, #new_modpack,.modpack, .modpack_url, .modpack_name,.modpack_description, #modpack_list,.new_task_category, .new_task_modpack, #new_note, #new_video, .video_mods_wrap, .video_action,.new_video_category, .new_video_modpack, .video_name, .video_url, .new_note,.action {
+.new_note_category,.notes_action, .mod_list,.mod_modpack, .modpack_action, .note,.note_action, .task, .task_action,.task_edit, .task_text,.note_text,.task_category, .subtask,.subtask_action,#new_task,.task_completed, .subtasks,.new_task_textarea, .new_task_action, #task_list, #new_cat, #categories_list, #new_modpack,.modpack, .modpack_url, .modpack_name,.modpack_description, #modpack_list,.new_task_category, .new_task_modpack, #new_note, #new_video, .video_mods_wrap, .video_action,.new_video_category, .new_video_modpack, .video_name, .video_url, .new_note,.action,.mod_modpack, #picture_list {
 	float:left;
 	width:100%;
  
+}
+
+.notes_action, .videos_action {
+	text-align: right
+}
+
+.notes_action button, .videos_action button {
+	display: inline; margin-left: 5px;
+}
+.mod_modpack, .mod_list {
+	height: 45px;
+	line-height: 45px;
+}
+
+
+
+.modpack_action {
+	border-top: 1px #d1d1d1 solid;
+	
+	height: 60px;
+	line-height: 60px;
+	box-sizing: border-box;
+	
+}
+
+.modpack_action form {
+	height: 60px;
+	width: 100%;
+	margin-top: 0;
+	float: left;
+}
+
+.modpack_action ul,.mod_list ul {
+	padding:0;
+	margin-top: 0;
+	float: right;
+	list-style: none;
+	height: 60px;
+}
+
+.mod_list ul {
+	height: 45px;
+}
+
+.modpack_action ul li, .mod_list ul li {
+	float: left;
+	margin-left: 5px;
+}
+
+.mod_list ul li:last-child {
+	margin-right:5px;
+}
+
+.modpack_action button {
+	display:inline-block;
+	margin-right:5px;
+
+}
+
+.buttons {
+	width:100px;
+	float: right;
 }
 
 .action {
@@ -189,7 +252,7 @@ textarea {
 	height:30px;
 }
 
-.note, .video {
+.note, .video,.picture {
 	border:1px #d1d1d1 solid;
 	background: #fff;
 	box-sizing: border-box;
@@ -197,19 +260,34 @@ textarea {
 	margin-top:5px;
 }
 
+
+.note {
+	border:0;
+	box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
+    transition: box-shadow 83ms;
+}
 .video {
 	height: auto;
 }
 
-.video_name,.video_url {
+.video_name,.video_url,.picture_name {
 	height:30px
 }
 
 .note_text {
-	word-break: break-all;
+	word-break: break-all; height:auto
 }
 
-#note_list, #video_list {
+#note_text {
+	width:100%;
+	display:inline-block;
+}
+
+#note_text textarea{
+ width:100%;
+}
+
+#note_list, #video_list, #picture_list {
 	margin-top:20px;
 	float:left;
 }
@@ -223,7 +301,7 @@ textarea {
 }
 
 .task_text {
-	height:42%;
+	min-height:50px;
 }
 
 .task_category {
@@ -254,20 +332,35 @@ textarea {
 	padding-bottom:3px;
 }
 
-.new_task_category, .new_task_modpack {
+.new_task_category, .new_task_modpack, .new_note_category {
 
 	padding:2px; 
 	box-sizing:border-box;
 	font-family: Noto Sans,sans-serif;
 	font-size:14px;
+	height: 50px;
 }
 
-.new_task_category select, .new_task_modpack select {
+
+
+.new_task_category select, .new_task_modpack select, .new_note_category select {
 	float:left;
-	height:25px;
+	height:30px;
 	font-family: Noto Sans,sans-serif;
     font-size:14px;	
 	width: 85%;
+}
+
+.new_note_category select {
+	width:80%;
+}
+
+.new_note_category input[type=checkbox] {
+	float: left; width:20px;
+}
+
+.new_note_category label {
+	float: left; height:30px; width: 15%;line-height: 30px;
 }
 
 .new_task_category button {
@@ -285,7 +378,7 @@ textarea {
 	border:1px #999 solid;
 	padding:3px;
 	background: #fff;
-	height:135px;
+	min-height:135px;
 	
 }
 
@@ -312,7 +405,7 @@ textarea {
 }
 
 .task {
-	margin-top: 10px;
+	margin-top: 3px;
 }
 
 .task_id {
@@ -323,7 +416,13 @@ textarea {
 }
 
 .task_action {
-	height: 19%;
+	height: 40px;
+	line-height: 40px;
+}
+
+.task_action button {
+	display: inline;
+	margin-right: 5px;
 }
 
 .task_action_no_cat {
@@ -381,7 +480,7 @@ textarea {
 	width:100%;
 	min-height: 80px;
 	color:#666;
-	margin-top: 10px;
+	margin-top: 5px;
 	background-color: #fff;
 }
 
@@ -450,7 +549,7 @@ textarea {
 }	
 
 #categories_list {
-	margin-top:10px;
+	margin-top:40px;
 }
 
 
@@ -469,7 +568,34 @@ textarea {
 	line-height: 35px;
 	text-indent: 5px;
 	border:1px #d1d1d1 solid;
-	margin-top: 5px;
+}
+
+#categories_list ul li:hover {
+	background: #eee;
+}
+
+#new_cat, #new_note, #new_modpack, #new_video, #new_task {
+	padding:5px;
+	box-sizing: border-box;
+}
+
+#new_cat form {
+	height: 100%;
+	width: 100%;
+	float: left;
+}
+
+#new_cat form input, #new_note form input, #new_note form textarea, #new_modpack form input, #new_modpack form textarea, #new_video input, #new_task textarea {
+	box-sizing:border-box
+}
+
+#new_modpack form input, #new_video input, #new_cat input {
+	margin-top:5px; padding:5px; height:30px
+}
+
+.action {
+	width: 100%;
+	float: left;
 }
 
 .modpack_pic {
@@ -489,7 +615,7 @@ textarea {
 .modpack {
 	background: #fff;
 	border:1px #999 solid;
-	margin-top:10px;
+	margin-top:2px;
 }
  
 .modpack_name {
@@ -501,9 +627,11 @@ textarea {
 	margin-top: 5px;
 }
 
-.modpack_url {
+.modpack_url, .mod_modpack {
 	margin-top: 5px;
 	float: left;
+	padding-top:5px;
+	padding-bottom: 5px;
 }
 
 .modpack_url span {
@@ -511,15 +639,26 @@ textarea {
 	margin-right: 5px;
 }
 
-.span_mod {
- float:left; 
+.span_mod, .span_modpack {
+ display: inline-block;
  margin-left:5px;
+ background-color: #20a8d8;
+ color:#fff;
+ padding:5px; 
+ border-radius: 5px;
+ height:20px;
+ line-height: 20px;
 }
 
 .span_modpack, .video_action span {
- float:right;
- margin-right: 5px;
+  margin-right: 5px;
 }
+
+.video_action span {
+	height: 35px;
+	width: 35px;
+}
+
 
 .video_action {
 	border-top: 1px #d1d1d1 solid;
@@ -528,4 +667,40 @@ textarea {
 	padding: 3px;
 } 
 
-.
+.video_action span a:hover {
+	background: #57b13b;
+	color:#fff;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.video_action span a {
+	display: inline-block;
+	font-weight: bold;
+	}
+
+.cat_name {
+	float: left;
+	width:98%;
+}
+
+.cat_delete {
+	float: left;
+	width: 2%;
+}
+
+.cat_delete:hover {
+	background: #75c54f;
+
+	font-weight: bold;
+}
+
+.cat_delete a {
+	height: 100%;
+	width: 100%;
+	display: block;
+}
+
+.cat_delete:hover a {
+	color:#fff;
+}

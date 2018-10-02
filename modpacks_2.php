@@ -8,12 +8,11 @@
           $modpack_url=mysqli_real_escape_string($link, $_POST['modpack_url']);
           $modpack_pic=mysqli_real_escape_string($link, $_POST['modpack_pic']);
 
-          $sql="INSERT INTO modpacks (modpack_name,  modpack_pic, modpack_description, modpack_url) VALUES ('$modpack_name','$modpack_pic','$modpack_description','$modpack_url')";
-          echo $sql;
+          $sql="INSERT INTO modpacks (modpack_name,  modpack_pic, modpack_description, modpack_url) VALUES ('$modpack_name','$modpack_pic','$modpack_description','$modpack_pic')";
           $result=mysqli_query($link, $sql);
 
-          //$link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
-          $link1=mysqli_connect("localhost", "root", "", "brick_wall");
+          $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
+          //$link1=mysqli_connect("localhost", "root", "", "brick_wall");
           $curr_date=date('Y-m-d H:i:s');
           $diary_text="Minecraft IS: Bol pridany novy modpack s nazvom <strong>$modpack_name</strong>";
           $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
@@ -31,11 +30,6 @@
       if(isset($_POST['new_note'])){
         header('location:note_add.php?modpack_id='.$_POST['modpack_id']);
     }
-
-    if(isset($_POST['new_video'])){
-        header('location:videos.php?modpack_id='.$_POST['modpack_id']);
-    }
-
 
 ?>      
 <!DOCTYPE html>
@@ -73,10 +67,10 @@
           <div class='list'>
             <div id="new_modpack">
              <form action="" enctype="multipart/form-data" method="post">    
-                <input type="text" name="modpack_name" placeholder="Modpack's name">
-                <textarea name="modpack_description" placeholder="Modpack's description"></textarea>
-                <input type="text" name="modpack_url"  placeholder="Modpack's url">
-                <input type="file" name="modpack_pic"  placeholder="Modpack's picture">
+                <input type="text" name="modpack_name">
+                <textarea name="modpack_description"></textarea>
+                <input type="text" name="modpack_url">
+                <input type="file" name="modpack_pic">
                 <div class="action"><button type="submit" name="add_new_modpack" class="button pull-right"><i class="fa fa-plus"></i></button></div>
                </form> 
             </div>
@@ -101,8 +95,7 @@
                                 $modpack_url=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $modpack_url);
 
                                 echo "<div class='modpack_url'><span>$modpack_url</span></div>";
-                                echo "<div class='mod_list'>". GetModList($modpack_id)."</div>";
-                                echo "<div class='modpack_action'><form action='' method='post'><input type='hidden' name='modpack_id' value=$modpack_id><div class='buttons'><button name='new_note' title='add new note' class='button app_badge'>+</button><button name='new_video' title='add new video'  class='button app_badge'>+</button><button name='new_task' title='add new task' class='button app_badge'>+</button></div></form></div>'";
+                                echo "<div class='modpack_action'><form action='' method='post'><input type='hidden' name='modpack_id' value=$modpack_id><ul><li><button name='new_note' title='add new note' class='button app_badge'>+</button></li><li><button name='new_video' title='add new video'  class='button app_badge'>+</button></li><li><button name='new_task' title='add new task' class='button app_badge'>+</button></ul></li></form></div>'";
                             echo "</div>";
                         }        
                 ?>

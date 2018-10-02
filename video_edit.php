@@ -2,17 +2,18 @@
       include "includes/functions.php";
 
       if(isset($_POST['video_edit'])){
-          var_dump($_POST);
+          //var_dump($_POST);
           $video_id=$_POST['video_id'];
-          $video_name=mysqli_real_escape_string($link, $_POST['video_name']);
+          $video_name=mysqli_real_escape_string($link, $_POST['video_title']);
           $video_url=mysqli_real_escape_string($link, $_POST['video_url']);
           $video_category=$_POST['category'];
           $video_modpack=$_POST['modpack'];
 
-          $sql="UPDATE video SET cat_id=$video_category, modpack_id=$video_modpack, video_name='$video_name', video_url=$video_url where task_id=$video_id";
+          $sql="UPDATE videos SET cat_id=$video_category, modpack_id=$video_modpack, video_title='$video_name', video_url='$video_url' where video_id=$video_id";
           //echo $sql;
           $result=mysqli_query($link, $sql);
-          header('location:videos.php');
+
+          //header('location:videos.php');
       }
 ?>
 
@@ -51,23 +52,24 @@
             <div class='list'>
                 <?php
                     global $link; 
-                    $video_id=$_GET['id'];
-                    $sql="SELECT SELECT a.video_id, a.video_title, a.eis_video_id, a.video_url, a.mod_id, a.modpack_id from videos a, category b, modpacks c where a.cat_id=b.cat_id and a.modpack_id = c.modpack_id and a.video_id=$video_id";
-                     echo $sql;
+                    $video_id=$_GET['video_id'];
+                    $sql="SELECT video_id, video_title, eis_video_id, video_url, cat_id, modpack_id from videos where video_id=$video_id";
+                    // echo $sql;
                     $result=mysqli_query($link, $sql);
                     while($row = mysqli_fetch_array($result)){
-                        $cat_id=$row['cat_id'];
-                        $modpack_id=$row['modpack_id'];
-                        $video_name=$row['video_name'];
+                        $cat_name=GetModName($row['cat_id']);
+                        $modpack_name=GetModPackName($row['modpack_id']);
+                        $video_name=$row['video_title'];
                         $video_url=$row['video_url'];
+                        $eis_video_id=$row['eis_video_id'];
                   
                     
                     ?>
                  <div id=task_edit>
                      <form action="" method="post">
-                         <input type="hidden" name="task_id" value=<?php echo $task_id ?> />
-                         <input type="text" name="video_title">
-                         <input type="text" name="video_url">
+                         <input type="hidden" name="video_id" value=<?php echo $video_id ?>>
+                         <input type="text" name="video_title" value="<?php echo $video_name; ?>">
+                         <input type="text" name="video_url" value="<?php echo $video_url;?>">
                          <div class='new_task_category'><select name='category'>
                          <?php if($cat_id==0){
                              echo "<option value=0>-- Select category -- </option>";
@@ -111,7 +113,7 @@
                     }
                    ?>
                 </div>
-                    <div class="edit_task_action"><button name="video_edit" type="submit" class="button middle_button pull-right"><i class="fa fa-pencil"></i></button></div>    
+                    <div class="videos_action"><button name="video_edit" type="submit" class="button middle_button pull-right"><i class="fa fa-pencil"></i></button></div>    
                     </form>    
                  </div><!--task edit -->   
             </div>    

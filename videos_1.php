@@ -6,11 +6,9 @@
           $video_name=mysqli_real_escape_string($link, $_POST['video_title']);
           $video_url=mysqli_real_escape_string($link, $_POST['video_url']);
           $mod_id=mysqli_real_escape_string($link, $_POST['category']);
-          $modpack=mysqli_real_escape_string($link, $_POST['modpack_id']);
+          $modpack=mysqli_real_escape_string($link, $_POST['modpack']);
           $eis_video_id=0;
-          $date=date('Y-m-d');
-          $sql="INSERT INTO videos (video_title,video_url,eis_video_id,cat_id ,modpack_id,added_date) VALUES ('$video_name','$video_url',$eis_video_id,$mod_id,$modpack,'$date')";
-          //echo $sql;
+          $sql="INSERT INTO videos (video_title, eis_video_id, video_url,modpack_id,added_date) VALUES ('$video_name',$eis_video_id,'$mod_id','$modpack_id')";
           $result=mysqli_query($link, $sql);
 
         $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
@@ -25,29 +23,6 @@
         header('location:videos.php',301, true);
 
       }
-
-         if(isset($_POST['edit_video'])){
-          $video_id=$_POST['video_id'];
-          header('location:video_edit.php?video_id='.$video_id);
-        }  
-
-        if(isset($_POST['delete_video'])){
-          $video_id=$_POST['video_id'];
-          $sql="DELETE from videos where video_id=$video_id";
-          $result=mysqli_query($link, $sql);
-
-        
-          //pridane do wallu;
-          $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
-          //$link1=mysqli_connect("localhost", "root", "", "brick_wall");
-          $curr_date=date('Y-m-d H:i:s');
-          $diary_text="Minecraft IS: Bolo pridane nove video s nazvom <strong>$video_name</strong>";
-          $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
-          $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
-          mysqli_close($link1);
-
-          echo "<script>altert('Video s id $video_id bolo zmazane')</script>";
-        }
 ?>      
 <!DOCTYPE html>
 <html lang="en">
@@ -83,9 +58,8 @@
           <div class='list'>
             <div id="new_video">
              <form action="" enctype="multipart/form-data" method="post">    
-                <input type=hidden name="modpack_id" value=<?php if(isset($_GET['modpack_id'])){echo $_GET['modpack_id'];}else{echo 0;} ?>>
-                <input type="text" name="video_title" placeholder='Video title' autocomplete=off>
-                <input type="text" name="video_url" placeholder='Video url'  autocomplete=off>
+                <input type="text" name="video_title">
+                <input type="text" name="video_url">
                 <div class='new_video_category'><select name='category'>
 						        <option value=0>-- Select category -- </option>
                       <?php
@@ -101,13 +75,6 @@
                 <div class="new_video_modpack"><select name="modpack">
                 <option value=0>-- Select mod pack -- </option>     
                 <?php
-                     if(isset($_GET['modpack_id'])){
-                      $modpack_id=$_GET['modpack_id'];
-                      $modpack_name=GetModPackName($modpack_id);
-                      echo "<option value=$modpack_id selected='selected'>$modpack_name</option>";
-                    } else{  ?> 
-                      <option value=0>-- Select mod pack -- </option>   
-                     <?php   
                         $sql="SELECT * from modpacks ORDER BY modpack_id ASC";
                         $result=mysqli_query($link, $sql);
                           while ($row = mysqli_fetch_array($result)) {
@@ -115,7 +82,6 @@
                             $modpack_name=$row['modpack_name'];
                         echo "<option value=$modpack_id>$modpack_name</option>";
                         }	
-                      } 
                       ?>
                    </select>   
                 </div>
@@ -126,41 +92,22 @@
             <div id="video_list">
                 <?php
                     //$sql="SELECT a.video_id, a.video_title, a.eis_video_id,a.mod_id, a.modpack_id, b.modpack_id, b.modpack_name from videos a, modpacks b, category c where a.modpack_id=b.modpack_id ORDER BY a.video_id DESC";
-                    $sql="SELECT a.video_id, a.video_title, a.eis_video_id, a.video_url, a.cat_id, a.modpack_id from videos a ORDER BY a.video_id DESC";
-                    //echo $sql;
+                    $sql="SELECT a.video_id, a.video_title, a.eis_video_id, a.video_url, a.mod_id, a.modpack_id from videos a ORDER BY a.video_id DESC";
                     $result=mysqli_query($link, $sql);
                         while ($row = mysqli_fetch_array($result)) {
                           $video_id=$row['video_id'];
-                          $eis_video_id=$row['eis_video_id'];
                           $video_name=$row['video_title'];
                           $video_url=$row['video_url'];
-                          $mod_id=$row['cat_id'];
+                          $mod_id=$row['mod_id'];
                           $modpack_id=$row['modpack_id'];
                           
                           
                             echo "<div class='video'>";
-                                    echo "<div class='video_name'><strong>$video_name";
-                                    if($eis_video_id<>0){
-                                     echo "-$eis_video_id<strong></div>"; 
-                                    } else {
-                                    echo "</strong></div>";}
-                                    echo "<div class='video_url' ><a href='$video_url'>$video_url</a></div>";
+                                    echo "<div class='video_name'><strong>$video_name</strong></div>";
+                                    echo "<div class='video_url'><a href='$video_url'>$video_url</a></div>";
                                     echo "<div class='video_preview'></div>";
-                                   
-                                    $category_name=GetModName($mod_id);
-                                    $modpack_name=GetModpackName($modpack_id);
-
-                                    if($category_name<>""){
-                                      $category_name="<span class='span_mod'>".$category_name."</span>";
-                                    }
-                                    if ($modpack_name<>""){
-                                       $modpack_name="<span class='span_modpack'>".$modpack_name."</span>";
-                                    }
-                                    
-                                    echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
-
-                                    echo "<div class='videos_action'><form method='post' action=''><input type='hidden' name=eis_video_id value=$eis_video_id><input type='hidden' name=video_id value=$video_id><button name='edit_video' type='submit' class='button app_badge'>Edit</button><button name='delete_video' type='submit' class='button app_badge'>Delete</button></form></div>";
-                                    //echo "<div class='video_action'><span><a href='video_delete.php?id=$video_id'>x</a></span></div>";
+                                    echo "<div class='video_mods_wrap'><span class='span_mod'>$mod_id</span><span class='span_modpack'>$modpack_id</span></div>";
+                                    echo "<div class='video_action'><span><a href='video_edit.php?id=$video_id'>Edit</a> | <a href='video_delete.php?id=$video_id'>x</a></span></div>";
                                     //echo "<div class='mod'>$mod_name</div>";
                                     echo "<div style='clear:both'></div>";             
                           echo "</div>";

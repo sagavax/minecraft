@@ -56,7 +56,7 @@
                          $app_task="<i class='fa fa-tasks'></i>";
                           
                           echo "<div class='list_wrap'>
-                               
+                                  <div class='list_body'>
                           ";        
                                   if($app=='notes'){
                                     
@@ -80,7 +80,7 @@
                                   echo "<div class='list_app_text'>$text</div>
                                   <div class='list_date'>$added_date</div>
                                   <div class='list_app'><span class='app_badge'>$app</span></div>
-                               
+                                </div>
                               </div>";
                         }  
                        echo "<div style='clear:both'></div>";
