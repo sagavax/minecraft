@@ -42,8 +42,7 @@
         if(isset($_POST['publish_to_wall'])){//chcem zverejnit text poznamky do wallu, nielen informaciu ze sprava bola vytvorena
             //echo "<script>alert('To Waaaaaaaaaal !!!')</script>";
             //$diary_text="<strong>$note_header</strong> $note_text";
-            $modpack_name = GetModPackName($modpack_id);
-            $diary_text="Minecraft: <strong>".$modpack_name."</strong> ".$note_header." ".$note_text;
+            $diary_text="$note_header $note_text";
             //$diary_text=mb_convert_encoding($diary_text,"utf-8");
           // $diary_text=iconv(mb_detect_encoding($diary_text, mb_detect_order(), true), "UTF-8", $diary_text);
 
@@ -57,7 +56,7 @@
             }
         }
         
-        $curr_date=date('Y-m-d h:i:s');
+        $curr_date=date('Y-m-d H:i:s');
         $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
         //echo $sql;
         $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));

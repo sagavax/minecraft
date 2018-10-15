@@ -82,35 +82,11 @@
                       <div class='action'><button type='submit' name='add_new_cat' class='button pull-right'><i class='fa fa-plus'></i> Add new</button></div>
                   </form>   
                </div>   
-               
-               <div id="letter_list"><!--letter list -->
-                
-                     <ul>
-                     <?php 
-                        foreach (range('A', 'Z') as $char) {
-                          echo "<li><a href='categories.php?alphabet=$char' class='button small_button'>$char</a></li>";
-
-                        }
-                          echo "<li><a href='categories.php?char=all' class='button small_button'>All</a></li>";
-                          ?>  
-                        </ul>
-                        
-                </div><!--letter list --> 
                 
                 <div id='categories_list'>
                       <ul>
                       <?php
-                        if(isset($_GET['alphabet'])){
-                            $char=$_GET['alphabet'];
-                            if($char<>'all'){
-                            $sql="SELECT * from category where left(cat_name,1)='$char' ORDER BY cat_name ASC";
-                            } else {
-                                $sql="SELECT * from category ORDER BY cat_name ASC";        
-                            }
-                        } else {
                         $sql="SELECT * from category ORDER BY cat_name ASC";
-                        }
-                        //echo $sql;   
                         $result=mysqli_query($link, $sql);
                         while ($row = mysqli_fetch_array($result)) {
                             $cat_id=$row['cat_id'];

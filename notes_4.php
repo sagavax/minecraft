@@ -9,7 +9,7 @@
       if(isset($_POST['edit_note'])){
         if($_POST['eis_note_id']<>0){
           $eis_note_id=$_POST['eis_note_id'];
-          header('location:https://eis.tmisura.sk/notepad/note_edit.php?note_id=$eis_note_id');
+          header('location:eis.tmisura.sk/notepad/note_edit.php?note_id=$eis_note_id');
         } else {
           $note_id=$_POST['note_id'];
           header('location:note_edit.php?note_id='.$note_id);
@@ -118,9 +118,9 @@
                                $modpack_name="<span class='span_modpack'>".$modpack_name."</span>";
                             }
                             
-                            //echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
+                            echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
                         
-                            echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div><div class='notes_action'><form method='post' action=''><input type='hidden' name=eis_note_id value=$eis_note_id><input type='hidden' name=note_id value=$note_id><button name='edit_note' type='submit' class='button app_badge'>Edit</button><button name='delete_note' type='submit' class='button app_badge'>Delete</button></form></div>";
+                            echo "<div class='notes_action'><form method='post' action=''><input type='hidden' name=eis_note_id value=$eis_note_id><input type='hidden' name=note_id value=$note_id><button name='edit_note' type='submit' class='button app_badge'>Edit</button><button name='delete_note' type='submit' class='button app_badge'>Delete</button></form></div>";
                           echo "</div>";
 
                         }     

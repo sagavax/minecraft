@@ -12,8 +12,7 @@
           $sql="UPDATE videos SET cat_id=$video_category, modpack_id=$video_modpack, video_title='$video_name', video_url='$video_url' where video_id=$video_id";
           //echo $sql;
           $result=mysqli_query($link, $sql);
-
-          //header('location:videos.php');
+          header('location:videos.php');
       }
 ?>
 
@@ -54,11 +53,13 @@
                     global $link; 
                     $video_id=$_GET['video_id'];
                     $sql="SELECT video_id, video_title, eis_video_id, video_url, cat_id, modpack_id from videos where video_id=$video_id";
-                    // echo $sql;
+               
                     $result=mysqli_query($link, $sql);
                     while($row = mysqli_fetch_array($result)){
-                        $cat_name=GetModName($row['cat_id']);
-                        $modpack_name=GetModPackName($row['modpack_id']);
+                        $cat_id=$row['cat_id'];
+                        $modpack_id=$row['modpack_id'];
+                        $cat_name=GetModName($cat_id);
+                        $modpack_name=GetModPackName($modpack_id);
                         $video_name=$row['video_title'];
                         $video_url=$row['video_url'];
                         $eis_video_id=$row['eis_video_id'];
@@ -72,9 +73,10 @@
                          <input type="text" name="video_url" value="<?php echo $video_url;?>">
                          <div class='new_task_category'><select name='category'>
                          <?php if($cat_id==0){
-                             echo "<option value=0>-- Select category -- </option>";
-                         } else {    
-						 echo "<option value=$cat_id selected='selected' >$cat_name</option>";
+                             echo "<option value=0> -- Select category -- </option>";
+                         } else {  
+                        
+						 echo "<option value=$cat_id selected='selected'>$cat_name</option>";
                          }   
                         $sql="SELECT * from category ORDER BY cat_name ASC";
                       
@@ -82,21 +84,20 @@
                           while ($row = mysqli_fetch_array($result)) {
                             $cat_id=$row['cat_id'];
                             $cat_name=$row['cat_name'];
-                        echo "<option value=$cat_id>$cat_name</option>";
+                        echo "<option value=$cat_id >$cat_name</option>";
                         }	
                         ?>  
                         </select></div>
                         
                         <div class="new_task_modpack">
-               
-                        
+                                               
                         <select name="modpack">
                            <?php 
                            //echo "modpack:".$modpack_id;
                             if($modpack_id==0){
                                 echo "<option value=0>-- Select modpack -- </option>";
                             } else {
-                        
+                       
                         echo "<option value=$modpack_id selected='selected' >$modpack_name</option>";
                         }
 

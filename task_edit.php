@@ -67,22 +67,24 @@
                      <form action="" method="post">
                          <input type="hidden" name="task_id" value=<?php echo $task_id ?> />
                          <div id="task_text"><textarea name="task_text"><?php echo $task_text ?></textarea></div>
-                         <div class='new_task_category'><select name='category'>
-                         <?php if($cat_id==0){
-                             echo "<option value=0>-- Select category -- </option>";
-                         } else {    
-						 echo "<option value=$cat_id selected='selected' >$cat_name</option>";
-                         }   
-                        $sql="SELECT * from category ORDER BY cat_name ASC";
-                      
-                        $result=mysqli_query($link, $sql);
-                          while ($row = mysqli_fetch_array($result)) {
-                            $cat_id=$row['cat_id'];
-                            $cat_name=$row['cat_name'];
-                        echo "<option value=$cat_id>$cat_name</option>";
-                        }	
-                        ?>  
-                        </select></div>
+                         <div class="new_task_category">
+                             <select name="category">
+                                <?php if($cat_id==0){
+                                    echo "<option value=0>-- Select category -- </option>";
+                                } else {    
+                                echo "<option value=$cat_id selected='selected' >$cat_name</option>";
+                                }   
+                                $sql="SELECT * from category ORDER BY cat_name ASC";
+                            
+                                $result=mysqli_query($link, $sql);
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $cat_id=$row['cat_id'];
+                                    $cat_name=$row['cat_name'];
+                                echo "<option value=$cat_id>$cat_name</option>";
+                                }	
+                                ?>  
+                            </select>
+                        </div>
                         
                         <div class="new_task_modpack">
                

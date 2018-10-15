@@ -65,7 +65,6 @@
           <div class='list'>
             <form action="" method="post"><button name="add_task" type="submit" class="button">+</button></form>
             <?php
-               
                 $sql="SELECT * from to_do where parent_task=0 ORDER BY  task_id  DESC";
                 $result=mysqli_query($link, $sql);
                         
@@ -92,33 +91,24 @@
                      $modpack_name="<span class='span_modpack'>".$modpack_name."</span>";
                   }
                   
-                  //$mod_modpack.="".$category_name." ".$modpack_name."</div>";
+                  $mod_modpack="<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
                   
                   
                   if($is_completed==1){
                     
                     $task_completed="<span class='span_task_completed'>Complete</span>";
-                    //$mod_modpack="<div class='mod_modpack'>".$mod_modpack." ".$task_completed."</div>";
-                   // echo $mod_modpack;
-                    $button_edit="";
-                    $button_task_complete="";
-                     
- 
+              
                   } elseif($is_completed==0){
 
                     $task_completed="";
-                   
-                    //
-                    $button_edit="<button type='submit' name='edit_task' class='button small_button pull-right'><i class='fa fa-pencil'></i></button>";
-                    $button_task_complete="<button type='submit' name='complete_task' class='button small_button pull-right'><i class='fa fa-check'></i></button>";
-            
-                    //echo $mod_modpack;
-                    //echo "<div class='task_action'><form action='' method='post'><input type='hidden' name='task_id'  value='$task_id'>".$button_edit." ".$button_task_complete."</form></div>";
+
+                    echo "<div class='task_action'><form action='' method='post'><input type='hidden' name='task_id'  value='$task_id'><button type='submit' name='edit_task' class='button small_button pull-right'><i class='fa fa-pencil'></i></button><button type='submit' name='complete_task' class='button small_button pull-right'><i class='fa fa-check'></i></button></form></div>";
                   }
-                  $mod_modpack="<div class='mod_modpack'>".$category_name." ".$modpack_name." ".$task_completed."</div>";
+
+                  $mod_modpack=$mod_modpack." ".$task_completed;
+
                   echo $mod_modpack;
-                  echo "<div class='task_action'><form action='' method='post'><input type='hidden' name='task_id'  value='$task_id'>".$button_edit." ".$button_task_complete."</form></div>";
-                  
+
                   echo "</div>";//task
                 }
                

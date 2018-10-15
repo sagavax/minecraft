@@ -100,17 +100,7 @@
                 <div id='categories_list'>
                       <ul>
                       <?php
-                        if(isset($_GET['alphabet'])){
-                            $char=$_GET['alphabet'];
-                            if($char<>'all'){
-                            $sql="SELECT * from category where left(cat_name,1)='$char' ORDER BY cat_name ASC";
-                            } else {
-                                $sql="SELECT * from category ORDER BY cat_name ASC";        
-                            }
-                        } else {
                         $sql="SELECT * from category ORDER BY cat_name ASC";
-                        }
-                        //echo $sql;   
                         $result=mysqli_query($link, $sql);
                         while ($row = mysqli_fetch_array($result)) {
                             $cat_id=$row['cat_id'];

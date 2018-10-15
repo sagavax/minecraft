@@ -135,16 +135,14 @@ textarea {
 
 .button {
 		font-family: Noto Sans,sans-serif;
-		/*background: #75c54f;
+		background: #75c54f;
     	background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#75c54f),color-stop(100%,#57b13b));
     	background: -webkit-linear-gradient(top,#75c54f,#57b13b);
-		background: linear-gradient(180deg,#75c54f 0,#57b13b);*/
-		background: #aadd77;
+    	background: linear-gradient(180deg,#75c54f 0,#57b13b);
 		color:#fff;
 		padding: 11px 48px;
 		border-radius: 2px;
-		/*border: 1px #57b13b solid;*/
-		border: #aadd77 1px solid;
+		border: 1px #57b13b solid;
 		font-size: 15px;
 }
 .small_button {
@@ -176,11 +174,11 @@ textarea {
 	text-align: right
 }
 
-.notes_action, .mod_modpack,.task_action {
+.notes_action, .mod_modpack {
 	height:45px; line-height: 45px;
 }
 
-.notes_action,.task_action {
+.notes_action {
 	width:20%;
 }
 
@@ -342,7 +340,7 @@ textarea {
 }
 
 .task_text {
-	min-height:70px;
+	min-height:50px;
 }
 
 .task_category {
