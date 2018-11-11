@@ -2,16 +2,28 @@
       include "includes/functions.php";
 
       if(isset($_POST['task_edit'])){
-          var_dump($_POST);
-          $task_id=$_POST['task_id'];
+          
+        $task_id=$_POST['task_id'];
           $task_text=mysqli_real_escape_string($link, $_POST['task_text']);
           $task_category=$_POST['category'];
           $task_modpack=$_POST['modpack'];
 
           $sql="UPDATE to_do SET task_id=$task_id, cat_id=$task_category, modpack_id=$task_modpack, task_text='$task_text' where task_id=$task_id";
           //echo $sql;
-          $result=mysqli_query($link, $sql);
-          header('location:tasks.php');
+          $result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+
+           $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
+            //$link1=mysqli_connect("localhost", "root", "", "brick_wall");
+            $curr_date=date('Y-m-d H:i:s');
+            $diary_text="Minecraft IS: Task <strong>$task_text</strong>";
+            $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
+            $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
+            mysqli_close($link1);
+            
+          echo "<script>
+          alert('Task s id $task_id bol upraveny');
+          window.location.href='tasks.php';
+          </script>";
       }
 ?>
 
@@ -22,7 +34,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Minecraft tools</title>
+    <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -42,8 +54,9 @@
             <li><a href="tasks.php">Tasks</a></li>
             <li><a href="categories.php">Categories</a></li>
             <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a></li>
+            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
             <li><a href="pics.php">Pics</a></li>
+            <li><a href="logout.php">Logout</a></li>
           </ul>
         </div>
         <div class="content">

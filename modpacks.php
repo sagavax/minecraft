@@ -6,14 +6,16 @@
           $modpack_name=mysqli_real_escape_string($link, $_POST['modpack_name']);
           $modpack_description=mysqli_real_escape_string($link, $_POST['modpack_description']);
           $modpack_url=mysqli_real_escape_string($link, $_POST['modpack_url']);
-          $modpack_pic=mysqli_real_escape_string($link, $_POST['modpack_pic']);
+          //$modpack_pic=mysqli_real_escape_string($link, $_POST['modpack_pic']);
+            
+          $modpack_pic="";
 
           $sql="INSERT INTO modpacks (modpack_name,  modpack_pic, modpack_description, modpack_url) VALUES ('$modpack_name','$modpack_pic','$modpack_description','$modpack_url')";
-          echo $sql;
+          //echo $sql;
           $result=mysqli_query($link, $sql);
 
-          //$link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
-          $link1=mysqli_connect("localhost", "root", "", "brick_wall");
+          $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
+          //$link1=mysqli_connect("localhost", "root", "", "brick_wall");
           $curr_date=date('Y-m-d H:i:s');
           $diary_text="Minecraft IS: Bol pridany novy modpack s nazvom <strong>$modpack_name</strong>";
           $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
@@ -44,10 +46,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Minecraft tools</title>
+    <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
@@ -59,14 +61,15 @@
       <div class="main_wrap">
       <div class="tab_menu">
           <ul>
-            <li><a href="index.php">Dashboard</a></li>
+            <li><a href="dashboard.php">Dashboard</a></li>
             <li><a href="notes.php">Notes</a></li>
             <li><a href="tasks.php">Tasks</a></li>
             <li><a href="categories.php">Categories</a></li>
             <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a></li>
+            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
             <li><a href="pics.php">Pics</a></li>
-          </ul>
+            <li><a href="logout.php">Logout</a></li>
+         </ul>
         </div>
         </div>
         <div class="content">
@@ -91,18 +94,23 @@
                             $modpack_url=$row['modpack_url'];
                             $modpack_pic=$row['modpack_pic'];
 
+                            $modpack_url=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $modpack_url);
+
                             echo "<div class='modpack'>";
-                                echo "<div class='modpack_pic'></div>";
+                               echo "<div class='modpack_details_wrap'>";
+                                echo "<div class='modpack_pic'><img src='pics/File_No_Image_Available.png'></div>";
                                 echo "<div class='modpack_details'>";
                                     echo "<div class='modpack_name'>$modpack_name</div>";
                                     echo "<div class='modpack_description'>$modpack_description</div>";
+                                    echo "<div class='modpack_url'><span>$modpack_url</span></div>";
                                 echo "</div>"; 
+                              echo "</div>";   
                                 
-                                $modpack_url=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $modpack_url);
+                               
 
-                                echo "<div class='modpack_url'><span>$modpack_url</span></div>";
+                               
                                 echo "<div class='mod_list'>". GetModList($modpack_id)."</div>";
-                                echo "<div class='modpack_action'><form action='' method='post'><input type='hidden' name='modpack_id' value=$modpack_id><div class='buttons'><button name='new_note' title='add new note' class='button app_badge'>+</button><button name='new_video' title='add new video'  class='button app_badge'>+</button><button name='new_task' title='add new task' class='button app_badge'>+</button></div></form></div>'";
+                                echo "<div class='modpack_action'><form action='' method='post'><input type='hidden' name='modpack_id' value=$modpack_id><div class='buttons'><button name='new_note' title='add new note' class='button small_button'><i class='fa fa-plus'></i></button><button name='new_video' title='add new video'  class='button small_button'><i class='fa fa-plus'></i></button><button name='new_task' title='add new task' class='button small_button'><i class='fa fa-plus'></i></button></div></form></div>'";
                             echo "</div>";
                         }        
                 ?>

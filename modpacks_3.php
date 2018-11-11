@@ -43,7 +43,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Minecraft tools</title>
+    <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -63,7 +63,7 @@
             <li><a href="tasks.php">Tasks</a></li>
             <li><a href="categories.php">Categories</a></li>
             <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a></li>
+            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
             <li><a href="pics.php">Pics</a></li>
           </ul>
         </div>

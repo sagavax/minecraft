@@ -26,13 +26,13 @@
        // echo $sql;
         $result=mysqli_query($link, $sql);
 
-        //$link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
-        //$link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
-      /*  $curr_date=date('Y-m-d H:i:s');
+        //$link1=mysqli_connect("localhost", "root", "", "brick_wall");
+        $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
+        $curr_date=date('Y-m-d H:i:s');
         $diary_text="Do zoznamu bol pridany novy mod s nazvom <strong>$cat_name</strong>";
         $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
         $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
-        mysqli_close($link1);*/
+        mysqli_close($link1);
         echo "<script>
             alert('Novy mod $cat_name bol pridany');
             window.location.href='categories.php';
@@ -49,10 +49,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Minecraft tools</title>
+    <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
@@ -69,8 +69,9 @@
             <li><a href="tasks.php">Tasks</a></li>
             <li><a href="categories.php">Categories</a></li>
             <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a></li>
+            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
             <li><a href="pics.php">Pics</a></li>
+            <li><a href="logout.php">Logout</a></li>
           </ul>
         </div>
         <div class="content">
@@ -79,7 +80,7 @@
                   <h4>Add new category (mode):</h4>
                   <form action='' method='post'>
                       <input type='text' name='new_cat_name' autocomplete="off">
-                      <div class='action'><button type='submit' name='add_new_cat' class='button pull-right'><i class='fa fa-plus'></i> Add new</button></div>
+                      <div class='action'><button type='submit' name='add_new_cat' class='button small_button pull-right'><i class='fa fa-plus'></i> Add new</button></div>
                   </form>   
                </div>   
                
@@ -116,7 +117,7 @@
                             $cat_id=$row['cat_id'];
                             $cat_name=$row['cat_name'];
                         
-                            echo "<li><div class='cat_name'>$cat_name</div><div class='cat_delete'><a href='category_delete.php?id=$cat_id'>x</a></div></li>";
+                            echo "<li><div class='category'><div class='cat_name'>$cat_name</div><div class='cat_delete'><a href='category_delete.php?id=$cat_id'><i class='fas fa-times-circle'></i></a></div></div></li>";
                             
                         }    
                       ?>

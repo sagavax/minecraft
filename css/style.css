@@ -66,14 +66,17 @@ a {
 	height: 40px;
 	display: inline-block;
 	line-height: 40px;
+	position: relative;
 	/*width: 80px;*/
-	padding-left: 15px;
-	padding-right: 15px;
+	/*padding-left: 15px;
+	padding-right: 15px;*/
 
 }
 
 .tab_menu ul li a {
 	display: block;
+	line-height: inherit;
+	padding:0 10px;
 	color: #555;
 }
 
@@ -81,6 +84,28 @@ a {
 	color:	#57b13b;
 	
 }
+
+
+.submenu {
+	display: none;
+	padding:0;
+	margin:0;
+	list-style: none;
+	width:100px;
+	background: #fff;
+	border: 1px #d1d1d1 solid;
+	position: absolute;
+	height:auto !important;
+}
+
+.submenu li {
+	width: 100%; text-align: center;
+}
+
+.tab_menu ul li:hover .submenu {
+	display: block
+}
+
 
 
 .content {
@@ -166,21 +191,27 @@ textarea {
 	margin-left: 0px;
 }
 
-.new_note_category,.notes_action, .mod_list,.mod_modpack, .modpack_action, .note,.note_action, .task, .task_action,.task_edit, .task_text,.note_text,.task_category, .subtask,.subtask_action,#new_task,.task_completed, .subtasks,.new_task_textarea, .new_task_action, #task_list, #new_cat, #categories_list, #new_modpack,.modpack, .modpack_url, .modpack_name,.modpack_description, #modpack_list,.new_task_category, .new_task_modpack, #new_note, #new_video, .video_mods_wrap, .video_action,.new_video_category, .new_video_modpack, .video_name, .video_url, .new_note,.action,.mod_modpack, #picture_list, #letter_list {
+.margin-right {
+	margin-right: 0;
+}
+
+.new_video_select_action_wrap,.videos,.tasks,.button_wrap,.search_wrap, .new_note_category,.notes_action, .mod_list,.mod_modpack, .modpack_action, .note,.note_action, .task, .task_action,.task_edit, .task_text,.note_text,.task_category, .subtask,.subtask_action,#new_task,.task_completed, .subtasks,.new_task_textarea, .new_task_action, #task_list, #new_cat, #categories_list, #new_modpack,.modpack, .modpack_url, .modpack_name,.modpack_description, #modpack_list,.new_task_category, .new_task_modpack, #new_note, #new_video, .video_mods_wrap, .video_action,.new_video_category, .new_video_modpack, .video_name, .video_url, .new_note,.action,.mod_modpack, #picture_list, #letter_list,.pic,.picture_action,.tasks_view,.action_add_task, .modlist,.video {
 	float:left;
 	width:100%;
  
 }
 
 .notes_action, .videos_action {
-	text-align: right
+	text-align: right;float:right
 }
 
-.notes_action, .mod_modpack,.task_action {
+
+.vide
+.notes_action, .mod_modpack,.task_action,.picture_action {
 	height:45px; line-height: 45px;
 }
 
-.notes_action,.task_action {
+.notes_action,.task_action, .picture_action,.videos_action {
 	width:20%;
 }
 
@@ -194,8 +225,13 @@ textarea {
 }
 
 
-.mod_modpack, .mod_list,#letter_list {
+.mod_modpack, .mod_list,#letter_list,{
 	height: 45px;
+	line-height: 45px;
+}
+
+.mod_list {
+	min-height: 45px;
 	line-height: 45px;
 }
 
@@ -218,9 +254,13 @@ textarea {
 #letter_list ul li {
 	float: left;
 	margin-left: 5px;
+	text-align: center;
 }
 
-
+#letter_list ul li a {
+    display: block;
+    margin-top: 5px;
+}	
 
 .modpack_action {
 	border-top: 1px #d1d1d1 solid;
@@ -266,7 +306,9 @@ textarea {
 }
 
 .buttons {
-	width:100px;
+	width:140px;
+	text-align: center;
+	width:15%;
 	float: right;
 }
 
@@ -279,12 +321,21 @@ textarea {
 	padding:3px;
 }
 
+.new_video_select_action_wrap {
+	margin-top:5px;
+}
+
+.new_video_selects_wrap, .new_video_submit_wrap {
+	float: left; width: 50%; height: auto;
+}
+
+
 .new_video_category, .new_video_modpack {
 	margin-top:5px;
 }
 
-.new_video_category select , .new_video_modpack select {
-	height: 30px; width:25%; 
+.new_video_selects_wrap select {
+	height: 30px; width:100%; margin-top:5px;
 }
 
 .video_mods_wrap  {
@@ -296,14 +347,17 @@ textarea {
 	background: #fff;
 	box-sizing: border-box;
 	padding:5px;
-	margin-top:5px;
+	margin-top:15px;
 }
 
+.note, .video {
+	border-radius: 5px;
+}
 
 .note {
-	border:0;
-	box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
-    transition: box-shadow 83ms;
+	border:1px #d1d1d1 solid;
+	/*box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
+    transition: box-shadow 83ms;*/
 }
 .video {
 	height: auto;
@@ -311,6 +365,10 @@ textarea {
 
 .video_name,.video_url,.picture_name {
 	height:30px
+}
+
+.videos {
+	margin-top: 50px;
 }
 
 .note_text {
@@ -328,13 +386,9 @@ textarea {
  width:100%;
 }
 
-#note_list, #video_list, #picture_list {
+#note_list, #picture_list {
 	margin-top:20px;
 	float:left;
-}
-
-#video_list {
-	width:100%;
 }
 
 #modpack_list {
@@ -523,6 +577,7 @@ textarea {
 	color:#666;
 	margin-top: 5px;
 	background-color: #fff;
+	border:1px #d1d1d1 solid;
 }
 
 .list_body {
@@ -605,7 +660,7 @@ textarea {
 }
 
 #categories_list ul li {
-	height:35px;
+	height:45px;
 	background: #fff;
 	line-height: 35px;
 	margin-top:2px;
@@ -643,10 +698,19 @@ textarea {
 	float: left;
 }
 
+.modpack_details_wrap {
+	height:130px; 
+	padding:5px;
+	box-sizing: border-box;
+	width:100%;
+}
+
 .modpack_pic {
  width:20%;
  float: left;
- height: 40px;
+ margin-left:2px;
+ height: 100%;
+ border:1px #ddd solid;
 }
 
 
@@ -655,6 +719,7 @@ textarea {
 	width:79%;
 	box-sizing: border-box;
 	padding: 5px;
+	height:100%;
 }
 
 .modpack {
@@ -677,11 +742,12 @@ textarea {
 	float: left;
 	padding-top:5px;
 	padding-bottom: 5px;
+
 }
 
 .modpack_url span {
-	float: right;
-	margin-right: 5px;
+	float: left;
+	margin-left: 5px;
 }
 
 .span_mod, .span_modpack,.span_task_completed {
@@ -689,10 +755,14 @@ textarea {
  margin-left:5px;
  background-color: #20a8d8;
  color:#fff;
- padding:2px 5px; 
+ padding:6px 12px; 
  border-radius: 0px;
  height:20px;
  line-height: 20px;
+}
+
+.span_mod a {
+	color:#fff;
 }
 
 .span_task_completed {
@@ -729,13 +799,18 @@ textarea {
 	}
 
 .cat_name {
+	height:45px;
+	line-height: 45px;
 	float: left;
-	width:98%;
+	width:95%;
 }
 
 .cat_delete {
+	height:45px;
 	float: left;
-	width: 2%;
+	width: 5%;
+	display: table-cell;
+	text-align: center;
 }
 
 .cat_delete:hover {
@@ -753,3 +828,160 @@ textarea {
 .cat_delete:hover a {
 	color:#fff;
 }
+
+.search_wrap {
+	margin-top:30px;
+}
+
+.search_wrap input {
+	width: 95%;
+}
+
+.search_wrap button {
+	margin-left: 5px;
+}
+
+.button_wrap {
+	height:50px; line-height: 50px;margin-top:10px;
+}
+
+.button_wrap button{
+	width: 80px;
+	display: table-cell;
+}
+
+.category {
+	height:45px;
+}
+
+.pic {
+	margin-top:10px;
+	text-align: center;
+}
+
+.fit_picture {
+	width: auto;
+/*	height: 100%;
+	/*	object-fit: cover;*/ /*magic*/
+	/*flex: 1;*/
+}
+
+.tasks_view {
+	height:50px; line-height: 50px;text-align: center;
+}
+
+.tasks_view input[type="radio"]{
+	float: left; width: 5%;
+}
+
+.tasks_view label {
+	float: left; height: 30px; line-height: 30px;;
+}
+
+.tasks {
+	margin-top:15px;
+}
+
+
+.modlist {
+    height:30px; line-height: 30px
+}
+
+.modlist span {
+    display: inline; margin-left: 5px;
+}
+
+
+
+@media (min-width:601px){
+
+}
+
+@media (max-width:992px) and (min-width:601px){
+
+}
+
+@media (max-width:992px){
+
+}
+
+
+@media (min-width:993px){
+
+}
+
+@media (max-width:1205px){
+
+}
+
+@media(max-width:1900px){
+	.search_wrap input{width:93%}
+	.mod_modpack {width:75%}
+	.videos_action {width:25%}
+}
+
+
+@media (max-width:600px){
+	.list {	width:90%;}
+	.tab_menu,.tab_menu ul {height: 80px !important}
+	.mod_modpack,.notes_action,.task_action {width:100%;} 
+	.mod_modpack {height:auto}
+
+	.list_date, .list_app_icon {display: none;}
+	.list_app_text {width:80%}
+	#letter_list ul li {margin-left:5px;display: inline !important}
+	#categories_list {margin-top:90px;}
+	.buttons {width:50%}
+	.modpack_url {
+		word-break: break-all; text-align: center;padding-left: 5px; padding-right: 5px; box-sizing: border-box;
+	}
+	.modpack_action {height:45px}
+
+	.search_wrap input {width:80%}
+	.new_note_category select {width:90%}
+	.new_note_category label {display: none}
+	.cat_delete {width:9%}
+	.cat_name {width:91%}
+	.new_video_category select {width:100%}
+	.new_video_modpack select {width:100%}
+	.video_name, .video_url {height: auto}
+	.video_url {padding-bottom:5px;word-break: break-all}
+	.video_name {
+		word-break: break-all;padding-bottom: 5px;
+	}
+	.app_picture {display: none}
+	.tab_menu {text-align: left}
+	.videos_action {width:100%}
+}
+
+@media (max-width:768px){
+	.list {	width:90%;}	
+}
+
+.message {
+	height: 80px;
+	line-height: 80px;
+	border:1px #d1d1d1 solid;
+	color:#fff;
+	width: 38.4rem;
+    max-width: 38.4rem;
+   	text-align: center;
+	box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+	position: absolute;
+    left: 50%;
+	top: 50%;
+	z-index: 1000;
+	font-size: 30px;
+}
+
+.succeess
+{
+  /*background: #49D5D3;*/
+  background: green;
+}
+
+.error
+ {
+  background: #F07142;
+}
+

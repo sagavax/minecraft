@@ -1,0 +1,7 @@
+Options +FollowSymLinks
+
+RewriteEngine on
+
+RewriteRule modpack/(.*)/ modpack.php?u=$1
+
+RewriteRule modpack/(.*) modpack.php?u=$1 

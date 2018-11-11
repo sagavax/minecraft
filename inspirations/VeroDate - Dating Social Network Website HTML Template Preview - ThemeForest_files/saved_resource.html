@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://html.verodate.com/verodate/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.gm-style-pbc{transition:opacity ease-in-out;background-color:rgba(0,0,0,0.45);text-align:center}.gm-style-pbt{font-size:22px;color:white;font-family:Roboto,Arial,sans-serif;position:relative;margin:0;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}
+</style>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="http://html.verodate.com/verodate/img/fav-icon.png" type="image/x-icon">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>VeroDate - Dating Social Network Website</title>
+
+        <!-- Icon css link -->
+        <link href="./materialdesignicons.min.css" rel="stylesheet">
+        <link href="./font-awesome.min.css" rel="stylesheet">
+        <link href="./style.css" rel="stylesheet">
+        
+        <!-- RS5.0 Layers and Navigation Styles -->
+        <link rel="stylesheet" type="text/css" href="./layers.css">
+        <link rel="stylesheet" type="text/css" href="./navigation.css">
+        <link rel="stylesheet" type="text/css" href="./settings.css">
+        
+        <!-- Bootstrap -->
+        <link href="./bootstrap.min.css" rel="stylesheet">
+        <link href="./dd.css" rel="stylesheet">
+        <link href="./flags.css" rel="stylesheet">
+        <link href="./skin2.css" rel="stylesheet">
+        <link href="./magnific-popup.css" rel="stylesheet">
+        <link href="./bootstrap-select.css" rel="stylesheet">
+        <link href="./bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href="./owl.carousel.css" rel="stylesheet">
+        <link href="./animate.css" rel="stylesheet">
+        <link href="./jquery.webui-popover.css" rel="stylesheet">
+        <link href="./jquery-ui.css" rel="stylesheet">
+        
+        <link href="./style(1).css" rel="stylesheet">
+        <link href="./responsive.css" rel="stylesheet">
+
+        <script type="text/javascript" id="www-widgetapi-script" src="./www-widgetapi.js.download" async=""></script><script src="./player_api"></script><script src="./js"></script>
+       
+        <script src="./map-custome.js.download"></script>
+
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <script type="text/javascript" charset="UTF-8" src="./common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./util.js.download"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/34/15/map.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/34/15/marker.js"></script><style type="text/css">.gm-style {
+        font: 400 11px Roboto, Arial, sans-serif;
+        text-decoration: none;
+      }
+      .gm-style img { max-width: none; }</style><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/34/15/onion.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/34/15/stats.js"></script></head>
+    <body class="">
+       
+       <div class="login_form_inner zoom-anim-dialog mfp-hide" id="small-dialog">
+           <h4>User Login</h4>
+           <form>
+               <input type="text" placeholder="Username">
+               <input type="password" placeholder="Password">
+               <div class="login_btn_area">
+                   <button type="submit" value="LogIn" class="btn form-control login_btn">LogIn</button>
+                   <div class="login_social">
+                       <h5>Login With</h5>
+                       <ul>
+                           <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-facebook"></i></a></li>
+                           <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-google-plus"></i></a></li>
+                       </ul>
+                   </div>
+               </div>
+           </form>
+           <img class="mfp-close" src="./close-btn.png" alt="">
+        </div>
+       
+        <div class="register_form_inner zoom-anim-dialog mfp-hide" id="register_form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="registration_man">
+                        <img src="./Registration_man.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="registration_form_s">
+                        <h4>Registration</h4>
+                        <form>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="reg_email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="reg_first" placeholder="Full Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="reg_user" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="reg_pass" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <span data-bind="label">Gender</span>&nbsp;<span class="arrow_carrot-down"><i class="fa fa-sort-asc" aria-hidden="true"></i><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="http://html.verodate.com/verodate/#">Male</a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#">Female</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="datepicker">
+                                    <input type="text" class="form-control datetimepicker4" placeholder="Birthday">
+                                    <span class="add-on"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                            <div class="reg_chose form-group">
+                                <div class="reg_check_box">
+                                    <input type="radio" id="s-option" name="selector">
+                                    <label for="s-option">I`m Not Robot</label>
+                                    <div class="check"><div class="inside"></div></div>
+                                </div>
+                                <button type="submit" value="LogIn" class="btn form-control login_btn">Register</button>
+                            </div>
+                        </form>
+                        <img class="mfp-close" src="./close-btn.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <!--================Frist Main hader Area =================-->
+        <header class="header_menu_area affix-top">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://html.verodate.com/verodate/index.html"><img src="./logo.png" alt=""></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown submenu active">
+                            <a href="http://html.verodate.com/verodate/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://html.verodate.com/verodate/index.html">Home 01</a></li>
+                                <li><a href="http://html.verodate.com/verodate/index-2.html">Home 02</a></li>
+                                <li><a href="http://html.verodate.com/verodate/index-3.html">Home 03</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown submenu">
+                            <a href="http://html.verodate.com/verodate/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://html.verodate.com/verodate/blog.html">Blog</a></li>
+                                <li><a href="http://html.verodate.com/verodate/blog-left-sidebar.html">Blog left sidebar</a></li>
+                                <li><a href="http://html.verodate.com/verodate/blog-right-sidebar.html">Blog right sidebar</a></li>
+                                <li><a href="http://html.verodate.com/verodate/single-blog-fullwidth.html">Blog Single Fullwidth</a></li>
+                                <li><a href="http://html.verodate.com/verodate/single-blog-left-sidebar.html">Blog Single left sidebar</a></li>
+                                <li><a href="http://html.verodate.com/verodate/single-blog-right-sidebar.html">Blog Single right sidebar</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown submenu">
+                            <a href="http://html.verodate.com/verodate/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://html.verodate.com/verodate/community.html">Community</a></li>
+                                <li><a href="http://html.verodate.com/verodate/members.html">Members</a></li>
+                                <li><a href="http://html.verodate.com/verodate/members-detail.html">Members Details</a></li>
+                                <li><a href="http://html.verodate.com/verodate/discussions.html">Discussions</a></li>
+                                <li><a href="http://html.verodate.com/verodate/forums.html">Forums</a></li>
+                                <li><a href="http://html.verodate.com/verodate/groups.html">Groups</a></li>
+                                <li><a href="http://html.verodate.com/verodate/matches.html">Matches</a></li>
+                                <li><a href="http://html.verodate.com/verodate/quick.html">Quick</a></li>
+                                <li><a href="http://html.verodate.com/verodate/search.html">Search</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown submenu">
+                            <a href="http://html.verodate.com/verodate/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://html.verodate.com/verodate/shop.html">Shop</a></li>
+                                <li><a href="http://html.verodate.com/verodate/shop-left.html">Shop Left</a></li>
+                                <li><a href="http://html.verodate.com/verodate/shop-right.html">Shop Right</a></li>
+                                <li><a href="http://html.verodate.com/verodate/product-details.html">Product Details</a></li>
+                                <li><a href="http://html.verodate.com/verodate/shop-cart.html">Shop Cart</a></li>
+                                <li><a href="http://html.verodate.com/verodate/checkout.html">Checkout</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown submenu">
+                            <a href="http://html.verodate.com/verodate/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://html.verodate.com/verodate/about-us.html">About Us</a></li>
+                                <li><a href="http://html.verodate.com/verodate/pricing.html">Pricing</a></li>
+                                <li><a href="http://html.verodate.com/verodate/stories.html">Stories</a></li>
+                                <li><a href="http://html.verodate.com/verodate/why-us.html">Why us</a></li>
+                                <li><a href="http://html.verodate.com/verodate/404.html">Error</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="http://html.verodate.com/verodate/contact.html">Contact us</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="popup-with-zoom-anim" href="http://html.verodate.com/verodate/#small-dialog"><i class="mdi mdi-key-variant"></i>Login</a></li>
+                        <li><a href="http://html.verodate.com/verodate/#register_form" class="popup-with-zoom-anim"><i class="fa fa-user-plus"></i>Registration</a></li>
+                        <li class="flag_drop">
+                            <div class="selector">
+                                <div class="ddOutOfVision" id="countries_msddHolder" style="height: 0px; overflow: hidden; position: absolute;"><select class="language_drop" name="countries" id="countries" style="width:300px;" tabindex="-1">
+                                  <option value="yt" data-image="img/country-aus.png" data-imagecss="flag yt" data-title="English">English</option>
+                                  <option value="yu" data-image="img/country-bang.png" data-imagecss="flag yu" data-title="Bangladesh">Bangla</option>
+                                  <option value="yt" data-image="img/country-aus.png" data-imagecss="flag yt" data-title="English">English</option>
+                                  <option value="yu" data-image="img/country-bang.png" data-imagecss="flag yu" data-title="Bangladesh">Bangla</option>
+                                </select></div><div class="dd ddcommon borderRadius" id="countries_msdd" tabindex="0" style="width: 300px;"><div class="ddTitle borderRadiusTp"><span class="divider"></span><span class="ddArrow arrowoff"></span><span class="ddTitleText " id="countries_title"><img src="./country-aus.png" class="flag yt fnone"><span class="ddlabel">English</span><span class="description" style="display: none;"></span></span></div><input id="countries_titleText" type="text" autocomplete="off" class="text shadow borderRadius" style="display: none;"><div class="ddChild ddchild_ border shadow" id="countries_child" style="z-index: 9999; display: none; position: absolute; visibility: visible; height: 155px;"><ul><li class="enabled _msddli_ selected" title="English"><img src="./country-aus.png" class="flag yt fnone"><span class="ddlabel">English</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bangladesh"><img src="./country-bang.png" class="flag yu fnone"><span class="ddlabel">Bangla</span><div class="clear"></div></li><li class="enabled _msddli_" title="English"><img src="./country-aus.png" class="flag yt fnone"><span class="ddlabel">English</span><div class="clear"></div></li><li class="enabled _msddli_" title="Bangladesh"><img src="./country-bang.png" class="flag yu fnone"><span class="ddlabel">Bangla</span><div class="clear"></div></li></ul></div></div>
+                            </div>
+                        </li>
+                    </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </header>
+        <!--================Frist Main hader Area =================-->
+        
+        <!--================Slider Reg Area =================-->
+        <section class="slider_area">
+            <div class="forcefullwidth_wrapper_tp_banner" id="home-slider_forcefullwidth" style="position:relative;width:100%;height:auto;margin-top:0px;margin-bottom:0px"><div class="slider_inner" style="margin-top: 0px; margin-bottom: 0px; position: absolute; overflow: visible; width: 1841px; left: 0px;">
+                <div class="rev_slider revslider-initialised tp-simpleresponsive" data-version="5.3.0.2" id="home-slider" data-slideactive="rs-338683" style="max-height: 796px; margin-top: 0px; margin-bottom: 0px; height: 796px;">
+                    <ul class="tp-revslider-mainul" style="visibility: visible; display: block; overflow: hidden; width: 100%; height: 100%; max-height: none;"> 
+                       <li data-slotamount="7" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="600" data-rotate="0" data-saveperformance="off" class="tp-revslider-slidesli active-revslide" style="width: 100%; height: 100%; overflow: hidden; z-index: 20; visibility: inherit; opacity: 1; background-color: rgba(255, 255, 255, 0);">
+                            <!-- MAIN IMAGE -->
+                            <div class="slotholder" style="position: absolute; top: 0px; left: 0px; z-index: 1; width: 100%; height: 100%; visibility: inherit; opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"><!--Runtime Modification - Img tag is Still Available for SEO Goals in Source - <img src="img/slider-img/slider-1.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg defaultimg" data-no-retina="">--><div class="tp-bgimg defaultimg " style="background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-image: url(&quot;img/slider-img/slider-1.jpg&quot;); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 1; visibility: inherit; z-index: 20;" src="img/slider-img/slider-1.jpg"></div></div>
+                            <!-- LAYERS -->
+                        </li>
+                        <li data-slotamount="7" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="600" data-rotate="0" data-saveperformance="off" class="tp-revslider-slidesli" style="width: 100%; height: 100%; overflow: hidden; z-index: 18; visibility: hidden; opacity: 0; background-color: rgba(255, 255, 255, 0);">
+                            <!-- MAIN IMAGE -->
+                            <div class="slotholder" style="position: absolute; top: 0px; left: 0px; z-index: 0; width: 100%; height: 100%; visibility: inherit; opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"><!--Runtime Modification - Img tag is Still Available for SEO Goals in Source - <img src="img/slider-img/slider-2.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg defaultimg" data-no-retina="">--><div class="tp-bgimg defaultimg " style="background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-image: url(&quot;img/slider-img/slider-2.jpg&quot;); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 0; visibility: inherit; z-index: 20; position: inherit; transform: matrix(1, 0, 0, 1, 0, 0);" src="img/slider-img/slider-2.jpg"></div></div>
+                            <!-- LAYERS -->
+                        </li>
+                        
+                    </ul> 
+                <div class="tp-loader off" style="display: none;"><div class="dot1"></div><div class="dot2"></div><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div><div class="tp-bannertimer" style="visibility: hidden; width: 55.7444%; transform: translate3d(0px, 0px, 0px);"></div></div><!-- END REVOLUTION SLIDER -->
+            </div><div class="tp-fullwidth-forcer" style="width: 100%; height: 796px;"></div></div>
+            <div class="registration_form_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="registration_form_s">
+                                <h4>Registration</h4>
+                                <form>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="reg_email2" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="reg_first2" placeholder="Full Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="reg_user2" placeholder="Username">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="reg_pass2" placeholder="Password">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    <span data-bind="label">Gender</span>&nbsp;<span class="arrow_carrot-down"><i class="fa fa-sort-asc" aria-hidden="true"></i><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="http://html.verodate.com/verodate/#">Male</a></li>
+                                                        <li><a href="http://html.verodate.com/verodate/#">Female</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="datepicker">
+                                                    <input type="text" class="form-control datetimepicker4" placeholder="Birthday">
+                                                    <span class="add-on"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="reg_chose form-group">
+                                        <button type="submit" value="LogIn" class="btn form-control login_btn">Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form_man">
+                                <img src="./registration-man.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================End Slider Reg Area =================-->
+        
+        <!--================Welcome Area =================-->
+        <section class="welcome_area">
+            <div class="container">
+                <div class="welcome_title">
+                    <h3>Welcome to <span>Vero</span>Date</h3>
+                    <img src="./w-title-b.png" alt="">
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="welcome_item">
+                            <img src="./w-icon-1.png" alt="">
+                            <h4 class="counter">1611</h4>
+                            <h6>Total Members</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="welcome_item">
+                            <img src="./w-icon-2.png" alt="">
+                            <h4 class="counter">500</h4>
+                            <h6>Members online</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="welcome_item">
+                            <img src="./w-icon-3.png" alt="">
+                            <h4 class="counter">300</h4>
+                            <h6>Men online</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="welcome_item">
+                            <img src="./w-icon-4.png" alt="">
+                            <h4 class="counter">200</h4>
+                            <h6>Women online</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================End Welcome Area =================-->
+        
+        <!--================Download Area =================-->
+        <section class="download_area">
+            <div class="download_full_slider">
+                <div class="container">
+                    <div class="row">
+                        <div class="item">
+                            <div class="col-md-7">
+                                <div class="download_app_icon">
+                                    <h3>Download <span>Vero</span><span>Date</span> app</h3>
+                                    <h5>Free Available in All Store PlayStore, AppStore &amp; Microsoft Store</h5>
+                                    <ul>
+                                        <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-android"></i></a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-apple"></i></a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-windows"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="download_content owl-carousel owl-theme owl-loaded">
+                                    
+                                    
+                                    
+                                <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1216px, 0px, 0px); transition: all 0s ease 0s; width: 4256px;"><div class="owl-item cloned" style="width: 608px; margin-right: 0px;"><div class="item">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
+                                        <h4>Amanda Davidson</h4>
+                                        <ul>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div></div><div class="owl-item cloned" style="width: 608px; margin-right: 0px;"><div class="item">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
+                                        <h4>Amanda Davidson</h4>
+                                        <ul>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div></div><div class="owl-item active" style="width: 608px; margin-right: 0px;"><div class="item">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
+                                        <h4>Amanda Davidson</h4>
+                                        <ul>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div></div><div class="owl-item" style="width: 608px; margin-right: 0px;"><div class="item">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
+                                        <h4>Amanda Davidson</h4>
+                                        <ul>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div></div><div class="owl-item" style="width: 608px; margin-right: 0px;"><div class="item">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
+                                        <h4>Amanda Davidson</h4>
+                                        <ul>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div></div><div class="owl-item cloned" style="width: 608px; margin-right: 0px;"><div class="item">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
+                                        <h4>Amanda Davidson</h4>
+                                        <ul>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div></div><div class="owl-item cloned" style="width: 608px; margin-right: 0px;"><div class="item">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
+                                        <h4>Amanda Davidson</h4>
+                                        <ul>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div></div></div></div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style=""><i class="fa fa-angle-left"></i></div><div class="owl-next" style=""><i class="fa fa-angle-right"></i></div></div><div class="owl-dots" style="display: block;"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div><div class="owl-dot"><span></span></div></div></div></div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="download_moblie">
+                                    <div class="download_m_slider">
+                                        <img src="./mobile-1.png" alt="">
+                                        <div class="download_moblile_slider owl-carousel owl-theme owl-loaded">
+                                            
+                                            
+                                            
+                                        <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-660px, 0px, 0px); transition: all 0s ease 0s; width: 2310px;"><div class="owl-item cloned" style="width: 330px; margin-right: 0px;"><div class="item">
+                                                <img src="./screen-1.png" alt="">
+                                            </div></div><div class="owl-item cloned" style="width: 330px; margin-right: 0px;"><div class="item">
+                                                <img src="./screen-1.png" alt="">
+                                            </div></div><div class="owl-item active" style="width: 330px; margin-right: 0px;"><div class="item">
+                                                <img src="./screen-1.png" alt="">
+                                            </div></div><div class="owl-item" style="width: 330px; margin-right: 0px;"><div class="item">
+                                                <img src="./screen-1.png" alt="">
+                                            </div></div><div class="owl-item" style="width: 330px; margin-right: 0px;"><div class="item">
+                                                <img src="./screen-1.png" alt="">
+                                            </div></div><div class="owl-item cloned" style="width: 330px; margin-right: 0px;"><div class="item">
+                                                <img src="./screen-1.png" alt="">
+                                            </div></div><div class="owl-item cloned" style="width: 330px; margin-right: 0px;"><div class="item">
+                                                <img src="./screen-1.png" alt="">
+                                            </div></div></div></div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;">prev</div><div class="owl-next" style="display: none;">next</div></div><div class="owl-dots" style=""><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div><div class="owl-dot"><span></span></div></div></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================End Download Area =================-->
+        
+        <!--================Find Your Soul Area =================-->
+        <section class="find_soul_area">
+            <div class="container">
+                <div class="welcome_title">
+                    <h3>Step to Find Your Soul mate</h3>
+                    <img src="./w-title-b.png" alt="">
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="find_soul_item">
+                            <img src="./soul-1.png" alt="">
+                            <h4>Create a profile</h4>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="find_soul_item">
+                            <img src="./soul-2.png" alt="">
+                            <h4>Find matches </h4>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="find_soul_item">
+                            <img src="./soul-3.png" alt="">
+                            <h4>Start Dating</h4>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================End Find Your Soul Area =================-->
+        
+        <!--================Video Area =================-->
+        <section class="video_area">
+            <div class="row m0 video_row">
+                <iframe id="video" src="./bCIXMvE5nL4.html"></iframe>
+                <div class="overlay" id="video_overlay">
+                    <div class="overlay_bg"></div>
+                    <div class="play_pause row m0">
+                        <i class="fa fa-play" aria-hidden="true" id="play_btn"></i>
+                        <i class="fa fa-pause" aria-hidden="true" id="pause_btn"></i>
+                        <div class="video_content">
+                            <h4>Find your perfect match With us </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================End Video Area =================-->
+        
+        <!--================Testimonials Area =================-->
+        <section class="testimonials_area">
+            <div class="container">
+                <div class="welcome_title">
+                    <h3>Testimonials</h3>
+                    <img src="./w-title-b.png" alt="">
+                </div>
+                <div class="testimonials_slider owl-carousel owl-theme owl-loaded">
+                    
+                    
+                <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-2340px, 0px, 0px); transition: all 0s ease 0s; width: 7020px;"><div class="owl-item cloned" style="width: 1170px; margin-right: 0px;"><div class="item">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="test_left_content">
+                                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, <span>so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.</span>  These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="test_man">
+                                    <img class="img-circle" src="./testimonials-1.png" alt="">
+                                    <h4>David Parkar</h4>
+                                    <h5>Graphic Designer </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div><div class="owl-item cloned" style="width: 1170px; margin-right: 0px;"><div class="item">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="test_left_content">
+                                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, <span>so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.</span>  These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="test_man">
+                                    <img class="img-circle" src="./testimonials-1.png" alt="">
+                                    <h4>David Parkar</h4>
+                                    <h5>Graphic Designer </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div><div class="owl-item active" style="width: 1170px; margin-right: 0px;"><div class="item">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="test_left_content">
+                                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, <span>so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.</span>  These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="test_man">
+                                    <img class="img-circle" src="./testimonials-1.png" alt="">
+                                    <h4>David Parkar</h4>
+                                    <h5>Graphic Designer </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div><div class="owl-item" style="width: 1170px; margin-right: 0px;"><div class="item">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="test_left_content">
+                                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, <span>so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.</span>  These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="test_man">
+                                    <img class="img-circle" src="./testimonials-1.png" alt="">
+                                    <h4>David Parkar</h4>
+                                    <h5>Graphic Designer </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div><div class="owl-item cloned" style="width: 1170px; margin-right: 0px;"><div class="item">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="test_left_content">
+                                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, <span>so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.</span>  These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="test_man">
+                                    <img class="img-circle" src="./testimonials-1.png" alt="">
+                                    <h4>David Parkar</h4>
+                                    <h5>Graphic Designer </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div><div class="owl-item cloned" style="width: 1170px; margin-right: 0px;"><div class="item">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="test_left_content">
+                                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, <span>so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.</span>  These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="test_man">
+                                    <img class="img-circle" src="./testimonials-1.png" alt="">
+                                    <h4>David Parkar</h4>
+                                    <h5>Graphic Designer </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div></div></div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style=""><i class="fa fa-angle-left"></i></div><div class="owl-next" style=""><i class="fa fa-angle-right"></i></div></div><div class="owl-dots" style="display: block;"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div></div>
+            </div>
+        </section>
+        <!--================End Testimonials Area =================-->
+        
+        <!--================Blog slider Area =================-->
+        <section class="blog_slider_area">
+            <div class="blog_slider_inner owl-carousel owl-theme owl-loaded"><div class="owl-prev" style=""><i class="fa fa-chevron-left"></i></div>
+                
+                
+                
+                
+                
+                
+            <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-3221.75px, 0px, 0px); transition: all 1.8s ease 0s; width: 6443.5px;"><div class="owl-item cloned" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-4.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item cloned" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-1.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item cloned" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-3.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item cloned" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-1.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-1.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-3.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-4.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item active" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-1.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item active" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-3.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item active" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-1.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item cloned active" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-1.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item cloned" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-3.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item cloned" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-4.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div><div class="owl-item cloned" style="width: 460.25px; margin-right: 0px;"><div class="item">
+                    <div class="single_blog_slider">
+                        <img src="./blog_slider-1.jpg" alt="">
+                        <div class="blog_item_content">
+                            <h4>Your Blog title here</h4>
+                            <h5>03 Sep, 2016 <span>|</span> Dating</h5>
+                            <ul>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-search"></i></a></li>
+                                <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div></div></div></div><div class="owl-controls"><div class="owl-dots" style=""><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div><div class="owl-next" style=""><i class="fa fa-chevron-right"></i></div></div>
+        </section>
+        <!--================End Blog slider Area =================-->
+        
+        <!--================Register Members slider Area =================-->
+        <section class="register_members_slider">
+            <div class="container">
+                <div class="welcome_title">
+                    <h3>Latest registered members</h3>
+                    <img src="./w-title-b.png" alt="">
+                </div>
+                <div class="r_members_inner owl-carousel owl-theme owl-loaded"><div class="owl-prev" style=""><i class="fa fa-angle-left"></i></div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1597.34px, 0px, 0px); transition: all 1.8s ease 0s; width: 3993.34px;"><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-3.png" alt="">
+                        <h4>Nancy Martin</h4>
+                        <h5>25 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-4.png" alt="">
+                        <h4>Kavin Smith</h4>
+                        <h5>20 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-5.png" alt="">
+                        <h4>Lena Adms</h4>
+                        <h5>26 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-6.png" alt="">
+                        <h4>Peter Nevill</h4>
+                        <h5>20 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-2.png" alt="">
+                        <h4>Alex Jones</h4>
+                        <h5>23 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-3.png" alt="">
+                        <h4>Nancy Martin</h4>
+                        <h5>25 years old</h5>
+                    </div></div><div class="owl-item" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-1.png" alt="">
+                        <h4>Rocky Ahmed</h4>
+                        <h5>22 years old</h5>
+                    </div></div><div class="owl-item" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-2.png" alt="">
+                        <h4>Alex Jones</h4>
+                        <h5>23 years old</h5>
+                    </div></div><div class="owl-item active" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-3.png" alt="">
+                        <h4>Nancy Martin</h4>
+                        <h5>25 years old</h5>
+                    </div></div><div class="owl-item active" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-4.png" alt="">
+                        <h4>Kavin Smith</h4>
+                        <h5>20 years old</h5>
+                    </div></div><div class="owl-item active" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-5.png" alt="">
+                        <h4>Lena Adms</h4>
+                        <h5>26 years old</h5>
+                    </div></div><div class="owl-item active" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-6.png" alt="">
+                        <h4>Peter Nevill</h4>
+                        <h5>20 years old</h5>
+                    </div></div><div class="owl-item active" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-2.png" alt="">
+                        <h4>Alex Jones</h4>
+                        <h5>23 years old</h5>
+                    </div></div><div class="owl-item active" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-3.png" alt="">
+                        <h4>Nancy Martin</h4>
+                        <h5>25 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-1.png" alt="">
+                        <h4>Rocky Ahmed</h4>
+                        <h5>22 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-2.png" alt="">
+                        <h4>Alex Jones</h4>
+                        <h5>23 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-3.png" alt="">
+                        <h4>Nancy Martin</h4>
+                        <h5>25 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-4.png" alt="">
+                        <h4>Kavin Smith</h4>
+                        <h5>20 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-5.png" alt="">
+                        <h4>Lena Adms</h4>
+                        <h5>26 years old</h5>
+                    </div></div><div class="owl-item cloned" style="width: 171.667px; margin-right: 28px;"><div class="item">
+                        <img src="./r_members-6.png" alt="">
+                        <h4>Peter Nevill</h4>
+                        <h5>20 years old</h5>
+                    </div></div></div></div><div class="owl-controls"><div class="owl-dots" style=""><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div><div class="owl-next" style=""><i class="fa fa-angle-right"></i></div></div>
+            </div>
+        </section>
+        <!--================End Register Members  slider Area =================-->
+        
+        <!--================Map Area =================-->
+        <section class="map_area">
+         
+            <div id="mapCanvas" style="overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div class="gm-style" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;"><div tabindex="0" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: pan-x pan-y;"><div style="z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"></div></div><div class="gm-style-pbc" style="z-index: 2; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0;"><p class="gm-style-pbt"></p></div><div style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;"><div style="z-index: 4; position: absolute; left: 50%; top: 50%; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div></div><iframe aria-hidden="true" frameborder="0" style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;" src="about:blank"></iframe></div></div></div>
+           
+            <div class="container">
+                <div class="bloger_map_form">
+                    <h4>Find People in Map</h4>
+                    <div class="bloger_map_inner">
+                        <div class="form-single row m0">
+                            <h5>Looking for a</h5>
+                            <div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="Woman"><span class="filter-option pull-left">Woman</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">Woman</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">Man</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select class="selectpicker" tabindex="-98">
+                                <option>Woman</option>
+                                <option>Man</option>
+                            </select></div>
+                        </div>
+                        <div class="form-single row m0">
+                            <h5>Your location</h5>
+                            <div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="Paris"><span class="filter-option pull-left">Paris</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">Paris</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">Paris</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select class="selectpicker" tabindex="-98">
+                                <option>Paris</option>
+                                <option>Paris</option>
+                            </select></div>
+                        </div>
+                        <div class="form-single row m0">
+                            <h5>From (age)</h5>
+                            <div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="20"><span class="filter-option pull-left">20</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">20</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">30</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">40</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select class="selectpicker" tabindex="-98">
+                                <option>20</option>
+                                <option>30</option>
+                                <option>40</option>
+                            </select></div>
+                        </div>
+                        <div class="form-single row m0">
+                            <h5>To (age)</h5>
+                            <div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="32"><span class="filter-option pull-left">32</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">32</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">42</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">52</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select class="selectpicker" tabindex="-98">
+                                <option>32</option>
+                                <option>42</option>
+                                <option>52</option>
+                            </select></div>
+                        </div>
+                        <div class="range_count">
+                            <h5>Search Distance</h5>
+                            <div id="slider-range-min" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                <div class="ui-slider-handle ui-corner-all ui-state-default" tabindex="0" style="left: 83.6735%;">
+                                    <span class="custom-handle">42</span>
+                                </div>
+                            <div class="ui-slider-range ui-corner-all ui-widget-header ui-slider-range-min" style="width: 83.6735%;"></div></div>
+                            <div class="left_value">
+                                <div class="custom-value">42</div>
+                                <div class="km_value">Km</div> 
+                            </div>
+                            <div class="right_value">
+                                <h5>50km</h5>
+                            </div>
+                        </div>
+                        <div class="reg_chose">
+                            <button type="submit" value="LogIn" class="btn form-control login_btn">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================End Map Area =================-->
+        
+        <!--================Footer Area =================-->
+        <footer class="footer_area">
+            <div class="footer_widgets_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <aside class="f_widget">
+                                <div class="vero_widget">
+                                    <h4><span>Vero</span>Date</h4>
+                                    <p>There are many variations of passag-es of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything .</p>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="col-md-3">
+                            <aside class="f_widget">
+                                <div class="f_widget_title">
+                                    <h3>Information</h3>
+                                </div>
+                                <div class="information_widget">
+                                    <ul>
+                                        <li><a href="http://html.verodate.com/verodate/#">About us</a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#">Contact us</a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#">Membership</a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#">Private Policy</a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#">Forum Support</a></li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="col-md-3">
+                            <aside class="f_widget">
+                                <div class="f_widget_title">
+                                    <h3>Recent posts</h3>
+                                </div>
+                                <div class="recent_post_widget">
+                                    <ul>
+                                        <li><a href="http://html.verodate.com/verodate/#">Blog Standard Post <span>14 Sep, 2016</span></a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#">Blog Image Post <span>12 Sep, 2016</span></a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#">BlogVideo Post <span>08 Sep, 2016</span></a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#">Blog Audio  Post <span>03 Sep, 2016</span></a></li>
+                                        <li><a href="http://html.verodate.com/verodate/#">Blog Standard Post <span>16 Aug, 2016</span></a></li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="col-md-3">
+                            <aside class="f_widget">
+                                <div class="f_widget_title">
+                                    <h3>Newsletter Signup</h3>
+                                </div>
+                                <div class="newsletter_widget">
+                                    <p>Get Alert Directly Into Your Inbox After Each Post.</p>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Enter your email">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="copyright_left">
+                    <div class="copyright_text">
+                        <h4>Copyright © 2017. <a href="http://html.verodate.com/verodate/#">VeroDate</a> . all rights reserved</h4>
+                    </div>
+                </div>
+                <div class="copyright_right">
+                    <div class="copyright_social">
+                        <ul>
+                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                            <li><a href="http://html.verodate.com/verodate/#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--================End Footer Area =================-->
+        
+        
+        
+        <div id="largeContent" style="display:none;">
+            <div class="media tool_content">
+                <div class="media-left">
+                    <img src="./map-persion.png" alt="">
+                </div>
+                <div class="media-body">
+                    <h3>Sandi Williams</h3>
+                    <h5>21 years old</h5>
+                    <h5>From Paris</h5>
+                    <h5>Distance 16 km</h5>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="./jquery-2.1.4.min.js.download"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="./bootstrap.min.js.download"></script>
+        <script src="./jquery.themepunch.tools.min.js.download"></script>
+        <script src="./jquery.themepunch.revolution.min.js.download"></script>
+        <!--RS5.0 Extensions-->
+        <script src="./revolution.extension.actions.min.js.download"></script>
+        <script src="./revolution.extension.carousel.min.js.download"></script>
+        <script type="text/javascript" src="./revolution.extension.kenburn.min.js.download"></script>
+        <script type="text/javascript" src="./revolution.extension.layeranimation.min.js.download"></script>
+        <script type="text/javascript" src="./revolution.extension.migration.min.js.download"></script>
+        <script src="./revolution.extension.navigation.min.js.download"></script>
+        <script src="./revolution.extension.parallax.min.js.download"></script>
+        <script src="./revolution.extension.slideanims.min.js.download"></script>
+        <script src="./revolution.extension.video.min.js.download"></script>
+  
+        <!-- Extra plugin js -->
+        <script src="./jquery.dd.min.js.download"></script>
+        <script src="./wow.min.js.download"></script>
+        <script src="./jquery.magnific-popup.min.js.download"></script>
+        <script src="./bootstrap-select.js.download"></script>
+        <script src="./moment-with-locales.js.download"></script>
+        <script src="./bootstrap-datetimepicker.min.js.download"></script>
+        <script src="./waypoints.min.js.download"></script>
+        <script src="./jquery.counterup.min.js.download"></script>
+        <script src="./owl.carousel.min.js.download"></script>
+        <script src="./jquery.webui-popover.min.js.download"></script>
+        <script src="./jquery-ui.js.download"></script>
+
+        
+        <script src="./video_player.js.download"></script>
+        <script src="./theme.js.download"></script>
+    
+<div style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"><span style="position: absolute; font-size: 300px; width: auto; height: auto; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span></div></body></html>

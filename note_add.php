@@ -62,7 +62,9 @@
         //echo $sql;
         $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
         mysqli_close($link1);
-        header('location:notes.php');
+        echo "<script>alert('Nova poznamka s id $last_note bola vytvorena');
+        window.location.href='notes.php';
+        </script>";
         }  
       }
 
@@ -75,7 +77,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Minecraft tools</title>
+    <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -95,8 +97,9 @@
             <li><a href="tasks.php">Tasks</a></li>
             <li><a href="categories.php">Categories</a></li>
             <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a></li>
+            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
             <li><a href="pics.php">Pics</a></li>
+            <li><a href="logout.php">Logout</a></li>
           </ul>
         </div>
         
@@ -130,7 +133,7 @@
                         }	
                         ?>  
                         </select><input type="checkbox" name="publish_to_wall" id="publish_to_wall" checked="checked"><label for="publish_to_wall">Publikovat na wall</label></div>
-                        <div class="action"><button name='note_add' type='submit' class='button pull-right'>Add</button></div>
+                        <div class="action"><button name='note_add' type='submit' class='button small_button pull-right'>Add</button></div>
                     </form>    
                 </div><!--new note form -->
             </div><!-- class list-->
