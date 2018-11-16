@@ -71,49 +71,41 @@
             <div id='new_task'>
                 <form action='' method='post'>
                     <div class='new_task_textarea'><textarea name='task_text'></textarea></div>
-                    <div class="new_video_select_action_wrap">
-                      <div class="new_task_selects_wrap">
-                        <select name='category'>
-                            <option value=0>-- Select category -- </option>
-                                <?php
-                                  $sql="SELECT * from category ORDER BY cat_name ASC";
-                                  $result=mysqli_query($link, $sql);
-                                    while ($row = mysqli_fetch_array($result)) {
-                                      $cat_id=$row['cat_id'];
-                                      $cat_name=$row['cat_name'];
-                                  echo "<option value=$cat_id>$cat_name</option>";
-                                  }	
-                                ?>  
-                          </select>
-                          <select name="modpack">
-                          <?php 
-                          if(isset($_GET['modpack_id'])){
-                                          $modpack_id=$_GET['modpack_id'];
-                                          $modpack_name=GetModPackName($modpack_id);
-                                    echo "<option value=$modpack_id>$modpack_name</option>";
-                                        } else{  ?> 
-                          <option value=0>-- Select mod pack -- </option>     
-                          <?php
-                                $sql="SELECT * from modpacks ORDER BY modpack_id ASC";
-                                  $result=mysqli_query($link, $sql);
-                                    while ($row = mysqli_fetch_array($result)) {
-                                      $modpack_id=$row['modpack_id'];
-                                      $modpack_name=$row['modpack_name'];
-                                  
-                                  echo "<option value=$modpack_id>$modpack_name</option>";
-                                      }
-                                  }	
-                                ?>
-                          </select>   
-                      
-                      </div>
-                      
-                      
-                      <div class="new_task_submit_wrap">
-                         <button name="task_add" type="submit" class="button pull-right"><i class="fa fa-check"></i></button>
-                      </div>
-                    </div>
-                 </form>
+				        <div class='new_task_category'><select name='category'>
+					        <option value=0>-- Select category -- </option>
+                       <?php
+                        $sql="SELECT * from category ORDER BY cat_name ASC";
+                        $result=mysqli_query($link, $sql);
+                          while ($row = mysqli_fetch_array($result)) {
+                            $cat_id=$row['cat_id'];
+                            $cat_name=$row['cat_name'];
+                        echo "<option value=$cat_id>$cat_name</option>";
+                        }	
+                      ?>  
+                </select></div>
+                <div class="new_task_modpack"><select name="modpack">
+                <?php 
+                if(isset($_GET['modpack_id'])){
+                                $modpack_id=$_GET['modpack_id'];
+                                $modpack_name=GetModPackName($modpack_id);
+                          echo "<option value=$modpack_id>$modpack_name</option>";
+                              } else{  ?> 
+                <option value=0>-- Select mod pack -- </option>     
+                <?php
+                       $sql="SELECT * from modpacks ORDER BY modpack_id ASC";
+                        $result=mysqli_query($link, $sql);
+                          while ($row = mysqli_fetch_array($result)) {
+                            $modpack_id=$row['modpack_id'];
+                            $modpack_name=$row['modpack_name'];
+                        
+                        echo "<option value=$modpack_id>$modpack_name</option>";
+                            }
+                        }	
+                      ?>
+                   </select>   
+                </div>
+                <div class="new_task_action"><button name="task_add" type="submit" class="button middle_button pull-right"><i class="fa fa-check"></i></button></div>
+              </form>
             </div>    
           </div>  
        </div>  

@@ -138,9 +138,8 @@
                             }
                             
                             //echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
-                            echo "<div class='note_footer'>";
-                              echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div><div class='notes_action'><form method='post' action=''><input type='hidden' name=eis_note_id value=$eis_note_id><input type='hidden' name=note_id value=$note_id><button name='edit_note' type='submit' class='button app_badge'>Edit</button><button name='delete_note' type='submit' class='button app_badge'>Delete</button></form></div>";
-                            echo "</div>";//notes footer
+                        
+                            echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div><div class='notes_action'><form method='post' action=''><input type='hidden' name=eis_note_id value=$eis_note_id><input type='hidden' name=note_id value=$note_id><button name='edit_note' type='submit' class='button app_badge'>Edit</button><button name='delete_note' type='submit' class='button app_badge'>Delete</button></form></div>";
                           echo "</div>";
 
                         }     

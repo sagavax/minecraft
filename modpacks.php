@@ -98,7 +98,7 @@
 
                             echo "<div class='modpack'>";
                                echo "<div class='modpack_details_wrap'>";
-                                echo "<div class='modpack_pic'><img src='pics/File_No_Image_Available.png'></div>";
+                                echo "<div class='modpack_pic'><img src='./pics/noimage.jpg'></div>";
                                 echo "<div class='modpack_details'>";
                                     echo "<div class='modpack_name'>$modpack_name</div>";
                                     echo "<div class='modpack_description'>$modpack_description</div>";

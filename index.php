@@ -17,7 +17,11 @@
       
       if($overeni == 1) {
           $row = mysqli_fetch_array($result);
-          echo "<div class='message succeess'>Vitaj v Minecraft IS <i class='far fa-check-circle'></i></div>"; 
+          echo "<div class='message succeess'>Successfully logon</i></div>"; 
+          echo "<script>setTimeout(function(){
+            window.location = 'dashboard.php';
+          }, 3000)</script>";
+
           //header("location:dashboard.php");
           } elseif ($overeni==0) {
             echo "<div class='message error'>Bad username or password <i class='far fa-check-circle'></i></div>"; 
@@ -46,7 +50,9 @@
               width: 360px;
               padding: 8% 0 0;
               margin: auto;
+              
             }
+
             .form {
               position: relative;
               z-index: 1;
@@ -55,7 +61,9 @@
               margin: 0 auto 100px;
               padding: 45px;
               text-align: center;
-              /*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);*/
+              /*border: #2980b9 4px solid;*/
+              box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+              
             }
 
             .form input {
@@ -136,6 +144,7 @@
               font-family: "Noto Sans", sans-serif;
             }   
    
+
   </style>
   </head>
   
