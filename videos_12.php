@@ -150,13 +150,7 @@
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=quvey2mtmgzj0p05fw869pufquv1pymgyyp1qrn7z3tewiaa"></script>
-    <script>tinymce.init({ selector:'textarea',toolbar:
-    "insertfile a11ycheck undo redo | bold italic | forecolor backcolor | template codesample | alignleft aligncenter alignright alignjustify | bullist numlist | link image", plugins: [
-    "a11ychecker advcode advlist anchor autolink codesample colorpicker contextmenu fullscreen help image imagetools",
-    " lists link linkchecker media mediaembed noneditable powerpaste preview",
-    " searchreplace table template textcolor tinymcespellchecker visualblocks wordcount"
-  ], });</script>
+    
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
 
@@ -183,8 +177,7 @@
              <form action="" enctype="multipart/form-data" method="post">    
                 <input type=hidden name="modpack_id" value=<?php if(isset($_GET['modpack_id'])){echo $_GET['modpack_id'];}else{echo 0;} ?>>
                 <input type="text" name="video_title" placeholder='Video title' autocomplete=off>
-                <!--<input type="text" name="video_url" placeholder='Video url'  autocomplete=off>-->
-                <textarea name="video_url" placeholder='video url'></textarea>
+                <input type="text" name="video_url" placeholder='Video url'  autocomplete=off>
                  <div class="new_video_select_action_wrap">
                   <div class="new_video_selects_wrap">
                   <select name='category'>

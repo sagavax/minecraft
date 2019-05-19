@@ -334,7 +334,7 @@ textarea {
 }
 
 .new_video_selects_wrap select, .new_task_selects_wrap select {
-	height: 30px !important; margin-top:5px; width:100%;
+	height: 35px !important; margin-top:5px; width:100%;
 }
 
 .video_mods_wrap  {
@@ -376,6 +376,7 @@ textarea {
 }
 
 #note_text {
+	margin-top: 5px;
 	width:100%;
 	display:inline-block;
 	

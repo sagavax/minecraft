@@ -17,17 +17,14 @@
       
       if($overeni == 1) {
           $row = mysqli_fetch_array($result);
-          echo "<div class='modal'><div class='message succeess'>Successfully logon</i></div></div>"; 
+          echo "<div class='message succeess'>Successfully logon</i></div>"; 
           echo "<script>setTimeout(function(){
             window.location = 'dashboard.php';
           }, 3000)</script>";
 
           //header("location:dashboard.php");
           } elseif ($overeni==0) {
-            echo "<div class='modal'><div class='message error'>Bad username or password <i class='far fa-check-circle'></i></div></div>";
-            echo "<script>setTimeout(function(){
-              window.location = 'index.php';
-            }, 3000)</script>";
+            echo "<div class='message error'>Bad username or password <i class='far fa-check-circle'></i></div>"; 
             /*echo "<script>alert('Bad username or password');
          location.href='index.php';</script>";*/
           }
@@ -48,19 +45,7 @@
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <style>
-     .modal {
-      top: 0px;
-    left: 0px;
-    z-index: 998;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    position:fixed;
-      background:url(./pics/w-modal.png) repeat top left!important;
-    opacity: 1!important;
-    filter: alpha(opacity=100);
-    z-index: 20000;
-     } 
+     
      .login-page {
               width: 360px;
               padding: 8% 0 0;

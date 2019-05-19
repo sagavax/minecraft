@@ -125,7 +125,7 @@
 
                           echo "<div class='note'>";
                             echo "<div class='note_header'><strong>".htmlspecialchars($note_header)."</strong></div>";
-                            echo "<div class='note_text'>$note_text</div>";
+                            echo "<div class='note_text'>".nl2br(htmlspecialchars_decode(htmlspecialchars($note_text)))."</div>";
                             
                             $category_name=GetModName($note_mod);
                             $modpack_name=GetModpackName($note_modpack);
