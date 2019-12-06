@@ -40,7 +40,7 @@
       <div class="main_wrap">
         <div class="tab_menu">
           <ul>
-          <li><a href="index.php">Dashboard</a></li>
+            <li><a href="index.php">Dashboard</a></li>
             <li><a href="notes.php">Notes</a></li>
             <li><a href="tasks.php">Tasks</a></li>
             <li><a href="categories.php">Categories</a></li>

@@ -55,25 +55,13 @@
         </div>
         <div class="content">
           <div class='list'>
-
-          <div class="search_wrap">
-              <form action="" method="GET">
-                <input type="text" name="search" onkeyup="search_the_string(this.value);" id="search_string"><!--<button type="submit" class="button small_button"><i class="fa fa-search"></i></button>-->
-              </form>
-            </div> 
-
             <div class="tasks_view">
               <form action=""><input type='radio' name='status' id="active" value="active"><label for="active">Active</label><input type='radio' name='status' id="completed" value="completed"><label for="completed" name="status" value="completed">Completed</label><input type='radio' name='status' value="all" id="all"><label for="all">All</label><button type='submit' class='button small_button pull-right'>OK</button></form>
             </div> 
             <div class="action_add_task">
               <form action="" method="post"><button name="add_task" type="submit" class="button small_button pull-right"><i class="fas fa-plus"></i></button></form>
             </div>
-            <div class="tasks" id="tasks">
-
-               <div class="modpacks">
-                  <?php echo modpacks("tasks") ?>
-                </div>           
-
+            <div class="tasks">
               <?php
                   if(!isset($_GET['status'])){
                     $sql="SELECT * from to_do where parent_task=0 ORDER BY  task_id  DESC"; 
@@ -99,79 +87,54 @@
                     
                     $task_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $task_text);    
                             
-                    
-                    
-
-
                     echo "<div class='task' id='$task_id'>"; //task 
-                      //echo "<div class='task_header'><span>Task id: ".$task_id."</span></div>";
-                      echo "<div class='task_header'><span></span></div>";
-                      echo "<div class='task_body'>$task_text</div>";
-                      echo "<div class='task_footer'>";
-                          
-                          /*echo "<div class='task_id'>Task id: $task_id</div>"; 
-                          echo "<div class='task_text'>$task_text</div>";*/
-                          
-                          $category_name=GetModName($task_category_id);
-                          $modpack_name=GetModpackName($task_modpack_id);
-                          
-                          if($category_name<>""){
-                            $category_name="<span class='span_mod'>".$category_name."</span>";
-                          }
-                          if ($modpack_name<>""){
-                            $modpack_name="<span class='span_modpack'>".$modpack_name."</span>";
-                          }
-                          
-                          //$mod_modpack.="".$category_name." ".$modpack_name."</div>";
-                          
-                          
-                          if($is_completed==1){
-                            
-                            $task_completed="<span class='span_task_completed'>Complete</span>";
-                            //$mod_modpack="<div class='mod_modpack'>".$mod_modpack." ".$task_completed."</div>";
-                          // echo $mod_modpack;
-                            $button_edit="";
-                            $button_task_complete="";
-                            
-        
-                          } elseif($is_completed==0){
+                    echo "<div class='task_id'>Task id: $task_id</div>"; 
+                    echo "<div class='task_text'>$task_text</div>";
 
-                            $task_completed="";
-                          
-                            //
-                            $button_edit="<button type='submit' name='edit_task' class='button small_button pull-right'><i class='fas fa-edit'></i></button>";
-                            $button_task_complete="<button type='submit' name='complete_task' class='button small_button pull-right'><i class='fa fa-check'></i></button>";
+                    $category_name=GetModName($task_category_id);
+                    $modpack_name=GetModpackName($task_modpack_id);
                     
-                            //echo $mod_modpack;
-                            //echo "<div class='task_action'><form action='' method='post'><input type='hidden' name='task_id'  value='$task_id'>".$button_edit." ".$button_task_complete."</form></div>";
-                          }
-                          $mod_modpack="<div class='mod_modpack'>".$category_name." ".$modpack_name." ".$task_completed."</div>";
-                          echo $mod_modpack;
-                          echo "<div class='task_action'><form action='' method='post'><input type='hidden' name='task_id'  value='$task_id'>".$button_edit." ".$button_task_complete."</form></div>";
-                    echo "</div>";//task_footer_wrap;  
+                    if($category_name<>""){
+                      $category_name="<span class='span_mod'>".$category_name."</span>";
+                    }
+                    if ($modpack_name<>""){
+                      $modpack_name="<span class='span_modpack'>".$modpack_name."</span>";
+                    }
+                    
+                    //$mod_modpack.="".$category_name." ".$modpack_name."</div>";
+                    
+                    
+                    if($is_completed==1){
+                      
+                      $task_completed="<span class='span_task_completed'>Complete</span>";
+                      //$mod_modpack="<div class='mod_modpack'>".$mod_modpack." ".$task_completed."</div>";
+                    // echo $mod_modpack;
+                      $button_edit="";
+                      $button_task_complete="";
+                      
+  
+                    } elseif($is_completed==0){
+
+                      $task_completed="";
+                    
+                      //
+                      $button_edit="<button type='submit' name='edit_task' class='button small_button pull-right'><i class='fas fa-edit'></i></button>";
+                      $button_task_complete="<button type='submit' name='complete_task' class='button small_button pull-right'><i class='fa fa-check'></i></button>";
+              
+                      //echo $mod_modpack;
+                      //echo "<div class='task_action'><form action='' method='post'><input type='hidden' name='task_id'  value='$task_id'>".$button_edit." ".$button_task_complete."</form></div>";
+                    }
+                    $mod_modpack="<div class='mod_modpack'>".$category_name." ".$modpack_name." ".$task_completed."</div>";
+                    echo $mod_modpack;
+                    echo "<div class='task_action'><form action='' method='post'><input type='hidden' name='task_id'  value='$task_id'>".$button_edit." ".$button_task_complete."</form></div>";
+                    
                     echo "</div>";//task
                   }
                 
                 ?>       
              <div style="clear:both"></div>    
             </div><!--tasks -->
-            <div style="clear:both"></div>
         </div><!--list -->
       
        </div><!--content -->? 
-       <script>
-             function search_the_string(){
-             var xhttp = new XMLHttpRequest();
-             var search_text=document.getElementById("search_string").value;
-             xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("tasks").innerHTML =
-                    this.responseText;
-                       }
-                    };
-                xhttp.open("GET", "search_tasks.php?search="+search_text, true);
-                xhttp.send();
-                           
-            }
-        </script>
     </body>    

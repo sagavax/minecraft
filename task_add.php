@@ -1,6 +1,6 @@
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
-
+      session_start(); 
       
       if(isset($_POST['task_add'])){
         
@@ -13,21 +13,28 @@
         $task_text=mysqli_real_escape_string($link, $_POST['task_text']);
 		
         $cat_id=$_POST['category'];
-        $modpack_id=$_POST['modpack'];
+        $modpack_id=$_POST['modpack_id'];
         $added_date=date('Y-m-d');
         $query="INSERT into  to_do (cat_id,modpack_id, task_text, added_date) VALUES ($cat_id, $modpack_id, '$task_text', '$added_date')";
-        mysqli_query($link, $query);
+        mysqli_query($link, $query) or die("MySQLi ERROR: ".mysqli_error($link));
+
+        $sql="SELECT LAST_INSERT_ID() as last_id from to_do";
+        $result=mysqli_query($link, $sql);
+        while ($row = mysqli_fetch_array($result)) {          
+          $last_task=$row['last_id'];
+        }   
+
         
-        $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
-        //$link1=mysqli_connect("localhost", "root", "", "brick_wall");
+        //$link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
+        $link1=mysqli_connect("localhost", "root", "", "brick_wall");
         $curr_date=date('Y-m-d H:i:s');
         $diary_text="Minecraft IS: Bol vytvoreny novy task s nazvom <strong>$task_text</strong>";
         $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
         $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
         mysqli_close($link1);
         
-        echo "<script>alert('Bol vytvoreny novy task');
-        window.location.href='tasks.php';
+        echo "<script>alert('Bol vytvoreny novy task s id $last_task');
+        window.location.href='modpack.php?view=tasks';
         </script>";
      
       }
@@ -55,16 +62,7 @@
       </div>
       <div class="main_wrap">
         <div class="tab_menu">
-          <ul>
-          <li><a href="index.php">Dashboard</a></li>
-            <li><a href="notes.php">Notes</a></li>
-            <li><a href="tasks.php">Tasks</a></li>
-            <li><a href="categories.php">Categories</a></li>
-            <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
-            <li><a href="pics.php">Pics</a></li>
-            <li><a href="logout.php">Logout</a></li>
-          </ul>
+          <?php include("menu.php"); ?>
         </div>
         <div class="content">
           <div class='list'>
@@ -73,7 +71,8 @@
                     <div class='new_task_textarea'><textarea name='task_text'></textarea></div>
                     <div class="new_video_select_action_wrap">
                       <div class="new_task_selects_wrap">
-                        <select name='category'>
+                        <input type="hidden" name="modpack_id" value="<?php echo $_SESSION['modpack_id'] ?>" >
+                          <select name='category'>
                             <option value=0>-- Select category -- </option>
                                 <?php
                                   $sql="SELECT * from category ORDER BY cat_name ASC";
@@ -85,27 +84,6 @@
                                   }	
                                 ?>  
                           </select>
-                          <select name="modpack">
-                          <?php 
-                          if(isset($_GET['modpack_id'])){
-                                          $modpack_id=$_GET['modpack_id'];
-                                          $modpack_name=GetModPackName($modpack_id);
-                                    echo "<option value=$modpack_id>$modpack_name</option>";
-                                        } else{  ?> 
-                          <option value=0>-- Select mod pack -- </option>     
-                          <?php
-                                $sql="SELECT * from modpacks ORDER BY modpack_id ASC";
-                                  $result=mysqli_query($link, $sql);
-                                    while ($row = mysqli_fetch_array($result)) {
-                                      $modpack_id=$row['modpack_id'];
-                                      $modpack_name=$row['modpack_name'];
-                                  
-                                  echo "<option value=$modpack_id>$modpack_name</option>";
-                                      }
-                                  }	
-                                ?>
-                          </select>   
-                      
                       </div>
                       
                       
