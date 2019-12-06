@@ -91,6 +91,7 @@
               padding: 15px;
               box-sizing: border-box;
               font-size: 14px;
+              height:45px;
             }
             .form button {
               font-family: "Noto Sans", sans-serif;
@@ -158,8 +159,17 @@
                background: #aadd77; /* fallback for old browsers */
               font-family: "Noto Sans", sans-serif;
             }   
-   
-
+              
+           #minecraft_is_info_wrap {
+             float:left;
+             width:100%;
+             height:100vh;
+             text-align: center;
+             font-size:25px;
+             color:#fff;
+             font-weight:bold;
+           }   
+            
   </style>
   </head>
   
@@ -172,6 +182,10 @@
               <button name="login">login</button>
               </form>
           </div>
+         
         </div> 
+        <div id="minecraft_is_info_wrap">
+            Minecraft IS is an informating system to create notes, tasks, information about the modpacks to support my minecraft's game plays
+          </div>
 
   </body> 

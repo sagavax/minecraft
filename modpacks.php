@@ -60,16 +60,7 @@
       </div>
       <div class="main_wrap">
       <div class="tab_menu">
-          <ul>
-            <li><a href="dashboard.php">Dashboard</a></li>
-            <li><a href="notes.php">Notes</a></li>
-            <li><a href="tasks.php">Tasks</a></li>
-            <li><a href="categories.php">Categories</a></li>
-            <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
-            <li><a href="pics.php">Pics</a></li>
-            <li><a href="logout.php">Logout</a></li>
-         </ul>
+          <?php include("menu.php"); ?>
         </div>
         </div>
         <div class="content">
@@ -83,6 +74,14 @@
                 <div class="action"><button type="submit" name="add_new_modpack" class="button pull-right"><i class="fa fa-plus"></i></button></div>
                </form> 
             </div>
+
+            <div class="search_wrap">
+              <form action="" method="GET">
+                <input type="text" name="search" onkeyup="search_the_string(this.value);" id="search_string" ><!--<button type="submit" class="button small_button"><i class="fa fa-search"></i></button>-->
+              </form>
+            </div>    
+
+
             <div id="modpack_list">
                 <?php
                     $sql="SELECT * from modpacks";
@@ -97,13 +96,13 @@
                             $modpack_url=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $modpack_url);
 
                             echo "<div class='modpack'>";
-                               echo "<div class='modpack_details_wrap'>";
+                               //echo "<div class='modpack_details_wrap'>";
                                 echo "<div class='modpack_pic'><img src='./pics/noimage.jpg'></div>";
                                 echo "<div class='modpack_details'>";
                                     echo "<div class='modpack_name'>$modpack_name</div>";
                                     echo "<div class='modpack_description'>$modpack_description</div>";
                                     echo "<div class='modpack_url'><span>$modpack_url</span></div>";
-                                echo "</div>"; 
+                                //echo "</div>"; 
                               echo "</div>";   
                                 
                                
@@ -119,3 +118,19 @@
 
           </div>    
         </div>  
+        <script>
+             function search_the_string(){
+             var xhttp = new XMLHttpRequest();
+             var search_text=document.getElementById("search_string").value;
+             xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("modpack_list").innerHTML =
+                    this.responseText;
+                       }
+                    };
+                xhttp.open("GET", "search_modpack.php?search="+search_text, true);
+                xhttp.send();
+                           
+            }
+        </script>
+    </body>    

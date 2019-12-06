@@ -52,15 +52,7 @@
       </div>
       <div class="main_wrap">
       <div class="tab_menu">
-          <ul>
-            <li><a href="index.php">Dashboard</a></li>
-            <li><a href="notes.php">Notes</a></li>
-            <li><a href="tasks.php">Tasks</a></li>
-            <li><a href="categories.php">Categories</a></li>
-            <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
-            <li><a href="pics.php">Pics</a></li>
-          </ul>
+          <?php include("menu.php"); ?>
         </div>
         </div>
         <div class="content">

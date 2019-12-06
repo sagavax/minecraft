@@ -16,11 +16,10 @@ $row = mysqli_fetch_array($con,$result);
 if($overeni == 1) {
     $_SESSION['login'] = stripslashes($login);
     $_SESSION['id'] = $row["id"];
- 
-    //header("Location:".$_SERVER['HTTP_REFERER']);
-   
+    header("Location:".$_SERVER['HTTP_REFERER']);
+    die();
 } else {
-   echo "<div class='message error'>ZLE UZIVATELSKE MENO ALEBO HESLO !!!!</div>";
+   echo "<div style='padding-top: 10px; padding-left: 10px;height:40px; width:600px; border:1x #e1e1e1 solid;background-color: #FFF4B4; color:#333; font-size:15px; font:Helvetica;box-shadow: 0 2px 5px rgba(2,2,2,.62); font-size: 14px; font-weight: bold; font:Arial;'>ZLE UZIVATELSKE MENO ALEBO HESLO !!!!</div>";
 }
 ?>
 </div>
