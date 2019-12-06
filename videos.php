@@ -150,13 +150,7 @@
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=quvey2mtmgzj0p05fw869pufquv1pymgyyp1qrn7z3tewiaa"></script>
-    <script>tinymce.init({ selector:'textarea',toolbar:
-    "insertfile a11ycheck undo redo | bold italic | forecolor backcolor | template codesample | alignleft aligncenter alignright alignjustify | bullist numlist | link image", plugins: [
-    "a11ychecker advcode advlist anchor autolink codesample colorpicker contextmenu fullscreen help image imagetools",
-    " lists link linkchecker media mediaembed noneditable powerpaste preview",
-    " searchreplace table template textcolor tinymcespellchecker visualblocks wordcount"
-  ], });</script>
+    
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
 
@@ -166,16 +160,7 @@
       </div>
       <div class="main_wrap">
       <div class="tab_menu">
-          <ul>
-            <li><a href="dashboard.php">Dashboard</a></li>
-            <li><a href="notes.php">Notes</a></li>
-            <li><a href="tasks.php">Tasks</a></li>
-            <li><a href="categories.php">Categories</a></li>
-            <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
-            <li><a href="pics.php">Pics</a></li>
-            <li><a href="logout.php">Logout</a></li>
-          </ul>
+          <?php include("menu.php"); ?>
         </div>
         <div class="content">
           <div class='list'>
@@ -183,8 +168,9 @@
              <form action="" enctype="multipart/form-data" method="post">    
                 <input type=hidden name="modpack_id" value=<?php if(isset($_GET['modpack_id'])){echo $_GET['modpack_id'];}else{echo 0;} ?>>
                 <input type="text" name="video_title" placeholder='Video title' autocomplete=off>
-                <!--<input type="text" name="video_url" placeholder='Video url'  autocomplete=off>-->
-                <textarea name="video_url" placeholder='video url'></textarea>
+                <input type="text" name="video_url" placeholder='Video url'  autocomplete=off>
+               
+                <!--<textarea name="video_url" placeholder='video url'></textarea>-->
                  <div class="new_video_select_action_wrap">
                   <div class="new_video_selects_wrap">
                   <select name='category'>
@@ -231,13 +217,12 @@
             
             <div class="search_wrap">
               <form action="" method="GET">
-                <input type="text" name="search"><button type="submit" class="button small_button"><i class="fa fa-search"></i></button>
+                <input type="text" name="search" onkeyup="search_the_string(this.value);" id="search_string" autocomplete="off" ><!--<button type="submit" class="button small_button"><i class="fa fa-search"></i></button>-->
               </form>
-            </div>     
+            </div>    
+ 
 
-            <div class="videos">
-                  
-              <div class="mod_list">
+            <div class="mod_list">
                 <?php
                     $sql="SELECT DISTINCT(a.cat_id) as modlist, b.cat_name from videos a, category b where a.cat_id=b.cat_id ORDER BY b.cat_name ASC" ;
                     $result=mysqli_query($link, $sql);
@@ -251,7 +236,12 @@
                       echo "<span class='span_mod'><a href='videos.php?mod_id=$mods_id'>$mod_name</a></span>";
                     }  
                   ?>
-                </div>     
+                </div>                     
+
+
+            <div class="videos" id="videos">
+                  
+               
 
                 <?php
                     if(isset($_GET['view'])){
@@ -299,25 +289,26 @@
                                     if ($modpack_name<>""){
                                        $modpack_name="<span class='span_modpack'>".$modpack_name."</span>";
                                     }
-                                    
-                                    echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
+                                    echo "<div class='video_footer'>";
+                                      echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
 
-                                    echo "<div class='videos_action'><form method='post' action=''><input type='hidden' name=eis_video_id value=$eis_video_id><input type='hidden' name='video_name' value='$video_name'><input type='hidden' name=video_id value=$video_id>";
-                                    
-                                    if($see_later==0) {
-                                      echo "<button name='add_see_later' title=''Add to Watch later' class='button app_badge'><i class='far fa-clock'></i></button>";
-                                    } else {
-                                      echo "<button name='remove_from_see_later' title='Remove from Watch later' class='button app_badge'><i class='fas fa-clock'></i></button>";
-                                    }
+                                      echo "<div class='videos_action'><form method='post' action=''><input type='hidden' name=eis_video_id value=$eis_video_id><input type='hidden' name='video_name' value='$video_name'><input type='hidden' name=video_id value=$video_id>";
+                                      
+                                      if($see_later==0) {
+                                        echo "<button name='add_see_later' title=''Add to Watch later' class='button app_badge'><i class='far fa-clock'></i></button>";
+                                      } else {
+                                        echo "<button name='remove_from_see_later' title='Remove from Watch later' class='button app_badge'><i class='fas fa-clock'></i></button>";
+                                      }
 
-                                    if($is_favorite==0) {
-                                      echo "<button name='add_to_favorites' titie='add to favorites' class='button app_badge'><i class='far fa-star'></i></button>";
-                                    } else {
-                                      echo "<button name='remove_from_favorites' title='remove from favorites' class='button app_badge'><i class='fas fa-star'></i></button>";
-                                    }
+                                      if($is_favorite==0) {
+                                        echo "<button name='add_to_favorites' titie='add to favorites' class='button app_badge'><i class='far fa-star'></i></button>";
+                                      } else {
+                                        echo "<button name='remove_from_favorites' title='remove from favorites' class='button app_badge'><i class='fas fa-star'></i></button>";
+                                      }
 
-                                    echo "<button name='edit_video' type='submit' class='button app_badge'>Edit</button><button name='delete_video' type='submit' class='button app_badge'>Delete</button></form></div>";
-                                    //echo "<div class='video_action'><span><a href='video_delete.php?id=$video_id'>x</a></span></div>";
+                                      echo "<button name='edit_video' type='submit' class='button app_badge'>Edit</button><button name='delete_video' type='submit' class='button app_badge'>Delete</button></form></div>";
+                                    echo "</div>";
+                                      //echo "<div class='video_action'><span><a href='video_delete.php?id=$video_id'>x</a></span></div>";
                                     //echo "<div class='mod'>$mod_name</div>";
                                     echo "<div style='clear:both'></div>";             
                           echo "</div>";
@@ -329,3 +320,19 @@
             <div style="clear:both"></div> 
           </div>    
         </div>
+        <script>
+             function search_the_string(){
+             var xhttp = new XMLHttpRequest();
+             var search_text=document.getElementById("search_string").value;
+             xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("videos").innerHTML =
+                    this.responseText;
+                       }
+                    };
+                xhttp.open("GET", "search_videos.php?search="+search_text, true);
+                xhttp.send();
+                           
+            }
+        </script>
+      </body>  

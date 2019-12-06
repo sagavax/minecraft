@@ -12,8 +12,8 @@
           $sql="UPDATE videos SET cat_id=$video_category, modpack_id=$video_modpack, video_title='$video_name', video_url='$video_url' where video_id=$video_id";
           $result=mysqli_query($link, $sql);
 
-           //$link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
-        $link1=mysqli_connect("localhost", "root", "", "brick_wall");
+        $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
+        //$link1=mysqli_connect("localhost", "root", "", "brick_wall");
         $curr_date=date('Y-m-d H:i:s');
         $diary_text="Minecraft IS: Video s <strong>$video_title</strong> bolo upravene";
         $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
@@ -51,16 +51,7 @@
       </div>
       <div class="main_wrap">
       <div class="tab_menu">
-          <ul>
-            <li><a href="index.php">Dashboard</a></li>
-            <li><a href="notes.php">Notes</a></li>
-            <li><a href="tasks.php">Tasks</a></li>
-            <li><a href="categories.php">Categories</a></li>
-            <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
-            <li><a href="pics.php">Pics</a></li>
-            <li><a href="logout.php">Logout</a></li>
-          </ul>
+         <?php include("menu.php"); ?>
         </div>
         <div class="content">
             <div class='list'>
