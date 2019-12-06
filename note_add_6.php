@@ -1,6 +1,4 @@
-<?php 
-      session_start();
-      include "includes/dbconnect.php";
+<?php include "includes/dbconnect.php";
       include "includes/functions.php";
 
       if(isset($_POST['note_add'])) {
@@ -8,11 +6,7 @@
     
                 $note_header=mysqli_real_escape_string($link, $_POST['note_header']);
                 $note_text=mysqli_real_escape_string($link, $_POST['note_text']);
-                $modpack_id=$_SESSION['modpack_id'];
-
-                if(!isset($_SESSION['modpack_id'])) {
-					$modpack_id=0;
-				}
+                $modpack_id=mysqli_real_escape_string($link, $_POST['modpack_id']);
            
                 if(($note_header=="") && ($note_text=="")){
                     echo "<script>alert('Nieco by si tam mal zadat');
@@ -30,7 +24,7 @@
         
         $added_date=date('Y-m-d');
         $sql="INSERT into notes (note_header,note_text,cat_id, modpack_id, added_date) VALUES ('$note_header', '$note_text',$cat_id,$modpack_id,'$added_date')";
-        mysqli_query($link,$sql);
+         mysqli_query($link,$sql);
         //ziskat id posledne vytvorenej poznamky
         $sql="SELECT LAST_INSERT_ID() as last_id from notes";
         $result=mysqli_query($link, $sql);
@@ -39,17 +33,20 @@
         } 
 
         //vlozit do wallu 
-        //$link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
+        $link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
         //var_dump($_POST);
-        $link1=mysqli_connect("localhost", "root", "", "brick_wall");
+        //$link1=mysqli_connect("localhost", "root", "", "brick_wall");
         mysqli_query($link1,'set character set utf8;');
         mysqli_query($link1,"SET NAMES `utf8`");
         
         if(isset($_POST['publish_to_wall'])){//chcem zverejnit text poznamky do wallu, nielen informaciu ze sprava bola vytvorena
-          
+            //echo "<script>alert('To Waaaaaaaaaal !!!')</script>";
+            //$diary_text="<strong>$note_header</strong> $note_text";
             $modpack_name = GetModPackName($modpack_id);
             $diary_text="Minecraft: <strong>".$modpack_name."</strong> ".$note_header." ".$note_text;
-          
+            //$diary_text=mb_convert_encoding($diary_text,"utf-8");
+          // $diary_text=iconv(mb_detect_encoding($diary_text, mb_detect_order(), true), "UTF-8", $diary_text);
+
          } else { //ak poznamka nieje urcena na zverejnenie tak sa zobrazi len informacia o tom,ze sa nejaka poznamka vytvorila
         
         
@@ -62,11 +59,11 @@
         
         $curr_date=date('Y-m-d H:i:s');
         $sql="INSERT INTO diary (diary_text, date_added,location,isMobile,is_read) VALUES ('$diary_text','$curr_date','',0,0)";
-        echo $sql;
+        //echo $sql;
         $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
         mysqli_close($link1);
         echo "<script>alert('Nova poznamka s id $last_note bola vytvorena');
-        window.location.href='modpack.php?view=notes';
+        window.location.href='notes.php';
         </script>";
         }  
       }
@@ -120,7 +117,11 @@
                         <input type="hidden" name="modpack_id" value=
                         
                         <?php 
-                           echo $_SESSION['modpack_id'];
+                           if(isset($_GET['modpack_id'])){
+                               echo $_GET['modpack_id'];
+                           } else {
+                               echo 0;
+                           }
                                                
                         ?> >
                         <div id="note_title">
@@ -128,7 +129,7 @@
                                 if(isset($_GET['curr_date'])){
                                     $date=$_GET['curr_date'];{
                                         if($date=="now"){
-                                            echo "Update status :".date('Y-m-d H:i:s');
+                                            echo "Denny update :".date('Y-m-d h:i:s');
                                         } else {
                                             echo "";
                                         }

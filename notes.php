@@ -6,6 +6,10 @@
         header('location:note_add.php');
       }
 
+      if(isset($_POST['add_daily_note'])){
+        header('location:note_add.php?curr_date=now');
+      }
+
       if(isset($_POST['edit_note'])){
         if($_POST['eis_note_id']<>0){
           $eis_note_id=$_POST['eis_note_id'];
@@ -60,6 +64,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -72,16 +77,7 @@
       </div>
       <div class="main_wrap">
       <div class="tab_menu">
-          <ul>
-            <li><a href="dashboard.php">Dashboard</a></li>
-            <li><a href="notes.php">Notes</a></li>
-            <li><a href="tasks.php">Tasks</a></li>
-            <li><a href="categories.php">Categories</a></li>
-            <li><a href="modpacks.php">Modpacks</a></li>
-            <li><a href="videos.php">Videos</a><ul class="submenu"><li><a href="videos.php?view=see_later_videos">See later</a></li><li><a href="videos.php?view=favorite_videos">Favorite</a></li></ul></li>
-            <li><a href="pics.php">Pics</a></li>
-            <li><a href="logout.php">Logout</a></li>
-          </ul>
+          <?php include("menu.php"); ?>
         </div>
         
         <div class="content">
@@ -90,17 +86,18 @@
             
             <div class="search_wrap">
               <form action="" method="GET">
-                <input type="text" name="search"><button type="submit" class="button small_button"><i class="fa fa-search"></i></button>
+                <input type="text" name="search" onkeyup="search_the_string(this.value);" id="search_string" placeholder="search string" autocomplete="off"><!--<button type="submit" class="button small_button"><i class="fa fa-search"></i></button>-->
               </form>
             </div>
             
             <div class="button_wrap"> 
              <form action="" method="post">
-                <button name="add_note" type="submit" class="button small_button pull-right"><i class="fa fa-plus"></i></button>
+                <button name="add_note" type="submit" class="button small_button pull-right" title="New note"><i class="material-icons">note_add</i></button>
+                <button name="add_daily_note" type="submit" class="button small_button pull-right" title="Daily update note"><i class="material-icons">note_add</i></button>
               </form>
              </div>  
 
-              <div id="note_list">
+              <div id="notes_list">
                 <?php    
                     if(isset($_GET['search'])){
                       $search_string=$_GET['search'];
@@ -121,7 +118,7 @@
                           $note_text=$row['note_text'];
                           $note_mod=$row['cat_id'];
                           $note_modpack=$row['modpack_id'];
-                          $note_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $note_text);
+                          //$note_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $note_text);
 
                           echo "<div class='note'>";
                             echo "<div class='note_header'><strong>".htmlspecialchars($note_header)."</strong></div>";
@@ -139,12 +136,28 @@
                             
                             //echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
                             echo "<div class='note_footer'>";
-                              echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div><div class='notes_action'><form method='post' action=''><input type='hidden' name=eis_note_id value=$eis_note_id><input type='hidden' name=note_id value=$note_id><button name='edit_note' type='submit' class='button app_badge'>Edit</button><button name='delete_note' type='submit' class='button app_badge'>Delete</button></form></div>";
+                              echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div><div class='notes_action'><form method='post' action='' enctype='multipart/form-data'><input type='hidden' name=eis_note_id value=$eis_note_id><input type='hidden' name=note_id value=$note_id><button name='attach_pic' type='button' class='button app_badge id='attach_image'><i class='material-icons'>attach_file</i><input type='file' name='image' id='file-name' accept='image/*' style='display:none' id='flie-upload'></button><button name='edit_note' type='submit' class='button app_badge'><i class='material-icons'>edit</i></button><button name='delete_note' type='submit' class='button app_badge'><i class='material-icons'>delete</i></button></form></div>";
                             echo "</div>";//notes footer
                           echo "</div>";
 
                         }     
                 ?>     
-               </div><!-- note list--> 
+               </div><!-- note list-->
+               <div style="clear:both"></div> 
             </div><!--list -->
         </div><!-- content -->   
+        <script>
+             function search_the_string(){
+             var xhttp = new XMLHttpRequest();
+             var search_text=document.getElementById("search_string").value;
+             xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("note_list").innerHTML =
+                    this.responseText;
+                       }
+                    };
+                xhttp.open("GET", "search_notes.php?search="+search_text, true);
+                xhttp.send();
+                           
+            }
+        </script>
