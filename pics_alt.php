@@ -1,16 +1,18 @@
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
-     
+      
+     var_dump($_POST);
+
+
       if(isset($_POST['delete_picture'])){
         $picture_id=intval($_POST['picture_id']);
         
         //zistime si z dataazy o aky subor ide
         $base_dir="gallery";
-        
         $sql="SELECT picture_name from pictures where picture_id=$picture_id";
         $result=mysqli_query($link, $sql) or die(mysqli_error($link));
         $row = mysqli_fetch_array($result);
-        $picture_name=$base_dir."/".$row['picture_name']; //cesta k suboru
+        $picture_name=$base_dir."/".$row['picture_name'];
 
         //vymazeme subor z file systemu
         unlink($picture_name);
@@ -30,11 +32,11 @@
         $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
         mysqli_close($link1);
       
+        //zobrazime alter
+       
+        echo "<script>ert('Obrazok id $picture_id' bol vymazany');
+        window.location.href='pics.php';</script>";
         
-       //echo "obrazook bol vymazany";  
-       echo "<script>alert('Obrazok id $picture_id bol vymazany')</script>";
-       //zobrazime alter
-        //echo "<script>alert('');</script>";
       }
 
 
@@ -61,22 +63,20 @@
           } else {
 
 
-
           $path = $_FILES['picture']['name'];
           $ext = pathinfo($path, PATHINFO_EXTENSION); //zisti tomu priponu
 
           if (!isset($file)){ //kontrola ci je to obrazok
-            echo "<script>alert('Ziaden subor nebol vybraty');
+            echo "<script>alert('Please select a pic');
             window.location.href='pics.php';
             </script>";
            }
-
-          
            //resize of the image 
            $picture_title=mysqli_real_escape_string($link, $_POST['picture_title']); //popis obrazku
            $picture_size = filesize($_FILES['picture']['tmp_name']); //velkost suboru
           
-       
+           //rozmery
+          
         
            $base_dir="gallery/";
         
@@ -84,13 +84,12 @@
           move_uploaded_file($file, "$base_dir/$image_name");
 
           //kontrola ci je zadany mod
+          
           if(isset($_POST['category'])){
           
-            $mod_id=$_POST['category'];
-          } else{
-              $mod_id=0;
-          }   
           
+          $mod_id=0;
+
           //kontrola ci je zadany modpack
           if(isset($_POST['modpack_id'])){
             $modpack=$_POST['modpack_id'];
@@ -98,15 +97,8 @@
                $modpack=0;
            }
 
-          //kontrola ci obrazok je z EISu 
-          if(isset($_POST['eis_pic_id'])){
-              $eis_pic_id=$_POST['eis_pic_id'];
-          }else{
             $eis_pic_id=0;
-          }
-
           
-
           //vlozim do databazy
           $date=date('Y-m-d H:i:s');
           $picture_title=mysqli_real_escape_string($link,$_POST['picture_title']);
@@ -115,6 +107,7 @@
           //echo $picture_description;
 
           $sql="INSERT INTO pictures (picture_title,picture_description,picture_name,picture_path,picture_ext, picture_size, eis_pic_id,cat_id ,modpack_id,added_date) VALUES ('$picture_title','$picture_description','$image_name','$path','$ext',$picture_size,$eis_pic_id,$mod_id,$modpack,'$date')";
+          //echo $sql;
           $result=mysqli_query($link, $sql) or die(mysqli_error($link));
          
         //vlozim do wallu 
@@ -131,13 +124,7 @@
         </script>";
           }
       }
-
-      if(isset($_POST['edit_info]'])){
-        $picture_id=$_POST['picture_id'];
-        echo "<script>alert('Edituj obrazok id $picture_id !!');</script>";
-        
-        //header('location:pics_edit.php');
-      }
+    }
 ?>      
 <!DOCTYPE html>
 <html lang="en">
@@ -257,7 +244,7 @@
                                     echo "<div class='mod_modpack'>".$modpack_name."</div>";
 
 
-                                      echo "<div class='picture_action'><form action='' method='post'><input type='hidden' name='picture_id' value=$picture_id><button name='edit_info' type='submit' class='button small_button pull-right' title='Edit info'><i class='fa fa-pencil'></i></button><button name='delete_picture' class='button small_button pull-right' title='Delete picture'><i class='fa fa-times'></i></button></form></div>";
+                                      echo "<div class='picture_action'><form action='' method='post'><input type='hidden' name='picture_id' value=$picture_id><button type='submit' name='edit_info' class='button small_button pull-right' title='Edit info '><i class='fa fa-pencil'></i></button><button name='delete_picture' type='submit' class='button small_button pull-right' title='Delete picture'><i class='fa fa-times'></i></button></form></div>";
                                     echo "</div>";
                                     //echo "<div class='mod'>$mod_name</div>";
                                     echo "<div style='clear:both'></div>";             

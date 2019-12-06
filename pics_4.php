@@ -6,11 +6,10 @@
         
         //zistime si z dataazy o aky subor ide
         $base_dir="gallery";
-        
         $sql="SELECT picture_name from pictures where picture_id=$picture_id";
         $result=mysqli_query($link, $sql) or die(mysqli_error($link));
         $row = mysqli_fetch_array($result);
-        $picture_name=$base_dir."/".$row['picture_name']; //cesta k suboru
+        $picture_name=$base_dir."/".$row['picture_name'];
 
         //vymazeme subor z file systemu
         unlink($picture_name);
@@ -30,11 +29,10 @@
         $result = mysqli_query($link1, $sql) or die("MySQLi ERROR: ".mysqli_error($link1));
         mysqli_close($link1);
       
-        
-       //echo "obrazook bol vymazany";  
-       echo "<script>alert('Obrazok id $picture_id bol vymazany')</script>";
-       //zobrazime alter
-        //echo "<script>alert('');</script>";
+        //zobrazime alter
+        echo "<script>alert('Obrazok id $picture_id' bol vymazany');
+        window.location.href='pics.php';
+        </script>";
       }
 
 
@@ -66,17 +64,19 @@
           $ext = pathinfo($path, PATHINFO_EXTENSION); //zisti tomu priponu
 
           if (!isset($file)){ //kontrola ci je to obrazok
-            echo "<script>alert('Ziaden subor nebol vybraty');
+            echo "<script>alert('Please select a pic');
             window.location.href='pics.php';
             </script>";
            }
 
+           
           
            //resize of the image 
            $picture_title=mysqli_real_escape_string($link, $_POST['picture_title']); //popis obrazku
            $picture_size = filesize($_FILES['picture']['tmp_name']); //velkost suboru
           
-       
+           //rozmery
+          
         
            $base_dir="gallery/";
         
@@ -105,16 +105,11 @@
             $eis_pic_id=0;
           }
 
-          
-
           //vlozim do databazy
           $date=date('Y-m-d H:i:s');
           $picture_title=mysqli_real_escape_string($link,$_POST['picture_title']);
-          $picture_description=mysqli_real_escape_string($link, $_POST['picture_description']);
-
-          //echo $picture_description;
-
-          $sql="INSERT INTO pictures (picture_title,picture_description,picture_name,picture_path,picture_ext, picture_size, eis_pic_id,cat_id ,modpack_id,added_date) VALUES ('$picture_title','$picture_description','$image_name','$path','$ext',$picture_size,$eis_pic_id,$mod_id,$modpack,'$date')";
+          $sql="INSERT INTO pictures (picture_title,picture_name,picture_path,picture_ext, picture_size, eis_pic_id,cat_id ,modpack_id,added_date) VALUES ('$picture_title','$image_name','$path','$ext',$picture_size,$eis_pic_id,$mod_id,$modpack,'$date')";
+          //echo $sql;
           $result=mysqli_query($link, $sql) or die(mysqli_error($link));
          
         //vlozim do wallu 
@@ -133,10 +128,7 @@
       }
 
       if(isset($_POST['edit_info]'])){
-        $picture_id=$_POST['picture_id'];
-        echo "<script>alert('Edituj obrazok id $picture_id !!');</script>";
-        
-        //header('location:pics_edit.php');
+        header('location:pics_edit.php');
       }
 ?>      
 <!DOCTYPE html>
@@ -169,7 +161,6 @@
                 <input type=hidden name="modpack_id" value=<?php if(isset($_GET['modpack_id'])){echo $_GET['modpack_id'];}else{echo 0;} ?>>
                 <input type="hidden" name="<?php echo ini_get('session.upload_progress.name'); ?>" value="test" />
                 <input type="text" name="picture_title" placeholder='picture title' autocomplete=off>
-                <textarea name="picture_description"></textarea>
                 <input type="file" name="picture"  placeholder="Picture">
                 <div class="action"><button type="submit" name="add_new_pic" class="button pull-right"><i class="fa fa-plus"></i></button></div>
               </form> 
@@ -203,7 +194,6 @@
                                 $mod_id=0;
                                 $modpack_id=0;
                                 $eis_pic_id=0;
-                                
 
                                 $sql="INSERT INTO pictures (picture_title,picture_name,picture_path,picture_ext, picture_size, eis_pic_id,cat_id ,modpack_id,added_date) VALUES ('$picture_title','$entry','$entry','$ext',$picture_size,$eis_pic_id,$mod_id,$modpack_id,'$date')";
                                 $result=mysqli_query($link, $sql) or die(mysqli_error($link));
@@ -214,12 +204,12 @@
                   
                       closedir($handle);
                   
-                    $sql="SELECT a.picture_id, a.picture_name,a.picture_title, picture_description, a.eis_pic_id, a.picture_path, a.cat_id, a.modpack_id from pictures a ORDER BY a.picture_id DESC";
+                    $sql="SELECT a.picture_id, a.picture_name,a.picture_title, a.eis_pic_id, a.picture_path, a.cat_id, a.modpack_id from pictures a ORDER BY a.picture_id DESC";
                      $result=mysqli_query($link, $sql);
                      while ($row = mysqli_fetch_array($result)) {
                        $picture_id=$row['picture_id'];
                        $picture_title=$row['picture_title'];
-                      $picture_description=$row['picture_description']; 
+
                       
 
                        $picture_name=$row['picture_name'];
@@ -249,15 +239,10 @@
                                        $modpack_name="<span class='span_modpack'>".$modpack_name."</span>";
                                     }
                                     echo "<div class='picture_footer'>"; 
-                                    
-                                    if($picture_description<>""){
-                                      echo "<div class='picture_description'>$picture_description</div>";
-                                    }
-                                    
-                                    echo "<div class='mod_modpack'>".$modpack_name."</div>";
+                                      echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
 
 
-                                      echo "<div class='picture_action'><form action='' method='post'><input type='hidden' name='picture_id' value=$picture_id><button name='edit_info' type='submit' class='button small_button pull-right' title='Edit info'><i class='fa fa-pencil'></i></button><button name='delete_picture' class='button small_button pull-right' title='Delete picture'><i class='fa fa-times'></i></button></form></div>";
+                                      echo "<div class='picture_action'><form action='' method='post'><input type='hidden' name='picture_id' value=$picture_id><button name='edit_info' class='button small_button pull-right' title='Edit info '><i class='fa fa-pencil'></i></button><button name='delete_picture' class='button small_button pull-right' title='Delete video'><i class='fa fa-times'></i></button></form></div>";
                                     echo "</div>";
                                     //echo "<div class='mod'>$mod_name</div>";
                                     echo "<div style='clear:both'></div>";             
