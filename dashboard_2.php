@@ -19,6 +19,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <script>
+        function show_welcome_message(){
+          setTimeout(function(){
+            document.getElementsByClassName('')[0].style.visibility = 'hidden';
+            //alert('hello world!');
+          }, 3000);
+        }
+    </script>
   </head>
   
   <body>
@@ -73,7 +81,7 @@
                                   }
                                   
                                   echo "<div class='list_app_text'>$text</div>
-                                  <div class='list_date'>$added_date</div>
+                                  <div class='list_date'>".htmlspecialchars(nl2br($added_date))."</div>
                                   <div class='list_app'><span class='app_badge'>$app</span></div>
                                
                               </div>";

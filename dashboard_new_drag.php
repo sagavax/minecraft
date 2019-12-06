@@ -52,37 +52,38 @@
         <div class="content">
         
        
-   <!--         <div class="list"> -->
- 
+   <!--         <div class="list">
+
             <div class="button_wrap"> 
              <form action="" method="post">
-                <button name="add_modpack" type="submit" class="button small_button pull-right" title="New modpack"><i class="material-icons">note_add</i></button>
-             </form>
-            </div> 
-         <div class="dashboard_header">Modpack list</div>
+                <button name="add_note" type="submit" class="button small_button pull-right" title="New note"><i class="material-icons">note_add</i></button>
+                <button name="add_daily_note" type="submit" class="button small_button pull-right" title="Update_note"><i class="fa fa-plus"></i></button>
+              </form>
+         </div>  -->
          <div class="modpack_list">
-          
+             <ul id="checklist">
              <?php
+                $i=0;
                 $sql="SELECT * from modpacks order by load_order ASC";
                 $result=mysqli_query($link, $sql);
                 while (
+                    
                     $row = mysqli_fetch_array($result)){
                         $modpack_id=$row['modpack_id'];
                         $modpack_name=$row['modpack_name'];
                         $modpack_pic=$row['modpack_pic'];
 
-                        echo "<div class='modpack_thumb' draggable='true'><a href='modpack.php?modpack_id=$modpack_id'>
-                            <div class='modpack_thumb_pic'><img src='".$modpack_pic."'></div>
-                            <div class='modpack_thumb_name'>$modpack_name</div>
-                            <div class='modpack_thumb_action'><span class='white_outlined_button'>Enter</span></div>
-                            </a>
-                        </div>";
+                        $i++;
+
+                        echo "<li class='listItem' draggable='true'><div class='modpack_thumb'>
+                             $i
+                        </div></li>";
                     }
                 
             ?>
        <!-- </div> -->
-          
+                </ul>
         </div>
       </div>
-     
+      <script type="text/javascript" src="js/main.js"></script>
   </body> 

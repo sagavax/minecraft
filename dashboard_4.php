@@ -52,13 +52,14 @@
         <div class="content">
         
        
-   <!--         <div class="list"> -->
- 
+   <!--         <div class="list">
+
             <div class="button_wrap"> 
              <form action="" method="post">
-                <button name="add_modpack" type="submit" class="button small_button pull-right" title="New modpack"><i class="material-icons">note_add</i></button>
-             </form>
-            </div> 
+                <button name="add_note" type="submit" class="button small_button pull-right" title="New note"><i class="material-icons">note_add</i></button>
+                <button name="add_daily_note" type="submit" class="button small_button pull-right" title="Update_note"><i class="fa fa-plus"></i></button>
+              </form>
+         </div>  -->
          <div class="dashboard_header">Modpack list</div>
          <div class="modpack_list">
           
@@ -74,7 +75,7 @@
                         echo "<div class='modpack_thumb' draggable='true'><a href='modpack.php?modpack_id=$modpack_id'>
                             <div class='modpack_thumb_pic'><img src='".$modpack_pic."'></div>
                             <div class='modpack_thumb_name'>$modpack_name</div>
-                            <div class='modpack_thumb_action'><span class='white_outlined_button'>Enter</span></div>
+                            <div class='modpack_thumb_action'><span class='purple_button'>Enter</span></div>
                             </a>
                         </div>";
                     }
