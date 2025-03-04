@@ -1,0 +1,1 @@
+INSERT INTO videos (video_title,video_url,edition,cat_id,video_thumbnail ,modpack_id,video_source,added_date) VALUES ('Checking out Server Base All The Mods 8 Community Server','https://www.youtube.com/watch?v=jvUn5hcXOKc','java',0,'https://img.youtube.com/vi/jvUn5hcXOKc/0.jpg',100,'YouTube',now())
