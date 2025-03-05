@@ -17,7 +17,7 @@ var videos_tag_list = document.querySelector(".modal_video_tags");
 var videos_tag_list_close_button = document.querySelector(".modal_video_tags button");
 const modal_new_video_tags = document.querySelector(".modal_new_tags");
 const modal_new_video_tags_closeButton = document.querySelector(".modal_new_tags button");
-
+var container_view_source = document.querySelector('.tab_view_edition');
 const selectElement =document.querySelector('select[name="modpack_vanilla"]');
 
 
@@ -584,7 +584,7 @@ var container_view_style = document.querySelector('.tab_view_list_grid');
     });
 
   //sorts videos by edition
-    var container_view_source = document.querySelector('.tab_view_edition');
+    
 
     // Add a click event listener to the container
     container_view_source.addEventListener('click', function(event) {

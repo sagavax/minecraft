@@ -25,6 +25,6 @@
 			   	  $tags.="<button class='button'>+ $remain tags</button>";
 			   }
 
-	$tags .= "<button class='button app_badge' name='new_tag' video-id=$video_id><i class='fa fa-plus'></i></button>";  
+	$tags .= "<button class='button small_button' name='new_tag' video-id=$video_id><i class='fa fa-plus'></i></button>";  
 
 	echo $tags;
