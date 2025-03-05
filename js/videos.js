@@ -19,6 +19,8 @@ const modal_new_video_tags = document.querySelector(".modal_new_tags");
 const modal_new_video_tags_closeButton = document.querySelector(".modal_new_tags button");
 var container_view_source = document.querySelector('.tab_view_edition');
 const selectElement =document.querySelector('select[name="modpack_vanilla"]');
+var container_view_style = document.querySelector('.tab_view_list_grid');
+var container_view_source = document.querySelector('.tab_view_source');
 
 
 selectElement.addEventListener("change", (event) => {
@@ -544,7 +546,7 @@ var container_fav_later = document.querySelector('.tab_view_fav_later');
 
 
 //show list or grid
-var container_view_style = document.querySelector('.tab_view_list_grid');
+
 //console.log(container_view_style);
 
     // Add a click event listener to the container
@@ -566,7 +568,6 @@ var container_view_style = document.querySelector('.tab_view_list_grid');
 
 
 //sorts videos by source 
-    var container_view_source = document.querySelector('.tab_view_source');
 
     // Add a click event listener to the container
     container_view_source.addEventListener('click', function(event) {
