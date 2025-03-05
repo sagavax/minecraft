@@ -17,7 +17,7 @@
         
         $diary_text="Minecraft IS: Video s <strong>$video_title</strong> bolo upravene";
         $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-        result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+        $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
         
         
           
