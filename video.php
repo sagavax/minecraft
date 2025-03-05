@@ -1,35 +1,7 @@
-<?php include "includes/dbconnect.php";
-include "includes/functions.php";
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
-if (isset($_POST['edit_video'])) {
-    //var_dump($_POST);
-    $video_id = $_POST['video_id'];
-    $video_name = mysqli_real_escape_string($link, $_POST['video_title']);
-    $video_url = mysqli_real_escape_string($link, $_POST['video_url']);
-    $video_category = $_POST['category'];
-    $video_modpack = $_POST['modpack'];
-    $video_edition = $_POST ['edition'];
-
-    $sql = "UPDATE videos SET cat_id=$video_category, modpack_id=$video_modpack, video_title='$video_name', video_url='$video_url' where video_id=$video_id";
-    $result = mysqli_query($link, $sql);
-
-    $diary_text = "Minecraft IS: Video s <strong>$video_title</strong> bolo upravene";
-    $sql = "INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-    $result = mysqli_query($link, $sql) or die("MySQLi ERROR: " . mysqli_error($link));
-    
-
-    echo "<script>
-          alert('Video s id $video_id bolo upravene');
-          window.location.href='videos.php';
-          </script>";
-
-}
+<?php 
+      include "includes/dbconnect.php";
+      include "includes/functions.php";
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

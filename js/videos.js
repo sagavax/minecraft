@@ -1269,5 +1269,5 @@ function savetoVideoTagList(tagId, videoId){
      var data = "video_id="+videoId+"&tag_id="+tagId;
 
     // Send the request with data (assuming `data` is defined elsewhere)
-    xhttp.send();
+    xhttp.send(data);
 }
