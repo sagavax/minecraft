@@ -1754,6 +1754,19 @@ textarea::placeholder {
     font-size: 12px;
 }
 
+.video_modpack_info,.video_mods {
+    display: flex;
+    border: 1px #ccc solid;
+    padding:10px;
+    justify-content: center;
+    align-items: center;
+    gap:5px
+}
+
+.video_mods {
+    margin-left: 10px;
+}
+
 .video_modpacks button {
     margin: 5px;
     height: 45px;

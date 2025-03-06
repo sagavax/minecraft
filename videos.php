@@ -244,7 +244,7 @@
                                           echo GetVideoTagList($video_id);
                                           echo "<button class='button small_button' name='new_tag' video-id=$video_id title='Add new tag(s)'><i class='fa fa-plus'></i></button>";
                                       echo "</div>";                        
-                                      echo "<div class='video_modpack_information_wrap'><div class='video_modpack_info'>".GetVideoModpack($video_id)."</div><div class='video_mods'>".GetVideoMods($video_id)."</div></div>";             
+                                      echo "<div class='video_modpack_information_wrap'><div class='video_modpack_info'>".GetVideoModpack($video_id)."<button class='button blue_button' name='change_modpack' title='change modpack'><i class='fa fa-edit'></i></button></div><div class='video_mods'>".GetVideoMods($video_id)."<button class='button blue_button' name='add_mod' title='add mod(a)'><i class='fa fa-plus'></i></button></div></div>";             
                                     echo "</div>";// video details ends here
 
                                    echo "<div class='video_banner_list'></div>";
