@@ -14,7 +14,7 @@
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
      <script defer src="js/videos.js?<?php echo time() ?>"></script>
     <script defer src="js/videos_action.js?<?php echo time() ?>"></script>
-    <!-- <script defer src="js/app_event_tracker.js?<?php echo time() ?>"></script> -->
+    <script defer src="js/message.js?<?php echo time() ?>"></script>
     
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>

@@ -196,10 +196,10 @@ modal_modpack_input.addEventListener("input", function(){
            document.querySelector(".modal_new_tags .tags_list").removeChild(event.target);
            //get videoId
            var videoId = sessionStorage.getItem("video_id");
-           console.log(videoId,tagId);
+           
                    
            //add tags to database
-           //savetoVideoTagList(videoId, tagId);
+           savetoVideoTagList(videoId, tagId);
            //get videoID
         }
     })
@@ -1248,9 +1248,9 @@ function hasTimeParameter(url) {
 }
 
 
-function savetoVideoTagList(tagId, videoId){
+function savetoVideoTagList(videoId, tagId){
     var xhttp = new XMLHttpRequest();
-
+    console.log("video id:"+videoId+", tag id: "+tagId);
     // Check the state of the AJAX request
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
@@ -1261,12 +1261,12 @@ function savetoVideoTagList(tagId, videoId){
     };
 
     // Configure the request
-    xhttp.open("POST", "video_save_tag.php", true);
+    xhttp.open("POST", "video_tag_save.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     // You need to define the `data` variable before calling `exportCSV()`
     // For example:
-     var data = "video_id="+videoId+"&tag_id="+tagId;
+     var data = "tag_id="+tagId+"&video_id="+videoId;
 
     // Send the request with data (assuming `data` is defined elsewhere)
     xhttp.send(data);

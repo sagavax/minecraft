@@ -2,13 +2,13 @@
      include("includes/dbconnect.php");
      include("includes/functions.php");
 
-     //var_dump($_POST);
+     var_dump($_POST);
      $video_id = $_POST['video_id'];
      $tag_id = $_POST['tag_id'];
 
 
      $save_tag = "INSERT into video_tags (video_id, tag_id) VALUES($video_id, $tag_id)";
-     echo $save_tag;
+     //echo $save_tag;
      $result=mysqli_query($link, $save_tag) or die(mysqli_error($link));
 
 
