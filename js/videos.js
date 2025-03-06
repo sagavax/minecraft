@@ -1256,7 +1256,7 @@ function savetoVideoTagList(videoId, tagId){
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
             // Show a message when the export is successful
-            ShowMessage("Videos have been exported ...");
+            ShowMessage("tags has been added successfully!");
         }
     };
 
