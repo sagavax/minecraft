@@ -1596,7 +1596,7 @@ textarea::placeholder {
 
 .video {
     display: flex;
-    height: 230px;
+    height: 260px;
     padding: 0;
     border: 1px #d1d1d1 solid;
     margin-top:10px;
@@ -1696,7 +1696,7 @@ textarea::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    height:220px;
+    height:260px;
     width: 400px;
     box-sizing: border-box;
     overflow: hidden;
