@@ -1740,11 +1740,19 @@ textarea::placeholder {
 }
 
 
-.video_modpacks main {
+.video_modpacks main,.video_modpack_information_wrap {
     display: flex;
     width: 100%;
 }
 
+.video_modpack_information_wrap {
+    margin-bottom: 10px;
+}
+
+.video_modpack_information_wrap button {
+    border-radius: 5px;
+    font-size: 12px;
+}
 
 .video_modpacks button {
     margin: 5px;
@@ -2638,6 +2646,7 @@ textarea::placeholder {
 
 .blue_button, .blue_badge {
      background: #0b9ed0;
+     border: 1px solid #0b9ed0;
     color: #fff;
     padding: 6px 12px;
 }

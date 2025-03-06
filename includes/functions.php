@@ -1,5 +1,37 @@
 <?php 
 include("includes/dbconnect.php");
+function GetVideoMods($video_id) {
+	global $link;
+	$mod_list="";
+	$get_video_mods = "SELECT b.cat_id, b.cat_name from videos_mods a, mods b WHERE video_id = $video_id and a.cat_id = b.cat_id";
+	//echo $get_video_modpack;
+	$result=mysqli_query($link, $get_video_mods);
+	while ($row = mysqli_fetch_array($result)) {
+	$mod_id = $row['cat_id'];	
+	$mod_name = $row['cat_name'];
+
+	$mod_list= $mod_list."<button class='button blue_button' mod-id=$mod_id>$mod_name</button>";
+	}	
+	return $mod_list;
+}
+
+
+function GetVideoModpack($video_id) {
+	global $link;
+	$get_video_modpack = "SELECT b.modpack_name from videos_modpacks a, modpacks b WHERE video_id = $video_id and a.modpack_id = b.modpack_id";
+	//echo $get_video_modpack;
+	$result=mysqli_query($link, $get_video_modpack);
+	if ($result && $row = mysqli_fetch_array($result)) {
+		$modpack_name = $row['modpack_name'];
+		$modpack_name = "<button class='button blue_button'>$modpack_name</button>";
+	} else {
+		$modpack_name = ""; // Alebo nechaj prázdne: $modpack_name = "";
+	}
+
+
+	return $modpack_name;
+}
+
 
 function GetAttachedImages($note_id) {
     global $link;

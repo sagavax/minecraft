@@ -219,7 +219,7 @@
 
                             echo "<div class='video' video-id=$video_id>";
                                     echo "<div class='video_thunb'><img src='$video_thumb'></div>";
-                                    echo "<div class='video_list_details'>";
+                                    echo "<div class='video_list_details'>"; // video details start here
                                        echo "<div class='video_name'><span>$video_name</span></div>";
                                        echo "<div class='video_action'>";
                                          if($see_later==0) {
@@ -241,17 +241,16 @@
                                         echo "<button name='add_note' title='add note' class='button app_badge open-button' video-id=$video_id><i class='fa fa-comment'></i></button><button name='edit_video' type='button' class='button app_badge' video-id='$video_id' ><i class='far fa-edit'></i></button><button name='delete_video' type='button' class='button app_badge' video-id='$video_id'><i class='fas fa-times'></i></button>";
                                        echo "</div>";//video actiom 
                                        echo "<div class='videos_tags' video-id=$video_id>";
-                                          //echo GetCountVideoTags($video_id);
                                           echo GetVideoTagList($video_id);
-                                          //echo "<button class='button' name='video_tags_count'>".GetCountVideoTags($video_id)."</button>";
                                           echo "<button class='button small_button' name='new_tag' video-id=$video_id title='Add new tag(s)'><i class='fa fa-plus'></i></button>";
-                                      echo "</div>";                                     
-                                    echo "</div>";
+                                      echo "</div>";                        
+                                      echo "<div class='video_modpack_information_wrap'><div class='video_modpack_info'>".GetVideoModpack($video_id)."</div><div class='video_mods'>".GetVideoMods($video_id)."</div></div>";             
+                                    echo "</div>";// video details ends here
 
                                    echo "<div class='video_banner_list'></div>";
                                    echo "<div class='video_action_play'>";
                                     echo "<div class='video_play_button'><div><a href='video.php?video_id=$video_id'><i class='fas fa-play'></i></a></div></div>";
-                                   echo "</div>";
+                                   echo "</div>"; 
                                                                    
                           echo "</div>"; //video
                           
