@@ -1,10 +1,17 @@
 /* Definovanie premenných pre farby */
 :root {
-    --color-low: black;
+ /*    --color-low: black;
     --color-medium-text: white;
     --color-medium-bg: blue;
     --color-high-bg: orange;
-    --color-critical-bg: red;
+    --color-critical-bg: red; */
+
+    
+    --color-low: #495057; /* tmavšia sivá */
+    --color-medium-text: #ffffff;
+    --color-medium-bg: #7286d3; /* tlmená pastelová modrá */
+    --color-high-bg: #e4a07e; /* tlmená pastelová oranžová */
+    --color-critical-bg: #e88b8b; /* tlmená pastelová červená */
 }
 
 /* Základný štýl pre všetky úrovne */
