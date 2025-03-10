@@ -23,6 +23,7 @@ var container_view_style = document.querySelector('.tab_view_list_grid');
 var container_view_source = document.querySelector('.tab_view_source');
 var change_modpack_list = document.querySelector(".change_modpack_list");
 var video_mods_alphabet = document.querySelector(".video_mods_alphabet");
+var video_mods_list = document.querySelector(".video_mods_list");
 
 selectElement.addEventListener("change", (event) => {
     console.log("Selected value:", event.target.value);
@@ -50,6 +51,16 @@ video_mods_alphabet.addEventListener("click", function(event){
         sortModsByChar(event.target.innerText);
     }
 });
+
+video_mods_list.addEventListener("click", function(event){
+    if(event.target.tagName==="BUTTON"){
+        const videoId = sessionStorage.getItem("video_id");
+        const modId = event.target.getAttribute("mod-id");
+        addModforVideo(videoId, modId);
+        
+    }
+});
+
 
 /* pagination.addEventListener('click', function(event) {
     // Check if the clicked element is a button
@@ -1350,4 +1361,20 @@ function sortModsByChar(char){
     // Send the request with the videoId and modpackId
     var params = "char=" + encodeURIComponent(char);
     xhttp.send(params);
+}
+
+function addModforVideo(videoId, modId){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+         ShowMessage("Mod has been added successfully!");
+        }
+    };
+    xhttp.open("POST", "videos_mods_add_mod.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Send the request with the videoId and modpackId
+    var params = "videoId = " + encodeURIComponent(videoId) + "&modId=" + encodeURIComponent(modId);
+    xhttp.send(params);  
 }
