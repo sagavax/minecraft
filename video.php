@@ -41,9 +41,9 @@ $sql = "SELECT * from videos where video_id=$video_id";
 $result = mysqli_query($link, $sql);
 while ($row = mysqli_fetch_array($result)) {
     $cat_id = $row['cat_id'];
-    $modpack_id = $row['modpack_id'];
+    //$modpack_id = $row['modpack_id'];
     //$cat_name = GetModName($cat_id);
-    $modpack_name = GetModPackName($modpack_id);
+    //$modpack_name = GetModPackName($modpack_id);
     $video_name = $row['video_title'];
     $video_url = $row['video_url'];
     $video_source = $row['video_source'];
