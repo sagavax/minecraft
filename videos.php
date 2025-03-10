@@ -346,7 +346,7 @@ error_reporting(E_ALL);
               <div class="video_mods_alphabet">
                 <?php 
                         foreach (range('A', 'Z') as $char) {
-                          echo "<button type='button' class='button small_button'>$char</button>";
+                          echo "<button type='button' class='button small_button' name='char'>$char</button>";
                         }
                         echo "<button type='button' class='button small_button' name='add_new_mod' title='Add new tag'><i class='fa fa-plus'></i></button>";
                      ?>  

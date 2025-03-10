@@ -22,6 +22,7 @@ const selectElement =document.querySelector('select[name="modpack_vanilla"]');
 var container_view_style = document.querySelector('.tab_view_list_grid');
 var container_view_source = document.querySelector('.tab_view_source');
 var change_modpack_list = document.querySelector(".change_modpack_list");
+var video_mods_alphabet = document.querySelector(".video_mods_alphabet");
 
 selectElement.addEventListener("change", (event) => {
     console.log("Selected value:", event.target.value);
@@ -41,6 +42,14 @@ selectElement.addEventListener("change", (event) => {
 });
 
 
+video_mods_alphabet.addEventListener("click", function(event){
+    console.log("alphabet clicked");
+    // Add your logic to handle alphabetical sorting here
+    if(event.target.name=="char"){
+        //alert("Alphabet clicked: " + event.target.innerText);
+        sortModsByChar(event.target.innerText);
+    }
+});
 
 /* pagination.addEventListener('click', function(event) {
     // Check if the clicked element is a button
@@ -115,7 +124,7 @@ change_modpack_list.addEventListener("click", function(event) {
      // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
     if (event.target.tagName === "BUTTON" && event.target.hasAttribute("modpack-id")) {
         const modpackId = event.target.getAttribute("modpack-id"); 
-        const modpackName = event.target.innerText;
+        const modpackName = encodeURIComponent(event.target.innerText);
         const videoId = sessionStorage.getItem("video_id");
          //console.log("Modpack ID:", modpackId); // Alebo alert, ak preferuješ
         //console.log("video id:", videoId);
@@ -1323,5 +1332,22 @@ function changeModpack(videoId, modpackId,modpackName) {
 
     // Send the request with the videoId and modpackId
     var params = "video_id=" + encodeURIComponent(videoId) + "&modpack_id=" + encodeURIComponent(modpackId);
+    xhttp.send(params);
+}
+
+
+function sortModsByChar(char){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".video_mods_list").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "videos_mods_short_by_char.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Send the request with the videoId and modpackId
+    var params = "char=" + encodeURIComponent(char);
     xhttp.send(params);
 }
