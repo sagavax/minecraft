@@ -1,5 +1,22 @@
 <?php 
 include("includes/dbconnect.php");
+
+function GetVideoName($video_id) {
+	global $link;
+	//$mod_list="";
+	$get_video_name = "SELECT video_title from videos WHERE video_id = $video_id";
+	//echo $get_video_modpack;
+	$result=mysqli_query($link, $get_video_name);
+	while ($row = mysqli_fetch_array($result)) {
+	
+	$video_name = $row['video_title'];
+	
+	}	
+	return $video_name;
+}
+
+
+
 function GetVideoMods($video_id) {
 	global $link;
 	$mod_list="";
@@ -16,14 +33,17 @@ function GetVideoMods($video_id) {
 }
 
 
+
+
 function GetVideoModpack($video_id) {
 	global $link;
-	$get_video_modpack = "SELECT b.modpack_name from videos_modpacks a, modpacks b WHERE video_id = $video_id and a.modpack_id = b.modpack_id";
+	$get_video_modpack = "SELECT b.modpack_id, b.modpack_name from videos_modpacks a, modpacks b WHERE video_id = $video_id and a.modpack_id = b.modpack_id";
 	//echo $get_video_modpack;
 	$result=mysqli_query($link, $get_video_modpack);
 	if ($result && $row = mysqli_fetch_array($result)) {
 		$modpack_name = $row['modpack_name'];
-		$modpack_name = "<button class='button blue_button'>$modpack_name</button>";
+		$modpack_id = $row['modpack_id'];
+		$modpack_name = "<button class='button blue_button' modpack-id=$modpack_id>$modpack_name</button>";
 	} else {
 		$modpack_name = ""; // Alebo nechaj prázdne: $modpack_name = "";
 	}

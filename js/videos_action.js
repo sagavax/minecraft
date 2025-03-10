@@ -72,6 +72,13 @@ container.addEventListener('click', function(event) {
                 loadVideoTags(videoId); // zavolá funkci před zobrazením modalu
                 document.querySelector(".modal_video_tags").showModal();
                 break;
+
+            case 'change_modpack':
+                var videoId = event.target.closest(".video").getAttribute("video-id");
+                sessionStorage.setItem("video_id", videoId);
+                console.log("change modpack");
+                document.querySelector(".modal_change_modpack").showModal();
+                break;    
             default:
                 // Handle default case or ignore
                 break;

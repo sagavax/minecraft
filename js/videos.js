@@ -21,7 +21,7 @@ var container_view_source = document.querySelector('.tab_view_edition');
 const selectElement =document.querySelector('select[name="modpack_vanilla"]');
 var container_view_style = document.querySelector('.tab_view_list_grid');
 var container_view_source = document.querySelector('.tab_view_source');
-
+var change_modpack_list = document.querySelector(".change_modpack_list");
 
 selectElement.addEventListener("change", (event) => {
     console.log("Selected value:", event.target.value);
@@ -111,12 +111,17 @@ parentElement.addEventListener("keydown", function(event) {
 
 
 
-   /*  modal_tag_input.addEventListener("keyup",function(event){
-        searchModalTags(modal_tag_input.value);
-    })
- */
-
-
+change_modpack_list.addEventListener("click", function(event) {
+     // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
+    if (event.target.tagName === "BUTTON" && event.target.hasAttribute("modpack-id")) {
+        const modpackId = event.target.getAttribute("modpack-id"); 
+        const videoId = sessionStorage.getItem("video_id");
+        //console.log("Modpack ID:", modpackId); // Alebo alert, ak preferuješ
+        //console.log("video id:", videoId);
+        // change modpack
+        changeModpack(videoId, modpackId);
+    }
+});
 
 
     modal_new_video_tags_closeButton.addEventListener("click", function() {
@@ -1270,4 +1275,47 @@ function savetoVideoTagList(videoId, tagId){
 
     // Send the request with data (assuming `data` is defined elsewhere)
     xhttp.send(data);
+}
+
+function removeFromVideoTagList(videoId, tagId){
+    
+}
+
+function changeModpack(videoId, modpackId) {
+    var xhttp = new XMLHttpRequest();
+    console.log("video id: " + videoId + ", modpack Id: " + modpackId);
+
+    // Check for duplicate modpack - Find the button for the specific video
+    let modpack = document.querySelector(`.video[video-id='${videoId}'] .video_modpack_info button`);
+
+    if (!modpack) {
+        ShowMessage("Modpack button not found for this video!");
+        return;
+    }
+
+    // Get the current modpack id value from the button's attribute
+    let orig_modpackId = modpack.getAttribute('modpack-id');
+    
+    // If the current modpack ID is the same as the selected one, show a message
+    if (orig_modpackId === modpackId) {
+        ShowMessage("You are already using this modpack!");
+        return;
+    }
+
+    // Check the state of the AJAX request
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+            // Show a message when the modpack is successfully changed
+            ShowMessage("Modpack has been changed successfully!");
+        }
+    };
+
+    // Configure the request
+    xhttp.open("POST", "videos_modpack_change.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Send the request with the videoId and modpackId
+    var params = "video_id=" + encodeURIComponent(videoId) + "&modpack_id=" + encodeURIComponent(modpackId);
+    xhttp.send(params);
 }

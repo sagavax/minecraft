@@ -1,5 +1,8 @@
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
+
+      ini_set('display_errors', 1);
+error_reporting(E_ALL);
 ?>      
 <!DOCTYPE html>
 <html lang="en">
@@ -160,8 +163,12 @@
           <div class='video_modpacks'>
                 <header><button type='button' class='button blue_button app_badge'><i class='fa fa-times'></i></button></header>
                 <main>
-                  <?php $get_videos_modapcks = "SELECT a.modpack_id,b.modpack_name from videos a, modpacks b WHERE a.modpack_id NOT IN (99) and a.modpack_id = b.modpack_id GROUP BY b.modpack_name ORDER BY b.modpack_name ASC";
-                
+                  <?php 
+                  //$get_videos_modapcks = "SELECT a.modpack_id,b.modpack_name from videos a, modpacks b WHERE a.modpack_id NOT IN (99) and a.modpack_id = b.modpack_id GROUP BY b.modpack_name ORDER BY b.modpack_name ASC";
+                    
+                  $get_videos_modapcks = "SELECT a.modpack_id,b.modpack_name from videos_modpacks a, modpacks b WHERE a.modpack_id NOT IN (0) and a.modpack_id = b.modpack_id GROUP BY b.modpack_name ORDER BY b.modpack_name ASC";
+
+
                 $result_modpacks=mysqli_query($link, $get_videos_modapcks);
                  while ($row_modpacks = mysqli_fetch_array($result_modpacks)) {
                         $modpack_id = $row_modpacks['modpack_id'];
@@ -198,7 +205,8 @@
                       }
                     } elseif(isset($_GET['mod_id'])){
                       $mod_id=$_GET['mod_id'];
-                         $sql="SELECT * from videos where cat_id=$mod_id ORDER by video_id DESC";
+                          $sql="SELECT * from videos a, videos_mods b  where b.cat_id=$mod_id and a.video_id = b.video_id ORDER BY a.video_id DESC"; 
+                         //$sql="SELECT * from videos_mods where cat_id=$mod_id ORDER by video_id DESC";
                       } elseif (isset($_GET['search'])){
                       $search=$_GET['search'];
                       $sql="SELECT * from videos where video_title like '%".$search."%'";
@@ -212,7 +220,7 @@
                           $video_name=$row['video_title'];
                           $video_url=$row['video_url'];
                           $mod_id=$row['cat_id'];
-                          $modpack_id=$row['modpack_id'];
+                          //$modpack_id=$row['modpack_id'];
                           $is_favorite=$row['is_favorite'];
                           $see_later=$row['watch_later'];
                           $video_thumb = $row['video_thumbnail'];
@@ -340,7 +348,7 @@
                     $get_modpacks = "SELECT * from modpacks ORDER BY modpack_name ASC";
                     $result=mysqli_query($link, $get_modpacks);
 
-                    echo "<button modpack-id=0 class='button small_button'>Unspeciofied</button>";
+                    echo "<button modpack-id=0 class='button small_button'>Unspecified</button>";
                     while ($row = mysqli_fetch_array($result)) {                   
                         $modpack_name = $row['modpack_name'];
                         $modpack_id = $row['modpack_id']; 
@@ -351,5 +359,24 @@
                 ?>
               </div>
            </div>   
+         </dialog>
+
+     <dialog class="modal_change_modpack">
+             <div class='inner_change_modpack_layer'>
+                <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button>  
+                <div class='change_modpack_list'>
+                <?php
+                   $get_modpacks = "SELECT * from modpacks ORDER BY modpack_name ASC";
+                    $result=mysqli_query($link, $get_modpacks);
+
+                    echo "<button modpack-id=0 class='button small_button'>Unspecified</button>";
+                    while ($row = mysqli_fetch_array($result)) {                   
+                        $modpack_name = $row['modpack_name'];
+                        $modpack_id = $row['modpack_id']; 
+                        echo "<button modpack-id=$modpack_id class='button small_button'>$modpack_name</button>";
+
+                    }
+                ?>
+              </div>
          </dialog>
    
