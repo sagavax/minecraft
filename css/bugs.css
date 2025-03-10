@@ -1,0 +1,59 @@
+/* Definovanie premenných pre farby */
+:root {
+    --color-low: black;
+    --color-medium-text: white;
+    --color-medium-bg: blue;
+    --color-high-bg: orange;
+    --color-critical-bg: red;
+}
+
+/* Základný štýl pre všetky úrovne */
+.status {
+    color: var(--color-low); /* Predvolená farba textu */
+    font-weight: bold;
+}
+
+/* Stredná úroveň - Medium */
+.medium {
+    background-color: var(--color-medium-bg);
+    color: var(--color-medium-text);
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Vysoká úroveň - High */
+.high {
+    background-color: var(--color-high-bg);
+    color: var(--color-medium-text);
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Kritická úroveň - Critical */
+.critical {
+    background-color: var(--color-critical-bg);
+    color: var(--color-medium-text);
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Nízka úroveň - Low */
+.low {
+    color: var(--color-low);
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.bug_status,.bug_priority {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 6px;
+    width: 100px;
+}
+
+.bug_status {
+    border:1px #d1d1d1 solid;
+    
+}
