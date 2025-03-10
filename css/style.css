@@ -3539,7 +3539,7 @@ textarea::placeholder {
     flex-direction: column;
 }
 
-.new_bug form select {
+.new_bug form select, .new_idea form select{
     width:100%;
     height:35px;
     margin-top:10px;
