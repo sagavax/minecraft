@@ -115,11 +115,12 @@ change_modpack_list.addEventListener("click", function(event) {
      // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
     if (event.target.tagName === "BUTTON" && event.target.hasAttribute("modpack-id")) {
         const modpackId = event.target.getAttribute("modpack-id"); 
+        const modpackName = event.target.innerText;
         const videoId = sessionStorage.getItem("video_id");
-        //console.log("Modpack ID:", modpackId); // Alebo alert, ak preferuješ
+         //console.log("Modpack ID:", modpackId); // Alebo alert, ak preferuješ
         //console.log("video id:", videoId);
         // change modpack
-        changeModpack(videoId, modpackId);
+        changeModpack(videoId, modpackId,modpackName);
     }
 });
 
@@ -1281,7 +1282,7 @@ function removeFromVideoTagList(videoId, tagId){
     
 }
 
-function changeModpack(videoId, modpackId) {
+function changeModpack(videoId, modpackId,modpackName) {
     var xhttp = new XMLHttpRequest();
     console.log("video id: " + videoId + ", modpack Id: " + modpackId);
 
@@ -1308,6 +1309,11 @@ function changeModpack(videoId, modpackId) {
         if (this.readyState == 4 && this.status == 200) {
             // Show a message when the modpack is successfully changed
             ShowMessage("Modpack has been changed successfully!");
+            //close the change modpack list modal
+            document.querySelector(".modal_change_modpack").close();
+            // Update the modpack info button
+            modpack.setAttribute('modpack-id', modpackId);
+            modpack.textContent = `${modpackName}`;
         }
     };
 

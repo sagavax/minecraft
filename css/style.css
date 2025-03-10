@@ -600,7 +600,7 @@ textarea::placeholder {
 
 .modpack_name {
     display: flex;
-    width:300px;
+    width:20%;
     align-items: center;
     justify-content: flex-end;
     box-sizing: border-box;
