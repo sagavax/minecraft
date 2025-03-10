@@ -78,7 +78,15 @@ container.addEventListener('click', function(event) {
                 sessionStorage.setItem("video_id", videoId);
                 console.log("change modpack");
                 document.querySelector(".modal_change_modpack").showModal();
-                break;    
+                break;
+            case 'add_mod':
+                var videoId = event.target.closest(".video").getAttribute("video-id");
+                sessionStorage.setItem("video_id", videoId);
+                console.log("add mod");
+                document.querySelector(".modal_modpack_mods").showModal();
+                break;
+            
+                
             default:
                 // Handle default case or ignore
                 break;

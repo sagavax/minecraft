@@ -636,6 +636,8 @@ textarea::placeholder {
     margin-top: 20px;
 }
 
+
+
 .notes_action,
 .task_action,
 .picture_action,
@@ -4921,7 +4923,7 @@ input[name="base_name"] {
   font-size: 150px;
   }
 
-   .modal, .modal_modpack,.modal_video_tags,.modal_image, .modal_video_category, .modal_change_modpack{
+   .modal, .modal_modpack,.modal_video_tags,.modal_image, .modal_video_category, .modal_change_modpack, .modal_modpack_mods{
     padding:5px;
     min-height:100px;
     width: 40%;
@@ -4950,6 +4952,22 @@ input[name="base_name"] {
    .change_modpack_list button {
      font-size: 13px;
    }
+
+   .modal_modpack_mods {
+    width: 80%;
+    top:10%;
+    left: 10%;;
+   }
+
+
+   .video_mods_list {
+    margin-top:40px;
+    flex-wrap: wrap;
+    display: flex;  
+    gap: 10px;
+    padding: 5px;
+   }
+
 
    .modal_new_tags {
     top:5%;
@@ -5136,7 +5154,7 @@ input[name="base_name"] {
    }
 
 
-    .tags_list,.video_tag_list, .video_tags_alphabet {
+    .tags_list,.video_tag_list, .video_tags_alphabet,.video_mods_alphabet {
     display:  flex;
     gap:10px;
     flex-wrap: wrap;

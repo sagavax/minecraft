@@ -340,19 +340,26 @@ error_reporting(E_ALL);
         </div>
       </body>  
 
-      <dialog class="modal_video_category">
-           <div class="inner_video_category_layer">
+      <dialog class="modal_modpack_mods">
+           <div class="inner_modpack_mods_layer">
               <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button> 
-              <div class='video_modpack_list'>
+              <div class="video_mods_alphabet">
+                <?php 
+                        foreach (range('A', 'Z') as $char) {
+                          echo "<button type='button' class='button small_button'>$char</button>";
+                        }
+                        echo "<button type='button' class='button small_button' name='add_new_mod' title='Add new tag'><i class='fa fa-plus'></i></button>";
+                     ?>  
+              </div>
+              <div class='video_mods_list'>
                 <?php
-                    $get_modpacks = "SELECT * from modpacks ORDER BY modpack_name ASC";
-                    $result=mysqli_query($link, $get_modpacks);
+                    $get_mods = "SELECT * from mods WHERE LEFT(cat_name, 1) = 'A' ORDER BY cat_name ASC";
+                    $result=mysqli_query($link, $get_mods);
 
-                    echo "<button modpack-id=0 class='button small_button'>Unspecified</button>";
                     while ($row = mysqli_fetch_array($result)) {                   
-                        $modpack_name = $row['modpack_name'];
-                        $modpack_id = $row['modpack_id']; 
-                        echo "<button modpack-id=$modpack_id class='button small_button'>$modpack_name</button>";
+                        $mod_name = $row['cat_name'];
+                        $mod_id = $row['cat_id']; 
+                        echo "<button mod-id=$mod_id class='button small_button'>$mod_name</button>";
 
                     }
 
