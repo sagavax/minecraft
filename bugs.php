@@ -5,59 +5,31 @@
 
 
       if(isset($_POST['save_bug'])){
-            $bug_title = mysqli_real_escape_string($link, $_POST['bug_title']);
-            $bug_text = mysqli_real_escape_string($link, $_POST['bug_text']);
-            $is_fixed = 0;
-            
-            if($bug_priority==0){
-              $bug_priority = "medium";
-            }
-            if($bug_status==0){
-              $bug_status = "new";
-            }
-            
-
-           //var_dump($_POST);
-
-            $save_bug = "INSERT INTO bugs (bug_title, bug_text, priority, status, is_fixed, added_date) VALUES ('$bug_title','$bug_text', '$bug_priority','$bug_status',$is_fixed,now())";
-            $result=mysqli_query($link, $save_bug);
-
+        $bug_title = $_POST['bug_title'] ?? '';
+        $bug_text = $_POST['bug_text'] ?? '';
+        $bug_priority = $_POST['bug_priority'] ?? 'medium';
+        $bug_status = $_POST['bug_status'] ?? 'new';
+        $is_fixed = 0;
+    
+        // Použitie pripraveného SQL dotazu na bezpečné vloženie
+        $save_bug = "INSERT INTO bugs (bug_title, bug_text, priority, status, is_fixed, added_date) 
+                     VALUES (?, ?, ?, ?, ?, now())";
         
-        $diary_text="Minecraft IS: Bolo zaznamenany novy bug ";
-        $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-        $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+        $stmt = mysqli_prepare($link, $save_bug);
+        mysqli_stmt_bind_param($stmt, "ssssi", $bug_title, $bug_text, $bug_priority, $bug_status, $is_fixed);
+        mysqli_stmt_execute($stmt);
         
-
-        $getmax_id = "SELECT max(bug_id) as max_id from bugs";
-        $result = mysqli_query($link, $getmax_id) or die("MySQLi ERROR: ".mysqli_error($link));
-        $row = mysqli_fetch_array($result);   
-        $max_id = $row['max_id'];
-
-        $diary_text="Minecraft IS: Bolo bol zaznamenany bug s id $max_id";
-        $create_record="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text', now())";
-        $result = mysqli_query($link, $create_record) or die("MySQLi ERROR: ".mysqli_error($link));
-
-        echo "<script>alert('Minecraft IS: Bolo zaznamenany novy bug $max_id');
-          window.location.href='bugs.php';</script>";
-      }
-
-      if(isset($_POST['to_fixed'])){
-            $bug_id = $_POST['bug_id'];
-
-            $to_fix = "UPDATE bugs SET is_fixed=1 WHERE bug_id=$bug_id";
-            $result=mysqli_query($link, $to_fix);
-
-          
-            
-            $diary_text="Minecraft IS: Bolo zaznamenany novy bug ";
-            $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-            $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-            
-
-            echo "<script>alert('bug s id $bug_id bol fixnuty');
-              window.location.href='bugs.php';
-              </script>";
-      }
+        // Získanie posledného ID bezpečne
+        $max_id = mysqli_insert_id($link);
+    
+        // Logovanie do app_log
+        $diary_text = "Minecraft IS: Bol zaznamenaný nový bug s ID $max_id";
+        $log_sql = "INSERT INTO app_log (diary_text, date_added) VALUES (?, now())";
+        
+        $log_stmt = mysqli_prepare($link, $log_sql);
+        mysqli_stmt_bind_param($log_stmt, "s", $diary_text);
+        mysqli_stmt_execute($log_stmt);
+    }
 
 
       if(isset($_POST['see_bug_details'])){
@@ -67,30 +39,46 @@
         header("location:bug.php");
       }
 
-      if(isset($_POST['bug_remove'])) {
-        $bug_id = $_POST['bug_id'];
-
-        //remove bug
-        $remove_bug = "DELETE from bugs WHERE bug_id=$bug_id";
-         $result=mysqli_query($link, $remove_bug);
-
-         //remove all comments
-         //remove comments
-        $delete_comments = "DELETE from bugs_comments WHERE bug_id=$bug_id";
-        $result = mysqli_query($link, $delete_comments) or die("MySQLi ERROR: ".mysqli_error($link));
-
-
-
-          
-            $diary_text="Minecraft IS: Bolo vymazany bug s id $bug_id ";
-            $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-            $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-            
-
-         echo "<script>alert('Minecraft IS: Bug s id $bug_id  bola vymazany');
-              window.location.href='bugs.php';
-              </script>";
-      }
+      if (isset($_POST['bug_remove'])) {
+        $bug_id = intval($_POST['bug_id']); // Ošetrenie vstupu
+    
+        if ($bug_id > 0) {
+            // Spustiť transakciu
+            mysqli_begin_transaction($link);
+    
+            try {
+                // Odstrániť bug
+                $remove_bug = "DELETE FROM bugs WHERE bug_id=?";
+                $stmt = mysqli_prepare($link, $remove_bug);
+                mysqli_stmt_bind_param($stmt, "i", $bug_id);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_close($stmt);
+    
+                // Odstrániť komentáre k bugom
+                $delete_comments = "DELETE FROM bugs_comments WHERE bug_id=?";
+                $stmt = mysqli_prepare($link, $delete_comments);
+                mysqli_stmt_bind_param($stmt, "i", $bug_id);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_close($stmt);
+    
+                // Logovanie do denníka
+                $diary_text = "Minecraft IS: Bol vymazaný bug s ID $bug_id";
+                $sql = "INSERT INTO app_log (diary_text, date_added) VALUES (?, NOW())";
+                $stmt = mysqli_prepare($link, $sql);
+                mysqli_stmt_bind_param($stmt, "s", $diary_text);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_close($stmt);
+    
+                // Commit transakcie
+                mysqli_commit($link);
+    
+            } catch (Exception $e) {
+                mysqli_rollback($link); // Ak niečo zlyhá, vráti zmeny späť
+                die("MySQLi ERROR: " . mysqli_error($link));
+            }
+        }
+    }
+    
 
 ?>
 
