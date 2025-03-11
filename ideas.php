@@ -65,10 +65,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Minecraft IS</title>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/ideas.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
-    <script type="text/javascript" defer src="js/ideas.js"></script>
+    <script type="text/javascript" defer src="js/ideas.js?<?php echo time(); ?>"></script>
     <script type="text/javascript" defer src="js/message.js"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 
@@ -180,5 +181,25 @@
 
         </div><!--content-->
       </div><!--main_wrap-->
+      
+      <dialog class="modal_show_status">
+        <ul>
+          <li>new</li>
+          <li>in progress</li>
+          <li>pending</li>
+          <li>fixed</li>
+          <li>reopened</li>
+        </ul>
+    </dialog>
+
+    <dialog class="modal_show_priority">
+      <ul>
+        <li>low</li>
+        <li>medium</li>
+        <li>high</li>
+        <li>critical</li>
+      </ul> 
+    </dialog>
+
   </body>
   </html> 
