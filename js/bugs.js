@@ -18,8 +18,13 @@ if (event.target.tagName === 'LI') {
     const bugId = sessionStorage.getItem('bug_id');
     const bugStatus = event.target.innerText;
     console.log(`Bug ${bugId} status updated to ${bugStatus}`);
+    if(document.querySelector(`.bug[bug-id='${bugId}'] .bug_status`).innerText === "fixed"){
+        alert("Cannot change priority of a fixed bug.");
+        return;
+    } else {
     changeBugStatus(bugId, bugStatus);
-    //modal_show_status.close();
+    modal_show_status.close();
+    }
 }
 });
 
@@ -28,8 +33,13 @@ modal_show_priority.addEventListener('click', function(event) {
         const bugId = sessionStorage.getItem('bug_id');
         const bugPriority = event.target.innerText;
         console.log(`Bug ${bugId} status updated to ${bugPriority}`);
+        if(document.querySelector(`.bug[bug-id='${bugId}'] .bug_status`).innerText === "fixed"){
+            alert("Cannot change priority of a fixed bug.");
+            return;
+        } else {
         changeBugPriority(bugId, bugPriority);
-        //modal_show_priority.close();
+        modal_show_priority.close();
+        }
     }
 });
 
@@ -39,7 +49,7 @@ function changeBugStatus(bugId, bugStatus) {
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
-          
+            document.querySelector(`.bug[bug-id='${bugId}'] .bug_status`).innerText = bugStatus;
         }
     };
     xhttp.open("POST", "bugs_change_status.php", true);
@@ -55,7 +65,7 @@ function changeBugPriority(bugId, bugPriority) {
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
-          
+            document.querySelector(`.bug[bug-id='${bugId}'] .bug_priority`).innerText = bugPriority;
         }
     };
     xhttp.open("POST", "bugs_change_priority.php", true);
