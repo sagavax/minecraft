@@ -1,2 +1,67 @@
+const bug_list = document.querySelector('.bug_list');
+const modal_show_status = document.querySelector('.modal_show_status');
+const modal_show_priority = document.querySelector('.modal_show_priority');
+
+bug_list.addEventListener('click', function(event) {
+    const targetClass = event.target.classList;
+    if (event.target.tagName === 'DIV' && targetClass.contains("bug_status") || targetClass.contains("bug_priority")) {
+        const bugId = event.target.closest(".bug").getAttribute('bug-id');
+        sessionStorage.setItem('bug_id', bugId);
+        console.log(bugId);
+        const modal = targetClass.contains("bug_status") ? modal_show_status : modal_show_priority;
+        modal.showModal();
+    }
+});
+
+modal_show_status.addEventListener('click', function(event) {
+if (event.target.tagName === 'LI') {    
+    const bugId = sessionStorage.getItem('bug_id');
+    const bugStatus = event.target.innerText;
+    console.log(`Bug ${bugId} status updated to ${bugStatus}`);
+    changeBugStatus(bugId, bugStatus);
+    //modal_show_status.close();
+}
+});
+
+modal_show_priority.addEventListener('click', function(event) {
+    if (event.target.tagName === 'LI') {    
+        const bugId = sessionStorage.getItem('bug_id');
+        const bugPriority = event.target.innerText;
+        console.log(`Bug ${bugId} status updated to ${bugPriority}`);
+        changeBugPriority(bugId, bugPriority);
+        //modal_show_priority.close();
+    }
+});
 
 
+function changeBugStatus(bugId, bugStatus) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          
+        }
+    };
+    xhttp.open("POST", "bugs_change_status.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Send the request with the videoId and modpackId
+    var params = "bug_id=" + encodeURIComponent(bugId) + "&bug_status=" + encodeURIComponent(bugStatus);
+    xhttp.send(params);
+}
+
+function changeBugPriority(bugId, bugPriority) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          
+        }
+    };
+    xhttp.open("POST", "bugs_change_priority.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Send the request with the videoId and modpackId
+    var params = "bug_id=" + encodeURIComponent(bugId) + "&bug_priority=" + encodeURIComponent(bugPriority);
+    xhttp.send(params);
+}

@@ -97,7 +97,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
-    <script type="text/javascript" defer src="js/bugs.js"></script>
+    <script type="text/javascript" defer src="js/bugs.js?<?php echo time(); ?>"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 
   </head>
@@ -150,62 +150,93 @@
                         $get_bugs = "SELECT * from bugs ORDER BY bug_id DESC LIMIT $itemsPerPage OFFSET $offset";
                         $result=mysqli_query($link, $get_bugs);
                         while ($row = mysqli_fetch_array($result)) {
-                              $bug_id = $row['bug_id'];
-                              $bug_title = $row['bug_title'];
-                              $bug_text = $row['bug_text'];
-                              $bug_priority = $row['priority'];
-                              $bug_status = $row['status'];
-                              $is_fixed = $row['is_fixed'];
-                              $added_date = $row['added_date'];
-                              
+                          // Sanitizácia údajov na ochranu pred XSS
+                          $bug_id = (int) ($row['bug_id'] ?? 0); // ID musí byť číslo
+                          $bug_title = htmlspecialchars($row['bug_title'] ?? '', ENT_QUOTES, 'UTF-8');
+                          $bug_text = htmlspecialchars($row['bug_text'] ?? '', ENT_QUOTES, 'UTF-8');
+                          $bug_priority = htmlspecialchars($row['priority'] ?? '', ENT_QUOTES, 'UTF-8');
+                          $bug_status = htmlspecialchars($row['status'] ?? '', ENT_QUOTES, 'UTF-8');
+                          $is_fixed = (int) ($row['is_fixed'] ?? 0);
+                          $added_date = htmlspecialchars($row['added_date'] ?? '', ENT_QUOTES, 'UTF-8');
 
-                              echo "<div class='bug'>";
-                                    echo "<form action='' method='post'>";
-                                    echo "<div class='bug_title'>$bug_title";
-
-                                    if($is_fixed==1){
-                                        echo "<div class='span_fixed'>fixed</div>";
-                                        $action_buttons = "<button type='submit' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button><button type='submit' name='bug_remove' class='button small_button'><i class='fa fa-times'></i></button>";
-                                     } else {
-                                      $action_buttons = "<button type='submit' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button><button type='submit' name='to_fixed' class='button small_button'><i class='fa fa-check'></i></button><button type='submit' name='bug_remove' class='button small_button'><i class='fa fa-times'></i></button>";
-                                     }
-                                      
-                                       
-                                    
-                                     echo "</div>";
-                                    echo "<div class='bug_text'>$bug_text</div>";
-                                    echo "<div class='bug_footer'>";
-                                          echo "<input type='hidden' name='bug_id' value=$bug_id>";
-                                          echo "<input type='hidden' name='is_fixed' value=$is_fixed>";
-                                            $nr_of_comments = GetCountBugComments($bug_id);
-                                          echo "<div class='bug_status $bug_status'>$bug_status</div><div class='bug_priority $bug_priority'>$bug_priority</div>";  
-                                          echo "<div class='nr_of_comments'>".$nr_of_comments." comments</div>";
-                                            echo $action_buttons;
-                                          echo "</form>";      
-                                    echo "</div>";
-                              echo "</div>"; // bug
-                        }      
+                      
+                          // Počet komentárov
+                          $nr_of_comments = GetCountBugComments($bug_id);
+                      
+                          // Ak je bug FIXED, zobrazí štítok + mení akčné tlačidlá
+                          $fixed_label = $is_fixed ? "<div class='span_fixed'>fixed</div>" : "";
+                          $action_buttons = $is_fixed ? 
+                              "<button type='submit' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button>
+                               <button type='submit' name='bug_remove' class='button small_button'><i class='fa fa-times'></i></button>" :
+                              "<button type='submit' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button>
+                               <button type='submit' name='to_fixed' class='button small_button'><i class='fa fa-check'></i></button>
+                               <button type='submit' name='bug_remove' class='button small_button'><i class='fa fa-times'></i></button>";
+                      
+                          // Generovanie HTML výstupu
+                         
+                          echo "<div class='bug' bug-id='{$bug_id}'>
+                          <div class='bug_title'>{$bug_title} {$fixed_label}</div>
+                          <div class='bug_text'>{$bug_text}</div>
+                          <div class='bug_footer'>
+                              <div class='bug_status {$bug_status}'>{$bug_status}</div>
+                              <div class='bug_priority {$bug_priority}'>{$bug_priority}</div>
+                              <div class='nr_of_comments'>{$nr_of_comments} comments</div>
+                              <form action='' method='post'>
+                                  <input type='hidden' name='bug_id' value='{$bug_id}'>
+                                  <input type='hidden' name='is_fixed' value='{$is_fixed}'>
+                                  {$action_buttons}
+                              </form>
+                          </div>
+                      </div>";
+                      
+                      }
+                           
                   ?>
               </div>
                   <?php
-                // Calculate the total number of pages
-                $sql = "SELECT COUNT(*) as total FROM bugs";
-                $result=mysqli_query($link, $sql);
-                $row = mysqli_fetch_array($result);
-                $totalItems = $row['total'];
-                $totalPages = ceil($totalItems / $itemsPerPage);
-
-                // Display pagination links
-                echo '<div class="pagination">';
-                for ($i = 1; $i <= $totalPages; $i++) {
-                    echo '<a href="?page=' . $i . '"">' . $i . '</a>';
-                      //echo '<a href="?page=' . $i . '" class="button app_badge">' . $i . '</a>';
-                }
-                echo '</div>';
-             ?> 
+                    // Calculate the total number of pages
+                    $sql = "SELECT COUNT(*) as total FROM bugs";
+                    $result = mysqli_query($link, $sql);
+                    
+                    $totalItems = 0; // Predvolene nulová hodnota
+                    
+                    if ($row = mysqli_fetch_array($result)) {
+                        $totalItems = (int) $row['total']; // Zaistenie, že hodnota je celé číslo
+                    }
+                    
+                    // Výpočet počtu strán
+                    $totalPages = ($totalItems > 0) ? ceil($totalItems / $itemsPerPage) : 1;
+                    
+                    // Zobrazenie stránkovania
+                    echo '<div class="pagination">';
+                    for ($i = 1; $i <= $totalPages; $i++) {
+                        echo '<a href="?page=' . $i . '">' . $i . '</a>'; // Opravené úvodzovky
+                    }
+                    echo '</div>';
+                  ?> 
             </div><!-- list-->
 
         </div><!--content-->
       </div><!--main_wrap-->
+      
+     <dialog class="modal_show_status">
+        <ul>
+          <li>new</li>
+          <li>in progress</li>
+          <li>pending</li>
+          <li>fixed</li>
+          <li>reopened</li>
+        </ul>
+    </dialog>
+
+    <dialog class="modal_show_priority">
+      <ul>
+        <li>low</li>
+        <li>medium</li>
+        <li>high</li>
+        <li>critical</li>
+      </ul> 
+    </dialog>
+
   </body>
   </html> 

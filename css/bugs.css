@@ -64,3 +64,31 @@
     border:1px #d1d1d1 solid;
     
 }
+
+dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    padding: 1rem;
+    background-color: white;
+    padding:10px;
+    width: 150px;
+}
+
+dialog ul li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+dialog ul li:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+dialog.show {
+ 
+}

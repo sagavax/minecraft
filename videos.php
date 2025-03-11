@@ -1,4 +1,5 @@
-<?php include "includes/dbconnect.php";
+<?php 
+      include "includes/dbconnect.php";
       include "includes/functions.php";
 
 ?>      

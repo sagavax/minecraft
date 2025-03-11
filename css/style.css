@@ -3357,7 +3357,7 @@ textarea::placeholder {
 
 .idea_footer button:last-child,
 .bug_footer button:last-child  {
-    margin-right: 5px;
+    
 }
 
 
@@ -3368,6 +3368,10 @@ textarea::placeholder {
 
 .bug_footer form {
     display: flex;
+        gap: 5px;
+        border: 1px #d1d1d1 solid;
+        padding: 10px;
+        border-radius: 5px;
 }
 
 
