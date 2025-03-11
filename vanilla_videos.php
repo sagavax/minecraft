@@ -185,18 +185,34 @@
              ?> 
             </div><!-- div list-->    
         </div><!-- div content -->
-          <dialog class="modal">
+    
+        <dialog class="modal_video_tags">
+            <button type="button" class="close_inner_modal"><i class="fa fa-times"></i></button> 
+            <div class="video_tags"></div>
+        </dialog>  
+        
+        <dialog class="modal_new_tags">
           <div class="inner_layer">
               <button type="button" class="close_inner_modal"><i class="fa fa-times"></i></button>  
               <input type="text" name="tag_name" placeholder="tag name ...." autocomplete="off">
-              <ul></ul> <!-- Move ul inside inner_layer -->
+              <div class="video_tags_alphabet">
+                <?php 
+                        foreach (range('A', 'Z') as $char) {
+                          echo "<button type='button' class='button small_button'>$char</button>";
+                        }
+                        echo "<button type='button' class='button small_button' name='add_new_tag' title='Add new tag'><i class='fa fa-plus'></i></button>";
+                     ?>  
+              </div>
+              <div class="tags_list"><?php echo GetAllUnassignedVideosTags()?></div>
+              <!-- <div class="loading" style="display: none;">Loading...</div> -->
           </div>
-        </dialog>  
-      
+        </dialog>
+
 
         <dialog class="modal_notes">
                 <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button>  
-               <input type="text" name="video_comment" placeholder="type your comment here ...." autocomplete="off"> 
+               <textarea name="video_comment" placeholder="type your comment here ...."></textarea> 
+               <div class="modal_notes_action"><button type="button" class="button small_button">Save</button></div>
           </dialog>
 
          <dialog class="modal_modpack">
@@ -207,17 +223,67 @@
          </dialog>   
 
 
-         <dialog class="modal_video_tags">
+         <!-- <dialog class="modal_new_tags">
            <div class="inner_tags_layer">
               <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button> 
               <div class="search_tag"><input type="text" autocomplete="off" spellcheck="off" placeholder="type modification name here..."></div>
               <div class="tag_map"><?php echo GetAllVideoTagPaginated() ?></div>
-              <div class='pagination'><?php echo GetTotalPagesVideosTags()  ?></div>
+              <div class='tag_pagination'><?php echo GetTotalPagesVideosTags()  ?></div>
            </div>   
-         </dialog>
+         </dialog> -->
 
          <div class="message hidden">
            <div class="message_text"></div>
          </div>
         </div>
+      </body>  
+
+      <dialog class="modal_modpack_mods">
+           <div class="inner_modpack_mods_layer">
+              <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button> 
+              <div class="video_mods_alphabet">
+                <?php 
+                        foreach (range('A', 'Z') as $char) {
+                          echo "<button type='button' class='button small_button' name='char'>$char</button>";
+                        }
+                        echo "<button type='button' class='button small_button' name='add_new_mod' title='Add new tag'><i class='fa fa-plus'></i></button>";
+                     ?>  
+              </div>
+              <div class='video_mods_list'>
+                <?php
+                    $get_mods = "SELECT * from mods WHERE LEFT(cat_name, 1) = 'A' ORDER BY cat_name ASC";
+                    $result=mysqli_query($link, $get_mods);
+
+                    while ($row = mysqli_fetch_array($result)) {                   
+                        $mod_name = $row['cat_name'];
+                        $mod_id = $row['cat_id']; 
+                        echo "<button mod-id=$mod_id class='button small_button'>$mod_name</button>";
+
+                    }
+
+                ?>
+              </div>
+           </div>   
+         </dialog>
+
+     <dialog class="modal_change_modpack">
+             <div class='inner_change_modpack_layer'>
+                <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button>  
+                <div class='change_modpack_list'>
+                <?php
+                   $get_modpacks = "SELECT * from modpacks ORDER BY modpack_name ASC";
+                    $result=mysqli_query($link, $get_modpacks);
+
+                    echo "<button modpack-id=0 class='button small_button'>Unspecified</button>";
+                    while ($row = mysqli_fetch_array($result)) {                   
+                        $modpack_name = $row['modpack_name'];
+                        $modpack_id = $row['modpack_id']; 
+                        echo "<button modpack-id=$modpack_id class='button small_button'>$modpack_name</button>";
+
+                    }
+                ?>
+              </div>
+         </dialog>        
+
+
       </body>  
