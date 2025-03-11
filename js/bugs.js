@@ -20,7 +20,9 @@ if (event.target.tagName === 'LI') {
     console.log(`Bug ${bugId} status updated to ${bugStatus}`);
     if(document.querySelector(`.bug[bug-id='${bugId}'] .bug_status`).innerText === "fixed"){
         alert("Cannot change priority of a fixed bug.");
+        modal_show_status.close();
         return;
+        
     } else {
     changeBugStatus(bugId, bugStatus);
     modal_show_status.close();
@@ -35,7 +37,9 @@ modal_show_priority.addEventListener('click', function(event) {
         console.log(`Bug ${bugId} status updated to ${bugPriority}`);
         if(document.querySelector(`.bug[bug-id='${bugId}'] .bug_status`).innerText === "fixed"){
             alert("Cannot change priority of a fixed bug.");
+            modal_show_priority.close();
             return;
+            
         } else {
         changeBugPriority(bugId, bugPriority);
         modal_show_priority.close();
