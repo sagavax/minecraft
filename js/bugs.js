@@ -82,3 +82,8 @@ function changeBugPriority(bugId, bugPriority) {
     var params = "bug_id=" + encodeURIComponent(bugId) + "&bug_priority=" + encodeURIComponent(bugPriority);
     xhttp.send(params);
 }
+
+
+function addNewComment(bugId) {
+    document.queryselector('.modal_add_comment').showModal();
+}

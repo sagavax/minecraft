@@ -164,7 +164,7 @@
                           $nr_of_comments = GetCountBugComments($bug_id);
                       
                           // Ak je bug FIXED, zobrazí štítok + mení akčné tlačidlá
-                          $add_comment = "<button type='submit' name='add_comment' class='button small_button'><i class='fa fa-comment'></i></button>";
+                          $add_comment = "<button type='submit' name='add_comment' class='button small_button' onclick='addNewComment();')><i class='fa fa-comment'></i></button>";
                           $fixed_label = $is_fixed ? "<div class='span_fixed'>fixed</div>" : "";
                           $action_buttons = $is_fixed ? 
                               "<button type='submit' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button>
@@ -241,6 +241,12 @@
         <li>critical</li>
       </ul> 
     </dialog>
+
+    <dialog class="modal_add_comment">
+      <textarea name="comment_text" placeholder="Add a comment here"></textarea>
+      <button type="submit" name="add_comment" class="button small_button">Add</button>
+    </dialog>                  
+
 
   </body>
   </html> 
