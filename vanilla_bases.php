@@ -65,7 +65,7 @@
                 $nether_x=$row['nether_X'];   
                 $nether_y=$row['nether_Y'];   
                 $nether_z=$row['nether_Z'];   
-                $base_screen_thumb = $row['zakladna_screen_thumb'];
+                //$base_screen_thumb = $row['zakladna_screen_thumb'];
 
                 echo "<div class='vanilla-base' base-id=$base_id>";
                 echo "<div class='base_name'>$zakladna_meno</div>";
