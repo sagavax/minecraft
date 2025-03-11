@@ -423,7 +423,7 @@ function GetCountBases(){
 
 function GetCountVanilaVideos(){
 	global $link;
-	$query = "SELECT COUNT(*) as vanila_videos from videos where modpack_id=99";
+	$query = "SELECT COUNT(*) as vanila_videos from videos a, videos_modpacks b where b.modpack_id=0";
 	$result=mysqli_query($link, $query);
 	$row = mysqli_fetch_array($result);
 	 $vanila_videos= $row['vanila_videos'];
@@ -788,7 +788,7 @@ function  GetNrOfImageComments($picture_id){
 
    function GetCountNewestVanillaIdeas(){
 	global $link;
-	$sql="SELECT COUNT(*) as nr_ideas from vanila_basE_ideas WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) ORDER BY idea_id DESC";
+	$sql="SELECT COUNT(*) as nr_ideas from vanila_base_ideas WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) ORDER BY idea_id DESC";
 	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$nr_ideas = $row['nr_ideas'];
@@ -823,7 +823,7 @@ function  GetNrOfImageComments($picture_id){
 
   function GetCountVanillaVideos(){
 	global $link;
-	$sql="SELECT COUNT(*) as nr_videos from videos WHERE modpack_id=99 ORDER BY video_id DESC";
+	$sql="SELECT COUNT(*) AS nr_videos from videos_modpacks WHERE modpack_id=0";
 	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$nr_videos = $row['nr_videos'];
@@ -834,7 +834,7 @@ function  GetNrOfImageComments($picture_id){
      
   function GetCountNewestVanillaVideos(){
 	global $link;
-	$sql="SELECT COUNT(*) as nr_videos from videos WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) and modpack_id=99 ORDER BY video_id DESC";
+	$sql="SELECT COUNT(*) as nr_videos from videos a, videos_modpacks b WHERE date(a.added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) and b.modpack_id=0";
 	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$nr_videos = $row['nr_videos'];

@@ -125,8 +125,8 @@
                               $idea_id = $row['idea_id'];
                               $idea_title = $row['idea_title'];
                               $idea_text = $row['idea_text'];
-                              $bug_priority = $row['priority'];
-                              $bug_status = $row['status'];
+                              $idea_priority = $row['priority'];
+                              $idea_status = $row['status'];
                               $is_applied = $row['is_applied'];
                               $added_date = $row['added_date'];
 
