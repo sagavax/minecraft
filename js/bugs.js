@@ -50,6 +50,7 @@ function changeBugStatus(bugId, bugStatus) {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
             document.querySelector(`.bug[bug-id='${bugId}'] .bug_status`).innerText = bugStatus;
+           
         }
     };
     xhttp.open("POST", "bugs_change_status.php", true);
@@ -66,6 +67,8 @@ function changeBugPriority(bugId, bugPriority) {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
             document.querySelector(`.bug[bug-id='${bugId}'] .bug_priority`).innerText = bugPriority;
+            document.querySelector(`.bug[bug-id='${bugId}'] .bug_priority`).classList.remove("low", "medium", "high", "critical");
+            document.querySelector(`.bug[bug-id='${bugId}'] .bug_priority`).classList.add(bugPriority);
         }
     };
     xhttp.open("POST", "bugs_change_priority.php", true);
