@@ -185,11 +185,11 @@
                               <div class='bug_status {$bug_status}'>{$bug_status}</div>
                               <div class='bug_priority {$bug_priority}'>{$bug_priority}</div>
                               <div class='nr_of_comments'>{$nr_of_comments} comments</div>
-                              <form action='' method='post'>
+                              <div class='bug_action'>
                                   <input type='hidden' name='bug_id' value='{$bug_id}'>
                                   <input type='hidden' name='is_fixed' value='{$is_fixed}'>
                                   {$action_buttons}
-                              </form>
+                              </div>
                           </div>
                       </div>";
                       
