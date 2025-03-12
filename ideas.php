@@ -122,14 +122,15 @@
 
                         $get_ideas = "SELECT * from ideas ORDER BY idea_id DESC LIMIT $itemsPerPage OFFSET $offset";
                         $result=mysqli_query($link, $get_ideas);
+                       
                         while ($row = mysqli_fetch_array($result)) {
-                              $idea_id = $row['idea_id'];
-                              $idea_title = $row['idea_title'];
-                              $idea_text = $row['idea_text'];
-                              $idea_priority = $row['priority'];
-                              $idea_status = $row['status'];
-                              $is_applied = $row['is_applied'];
-                              $added_date = $row['added_date'];
+                          $idea_id = htmlspecialchars($row['idea_id'] ?? '', ENT_QUOTES, 'UTF-8');
+                          $idea_title = htmlspecialchars($row['idea_title'] ?? '', ENT_QUOTES, 'UTF-8');
+                          $idea_text = htmlspecialchars($row['idea_text'] ?? '', ENT_QUOTES, 'UTF-8');
+                          $idea_priority = htmlspecialchars($row['priority'] ?? '', ENT_QUOTES, 'UTF-8');
+                          $idea_status = htmlspecialchars($row['status'] ?? '', ENT_QUOTES, 'UTF-8');
+                          $is_applied = htmlspecialchars($row['is_applied'] ?? '', ENT_QUOTES, 'UTF-8');
+                          $added_date = htmlspecialchars($row['added_date'] ?? '', ENT_QUOTES, 'UTF-8');
 
                               echo "<div class='idea'>";
                                     echo "<form action='' method='post'>";
@@ -141,7 +142,7 @@
                                       echo "<input type='hidden' name='is_applied' value=$is_applied>";
                                       $nr_of_comments = GetCountIdeaComments($idea_id);
                                       echo "<div class='span_modpack'>$nr_of_comments comment(s)</div>";
-                                      echo "<div class='bug_status'>$idea_status</div><div class='bug_priority $idea_priority'>$idea_priority</div>";
+                                      echo "<div class='idea_status'>$idea_status</div><div class='idea_priority $idea_priority'>$idea_priority</div>";
                                       echo "<button type='submit' name='see_idea_details' class='button small_button'><i class='fa fa-eye'></i></button>";
                                       
 
@@ -187,8 +188,7 @@
           <li>new</li>
           <li>in progress</li>
           <li>pending</li>
-          <li>fixed</li>
-          <li>reopened</li>
+          <li>applied</li>
         </ul>
     </dialog>
 
