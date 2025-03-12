@@ -73,6 +73,7 @@ function changeBugPriority(bugId, bugPriority) {
             document.querySelector(`.bug[bug-id='${bugId}'] .bug_priority`).innerText = bugPriority;
             document.querySelector(`.bug[bug-id='${bugId}'] .bug_priority`).classList.remove("low", "medium", "high", "critical");
             document.querySelector(`.bug[bug-id='${bugId}'] .bug_priority`).classList.add(bugPriority);
+            //document.querySelector(`.bug[bug-id='${bugId}'] .bug_priority`).style.border = "1px solid #d1d1d1"; 
         }
     };
     xhttp.open("POST", "bugs_change_priority.php", true);
