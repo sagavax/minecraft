@@ -2,23 +2,6 @@ const bug_list = document.querySelector('.bug_list');
 const modal_show_status = document.querySelector('.modal_show_status');
 const modal_show_priority = document.querySelector('.modal_show_priority');
 
-/* bug_list.addEventListener('click', function(event) {
-    const targetClass = event.target.classList;
-    if (event.target.tagName === 'DIV' && targetClass.contains("bug_status") || targetClass.contains("bug_priority")) {
-        const bugId = event.target.closest(".bug").getAttribute('bug-id');
-        sessionStorage.setItem('bug_id', bugId);
-        console.log(bugId);
-        const modal = targetClass.contains("bug_status") ? modal_show_status : modal_show_priority;
-
-        const rect = event.target.getBoundingClientRect();
-        if(modal_show_status){
-            modal_show_status.style.left = `${rect.left + rect.width / 2 -  modal_show_status.offsetWidth / 2}px`;
-            modal_show_status.top = `${rect.top -  modal_show_status.offsetHeight - 20}px`;
-        }
-        
-        modal.showModal();
-    }
-}); */
 
 bug_list.addEventListener('click', function(event) {
     const targetClass = event.target.classList;
