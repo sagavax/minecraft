@@ -2,16 +2,46 @@ const bug_list = document.querySelector('.bug_list');
 const modal_show_status = document.querySelector('.modal_show_status');
 const modal_show_priority = document.querySelector('.modal_show_priority');
 
-bug_list.addEventListener('click', function(event) {
+/* bug_list.addEventListener('click', function(event) {
     const targetClass = event.target.classList;
     if (event.target.tagName === 'DIV' && targetClass.contains("bug_status") || targetClass.contains("bug_priority")) {
         const bugId = event.target.closest(".bug").getAttribute('bug-id');
         sessionStorage.setItem('bug_id', bugId);
         console.log(bugId);
         const modal = targetClass.contains("bug_status") ? modal_show_status : modal_show_priority;
+
+        const rect = event.target.getBoundingClientRect();
+        if(modal_show_status){
+            modal_show_status.style.left = `${rect.left + rect.width / 2 -  modal_show_status.offsetWidth / 2}px`;
+            modal_show_status.top = `${rect.top -  modal_show_status.offsetHeight - 20}px`;
+        }
+        
+        modal.showModal();
+    }
+}); */
+
+bug_list.addEventListener('click', function(event) {
+    const targetClass = event.target.classList;
+
+    if (event.target.tagName === 'DIV' && (targetClass.contains("bug_status") || targetClass.contains("bug_priority"))) {
+        const bugId = event.target.closest(".bug").getAttribute('bug-id');
+        sessionStorage.setItem('bug_id', bugId);
+        console.log(bugId);
+
+        const modal = targetClass.contains("bug_status") ? modal_show_status : modal_show_priority;
+        
+        if (!modal) return;
+
+        const rect = event.target.getBoundingClientRect();
+        
+        // Posunutie o 10px doľava
+        modal.style.left = `${rect.left + rect.width / 2 - modal.offsetWidth / 2 - 10}px`;
+        modal.style.top = `${rect.top - modal.offsetHeight - 20}px`;
+
         modal.showModal();
     }
 });
+
 
 modal_show_status.addEventListener('click', function(event) {
 if (event.target.tagName === 'LI') {    
@@ -19,7 +49,7 @@ if (event.target.tagName === 'LI') {
     const bugStatus = event.target.innerText;
     console.log(`Bug ${bugId} status updated to ${bugStatus}`);
     if(document.querySelector(`.bug[bug-id='${bugId}'] .bug_status`).innerText === "fixed"){
-        alert("Cannot change priority of a fixed bug.");
+        alert("Cannot change status of a fixed bug.");
         modal_show_status.close();
         return;
         
