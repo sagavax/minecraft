@@ -62,6 +62,10 @@
     width: 100px;
 }
 
+.bug_status:hover,.bug_priority:hover  {
+    cursor: pointer;
+}
+
 .bug_status {
     border:1px #d1d1d1 solid;
     
