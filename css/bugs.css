@@ -50,6 +50,7 @@
     padding: 5px;
     border-radius: 4px;
     color:#555;
+    border:1px #d1d1d1 solid;
 }
 
 .bug_status,.bug_priority {
@@ -92,4 +93,13 @@ dialog ul li:hover {
 
 dialog.show {
  
+}
+
+.bug_action {
+    height: 100%;
+    display: flex;
+        gap: 5px;
+        border: 1px #d1d1d1 solid;
+        padding: 10px;
+        border-radius: 5px;
 }
