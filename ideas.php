@@ -132,7 +132,7 @@
                           $is_applied = htmlspecialchars($row['is_applied'] ?? '', ENT_QUOTES, 'UTF-8');
                           $added_date = htmlspecialchars($row['added_date'] ?? '', ENT_QUOTES, 'UTF-8');
 
-                              echo "<div class='idea'>";
+                              echo "<div class='idea' idea-id=$idea_id>";
                                     echo "<form action='' method='post'>";
                                     echo "<div class='idea_title'>$idea_title</div>";
                                     echo "<div class='idea_text'>$idea_text</div>";
