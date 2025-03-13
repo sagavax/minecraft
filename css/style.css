@@ -3366,13 +3366,7 @@ textarea::placeholder {
 }
 
 
-.bug_footer form {
-    display: flex;
-        gap: 5px;
-        border: 1px #d1d1d1 solid;
-        padding: 10px;
-        border-radius: 5px;
-}
+
 
 
 .task_body, .bug_text, .idea_text, .idea_comm_text {

@@ -11,8 +11,6 @@
         $bug_priority = (isset($_POST['bug_priority']) && $_POST['bug_priority'] != 0) ? $_POST['bug_priority'] : 'low';
         $bug_status = (isset($_POST['bug_status']) && $_POST['bug_status'] != 0) ? $_POST['bug_status'] : 'new';
         
-
-        
         $is_fixed = 0;
     
         // Použitie pripraveného SQL dotazu na bezpečné vloženie
