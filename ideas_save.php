@@ -4,8 +4,9 @@
            
            $idea_title = mysqli_real_escape_string($link, $_POST['idea_title']);
             $idea_text = mysqli_real_escape_string($link,$_POST['idea_text']);
-            $idea_priority = mysqli_real_escape_string($link,$_POST['idea_priority']);
-            $idea_status= mysqli_real_escape_string($link,$_POST['idea_status']);
+            $idea_priority = (isset($_POST['idea_priority']) && $_POST['idea_priority'] != 0) ? $_POST['idea_priority'] : 'low';
+            $idea_status = (isset($_POST['idea_status']) && $_POST['idea_status'] != 0) ? $_POST['idea_status'] : 'new';
+        
             $is_applied = 0;
 
            //var_dump($_POST);
