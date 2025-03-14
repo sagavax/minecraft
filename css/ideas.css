@@ -63,6 +63,7 @@
     padding: 5px;
     border-radius: 6px;
     width: 100px;
+    cursor: pointer;
 }
 
 .idea_status {
@@ -70,10 +71,16 @@
     
 }
 
-.idea_status,.idea_priority {
-    cursor: pointer;
+.idea_comment_new form {
+    display: flex;
+    flex-direction: column;
 }
 
+.idea_comment_new form input, .idea_comment_new form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #eee;
+}
 
 dialog {
     position: fixed;
