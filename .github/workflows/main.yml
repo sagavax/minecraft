@@ -21,4 +21,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: "./" # Ktoré súbory nasadiť
           server-dir: "/sub/minecraft/" # Kde ich nahra
-          passive: true  # Aktivuje pasívny mód 
+          protocol: sftp
+          port: 22
+          
