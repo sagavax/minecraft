@@ -16,7 +16,7 @@ jobs:
       - name: Deploy to FTP Server
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: webftp.tmisura.sk
+          server: tmisura.sk
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: "./" # Ktoré súbory nasadiť
