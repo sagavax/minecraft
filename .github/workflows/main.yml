@@ -13,14 +13,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Deploy to FTP Server
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      - name: Deploy to SFTP Server
+        uses: appleboy/scp-action@master
         with:
-          server: www.tmisura.sk
+          host: www.tmisura.sk  # Alebo IP 37.9.175.197
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: "./" # Ktoré súbory nasadiť
-          server-dir: "/sub/minecraft/" # Kde ich nahra
-          protocol: ftps
-          port: 22
-          timeout: 190000
+          port: 22  # SFTP používa port 22
+          source: "./*"  # Nasadenie všetkých súborov v repozitári
+          target: "/sub/minecraft/"  # Cieľová cesta na serveri
