@@ -23,4 +23,4 @@ jobs:
           server-dir: "/sub/minecraft/" # Kde ich nahra
           protocol: ftps
           port: 22
-          
+          timeout: 190000
