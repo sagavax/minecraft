@@ -1,0 +1,25 @@
+name: Deploy to Webhosting
+
+on:
+  push:
+    branches:
+      - main  # Automatické nasadenie po pushnutí na "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to FTP Server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: www.tmisura.sk
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: "./"  # Ktoré súbory nasadiť
+          server-dir: "/sub/minecraft/"  # Kde ich nahrať
+          port: 21  # Používame port 21 pre FTP
+          timeout: 190000
