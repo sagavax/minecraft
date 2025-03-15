@@ -1,0 +1,23 @@
+name: Deploy to Webhosting
+
+on:
+  push:
+    branches:
+      - main  # Automatické nasadenie po pushnutí na "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to FTP Server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ftp.tvoj-hosting.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: "./" # Ktoré súbory nasadiť
+          server-dir: "/sub/minecraft/" # Kde ich nahra
