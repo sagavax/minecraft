@@ -21,6 +21,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: "./" # Ktoré súbory nasadiť
           server-dir: "/sub/minecraft/" # Kde ich nahra
-          protocol: ftp
-          port: 21
+          protocol: sftp
+          port: 22
           
