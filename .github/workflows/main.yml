@@ -19,6 +19,6 @@ jobs:
           host: www.tmisura.sk  # Alebo IP 37.9.175.197
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 22  # SFTP používa port 22
+          port: 21  # SFTP používa port 22
           source: "./*"  # Nasadenie všetkých súborov v repozitári
           target: "/sub/minecraft/"  # Cieľová cesta na serveri
