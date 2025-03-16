@@ -24,6 +24,8 @@ var container_view_source = document.querySelector('.tab_view_source');
 var change_modpack_list = document.querySelector(".change_modpack_list");
 var video_mods_alphabet = document.querySelector(".video_mods_alphabet");
 var video_mods_list = document.querySelector(".video_mods_list");
+var video_tags_alphabet = document.querySelector(".video_tags_alphabet");
+
 
 selectElement.addEventListener("change", (event) => {
     console.log("Selected value:", event.target.value);
@@ -42,6 +44,13 @@ selectElement.addEventListener("change", (event) => {
     
 });
 
+
+video_tags_alphabet.addEventListener("change", function(event){
+    if(event.target.tagName==="BUTTON"){
+        const char = event.target.innerText;
+        sortTagsByChar(char);
+    }
+});
 
 video_mods_alphabet.addEventListener("click", function(event){
     console.log("alphabet clicked");
@@ -1355,7 +1364,23 @@ function sortModsByChar(char){
           document.querySelector(".video_mods_list").innerHTML = this.responseText;
         }
     };
-    xhttp.open("POST", "videos_mods_short_by_char.php", true);
+    xhttp.open("POST", "videos_mods_sort_by_char.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Send the request with the videoId and modpackId
+    var params = "char=" + encodeURIComponent(char);
+    xhttp.send(params);
+}
+
+function sortTagsByChar(char){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".tags_list").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "videos_tags_short_by_char.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     // Send the request with the videoId and modpackId
