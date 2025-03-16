@@ -233,8 +233,8 @@ function convertLinks($string) {
   function GetAllUnassignedVideosTags() {
 	global $link;
 	$tags="";
-	$get_all_tags ="SELECT * from tags_list b ORDER BY tag_name ASC";
-		
+	//$get_all_tags ="SELECT * from tags_list b ORDER BY tag_name ASC";
+	$get_all_tags ="SELECT * from tags_list WHERE LEFT(tag_name,1)='A' ORDER BY tag_name ASC";	
 	  $result=mysqli_query($link, $get_all_tags);
 
 	  while ($row = mysqli_fetch_array($result)) {
