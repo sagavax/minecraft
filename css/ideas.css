@@ -13,7 +13,7 @@
     --color-medium-bg: #7286d3; /* tlmená pastelová modrá */
     --color-high-bg: #e4a07e; /* tlmená pastelová oranžová */
     --color-critical-bg: #e88b8b; /* tlmená pastelová červená */
-    --color-badge-border: #d1d1d1;
+    --color-badge-border: #666;
 }
 
 /* Základný štýl pre všetky úrovne */
@@ -61,13 +61,15 @@
     align-items: center;
     justify-content: center;
     padding: 5px;
-    border-radius: 6px;
+    border-radius: 4px;
     width: 100px;
     cursor: pointer;
+    padding: 6px 12px;
+    height:38px;
 }
 
 .idea_status {
-    border:1px #d1d1d1 solid;
+    border:1px #666 solid;
     
 }
 

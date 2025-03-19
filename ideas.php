@@ -141,7 +141,7 @@
                                       echo "<input type='hidden' name='idea_id' value=$idea_id>";
                                       echo "<input type='hidden' name='is_applied' value=$is_applied>";
                                       $nr_of_comments = GetCountIdeaComments($idea_id);
-                                      echo "<div class='span_modpack'>$nr_of_comments comment(s)</div>";
+                                      echo "<div class='nr_of_comments'>$nr_of_comments comment(s)</div>";
                                       echo "<div class='idea_status'>$idea_status</div><div class='idea_priority $idea_priority'>$idea_priority</div>";
                                       echo "<button type='submit' name='see_idea_details' class='button small_button'><i class='fa fa-eye'></i></button>";
                                       
