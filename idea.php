@@ -106,7 +106,7 @@
                                     $comm_text = $row_comment['idea_comment'];
                                     $comm_date = $row_comment['comment_date'];
 
-                                    echo "<div class='idea_comment'>";
+                                    echo "<div class='idea_comment' data-comment-id=$comm_id>";
                                         echo "<div class='connector-line'></div>";
                                         echo "<div class='idea_top_banner'></div>";
                                         
@@ -114,16 +114,16 @@
                                             echo "<div class='idea_comm_title'>$comm_title</div>";    
                                         }
                                         echo "<div class='idea_comm_text'>$comm_text</div>";
-                                        echo "<div class='idea_comm_action'><form action='' method='post'><input type='hidden' name='comm_id' value=$comm_id>";
+                                        echo "<div class='idea_comm_action'>";
 
                                         if ($is_applied == 1) {
                                                   // If $is_disabled is 1, add the disabled attribute to the button
-                                                  echo "<button type='submit' name='delete_comm' class='button small_button' disabled><i class='fa fa-times'></i></button>";
+                                                  echo "<button type='button' name='delete_comm' class='button small_button' disabled><i class='fa fa-times'></i></button>";
                                               } else {
                                                   // If $is_disabled is not 1, do not add the disabled attribute
-                                                  echo "<button type='submit' name='delete_comm' class='button small_button'><i class='fa fa-times'></i></button>";
+                                                  echo "<button type='button' name='delete_comm' class='button small_button'><i class='fa fa-times'></i></button>";
                                               }
-                                              echo "</form></div>";
+                                              echo "</div>";
                                     echo "</div>";
                                  }   
                               ?>  

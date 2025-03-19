@@ -15,8 +15,13 @@ idea_comment_new_form.addEventListener("submit", function(event) {
 
 
 idea_comments_list.addEventListener("click",function(event) {
-    if(event.target.tagName==="BUTTON" && event.target.name("delete_comm")){
+    if(event.target.tagName==="BUTTON"){
         const commentId = event.target.getAttribute("comment-id");
+        console.log(commentId);
         deleteIdeaComment(commentId);
     }
 });
+
+
+function getIdeaComment(commentId) {
+}
