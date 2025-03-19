@@ -1,7 +1,7 @@
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
       session_start();
-
+/* 
 
      if(isset($_POST['save_idea_comment'])){
         $comment_header = $_POST['idea_comment_header'];
@@ -27,7 +27,7 @@
     
          echo "<script>message('Comment deleted','success')</script>";
       }
-
+ */
 ?>
 
 
@@ -44,10 +44,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+    <script type="text/javascript" src="js/idea.js" defer></script>  <!-- this file contains functions for like, comment, apply -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <style type="text/css">
-    </style>
-
+    
   </head>
   <body>
         <?php include("includes/header.php") ?>   
