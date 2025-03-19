@@ -2511,7 +2511,9 @@ textarea::placeholder {
 
 .action {
     width: 100%;
-    float: left;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .modpack_details_wrap {
@@ -2759,6 +2761,7 @@ textarea::placeholder {
      align-items: flex-start;
      padding-left: 2px;
      padding-right:2px;
+     align-items: center;
 }
 
 .cat_action i {
