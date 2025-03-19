@@ -43,7 +43,7 @@ function GetVideoModpack($video_id) {
 	if ($result && $row = mysqli_fetch_array($result)) {
 		$modpack_name = $row['modpack_name'];
 		$modpack_id = $row['modpack_id'];
-		$modpack_name = "<button class='button blue_button' modpack-id=$modpack_id>$modpack_name</button>";
+		$modpack_name = "<button class='button blue_button' modpack-id=$modpack_id name='video_modpack'>$modpack_name</button>";
 	} else {
 		$modpack_name = ""; // Alebo nechaj prázdne: $modpack_name = "";
 	}
