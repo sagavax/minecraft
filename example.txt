@@ -1,1 +1,1 @@
-INSERT into ideas_comments (idea_id,idea_comm_header, idea_comment, comment_date) VALUES (45,'','toto sa bude tykat aj v zozname videi a aj vo video ako takeho',now())
+INSERT into ideas_comments (idea_id,idea_comm_header, idea_comment, comment_date) VALUES (46,'',' implementoval som jednoduchu kontrolu,ze ci je to vanilla alebo nie',now())
