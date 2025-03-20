@@ -2300,8 +2300,21 @@ textarea::placeholder {
     padding-left:5px;
 }
 
+.tag {
+    height:45px;
+    border:1px #5FA3D1;
+    font-weight: normal;
+    background-color: #5FA3D1;
+    color:white;
+    opacity: 1;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .tag:hover {
-     background: #eff3f4;;
+     background-color: #508AA1;
+     cursor: pointer;
 }
 
 #applog_list ul li {
@@ -2733,11 +2746,11 @@ textarea::placeholder {
         
     }
 
-    .cat_delete:hover i,.tag_delete:hover {
-        color:red;
+    .cat_delete:hover i,.tag_delete:hover i {
+        color:#FF2626
     }
 
-    .cat_name, .tag_name {
+     .cat_name, .tag_name {
         width: 91%
     }
 
@@ -2772,7 +2785,7 @@ textarea::placeholder {
      padding-right:2px;
 }
 
-.cat_delete. .cat_description, .tag_delete {
+.cat_delete, .cat_description, .tag_delete {
     display: flex;
     height: 100%;
     padding-top: 5px;
