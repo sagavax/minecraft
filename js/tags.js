@@ -1,4 +1,14 @@
 const tags_list = document.querySelector("#tags_list");
+const new_tag_form = document.querySelector("#new_tag form");
+
+new_tag_form.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+    if(document.querySelector("#new_tag form input")===""){
+        alert("Tag name cannot be empty!");
+        return;
+    }
+});
+
 
 tags_list.addEventListener("click", function(event) {
     if (event.target.tagName === "I") {
