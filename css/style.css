@@ -448,6 +448,7 @@ textarea::placeholder {
 #task_list,
 #new_cat,
 #categories_list,
+#tags_list,
 #new_modpack,
 .modpack,
 .modpack_url,
@@ -2281,7 +2282,7 @@ textarea::placeholder {
     font-size: 12px;
 }
 
-#categories_list {
+#categories_list, #tags_list {
     display: flex;
     /* flex-direction: column; */
     margin-top: 30px;
@@ -2289,7 +2290,7 @@ textarea::placeholder {
     gap: 10px;
 }
 
-.category {
+.category, .tag {
     display: flex;
     height: 55px;
     border:1px #999 solid;
@@ -2299,7 +2300,7 @@ textarea::placeholder {
     padding-left:5px;
 }
 
-.category:hover {
+.tag:hover {
      background: #eff3f4;;
 }
 
@@ -2307,13 +2308,14 @@ textarea::placeholder {
     min-height:45px;
 }
 
-#categories_list ul li:hover,#applog_list ul li:hover {
+#categories_list ul li:hover,#applog_list ul li:hover,#tags ul li:hover {
     background: #eee;
     border-left: 4px #75c54f solid;
     font-weight: bolder;
 }
 
 #new_cat,
+#new_tag,
 #app_log,
 #new_note,
 #new_modpack,
@@ -2720,26 +2722,26 @@ textarea::placeholder {
     font-weight: bold;
 }
 
-.cat_name, .log_text {
+.cat_name, .log_text, .tag_name {
     min-height: 45px;
     width: 95%;
 }
 
 
-   .cat_delete:hover {
+   .cat_delete:hover, .tag_delete:hover {
         cursor:pointer;
         
     }
 
-    .cat_delete:hover i {
+    .cat_delete:hover i,.tag_delete:hover {
         color:red;
     }
 
-    .cat_name {
+    .cat_name, .tag_name {
         width: 91%
     }
 
-.cat_name {
+.cat_name, .tag_name {
     font-weight: bold;
 }
 
@@ -2752,12 +2754,12 @@ textarea::placeholder {
     min-height: 45px;
 }
 
-.cat_name, .cat_action {
+.cat_name, .cat_action, .tag_name , .tag_action {
     display: flex;
     align-items: center;
 }
 
-.cat_action {
+.cat_action, .tag_action {
      min-height: 45px;
      align-items: flex-start;
      padding-left: 2px;
@@ -2765,12 +2767,12 @@ textarea::placeholder {
      align-items: center;
 }
 
-.cat_action i {
+.cat_action i, .tag_action i{
      padding-left: 2px;
      padding-right:2px;
 }
 
-.cat_delete. .cat_description {
+.cat_delete. .cat_description, .tag_delete {
     display: flex;
     height: 100%;
     padding-top: 5px;
@@ -3224,7 +3226,7 @@ textarea::placeholder {
     }
 
 
-    #categories_list {
+    #categories_list, #tags_list {
         margin-top: 90px;
     }
     .buttons {
