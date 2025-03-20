@@ -1,5 +1,20 @@
 const tags_list = document.querySelector("#tags_list");
 const new_tag_form = document.querySelector("#new_tag form");
+const letter_list = document.querySelector("#letter_list");
+
+
+
+
+letter_list.addEventListener("click", function(event) {
+     if(event.target.tagName ==="BUTTON") {
+        const letter = event.target.innerText;
+        //SortTagsByLetter(letter);
+        console.log("Sort by letter:", letter);
+    }
+});
+
+
+
 
 new_tag_form.addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent form submission
@@ -48,9 +63,36 @@ function removeTag(tagId) {
             //document.getElementById("notes_list").innerHTML = this.responseText;
         }
     };
-    data = "tag_id="+tagId;
+    const data = "tag_id="+tagId;
     xhttp.open("POST", "tags_remove.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);  
 }
 
+function SortTagsByLetter(letter){
+    var xhttp = new XMLHttpRequest();
+    var search_text = document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector("#tags_list").innerHTML=this.responseText;
+            //document.getElementById("notes_list").innerHTML = this.responseText;
+        }
+    };
+    const data = "letter="+letter;
+    xhttp.open("POST", "tags_sort_by_char.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);  
+}
+
+function findDuplicates(){
+    var xhttp = new XMLHttpRequest();
+    var search_text = document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector("#tags_list").innerHTML=this.responseText;
+            //document.getElementById("notes_list").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("get", "tags_duplicates.php", true);
+    xhttp.send();
+}
