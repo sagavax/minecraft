@@ -2746,7 +2746,7 @@ textarea::placeholder {
         
     }
 
-    .cat_delete:hover i,.tag_delete:hover i {
+    .cat_delete:hover i,.tag_action:hover i {
         color:#FF2626
     }
 
@@ -2755,7 +2755,7 @@ textarea::placeholder {
     }
 
 .cat_name, .tag_name {
-    font-weight: bold;
+    
 }
 
 .cat_name:hover {
