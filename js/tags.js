@@ -3,11 +3,17 @@ const new_tag_form = document.querySelector("#new_tag form");
 
 new_tag_form.addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent form submission
-    if(document.querySelector("#new_tag form input")===""){
+
+    // Skontroluj hodnotu inputu, nie samotný element
+    if (document.querySelector("#new_tag form input").value === "") {
         alert("Tag name cannot be empty!");
         return;
     }
+    
+    // Ak je všetko v poriadku, pokračuj s formulárom
+    // Napríklad tu môžeš pridať ďalší kód na odoslanie formuláru alebo prácu s dátami
 });
+
 
 
 tags_list.addEventListener("click", function(event) {
