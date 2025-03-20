@@ -118,13 +118,12 @@
                             $tag_name=$row['tag_name'];
                             //$tag_description=$row['tag_description'];
                         
-                            echo "<div class='tag' data-id=$tag_id><div class='tag_name'>$tag_name</div><div class='tag_action'>";
+                            echo "<div class='tag' data-id=$tag_id><div class='tag_name'>$tag_name</div><div class='tag_action'><i class='fas fa-times-circle' title='Delete tag'></i>";
 
                              /*  if($tag_description==""){
                                 echo "<div class='tag_description'><i class='fas fa-plus-circle'></i></div>";  
                               }
  */
-                              echo "<div class='tag_delete'><i class='fas fa-times-circle'></i></div>";
                               echo "</div>"; //div class tag action
                             echo "</div>"; //div class tag tagegory
                         }  
