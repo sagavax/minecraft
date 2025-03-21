@@ -20,7 +20,7 @@ jobs:
 
     - name: Add GitLab repository as remote
       run: |
-        git remote add gitlab https://gitlab.com/tmisura/minecraft.git
+        git remote add gitlab git@gitlab.com:tmisura/minecraft.git
         git fetch gitlab
 
     - name: Push to GitLab
