@@ -25,4 +25,4 @@ jobs:
 
     - name: Push to GitLab
       run: |
-        ssh-agent bash -c 'ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}"); git push gitlab main'  # alebo názov vetvy
+        ssh-agent bash -c 'ssh-add <(echo "${{ secrets.moj_ssh_kluc }}"); git push gitlab main'  # alebo názov vetvy
