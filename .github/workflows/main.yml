@@ -15,14 +15,21 @@ jobs:
 
     - name: Set up Git
       run: |
-        git config --global user.name "@tmisura"
+        git config --global user.name "Tomas Misura"
         git config --global user.email "tmisura@gmail.com"
+    
+    - name: Set up SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
 
     - name: Add GitLab repository as remote
       run: |
         git remote add gitlab git@gitlab.com:tmisura/minecraft.git
         git fetch gitlab
-
+    
     - name: Push to GitLab
       run: |
-        ssh-agent bash -c 'ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}"); git push gitlab main'  # alebo názov vetvy
+        git push gitlab refs/heads/main:refs/heads/main
