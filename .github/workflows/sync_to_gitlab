@@ -1,0 +1,28 @@
+name: Sync to GitLab
+
+on:
+  push:
+    branches:
+      - main  # alebo názov tvojej hlavnej vetvy
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout GitHub repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config --global user.name "Your Name"
+        git config --global user.email "your-email@example.com"
+
+    - name: Add GitLab repository as remote
+      run: |
+        git remote add gitlab https://gitlab.com/tmisura/minecraft.git
+        git fetch gitlab
+
+    - name: Push to GitLab
+      run: |
+        git push gitlab main  # alebo názov vetvy, ktorú chceš pushovať
