@@ -240,63 +240,45 @@
 
                     //$sql="SELECT * from notes ORDER BY note_id DESC LIMIT $itemsPerPage OFFSET $offset";  
                   
-                    $sql="SELECT a.picture_id, a.picture_name,a.picture_title, picture_description, a.picture_path, a.cat_id, a.modpack_id from pictures a ORDER BY a.picture_id DESC LIMIT $itemsPerPage OFFSET $offset";
+                    $sql="SELECT picture_id, picture_name,picture_title, picture_description, picture_path from pictures ORDER BY picture_id DESC LIMIT $itemsPerPage OFFSET $offset";
                      $result=mysqli_query($link, $sql);
                      while ($row = mysqli_fetch_array($result)) {
                        $picture_id=$row['picture_id'];
                        $picture_title=$row['picture_title'];
-                      $picture_description=$row['picture_description']; 
+                       $picture_description=$row['picture_description']; 
                       
                        $picture_id = $row['picture_id'];
                        $picture_name=$row['picture_name'];
                        $picture_path=$row['picture_path'];
-                       $mod_id=$row['cat_id'];
-                       $modpack_id=$row['modpack_id'];
-
-
-
-                   
-                        //echo $_SERVER['HTTP_HOST'];
-                        //echo $_SERVER['DOCUMENT_ROOT'];
                         
                        echo "<div class='picture' image-id=$picture_id>";
-                                    echo "<div class='picture_name'>$picture_title</div>";
+                       echo "<div class='picture_name'>$picture_title</div>";
 
-                                    if($picture_title==""){
-                                      $picture_title=$picture_name;
-                                    }
+                       if($picture_title==""){
+                         $picture_title=$picture_name;
+                       }
 
-                                   
-                                    // var_dump(parse_url($picture_path));
+                      
+                       // var_dump(parse_url($picture_path));
 
-                                    echo "<div class='pic' image-id=$picture_id>";
-                                    if(!empty(parse_url($picture_path, PHP_URL_SCHEME))){
-                                    
-                                      echo "<img src='$picture_path' title='$picture_title' loading='lazy'></div>";  
-                                    } else {
-                                      echo "<img src='gallery/$picture_path' title='$picture_title' loading='lazy'></div>";
-                                    }
-                                    
-                                                                       
-                                    $category_name=GetModName($mod_id);
-                                    $modpack_name=GetModpackName($modpack_id);
+                       echo "<div class='pic' image-id=$picture_id>";
+                       if(!empty(parse_url($picture_path, PHP_URL_SCHEME))){
+                       
+                         echo "<img src='$picture_path' title='$picture_title' loading='lazy'></div>";  
+                       } else {
+                         echo "<img src='gallery/$picture_path' title='$picture_title' loading='lazy'></div>";
+                       }
+                       
+                       echo "<div class='picture_footer'>"; 
+                       
+                       //echo "<div class='mod_modpack'>".$modpack_name."</div>";
 
-                                    if($category_name<>""){
-                                      $category_name="<span class='span_mod'>".$category_name."</span>";
-                                    }
-                                    if ($modpack_name<>""){
-                                       $modpack_name="<span class='span_modpack'>".$modpack_name."</span>";
-                                    }
-                                    echo "<div class='picture_footer'>"; 
-                                    
-                                    //echo "<div class='mod_modpack'>".$modpack_name."</div>";
-
-                                      echo "<div class='picture_action' image-id=$picture_id>";
-                                       echo "<button name='add_tag' type='button' class='button small_button' title='Add tagg'><i class='fas fa-tag'></i></button><button name='add_comment' type='button' class='button small_button' title='Add new comment'><i class='fa fa-comment'></i></button><button name='view_image' type='button'class='button small_button' title='View image'><i class='fa fa-eye'></i></button><button name='delete_image' type='button' class='button small_button' title='Delete picture'><i class='fa fa-times'></i></button>";
-                                       echo "</div>";//picture_action
-                                    echo "</div>";
-                                    //echo "<div class='mod'>$mod_name</div>";
-                          echo "</div>";//div picture
+                         echo "<div class='picture_action' image-id=$picture_id>";
+                          echo "<button name='add_tag' type='button' class='button small_button' title='Add tagg'><i class='fas fa-tag'></i></button><button name='add_comment' type='button' class='button small_button' title='Add new comment'><i class='fa fa-comment'></i></button><button name='view_image' type='button'class='button small_button' title='View image'><i class='fa fa-eye'></i></button><button name='delete_image' type='button' class='button small_button' title='Delete picture'><i class='fa fa-times'></i></button>";
+                          echo "</div>";//picture_action
+                       echo "</div>";
+                       //echo "<div class='mod'>$mod_name</div>";         
+                    echo "</div>";//div picture
 
                     }                
                   
