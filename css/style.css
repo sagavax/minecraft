@@ -734,6 +734,7 @@ textarea::placeholder {
     background: #fff;
     box-sizing: border-box;
     padding: 10px 0px 10px 0px;
+    margin-bottom: 10px;
     /*padding-top: 5px;
         padding-bottom: 5px;*/
 }
@@ -1155,24 +1156,11 @@ textarea::placeholder {
     height: 100%;
 }
 
-.video_tags, .picture_tags, .videos_tags {
+.video_tags, .picture_tags, .videos_tags, .images_tags {
     margin-top:10px;
     display: flex;
     width: 100%;
     justify-content: flex-start;
-}
-
-.picture_tags ul, .videos_tags {
-    width: 100%;
-    margin:0;
-    padding:0;
-    list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 7px;
-  margin: 12px 0;
-  border-radius: 5px;
-  border: 1px solid #2ecc71;
 }
 
 .videos_tags {
