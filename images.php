@@ -132,17 +132,17 @@
       }
 
       if(isset($_POST['add_new_ext_pic'])){
-        var_dump($_POST);
+        //var_dump($_POST);
         $image_name = mysqli_real_escape_string($link, $_POST['image_name']);
         $image_url = mysqli_real_escape_string($link, $_POST['image_url']);
         $image_description = mysqli_real_escape_string($link, $_POST['image_description']);
         
-        $sql="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, added_date) VALUES ('$image_name', '$image_description','$image_url','$image_url'now())";
+        $sql="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, added_date) VALUES ('$image_name', '$image_description','$image_url','$image_url',now())";
         // echo $sql;
         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link)); 
 
         //get latest id;
-        $image_id = mysqli_insert_id($conn);
+        $image_id = mysqli_insert_id($link);
         
         //upated_mods
         $cat_id=0;
