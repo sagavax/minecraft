@@ -790,6 +790,24 @@ textarea::placeholder {
     /*border-left: 2px solid #2ecc71*/
 }
 
+.video_tags_map {
+    border: 1px #d1d1d1 solid;
+    box-sizing: border-box;
+    padding:10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+   }
+
+   .video_tags_map button {
+    display: flex;
+        height: 45px;
+   align-items: center;     
+   background: #0b9ed0;
+   border: 1px#0b9ed0 solid;
+}
+
+
 .picture_comments{
     margin-top:20px;
 }
