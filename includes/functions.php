@@ -205,6 +205,30 @@ function convertLinks($string) {
 
   }
 
+  function GetImageTagList($picture_id) {
+	global $link;
+	$count_all ="SELECT a.picture_id, a.tag_id, b.tag_name from picture_tags a, tags_list b where a.picture_id=$picture_id and a.tag_id = b.tag_id";
+		$count_result=mysqli_query($link, $count_all);
+		$total = mysqli_num_rows($count_result);
+
+		$tags ="";
+		 $get_tags = "SELECT a.picture_id, a.tag_id, b.tag_name from picture_tags a, tags_list b where a.picture_id=$picture_id and a.tag_id = b.tag_id";
+		 //echo $get_tags;
+	  $result=mysqli_query($link, $get_tags);
+		while ($row = mysqli_fetch_array($result)) {
+			$tag_id= $row['tag_id'];
+			$tag_name= $row['tag_name'];
+
+			//$tags .= "<button class='button' name='$tag_name' tag-id=$tag_id>$tag_name</button>";
+			$tags .= "<button class='button small_button'>$tag_name</button>";
+			}
+	   
+		//echo "<button class='button' name='video_tags_count'>".GetCountVideoTags($video_id)."</button>";	
+		$tags .= "<button class='button small_button' name='new_tag' picture-id=$picture_id title='Add new tag'><i class='fa fa-plus'></i></button>";
+  return $tags;
+  }
+
+
   function GetVideoTagList($video_id) {
 	global $link;
 	$count_all ="SELECT a.video_id, a.tag_id, b.tag_name from video_tags a, tags_list b where a.video_id=$video_id and a.tag_id = b.tag_id";

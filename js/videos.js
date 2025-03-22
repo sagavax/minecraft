@@ -27,6 +27,8 @@ var video_mods_list = document.querySelector(".video_mods_list");
 var video_tags_alphabet = document.querySelector(".video_tags_alphabet");
 var video_tags_map = document.querySelector(".video_tags_map");
 
+
+
 selectElement.addEventListener("change", (event) => {
     console.log("Selected value:", event.target.value);
     // Ďalšie akcie, ktoré chcete vykonať pri zmene výberu
@@ -49,7 +51,8 @@ video_tags_map.addEventListener('click', function(event){
     if(event.target.tagName==="BUTTON"){
         //const videoId = sessionStorage.getItem("video_id");
         const tagId = event.target.getAttribute("tag-id");
-        sortByVideoTag(tagId);
+        alert(tagId);
+        //sortByVideoTag(tagId);
      }
 });
 
