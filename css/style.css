@@ -795,7 +795,7 @@ textarea::placeholder {
     /*border-left: 2px solid #2ecc71*/
 }
 
-.video_tags_map {
+.video_tags_map, .image_tags_map {
     border: 1px #d1d1d1 solid;
     box-sizing: border-box;
     padding:10px;
@@ -2520,6 +2520,7 @@ textarea::placeholder {
 
 #new_image {
     display: flex;
+    margin-bottom: 20px;
 }
 
 .video_top_bar, .task_top_bar {
