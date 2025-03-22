@@ -1,4 +1,8 @@
 const footer = document.querySelector(".bug_footer");
+const bug_comment_new_form = document.querySelector(".bug_comment_new form");
+
+
+
 footer.addEventListener("click",function(ev){
     const bugId =sessionStorage.getItem("bug_id");
     if(ev.target.tagName==="BUTTON"){
@@ -10,6 +14,21 @@ footer.addEventListener("click",function(ev){
         }
      }   
 })
+
+bug_comment_new_form.addEventListener("submit", function(event){
+//form validation
+    event.preventDefault(); // Prevent form submission
+  //get comment text from textarea  
+    
+       //store comment in database
+    
+    const textarea = document.querySelector(".bug_comment_new form textarea");
+    if(textarea.value.trim() === ""){
+        alert("Please enter a comment.");
+        return;
+    }
+});
+
 
  function BugFixed(bugId){
     const xhttp = new XMLHttpRequest();

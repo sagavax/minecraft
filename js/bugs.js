@@ -22,6 +22,27 @@ bug_list.addEventListener('click', function(event) {
         modal.style.top = `${rect.top - modal.offsetHeight - 20}px`;
 
         modal.showModal();
+    } 
+    
+    if (event.target.tagName === 'BUTTON') {
+        const bugId = event.target.closest(".bug")?.getAttribute('bug-id');
+        sessionStorage.setItem('bug_id',$bug_id);
+        if (!bugId) return;
+    
+        switch (event.target.name) {
+            case "see_bug_details":
+                window.location.href = `bug.php?bug_id=${bugId}`;
+                break;
+            case "bug_remove":
+                alert("bug_remove");
+                break;
+            case "to_fixed":
+                alert("mark bug as fixed");
+                break;
+            case "to_reopen":
+                alert("reopen bug");
+                break;
+        }
     }
 });
 

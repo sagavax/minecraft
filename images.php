@@ -183,26 +183,7 @@
        
     <div class="content">
         <div class='middle_list'>
-        <div class="insert_new_image">
-            <form>
-              <div class="radios">
-                <input type="radio" name="group2" onclick="show_upload_form()" id="upload" checked><label for="upload">Upload image</label> 
-                <input type="radio" name="group2" onclick="show_link_form()" id="external"><label for="external">Image link</label> 
-                <input type="radio" name="group2" onclick="show_drag_form()" id="drag"><label for="drag">Drag & Drop</label>
-               </div> 
-            </form>
-         </div> 
-          
-          <div id="new_image">
-                <form action="" enctype="multipart/form-data" method="post" id="upload_image">    
-                <input type=hidden name="modpack_id" value=<?php if(isset($_GET['modpack_id'])){echo $_GET['modpack_id'];}else{echo 0;} ?>>
-                <input type="hidden" name="<?php echo ini_get('session.upload_progress.name'); ?>" value="test" />
-                <input type="text" name="picture_title" placeholder='picture title' autocomplete=off>
-                <textarea name="picture_description"></textarea>
-                <input type="file" name="picture"  placeholder="Picture">
-                <div class="action"><button type="submit" name="add_new_pic" class="button pull-right"><i class="fa fa-plus"></i></button></div>
-              </form> 
-
+          <div class="add_new_image">
               <form action="" enctype="multipart/form-data" method="post" id="upload_external_image" onsubmit="return save_external_image();">    
                 <input type=hidden name="modpack_id" value=<?php if(isset($_GET['modpack_id'])){echo $_GET['modpack_id'];}else{echo 0;} ?>>
                 <input type="hidden" name="<?php echo ini_get('session.upload_progress.name'); ?>" value="test" />
@@ -211,22 +192,7 @@
                 <textarea name="image_description" placeholder="something about..."></textarea>
                 <div class="action"><button type="submit" name="add_new_ext_pic" class="button pull-right"><i class="fa fa-plus"></i></button></div>
               </form> 
-              <div id="drag_and_drop">
-                  <div id="drop_zone">
-                  <!--<div id="drop_zone" ondrop="runUpload(event);" ondragover="dragOverHandler(event);">-->
-                      <span>Drop Files Here</span>
-                      
-                </div>
-                 <div class="list-section">
-                  <div class="list-title">Uploaded Files</div>
-                  <div class="list"></div>
-              </div>
-              </div>
-              <div class="progress_bar_wrap">
-                <div class="progress_bar" style="width:0%"></div>
-              </div>
-            </div>
-            
+          </div>   
             <div class="image_tags_map">
             <input type="text" namae="search_tag" placeholder="Search a tag" autocomplete="off">
             <?php 
