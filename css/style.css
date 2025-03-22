@@ -801,7 +801,7 @@ textarea::placeholder {
 
    .video_tags_map button {
     display: flex;
-        height: 45px;
+        height: 35px;
    align-items: center;     
    background: #0b9ed0;
    border: 1px#0b9ed0 solid;
@@ -812,6 +812,23 @@ textarea::placeholder {
     margin-top:20px;
 }
 
+.image_description {
+    margin-top:20px;
+    width: 100%;
+    border: 1px #d1d1d1 solid;
+    background: #fff;
+    display: flex;
+    border-radius: 4px;
+    padding: 15px;
+    min-height:100px;
+}
+
+.image_tags {
+    margin-top:10px;
+    box-sizing: border-box;
+    padding:10px;
+    border: 1px #d1d1d1 solid;
+}
 
 .video_details {
    border: 1px #d1d1d1 solid;

@@ -56,7 +56,7 @@
                               echo "<div class='picture_footer'>"; 
                               
                               //echo "<div class='mod_modpack'>".$modpack_name."</div>";
-                              if($picture_description<>""){
+                              if($picture_description){
                                     echo "<div class='picture_description'>$picture_description</div>";
                               }     
                                 echo "<div class='picture_info'>";
@@ -65,6 +65,8 @@
                               //echo "<div class='mod'>$mod_name</div>";
                                             
 
+                            echo "<div class='image_description' title='click / tap here to put some wideo description here ...'></div>";  
+                            echo "<div class='image_tags'>".GetImageTagList($picture_id)."</div>";  
 
                             echo "<div class='picture_comments' id='comments'>";
                             $picture_comments = "SELECT * from picture_comments where pic_id=$picture_id";
