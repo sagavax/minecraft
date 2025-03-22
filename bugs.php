@@ -166,15 +166,15 @@
                           $nr_of_comments = GetCountBugComments($bug_id);
                       
                           // Ak je bug FIXED, zobrazí štítok + mení akčné tlačidlá
-                          $add_comment = "<button type='submit' name='add_comment' class='button small_button' onclick='addNewComment();')><i class='fa fa-comment'></i></button>";
+                          $add_comment = "<button type='button' name='add_comment' class='button small_button' onclick='addNewComment();')><i class='fa fa-comment'></i></button>";
                           $fixed_label = $is_fixed ? "<div class='span_fixed'>fixed</div>" : "";
                           $action_buttons = $is_fixed ? 
-                              "<button type='submit' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button>
-                               <button type='submit' name='bug_remove' class='button small_button'><i class='fa fa-times'></i></button>
+                              "<button type='button' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button>
+                               <button type='button' name='bug_remove' class='button small_button'><i class='fa fa-times'></i></button>
                                {$add_comment}" : // Pridanie komentára aj pre fixed stav
-                              "<button type='submit' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button>
-                               <button type='submit' name='to_fixed' class='button small_button'><i class='fa fa-check'></i></button>
-                               <button type='submit' name='bug_remove' class='button small_button'><i class='fa fa-times'></i></button>
+                              "<button type='button' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button>
+                               <button type='button' name='to_fixed' class='button small_button'><i class='fa fa-check'></i></button>
+                               <button type='button' name='bug_remove' class='button small_button'><i class='fa fa-times'></i></button>
                                {$add_comment}"; // Pridanie komentára aj pre nefixed stav
                           
                       

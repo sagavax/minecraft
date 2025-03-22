@@ -132,18 +132,33 @@
       }
 
       if(isset($_POST['add_new_ext_pic'])){
-        $image_name = mysqli_real_escape_string($link, $_POST['picture_title']);
-        $image_url = mysqli_real_escape_string($link, $_POST['picture_url']);
-        $image_description = mysqli_real_escape_string($link, $_POST['picture_description']);
-        $modpack_id = $_POST['modpack_id'];
-        $cat_id=0;
+        //var_dump($_POST);
+        $image_name = mysqli_real_escape_string($link, $_POST['image_name']);
+        $image_url = mysqli_real_escape_string($link, $_POST['image_url']);
+        $image_description = mysqli_real_escape_string($link, $_POST['image_description']);
         
-
-        $sql="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, cat_id, modpack_id, added_date) VALUES ('$image_name', '$image_description','$image_url','$image_url',$cat_id, $modpack_id,now())";
-       // echo $sql;
+        $sql="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, added_date) VALUES ('$image_name', '$image_description','$image_url','$image_url',now())";
+        // echo $sql;
         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link)); 
- 
-      
+
+        //get latest id;
+        $image_id = mysqli_insert_id($link);
+        
+        //upated_mods
+        $cat_id=0;
+        $insert_into_mods = "INSERT INTO pictures_mods (image_id, cat_id, created_date) VALUES ($image_id, $cat_id, now())";
+        $result = mysqli_query($link, $insert_into_mods) or die("MySQLi ERROR: ".mysqli_error($link));
+        
+        //updates modpacks
+        $modpack_id=9;
+        $insert_into_modpacks = "INSERT INTO pictures_modpacks (image_id, modpack_id, created_date) VALUES ($image_id, $modpack_id,now())";
+        $result = mysqli_query($link, $insert_into_modpacks) or die("MySQLi ERROR: ".mysqli_error($link));
+        
+        //updates tags
+        //$insert_into_tags = "INSERT INTO pictures_tags (image_id, tag_id, created_date) VALUES ($image_id, $tag_id, $created_date)";
+        //$result = mysqli_query($link, $insert_into_tags) or die("MySQLi ERROR: ".mysqli_error($link));
+        
+    
         ////vlozim do wallu 
         $diary_text="Minecraft IS: Bol pridany novy obrazok s nazvom <strong>$image_name</strong>";
         $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
@@ -167,8 +182,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script defer src="js/images.js?<?php echo time(); ?>"></script>
-    <script defer src="js/image_upload.js?<?php echo time(); ?>"></script>
-    <script defer src="js/app_event_tracker.js?<?php echo time() ?>"></script>
+     <!-- <script defer src="js/app_event_tracker.js?<?php echo time() ?>"></script> -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
 
@@ -183,26 +197,7 @@
        
     <div class="content">
         <div class='middle_list'>
-        <div class="insert_new_image">
-            <form>
-              <div class="radios">
-                <input type="radio" name="group2" onclick="show_upload_form()" id="upload" checked><label for="upload">Upload image</label> 
-                <input type="radio" name="group2" onclick="show_link_form()" id="external"><label for="external">Image link</label> 
-                <input type="radio" name="group2" onclick="show_drag_form()" id="drag"><label for="drag">Drag & Drop</label>
-               </div> 
-            </form>
-         </div> 
-          
-          <div id="new_image">
-                <form action="" enctype="multipart/form-data" method="post" id="upload_image">    
-                <input type=hidden name="modpack_id" value=<?php if(isset($_GET['modpack_id'])){echo $_GET['modpack_id'];}else{echo 0;} ?>>
-                <input type="hidden" name="<?php echo ini_get('session.upload_progress.name'); ?>" value="test" />
-                <input type="text" name="picture_title" placeholder='picture title' autocomplete=off>
-                <textarea name="picture_description"></textarea>
-                <input type="file" name="picture"  placeholder="Picture">
-                <div class="action"><button type="submit" name="add_new_pic" class="button pull-right"><i class="fa fa-plus"></i></button></div>
-              </form> 
-
+          <div class="add_new_image">
               <form action="" enctype="multipart/form-data" method="post" id="upload_external_image" onsubmit="return save_external_image();">    
                 <input type=hidden name="modpack_id" value=<?php if(isset($_GET['modpack_id'])){echo $_GET['modpack_id'];}else{echo 0;} ?>>
                 <input type="hidden" name="<?php echo ini_get('session.upload_progress.name'); ?>" value="test" />
@@ -211,22 +206,7 @@
                 <textarea name="image_description" placeholder="something about..."></textarea>
                 <div class="action"><button type="submit" name="add_new_ext_pic" class="button pull-right"><i class="fa fa-plus"></i></button></div>
               </form> 
-              <div id="drag_and_drop">
-                  <div id="drop_zone">
-                  <!--<div id="drop_zone" ondrop="runUpload(event);" ondragover="dragOverHandler(event);">-->
-                      <span>Drop Files Here</span>
-                      
-                </div>
-                 <div class="list-section">
-                  <div class="list-title">Uploaded Files</div>
-                  <div class="list"></div>
-              </div>
-              </div>
-              <div class="progress_bar_wrap">
-                <div class="progress_bar" style="width:0%"></div>
-              </div>
-            </div>
-            
+          </div>   
             <div class="image_tags_map">
             <input type="text" namae="search_tag" placeholder="Search a tag" autocomplete="off">
             <?php 

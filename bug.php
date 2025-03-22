@@ -4,15 +4,16 @@
 
 
       if(isset($_POST['save_comment'])){
-        $comment_header = $_POST['bug_comment_header'];
-        $comment = $_POST['bug_comment'];
-        $bug_id = $_SESSION['bug_id'];
+        var_dump($_POST);
+        $comment_header = mysqli_real_escape_string($link,$_POST['bug_comment_header']);
+        $comment = mysqli_real_escape_string($link, $_POST['bug_comment']);
+        $bug_id = $_POST['bug_id'];
 
         $save_comment = "INSERT into bugs_comments (bug_id,bug_comm_header, bug_comment, comment_date) VALUES ($bug_id,'$comment_header','$comment',now())";
         //echo $save_comment;
-         $result=mysqli_query($link, $save_comment);
+         $result=mysqli_query($link, $save_comment) or die("MySQLi ERROR: ".mysqli_error($link));
 
-      
+        //app log
         $diary_text="Minecraft IS: Bolo pridane novy kommentar k bugu id <b>$bug_id</b>";
         $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
@@ -86,12 +87,9 @@
               <div class="list">
                
                   <?php
-                        $bug_id = $_SESSION['bug_id'];
-                        echo "<script>sessionStorage.setItem('bug_id',$bug_id)</script>";
-                        $is_fixed = $_SESSION['is_fixed'];
-
+                        $bug_id = $_GET['bug_id'];
                         $get_bug = "SELECT * from bugs WHERE bug_id =$bug_id";
-                        $result=mysqli_query($link, $get_bug);
+                        $result=mysqli_query($link, $get_bug) or  die();
                         while ($row = mysqli_fetch_array($result)) {
                               $bug_id = $row['bug_id'];
                               $bug_title = $row['bug_title'];
@@ -143,20 +141,21 @@
                               <h4>Add a comment</h4>
                              <div class="bug_comment_new">
                                 <form action="" method="post">
-                                <input type="text" name="bug_comment_header" autocomplete="off" placeholder="type title here">
-                                <textarea name="bug_comment" placeholder="type comment here..."></textarea>
-                                
-                                <div class="bug_comment_action">
-                                  <?php
-                                        if($is_fixed==0){
-                                            echo "<button name='save_comment' class='button small_button'>save</button>";
-                                        } else if ($is_fixed==1){
-                                            echo "<button name='save_comment' disabled class='button small_button'>save</button>";
-                                        }
-                                  ?>  
+                                  <input type="hidden" name="bug_id" value="<?php echo $bug_id?>">
+                                  <input type="text" name="bug_comment_header" autocomplete="off" placeholder="type title here">
+                                  <textarea name="bug_comment" placeholder="type comment here..."></textarea>
                                   
-                                </div>
-                            </form>   
+                                  <div class="bug_comment_action">
+                                    <?php
+                                          if($is_fixed==0){
+                                              echo "<button name='save_comment' class='button small_button'>save</button>";
+                                          } else if ($is_fixed==1){
+                                              echo "<button name='save_comment' disabled class='button small_button'>save</button>";
+                                          }
+                                    ?>  
+                                    
+                                   </div>
+                                </form>   
                         </div><!--bug comment -->
                     </div><!-- bug comment list-->    
                      
