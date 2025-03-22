@@ -180,6 +180,7 @@
             </div>
   
             <div class="video_tags_map">
+              <input type="text" namae="search_tag" placeholder="Search a tag" autocomplete="off">
                 <?php 
                   $get_videos_tags = "SELECT a.tag_id,b.tag_name from video_tags a, tags_list b WHERE a.tag_id NOT IN (0) and a.tag_id = b.tag_id GROUP BY b.tag_name ORDER BY b.tag_name ASC";
                   $result_tags=mysqli_query($link, $get_videos_tags);
