@@ -10,8 +10,8 @@
           e.preventDefault();
          });
 
-         document.getElementById("upload_external_image").style.display="none";
-         document.getElementById("drag_and_drop").style.display="none";
+         document.getElementById("upload_external_image").style.display="block";
+         //document.getElementById("drag_and_drop").style.display="none";
 
       
 
