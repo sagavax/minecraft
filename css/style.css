@@ -715,8 +715,9 @@ textarea::placeholder {
 .picture_footer, .image_footer {
     display: flex;
     box-sizing: border-box;
-    padding: 10px;
-
+    flex-direction: column;
+    padding: 20px;
+    margin-bottom: 20px
 }
 
 .picture_description,
@@ -785,8 +786,14 @@ textarea::placeholder {
 
 .video_comments, .picture_comments {
     padding-left: 20px;
+    
     /*border-left: 2px solid #2ecc71*/
 }
+
+.picture_comments{
+    margin-top:20px;
+}
+
 
 .video_details {
    border: 1px #d1d1d1 solid;
