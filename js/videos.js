@@ -25,7 +25,7 @@ var change_modpack_list = document.querySelector(".change_modpack_list");
 var video_mods_alphabet = document.querySelector(".video_mods_alphabet");
 var video_mods_list = document.querySelector(".video_mods_list");
 var video_tags_alphabet = document.querySelector(".video_tags_alphabet");
-
+var video_tags_map = document.querySelector(".video_tags_map");
 
 selectElement.addEventListener("change", (event) => {
     console.log("Selected value:", event.target.value);
@@ -43,6 +43,16 @@ selectElement.addEventListener("change", (event) => {
     }
     
 });
+
+
+video_tags_map.addEventListener('click', function(event){
+    if(event.target.tagName==="BUTTON"){
+        //const videoId = sessionStorage.getItem("video_id");
+        const tagId = event.target.getAttribute("tag-id");
+        sortByVideoTag(tagId);
+     }
+});
+
 
 
 video_tags_alphabet.addEventListener("change", function(event){
@@ -1402,4 +1412,19 @@ function addModforVideo(videoId, modId){
     // Send the request with the videoId and modpackId
     var params = "videoId = " + encodeURIComponent(videoId) + "&modId=" + encodeURIComponent(modId);
     xhttp.send(params);  
+}
+
+
+function sortByVideoTag(tagId){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".video_list").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "videos_sort_by_tag.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var params="tag_id="+tagId;
+    xhttp.send(params);
 }
