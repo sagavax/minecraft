@@ -132,18 +132,33 @@
       }
 
       if(isset($_POST['add_new_ext_pic'])){
-        $image_name = mysqli_real_escape_string($link, $_POST['picture_title']);
-        $image_url = mysqli_real_escape_string($link, $_POST['picture_url']);
-        $image_description = mysqli_real_escape_string($link, $_POST['picture_description']);
-        $modpack_id = $_POST['modpack_id'];
-        $cat_id=0;
+        var_dump($_POST);
+        $image_name = mysqli_real_escape_string($link, $_POST['image_name']);
+        $image_url = mysqli_real_escape_string($link, $_POST['image_url']);
+        $image_description = mysqli_real_escape_string($link, $_POST['image_description']);
         
-
-        $sql="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, cat_id, modpack_id, added_date) VALUES ('$image_name', '$image_description','$image_url','$image_url',$cat_id, $modpack_id,now())";
-       // echo $sql;
+        $sql="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, added_date) VALUES ('$image_name', '$image_description','$image_url','$image_url'now())";
+        // echo $sql;
         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link)); 
- 
-      
+
+        //get latest id;
+        $image_id = mysqli_insert_id($conn);
+        
+        //upated_mods
+        $cat_id=0;
+        $insert_into_mods = "INSERT INTO pictures_mods (image_id, cat_id, created_date) VALUES ($image_id, $cat_id, now())";
+        $result = mysqli_query($link, $insert_into_mods) or die("MySQLi ERROR: ".mysqli_error($link));
+        
+        //updates modpacks
+        $modpack_id=9;
+        $insert_into_modpacks = "INSERT INTO pictures_modpacks (image_id, modpack_id, created_date) VALUES ($image_id, $modpack_id,now())";
+        $result = mysqli_query($link, $insert_into_modpacks) or die("MySQLi ERROR: ".mysqli_error($link));
+        
+        //updates tags
+        //$insert_into_tags = "INSERT INTO pictures_tags (image_id, tag_id, created_date) VALUES ($image_id, $tag_id, $created_date)";
+        //$result = mysqli_query($link, $insert_into_tags) or die("MySQLi ERROR: ".mysqli_error($link));
+        
+    
         ////vlozim do wallu 
         $diary_text="Minecraft IS: Bol pridany novy obrazok s nazvom <strong>$image_name</strong>";
         $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
@@ -167,8 +182,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script defer src="js/images.js?<?php echo time(); ?>"></script>
-    <script defer src="js/image_upload.js?<?php echo time(); ?>"></script>
-    <script defer src="js/app_event_tracker.js?<?php echo time() ?>"></script>
+     <!-- <script defer src="js/app_event_tracker.js?<?php echo time() ?>"></script> -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
 

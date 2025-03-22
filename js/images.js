@@ -5,11 +5,6 @@
          const drag_and_drop = document.getElementById("drag_and_drop");
 
               
-         const upload_external_image = document.getElementById("upload_external_image");
-         upload_external_image.addEventListener("submit",(e)=>{
-          e.preventDefault();
-         });
-
          document.getElementById("upload_external_image").style.display="block";
          //document.getElementById("drag_and_drop").style.display="none";
 
