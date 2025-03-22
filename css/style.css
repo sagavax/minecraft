@@ -2,6 +2,7 @@
     margin: 0;
     padding:0;
     box-sizing: border-box;
+
 }
 
 body {
@@ -19,8 +20,12 @@ body {
     /*background: #f5f5f5;*/
     background-color: #d2f9be82;
     /*background: white;*/
-    outline: 0;
+    outline: none;
 }
+
+:focus {
+    outline: 2px solid #007bff; /* Použi akúkoľvek farbu alebo efekt */
+}  
 
 a {
     color: #57b13b;

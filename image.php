@@ -95,6 +95,22 @@
                       
             ?>
         </div><!-- list -->
-     </div><!-- content -->       
+     </div><!-- content -->  
+     <dialog class="modal_new_tags">
+          <div class="inner_layer">
+              <button type="button" class="close_inner_modal"><i class="fa fa-times"></i></button>  
+              <input type="text" name="tag_name" placeholder="tag name ...." autocomplete="off">
+              <div class="video_tags_alphabet">
+                <?php 
+                        foreach (range('A', 'Z') as $char) {
+                          echo "<button type='button' class='button small_button'>$char</button>";
+
+                        }
+                     ?>  
+              </div>
+              <div class="tags_list"><?php echo GetAllUnassignedVideosTags()?></div>
+              <!-- <div class="loading" style="display: none;">Loading...</div> -->
+          </div>
+        </dialog>     
 </body>
 </html>

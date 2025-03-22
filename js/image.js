@@ -1,7 +1,27 @@
   //parse url and get image id
 var urlParams = new URLSearchParams(window.location.search);
 var imageId = urlParams.get('image_id');
+var image_tags = document.querySelector(".image_tags");
+var image_description = document.querySelector(".image_description");
+//
 sessionStorage.setItem("picture_id",imageId);
+
+
+image_tags.addEventListener("click", function(event){
+  if (event.target.tagName === "BUTTON" && event.target.name==="new_tag"){
+    document.querySelector(".modal_new_tags").showModal();
+  }
+});
+
+
+image_description.addEventListener("click", function(event){
+  image_description.setAttribute("contenteditable", "true");
+})
+
+image_description.addEventListener("blur", function(event){
+    console.log("image_description saved");
+    //saveImageDescrition(picture_id);
+});
   
            this.contentEditable=false;  
               window.onload = function() {
@@ -237,4 +257,19 @@ sessionStorage.setItem("picture_id",imageId);
                   xhttp.open("POST", "image_save_name.php", true);
                   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                   xhttp.send(data);
+               }
+
+               function saveImageDescrition(pictureId){
+                 var xhttp = new XMLHttpRequest();
+                  xhttp.onreadystatechange = function() {
+                     if (this.readyState == 4 && this.status == 200) {
+                        alert("Popis obrázku uložený!");
+                        
+                     }
+                    };
+                  data = "picture_id="+pictureId+"&description="+encodeURIComponent(document.querySelector(".image_description").innerText);
+                  xhttp.open("POST", "image_save_description.php", true);
+                  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                  xhttp.send(data);
+  
                }
