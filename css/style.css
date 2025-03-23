@@ -797,10 +797,20 @@ textarea::placeholder {
 .video_tags_map, .image_tags_map {
     border: 1px #d1d1d1 solid;
     box-sizing: border-box;
-    padding:10px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;;
+   }
+
+   .video_tags_map input, .image_tags_map input {
+    margin-bottom: 10px;
    }
 
    .video_tags_map button {
