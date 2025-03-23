@@ -1,13 +1,13 @@
   //parse url and get image id
 var urlParams = new URLSearchParams(window.location.search);
 var imageId = urlParams.get('image_id');
-var image_tags = document.querySelector(".image_tags");
+var images_tags = document.querySelector(".images_tags");
 var image_description = document.querySelector(".image_description");
 //
 sessionStorage.setItem("picture_id",imageId);
 
 
-image_tags.addEventListener("click", function(event){
+images_tags.addEventListener("click", function(event){
   if (event.target.tagName === "BUTTON" && event.target.name==="new_tag"){
     document.querySelector(".modal_new_tags").showModal();
   }
@@ -20,7 +20,9 @@ image_description.addEventListener("click", function(event){
 
 image_description.addEventListener("blur", function(event){
     console.log("image_description saved");
-    //saveImageDescrition(picture_id);
+    const pictureId = sessionStorage.getItem("picture_id");
+    image_description.removeAttribute("contenteditable");
+    saveImageDescrition(pictureId);
 });
   
            this.contentEditable=false;  
@@ -267,7 +269,7 @@ image_description.addEventListener("blur", function(event){
                         
                      }
                     };
-                  data = "picture_id="+pictureId+"&description="+encodeURIComponent(document.querySelector(".image_description").innerText);
+                  data = "image_id="+pictureId+"&description="+encodeURIComponent(document.querySelector(".image_description").innerText);
                   xhttp.open("POST", "image_save_description.php", true);
                   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                   xhttp.send(data);
