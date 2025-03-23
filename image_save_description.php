@@ -4,11 +4,11 @@ include("includes/dbconnect.php");
 
 
 $image_id = $_POST['image_id'];
-$imaget_desscription = mysqli_real_escape_string($link, $_POST['imaget_desscription']);
+$image_description = mysqli_real_escape_string($link, $_POST['description']);
 
 
-$uppate_description = "update pictures set picture_desscription='$image_description' where image_id='$image_id'";
-$result = mysqli_query($link, $uppate_description) or die(mysqli_error);
+$update_description = "update pictures set picture_description='$image_description' where picture_id='$image_id'";
+$result = mysqli_query($link, $update_description) or die(mysqli_error);
 
 
 //app logi
