@@ -205,6 +205,27 @@ function convertLinks($string) {
 
   }
 
+
+  function GetImageTagListArray($picture_id) {
+    global $link;
+
+    // Optimalizovaný SQL dopyt
+    $get_tags = "SELECT b.tag_name FROM pictures_tags a, tags_list b WHERE a.image_id = $picture_id AND a.tag_id = b.tag_id";
+    $result = mysqli_query($link, $get_tags);
+
+    // Vytvorte pole pre tagy
+    $tags_array = array();
+
+    // Získajte všetky tagy z databázy a pridajte ich do poľa
+    while ($row = mysqli_fetch_array($result)) {
+        $tags_array[] = $row['tag_name'];
+    }
+
+    // Vráťte pole tagov ako JSON reťazec
+    return json_encode($tags_array);
+}
+
+
   function GetImageTagList($picture_id) {
 	global $link;
 	$count_all ="SELECT a.image_id, a.tag_id, b.tag_name from pictures_tags a, tags_list b where a.image_id=$picture_id and a.tag_id = b.tag_id";
