@@ -207,12 +207,12 @@ function convertLinks($string) {
 
   function GetImageTagList($picture_id) {
 	global $link;
-	$count_all ="SELECT a.picture_id, a.tag_id, b.tag_name from picture_tags a, tags_list b where a.picture_id=$picture_id and a.tag_id = b.tag_id";
+	$count_all ="SELECT a.image_id, a.tag_id, b.tag_name from pictures_tags a, tags_list b where a.image_id=$picture_id and a.tag_id = b.tag_id";
 		$count_result=mysqli_query($link, $count_all);
 		$total = mysqli_num_rows($count_result);
 
 		$tags ="";
-		 $get_tags = "SELECT a.picture_id, a.tag_id, b.tag_name from picture_tags a, tags_list b where a.picture_id=$picture_id and a.tag_id = b.tag_id";
+		 $get_tags = "SELECT a.image_id, a.tag_id, b.tag_name from pictures_tags a, tags_list b where a.image_id=$picture_id and a.tag_id = b.tag_id";
 		 //echo $get_tags;
 	  $result=mysqli_query($link, $get_tags);
 		while ($row = mysqli_fetch_array($result)) {
@@ -264,7 +264,7 @@ function convertLinks($string) {
 	  while ($row = mysqli_fetch_array($result)) {
 			 $tag_id= $row['tag_id'];
 			 $tag_name= $row['tag_name'];
-			  $tags .= "<button class='button small_button' tag-id=$tag_id>$tag_name</button>";
+			  $tags .= "<button class='button small_button' tag-id=$tag_id name='tag'>$tag_name</button>";
 			 }
 			
   return $tags;
