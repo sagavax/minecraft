@@ -25,3 +25,16 @@ idea_comments_list.addEventListener("click",function(event) {
 
 function getIdeaComment(commentId) {
 }
+
+function deleteIdeaComment(commentId) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+          alert("Komment bol vymazany!");
+        }
+      };
+    var data = "comm_id="+commId;
+    xhttp.open("POST", "idea_comment_remove.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
