@@ -65,7 +65,7 @@
                                             
 
                             echo "<div class='image_description' title='click / tap here to put some wideo description here ...'>$picture_description</div>";  
-                            echo "<div class='images_tags'>".GetImageTagList($picture_id)."</div>";  
+                            echo "<div class='images_tags' tag-list='".GetImageTagListArray($picture_id)."'>".GetImageTagList($picture_id)."</div>";  
 
                             echo "<div class='picture_comments' id='comments'>";
                             $picture_comments = "SELECT * from picture_comments where pic_id=$picture_id";
