@@ -843,6 +843,13 @@ textarea::placeholder {
     padding:10px;
     border: 1px #d1d1d1 solid;
 }
+.images_tags {
+    border:1px #d1d1d1 solid;
+    padding:10px;
+    display:flex;
+    flex-wrap: wrap;
+    gap:10px
+}
 
 .video_details {
    border: 1px #d1d1d1 solid;

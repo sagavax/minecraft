@@ -3,6 +3,8 @@ var urlParams = new URLSearchParams(window.location.search);
 var imageId = urlParams.get('image_id');
 var images_tags = document.querySelector(".images_tags");
 var image_description = document.querySelector(".image_description");
+var modal_new_tags = document.querySelector(".modal_new_tags");
+var old_description = document.querySelector(".image_description").innerText;
 //
 sessionStorage.setItem("picture_id",imageId);
 
@@ -13,16 +15,31 @@ images_tags.addEventListener("click", function(event){
   }
 });
 
+modal_new_tags.addEventListener("click", function(event){
+  if(event.target.tagName === "BUTTON" && event.target.name=="tag") {
+    var  tagId = event.target.getAttribute("tag-id");
+    console.log("new tag added: ", tagId);
+    addTagToImage(tagId);
+  }
+});
+
 
 image_description.addEventListener("click", function(event){
-  image_description.setAttribute("contenteditable", "true");
+    image_description.setAttribute("contenteditable", "true");
 })
 
 image_description.addEventListener("blur", function(event){
+    var new_description = document.querySelector(".image-description").innerText;
+    if(old_description==new_description){
+      //ziadna zmena. nic sa nebude ukladat
+      console.log("no change");
+      return;
+    } else {
     console.log("image_description saved");
     const pictureId = sessionStorage.getItem("picture_id");
     image_description.removeAttribute("contenteditable");
-    saveImageDescrition(pictureId);
+    saveImageDescrition(pictureId,new_description);
+    }
 });
   
            this.contentEditable=false;  
@@ -261,17 +278,37 @@ image_description.addEventListener("blur", function(event){
                   xhttp.send(data);
                }
 
-               function saveImageDescrition(pictureId){
+               function saveImageDescription(pictureId, new_description) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        alert("Popis obrázku uložený!");
+                    } else if (this.readyState == 4) {
+                        // Ošetrenie chýb pri neúspešnej požiadavke
+                        console.error("Chyba pri ukladaní popisu: " + this.status);
+                    }
+                };
+            
+                // Opravený preklep z "nre_description" na "new_description"
+                var data = "image_id=" + pictureId + "&description=" + encodeURIComponent(new_description);
+            
+                // Odoslanie POST požiadavky
+                xhttp.open("POST", "image_save_description.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send(data);
+            }
+            
+
+               function addTagToImage(tagId){
                  var xhttp = new XMLHttpRequest();
                   xhttp.onreadystatechange = function() {
                      if (this.readyState == 4 && this.status == 200) {
-                        alert("Popis obrázku uložený!");
+                        alert("Tag pridaný!");
                         
                      }
                     };
-                  data = "image_id="+pictureId+"&description="+encodeURIComponent(document.querySelector(".image_description").innerText);
-                  xhttp.open("POST", "image_save_description.php", true);
+                  data = "image_id="+sessionStorage.getItem('picture_id')+"&tag_id="+tagId;
+                  xhttp.open("POST", "image_add_tag.php", true);
                   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                   xhttp.send(data);
-  
                }
