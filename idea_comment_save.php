@@ -12,18 +12,10 @@
          echo $save_comment;
          $result=mysqli_query($link, $save_comment);
          
-			// Open the file for writing
-			$fp = fopen('example.txt', 'w');
-
-			// Write content to the file
-			fwrite($fp, $save_comment);
-
-			// Close the file
-			fclose($fp);
-      
+	      
         $diary_text="Minecraft IS: Bolo pridany novy kommentar k idei id <b>$idea_id</b>";
         $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
         //echo "<script>message('Comment added','success')</script>";
-        header("location:idea.php");
+        //header("location:idea.php");
         exit;
