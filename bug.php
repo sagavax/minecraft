@@ -4,7 +4,7 @@
 
 
       if(isset($_POST['save_comment'])){
-        var_dump($_POST);
+        ///var_dump($_POST);
         $comment_header = mysqli_real_escape_string($link,$_POST['bug_comment_header']);
         $comment = mysqli_real_escape_string($link, $_POST['bug_comment']);
         $bug_id = $_POST['bug_id'];
@@ -69,7 +69,7 @@
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
-    <script type="text/javascript" defer src="js/bug.js"></script>
+    <script type="text/javascript" defer src="js/bug.js?<?php echo time(); ?>"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 
   </head>
@@ -102,7 +102,7 @@
                                     echo "<div class='bug_text'>$bug_text</div>";
                                     echo "<div class='bug_footer'>";
                                        if($is_fixed==0){
-                                                echo "<button type='button' title='mark the bug as fixed' name='bug_set_fixed' class='button'><i class='fa fa-check'></i></button>";
+                                                echo "<button type='button' title='mark the bug as fixed' name='bug_set_fixed' class='button small_button'><i class='fa fa-check'></i></button>";
                                           
                                     } elseif ($is_fixed==1){
 
