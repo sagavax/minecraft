@@ -26,7 +26,7 @@ bug_list.addEventListener('click', function(event) {
     
     if (event.target.tagName === 'BUTTON') {
         const bugId = event.target.closest(".bug")?.getAttribute('bug-id');
-        sessionStorage.setItem('bug_id',bug_id);
+        sessionStorage.setItem('bug_id',bugId);
         if (!bugId) return;
     
         switch (event.target.name) {

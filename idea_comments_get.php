@@ -3,7 +3,7 @@
 
     $idea_id  =  $_POST['idea_id'];
 
-    $get_comment = "SELECT * from idea_comments WHERE id idea_id=".$idea_id;
+    $get_comment = "SELECT * from idea_comments WHERE id idea_id=$idea_id";
     $result = mysqli_query($link, $get_comment) or die(mysqli_error($link));
 
     while ($row = mysqli_fetch_array($result)){
