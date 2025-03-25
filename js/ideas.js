@@ -22,6 +22,24 @@ ideas_list.addEventListener('click', function(event) {
         modal.style.top = `${rect.top - modal.offsetHeight - 20}px`;
 
         modal.showModal();
+    } else if (event.target.tagName==="BUTTON") {
+        if(event.target.name==="see_idea_details"){
+            const ideaId = document.querySelectorAll(".idea").getAttribute("idea-id");
+            sessionStorage.setItem("idea_id", ideaId);
+            window.location.href = `idea.php?idea_id=${ideaId}`;
+        } else if (event.target.name==="delete_idea"){
+            const ideaId = document.querySelectorAll(".idea").getAttribute("idea-id");
+            alert(`Idea ${ideaId} deleted.`);
+            deleteIdea(ideaId);
+            //document.querySelector(`.idea[idea-id='${ideaId}']`).remove();
+        } else if (event.target.name==="to_apply"){
+            const ideaId = document.querySelectorAll(".idea").getAttribute("idea-id");
+            alert(`Idea ${ideaId} moved to the Apply section.`);
+            moveIdeaToApply(ideaId);
+            //document.querySelector(`.idea[idea-id='${ideaId}']`).remove();
+        } else if (event.target.name==="to_review"){
+            //for the future use
+        }
     }
 });
 
@@ -100,4 +118,35 @@ function changeideaPriority(ideaId, ideaPriority) {
 
 function addNewComment(ideaId) {
     document.queryselector('.modal_add_comment').showModal();
+}
+
+function deleteIdea(ideaId) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector(`.idea[idea-id='${ideaId}']`).remove();
+        }
+    };
+    xhttp.open("POST", "ideas_delete.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var params = "idea_id=" + encodeURIComponent(ideaId);
+    xhttp.send(params);
+}
+
+
+function moveIdeaToApply($ideaId) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+            //document.querySelector(`.idea[idea-id='${ideaId}']`).remove();
+            alert("Idea moved to the Apply section.");
+            window.location.reload();
+        }
+    };
+    xhttp.open("POST", "ideas_move_to_apply.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var params = "idea_id=" + encodeURIComponent($ideaId);
+    xhttp.send(params);
 }
