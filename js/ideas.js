@@ -22,21 +22,24 @@ ideas_list.addEventListener('click', function(event) {
         modal.style.top = `${rect.top - modal.offsetHeight - 20}px`;
         modal.showModal();
 
-    } else if (event.target.tagName==="BUTTON") {
+    } else if (event.target.tagName==="BUTTON" || event.target.tagName==="I") {
+        const button = event.target.tagName === "I" ? event.target.closest("button") : event.target;
+        //sconsole.log(event.target.tagName);
         const ideaId = event.target.closest(".idea").getAttribute('idea-id');
+        //console.log(ideaId);
         sessionStorage.setItem('idea_id', ideaId);
         
-        if(event.target.name==="see_idea_details"){
+        if(button.name==="see_idea_details"){
             window.location.href = `idea.php?idea_id=${ideaId}`;
-        } else if (event.target.name==="delete_idea"){
+        } else if (button.name==="delete_idea"){
             alert(`Idea ${ideaId} deleted.`);
             deleteIdea(ideaId);
             //document.querySelector(`.idea[idea-id='${ideaId}']`).remove();
-        } else if (event.target.name==="to_apply"){
+        } else if (buttun.name==="to_apply"){
             alert(`Idea ${ideaId} moved to the Apply section.`);
             moveIdeaToApply(ideaId);
             //document.querySelector(`.idea[idea-id='${ideaId}']`).remove();
-        } else if (event.target.name==="to_review"){
+        } else if (button.name==="to_review"){
             //for the future use
         }
     }
