@@ -100,11 +100,11 @@
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
     <script type="text/javascript" defer src="js/bugs.js?<?php echo time(); ?>"></script>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 
   </head>
   <body>
-        <?php include("includes/header.php") ?>   
+       <?php include("includes/header.php") ?>   
       <div class="main_wrap">
       <div class="tab_menu">
           <?php include("includes/menu.php"); ?>
@@ -116,7 +116,7 @@
               <div class="new_bug">
                 <form action="" method="post">
                       <input type="text" name="bug_title" placeholder="bug title here" id="bug_title" autocomplete="off">
-                      <textarea name="bug_text" placeholder="Put a bug / error text here" id="bug_text"></textarea>
+                      <textarea name="bug_text" placeholder="Put a bug / error text here" id="markdown-input"></textarea>
                       <select name="bug_priority">
                         <option value="0">--- choose priority --- </option>
                         <option value = "low">low</option>
@@ -246,7 +246,8 @@
       <textarea name="comment_text" placeholder="Add a comment here"></textarea>
       <button type="submit" name="add_comment" class="button small_button">Add</button>
     </dialog>                  
-
+    
+              
 
   </body>
   </html> 
