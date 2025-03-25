@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
-    <script type="text/javascript" src="js/idea.js" defer></script>  <!-- this file contains functions for like, comment, apply -->
+    <script type="text/javascript" src="js/idea.js?<?php echo time(); ?>" defer></script>  <!-- this file contains functions for like, comment, apply -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     
   </head>
@@ -62,7 +62,7 @@
               <div class="list">
                
                   <?php
-                        $idea_id = $_SESSION['idea_id'];
+                        $idea_id = $_GET['idea_id'];
                         $is_applied = $_SESSION['is_applied'];
 
                         $get_idea = "SELECT * from ideas WHERE idea_id =$idea_id";
@@ -131,7 +131,7 @@
                               
                              <div class="idea_comment_new">
                                 <h4>Add a comment</h4>
-                                <form action="idea_save_comment.php" method="post">
+                                
                                 <input type="text" name="idea_comment_header" autocomplete="off" placeholder="type title here">
                                 <textarea name="idea_comment" placeholder="type comment here..."></textarea>
                                 
@@ -145,7 +145,7 @@
                                   ?>  
                                   
                                 </div>
-                            </form>   
+                            
                         </div><!--idea comment -->
                     </div><!-- idea comment list-->    
                 </div><!-- list-->

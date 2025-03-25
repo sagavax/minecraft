@@ -1,15 +1,14 @@
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
-      session_start();
-
-        $comment_header = $_POST['idea_comment_header'];
-        $comment = $_POST['idea_comment'];
-        $idea_id = $_SESSION['idea_id'];
-        //var_dump($_POST);
+      
+        $comment_header = mysqli_real_escape_string($link, $_POST['comment_title']);
+        $comment = mysqli_real_escape_string($link, $_POST['comment']);
+        $idea_id = $_POST['idea_id'];
+         //var_dump($_POST);
 
 
         $save_comment = "INSERT into ideas_comments (idea_id,idea_comm_header, idea_comment, comment_date) VALUES ($idea_id,'$comment_header','$comment',now())";
-         echo $save_comment;
+        //echo $save_comment;
          $result=mysqli_query($link, $save_comment);
          
 	      

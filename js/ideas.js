@@ -20,20 +20,19 @@ ideas_list.addEventListener('click', function(event) {
         // Posunutie o 10px doľava
         modal.style.left = `${rect.left + rect.width / 2 - modal.offsetWidth / 2 - 10}px`;
         modal.style.top = `${rect.top - modal.offsetHeight - 20}px`;
-
         modal.showModal();
+
     } else if (event.target.tagName==="BUTTON") {
+        const ideaId = event.target.closest(".idea").getAttribute('idea-id');
+        sessionStorage.setItem('idea_id', ideaId);
+        
         if(event.target.name==="see_idea_details"){
-            const ideaId = document.querySelectorAll(".idea").getAttribute("idea-id");
-            sessionStorage.setItem("idea_id", ideaId);
             window.location.href = `idea.php?idea_id=${ideaId}`;
         } else if (event.target.name==="delete_idea"){
-            const ideaId = document.querySelectorAll(".idea").getAttribute("idea-id");
             alert(`Idea ${ideaId} deleted.`);
             deleteIdea(ideaId);
             //document.querySelector(`.idea[idea-id='${ideaId}']`).remove();
         } else if (event.target.name==="to_apply"){
-            const ideaId = document.querySelectorAll(".idea").getAttribute("idea-id");
             alert(`Idea ${ideaId} moved to the Apply section.`);
             moveIdeaToApply(ideaId);
             //document.querySelector(`.idea[idea-id='${ideaId}']`).remove();
