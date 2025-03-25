@@ -2,6 +2,10 @@ const bug_list = document.querySelector('.bug_list');
 const modal_show_status = document.querySelector('.modal_show_status');
 const modal_show_priority = document.querySelector('.modal_show_priority');
 
+//markdown editor
+
+        
+
 
 bug_list.addEventListener('click', function(event) {
     const targetClass = event.target.classList;

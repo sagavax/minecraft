@@ -3,6 +3,11 @@
 date_default_timezone_set('Europe/Bratislava');
 
 $backupDirectory = 'Backups';
+
+if (!is_dir($backupDirectory)) {
+    mkdir($backupDirectory, 0777, true); // Create the directory with appropriate permissions
+}
+
 $files = scandir($backupDirectory);
 
 foreach ($files as $file) {
