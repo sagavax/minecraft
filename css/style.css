@@ -5665,3 +5665,9 @@ input[name="base_name"] {
 .container {
     position: relative;
 }
+
+.fab {
+    height: 60px;
+    width: 60px;
+    background: #d23f31;
+}
