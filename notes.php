@@ -162,7 +162,7 @@
                   <button type="button" name="all" class="button small_button">All</button>
                  </div>
                  <div class="add_notes"> 
-                    <button name="add_note" type="button" class="button small_button tooltip" title="New note"><i class="material-icons">note_add</i></button>              
+                    <button name="add_note" type="button" class="button small_button tooltip" title="New note"><i class="fa fa-plus"></i></button>              
                  </div>   
               </div>  
 
@@ -206,7 +206,7 @@
                             
                             //echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
                             echo "<div class='note_footer'>";
-                                  echo $category_name." ".$modpack_name."<div class='notes_action'><form method='post' action='notes_attach_file.php' enctype='multipart/form-data'><input type='hidden' name=note_id value=$note_id><input type='file' name='image' id='file-attach-$note_id' accept='image/*' style='display:none'></form><button name='attach_image' type='button' class='button app_badge'><i class='material-icons'>attach_file</i></button><button name='edit_note' type='submit' class='button app_badge'><i class='material-icons'>edit</i></button><button name='delete_note' type='submit' class='button app_badge'><i class='material-icons'>delete</i></button></div>";
+                                  echo $category_name." ".$modpack_name."<div class='notes_action'><form method='post' action='notes_attach_file.php' enctype='multipart/form-data'><input type='hidden' name=note_id value=$note_id><input type='file' name='image' id='file-attach-$note_id' accept='image/*' style='display:none'></form><button name='attach_image' type='button' class='button small_button'><i class='material-icons'>attach_file</i></button><button name='edit_note' type='submit' class='button small_button'><i class='material-icons'>edit</i></button><button name='delete_note' type='submit' class='button small_button'><i class='material-icons'>delete</i></button></div>";
 
                                   echo "<div class='note_attached_files'>";
                                   $get_files = "SELECT * from notes_file_attachements WHERE note_id=$note_id";
