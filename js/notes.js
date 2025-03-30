@@ -6,6 +6,7 @@ var new_note_header_close_button = document.querySelector(".new_note_header butt
 var note_attached_files = document.querySelector(".note_attached_files");
 var container_notes_action = document.querySelector(".notes_action");
 var container_notes_list = document.querySelector("#notes_list");
+var modal_change_modpack = document.querySelector(".modal_change_modpack");
 // new_note.style.display="none";
 
 new_note_header_close_button.addEventListener("click", () => {
@@ -24,6 +25,16 @@ document.querySelector(".modal_image BUTTON").addEventListener("click", () => {
     content.removeChild(existingImg);
     modal.style.display = "none";
 });
+
+
+modal_change_modpack.addEventListener("click", (event) => {
+    if (event.target.tagName === "BUTTON") {
+        const modpackName = event.target.textContent;
+        console.log("Selected modpack:", modpackName);
+        //chenge modpack
+        changeModpack(modpackName); // Call the changeModpack function
+    }
+})
 
 
 container_notes_list.addEventListener("click", function(event) {
@@ -96,6 +107,11 @@ container_notes_list.addEventListener("click", function(event) {
         } else {
             console.log("File name attribute is missing.");
         }
+    } else if (event.target.tagName === "DIV" && event.target.classList.contains("span_modpack")) {
+        console.log("Kliknuté na modpack:", event.target.textContent);
+        modal_change_modpack.showModal();
+        //alert("Kliknuté na modpack: " + event.target.textContent);
+        // Tu môžete vykonať ďalšiu akciu, napríklad presmerovanie alebo otvorenie detailov
     }
 });
 
@@ -219,6 +235,23 @@ function RemoveNote(noteId){
     };
     data = "note_id="+noteId;
     xhttp.open("POST", "notes_remove.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
+
+function  changeModpack(modpackName){
+    var xhttp = new XMLHttpRequest();
+    var search_text = document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            //change text for modpack in note 
+            //document.querySelector(".note[note-id='" + noteId + "'] span_modpack").textContent = modpackName;
+            document.querySelector(`.note[note-id="${noteId}"] span_modpack`).textContent = modpackName;
+            //document.querySelector(`.note[note-id="449"] .span_modpack`);
+        }
+    };
+    data = "modpack_name="+modpackName;
+    xhttp.open("POST", "notes_change_modpack.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
 }

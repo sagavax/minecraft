@@ -3117,6 +3117,23 @@ textarea::placeholder {
     align-items: center;
 }
 
+.modal_change_modpack {
+    top:10%;
+    left:20%;
+    height: 500px;
+    width: 50%;
+    box-sizing: border-box;
+    padding:10px;
+}
+
+.inner_modpacks_layer {
+    display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        box-sizing: border-box;
+        padding: 10px; 
+}
+
 
 .log_record {
     display: flex;

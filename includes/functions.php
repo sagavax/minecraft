@@ -1,6 +1,22 @@
 <?php 
 include("includes/dbconnect.php");
 
+function GetListModpacks() {
+	global $link;
+	$modpack_list="";
+	$get_modpacks = "SELECT * from modpacks";
+	//echo $get_video_modpack;
+	$result=mysqli_query($link, $get_modpacks);
+	while ($row = mysqli_fetch_array($result)) {
+	$modpack_id = $row['modpack_id'];	
+	$modpack_name = $row['modpack_name'];
+
+	$modpack_list= $modpack_list."<button class='button blue_button' modpack-id=$modpack_id>$modpack_name</button>";
+	}	
+	return $modpack_list;
+}
+
+
 function GetVideoName($video_id) {
 	global $link;
 	//$mod_list="";

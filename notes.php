@@ -206,7 +206,7 @@
                             
                             //echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
                             echo "<div class='note_footer'>";
-                                  echo $category_name." ".$modpack_name."<div class='notes_action'><form method='post' action='notes_attach_file.php' enctype='multipart/form-data'><input type='hidden' name=note_id value=$note_id><input type='file' name='image' id='file-attach-$note_id' accept='image/*' style='display:none'></form><button name='attach_image' type='button' class='button small_button'><i class='material-icons'>attach_file</i></button><button name='edit_note' type='submit' class='button small_button'><i class='material-icons'>edit</i></button><button name='delete_note' type='submit' class='button small_button'><i class='material-icons'>delete</i></button></div>";
+                                  echo "<div class='notes_action'>".$category_name." ".$modpack_name."<form method='post' action='notes_attach_file.php' enctype='multipart/form-data'><input type='hidden' name=note_id value=$note_id><input type='file' name='image' id='file-attach-$note_id' accept='image/*' style='display:none'></form><button name='attach_image' type='button' class='button small_button'><i class='material-icons'>attach_file</i></button><button name='edit_note' type='submit' class='button small_button'><i class='material-icons'>edit</i></button><button name='delete_note' type='submit' class='button small_button'><i class='material-icons'>delete</i></button></div>";
 
                                   echo "<div class='note_attached_files'>";
                                   $get_files = "SELECT * from notes_file_attachements WHERE note_id=$note_id";
@@ -254,6 +254,15 @@
         <dialog data-modal class="modal_image">
           <div class="modal_image_action"><button type='button'><i class='fa fa-times'></i></button></div>
           <div class="image_content"></div>
+        </dialog>
+
+        <dialog class="modal_change_modpack">
+          <div class="inner_modpacks_layer">
+                  <?php 
+                    echo GetListModpacks();
+
+                  ?>
+              </div>
         </dialog>
     </body>
 </html>    
