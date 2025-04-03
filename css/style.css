@@ -1802,6 +1802,10 @@ textarea::placeholder {
     width: 100%;
 }
 
+.video_modpacks main {
+    flex-wrap: wrap;
+}
+
 .video_modpack_information_wrap {
     margin-bottom: 10px;
 }
