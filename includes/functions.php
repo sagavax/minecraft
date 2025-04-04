@@ -461,8 +461,8 @@ function GetModpackImage(){
 function GetModPackName($modpack_id){
 	global $link;
 	$modpack_name="";
-	if($modpack_id==0){
-		$modpack_name="";
+	if($modpack_id==999){
+		$modpack_name="Unspecified";
 	} else {
 	$query="SELECT modpack_name from modpacks where modpack_id=$modpack_id";
 	$result=mysqli_query($link, $query);
