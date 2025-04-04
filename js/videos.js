@@ -78,6 +78,7 @@ video_mods_list.addEventListener("click", function(event){
     if(event.target.tagName==="BUTTON"){
         const videoId = sessionStorage.getItem("video_id");
         const modId = event.target.getAttribute("mod-id");
+        console.log(modId);
         addModforVideo(videoId, modId);
         
     }
@@ -1413,7 +1414,7 @@ function addModforVideo(videoId, modId){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     // Send the request with the videoId and modpackId
-    var params = "videoId = " + encodeURIComponent(videoId) + "&modId=" + encodeURIComponent(modId);
+    var params = "videoId=" + encodeURIComponent(videoId) + "&modId=" + encodeURIComponent(modId);
     xhttp.send(params);  
 }
 
