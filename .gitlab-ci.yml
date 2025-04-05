@@ -1,8 +1,10 @@
 stages:
   - sync
 
-sync_git:
+sync_repo:
   stage: sync
   script:
-    - git remote set-url origin git@github.com:sagavax/minecraft.git
-    - git pull origin main
+    - git remote add github git@github.com:sagavax/minecraft.git
+    - git pull github main
+  only:
+    - schedules
