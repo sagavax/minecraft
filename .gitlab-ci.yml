@@ -4,6 +4,6 @@ stages:
 sync_git:
   stage: sync
   script:
-    - git clone git@github.com:sagavax/minecraft.git
+    - #git clone git@github.com:sagavax/minecraft.git
     - cd sagavax/minecraft
     - git pull origin main
