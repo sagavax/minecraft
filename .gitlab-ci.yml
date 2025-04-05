@@ -4,6 +4,4 @@ stages:
 sync_git:
   stage: sync
   script:
-    - cd Tomáš Mišura / minecraft  # Prejdi do existujúceho GitLab repozitára
-    - git remote set-url origin git@github.com:sagavax/minecraft.git  # Nastav nový vzdialený repozitár na GitHub
-    - git pull origin main  # Stiahni najnovšie zmeny z GitHubu
+    - git pull origin main
