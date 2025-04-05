@@ -7,4 +7,3 @@ sync_git:
     - git clone git@github.com:sagavax/minecraft.git
     - cd sagavax/minecraft
     - git pull origin main
-    - # Tvoje ďalšie príkazy alebo operácie
