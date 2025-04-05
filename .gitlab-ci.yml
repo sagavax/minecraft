@@ -5,6 +5,6 @@ sync_git:
   stage: sync
   script:
     - git clone git@github.com:sagavax/minecraft.git
-    - cd Tsagavax/minecraft
+    - cd sagavax/minecraft
     - git pull origin main
     - # Tvoje ďalšie príkazy alebo operácie
