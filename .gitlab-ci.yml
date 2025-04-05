@@ -4,4 +4,5 @@ stages:
 sync_git:
   stage: sync
   script:
+    - git remote set-url origin git@github.com:sagavax/minecraft.git
     - git pull origin main
