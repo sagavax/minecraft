@@ -2364,6 +2364,7 @@ textarea::placeholder {
     background: white;
     align-items: center;
     padding-left:5px;
+    border-radius: 5px;
 }
 
 .tag {
@@ -2373,7 +2374,7 @@ textarea::placeholder {
     background-color: #5FA3D1;
     color:white;
     opacity: 1;
-    border-radius: 5px;
+    
     padding-left: 5px;
     padding-right: 5px;
 }
