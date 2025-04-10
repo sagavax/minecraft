@@ -225,7 +225,7 @@
                     $sql="SELECT * from videos ORDER BY video_id DESC LIMIT $itemsPerPage OFFSET $offset";
                     }
                                       
-                    $result=mysqli_query($link, $sql);
+                    $result=mysqli_query($link, $sql) or die("MySQL ERROR: ".mysqli_error($link));
                         while ($row = mysqli_fetch_array($result)) {
                           $video_id=$row['video_id'];
                           $video_name=$row['video_title'];
