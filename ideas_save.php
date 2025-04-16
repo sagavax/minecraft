@@ -20,6 +20,4 @@
         $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
         
-        echo "<script>alert('Minecraft IS: Bola vtytvorena nova idea');
-        window.location.href='ideas.php';
-        </script>";
+        echo "<script>window.location.href='ideas.php';</script>";
