@@ -51,8 +51,8 @@ video_tags_map.addEventListener('click', function(event){
     if(event.target.tagName==="BUTTON"){
         //const videoId = sessionStorage.getItem("video_id");
         const tagId = event.target.getAttribute("tag-id");
-        alert(tagId);
-        //sortByVideoTag(tagId);
+        console.log(tagId);
+        sortByVideoTag(tagId);
      }
 });
 
@@ -1424,10 +1424,10 @@ function sortByVideoTag(tagId){
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
-          document.querySelector(".video_list").innerHTML = this.responseText;
+          document.querySelector(".videos_list").innerHTML = this.responseText;
         }
     };
-    xhttp.open("POST", "videos_sort_by_tag.php", true);
+    xhttp.open("POST", "videos_sorted_by_tag.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var params="tag_id="+tagId;
     xhttp.send(params);
