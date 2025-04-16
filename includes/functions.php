@@ -1,6 +1,22 @@
 <?php 
 include("includes/dbconnect.php");
 
+
+function GetCountTags(){
+	global $link;
+
+	$query = "SELECT COUNT(*) as nr_of_records from tags_list";
+
+	$result=mysqli_query($link, $query);
+
+	$row = mysqli_fetch_array($result);
+
+	 $nr_of_records= $row['nr_of_records'];
+
+	return $nr_of_records;
+}
+
+
 function GetListModpacks() {
 	global $link;
 	$modpack_list="";
