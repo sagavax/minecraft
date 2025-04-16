@@ -24,33 +24,6 @@
          return true;
        }
 
-       
-                  function show_upload_form() {
-                    external_image.style.display="none";
-                    upload_image.style.display="block";
-                    drag_and_drop.style.display="none";
-                    localStorage.setItem("current_radio","upload_image");
-                    localStorage.setItem("current_radio_id","upload_image");
-                 
-                  }   
-                  function show_link_form(){
-                               
-                    external_image.style.display="block";
-                    upload_image.style.display="none";
-                    drag_and_drop.style.display="none";  
-                   localStorage.setItem("current_radio","external_image");
-                   localStorage.setItem("current_radio_id","upload_external_image");
-                }
-
-                function show_drag_form() {
-                  external_image.style.display="none";
-                    upload_image.style.display="none";
-                    drag_and_drop.style.display="block";
-                    localStorage.setItem("current_radio","drag_and_drop");
-                    localStorage.setItem("current_radio_id","drag_and_drop");
-                }
-
-/*  */
 
 var  pictures_images = document.querySelectorAll('.pic');
 
