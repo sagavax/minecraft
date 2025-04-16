@@ -466,7 +466,6 @@ textarea::placeholder {
 .new_task_modpack,
 #new_note,
 #new_video,
-#new_image,
 .video_mods_wrap,
 .video_action,
 .new_video_category,
@@ -2416,7 +2415,6 @@ textarea::placeholder {
 #new_video,
 #new_task,
 #upload_new_video,
-#new_image,
 #mod_description,
 .base {
     padding: 10px;
@@ -2464,7 +2462,7 @@ textarea::placeholder {
 }
 
 
-#new_video, #new_image, #edit_video, #new_note{
+#new_video, #edit_video, #new_note{
     display: none;
     flex-direction: column;
     border-top-right-radius: 6px ;     
@@ -2498,7 +2496,6 @@ textarea::placeholder {
 #new_modpack form input,
 #new_modpack form textarea,
 #new_video input,
-#new_image input,
 #upload_new_video input,
 #new_video textarea,
 #new_image textarea,
@@ -2514,7 +2511,6 @@ textarea::placeholder {
 #new_modpack form input,
 #new_video input,
 #edit_video input,
-#new_image input[type="text"],
 #upload_new_video input,
 #new_video textarea,
 #new_image textarea,
@@ -2553,8 +2549,7 @@ textarea::placeholder {
 
 
 #new_image {
-    display: flex;
-    margin-bottom: 20px;
+   
 }
 
 .video_top_bar, .task_top_bar {
@@ -3230,25 +3225,6 @@ textarea::placeholder {
     margin-top: 20px;
 }
 
-#new_image_external, #new_image_upload {
-    display: flex;
-    flex-direction: column;
-    height:155px;
-}
-
-#new_image_upload {
-    display: none;
-}
-
-#new_image_external input, #new_image_upload input {
-    margin-top:5px;
-    background: white;
-    width: 100%;
-}
-
-#new_image_external button {
-    margin-top:5px;
-}
 
 
 .tasks_view input[type='radio'], .image_radios input[type='radio'] {
