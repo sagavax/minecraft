@@ -105,7 +105,7 @@ function findDuplicates(){
     xhttp.send();
 }
 
-function saveNewTagName(tagId, tagName);{
+function saveNewTagName(tagId, tagName){
     var xhttp = new XMLHttpRequest();
     
     xhttp.onreadystatechange = function() {
