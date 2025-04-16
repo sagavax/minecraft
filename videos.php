@@ -187,7 +187,7 @@
                   while ($row_tags = mysqli_fetch_array($result_tags)) {
                     $tag_id = $row_tags['tag_id'];
                     $tag_name=$row_tags['tag_name'];
-                    echo "<button type='button' class='button small_button' tag-id=$tag_id>$tag_name</button>";
+                    echo "<button type='button' class='button small_button' name='tag'  tag-id=$tag_id>$tag_name</button>";
                   }
                   ?>
             </div>
