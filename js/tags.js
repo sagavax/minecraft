@@ -45,11 +45,19 @@ tags_list.addEventListener("click", function(event) {
 tags_list.addEventListener("click", function(event) {
     // Hľadáme najbližší rodičovský element s triedou "tag_name"
     let tagElement = event.target.closest(".tag_name");
+    const tagId = event.target.closest(".tag").getAttribute("data-id");
     
     if (tagElement) {
         //let tagName = tagElement.innerText; // Získaj text zo správneho elementu
         //alert(tagName);
         tagElement.setAttribute("contenteditable", "true");
+        //on blur save tag name
+        tagElement.addEventListener("blur", function() {
+            tagElement.setAttribute("contenteditable", "false");
+            const tagName = tagElement.innerText;
+            console.log(tagName);
+            saveNewTagName(tagId, tagName);
+        })
     }
 });
 
@@ -95,4 +103,19 @@ function findDuplicates(){
     };
     xhttp.open("get", "tags_duplicates.php", true);
     xhttp.send();
+}
+
+function saveNewTagName(tagId, tagName);{
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector("#tags_list").innerHTML=this.responseText;
+            //document.getElementById("notes_list").innerHTML = this.responseText;
+        }
+    };
+    const data = "tag_id="+tagId+"&tag_name="+tagName;
+    xhttp.open("POST", "tags_change_tag_name.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);  
 }
