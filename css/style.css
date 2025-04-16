@@ -1170,7 +1170,15 @@ textarea::placeholder {
 .video_comm_info, .picture_comm_info {
     display: inherit;
     align-items: center;
-    height: 100%;
+    width: 100%;
+}
+
+
+.picture_modpacks {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .video_tags, .picture_tags, .videos_tags, .images_tags {
@@ -1237,7 +1245,7 @@ textarea::placeholder {
 }
 
 .video_comm_info, .picture_comm_info {
-    display: flex;
+        display: flex;
         height: 50px;
         padding: 10px;
         width: 100%;
@@ -1246,6 +1254,12 @@ textarea::placeholder {
         border: 1px #d1d1d1 solid;
         margin-top: 10px
 
+}
+
+.picture_comm_info {
+    border:0;
+    height:auto;
+    gap:15px;
 }
 
 .video_comm_info {
