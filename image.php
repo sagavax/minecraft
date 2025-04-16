@@ -57,17 +57,18 @@
                               echo "<div class='picture_footer'>"; 
                               
                               //echo "<div class='mod_modpack'>".$modpack_name."</div>";
-                                                           
-                                echo "<div class='picture_info'>";
-                                    echo "<div class='picture_comm_info'><span><span id='nr_of_comments'>" . GetNrOfImageComments($picture_id) . "</span> comment(s)</span></div></div>"; 
-                                
-                              //echo "<div class='mod'>$mod_name</div>";
-                                            
 
-                            echo "<div class='image_description' title='click / tap here to put some wideo description here ...'>$picture_description</div>";  
-                            echo "<div class='images_tags' tag-list='".GetImageTagListArray($picture_id)."'>".GetImageTagList($picture_id)."</div>";  
+                              echo "<div class='picture_info'>";
+                                  echo "<div class='picture_modpacks'>".GetImageModpack($picture_id)."</div>";
+                                  echo "<div class='image_description' title='click / tap here to put some wideo description here ...'>$picture_description</div>";  
+                                  echo "<div class='images_tags' tag-list='".GetImageTagListArray($picture_id)."'>".GetImageTagList($picture_id)."</div>";  
+                               
+                              echo "</div>"; //picture_info                                            
 
+                           
+                             echo "<div class='picture_comm_info'><span><span id='nr_of_comments'>" . GetNrOfImageComments($picture_id) . "</span> comment(s)</span></div>";  
                             echo "<div class='picture_comments' id='comments'>";
+                            
                             $picture_comments = "SELECT * from picture_comments where pic_id=$picture_id";
                             $result_comments = mysqli_query($link, $picture_comments);
                             while ($row_comments = mysqli_fetch_array($result_comments)) {
@@ -111,5 +112,24 @@
               <!-- <div class="loading" style="display: none;">Loading...</div> -->
           </div>
         </dialog>     
+
+        <dialog class="modal_change_modpack">
+             <div class='inner_change_modpack_layer'>
+                <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button>  
+                <div class='change_modpack_list'>
+                <?php
+                   $get_modpacks = "SELECT * from modpacks ORDER BY modpack_name ASC";
+                    $result=mysqli_query($link, $get_modpacks);
+
+                    echo "<button modpack-id=999 class='button small_button'>Unspecified</button>";
+                    while ($row = mysqli_fetch_array($result)) {                   
+                        $modpack_name = $row['modpack_name'];
+                        $modpack_id = $row['modpack_id']; 
+                        echo "<button modpack-id=$modpack_id class='button small_button'>$modpack_name</button>";
+
+                    }
+                ?>
+              </div>
+         </dialog>
 </body>
 </html>
