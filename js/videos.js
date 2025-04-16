@@ -26,7 +26,13 @@ var video_mods_alphabet = document.querySelector(".video_mods_alphabet");
 var video_mods_list = document.querySelector(".video_mods_list");
 var video_tags_alphabet = document.querySelector(".video_tags_alphabet");
 var video_tags_map = document.querySelector(".video_tags_map");
+var video_tags_map_input = document.querySelector(".video_tags_map input");;
 
+
+
+video_tags_map_input.addEventListener("keyup", function(event) {
+            SearchVideoTag(video_tags_map_input.value);
+});
 
 
 selectElement.addEventListener("change", (event) => {
@@ -55,7 +61,6 @@ video_tags_map.addEventListener('click', function(event){
         sortByVideoTag(tagId);
      }
 });
-
 
 
 video_tags_alphabet.addEventListener("change", function(event){
@@ -1430,5 +1435,19 @@ function sortByVideoTag(tagId){
     xhttp.open("POST", "videos_sorted_by_tag.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var params="tag_id="+tagId;
+    xhttp.send(params);
+}
+
+function SearchVideoTag(tagValue){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".video_tags_map").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "videos_tags_search.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var params="search_tag="+tagValue;
     xhttp.send(params);
 }
