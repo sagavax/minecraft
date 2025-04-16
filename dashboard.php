@@ -40,7 +40,7 @@
                           <div class="tile" tile-id='tasks'><div class='tile_title'>Tasks</div><div class="tile_info"><span><?php echo GetCountTasks()?> tasks, <?php echo GetCountNewestTasks(); ?> the newest</span></div></div>
                           <div class="tile" tile-id='modpacks';><div class='tile_title'>Modpacks</div><div class="tile_info"><span><?php echo GetCountModpacks(); ?> modpacks, <?php echo GetCountActiveModpacks() ?> are active, <?php echo GetCountInactiveModpacks() ?> are inactive</span></div></div>
                           <div class="tile" tile-id='mods';><div class='tile_title'>Mods</div><div class="tile_info"><span><?php echo GetCountMods(); ?> mods</div></div>
-
+                          <div class="tile" tile-id='tags';><div class='tile_title'>Mods</div><div class="tile_info"><span><?php echo GetCountTags(); ?> tags</div></div>
                           <div class="tile" tile-id='videos'><div class='tile_title'>Videos</div><div class="tile_info"><span><?php echo GetCountVideos();?> videos, <?php echo GetCountNewestVideos(); ?> the newest</span></div></div>
                           <div class="tile" tile-id='images'><div class='tile_title'>Gallery</div><div class="tile_info"><span><?php echo GetCountImages(); ?> images</span></div></div>
                           <div class="tile"  tile-id='vanilla'><div class='tile_title'>Vanila</div><div class="tile_info"><span><?php echo GetCountBases()." bases ,".GetCountVanilaVideos()." videos,".GetCountVanilaNotes()." notes"; ?></span></div></div>
