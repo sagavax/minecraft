@@ -5,8 +5,33 @@ var images_tags = document.querySelector(".images_tags");
 var image_description = document.querySelector(".image_description");
 var modal_new_tags = document.querySelector(".modal_new_tags");
 var old_description = document.querySelector(".image_description").innerText;
+var picture_modpacks = document.querySelector(".picture_modpacks");
+var modal_change_modpack = document.querySelector(".modal_change_modpack");
 //
 sessionStorage.setItem("picture_id",imageId);
+
+
+picture_modpacks.addEventListener("click", function(event){
+  if (event.target.tagName === "BUTTON"){
+    modal_change_modpack.showModal();
+  }
+});
+
+
+modal_change_modpack.addEventListener("click", function(event) {
+  // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
+ if (event.target.tagName === "BUTTON" && event.target.hasAttribute("modpack-id")) {
+     const modpackId = event.target.getAttribute("modpack-id"); 
+     const modpackName = event.target.innerText;
+     const imageId = sessionStorage.getItem("picture_id");
+     //degugg
+     console.log("Modpack name:", modpackName); // Alebo alert, ak preferuješ
+     console.log("Modpack ID:", modpackId); // Alebo alert, ak preferuješ
+     console.log("image id:", imageId);
+     // change modpack
+     imageChangeModpack(imageId, modpackId,modpackName);
+ }
+});
 
 
 images_tags.addEventListener("click", function(event){
@@ -338,3 +363,23 @@ save_image_name(image_name);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
  }
+
+ function imageChangeModpack(imageId, modpackId, modpackName) {
+  var xhttp = new XMLHttpRequest();
+
+  // Prepare the data before the request
+  var data = "image_id=" + imageId + "&modpack_id=" + modpackId;
+
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          alert("Modpack zmenený!");
+          document.querySelector(".picture_modpacks button").innerText = modpackName;
+          modal_change_modpack.close();
+      }
+  }
+
+  // Send the request
+  xhttp.open("POST", "images_modpack_change.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
