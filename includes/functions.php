@@ -2,6 +2,24 @@
 include("includes/dbconnect.php");
 
 
+function GetImageModpack($image_id) {
+	global $link;
+	$get_image_modpack = "SELECT b.modpack_id, b.modpack_name from pictures_modpacks a, modpacks b WHERE image_id = $image_id and a.modpack_id = b.modpack_id";
+	//echo $get_video_modpack;
+	$result=mysqli_query($link, $get_image_modpack);
+	if ($result && $row = mysqli_fetch_array($result)) {
+		$modpack_name = $row['modpack_name'];
+		$modpack_id = $row['modpack_id'];
+		$modpack_name = "<button class='button blue_button' modpack-id=$modpack_id name='image_modpack'>$modpack_name</button>";
+	} else {
+		$modpack_name = ""; // Alebo nechaj prázdne: $modpack_name = "";
+	}
+
+
+	return $modpack_name;
+}
+
+
 function GetCountTags(){
 	global $link;
 
