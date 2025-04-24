@@ -68,8 +68,7 @@ pictures_images.forEach(function(pictures_image) {
 var image_action = document.querySelector("#picture_list");
 image_action.addEventListener("click", function(event) {
   var imageId = event.target.closest(".picture_action").getAttribute("image-id");
-  var buttonName;
-
+  
   if (event.target.tagName === "BUTTON") {
     buttonName = event.target.name;
   } else if (event.target.tagName === "I") {
@@ -161,8 +160,6 @@ function imageChangeModpack(imageId, modpackId, modpackName) {
   var xhttp = new XMLHttpRequest();
 
   // Prepare the data before the request
-  var data = "image_id=" + imageId + "&modpack_id=" + modpackId;
-
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           alert("Modpack zmenený!");
