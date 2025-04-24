@@ -70,6 +70,7 @@ $modpack_id = $_GET['modpack_id'];
             // Footer s akciami
             echo "<div class='picture_footer'>";
                 echo "<div class='picture_action' image-id='$picture_id'>";
+                    echo GetImageModpack($picture_id);
                     echo "<button name='add_tag' type='button' class='button small_button' title='Add tag'><i class='fas fa-tag'></i></button>";
                     echo "<button name='add_comment' type='button' class='button small_button' title='Add new comment'><i class='fa fa-comment'></i></button>";
                     echo "<button name='view_image' type='button' class='button small_button' title='View image'><i class='fa fa-eye'></i></button>";

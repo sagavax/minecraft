@@ -268,7 +268,7 @@
                        //echo "<div class='mod_modpack'>".$modpack_name."</div>";
 
                          echo "<div class='picture_action' image-id=$picture_id>";
-                          echo "<button name='add_tag' type='button' class='button small_button' title='Add tagg'><i class='fas fa-tag'></i></button><button name='add_comment' type='button' class='button small_button' title='Add new comment'><i class='fa fa-comment'></i></button><button name='view_image' type='button'class='button small_button' title='View image'><i class='fa fa-eye'></i></button><button name='delete_image' type='button' class='button small_button' title='Delete picture'><i class='fa fa-times'></i></button>";
+                          echo "<div class='picture_modpacks'>".GetImageModpack($picture_id)."</div><button name='add_tag' type='button' class='button small_button' title='Add tagg'><i class='fas fa-tag'></i></button><button name='add_comment' type='button' class='button small_button' title='Add new comment'><i class='fa fa-comment'></i></button><button name='view_image' type='button'class='button small_button' title='View image'><i class='fa fa-eye'></i></button><button name='delete_image' type='button' class='button small_button' title='Delete picture'><i class='fa fa-times'></i></button>";
                           echo "</div>";//picture_action
                        echo "</div>";
                        //echo "<div class='mod'>$mod_name</div>";         

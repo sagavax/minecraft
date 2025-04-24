@@ -654,6 +654,11 @@ textarea::placeholder {
     box-sizing: border-box;
 }
 
+
+.picture_action > .picture_modpack {
+ width: auto;
+}
+
 .notes_action {
     width: 100%;
     justify-content: flex-end;
@@ -1671,6 +1676,7 @@ textarea::placeholder {
     border: 1px #d1d1d1 solid;
     margin-top:10px;
     background: white;
+    aspect-ratio: 16 / 9;
 }
 
 .picture {
