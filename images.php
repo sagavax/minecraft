@@ -295,3 +295,23 @@
                 ?>  
         </div><!--list-->    
     </div><!-- content -->
+
+    
+    <dialog class="modal_change_modpack">
+             <div class='inner_change_modpack_layer'>
+                <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button>  
+                <div class='change_modpack_list'>
+                <?php
+                   $get_modpacks = "SELECT * from modpacks ORDER BY modpack_name ASC";
+                    $result=mysqli_query($link, $get_modpacks);
+
+                    echo "<button modpack-id=999 class='button small_button'>Unspecified</button>";
+                    while ($row = mysqli_fetch_array($result)) {                   
+                        $modpack_name = $row['modpack_name'];
+                        $modpack_id = $row['modpack_id']; 
+                        echo "<button modpack-id=$modpack_id class='button small_button'>$modpack_name</button>";
+
+                    }
+                ?>
+              </div>
+         </dialog>

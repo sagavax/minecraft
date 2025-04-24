@@ -3,12 +3,39 @@
          const upload_image = document.getElementById("upload_image");
          const external_image = document.getElementById("upload_external_image");
          const drag_and_drop = document.getElementById("drag_and_drop");
-
+         var picture_modpacks = document.querySelector(".picture_modpacks");
+         var modal_change_modpack = document.querySelector(".modal_change_modpack"); 
               
          document.getElementById("upload_external_image").style.display="block";
          //document.getElementById("drag_and_drop").style.display="none";
 
       
+         //sessionStorage.setItem("picture_id",imageId);
+
+
+         picture_modpacks.addEventListener("click", function(event){
+           if (event.target.tagName === "BUTTON"){
+             modal_change_modpack.showModal();
+           }
+         });
+         
+         
+         modal_change_modpack.addEventListener("click", function(event) {
+           // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
+          if (event.target.tagName === "BUTTON" && event.target.hasAttribute("modpack-id")) {
+              const modpackId = event.target.getAttribute("modpack-id"); 
+              const modpackName = event.target.innerText;
+              const imageId = sessionStorage.getItem("picture_id");
+              //degugg
+              console.log("Modpack name:", modpackName); // Alebo alert, ak preferuješ
+              console.log("Modpack ID:", modpackId); // Alebo alert, ak preferuješ
+              console.log("image id:", imageId);
+              // change modpack
+              imageChangeModpack(imageId, modpackId,modpackName);
+          }
+         });
+
+
 
        function check_url(){
          const url = document.getElementById("image_url").value;
@@ -125,4 +152,25 @@ function save_external_image(){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "image_name="+encodeURIComponent(image_name)+"&image_url="+encodeURIComponent(image_url)+"&image_description="+encodeURIComponent(image_description)+"&modpack_id="+encodeURIComponent(modpack_id);                
     xhttp.send(data);
+}
+
+
+function imageChangeModpack(imageId, modpackId, modpackName) {
+  var xhttp = new XMLHttpRequest();
+
+  // Prepare the data before the request
+  var data = "image_id=" + imageId + "&modpack_id=" + modpackId;
+
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          alert("Modpack zmenený!");
+          document.querySelector(".picture_modpacks button").innerText = modpackName;
+          modal_change_modpack.close();
+      }
+  }
+
+  // Send the request
+  xhttp.open("POST", "images_modpack_change.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
 }
