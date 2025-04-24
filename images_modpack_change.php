@@ -7,6 +7,7 @@ $image_id = $_POST['image_id'];
 
 
 $change_modpack = "UPDATE pictures_modpacks SET modpack_id=$modpack_id WHERE image_id=$image_id";
+echo $change_modpack;
 $result = mysqli_query($link, $change_modpack) or die(mysqli_error($link));
 
 

@@ -3,7 +3,7 @@
          const upload_image = document.getElementById("upload_image");
          const external_image = document.getElementById("upload_external_image");
          const drag_and_drop = document.getElementById("drag_and_drop");
-         var picture_modpacks = document.querySelector(".picture_modpacks");
+         //var picture_modpacks = document.querySelector(".picture_modpacks");
          var modal_change_modpack = document.querySelector(".modal_change_modpack"); 
               
          document.getElementById("upload_external_image").style.display="block";
@@ -13,11 +13,11 @@
          //sessionStorage.setItem("picture_id",imageId);
 
 
-         picture_modpacks.addEventListener("click", function(event){
+         /* picture_modpacks.addEventListener("click", function(event){
            if (event.target.tagName === "BUTTON"){
              modal_change_modpack.showModal();
            }
-         });
+         }); */
          
          
          modal_change_modpack.addEventListener("click", function(event) {
@@ -84,6 +84,8 @@ image_action.addEventListener("click", function(event) {
     addComment(imageId);
   } else if (buttonName === "delete_image") {
     removeImage(imageId);
+  } else if (buttonName === "image_modpack") {
+    modal_change_modpack.showModal();
   }
 });
 
@@ -172,5 +174,6 @@ function imageChangeModpack(imageId, modpackId, modpackName) {
   // Send the request
   xhttp.open("POST", "images_modpack_change.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  var data = "image_id=" + imageId + "&modpack_id=" + modpackId;
   xhttp.send(data);
 }
