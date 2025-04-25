@@ -2,12 +2,12 @@
 
 include("includes/dbconnect.php");  
 
-$picture_id = $_POST['picture_id'];
+$picture_id = $_POST['image_id'];
 
 $remove_picture = "DELETE from pictures WHERE picture_id=$picture_id";  
 $result = mysqli_query($link, $remove_picture) or die(mysqli_error($link));
 
-$remove_picture_tags = "DELETE from tags_list WHERE picture_id=$picture_id";  
+$remove_picture_tags = "DELETE from tags_list WHERE image_id=$picture_id";  
 $result = mysqli_query($link, $remove_picture_tags) or die(mysqli_error($link));
 
 //remove comments

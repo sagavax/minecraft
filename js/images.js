@@ -135,7 +135,7 @@ function removeImage(imageId){
           
         xhttp.open("POST", "picture_remove.php",true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        var data = "image_id="+encodeURIComponent(image_id);                
+        var data = "image_id="+encodeURIComponent(imageId);                
         xhttp.send(data);
 }
 
