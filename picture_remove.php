@@ -7,7 +7,7 @@ $picture_id = $_POST['image_id'];
 $remove_picture = "DELETE from pictures WHERE picture_id=$picture_id";  
 $result = mysqli_query($link, $remove_picture) or die(mysqli_error($link));
 
-$remove_picture_tags = "DELETE from tags_list WHERE image_id=$picture_id";  
+$remove_picture_tags = "DELETE from pictures_tags WHERE image_id=$picture_id";  
 $result = mysqli_query($link, $remove_picture_tags) or die(mysqli_error($link));
 
 //remove comments
@@ -19,3 +19,5 @@ $result = mysqli_query($link, $remove_comments) or die(mysqli_error($link));
 $diary_text="Minecraft IS: Bol vymazany obrazok s ID $picture_id";
 $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";   
 $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+
+?>
