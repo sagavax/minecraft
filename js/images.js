@@ -130,6 +130,7 @@ function removeImage(imageId){
   console.log(imageId);
   const xhttp = new XMLHttpRequest();
           xhttp.onload = function() {
+            alert("image has been removed");
             document.querySelector('.picture[image-id="'+imageId+'"]').remove();
           }
           
