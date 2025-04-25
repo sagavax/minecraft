@@ -128,6 +128,15 @@ function AddImageTag(imageId){
 
 function removeImage(imageId){
   console.log(imageId);
+  const xhttp = new XMLHttpRequest();
+          xhttp.onload = function() {
+            document.querySelector('.picture[image-id="'+imageId+'"]').remove();
+          }
+          
+        xhttp.open("POST", "picture_remove.php",true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        var data = "image_id="+encodeURIComponent(image_id);                
+        xhttp.send(data);
 }
 
 function viewImage(imageId){
