@@ -5,7 +5,7 @@ include("includes/dbconnect.php");
 function GetImageModpack($image_id) {
 	global $link;
 	$get_image_modpack = "SELECT b.modpack_id, b.modpack_name from pictures_modpacks a, modpacks b WHERE image_id = $image_id and a.modpack_id = b.modpack_id";
-	//echo $get_video_modpack;
+	//echo $get_image_modpack;
 	$result=mysqli_query($link, $get_image_modpack);
 	if ($result && $row = mysqli_fetch_array($result)) {
 		$modpack_name = $row['modpack_name'];
