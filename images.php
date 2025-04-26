@@ -41,41 +41,7 @@
 
       if(isset($_POST['add_new_ext_pic'])){
         //var_dump($_POST);
-        $image_name = mysqli_real_escape_string($link, $_POST['image_name']);
-        $image_url = mysqli_real_escape_string($link, $_POST['image_url']);
-        $image_description = mysqli_real_escape_string($link, $_POST['image_description']);
-        
-        $sql="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, added_date) VALUES ('$image_name', '$image_description','$image_url','$image_url',now())";
-        // echo $sql;
-        $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link)); 
-
-        //get latest id;
-        $image_id = mysqli_insert_id($link);
-        
-        //upated_mods
-        $cat_id=0;
-        $insert_into_mods = "INSERT INTO pictures_mods (image_id, cat_id, created_date) VALUES ($image_id, $cat_id, now())";
-        $result = mysqli_query($link, $insert_into_mods) or die("MySQLi ERROR: ".mysqli_error($link));
-        
-        //updates modpacks
-        $modpack_id=9;
-        $insert_into_modpacks = "INSERT INTO pictures_modpacks (image_id, modpack_id, created_date) VALUES ($image_id, $modpack_id,now())";
-        $result = mysqli_query($link, $insert_into_modpacks) or die("MySQLi ERROR: ".mysqli_error($link));
-        
-        //updates tags
-        //$insert_into_tags = "INSERT INTO pictures_tags (image_id, tag_id, created_date) VALUES ($image_id, $tag_id, $created_date)";
-        //$result = mysqli_query($link, $insert_into_tags) or die("MySQLi ERROR: ".mysqli_error($link));
-        
-    
-        ////vlozim do wallu 
-        $diary_text="Minecraft IS: Bol pridany novy obrazok s nazvom <strong>$image_name</strong>";
-        $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-        $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-        
-
-        echo "<script>alert('Novy obrazok bol pridany!!!');
-        window.location.href='images.php'
-        </script>";
+       
       }
 ?>      
 <!DOCTYPE html>
@@ -110,9 +76,7 @@
 
             <!-- Form to add a new image -->
             <div class="add_new_image">
-                <form action="" enctype="multipart/form-data" method="post" id="upload_external_image" onsubmit="return save_external_image();">    
-                    <input type="hidden" name="modpack_id" value="<?php echo isset($_GET['modpack_id']) ? $_GET['modpack_id'] : 0; ?>">
-                    <input type="hidden" name="<?php echo ini_get('session.upload_progress.name'); ?>" value="test" />
+                <form action="" enctype="multipart/form-data" method="post" id="upload_external_image" onsubmit="return saveExternalImage();">    
                     <input type="text" name="image_name" placeholder="Picture title" autocomplete="off">
                     <input type="text" name="image_url" placeholder="Image URL" autocomplete="off" id="image_url">
                     <textarea name="image_description" placeholder="Something about..."></textarea>
