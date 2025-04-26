@@ -5,12 +5,17 @@
          const drag_and_drop = document.getElementById("drag_and_drop");
          //var picture_modpacks = document.querySelector(".picture_modpacks");
          var modal_change_modpack = document.querySelector(".modal_change_modpack"); 
-              
+         var image_url_input = document.querySelector(".add_new_image input[name='image_url']")     
          document.getElementById("upload_external_image").style.display="block";
          //document.getElementById("drag_and_drop").style.display="none";
 
       
          //sessionStorage.setItem("picture_id",imageId);
+
+         image_url_input.addEventListener("input", function(event) {
+           console.log("image url input changed");
+           checkImageExists(image_url_input.value);
+         }) 
 
 
          /* picture_modpacks.addEventListener("click", function(event){
@@ -173,7 +178,8 @@ function imageChangeModpack(imageId, modpackId, modpackName) {
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           alert("Modpack zmenený!");
-          document.querySelector(".picture_modpacks button").innerText = modpackName;
+          //document.querySelector(`.bug[bug-id='${bugId}'] .bug_footer .bug_text`)
+          document.querySelector(`.picture_action[image-id='${imageId}'] button`).innerText = modpackName;
           modal_change_modpack.close();
       }
   }
@@ -183,4 +189,19 @@ function imageChangeModpack(imageId, modpackId, modpackName) {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var data = "image_id=" + imageId + "&modpack_id=" + modpackId;
   xhttp.send(data);
+}
+
+
+function checkImageExists(imageUrl){
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      if(this.responseText==="true"){
+        alert("Image already exists!");  
+        document.querySelector(".add_new_image input[name='image_url']").value="";
+      }  
+    }
+}
+  xhttp.open("GET", "images_check.php?url="+encodeURIComponent(imageUrl), true);
+  xhttp.send(); 
 }
