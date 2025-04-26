@@ -5,9 +5,9 @@
       $image_url = mysqli_real_escape_string($link, $_POST['image_url']);
       $image_description = mysqli_real_escape_string($link, $_POST['image_description']);
       
-      $sql="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, added_date) VALUES ('$image_name', '$image_description','$image_url','$image_url',now())";
-      // echo $sql;
-      $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link)); 
+      $add_image="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, added_date) VALUES ('$image_name', '$image_description','$image_url','$image_url',now())";
+      //echo $add_image;
+      $result = mysqli_query($link, $add_image) or die("MySQLi ERROR: ".mysqli_error($link)); 
 
       //get latest id;
       $image_id = mysqli_insert_id($link);
@@ -32,5 +32,5 @@
       $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
       $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 
-      header("Location: images.php");
-      exit();
+      //header("Location: images.php");
+      //exit();
