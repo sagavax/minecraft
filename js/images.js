@@ -17,6 +17,18 @@
            checkImageExists(image_url_input.value);
          }) 
 
+         image_url_input.addEventListener("dragover", function(event) {
+          event.target.style.backgroundColor = "#d2f9be82";
+          console.log("drag over");
+         })
+
+         image_url_input.addEventListener("dragleave", function(event) {
+          image_url_input.style.backgroundColor = "#eff3f4";
+         })
+
+         image_url_input.addEventListener("drop", function(event) {
+          image_url_input.style.backgroundColor = "#eff3f4";
+         })
 
          /* picture_modpacks.addEventListener("click", function(event){
            if (event.target.tagName === "BUTTON"){
@@ -154,7 +166,7 @@ function addComment(imageId){
   console.log(imageId);
 }
 
-function save_external_image(){
+function saveExternalImage(){
    const image_name = document.querySelector('input[name="image_name"]').value;
    const image_url = document.querySelector('input[name="image_url"]').value;
    const modpack_id = document.querySelector('input[name="modpack_id"]').value;
@@ -198,10 +210,10 @@ function checkImageExists(imageUrl){
     if (this.readyState == 4 && this.status == 200) {
       if(this.responseText==="true"){
         alert("Image already exists!");  
-        document.querySelector(".add_new_image input[name='image_url']").value="";
+           document.querySelector(".add_new_image input[name='image_url']").value="";
       }  
     }
 }
-  xhttp.open("GET", "images_check.php?url="+encodeURIComponent(imageUrl), true);
+  xhttp.open("GET", "images_check.php?image_url="+encodeURIComponent(imageUrl), true);
   xhttp.send(); 
 }
