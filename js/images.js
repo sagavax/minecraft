@@ -166,21 +166,30 @@ function addComment(imageId){
   console.log(imageId);
 }
 
-function saveExternalImage(){
-   const image_name = document.querySelector('input[name="image_name"]').value;
-   const image_url = document.querySelector('input[name="image_url"]').value;
-   const modpack_id = document.querySelector('input[name="modpack_id"]').value;
-   const image_description = document.querySelector('textarea[name="image_description"]').value;
-   const xhttp = new XMLHttpRequest();
-          xhttp.onload = function() {
-            alert("image has been upoloaded"); 
-          }
-          
-    xhttp.open("POST", "images_add_ext_image.php",true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    var data = "image_name="+encodeURIComponent(image_name)+"&image_url="+encodeURIComponent(image_url)+"&image_description="+encodeURIComponent(image_description)+"&modpack_id="+encodeURIComponent(modpack_id);                
-    xhttp.send(data);
+function saveExternalImage() {
+  const image_name = document.querySelector('input[name="image_name"]').value;
+  const image_url = document.querySelector('input[name="image_url"]').value;
+  const modpack_id = document.querySelector('input[name="modpack_id"]').value;
+  const image_description = document.querySelector('textarea[name="image_description"]').value;
+
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+     alert("Image has been uploaded"); 
+  };
+  
+  xhttp.open("POST", "images_add_ext_image.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  var data = "image_name=" + encodeURIComponent(image_name) + 
+             "&image_url=" + encodeURIComponent(image_url) + 
+             "&image_description=" + encodeURIComponent(image_description) + 
+             "&modpack_id=" + encodeURIComponent(modpack_id);
+             
+  xhttp.send(data);
+
+  return false; // ZASTAVÍ normálne odoslanie formulára
 }
+
+
 
 
 function imageChangeModpack(imageId, modpackId, modpackName) {
