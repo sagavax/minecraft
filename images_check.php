@@ -3,7 +3,7 @@
 include("includes/dbconnect.php");
 include("includes/functions.php");
 
-$image_url = mysqli_real_escape_string($link, $_POST['image_url']);
+$image_url = mysqli_real_escape_string($link, $_GET['image_url']);
 
 
 $check_image = "SELECT * FROM pictures WHERE picture_path='$image_url'";
