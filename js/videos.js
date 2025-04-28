@@ -163,7 +163,7 @@ change_modpack_list.addEventListener("click", function(event) {
      // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
     if (event.target.tagName === "BUTTON" && event.target.hasAttribute("modpack-id")) {
         const modpackId = event.target.getAttribute("modpack-id"); 
-        const modpackName = encodeURIComponent(event.target.innerText);
+        const modpackName = event.target.innerText;
         const videoId = sessionStorage.getItem("video_id");
          //console.log("Modpack ID:", modpackId); // Alebo alert, ak preferuješ
         //console.log("video id:", videoId);
