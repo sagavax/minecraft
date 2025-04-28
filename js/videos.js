@@ -150,12 +150,12 @@ parentElement.addEventListener("input", function(event) {
     }
 });
 
-parentElement.addEventListener("keydown", function(event) {
+/* parentElement.addEventListener("keydown", function(event) {
     // Check if the target element is the input field
     if (event.target.matches(".inner_layer input") && event.key === "Enter") {
         createVideoTag(event.target.value);
     }
-});
+}); */
 
 
 
@@ -312,7 +312,7 @@ modal_modpack_input.addEventListener("input", function(){
        //document.getElementById("videos_cards").style.display = "grid";
    }
 
-   
+
    function reload_videos() {
        // alert(video_url);
        document.getElementById("videos_list").style.display = "block";
@@ -387,71 +387,6 @@ modal_modpack_input.addEventListener("input", function(){
         return true;
     } catch (e) {
         return false;
-    }
-}
-
-  
-
-  function getYouTubeVideoName_old() {
-    var url = document.getElementById("video_url").value;
-    
-    if (!isValidUrl(url)) {
-        console.error("Invalid URL provided:", url);
-        ShowMessage("invalid url");
-        return; // Exit the function if the URL is invalid
-    }
-
-
-
-
-   if(hasTimeParameter(url)===true){
-    url = removeTimeParameter(url);
-    console.log(url);
-   }
-
-
-
-    // Define a regular expression pattern to match YouTube URLs
-   const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    // Extract the video ID from the URL using the regular expression
-    const match = url.match(youtubeRegex);
-
-    // If a match is found, proceed
-    if (match && match[1]) {
-        const videoId = match[1];
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                const video_name = this.responseText;
-
-                if (video_name) {
-                    document.getElementById("video_title").value = video_name;
-                    
-                    let bedrockVariants = ["Bedrock", "bedrock", "BEDROCK"];
-
-                    // Check if any of the variants is included in the video name
-                    for (let i = 0; i < bedrockVariants.length; i++) {
-                        if (video_name.includes(bedrockVariants[i])) {
-                            document.querySelector('select[name="edition"]').value = "bedrock";
-                            break; // Stop searching after the first match
-                        }
-                    }
-                } else {
-                    // Handle case where video name is empty
-                    ShowMessage("Video name could not be retrieved.");
-                }
-            }
-        };
-        xhttp.open("GET", "get_youtube_video_name.php?videoUrl="+encodeURIComponent(url), true);
-        xhttp.send();
-
-        // You can use the video ID to make API requests or perform other actions
-        return videoId;
-    } else {
-        // Display error message if the URL is not valid
-        ShowMessage("This is not a valid YouTube video URL");
-        return null;
     }
 }
 
