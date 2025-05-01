@@ -1190,6 +1190,7 @@ textarea::placeholder {
     display: flex;
     width: 100%;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .videos_tags {
@@ -1211,6 +1212,7 @@ textarea::placeholder {
 }
 
 .videos_tags button {
+    font-size:12px;
     height:35px;
 } 
 
@@ -1826,6 +1828,7 @@ textarea::placeholder {
 }
 
 .video_modpack_information_wrap {
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
