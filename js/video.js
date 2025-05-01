@@ -66,28 +66,27 @@
 
       modal_new_video_tags.addEventListener("click", function(event){
         if(event.target.tagName==="BUTTON"){
+          console.log(event.target.name);
+          if(event.target.name==="add_new_tag"){
             var  tagId = event.target.getAttribute("tag-id");
             var videoId = sessionStorage.getItem("video_id");
-            //var  videoId = event.target.closest(".")
-            //alert(tagId);
-            console.log(tagId,videoId);
+             console.log(tagId,videoId);
             savetoVideoTagList(tagId, videoId);
             //remove from the list to avoid confusion
-            
             document.querySelector(".modal_new_tags .tags_list").removeChild(event.target);
-            
-            //832 128         
-            //add tags to database
-            
-            //get videoID
+          } if(event.target.name==="letter"){
+            var letterButton = event.target.innerText;
+            sortVideosTagsByLetters(letterButton);
+          }
         }
-    })
-
+      })
+        
 
       modal_add_new_tags_closeButton.addEventListener("click",function(){
         document.querySelector(".modal_new_tags").close();
       })
       
+
       video_comments.addEventListener("click", function(event){
           if(event.target.tagName==="BUTTON" || event.target.tagName==="I"){
                   //alert("remove");    
@@ -313,4 +312,28 @@ function savetoVideoTagList(tagId, videoId){
 
 function remove_tag_from_video(tagId,videoId ){
   alert("video id: "+videoId+" tag id: "+tagId);
+}
+
+function sortVideosTagsByLetters(letterButton){
+  const xhttp = new XMLHttpRequest();
+
+  // Define what happens on successful data submission
+  xhttp.onreadystatechange = function() {
+      // Check if the request is complete and was successful
+      if (this.readyState == 4 && this.status == 200) {
+          // Show a message when the export is successful
+          //ShowMessage("Videos tags have been sorted ...");
+          document.querySelector(".tags_list").innerHTML = this.responseText;
+      }
+  };
+
+  // Configure the request
+  xhttp.open("POST", "video_tags_sort_by_letters.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  // You need to define the `data` variable before calling `exportCSV()`
+  // For example:
+  var data = "letter="+letterButton;
+  // Send the request with data (assuming `data` is defined elsewhere)
+  xhttp.send(data);
 }
