@@ -320,7 +320,7 @@ function convertLinks($string) {
 	   
 		//echo "<button class='button' name='video_tags_count'>".GetCountVideoTags($video_id)."</button>";	
 		if($total>6){
-		$tags = $tags. " <button class='button' name='video_tags_count'>More...</button>";	
+		$tags = $tags. " <button class='button small_button' name='video_tags_count'>More...</button>";	
 		} 
   return $tags;
   }
@@ -335,7 +335,7 @@ function convertLinks($string) {
 	  while ($row = mysqli_fetch_array($result)) {
 			 $tag_id= $row['tag_id'];
 			 $tag_name= $row['tag_name'];
-			  $tags .= "<button class='button small_button' tag-id=$tag_id name='tag'>$tag_name</button>";
+			  $tags .= "<button class='button small_button' tag-id=$tag_id name='add_new_tag'>$tag_name</button>";
 			 }
 			
   return $tags;
