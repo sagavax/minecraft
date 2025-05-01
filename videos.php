@@ -82,7 +82,7 @@
                                   $get_modpacks = "SELECT * from modpacks ORDER BY modpack_name ASC";
                                     $result=mysqli_query($link, $get_modpacks);
 
-                                    echo "<option value=1>Custom modpack</option>";
+                                    echo "<option value=1>Custome modpack</option>";
                                     while ($row = mysqli_fetch_array($result)) {                   
                                         $modpack_name = $row['modpack_name'];
                                         $modpack_id = $row['modpack_id']; 
@@ -324,7 +324,7 @@
                 <div class="video_tags_alphabet">
                     <?php 
                         foreach (range('A', 'Z') as $char) {
-                          echo "<button type='button' class='button small_button'>$char</button>";
+                          echo "<button type='button' class='button small_button' name='letter'>$char</button>";
                         }
                         echo "<button type='button' class='button small_button' name='add_new_tag' title='Add new tag'><i class='fa fa-plus'></i></button>";
                      ?>
