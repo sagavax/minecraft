@@ -1,0 +1,72 @@
+.overlay {
+    width:100vw;
+    height:100vh;
+    position: fixed;
+    top:0;
+    left:0;
+    background: rgba(0,0,0,0.8);
+    z-index: 100;
+      }
+
+  .logon_information {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%,-50%);  
+  height: 200px;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 120px;
+  }
+
+  .logon_information_text {
+    font-family: 'Noto Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    color:#444;
+    font-weight: bold;
+  }
+  
+  .success i {
+    color: #5FB67D;
+}
+
+.error i {
+    color: #F07142;
+}
+
+
+  .circle {
+    position: absolute;
+    transform: translateY(-50%);
+    top:0px;
+   }
+  
+   .circle i {
+    background-color: white;
+    border-radius: 50%;
+   }
+
+  
+  .logon_information_text {
+    font-size: 30px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
