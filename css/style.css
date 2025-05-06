@@ -5013,20 +5013,6 @@ input[name="base_name"] {
     z-index: 100;
       }
 
-  .logon_information {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 50px;
-  color: white;
-  transform: translate(-50%,-50%);  
-  height: 200px;
-  width: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 150px;
-  }
 
    .modal, .modal_modpack,.modal_video_tags,.modal_image, .modal_video_category, .modal_change_modpack, .modal_modpack_mods{
     padding:5px;
