@@ -84,9 +84,11 @@
     <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/message.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script defer src="js/images.js?<?php echo time(); ?>"></script>
+    <script defer src="js/message.js?<?php echo time(); ?>"></script>
      <!-- <script defer src="js/app_event_tracker.js?<?php echo time() ?>"></script> -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
@@ -213,4 +215,21 @@
             </div>
         </div>
     </dialog>
+
+    <dialog class="modal_new_tags">
+          <div class="inner_layer">
+              <button type="button" class="close_inner_modal"><i class="fa fa-times"></i></button>  
+              <input type="text" name="tag_name" placeholder="tag name ...." autocomplete="off">
+              <div class="video_tags_alphabet">
+                <?php 
+                        foreach (range('A', 'Z') as $char) {
+                          echo "<button type='button' name='letter' class='button small_button'>$char</button>";
+
+                        }
+                     ?>  
+              </div>
+              <div class="tags_list"><?php echo GetAllUnassignedVideosTags()?></div>
+              <!-- <div class="loading" style="display: none;">Loading...</div> -->
+          </div>
+        </dialog>   
 </div>
