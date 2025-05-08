@@ -12,7 +12,7 @@
     <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script src="js/category.js" defer></script>
     <!-- <script defer src="js/app_event_tracker.js?<?php echo time() ?>"></script> -->
@@ -50,7 +50,10 @@
                   $result_images=mysqli_query($link, $get_mod_images) or die(mysqli_error(($link)));
                   
                    echo "<div class='mod_images'>";  
-                      echo "<header><button class='button small_button' name='reload'><i class='fas fa-sync'></i></button><button class='button small_button' name='add_new'><i class='fa fa-plus'></i></button></header>"; 
+                      echo "<header>
+                                 <button class='button small_button' name='reload' title='reload mod images'><i class='fas fa-sync'></i></button>
+                                 <button class='button small_button' name='add_new' title='Add new image'><i class='fa fa-plus'></i></button>
+                             </header>"; 
                         echo "<main>";          
                       
                          while($row_images = mysqli_fetch_array($result_images)){
@@ -89,6 +92,7 @@
 
      <dialog id="dialog_new_image">
         <div class="dialog_inner_container">
+            <p>Add image to mod</p>
             <input type="text" name="image_title" placeholder="image title" autocomplete="off">   
             <input type="text" name="image_url" placeholder="image url" autocomplete="off">
             <div class="action">
