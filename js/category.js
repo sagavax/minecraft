@@ -23,6 +23,10 @@ new_image_container.addEventListener("click", (event)=>{
     if (event.target.name==="reload"){
         reload_images();
     }
+
+    if (event.target.name==="back_to_mods"){
+        window.location.href = "mods.php";
+    }
 })
 
 
