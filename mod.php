@@ -51,6 +51,7 @@
                   
                    echo "<div class='mod_images'>";  
                       echo "<header>
+                                 <button class='button small_button' name='back_to_mods' title='back to mods'><i class='fas fa-arrow-left'></i></button>   
                                  <button class='button small_button' name='reload' title='reload mod images'><i class='fas fa-sync'></i></button>
                                  <button class='button small_button' name='add_new' title='Add new image'><i class='fa fa-plus'></i></button>
                              </header>"; 
