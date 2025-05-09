@@ -73,7 +73,9 @@
                   <h4>Add new category (mode):</h4>
                   <form action='' method='post'>
                       <input type="input" name='new_cat_name' autocomplete="off" placeholder="Add new  category..." spellcheck="false" oninput="search_mods(this.value)">
-                      <div class='action'><button type='submit' name='add_new_cat' class='button small_button pull-right'><i class='fa fa-plus'></i> Add new</button></div>
+                      <div class='action'>
+                        <button type='submit' name='add_new_cat' class='button small_button pull-right'><i class='fa fa-plus'></i> Add new</button>
+                      </div>
                   </form>   
                </div><!-- new cat / mod -->   
                
@@ -121,10 +123,10 @@
                             echo "<div class='category' data-id=$cat_id><div class='cat_name'>$cat_name</div><div class='cat_action'>";
 
                               if($cat_description==""){
-                                echo "<div class='cat_description'><i class='fas fa-plus-circle'></i></div>";  
+                                echo "<div class='cat_description'><i class='fas fa-plus-circle' title='Add description'></i></div>";  
                               }
 
-                              echo "<div class='cat_delete'><i class='fas fa-times-circle'></i></div>";
+                              echo "<div class='cat_delete'><i class='fas fa-times-circle' title='Delete mod'></i></div>";
                               echo "</div>"; //div class cat action
                             echo "</div>"; //div class cat category
                         }  
