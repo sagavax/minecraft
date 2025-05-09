@@ -21,17 +21,17 @@ if (external_image_form) {
     // Nemusíte volať external_image_form.submit();
     
     // ALEBO ak chcete plnú kontrolu nad odoslaním:
-    /*
+    
     event.preventDefault(); // Zabráňte predvolenému odoslaniu
     
     // Tu môžete pridať validáciu alebo iné operácie
     
     // A potom manuálne odošlite formulár s menším oneskorením 
-    // aby sa upozornenie stihlo zobraziť a spracovať
+    //aby sa upozornenie stihlo zobraziť a spracovať
     setTimeout(function() {
       external_image_form.submit();
     }, 100);
-    */
+    
   });
 } else {
   console.error("Formulár nebol nájdený! Skontrolujte ID formulára.");
@@ -161,9 +161,9 @@ picture_name.addEventListener('dblclick', function() {
 picture_name.contentEditable = true;
 
   picture_name.onblur =  function() {
-save_image_name(picture_name.innerHTML,imageId);
-picture_name.contentEditable = false;
-}
+    save_image_name(stripiHtml(picture_name.innerHTML),imageId);
+    picture_name.contentEditable = false;
+  }
 });
 });
 
@@ -330,4 +330,11 @@ function savetoImageTagList(tagId, imageId){
 
   // Send the request with data (assuming `data` is defined elsewhere)
   xhttp.send(data);
+}
+
+function stripiHtml(text) {
+    // Vytvorí dočasný element, ktorý spracuje HTML ako text
+    let div = document.createElement("div");
+    div.innerHTML = text;
+    return div.textContent || div.innerText || "";
 }
