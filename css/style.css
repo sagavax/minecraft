@@ -2841,7 +2841,7 @@ textarea::placeholder {
     }
 
 .cat_name, .tag_name {
-    
+    padding:5px;
 }
 
 .cat_name:hover {
@@ -2876,10 +2876,7 @@ textarea::placeholder {
     height: 100%;
     padding-top: 5px;
     justify-content: center;
-    padding-left: 5px;
-    padding-right: 5px;
     box-sizing: border-box;
-
 }
 
 .cat_delete i, .cat_description i {
