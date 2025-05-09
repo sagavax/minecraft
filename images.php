@@ -41,10 +41,12 @@
       if(isset($_POST['add_new_ext_pic'])){
         //var_dump($_POST);
         $image_name = mysqli_real_escape_string($link, $_POST['image_name']);
+        $sripped_image_name = strip_tags($image_name);
+        $pure_image_name = html_entity_decode($sripped_image_name, ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $image_url = mysqli_real_escape_string($link, $_POST['image_url']);
         $image_description = mysqli_real_escape_string($link, $_POST['image_description']);
         
-        $add_image="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, added_date) VALUES ('$image_name', '$image_description','$image_url','$image_url',now())";
+        $add_image="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, added_date) VALUES ('$pure_image_name', '$image_description','$image_url','$image_url',now())";
         //echo $add_image;
         $result = mysqli_query($link, $add_image) or die("MySQLi ERROR: ".mysqli_error($link)); 
   
