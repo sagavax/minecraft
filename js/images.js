@@ -128,7 +128,7 @@ picture_list.addEventListener("dblclick", function(event) {
       picture_name.contentEditable = false;
     };
   }
-}); // ← toto si zabudol
+});
 
 
 
@@ -145,24 +145,6 @@ modal_new_tags.addEventListener("click", function(event) {
    }
   }
 });
-
-
-/* // Add event listener to each button
-pictures_name.forEach(function(picture_name) {
-picture_name.addEventListener('dblclick', function() {
-// Get the name attribute of the clicked button
-  var closestDiv = picture_name.closest('.picture');
-  var imageId = closestDiv.getAttribute('image-id');
-//if(buttonName==="picture_delete"){
-  console.log("clicked on header");
-picture_name.contentEditable = true;
-
-  picture_name.onblur =  function() {
-    save_image_name(stripiHtml(picture_name.innerHTML),imageId);
-    picture_name.contentEditable = false;
-  }
-});
-}); */
 
 
 function saveImageName(new_name,image_id){
