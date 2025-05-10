@@ -12,7 +12,7 @@ function GetImageModpack($image_id) {
 		$modpack_id = $row['modpack_id'];
 		$modpack_name = "<button class='button blue_button' modpack-id=$modpack_id name='image_modpack'>$modpack_name</button>";
 	} else {
-		$modpack_name = ""; // Alebo nechaj prázdne: $modpack_name = "";
+		$modpack_name = "<button class='button blue_button' name='image_modpack'>No modpack</button>" ; // Alebo nechaj prázdne: $modpack_name = "";
 	}
 
 
