@@ -1,5 +1,5 @@
 var pictures_name = document.querySelectorAll('.picture_name');
-var image_action = document.querySelector("#picture_list");        
+var picture_list = document.querySelector("#picture_list");        
 const upload_image = document.getElementById("upload_image");
 const drag_and_drop = document.getElementById("drag_and_drop");
 //var picture_modpacks = document.querySelector(".picture_modpacks");
@@ -110,28 +110,25 @@ pictures_image.addEventListener('click', function() {
 
 
 
-image_action.addEventListener("click", function(event) {
+picture_list.addEventListener("click", function(event) {
   var imageId = event.target.closest(".picture_action").getAttribute("image-id");
-
+  
   if (event.target.tagName === "BUTTON") {
-  buttonName = event.target.name;
-  } else if (event.target.tagName === "I") {
-  buttonName = event.target.closest("BUTTON").name;
+    let buttonName = event.target.name; // <- deklarace pomocí let
+
+    if (buttonName === "add_tag") {
+      //AddImageTag(imageId);
+      modal_new_tags.showModal();
+    } else if (buttonName === "view_image") {
+      viewImage(imageId);
+    } else if (buttonName === "add_comment") {
+      addComment(imageId);
+    } else if (buttonName === "delete_image") {
+      removeImage(imageId);
+    } else if (buttonName === "image_modpack") {
+      modal_change_modpack.showModal();
+    }
   }
-
-  if (buttonName === "add_tag") {
-  //AddImageTag(imageId);
-  modal_new_tags.showModal();
-
-  } else if (buttonName === "view_image") {
-  viewImage(imageId);
-  } else if (buttonName === "add_comment") {
-  addComment(imageId);
-  } else if (buttonName === "delete_image") {
-  removeImage(imageId);
-  } else if (buttonName === "image_modpack") {
-  modal_change_modpack.showModal();
-  } 
 });
 
 
