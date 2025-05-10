@@ -160,7 +160,7 @@
                                     <img src='{$picture_path}'>
                                 </div>
                                 <div class='picture_footer'>
-                                    <div class='picture_action' image-id='{$picture_id}'>
+                                        <div class='picture_action' image-id='{$picture_id}'>
                                         {$modpack_name}
                                         <button name='add_tag' type='button' class='button small_button' title='Add tag'>
                                             <i class='fas fa-tag'></i>
