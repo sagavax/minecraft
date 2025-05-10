@@ -30,7 +30,7 @@ if (external_image_form) {
     //aby sa upozornenie stihlo zobraziť a spracovať
     setTimeout(function() {
       external_image_form.submit();
-    }, 100);
+    }, 3000);
     
   });
 } else {
@@ -96,26 +96,12 @@ return true;
 }
 
 
-
-
-// Add event listener to each button
-pictures_images.forEach(function(pictures_image) {
-pictures_image.addEventListener('click', function() {
-  var imageDivValue = this.closest("div.picture").getAttribute("image-id");
-  //console.log(imageDivValue);
-  window.location.href="image.php?image_id="+imageDivValue;
-
-});
-});
-
-
-
 picture_list.addEventListener("click", function(event) {
-  var imageId = event.target.closest(".picture_action").getAttribute("image-id");
+  
   
   if (event.target.tagName === "BUTTON") {
     let buttonName = event.target.name; // <- deklarace pomocí let
-
+    var imageId = event.target.closest(".picture").getAttribute("image-id");
     if (buttonName === "add_tag") {
       //AddImageTag(imageId);
       modal_new_tags.showModal();
@@ -130,6 +116,20 @@ picture_list.addEventListener("click", function(event) {
     }
   }
 });
+
+picture_list.addEventListener("dblclick", function(event) {
+  if (event.target.tagName === "DIV" && event.target.classList.contains("picture_name")) {
+    var picture_name = event.target;
+    var imageId = picture_name.closest(".picture").getAttribute("image-id");
+    picture_name.contentEditable = true;
+
+    picture_name.onblur = function() {
+      saveImageName(stripiHtml(picture_name.innerHTML), imageId);
+      picture_name.contentEditable = false;
+    };
+  }
+}); // ← toto si zabudol
+
 
 
 modal_new_tags.addEventListener("click", function(event) {
@@ -147,7 +147,7 @@ modal_new_tags.addEventListener("click", function(event) {
 });
 
 
-// Add event listener to each button
+/* // Add event listener to each button
 pictures_name.forEach(function(picture_name) {
 picture_name.addEventListener('dblclick', function() {
 // Get the name attribute of the clicked button
@@ -162,10 +162,10 @@ picture_name.contentEditable = true;
     picture_name.contentEditable = false;
   }
 });
-});
+}); */
 
 
-function save_image_name(new_name,image_id){
+function saveImageName(new_name,image_id){
   console.log(new_name);
   const xhttp = new XMLHttpRequest();
       xhttp.onload = function() {
