@@ -5058,8 +5058,7 @@ input[name="base_name"] {
 
 
    .modal_new_tags {
-    top:5%;
-    top: 5%; /* Ak chceš vertikálnu pozíciu, môžeš ju prispôsobiť */
+    top: 15%; /* Ak chceš vertikálnu pozíciu, môžeš ju prispôsobiť */
     left: 50%;
     transform: translateX(-50%); /* Horizontálne vycentrovanie */
     width: 80%;
