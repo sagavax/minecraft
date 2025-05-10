@@ -69,7 +69,7 @@ modal_change_modpack.addEventListener("click", function(event) {
 if (event.target.tagName === "BUTTON" && event.target.hasAttribute("modpack-id")) {
     const modpackId = event.target.getAttribute("modpack-id"); 
     const modpackName = event.target.innerText;
-    const imageId = sessionStorage.getItem("picture_id");
+    const imageId = sessionStorage.getItem("image_id");
     //degugg
     console.log("Modpack name:", modpackName); // Alebo alert, ak preferuješ
     console.log("Modpack ID:", modpackId); // Alebo alert, ak preferuješ
@@ -112,6 +112,7 @@ picture_list.addEventListener("click", function(event) {
     } else if (buttonName === "delete_image") {
       removeImage(imageId);
     } else if (buttonName === "image_modpack") {
+      sessionStorage.setItem("image_id",imageId);var imageId = event.target.closest(".picture_action").getAttribute("image-id");
       modal_change_modpack.showModal();
     }
   }
@@ -257,7 +258,7 @@ function addTagToImage(tagId){
          alert("Tag pridaný!");
       }
      };
-   data = "image_id="+sessionStorage.getItem('picture_id')+"&tag_id="+tagId;
+   data = "image_id="+sessionStorage.getItem('image_id')+"&tag_id="+tagId;
    xhttp.open("POST", "image_add_tag.php", true);
    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    xhttp.send(data);
