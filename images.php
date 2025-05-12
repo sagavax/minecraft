@@ -155,7 +155,7 @@
                         $modpack_name = GetImageModpack($picture_id);
 
                         echo "<div class='picture' image-id='{$picture_id}'>
-                                <div class='picture_name'>{$picture_title}</div>
+                                <div class='picture_name' placeholder='image name here...'>{$picture_title}</div>
                                 <div class='pic' image-id='{$picture_id}'>
                                     <img src='{$picture_path}'>
                                 </div>
@@ -234,4 +234,12 @@
               <!-- <div class="loading" style="display: none;">Loading...</div> -->
           </div>
         </dialog>   
+
+        <dialog class="modal_add_new_comment">
+            <div class="inner_layer">
+                <textarea name="comment" placeholder="comment ...."></textarea>
+                <div class="add_comment_action"><button type="button" class="button small_button">Save</button></div>
+            </div>
+            
+        </dialog>
 </div>
