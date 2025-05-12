@@ -9,23 +9,23 @@ document.getElementById("upload_external_image").style.display="block";
 var modal_new_tags = document.querySelector(".modal_new_tags");
 var  pictures_images = document.querySelectorAll('.pic');
 const external_image_form = document.getElementById('upload_external_image'); // Nahraďte 'external_image_form' ID vášho formulára
+const modal_add_new_comment = document.querySelector('.modal_add_new_comment');
+const image_tags_map = document.querySelector('.image_tags_map');
+
+image_tags_map.childNodes.forEach(node => {
+  if (node.tagName === 'BUTTON') {
+    //node.style.backgroundColor = '#222';
+    }
+});
+
+
 
 // Potom pridajte event listener
 if (external_image_form) {
   external_image_form.addEventListener("submit", function(event) {
+    event.preventDefault(); // Zabráňte predvolenému odoslaniu
     // Ak chcete zobraziť len upozornenie a potom odoslať formulár:
     // V tomto prípade nebráňte predvolenému odoslaniu
-    ShowMessage("Obrazok sa ulozil.");
-    //alert("Obrazok sa ulozil.");
-        // Formulár sa automaticky odošle po potvrdení upozornenia
-    // Nemusíte volať external_image_form.submit();
-    
-    // ALEBO ak chcete plnú kontrolu nad odoslaním:
-    
-    event.preventDefault(); // Zabráňte predvolenému odoslaniu
-    
-    // Tu môžete pridať validáciu alebo iné operácie
-    
     // A potom manuálne odošlite formulár s menším oneskorením 
     //aby sa upozornenie stihlo zobraziť a spracovať
     setTimeout(function() {
@@ -79,7 +79,16 @@ if (event.target.tagName === "BUTTON" && event.target.hasAttribute("modpack-id")
 }
 });
 
-
+modal_add_new_comment.addEventListener("click", function(event) {
+  // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
+if (event.target.tagName === "BUTTON" && event.target.hasAttribute("comment-id")) {
+    const commentText = document.querySelector(".modal_add_new_comment textarea").innerHTML;
+    //degugg
+   
+    // change modpack
+    imageChangeModpack(imageId,commentText);
+}
+});
 
 function check_url(){
 const url = document.getElementById("image_url").value;
@@ -108,7 +117,8 @@ picture_list.addEventListener("click", function(event) {
     } else if (buttonName === "view_image") {
       viewImage(imageId);
     } else if (buttonName === "add_comment") {
-      addComment(imageId);
+      modal_add_new_comment.showModal();
+      
     } else if (buttonName === "delete_image") {
       removeImage(imageId);
     } else if (buttonName === "image_modpack") {
@@ -121,11 +131,17 @@ picture_list.addEventListener("click", function(event) {
 picture_list.addEventListener("dblclick", function(event) {
   if (event.target.tagName === "DIV" && event.target.classList.contains("picture_name")) {
     var picture_name = event.target;
+    sessionStorage.setItem("picture_name",picture_name.innerHTML);
     var imageId = picture_name.closest(".picture").getAttribute("image-id");
     picture_name.contentEditable = true;
+    picture_name.setAttribute("placeholder","Image name");
 
     picture_name.onblur = function() {
-      saveImageName(stripiHtml(picture_name.innerHTML), imageId);
+      const new_image_name = picture_name.innerHTML;
+      const old_image_name = sessionStorage.getItem("picture_name");
+      if(new_image_name!==old_image_name){
+        saveImageName(stripiHtml(picture_name.innerHTML), imageId);  
+      } 
       picture_name.contentEditable = false;
     };
   }
@@ -152,7 +168,7 @@ function saveImageName(new_name,image_id){
   console.log(new_name);
   const xhttp = new XMLHttpRequest();
       xhttp.onload = function() {
-
+       ShowMessage("Image name has been changed!");  
       }
       
     xhttp.open("POST", "picture_name.php",true);
@@ -170,7 +186,7 @@ function removeImage(imageId){
 console.log(imageId);
 const xhttp = new XMLHttpRequest();
       xhttp.onload = function() {
-        alert("image has been removed");
+         ShowMessage("Image has been removed!");
         document.querySelector('.picture[image-id="'+imageId+'"]').remove();
       }
       
@@ -221,7 +237,7 @@ var xhttp = new XMLHttpRequest();
 // Prepare the data before the request
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-      alert("Modpack zmenený!");
+       ShowMessage("modpack has been changed!");
       //document.querySelector(`.bug[bug-id='${bugId}'] .bug_footer .bug_text`)
       document.querySelector(`.picture_action[image-id='${imageId}'] button`).innerText = modpackName;
       modal_change_modpack.close();
@@ -255,7 +271,7 @@ function addTagToImage(tagId){
   var xhttp = new XMLHttpRequest();
    xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-         alert("Tag pridaný!");
+          ShowMessage("Tag added successfully!");
       }
      };
    data = "image_id="+sessionStorage.getItem('image_id')+"&tag_id="+tagId;
@@ -318,3 +334,20 @@ function stripiHtml(text) {
     div.innerHTML = text;
     return div.textContent || div.innerText || "";
 }
+
+function addComment(imageId, commentText){
+  console.log(imageId);
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          ShowMessage("Comment added successfully!");
+         modal_add_new_comment.close();
+      }
+     };
+   data = "image_id="+imageId+"&comment_text="+commentText;
+   xhttp.open("POST", "image_comment_add.php", true);
+   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xhttp.send(data);
+
+}
+
