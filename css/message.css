@@ -26,6 +26,9 @@
     font-family: 'Noto Sans', sans-serif;
     display: flex;
     align-items: center;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
     justify-content: center;
     height: 100%;
     width: 100%;
@@ -58,7 +61,7 @@
 
   
   .logon_information_text {
-    font-size: 30px;
+    font-size: 20px;
   }
   
   .hidden {
