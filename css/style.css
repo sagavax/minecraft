@@ -1701,6 +1701,7 @@ textarea::placeholder {
     box-sizing: border-box;
     padding-left: 10px;
     font-weight: bolder;
+    bordeR:1px #d1d1d1 solid;
 }
 
 .video_body {
@@ -2918,6 +2919,30 @@ textarea::placeholder {
     display: flex;
     flex-direction: column;
 }
+
+.modal_add_new_comment {
+    top:20%;
+    left:30%;
+    height:250px;
+    width:60%;
+    box-sizing: border-box;
+    padding:10px;
+    border-radius: 5px;
+    border:1px #d1d1d1 solid;
+}
+
+.modal_add_new_comment textarea {
+    height:160px;
+}
+
+.add_comment_action {
+    height:45px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end
+}
+
 
 #mod_description span, #mod_description .mod_images {
     height:45px;
