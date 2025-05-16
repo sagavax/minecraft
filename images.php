@@ -111,17 +111,15 @@
 
             <!-- Form to add a new image -->
             <div class="add_new_image">
-                <form action="" enctype="multipart/form-data" method="post" id="upload_external_image">     
-                    <input type="text" name="image_name" placeholder="Picture title" autocomplete="off">
+                 <input type="text" name="image_name" placeholder="Picture title" autocomplete="off">
                     <input type="text" name="image_url" placeholder="Image URL" autocomplete="off" id="image_url">
                     <textarea name="image_description" placeholder="Something about..."></textarea>
                     <div class="action">
-                        <button type="submit" name="add_new_ext_pic" class="button pull-right">
+                        <button type="button" name="add_new_ext_pic" class="button pull-right">
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
-                </form> 
-            </div>   
+                </div>   
 
             <!-- Image tags map -->
             <div class="image_tags_map">
