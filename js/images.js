@@ -5,12 +5,13 @@ const drag_and_drop = document.getElementById("drag_and_drop");
 //var picture_modpacks = document.querySelector(".picture_modpacks");
 var modal_change_modpack = document.querySelector(".modal_change_modpack"); 
 var image_url_input = document.querySelector(".add_new_image input[name='image_url']")     
-document.getElementById("upload_external_image").style.display="block";
 var modal_new_tags = document.querySelector(".modal_new_tags");
 var  pictures_images = document.querySelectorAll('.pic');
 const external_image_form = document.getElementById('upload_external_image'); // Nahraďte 'external_image_form' ID vášho formulára
 const modal_add_new_comment = document.querySelector('.modal_add_new_comment');
 const image_tags_map = document.querySelector('.image_tags_map');
+const submitButton = document.querySelector("button[name='add_new_ext_pic']");
+const add_new_image = document.querySelector(".add_new_image");
 
 image_tags_map.childNodes.forEach(node => {
   if (node.tagName === 'BUTTON') {
@@ -19,25 +20,14 @@ image_tags_map.childNodes.forEach(node => {
 });
 
 
+add_new_image.addEventListener("click", function(event){
+  if(event.target.tagName==="BUTTON"){
+    if(event.target.name==="add_new_ext_pic"){
+      saveImage();
+    }
+  }
+})
 
-// Potom pridajte event listener
-if (external_image_form) {
-  external_image_form.addEventListener("submit", function(event) {
-    event.preventDefault(); // Zabráňte predvolenému odoslaniu
-    // Ak chcete zobraziť len upozornenie a potom odoslať formulár:
-    // V tomto prípade nebráňte predvolenému odoslaniu
-    // A potom manuálne odošlite formulár s menším oneskorením 
-    //aby sa upozornenie stihlo zobraziť a spracovať
-    setTimeout(function() {
-      external_image_form.submit();
-    }, 3000);
-    
-  });
-} else {
-  console.error("Formulár nebol nájdený! Skontrolujte ID formulára.");
-}
-
-//sessionStorage.setItem("picture_id",imageId);
 
 image_url_input.addEventListener("input", function(event) {
   console.log("image url input changed");
@@ -351,3 +341,32 @@ function addComment(imageId, commentText){
 
 }
 
+function saveImage(){
+  const imageName = document.querySelector('.add_new_image input[name="image_name"]').value;
+  const imageUrl = document.querySelector('.add_new_image input[name="image_url"]').value;
+  const imageDescription = document.querySelector('textarea[name="image_description"]').value;
+  var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          ShowMessage("Image saved successfully!");
+           document.querySelector('.add_new_image input[name="image_name"]').value="";
+           document.querySelector('.add_new_image input[name="image_url"]').value="";
+           document.querySelector('textarea[name="image_description"]').value="";
+      }
+     };
+   data = "image_name="+encodeURIComponent(imageName)+"&image_url="+encodeURIComponent(imageUrl)+"&image_description="+encodeURIComponent(imageDescription);//"image_name="+imageName+"&image_url="+imageUrl+"&image_description="+imageDescription;
+   xhttp.open("POST", "images_save.php", true);
+   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xhttp.send(data);
+}
+
+function GetLatestImageID() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      sessionStorage.setItem("latest_image_id", this.responseText);
+    }
+  };
+  xhttp.open("GET", "images_get_latest_id.php", true);
+  xhttp.send();
+}
