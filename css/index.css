@@ -110,4 +110,14 @@
               font-family: "Noto Sans", sans-serif;
             }   
         
-           
+           .logon_information {
+            height:100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center
+           }
+
+           .logon_information i {
+            font-size: 200px;
+           }
