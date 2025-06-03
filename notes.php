@@ -79,7 +79,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <!-- <link rel="stylesheet" type="text/css" href="http://www.tinymce.com/css/codepen.min.css"> -->
     <script defer type="text/javascript" src="js/notes.js"></script>
@@ -174,9 +174,8 @@
                     $offset = ($current_page - 1) * $itemsPerPage;  
 
 
-                    $sql="SELECT * from notes ORDER BY note_id DESC LIMIT $itemsPerPage OFFSET $offset";
-                    
-                    $result=mysqli_query($link, $sql);
+                    $get_notes="SELECT * from notes ORDER BY note_id DESC LIMIT $itemsPerPage OFFSET $offset";
+                    $result=mysqli_query($link, $get_notes) or die("MySQLi ERROR: ".mysqli_error($link));
                         while ($row = mysqli_fetch_array($result)) {  
                           if(empty($row['note_header'])){
                             $note_header="";

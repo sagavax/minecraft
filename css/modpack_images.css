@@ -1,5 +1,6 @@
 #new_image {
     display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
     padding: 10px;
     box-sizing: border-box;

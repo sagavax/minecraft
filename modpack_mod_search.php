@@ -1,7 +1,7 @@
 <?php include "includes/dbconnect.php";
 
 
-$mod = $_GET['mod'];
+$mod = mysqli_real_escape_string($link, $_GET['mod']); //$_GET['mod'];
 
 $get_mods = "SELECT * from mods where cat_name LIKE'%$mod%'";
 $result=mysqli_query($link, $get_mods);

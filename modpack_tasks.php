@@ -35,24 +35,28 @@
                 <i class="fa fa-plus"></i>
               </div>    
           <div class='modlist_mods_title'><h3><?php echo "Tasks for the modpack ".GetModPackName($_GET['modpack_id']); ?></h3></div>
-          <div class="search_task_wrap">
-              <input type="text" name="search" onkeyup="search_the_string(this.value);" id="search_string" placeholder="Search task here..." autocomplete="off"><!--<button type="submit" class="button small_button"><i class="fa fa-search"></i></button>-->
-              
-            </div> 
+          
+          
+          <div class="search_wrap">
+            <input type="text" name="search" onkeyup="searchTask(this.value);" id="search_string" autocomplete="off" placeholder="search tasks here..."><button type="button" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
+          </div><!-- Search wrap-->
 
-            <div class="task_view">
-              <input type='radio' name='status' id="active" value="active" checked="checked"><label for="active">Active</label>
-              <input type='radio' name='status' id="completed" value="completed"><label for="completed" name="status" value="completed">Completed</label>
-              <input type='radio' name='status' value="all" id="all"><label for="all">All</label>
+          
+           <div id="tasks_wrap">  
 
-            </div>     
-           
-
-             <div class="tab_view">
-                  <button type="button" name="vanilla" class="button small_button">Vanilla</button>
-                  <button type="button" name="modded" class="button small_button">Modded</button>
-                  <button type="button" name="all" class="button small_button">All</button>
+            <div class="task_view_wrap">
+               <div class="tab_view">
+                <button type="button" name="vanilla" class="button small_button">Vanilla</button>
+                <button type="button" name="modded" class="button small_button">Modded</button>
+                <button type="button" name="all" class="button small_button">All</button>
               </div>
+
+              <div class="task_view">
+                <button type="button" name="active" class="button small_button">Active</button>
+                <button type="button" name="completed" class="button small_button">Completed</button>
+                <button type="button" name="all" class="button small_button">All</button>
+              </div>  
+          </div>
            
             <div class="tasks" id="tasks">
 
@@ -117,4 +121,4 @@
                 ?>       
                 
               </div><!--tasks -->
-  
+           </div>  <!--tasks wrap-->

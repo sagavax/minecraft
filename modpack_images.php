@@ -9,27 +9,14 @@ $modpack_id = $_GET['modpack_id'];
 
 <!-- Upload Form -->
 <div id="new_image">
-    <form action="modpack_external_image" method="POST">
-        <input type="hidden" name="modpack_id" value="<?php echo htmlspecialchars($modpack_id); ?>"> 
-
-        <input 
-            type="text" 
-            name="image_name" 
-            id="upload_local_image"
-            placeholder="Add image title here..." 
-            autocomplete="off">
-
-        <input 
-            type="text" 
-            name="image_path" 
-            id="upload_external_image" 
-            placeholder="Add image URL here..." 
-            autocomplete="off">
-
-        <div class="image_action">
-            <button type="submit" name="submit" class="button">Upload</button>
-        </div>
-    </form>
+   <input type="text" name="image_name" placeholder="Picture title" autocomplete="off">
+    <input type="text" name="image_url" placeholder="Image URL" autocomplete="off" id="image_url">
+    <textarea name="image_description" placeholder="Something about..."></textarea>
+    <div class="action">
+        <button type="button" name="add_new_ext_pic" class="button pull-right">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
 </div>
 
 <!-- Image List -->
@@ -50,35 +37,37 @@ $modpack_id = $_GET['modpack_id'];
     //echo $get_modpack_images;
     $result = mysqli_query($link, $get_modpack_images) or die("MySQLi ERROR: " . mysqli_error($link));
 
-    while ($row = mysqli_fetch_array($result)) {
-        $picture_id     = $row['picture_id'];
-        $picture_title  = !empty($row['picture_title']) ? $row['picture_title'] : $row['picture_name'];
-        $picture_path   = $row['picture_path'];
+     while ($row = mysqli_fetch_array($result)) {
+        $picture_id = $row['picture_id'];
+        $picture_title = $row['picture_title'];
+        $picture_description = $row['picture_description']; 
+        $picture_path = htmlspecialchars($row['picture_path'], ENT_QUOTES, 'UTF-8');
+        $modpack_name = GetImageModpack($picture_id);
 
-        echo "<div class='picture' image-id='$picture_id'>";
-            echo "<div class='picture_name'>" . htmlspecialchars($picture_title) . "</div>";
-
-            // Obrázok
-            echo "<div class='pic' image-id='$picture_id'>";
-                if (!empty(parse_url($picture_path, PHP_URL_SCHEME))) {
-                    echo "<img src='" . htmlspecialchars($picture_path) . "' title='" . htmlspecialchars($picture_title) . "' loading='lazy'>";
-                } else {
-                    echo "<img src='gallery/" . htmlspecialchars($picture_path) . "' title='" . htmlspecialchars($picture_title) . "' loading='lazy'>";
-                }
-            echo "</div>"; // .pic
-
-            // Footer s akciami
-            echo "<div class='picture_footer'>";
-                echo "<div class='picture_action' image-id='$picture_id'>";
-                    echo GetImageModpack($picture_id);
-                    echo "<button name='add_tag' type='button' class='button small_button' title='Add tag'><i class='fas fa-tag'></i></button>";
-                    echo "<button name='add_comment' type='button' class='button small_button' title='Add new comment'><i class='fa fa-comment'></i></button>";
-                    echo "<button name='view_image' type='button' class='button small_button' title='View image'><i class='fa fa-eye'></i></button>";
-                    echo "<button name='delete_image' type='button' class='button small_button' title='Delete picture'><i class='fa fa-times'></i></button>";
-                echo "</div>"; // .picture_action
-            echo "</div>"; // .picture_footer
-        echo "</div>"; // .picture
-    }
+        echo "<div class='picture' image-id='{$picture_id}'>
+                <div class='picture_name' placeholder='image name here...'>{$picture_title}</div>
+                <div class='pic' image-id='{$picture_id}'>
+                    <img src='{$picture_path}'>
+                </div>
+                <div class='picture_footer'>
+                        <div class='picture_action' image-id='{$picture_id}'>
+                        {$modpack_name}
+                        <button name='add_tag' type='button' class='button small_button' title='Add tag'>
+                            <i class='fas fa-tag'></i>
+                        </button>
+                        <button name='add_comment' type='button' class='button small_button' title='Add new comment'>
+                            <i class='fa fa-comment'></i>
+                        </button>
+                        <button name='view_image' type='button' class='button small_button' title='View image'>
+                            <i class='fa fa-eye'></i>
+                        </button>
+                        <button name='delete_image' type='button' class='button small_button' title='Delete picture'>
+                            <i class='fa fa-times'></i>
+                        </button>
+                    </div>
+                </div>
+            </div>";
+        }
     ?>
 </div>
 
