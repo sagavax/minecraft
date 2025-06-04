@@ -3,10 +3,20 @@
       include("includes/functions.php");
 ?>
                   <div class='modlist_mods_title'><h3><?php echo "Videos for the modpack ".GetModPackName($_GET['modpack_id']); ?></h3></div>
-                  <div class="search_wrap">
-                                  <input type="text" name="search" placeholder="search videos..." autocomplete="off"><!--<button type="submit" class="button small_button"><i class="fa fa-search"></i></button>-->
-                   </div> 
+                  
+                  <div id="new_video">
+                      <input type="text" name="video_title" placeholder='Video title' autocomplete=off id="video_title">
+                      <input type="text" name="video_url" placeholder='Video url' id="video_url" autocomplete="off">
+                      <div class="new_video_submit_wrap"><button type="submit" name="add_new_video" class="button pull-right"><i class="fa fa-plus"></i></button></div>
+                  </div>
                        
+                  
+                  
+                  <div class="search_wrap">
+                        <input type="text" name="search" placeholder="search videos..." autocomplete="off">
+                   </div> 
+
+               
                         <div class="videos_list">
 
                           <?php 

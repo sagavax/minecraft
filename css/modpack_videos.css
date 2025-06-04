@@ -1,0 +1,9 @@
+#new_video {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px #d1d1d1 solid;
+    background: #fff;   
+}

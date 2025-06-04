@@ -352,6 +352,28 @@ function saveImage(){
            document.querySelector('.add_new_image input[name="image_name"]').value="";
            document.querySelector('.add_new_image input[name="image_url"]').value="";
            document.querySelector('textarea[name="image_description"]').value="";
+
+           //insert into container
+           const image_list = document.querySelector('.image_list');
+            const html = `
+              <div class="picture" image-id="${imageID}">
+                <div class="picture_name">${imageName}</div>
+                <div class="picture_image" image-id="${imageID}">
+                  <img src="${imageUrl}" alt="${imageName}">
+                </div>
+                <div class="picture_footer">
+                  <div class="picture_action" image-id="${imageID}">
+                    <button class="button blue_button" modpack-id="${modpackID}" name="image_modpack" type="button">${modpackName}</button>
+                    <button class="button" name="add_tag" type="button"><i class="fas fa-tag"></i></button>
+                    <button class="button small_button" name="add_comment" type="button"><i class="fa fa-comment"></i></button>
+                    <button class="button" name="view_image" type="button"><i class="fa fa-eye"></i></button>
+                    <button class="button small_button" name="delete_image" type="button"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            image_list.insertAdjacentHTML("afterbegin", html);
       }
      };
    data = "image_name="+encodeURIComponent(imageName)+"&image_url="+encodeURIComponent(imageUrl)+"&image_description="+encodeURIComponent(imageDescription);//"image_name="+imageName+"&image_url="+imageUrl+"&image_description="+imageDescription;

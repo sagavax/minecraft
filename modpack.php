@@ -30,6 +30,7 @@ if(isset($_POST['add_daily_note'])){
     <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="css/modpack_images.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/modpack_videos.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -110,7 +111,3 @@ if(isset($_POST['add_daily_note'])){
             </main>
           </div>
     </div>  
-    <script type="text/javascript">
-        var modpack_id = <?php echo $modpack_id ?>;
-        localStorage.setItem("modpack_id",modpack_id);
-    </script>

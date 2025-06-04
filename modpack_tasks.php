@@ -64,9 +64,8 @@
 
                     $modpack_id = $_GET['modpack_id'];
 
-                    $sql="SELECT * from to_do WHERE modpack_id=$modpack_id ORDER BY task_id DESC";
-                 
-                  $result=mysqli_query($link, $sql);
+                   $sql="SELECT * from to_do WHERE modpack_id=$modpack_id ORDER BY task_id DESC";
+                   $result=mysqli_query($link, $sql) or die("MySQL ERROR: ".mysqli_error($link));
                           
                  while ($row = mysqli_fetch_array($result)) {
                     $task_text=$row['task_text'];

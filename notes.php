@@ -19,7 +19,7 @@
                 $modpack_id=$_POST['modpack'];
             
            
-                echo $modpack_id;
+                //echo $modpack_id;
 
                 if(($note_header=="") && ($note_text=="")){
                     echo "<script>alert('Nieco by si tam mal zadat');
@@ -101,7 +101,7 @@
           <div class="list">
             
             <div class="search_wrap">
-                <input type="text" name="search" onkeyup="search_note(this.value);" id="search_string" autocomplete="off" placeholder="search notes here"><button type="button" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
+                <input type="text" name="search" onkeyup="search_note(this.value);" id="search_string" autocomplete="off" placeholder="search notes here"><button type="button" name="clear_search" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
               </div><!-- Search wrap-->
          
             <div id="new_note">

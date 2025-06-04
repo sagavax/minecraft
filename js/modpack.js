@@ -1,6 +1,50 @@
-// document.getElementById("new_image_upload").style.display = "none";
+//var buttons_chars = buttonContainer_chars.getElementsByTagName('button');
+var buttonContainer_chars = document.getElementById("letter_list");
+var taskRadiosContainers = document.querySelectorAll('.task_view');
+var imageRadiosContainers = document.querySelectorAll('.image_radios');
+var popupModsListContainer = document.querySelector('.popup_mods_list main');
+//wrapper
+var list = document.querySelector(".list");
 
 window.onload = GetModpackName;
+
+document.querySelector(".list").addEventListener("click", function(event) {
+    const button = event.target.closest("button");
+    if (button) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const modpack_id = urlParams.get('modpack_id');
+        sessionStorage.setItem("modpack_id", modpack_id);
+        if (button.name === "add_new_ext_pic") {
+            if (document.querySelector(`#new_image input[name="image_url"]`).value === "") {
+                alert("Empty url");
+            } else {
+                saveImage();
+            }
+        //notes    
+        } if(button.name==="vanilla"){
+            //vanilla
+        } else if (button.name === "modded"){
+            //modded
+        } else if (button.name === "all"){
+            //all
+        } else if (button.name === "add_note") {
+           // showNewNote();
+        } else if (button.name === "clear_search") {
+            //clear search
+        } else if (button.name==="attach_image"){
+            //attach image
+        } else if (button.name==="edit_note"){
+           //edit note 
+        } else if (button.name==="delete_note"){
+          //delete note   
+        } else if (button.name==="add_new_video"){
+            //add video
+        }
+    }
+});
+
+
+
 
 function GetModpackName() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -17,7 +61,7 @@ function GetModpackName() {
     xhttp.send();
 }
 
-var taskRadiosContainers = document.querySelectorAll('.task_view');
+
 
 // Convert NodeList to an array and loop through each container
 Array.from(taskRadiosContainers).forEach(function(container) {
@@ -35,7 +79,7 @@ Array.from(taskRadiosContainers).forEach(function(container) {
     });
 });
 
-var imageRadiosContainers = document.querySelectorAll('.image_radios');
+
 
 // Convert NodeList to an array and loop through each container
 Array.from(imageRadiosContainers).forEach(function(container) {
@@ -64,7 +108,7 @@ Array.from(imageRadiosContainers).forEach(function(container) {
     });
 });
 
-var popupModsListContainer = document.querySelector('.popup_mods_list main');
+
 
 // Check if the container exists
 if (popupModsListContainer) {
@@ -94,9 +138,8 @@ if (popupModsListContainer) {
     });
 }
 
-var buttonContainer_chars = document.getElementById("letter_list");
-// Get all buttons within the container
-var buttons_chars = buttonContainer_chars.getElementsByTagName('button');
+
+/* 
 
 // Attach a click event listener to each button
 for (var i = 0; i < buttons_chars.length; i++) {
@@ -107,7 +150,7 @@ for (var i = 0; i < buttons_chars.length; i++) {
         sort_mods_by_char(chars_text);
     });
 }
-
+ */
 
 function reload_mods(modpack_id){
      var xhttp = new XMLHttpRequest();
@@ -177,33 +220,31 @@ function sort_tasks(status) {
     xhttp.send();
 }
 
+// Load page
 function LoadPage(page) {
     const urlParams = new URLSearchParams(window.location.search);
     const modpack_id = urlParams.get('modpack_id');
 
-    var url;
-    if (page === "description") {
-        url = "modpack_description.php";
-    } else if (page === "images") {
-        url = "modpack_images.php";
-    } else if (page === "mods") {
-        url = "modpack_mods.php";
-    } else if (page === "notes") {
-        url = "modpack_notes.php";
-    } else if (page === "tasks") {
-        url = "modpack_tasks.php";
-    } else if (page === "videos") {
-        url = "modpack_videos.php";
-    }
+    const pages = {
+        "description": "modpack_description.php",
+        "images": "modpack_images.php",
+        "mods": "modpack_mods.php",
+        "notes": "modpack_notes.php",
+        "tasks": "modpack_tasks.php",
+        "videos": "modpack_videos.php"
+    };
 
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            document.querySelector(".list").innerHTML = this.responseText;
+    const url = pages[page];
+    if (!url) return; // Ak je stránka neplatná
+
+    const xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+            document.querySelector(".list").innerHTML = xmlHttp.responseText;
         }
-    }
+    };
 
-    xmlHttp.open("GET", url + "?modpack_id=" + modpack_id, true);
+    xmlHttp.open("GET", `${url}?modpack_id=${modpack_id}`, true);
     xmlHttp.send();
 }
 
@@ -229,4 +270,36 @@ function popup_search_mod(mod) {
     };
     xhttp.open("GET", "modpack_mod_search.php?mod=" + encodeURIComponent(mod), true);
     xhttp.send();
+}
+
+
+function saveImage(){
+  console.log("save image");  
+  const imageName = document.querySelector('#new_image input[name="image_name"]').value;
+  const imageUrl = document.querySelector('#new_image input[name="image_url"]').value;
+  const imageDescription = document.querySelector('#new_image textarea[name="image_description"]').value;
+  var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          alert("Image saved successfully!");
+           document.querySelector('#new_image input[name="image_name"]').value="";
+           document.querySelector('#new_image input[name="image_url"]').value="";
+           document.querySelector('textarea[name="image_description"]').value="";
+      }
+     };
+   data = "image_name="+encodeURIComponent(imageName)+"&image_url="+encodeURIComponent(imageUrl)+"&image_description="+encodeURIComponent(imageDescription)+"&modpack_id="+encodeURIComponent(localStorage.getItem("modpack_id"));
+   xhttp.open("POST", "images_save.php", true);
+   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xhttp.send(data);
+}
+
+function GetLatestImageID() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      sessionStorage.setItem("latest_image_id", this.responseText);
+    }
+  };
+  xhttp.open("GET", "images_get_latest_id.php", true);
+  xhttp.send();
 }
