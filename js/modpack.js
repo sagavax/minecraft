@@ -3,48 +3,174 @@ var buttonContainer_chars = document.getElementById("letter_list");
 var taskRadiosContainers = document.querySelectorAll('.task_view');
 var imageRadiosContainers = document.querySelectorAll('.image_radios');
 var popupModsListContainer = document.querySelector('.popup_mods_list main');
+var new_note = document.getElementById("new_note");
 //wrapper
 var list = document.querySelector(".list");
 
 window.onload = GetModpackName;
 
+
+//event listener for list
 document.querySelector(".list").addEventListener("click", function(event) {
     const button = event.target.closest("button");
     if (button) {
         const urlParams = new URLSearchParams(window.location.search);
         const modpack_id = urlParams.get('modpack_id');
         sessionStorage.setItem("modpack_id", modpack_id);
-        if (button.name === "add_new_ext_pic") {
-            if (document.querySelector(`#new_image input[name="image_url"]`).value === "") {
-                alert("Empty url");
-            } else {
-                saveImage();
-            }
-        //notes    
-        } if(button.name==="vanilla"){
-            //vanilla
-        } else if (button.name === "modded"){
-            //modded
-        } else if (button.name === "all"){
-            //all
-        } else if (button.name === "add_note") {
-           // showNewNote();
-        } else if (button.name === "clear_search") {
-            //clear search
-        } else if (button.name==="attach_image"){
-            //attach image
-        } else if (button.name==="edit_note"){
-           //edit note 
-        } else if (button.name==="delete_note"){
-          //delete note   
-        } else if (button.name==="add_new_video"){
-            //add video
+       switch (button.name) {
+    case "add_new_ext_pic":
+        const imageUrl = document.querySelector(`#new_image input[name="image_url"]`).value;
+        if (imageUrl === "") {
+            alert("Empty url");
+            return;
         }
+        saveImage();
+        break;
+
+    case "vanilla":
+        // filter vanilla notes
+        break;
+
+    case "modded":
+        // filter modded notes
+        break;
+
+    case "all":
+        // show all notes
+        break;
+
+    case "note_add":
+        event.preventDefault();
+        const noteText = document.querySelector(`#new_note textarea[name="note_text"]`).value;
+        const noteHeader = document.querySelector(`#new_note input[name="note_header"]`).value;
+        if (!noteText || !noteHeader) {
+            alert("Empty text");
+            return;
+        }
+        saveNote();
+        break;
+
+    case "clear_search":
+        // clear search
+        break;
+
+    case "attach_image":
+        // handle file click
+        const fileInput = button.closest(".note_footer")?.querySelector(`input[type='file']`);
+        if (fileInput) fileInput.click();
+        break;
+
+    case "edit_note":
+        // edit logic
+        break;
+
+    case "delete_note":
+        // delete logic
+        break;
+
+    case "add_new_video":
+        // add video
+        break;
+}
+
     }
 });
 
 
+function SaveNote() {
+    const noteTitle = document.querySelector(`#new_note input[name="note_header"]`).value;
+    const noteText = document.querySelector(`#new_note textarea[name="note_text"]`).value;
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const modpack_id = urlParams.get('modpack_id');
+
+    // Najskôr ulož poznámku
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+
+            // Získaj posledné note_id
+            fetch("GetLatestNoteId.php")
+                .then(response => response.text())
+                .then(noteId => {
+                    // Potom zisti meno modpacku
+                    fetch("modpack_name.php?modpack_id=" + modpack_id)
+                        .then(response => response.text())
+                        .then(modpackName => {
+
+                            const noteHTML = `
+                                <div class="note">
+                                    <div class="note_header">${noteTitle}</div>
+                                    <div class="note_text">${noteText}</div>
+                                    <div class="note_footer">
+                                        <div class="notes_action">
+                                            <span class="span_modpack">${modpackName}</span>
+                                            <form method="post" action="notes_attach_file.php" enctype="multipart/form-data">
+                                                <input type="hidden" name="note_id" value="${noteId}">
+                                                <input type="file" name="image" id="file-attach-${noteId}" accept="image/*" style="display: none;">
+                                            </form>
+                                            <button name="attach_image" type="button" class="button small_button">
+                                                <i class="material-icons">attach_file</i>
+                                            </button>
+                                            <button name="edit_note" type="submit" class="button small_button">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                            <button name="delete_note" type="submit" class="button small_button">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </div>
+                                        <div class="note_attached_files"></div>
+                                    </div>
+                                </div>`;
+
+                            document.querySelector("#notes_list").insertAdjacentHTML("afterbegin", noteHTML);
+                        })
+                        .catch(err => console.error("Chyba pri načítaní mena modpacku:", err));
+                })
+                .catch(err => console.error("Chyba pri získavaní note_id:", err));
+        }
+    };
+
+    xhttp.open("POST", "notes_save.php", true);
+    const params = "note_title=" + encodeURIComponent(noteTitle) + "&note_text=" + encodeURIComponent(noteText);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(params);
+}
+
+
+function GetModpackName() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const modpack_id = urlParams.get('modpack_id');
+
+    var xhttp = new XMLHttpRequest();
+    // var search_text = document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector(".modpack_name").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "modpack_name.php?modpack_id=" + modpack_id, true);
+    xhttp.send();
+}
+
+function GetLatestNoteId() { // get latest note ID
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            return this.responseText;
+        }
+    };
+    xhttp.open("GET", "notes_get_latest_id.php", true);
+    xhttp.send();
+}
+
+
+function showNewNote() {
+    new_note.style.display = "flex";  // Zobrazíme element
+    setTimeout(() => {
+        new_note.classList.add("show"); // Pridáme triedu na zobrazenie s animáciou
+    }, 10); // Krátke oneskorenie pred pridaním triedy
+}
 
 function GetModpackName() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -137,20 +263,6 @@ if (popupModsListContainer) {
         }
     });
 }
-
-
-/* 
-
-// Attach a click event listener to each button
-for (var i = 0; i < buttons_chars.length; i++) {
-    buttons_chars[i].addEventListener('click', function() {
-        // You can perform actions here when a button is clicked
-        var chars_text = this.textContent || this.innerText;
-        // alert(chars_text);
-        sort_mods_by_char(chars_text);
-    });
-}
- */
 
 function reload_mods(modpack_id){
      var xhttp = new XMLHttpRequest();

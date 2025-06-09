@@ -1,10 +1,19 @@
 <?php 
 
-	include("includes/functions.php");
+function GetModPackName($modpack_id) {
+    global $link;
 
-	$modpack_id = $_GET['modpack_id'];
+    $modpack_id = intval($modpack_id); // zabezpeč proti injection
+    $query = "SELECT name FROM modpacks WHERE modpack_id = $modpack_id";
+    $result = mysqli_query($link, $query);
 
-	echo GetModPackName($modpack_id);
+    if ($result && $row = mysqli_fetch_assoc($result)) {
+        return $row['name'];
+    } else {
+        return "Neznámy modpack"; // alebo prázdny string podľa preferencie
+    }
+}
+
 ?>
 
 

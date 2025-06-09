@@ -31,12 +31,62 @@
       header('location:task_add.php');
     }
 ?>      
-          <div class="fab fab-icon-holder" onclick="document.getElementById('new_modpack').showModal();">
-                <i class="fa fa-plus"></i>
-              </div>    
-          <div class='modlist_mods_title'><h3><?php echo "Tasks for the modpack ".GetModPackName($_GET['modpack_id']); ?></h3></div>
+       <div class="fab fab-icon-holder" onclick="document.getElementById('new_task').style.display='flex';">
+            <i class="fas fa-plus"></i>
+        </div>
           
+
+         <div class='modlist_mods_title'><h3><?php echo "Tasks for the modpack ".GetModPackName($_GET['modpack_id']); ?></h3></div>
           
+          <!-- new task form -->
+          <div id='new_task'>
+                <div class="task_top_bar"><button type="button" class="button app_badge" title="hide"><i class="fa fa-times"></i></button></div>
+                <form action='' method='post'>
+                    <textarea name='task_text' placeholder="enter text here..."></textarea>
+                          <select name='category'>
+                            <option value=0>-- Select category -- </option>
+                                <?php
+                                  $sql="SELECT * from mods ORDER BY cat_name ASC";
+                                  $result=mysqli_query($link, $sql);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                      $cat_id=$row['cat_id'];
+                                      $cat_name=$row['cat_name'];
+                                  echo "<option value=$cat_id>$cat_name</option>";
+                                  } 
+                                ?>  
+                          </select>
+                          <select name="modpack">
+                              <?php 
+                              //echo "modpack:".$modpack_id;
+                            
+                              if($modpack_id==0){
+                                  echo "<option value=0> -- Select modpack -- </option>";
+                              } else {
+                          
+                          echo "<option value=$modpack_id selected='selected' >$modpack_name</option>";
+                          }
+                      
+
+                          $sql="SELECT * from modpacks WHERE is_active=1 ORDER BY modpack_id ASC";
+                          $result=mysqli_query($link, $sql);
+                            while ($row = mysqli_fetch_array($result)) {
+                              $modpack_id=$row['modpack_id'];
+                              $modpack_name=$row['modpack_name'];
+                          echo "<option value=$modpack_id>$modpack_name</option>";
+                          } 
+                        ?>
+                        </select> 
+                      <div class="new_task_action">
+                         <form action="" method="post"> 
+                            <button name="task_add" type="submit" class="button" title="add new task"> <i class="fa fa-check"></i></button>
+                        </form>
+                         
+                      </div>   
+                    </form>
+            </div> 
+         
+            
+          <!-- Search wrap-->
           <div class="search_wrap">
             <input type="text" name="search" onkeyup="searchTask(this.value);" id="search_string" autocomplete="off" placeholder="search tasks here..."><button type="button" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
           </div><!-- Search wrap-->

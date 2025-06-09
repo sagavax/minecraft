@@ -62,7 +62,7 @@
         
         $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
         //echo $sql;
-        result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+        $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
         
         echo "<script>alert('Nova poznamka s id $last_note bola vytvorena');
         window.location.href='notes.php';
