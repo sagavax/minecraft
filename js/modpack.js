@@ -15,8 +15,8 @@ document.querySelector(".list").addEventListener("click", function(event) {
     const button = event.target.closest("button");
     if (button) {
         const urlParams = new URLSearchParams(window.location.search);
-        const modpack_id = urlParams.get('modpack_id');
-        sessionStorage.setItem("modpack_id", modpack_id);
+        const modpackId = urlParams.get('modpack_id');
+        sessionStorage.setItem("modpack_id", modpackId);
        switch (button.name) {
     case "add_new_ext_pic":
         const imageUrl = document.querySelector(`#new_image input[name="image_url"]`).value;
@@ -25,18 +25,6 @@ document.querySelector(".list").addEventListener("click", function(event) {
             return;
         }
         saveImage();
-        break;
-
-    case "vanilla":
-        // filter vanilla notes
-        break;
-
-    case "modded":
-        // filter modded notes
-        break;
-
-    case "all":
-        // show all notes
         break;
 
      case "task_add":
@@ -65,8 +53,22 @@ document.querySelector(".list").addEventListener("click", function(event) {
         // delete task
         deleteTask(taskId);
         break;
+
+    case "active":
+        // filter active tasks
+        filterTasks(modpackId, "active");
+        break;
+
+    case "completed":
+        // filter completed tasks
+        filterTasks(modpackId, "completed");
+        break;
     
-    
+    case "all":
+        // filter all tasks no matter status
+        filterTasks(modpackId,"all");
+        break;
+        
 
     case "note_add":
         event.preventDefault();
@@ -91,15 +93,17 @@ document.querySelector(".list").addEventListener("click", function(event) {
 
     case "edit_note":
         // edit logic
-       
+       alert("edit note");
         break;
 
     case "delete_note":
         // delete logic
+        alert("delete note");
         break;
 
     case "add_new_video":
         // add video
+        alert("add video");
         break;
 
     default:
@@ -109,6 +113,19 @@ document.querySelector(".list").addEventListener("click", function(event) {
     }
 });
 
+
+
+function filterTasks(modpackId, taskStatus) {
+    // filter tasks
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+          document.querySelector(".tasks").innerHTML = this.responseText;
+      }
+  };
+  xhttp.open("GET", "modpack_tasks_by_status.php?modpack_id=" + modpackId + "&status=" + taskStatus, true);
+  xhttp.send();
+}
 
 
  function switchToTextarea(taskId) {
