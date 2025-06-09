@@ -143,7 +143,7 @@ function taskCompleted(taskId) {
         if (this.readyState === 4 && this.status === 200) {
             document.querySelector(`.task[id="${taskId}"] .task_action button[name=complete_task]`).remove();
             document.querySelector(`.task[id="${taskId}"] .task_action button[name=edit_task]`).remove();
-            document.querySelector(`.task[id="${taskId}"] .task_action`).innerHTML = "<span class='span_task_completed'>Complete</span>";
+            document.querySelector(`.task[id="${taskId}"] .task_action`).innerHTML = "<div class='span_task_completed'>Complete</div>";
         }
     };
     xhttp.open("POST", "task_completed.php", true);  
