@@ -53,10 +53,20 @@ document.querySelector(".list").addEventListener("click", function(event) {
 
      case "complete_task":
         //mark task as complete task
-        const taskId = button.closest(".task")?.getAttribute('task-id');
-        taskCompleted(taskId);
+        taskCompleted(button.closest(".task").getAttribute('id'));
         break;
 
+    case "edit_task":
+        // edit task
+        switchToTextarea(button.closest(".task").getAttribute('id'));
+        break;
+
+    case "delete_task":
+        // delete task
+        deleteTask(taskId);
+        break;
+    
+    
 
     case "note_add":
         event.preventDefault();
@@ -81,6 +91,7 @@ document.querySelector(".list").addEventListener("click", function(event) {
 
     case "edit_note":
         // edit logic
+       
         break;
 
     case "delete_note":
@@ -90,17 +101,49 @@ document.querySelector(".list").addEventListener("click", function(event) {
     case "add_new_video":
         // add video
         break;
-}
 
+    default:
+        // handle other buttons
+        break;
+    }
     }
 });
+
+
+
+ function switchToTextarea(taskId) {
+    const div = document.querySelector(`.task[id="${taskId}"] .task_body`);
+    console.log(div);
+    const text = div.innerText;
+
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.width = '100%';
+    textarea.style.height = '100px';
+    textarea.style.marginBottom = '10px';
+
+    // Nahradí div textareou
+    div.replaceWith(textarea);
+    textarea.focus();
+
+    // Po strate fokusu sa uloží a prepne späť
+    textarea.addEventListener('blur', () => {
+      const newDiv = document.createElement('div');
+      newDiv.classList.add('task_body');
+      newDiv.innerText = textarea.value;
+      textarea.replaceWith(newDiv);
+      SaveTaskChanges(taskId, textarea.value);
+    });
+  }
 
 
 function taskCompleted(taskId) {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            document.querySelector(".tasks").innerHTML = this.responseText;
+            document.querySelector(`.task[id="${taskId}"] .task_action button[name=complete_task]`).remove();
+            document.querySelector(`.task[id="${taskId}"] .task_action button[name=edit_task]`).remove();
+            document.querySelector(`.task[id="${taskId}"] .task_action`).innerHTML = "<span class='span_task_completed'>Complete</span>";
         }
     };
     xhttp.open("POST", "task_completed.php", true);  
@@ -109,6 +152,19 @@ function taskCompleted(taskId) {
     xhttp.send(data);
 }
 
+
+function SaveTaskChanges(taskId, taskText) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            alert("Task changed");
+        }
+    };
+    xhttp.open("POST", "task_edit.php", true);  
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var data = "task_id=" + encodeURIComponent(taskId) + "&task_text=" + encodeURIComponent(taskText);
+    xhttp.send(data);
+}
 
 function createTask() {
     const taskText = document.querySelector(`#new_task textarea[name="task_text"]`).value;
