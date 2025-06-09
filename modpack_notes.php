@@ -14,48 +14,48 @@
             </div><!--new note header -->
             
             <form action="" method="POST" accept-charset="utf-8">
-                          <div id="note_title">
-                              <input type="text" name="note_header" placeholder="title" value="<?php 
-                                  if(isset($_GET['curr_date'])){
-                                      $date=$_GET['curr_date'];{
-                                          if($date=="now"){
-                                              echo "Update status :".date('Y-m-d H:i:s');
-                                          } else {
-                                              echo "";
-                                          }
-                                      }
-                                  }
-                              ?>">
-                          </div><!-- note title -->
-                          <div id="note_text">    
-                              <textarea name="note_text" placeholder="new text here..."></textarea>
-                          </div><!--- note text --->    
-                          <div id="new_note_footer">
-                              <div id="note_options">
-                                      <select name="modpack">
-                                  <?php 
-                                  //echo "modpack:".$modpack_id;
-                                  
-                                  echo "<option value=0> -- Select modpack -- </option>";
-                                  $sql="SELECT * from modpacks ORDER BY modpack_id ASC";
-                                  $result=mysqli_query($link, $sql);
-                                  while ($row = mysqli_fetch_array($result)) {
-                                      $modpack_id=$row['modpack_id'];
-                                      $modpack_name=$row['modpack_name'];
-                                  echo "<option value=$modpack_id>$modpack_name</option>";
-                                  }	
-                              ?>
-                          </select> 
-                          
-                          
-                              <input type="checkbox" name="publish_to_wall" id="publish_to_wall" checked="checked"><label for="publish_to_wall">Publikovat na wall</label>
-                              
-                          </div><!--- note options  --->
-                          </div><!--- new note footer  ---> 
-                          <div id="note_action">
-                              <button name='note_add' type='submit' class='button small_button'>Add</button>
-                          </div><!--- note action --->
-                        </form>    
+                <div id="note_title">
+                    <input type="text" name="note_header" placeholder="title" value="<?php 
+                        if(isset($_GET['curr_date'])){
+                            $date=$_GET['curr_date'];{
+                                if($date=="now"){
+                                    echo "Update status :".date('Y-m-d H:i:s');
+                                } else {
+                                    echo "";
+                                }
+                            }
+                        }
+                    ?>">
+                </div><!-- note title -->
+                <div id="note_text">    
+                    <textarea name="note_text" placeholder="new text here..."></textarea>
+                </div><!--- note text --->    
+                <div id="new_note_footer">
+                    <div id="note_options">
+                            <select name="modpack">
+                        <?php 
+                        //echo "modpack:".$modpack_id;
+                        
+                        echo "<option value=0> -- Select modpack -- </option>";
+                        $sql="SELECT * from modpacks ORDER BY modpack_id ASC";
+                        $result=mysqli_query($link, $sql);
+                        while ($row = mysqli_fetch_array($result)) {
+                            $modpack_id=$row['modpack_id'];
+                            $modpack_name=$row['modpack_name'];
+                        echo "<option value=$modpack_id>$modpack_name</option>";
+                        }	
+                    ?>
+                </select> 
+                
+                
+                    <input type="checkbox" name="publish_to_wall" id="publish_to_wall" checked="checked"><label for="publish_to_wall">Publikovat na wall</label>
+                    
+                </div><!--- note options  --->
+                </div><!--- new note footer  ---> 
+                <div id="note_action">
+                    <button name='note_add' type='submit' class='button small_button'>Add</button>
+                </div><!--- note action --->
+              </form>    
 
             </div><!-- new note -->
 
