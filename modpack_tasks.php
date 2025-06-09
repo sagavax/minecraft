@@ -112,9 +112,9 @@
                           if($category_name<>""){
                             $category_name="<span class='span_mod'>".$category_name."</span>";
                           }
-                          if ($modpack_name<>""){
+                          /* if ($modpack_name<>""){
                             $modpack_name="<span class='span_modpack'>".$modpack_name."</span>";
-                          }
+                          } */
                           
                           //$mod_modpack.="".$category_name." ".$modpack_name."</div>";
                           
@@ -127,7 +127,7 @@
                           if($is_completed==1){
                             
                             echo $mod_modpack;
-                            $task_completed="<span class='span_task_completed'>Complete</span>";
+                            $task_completed="<div class='task_completed'>Complete</div>";
                             echo $task_completed;
                             //$mod_modpack="<div class='mod_modpack'>".$mod_modpack." ".$task_completed."</div>";
                             //echo $mod_modpack;

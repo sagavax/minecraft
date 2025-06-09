@@ -2264,14 +2264,17 @@ textarea::placeholder {
 }
 
 .task_completed {
-    margin-top: 10px;
-    text-align: right;
-    color: #75c54f;
-    font-weight: bold;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 15px;
-    height: 50px;
-    line-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #aadd77;
+    border: #aadd77 1px solid;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 6px 12px;
+    height: 100%;
+    color:#fff;
+    width: 100px;
 }
 
 .small_font {
@@ -2722,6 +2725,8 @@ textarea::placeholder {
     border-radius: 0px;
     align-items: center;    
  }
+
+ .task_completed
 
 .span_modpack, .nr_of_comments, .span_fixed {
     margin-right: 0px;
@@ -3446,7 +3451,7 @@ textarea::placeholder {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap:5px;
+    gap:10px;
     box-sizing: border-box;
 }
 
@@ -3459,18 +3464,6 @@ textarea::placeholder {
 .idea_footer {
     height:40px;
 }
-
-
-.idea_footer button:last-child,
-.bug_footer button:last-child  {
-    
-}
-
-
-.task_footer {
-    gap:0px;
-}
-
 
 
 
@@ -3825,10 +3818,16 @@ td.zakladna_popis {
     white-space: nowrap
 }
 
-.task_modpacks {
-    display: flex;
-       height:100%;
-       box-sizing: border-box;
+   .task_modpacks {
+    margin-left: 5px;
+    background: #0b9ed0;
+    border:1px #0b9ed0 solid;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
     }
 
 
