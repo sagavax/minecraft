@@ -39,6 +39,25 @@ document.querySelector(".list").addEventListener("click", function(event) {
         // show all notes
         break;
 
+     case "task_add":
+        //create new task
+        alert("create new task");
+        event.preventDefault();
+        const taskText = document.querySelector(`#new_task textarea[name="task_text"]`).value;
+         if (!taskText) {
+            alert("Empty text");
+            return;
+        }
+        createTask();
+        break;
+
+     case "complete_task":
+        //mark task as complete task
+        const taskId = button.closest(".task")?.getAttribute('task-id');
+        taskCompleted(taskId);
+        break;
+
+
     case "note_add":
         event.preventDefault();
         const noteText = document.querySelector(`#new_note textarea[name="note_text"]`).value;
@@ -75,6 +94,45 @@ document.querySelector(".list").addEventListener("click", function(event) {
 
     }
 });
+
+
+function taskCompleted(taskId) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.querySelector(".tasks").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "task_completed.php", true);  
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var data = "task_id=" + encodeURIComponent(taskId);
+    xhttp.send(data);
+}
+
+
+function createTask() {
+    const taskText = document.querySelector(`#new_task textarea[name="task_text"]`).value;
+    const urlParams = new URLSearchParams(window.location.search);
+    const modpack_id = urlParams.get('modpack_id');
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.querySelector(".tasks").innerHTML = this.responseText;
+            alert("Task added");
+        }
+    };
+    xhttp.open("POST", "task_add.php", true);  
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var data = "task_text=" + encodeURIComponent(taskText) + "&modpack_id=" + encodeURIComponent(modpack_id);
+    xhttp.send(data);
+
+   /*  fetch("task_add.php?task_text=" + encodeURIComponent(taskText) + "&modpack_id=" + encodeURIComponent(modpack_id))
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector(".tasks").innerHTML = data;
+        });        */
+}       
 
 
 function SaveNote() {

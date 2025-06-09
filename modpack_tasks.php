@@ -27,9 +27,6 @@
         header('location:task_edit.php?task_id='.$_POST['task_id']);
      }
 
-     if(isset($_POST['add_task'])){
-      header('location:task_add.php');
-    }
 ?>      
        <div class="fab fab-icon-holder" onclick="document.getElementById('new_task').style.display='flex';">
             <i class="fas fa-plus"></i>
@@ -41,7 +38,7 @@
           <!-- new task form -->
           <div id='new_task'>
                 <div class="task_top_bar"><button type="button" class="button app_badge" title="hide"><i class="fa fa-times"></i></button></div>
-                <form action='' method='post'>
+                <form action='task_add.php' method='post'>
                     <textarea name='task_text' placeholder="enter text here..."></textarea>
                           <select name='category'>
                             <option value=0>-- Select category -- </option>
@@ -55,27 +52,6 @@
                                   } 
                                 ?>  
                           </select>
-                          <select name="modpack">
-                              <?php 
-                              //echo "modpack:".$modpack_id;
-                            
-                              if($modpack_id==0){
-                                  echo "<option value=0> -- Select modpack -- </option>";
-                              } else {
-                          
-                          echo "<option value=$modpack_id selected='selected' >$modpack_name</option>";
-                          }
-                      
-
-                          $sql="SELECT * from modpacks WHERE is_active=1 ORDER BY modpack_id ASC";
-                          $result=mysqli_query($link, $sql);
-                            while ($row = mysqli_fetch_array($result)) {
-                              $modpack_id=$row['modpack_id'];
-                              $modpack_name=$row['modpack_name'];
-                          echo "<option value=$modpack_id>$modpack_name</option>";
-                          } 
-                        ?>
-                        </select> 
                       <div class="new_task_action">
                          <form action="" method="post"> 
                             <button name="task_add" type="submit" class="button" title="add new task"> <i class="fa fa-check"></i></button>

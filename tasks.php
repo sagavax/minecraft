@@ -26,34 +26,6 @@ if(isset($_POST['complete_task'])){
 if(isset($_POST['edit_task'])){
   header('location:task.php?task_id='.$_POST['task_id']);
 }
-
-if(isset($_POST['task_add'])){
-      
-        $task_text=mysqli_real_escape_string($link, $_POST['task_text']);
-    
-        $cat_id=$_POST['category'];
-        $modpack_id=$_POST['modpack'];
-        $added_date=date('Y-m-d');
-        $query="INSERT into  to_do (cat_id,modpack_id, task_text, added_date) VALUES ($cat_id, $modpack_id, '$task_text', '$added_date')";
-        mysqli_query($link, $query) or die("MySQLi ERROR: ".mysqli_error($link));
-
-        $sql="SELECT LAST_INSERT_ID() as last_id from to_do";
-        $result=mysqli_query($link, $sql);
-        while ($row = mysqli_fetch_array($result)) {          
-          $last_task=$row['last_id'];
-        }   
-
-        $diary_text="Minecraft IS: Bol vytvoreny novy task s nazvom <strong>$task_text</strong>";
-        $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-        $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-        
-        
-        echo "<script>alert('Bol vytvoreny novy task s id $last_task');
-        window.location.href='tasks.php';
-        </script>";
-     
-      }
-    
 ?>
 
 <!DOCTYPE html>
