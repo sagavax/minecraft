@@ -122,6 +122,25 @@ document.querySelector(".list").addEventListener("click", function(event) {
 
 
 
+function SaveVideo() {
+    const videoTitle = document.querySelector(`#new_video input[name="video_title"]`).value;
+    const videoUrl = document.querySelector(`#new_video input[name="video_url"]`).value;
+    const modpackId = sessionStorage.getItem("modpack_id");
+    const videoSource = "YouTube";
+    const edition = "java";
+    const videoId = getYouTubeVideoId(videoUrl);
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.querySelector(".video_list").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "videos_save.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("modpack_id=" + modpackId + "&video_title=" + videoTitle + "&video_url=" + videoUrl + "&video_source=" + videoSource + "&edition=" + edition);
+}
+
 function filterTasks(modpackId, taskStatus) {
     // filter tasks
   const xhttp = new XMLHttpRequest();
