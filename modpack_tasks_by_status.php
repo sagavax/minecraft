@@ -17,6 +17,9 @@ if($status == "active"){
 
 $result = mysqli_query($link, $get_tasks) or die("MySQLi ERROR: ".mysqli_error($link));
 
+if (mysqli_num_rows($result) === 0) {
+    echo "<div class='no_tasks'>No tasks</div>";
+} else {
  while ($row = mysqli_fetch_array($result)) {
     $task_text=$row['task_text'];
     $task_id=$row['task_id'];
@@ -64,6 +67,9 @@ $result = mysqli_query($link, $get_tasks) or die("MySQLi ERROR: ".mysqli_error($
             }
             
     echo "</div>";//task_footer_wrap;  
-    echo "</div>";//task
+    echo "</div>";//task   
+}
+
+ 
     }
                 

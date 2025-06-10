@@ -2060,10 +2060,6 @@ textarea::placeholder {
     gap:10px;
 }
 
-.modpack_container select {
-    height:100%;
-    margin-bottom: 0 !important;
-}
 
 
 
@@ -2566,10 +2562,12 @@ textarea::placeholder {
     flex-direction: column;
 }
 
-#new_video select, #edit_video select {
+#new_video select, #edit_video select,
+.modpack_container select {
     font-family:'Noto Sans',sans-serif;
+    display: flex;
     font-size: 16px;
-    height:40px;
+    height:48px;
     width: 100%;
     margin-bottom: 5px;
     background: #eff3f4;
@@ -3830,6 +3828,17 @@ td.zakladna_popis {
     box-sizing: border-box;
     }
 
+.no_tasks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    border: 1px #d1d1d1 solid;
+    background: #f5f5f5;
+    border-radius: 5px;
+}
+
 
 .display_as {
     height: 40px;
@@ -4060,6 +4069,8 @@ td.zakladna_popis {
     visibility: visible;
     transition: .4s;
 }
+
+.video
 
 #modal_header {
     display: flex;
@@ -5243,6 +5254,14 @@ input[name="base_name"] {
     width: auto;
    }
 
+    .video_edition {
+        background-color: #84e4f7;
+        border: 1px #84e4f7 solid;
+        border-radius: 5px;
+        color: #fff;
+        height: 45px;
+        
+    }
 
    .modal_video_tags {
     min-width: 200px;

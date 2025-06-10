@@ -103,7 +103,14 @@ document.querySelector(".list").addEventListener("click", function(event) {
 
     case "add_new_video":
         // add video
-        alert("add video");
+        const videoTitle = document.querySelector(`#new_video input[name="video_title"]`).value;
+        const videoUrl = document.querySelector(`#new_video input[name="video_url"]`).value;
+        if (!videoUrl) {
+            alert("Empty video url");
+            return;
+        } else {
+            saveVideo();
+        }
         break;
 
     default:

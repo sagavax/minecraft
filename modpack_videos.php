@@ -5,9 +5,34 @@
                   <div class='modlist_mods_title'><h3><?php echo "Videos for the modpack ".GetModPackName($_GET['modpack_id']); ?></h3></div>
                   
                   <div id="new_video">
-                      <input type="text" name="video_title" placeholder='Video title' autocomplete=off id="video_title">
-                      <input type="text" name="video_url" placeholder='Video url' id="video_url" autocomplete="off">
-                      <div class="new_video_submit_wrap"><button type="submit" name="add_new_video" class="button pull-right"><i class="fa fa-plus"></i></button></div>
+                    <div class="video_top_bar"><button type="button" class="close_modal" title="hide"><i
+                                class="fa fa-times"></i></button>
+                     </div>
+                    <form action="videos_save.php" enctype="multipart/form-data" method="post">
+
+                        <input type="text" name="video_title" placeholder='Video title' autocomplete=off
+                            id="video_title" readonly ondblclick="remove_readonly(this)" onblur="set_readonly(this)">
+                        <input type="text" name="video_url" placeholder='Video url' id="video_url" autocomplete="off">
+
+                         <select name="category">
+                                <option value=0>-- Select modification -- </option>
+                                <?php
+                                    $sql="SELECT * from mods ORDER BY cat_name ASC";
+                                    $result=mysqli_query($link, $sql);
+                                      while ($row = mysqli_fetch_array($result)) {
+                                        $cat_id=$row['cat_id'];
+                                        $cat_name=$row['cat_name'];
+                                    echo "<option value=$cat_id>$cat_name</option>";
+                                    }	
+                                  ?>
+                            </select>
+                         
+                            <div class="new_video_submit_wrap"><button type="submit" name="add_new_video"
+                                class="button pull-right"><i class="fa fa-plus"></i></button>
+                            </div>
+
+                    </form>
+                                     
                   </div>
                        
                   
