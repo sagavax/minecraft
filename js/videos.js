@@ -90,38 +90,6 @@ video_mods_list.addEventListener("click", function(event){
 });
 
 
-/* pagination.addEventListener('click', function(event) {
-    // Check if the clicked element is a button
-    if (event.target.tagName === "BUTTON") {
-        // Log the event target tag name for debugging
-        console.log('Clicked element tag name:', event.target.tagName);
-
-        // Retrieve the page number from the button's inner text
-        const pageNumber = event.target.innerText;
-
-        // Log the page number for debugging
-        console.log('Page number:', pageNumber);
-
-        // Call the PaginateTags function with the page number
-        PaginateTags(pageNumber);
-
-        // Add your logic to handle pagination here
-    }
-});
- */
-
-/* tags.addEventListener("click", function(event){
-    if(event.target.tagName==="BUTTON"){
-        const tagName = event.target.innerText;
-        const tagId =event.target.getAttribute("tag-id");
-        sort_videos_by_tag(tagId);
-        console.log(tagName, tagId);
-    }
-})
- */
-
-
-
 //console.log(hide_top_bar);
 
 hide_top_bar.addEventListener("click",function(){
@@ -149,14 +117,6 @@ parentElement.addEventListener("input", function(event) {
         }
     }
 });
-
-/* parentElement.addEventListener("keydown", function(event) {
-    // Check if the target element is the input field
-    if (event.target.matches(".inner_layer input") && event.key === "Enter") {
-        createVideoTag(event.target.value);
-    }
-}); */
-
 
 
 change_modpack_list.addEventListener("click", function(event) {
@@ -889,7 +849,7 @@ function createNewModpack(modpack_name) {
 
 
 //autocomplete for modal add tag dialog
-function TagAutocomplete(tag) {
+/* function TagAutocomplete(tag) {
     // Reference to the input field, list, and list container
     const inputField = document.querySelector(".inner_layer input");
     const list = document.querySelector(".inner_layer ul");
@@ -949,7 +909,7 @@ function TagAutocomplete(tag) {
     xhttp.open("GET", "video_tags_autocomplete.php?tag=" + encodeURIComponent(tag), true);
     xhttp.send();
 }
-
+ */
 
 // Event listener for the input field to trigger autocomplete
 document.querySelector(".inner_layer input").addEventListener("keyup", function() {

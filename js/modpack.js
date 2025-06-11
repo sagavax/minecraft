@@ -4,6 +4,7 @@ var taskRadiosContainers = document.querySelectorAll('.task_view');
 var imageRadiosContainers = document.querySelectorAll('.image_radios');
 var popupModsListContainer = document.querySelector('.popup_mods_list main');
 var new_note = document.getElementById("new_note");
+var video_url = document.querySelector("#video_url");          
 //wrapper
 var list = document.querySelector(".list");
 
@@ -122,6 +123,133 @@ document.querySelector(".list").addEventListener("click", function(event) {
 
 
 
+  document.getElementById("video_url").addEventListener("input", getYouTubeVideoName);
+   document.getElementById("video_url").oninput = function() { checkVideoExists(document.getElementById("video_url").value) };
+   //document.getElementById("videos_cards").style.display = "none";
+
+
+
+/**
+ * Checks whether a given string is a valid URL.
+ * @param {string} url The url to check
+ * @returns {boolean} True if the string is a valid URL, false otherwise
+ */
+   function isValidUrl(url) {
+    try {
+        new URL(url);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+
+
+
+/**
+ * Extracts the video ID from a given YouTube URL, removes any time parameter and fetches the video title.
+ * If the video title contains "Bedrock", sets the edition select field to "bedrock".
+ * @returns {string|null} The video ID if the URL is valid, null otherwise.
+ */
+function getYouTubeVideoName() {
+    var url = document.getElementById("video_url").value;
+
+    // Validácia URL
+    if (!isValidUrl(url)) {
+        console.error("Invalid URL provided:", url);
+        ShowMessage("Invalid URL");
+        return; // Exit the function if the URL is invalid
+    } else {
+        // Kontrola a odstránenie časového parametra
+        if (hasTimeParameter(url)) {
+            url = removeTimeParameter(url);
+            console.log("URL after removing time parameter:", url);
+        }
+
+        // Definovanie regulárneho výrazu na zhodu s YouTube URL
+        const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        
+        // Extrakcia ID videa z URL pomocou regulárneho výrazu
+        const match = url.match(youtubeRegex);
+
+        // Ak je nájdená zhoda, pokračuj
+        if (match && match[1]) {
+            const videoId = match[1];
+
+            // Asynchrónne volanie na získanie názvu videa
+            fetch("get_youtube_video_name.php?videoUrl=" + encodeURIComponent(url))
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.text();
+                })
+                .then(video_name => {
+                    if (video_name) {
+                        document.getElementById("video_title").value = video_name;
+
+                        let bedrockVariants = ["Bedrock", "bedrock", "BEDROCK"];
+
+                        // Kontrola, či názov videa obsahuje varianty "Bedrock"
+                        if (bedrockVariants.some(variant => video_name.includes(variant))) {
+                            document.querySelector('select[name="edition"]').value = "bedrock";
+                        }
+                    } else {
+                        // Spracovanie prípadu, keď názov videa je prázdny
+                        ShowMessage("Video name could not be retrieved.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching video name:', error);
+                    ShowMessage("An error occurred while fetching the video name.");
+                });
+
+            // Môžeš použiť video ID na vykonávanie API požiadaviek alebo iné akcie
+            return videoId;
+        } else {
+            // Zobrazenie chybovej správy, ak URL nie je platná
+            ShowMessage("This is not a valid YouTube video URL");
+            return null;
+        }
+    }
+}
+
+function checkVideoExists() {
+    url = document.getElementById("video_url").value;
+    var xhttp = new XMLHttpRequest();
+    const icon1 = document.querySelector(".icon1");
+    const icon2 = document.querySelector(".icon2");
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            video_url = document.getElementById("video_url");
+            if (this.responseText == 1) {
+
+                video_url.style.borderWidth = "3px";
+                video_url.style.borderColor = "#e74c3c";
+                setTimeout(clear_video_url_style,2000);
+                ShowMessage("Video already exists!!");
+                
+                return false;
+            } else {
+                video_url.style.borderWidth = "3px";
+                video_url.style.borderColor = "#27ae60";
+                
+            }
+        }
+    };
+    xhttp.open("GET", "check_video_id.php?video_id=" + video_url.value, true);
+    xhttp.send();
+}
+
+
+/**
+ * Saves a new video by extracting the video title, URL, and other metadata from the form.
+ * Sends an asynchronous POST request to 'videos_save.php' to store the video details in the database.
+ * Updates the video list on successful response.
+ */
+
 function SaveVideo() {
     const videoTitle = document.querySelector(`#new_video input[name="video_title"]`).value;
     const videoUrl = document.querySelector(`#new_video input[name="video_url"]`).value;
@@ -154,6 +282,10 @@ function filterTasks(modpackId, taskStatus) {
 }
 
 
+/**
+ * Replaces the task body with a textarea for editing. When the textarea loses focus, saves the changes and switches back to the div.
+ * @param {number} taskId The ID of the task to edit
+ */
  function switchToTextarea(taskId) {
     const div = document.querySelector(`.task[id="${taskId}"] .task_body`);
     console.log(div);
@@ -180,6 +312,10 @@ function filterTasks(modpackId, taskStatus) {
   }
 
 
+/**
+ * Marks a task as completed.
+ * @param {number} taskId The ID of the task to mark as completed
+ */
 function taskCompleted(taskId) {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -196,6 +332,11 @@ function taskCompleted(taskId) {
 }
 
 
+/**
+ * Saves changes to a task's text.
+ * @param {number} taskId The ID of the task to update
+ * @param {string} taskText The new text for the task
+ */
 function SaveTaskChanges(taskId, taskText) {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -209,6 +350,11 @@ function SaveTaskChanges(taskId, taskText) {
     xhttp.send(data);
 }
 
+/**
+ * Creates a new task.
+ * @param {string} taskText The text of the new task
+ * @param {number} modpack_id The ID of the modpack to add the task to
+ */
 function createTask() {
     const taskText = document.querySelector(`#new_task textarea[name="task_text"]`).value;
     const urlParams = new URLSearchParams(window.location.search);
@@ -234,6 +380,12 @@ function createTask() {
 }       
 
 
+/**
+ * Saves a new note.
+ * @param {string} noteTitle The title of the new note
+ * @param {string} noteText The text of the new note
+ * @param {number} modpack_id The ID of the modpack to add the note to
+ */
 function SaveNote() {
     const noteTitle = document.querySelector(`#new_note input[name="note_header"]`).value;
     const noteText = document.querySelector(`#new_note textarea[name="note_text"]`).value;
@@ -295,6 +447,9 @@ function SaveNote() {
 }
 
 
+/**
+ * Získa meno modpacku podľa URL parametrov a vypíše ho do elementu .modpack_name
+ */
 function GetModpackName() {
     const urlParams = new URLSearchParams(window.location.search);
     const modpack_id = urlParams.get('modpack_id');
@@ -310,6 +465,10 @@ function GetModpackName() {
     xhttp.send();
 }
 
+/**
+ * Získa ID poslednej poznámky.
+ * @return {string} ID poslednej poznámky
+ */
 function GetLatestNoteId() { // get latest note ID
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

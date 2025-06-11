@@ -27,7 +27,7 @@
 <body>
 
     <?php 
-      echo "<script>sessionStorage.setItem('current_module','videos')</script>";
+ 
       include("includes/header.php") ?>
     <div class="main_wrap">
         <div class="tab_menu">
@@ -58,9 +58,9 @@
 
                         <select name="modpack_vanilla">
                             <?php
-                        echo "<option value='0'>Vanilla Minecraft</option>";   
-                        echo "<option value=1>Modded Minecraft</option>";
-                    ?>
+                                echo "<option value='0'>Vanilla Minecraft</option>";   
+                                echo "<option value=1>Modded Minecraft</option>";
+                             ?>
                         </select>
 
                         <div class="modpack_container">
@@ -196,14 +196,14 @@
                     <div class="video_tags_map">
                         <input type="text" namae="search_tag" placeholder="Search a tag" autocomplete="off">
                         <?php 
-                  $get_videos_tags = "SELECT a.tag_id,b.tag_name from video_tags a, tags_list b WHERE a.tag_id NOT IN (0) and a.tag_id = b.tag_id GROUP BY b.tag_name ORDER BY b.tag_name ASC";
-                  $result_tags=mysqli_query($link, $get_videos_tags);
-                  while ($row_tags = mysqli_fetch_array($result_tags)) {
-                    $tag_id = $row_tags['tag_id'];
-                    $tag_name=$row_tags['tag_name'];
-                    echo "<button type='button' class='button small_button' name='tag'  tag-id=$tag_id>$tag_name</button>";
-                  }
-                  ?>
+                            $get_videos_tags = "SELECT a.tag_id,b.tag_name from video_tags a, tags_list b WHERE a.tag_id NOT IN (0) and a.tag_id = b.tag_id GROUP BY b.tag_name ORDER BY b.tag_name ASC";
+                            $result_tags=mysqli_query($link, $get_videos_tags);
+                            while ($row_tags = mysqli_fetch_array($result_tags)) {
+                                $tag_id = $row_tags['tag_id'];
+                                $tag_name=$row_tags['tag_name'];
+                                echo "<button type='button' class='button small_button' name='tag'  tag-id=$tag_id>$tag_name</button>";
+                            }
+                            ?>
                     </div>
 
                     <div class='videos_list' id='videos_list'>
