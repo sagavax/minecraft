@@ -4,11 +4,12 @@ var taskRadiosContainers = document.querySelectorAll('.task_view');
 var imageRadiosContainers = document.querySelectorAll('.image_radios');
 var popupModsListContainer = document.querySelector('.popup_mods_list main');
 var new_note = document.getElementById("new_note");
-var video_url = document.querySelector("#video_url");          
+var video_url = document.querySelector("input[name='video_url']");          
 //wrapper
 var list = document.querySelector(".list");
 
-window.onload = GetModpackName;
+
+
 
 
 //event listener for list
@@ -108,7 +109,7 @@ document.querySelector(".list").addEventListener("click", function(event) {
         const videoUrl = document.querySelector(`#new_video input[name="video_url"]`).value;
         if (!videoUrl) {
             alert("Empty video url");
-            return;
+            return false;
         } else {
             saveVideo();
         }
@@ -121,14 +122,28 @@ document.querySelector(".list").addEventListener("click", function(event) {
     }
 });
 
+ 
+
+/* document.querySelector("input[name='video_title']").addEventListener("click", function(event){
+    if(event.target.tagName==="INPUT"){
+        alert("input");
+    }
+})
 
 
-  document.getElementById("video_url").addEventListener("input", getYouTubeVideoName);
-   document.getElementById("video_url").oninput = function() { checkVideoExists(document.getElementById("video_url").value) };
-   //document.getElementById("videos_cards").style.display = "none";
+document.addEventListener("DOMContentLoaded", function () {
+  const videoInput = document.querySelector("input[name='video_url']");
+  if (videoInput) {
+    videoInput.addEventListener("input", function () {
+      getYouTubeVideoName();
+      checkVideoExists(videoInput.value);
+    });
+  } else {
+    console.warn("Input video_url not found.");
+  }
+}); */
 
-
-
+  
 /**
  * Checks whether a given string is a valid URL.
  * @param {string} url The url to check
@@ -250,6 +265,7 @@ function checkVideoExists() {
  * Updates the video list on successful response.
  */
 
+
 function SaveVideo() {
     const videoTitle = document.querySelector(`#new_video input[name="video_title"]`).value;
     const videoUrl = document.querySelector(`#new_video input[name="video_url"]`).value;
@@ -268,6 +284,8 @@ function SaveVideo() {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("modpack_id=" + modpackId + "&video_title=" + videoTitle + "&video_url=" + videoUrl + "&video_source=" + videoSource + "&edition=" + edition);
 }
+
+
 
 function filterTasks(modpackId, taskStatus) {
     // filter tasks

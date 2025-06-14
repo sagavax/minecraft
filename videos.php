@@ -45,7 +45,6 @@
                     <div class="video_top_bar"><button type="button" class="close_modal" title="hide"><i
                                 class="fa fa-times"></i></button></div>
                     <form action="videos_save.php" enctype="multipart/form-data" method="post">
-
                         <input type="text" name="video_title" placeholder='Video title' autocomplete=off
                             id="video_title" readonly ondblclick="remove_readonly(this)" onblur="set_readonly(this)">
                         <input type="text" name="video_url" placeholder='Video url' id="video_url" autocomplete="off">

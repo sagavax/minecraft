@@ -13,9 +13,10 @@
     </div>
 
     <form action="videos_save.php" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="modpack_id" value="<?php echo $_GET['modpack_id'] ?>">
         <input type="text" name="video_title" placeholder="Video title" autocomplete="off"
-               id="video_title" readonly ondblclick="remove_readonly(this)" onblur="set_readonly(this)">
-        <input type="text" name="video_url" placeholder="Video url" id="video_url" autocomplete="off">
+               id="video_title" readonly value="">
+         <input type="text" name="video_url" autocomplete="off" title="Video url" placeholder="Video url" value="">
 
         <select name="category">
             <option value="0">-- Select modification --</option>
@@ -25,7 +26,7 @@
                 while ($row = mysqli_fetch_array($result)) {
                     $cat_id = $row['cat_id'];
                     $cat_name = $row['cat_name'];
-                    echo "<option value=\"$cat_id\">$cat_name</option>";
+                    echo "<option value='$cat_id'>$cat_name</option>";
                 }
             ?>
         </select>
@@ -138,7 +139,3 @@
         <div class='pagination'><?php echo GetTotalPagesVideosTags(); ?></div>
     </div>
 </dialog>
-
-<!-- Scripts -->
-<script async src="./js/modpack_videos.js?<?php echo time(); ?>"></script>
-<script async src="./js/modpack_videos_action.js?<?php echo time(); ?>"></script>

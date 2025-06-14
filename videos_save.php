@@ -1,9 +1,7 @@
 <?php
          include("includes/dbconnect.php");
          include("includes/functions.php");
-
-        
-          global $link;
+ 
           //var_dump($_POST);
           $video_name=mysqli_real_escape_string($link, $_POST['video_title']);
           $video_url=mysqli_real_escape_string($link, $_POST['video_url']);
@@ -23,7 +21,7 @@
           echo $modpack_id;
           //$modpack=mysqli_real_escape_string($link, $_POST['modpack']);
 
-          $modpack_vanilla = mysqli_real_escape_string($link, $_POST['modpack_vanilla']);
+          //$modpack_vanilla = mysqli_real_escape_string($link, $_POST['modpack_vanilla']);
           
           $video_source = mysqli_real_escape_string($link, $_POST['video_source']);
           $edition = $_POST['edition'];
