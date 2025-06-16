@@ -107,7 +107,7 @@ modal_comm_input.addEventListener("keydown", function(event) {
 
     const modal_modpack_input = document.querySelector(".inner_modpack_layer input");
     modal_modpack_input.addEventListener("keydown", function(event) {
-    if (event.key == "Enter" && modal_modal_input.value !=="") {
+    if (event.key == "Enter" && modal_modpack_input.value !=="") {
         if(modal_modpack_input.value=="")
         //alert(modal_modpack_input.value);
         createNewModpack(modal_modpack_input.value)
