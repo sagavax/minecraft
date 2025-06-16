@@ -79,7 +79,7 @@ if(isset($_POST['add_daily_note'])){
           </div>    
           <div class="popup_mods_list">
             <header>
-              <input type="text" name="serch_mod" onkeyup="popup_search_mod(this.value);" autocomplete="off" spellcheck="false" placeholder="search mod(s) here...">
+              <input type="text" name="search_mod" onkeyup="popup_search_mod(this.value);" autocomplete="off" spellcheck="false" placeholder="search mod(s) here...">
               <button class='button blue_button' onclick="reload_modal_mods()"><i class="fas fa-sync-alt"></i></button>
               <button class='button blue_button' onclick="hide_popup()"><i class='fa fa-times'></i></button>
             </header>

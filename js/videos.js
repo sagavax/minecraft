@@ -192,7 +192,7 @@ modal_modpack_input.addEventListener("input", function(){
 
 
 
-    //clear serch input
+    //clear search input
     //var search_wrap = document.querySelector(".search_wrap");
 
     clear_button.addEventListener("click", function(){
