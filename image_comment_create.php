@@ -1,12 +1,11 @@
 <?php
 
     include("includes/dbconnect.php");
-    $text = mysqli_real_escape_string($link,$_POST['picture_comment']);
-    $picture_id=$_POST['image_id'];
-    $picture_comment = $_POST['comment_text'];
+    $image_id=$_POST['image_id'];
+    $comment = mysqli_real_escape_string($link, $_POST['comment_text']);
 
-    //echo $picture_id;
- $sql="INSERT into picture_comments (pic_id,comment, comment_date ) VALUES ($picture_id, ' $picture_comment', now())";
+    //echo $image_id;
+ $sql="INSERT INTO picture_comments (pic_id, comment, comment_date) VALUES ($image_id,'$comment', now())";
   $result=mysqli_query($link, $sql) or die(mysqli_error($link));
 
 
