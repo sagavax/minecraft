@@ -135,7 +135,7 @@ modal_comm_input.addEventListener("keydown", function(event) {
 
 
 
-    //clear serch input
+    //clear search input
     //var search_wrap = document.querySelector(".search_wrap");
     var search_input=document.querySelector(".search_wrap input");
     var clear_button= document.querySelector(".search_wrap button");
