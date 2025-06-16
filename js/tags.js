@@ -8,7 +8,7 @@ const letter_list = document.querySelector("#letter_list");
 letter_list.addEventListener("click", function(event) {
      if(event.target.tagName ==="BUTTON") {
         const letter = event.target.innerText;
-        //SortTagsByLetter(letter);
+        SortTagsByLetter(letter);
         console.log("Sort by letter:", letter);
     }
 });
@@ -62,6 +62,21 @@ tags_list.addEventListener("click", function(event) {
 });
 
 
+function search_tags(search_text) {
+    var xhttp = new XMLHttpRequest();
+       xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector("#tags_list").innerHTML=this.responseText;
+            //document.getElementById("notes_list").innerHTML = this.responseText;
+        }
+    };
+    const data = "search_text="+search_text;
+    xhttp.open("POST", "tags_search.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);  
+}
+
+
 function removeTag(tagId) {
     var xhttp = new XMLHttpRequest();
     var search_text = document.getElementById("search_string").value;
@@ -79,8 +94,7 @@ function removeTag(tagId) {
 
 function SortTagsByLetter(letter){
     var xhttp = new XMLHttpRequest();
-    var search_text = document.getElementById("search_string").value;
-    xhttp.onreadystatechange = function() {
+     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.querySelector("#tags_list").innerHTML=this.responseText;
             //document.getElementById("notes_list").innerHTML = this.responseText;

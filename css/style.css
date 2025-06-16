@@ -24,7 +24,7 @@ body {
 }
 
 :focus {
-    outline: 2px solid #007bff; /* Použi akúkoľvek farbu alebo efekt */
+    outline: none; /* Použi akúkoľvek farbu alebo efekt */
 }  
 
 a {
@@ -2645,10 +2645,6 @@ textarea::placeholder {
     border: 1px #d1d1d1 solid;
 }
 
-.modpack_details input:focus {
-    border: 1px solid #0b9ed0;
-    ;
-}
 
 .modpack {
     display: flex;
