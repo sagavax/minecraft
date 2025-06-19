@@ -1,5 +1,5 @@
 <?php 
-include("includes/dbconnect.php");
+include("dbconnect.php");
 
 
 function GetImageModpack($image_id) {
