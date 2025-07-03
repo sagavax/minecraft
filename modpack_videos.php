@@ -58,7 +58,7 @@
             $video_id = $row['video_id'];
             $video_name = $row['video_title'];
             $video_url = $row['video_url'];
-            $mod_id = $row['cat_id'];
+            //$mod_id = $row['cat_id'];
             $is_favorite = $row['is_favorite'];
             $see_later = $row['watch_later'];
             $video_thumb = $row['video_thumbnail'];

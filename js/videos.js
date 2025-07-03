@@ -238,7 +238,7 @@ modal_modpack_input.addEventListener("input", function(){
 
    
 
-   video_url.oninput = function() { check_video_exists(video_url.value) };
+   video_url.oninput = function() { checkVideoExists(video_url.value) };
    //document.getElementById("videos_cards").style.display = "none";
 
    
@@ -356,9 +356,10 @@ function getYouTubeVideoName() {
     // Validácia URL
     if (!isValidUrl(url)) {
         console.error("Invalid URL provided:", url);
-        ShowMessage("Invalid URL");
+        //ShowMessage("Invalid URL");
         return; // Exit the function if the URL is invalid
     } else {
+        console.log("Valid URL provided:", url);
         // Kontrola a odstránenie časového parametra
         if (hasTimeParameter(url)) {
             url = removeTimeParameter(url);
@@ -395,25 +396,25 @@ function getYouTubeVideoName() {
                         }
                     } else {
                         // Spracovanie prípadu, keď názov videa je prázdny
-                        ShowMessage("Video name could not be retrieved.");
+                        //ShowMessage("Video name could not be retrieved.");
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching video name:', error);
-                    ShowMessage("An error occurred while fetching the video name.");
+                    //ShowMessage("An error occurred while fetching the video name.");
                 });
 
             // Môžeš použiť video ID na vykonávanie API požiadaviek alebo iné akcie
             return videoId;
         } else {
             // Zobrazenie chybovej správy, ak URL nie je platná
-            ShowMessage("This is not a valid YouTube video URL");
+            //ShowMessage("This is not a valid YouTube video URL");
             return null;
         }
     }
 }
 
-function check_video_exists() {
+function checkVideoExists() {
     url = document.getElementById("video_url").value;
     var xhttp = new XMLHttpRequest();
     const icon1 = document.querySelector(".icon1");
@@ -428,7 +429,7 @@ function check_video_exists() {
                 video_url.style.borderWidth = "3px";
                 video_url.style.borderColor = "#e74c3c";
                 setTimeout(clear_video_url_style,2000);
-                ShowMessage("Video already exists!!");
+                //ShowMessage("Video already exists!!");
                 
                 return false;
             } else {
@@ -846,70 +847,6 @@ function createNewModpack(modpack_name) {
     xhttp.send(data);
 }
 
-
-
-//autocomplete for modal add tag dialog
-/* function TagAutocomplete(tag) {
-    // Reference to the input field, list, and list container
-    const inputField = document.querySelector(".inner_layer input");
-    const list = document.querySelector(".inner_layer ul");
-    const list_container = document.querySelector(".list_container");
-    const loadingIndicator = document.querySelector(".loading");
-    //list.style.borderWidth = "1px";
-
-    // Clear the autocomplete list if the tag is empty
-    if (tag === "") {
-        list.innerHTML = "";
-        list.style.display = "none";
-        //loadingIndicator.style.display = "none";
-        return; // Exit the function early
-    }
-
-    // Clear the list and show loading indicator before making a new request
-    list.classList.add("hidden");
-    //loadingIndicator.style.display = "block";
-    
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-        // Parse the JSON response
-        const jsonData = JSON.parse(this.responseText);
-
-        // Create a document fragment to minimize DOM updates
-        const fragment = document.createDocumentFragment();
-        
-        jsonData.forEach(function(currentTag) {
-            const tagName = currentTag.tag_name; // Assuming your objects have a 'tag_name' property
-            
-            const listItem = document.createElement("li");
-            listItem.textContent = tagName;
-
-            // Add click event listener to each list item
-            listItem.addEventListener("click", function() {
-                inputField.value = this.textContent; // Set input value to the clicked item's text
-                list.innerHTML = ""; // Optionally clear the list after selection
-                list.style.display = "none";
-                //loadingIndicator.style.display = "none";
-            });
-
-            // Add list item to the fragment
-            fragment.appendChild(listItem);
-        });
-
-        // Clear the list and append new items from the fragment
-        list.innerHTML = "";
-        list.appendChild(fragment);
-
-        // Hide loading indicator and show the list with a transition
-        //loadingIndicator.style.display = "none";
-        list.classList.remove("hidden");
-        list.style.display = "flex";
-        //list_container.style.display = "block";
-    };
-
-    xhttp.open("GET", "video_tags_autocomplete.php?tag=" + encodeURIComponent(tag), true);
-    xhttp.send();
-}
- */
 
 // Event listener for the input field to trigger autocomplete
 document.querySelector(".inner_layer input").addEventListener("keyup", function() {

@@ -12,13 +12,13 @@
             $mod_id = mysqli_real_escape_string($link, $_POST['category']);
           }
           
-          if (!isset($_POST['modpack_id'])) {
+          if (!isset($_POST['modpack'])) {
             $modpack_id = 0;
           } else {
-            $modpack_id = mysqli_real_escape_string($link, $_POST['modpack_id']);
+            $modpack_id = mysqli_real_escape_string($link, $_POST['modpack']);
           }
           
-          echo $modpack_id;
+          //echo $modpack_id;
           //$modpack=mysqli_real_escape_string($link, $_POST['modpack']);
 
           //$modpack_vanilla = mysqli_real_escape_string($link, $_POST['modpack_vanilla']);

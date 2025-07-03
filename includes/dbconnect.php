@@ -3,7 +3,7 @@
 
 
  //$link = mysqli_connect("mariadb105.r6.websupport.sk", "minecraft_db", "Us6^*qb1H-", "minecraft_db", 3315);
- $link = mysqli_connect("localhost", "root", "", "minecraft_db", 3306);
+ $link = mysqli_connect("localhost", "root", "root", "minecraft_db", 3306);
 /* 
  $dsn = 'mysql:host=mariadb105.r6.websupport.sk;dbname=minecraft_db;port=3315';
 $username = 'minecraft_db';
