@@ -4,9 +4,9 @@
     include "includes/functions.php";
 
     $image_id = $_POST['image_id'];
-    $comment = mysqli_real_escape_string($link,$_POST['comment_text']);
+    $comment = mysqli_real_escape_string($link, $_POST['comment_text']);
 
-    $add_comment = "INSERT INTO video_comments (video_id, video_comment, comment_date) VALUES ($video_id,'$comment',now())";
+    $add_comment = "INSERT INTO picture_comments (pic_id, comment, comment_date) VALUES ($image_id,'$comment',now())";
     $result_comments = mysqli_query($link, $add_comment) or die(mysqli_error($link));
 
 
