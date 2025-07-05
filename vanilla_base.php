@@ -5,7 +5,7 @@
  if(isset($_POST['new_note'])){
      $note_text=mysqli_real_escape_string($link, $_POST['note_text']);   
      $base_id+$_POST['base_id'];
-     $add_note="INSERT INTO vanila_base_notes (zakladna_id, note_text, added_date) VALUES ($base_id,'$note_title',$note_text',now())";
+     $add_note="INSERT INTO vanila_base_notes (base_id, note_text, added_date) VALUES ($base_id,'$note_title',$note_text',now())";
      $result=mysqli_query($link, $add_note);
  }
 
@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="js/vanila_base.js" defer></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -51,25 +51,20 @@
              <?php include("includes/menu.php"); ?>
          </div>
 
-         <?php 
-         //var_dump($_GET);
-         $base_id = $_GET['base_id']; 
-         echo "<script>sessionStorage.setItem('base_id',$base_id)</script>";
-         ?>
-
          <div class="content">
             <div class="list">
                 <div class="base">
                     <?php 
-                        $sql="SELECT * from vanila_bases where zakladna_id=$base_id";
+                        $base_id = $_GET['base_id'];
+                        $sql="SELECT * from vanila_bases where base_id=$base_id";
                         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
                         $row = mysqli_fetch_array($result);    
                     ?>
                         <div id="basic_base_info">
-                            <!--<input type="hidden" name="zakladna_id" value="<?php echo $row['zakladna_id']; ?>">-->
-                            <input name="base_name" type="text" placeholder="name your base..." value="<?php echo $row['zakladna_meno']; ?>">
+                            <!--<input type="hidden" name="zakladna_id" value="<?php echo $row['base_id']; ?>">-->
+                            <input name="base_name" type="text" placeholder="name your base..." value="<?php echo $row['base_name']; ?>">
                             <title>Vanila base - <?php echo $row['zakladna_meno']; ?> </title>
-                            <textarea name="description" placeholder="Describe your base somehow..."><?php echo $row['zakladna_popis']?></textarea>
+                            <textarea name="description" placeholder="Describe your base somehow..."><?php echo $row['base_description']?></textarea>
                         </div>    
                         <div id="base_location">
                             <div id="base_outworld_location"><h4>Base location:</h4>

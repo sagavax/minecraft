@@ -1,4 +1,48 @@
-     function add_new_note() {
+    var vanilla_bases = document.querySelector("#vanilla_bases");
+
+
+vanilla_bases.addEventListener("click", function(e) {
+    if (e.target.tagName === "DIV" && e.target.classList.contains("base_name")) {
+        console.log(e.target);
+
+        const baseId = e.target.closest(".vanilla-base").getAttribute("base-id");
+        console.log(baseId);
+
+        e.target.contentEditable = true;
+        e.target.focus();
+
+        // Define blur handler on the editable element itself
+        e.target.onblur = function() {
+            e.target.contentEditable = false;
+            updateBaseName(baseId, e.target.innerText);
+        };
+    } else if (e.target.tagName === "DIV" && e.target.classList.contains("base_description")) {
+       // console.log(e.target);
+
+        const baseId = e.target.closest(".vanilla-base").getAttribute("base-id");
+        //console.log(baseId);
+
+        e.target.contentEditable = true;
+        e.target.focus();
+
+        const originalText = e.target.innerText;
+
+        e.target.onblur = function () {
+            e.target.contentEditable = false;
+
+        const newText = e.target.innerText.trim();
+
+        if (newText.length > 0 && newText !== originalText) {
+            updateBaseDescription(baseId, newText);
+        } else {
+            e.target.innerText = originalText; // revert if empty or unchanged
+        }
+     };
+   }
+});
+
+
+       function add_new_note() {
         var element = document.getElementById("new_note_wrap");
         element.style.display="flex";
        }
@@ -78,4 +122,29 @@
             function clear_input(){
                 document.getElementById("search").value = "";
                 reload_bases();
+            }
+
+
+            function updateBaseName(base_id, base_new_name) {
+                	const xhttp = new XMLHttpRequest();
+					xhttp.onload = function() {
+                        alert("Update successful");
+                    }    
+                console.log(base_id);    
+				xhttp.open("POST", "vanilla_base_update_name.php",true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var data = "&base_id="+encodeURIComponent(base_id)+"&base_name="+encodeURIComponent(base_new_name);
+                xhttp.send(data);
+            }
+
+            function updateBaseDescription(base_id, base_new_description) {
+                	const xhttp = new XMLHttpRequest();
+					xhttp.onload = function() {
+                        alert("Update successful");
+                    }    
+                console.log(base_id);    
+				xhttp.open("POST", "vanilla_base_update_description.php",true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var data = "&base_id="+encodeURIComponent(base_id)+"&base_description="+encodeURIComponent(base_new_description);
+                xhttp.send(data);
             }

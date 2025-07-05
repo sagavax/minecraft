@@ -4215,7 +4215,8 @@ td.zakladna_popis {
     width: 100%;
     display: flex;
     flex-direction: row;
-    height:80px
+    height:80px;
+    box-sizing: border-box;
 }
 
 .base_screen_thumb {
@@ -4245,6 +4246,24 @@ td.zakladna_popis {
      font-family: 'Noto Sans', sans-serif;
      font-size: 18px;
 }
+
+.base_description {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    /* align-items: center; */
+    border: 1px #d1d1d1 solid;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding:5px
+}
+
+.base_description:empty:not(:focus):before {
+	content: attr(data-placeholder);
+  color: #999999;
+}
+
 
 input[name="base_name"] {
     font-weight: bold;
@@ -4293,6 +4312,8 @@ input[name="base_name"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .base_nr_notes span,
