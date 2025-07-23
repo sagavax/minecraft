@@ -4,19 +4,9 @@
 
  //$link = mysqli_connect("mariadb105.r6.websupport.sk", "minecraft_db", "Us6^*qb1H-", "minecraft_db", 3315);
  //$link = mysqli_connect("awseb-e-rcedpsxaiv-stack-awsebrdsdatabase-h8ievr4b7tgk.cg18u1i45gny.eu-central-1.rds.amazonaws.com", "admin", "hOq2PaXqP3lhZ6T", "minecraft_db", 3306);
-  $link = mysqli_connect("mariadb105.r6.websupport.sk", "minecraft_db", "Us6^*qb1H-", "minecraft_db", 3315); 
-/* 
- $dsn = 'mysql:host=mariadb105.r6.websupport.sk;dbname=minecraft_db;port=3315';
-$username = 'minecraft_db';
-$password = 'Us6^*qb1H-';
-$options = array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES => false
-);
+ // $link = mysqli_connect("mariadb105.r6.websupport.sk", "minecraft_db", "Us6^*qb1H-", "minecraft_db", 3315); 
 
-$pdo = new PDO($dsn, $username, $password, $options);
- */
+ $link = mysqli_connect("localhost", "root", "root",  "minecraft_db", 3306); 
 
   if (!$link) {
       echo "Error: Unable to connect to MySQL." . PHP_EOL;
