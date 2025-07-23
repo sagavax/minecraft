@@ -392,6 +392,7 @@ textarea::placeholder {
     border-radius: 0.3rem;
     color: #fff;
     width: 80px;
+    background-color: transparent;
 }
 
 .white_outlined_button a {
@@ -1469,9 +1470,14 @@ textarea::placeholder {
     height: 15%;
 }
 
-.modpack_thumb_action a.button {
-    width: 80px;
-    appearance: button;
+.modpack_thumb_action button {
+    height: ;
+}
+
+
+.modpack_thumb_action button:not([name="status"]) {
+    
+    background-color: transparent;
 }
 
 .modpack_thumb_name {
