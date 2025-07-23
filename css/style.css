@@ -1470,12 +1470,12 @@ textarea::placeholder {
     height: 15%;
 }
 
-.modpack_thumb_action button {
-    height: ;
+.modpack_thumb_action button:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
-
-.modpack_thumb_action button:not([name="status"]) {
+.modpack_thumb_action button:not([name="modpack_status"]) {
     
     background-color: transparent;
 }

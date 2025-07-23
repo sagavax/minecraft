@@ -1,7 +1,7 @@
 localStorage.setItem("modpack_id", "");
 
+const modpack_list = document.querySelector(".modpack_list");
 const tab_view = document.querySelector(".tab_view");
-
 const search_wrap_input = document.querySelector(".search_wrap input");
 const new_modpack = document.querySelector("#new_modpack .action");
 
@@ -32,26 +32,40 @@ tab_view.addEventListener("click", (event) => {
   }
 });
 
-document.querySelectorAll(".is_active").forEach(a => {
-  a.addEventListener("click", () => {
-    var modpack_id = a.getAttribute("data-id");
 
-    if (a.classList.contains("active")) {
-      a.innerHTML = "<i class='fa fa-times'></i>";
-      a.classList.remove("active");
-      a.classList.add("inactive");
-      console.log(modpack_id);
-      modpack_status("inactive", modpack_id);
-    } else if (a.classList.contains("inactive")) {
-      a.innerHTML = "<i class='fa fa-check'></i>";
-      a.classList.remove("inactive");
-      a.classList.add("active");
-      modpack_status("active", modpack_id);
+modpack_list.addEventListener("click", (event) => {
+    if (event.target.tagName === "BUTTON") {
+        var modpack_id = event.target.getAttribute("data-id");
+
+        if (event.target.name === "enter_modpack") {
+            localStorage.setItem("modpack_id", modpack_id);
+            window.location.href = "modpack.php?modpack_id=" + modpack_id;
+        
+        } else if (event.target.name === "edit_modpack") {
+            window.location.href = "modpack_edit.php?modpack_id=" + modpack_id;
+        
+        } else if (event.target.name === "modpack_status") {
+            const button = event.target;
+
+            if (button.classList.contains("active")) {
+                button.innerHTML = "<i class='fa fa-times'></i>";
+                button.classList.remove("active");
+                button.classList.add("inactive");
+                console.log(modpack_id);
+                modpackChangeStatus("inactive", modpack_id);
+
+            } else if (button.classList.contains("inactive")) {
+                button.innerHTML = "<i class='fa fa-check'></i>";
+                button.classList.remove("inactive");
+                button.classList.add("active");
+                modpackChangeStatus("active", modpack_id);
+            }
+        }
     }
-  });
 });
 
-function modpack_status(status, modpack_id) {
+
+function modpackChangeStatus(status, modpack_id) {
   var modpack_status = status;
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
