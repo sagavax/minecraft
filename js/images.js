@@ -350,54 +350,80 @@ function addComment(imageId, commentText){
 
 }
 
-function saveImage(){
+function saveImage() {
   const imageName = document.querySelector('.add_new_image input[name="image_name"]').value;
   const imageUrl = document.querySelector('.add_new_image input[name="image_url"]').value;
   const imageDescription = document.querySelector('textarea[name="image_description"]').value;
-  var xhttp = new XMLHttpRequest();
-   xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          ShowMessage("Image saved successfully!");
-           document.querySelector('.add_new_image input[name="image_name"]').value="";
-           document.querySelector('.add_new_image input[name="image_url"]').value="";
-           document.querySelector('textarea[name="image_description"]').value="";
 
-           //insert into container
-           const image_list = document.querySelector('.image_list');
-            const html = `
-              <div class="picture" image-id="${imageID}">
-                <div class="picture_name">${imageName}</div>
-                <div class="picture_image" image-id="${imageID}">
-                  <img src="${imageUrl}" alt="${imageName}">
-                </div>
-                <div class="picture_footer">
-                  <div class="picture_action" image-id="${imageID}">
-                    <button class="button blue_button" modpack-id="${modpackID}" name="image_modpack" type="button">${modpackName}</button>
-                    <button class="button" name="add_tag" type="button"><i class="fas fa-tag"></i></button>
-                    <button class="button small_button" name="add_comment" type="button"><i class="fa fa-comment"></i></button>
-                    <button class="button" name="view_image" type="button"><i class="fa fa-eye"></i></button>
-                    <button class="button small_button" name="delete_image" type="button"><i class="fa fa-times"></i></button>
-                  </div>
-                </div>
-              </div>
-            `;
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+      ShowMessage("Image saved successfully!");
 
-            image_list.insertAdjacentHTML("afterbegin", html);
-      }
-     };
-   data = "image_name="+encodeURIComponent(imageName)+"&image_url="+encodeURIComponent(imageUrl)+"&image_description="+encodeURIComponent(imageDescription);//"image_name="+imageName+"&image_url="+imageUrl+"&image_description="+imageDescription;
-   xhttp.open("POST", "images_save.php", true);
-   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-   xhttp.send(data);
-}
+      // Vyčistiť formulár
+      document.querySelector('.add_new_image input[name="image_name"]').value = "";
+      document.querySelector('.add_new_image input[name="image_url"]').value = "";
+      document.querySelector('textarea[name="image_description"]').value = "";
 
-function GetLatestImageID() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      sessionStorage.setItem("latest_image_id", this.responseText);
+      // Zavolajme hneď po uložení funkciu na získanie ID
+      fetchLatestImageIDAndInsert(imageName, imageUrl);
     }
   };
+
+  const data = 
+    "image_name=" + encodeURIComponent(imageName) +
+    "&image_url=" + encodeURIComponent(imageUrl) +
+    "&image_description=" + encodeURIComponent(imageDescription);
+
+  xhttp.open("POST", "images_save.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
+
+function fetchLatestImageIDAndInsert(imageName, imageUrl) {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+      const imageID = this.responseText;
+
+      // Prípadne definuj tieto premenné, ak ich potrebuješ z niekadiaľ:
+      const modpackID = "";   // ← sem si daj správne ID
+      const modpackName = ""; // ← a tu názov modpacku, ak je dostupný
+
+      const imageList = document.querySelector('#picture_list');
+      const html = `
+        <div class="picture" image-id="${imageID}">
+          <div class="picture_name">${imageName}</div>
+          <div class="pic" image-id="${imageID}">
+            <img src="${imageUrl}" alt="${imageName}">
+          </div>
+          <div class="picture_footer">
+            <div class="picture_action" image-id="${imageID}">
+              <button class="button blue_button" modpack-id="${modpackID || 2}" name="image_modpack" type="button">${modpackName || "Vanilla Minecraft"}</button>
+              <button class="button small_button" name="add_tag" type="button"><i class="fas fa-tag"></i></button>
+              <button class="button small_button" name="add_comment" type="button"><i class="fa fa-comment"></i></button>
+              <button class="button small_button" name="view_image" type="button"><i class="fa fa-eye"></i></button>
+              <button class="button small_button" name="delete_image" type="button"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      imageList.insertAdjacentHTML("afterbegin", html);
+    }
+  };
+
   xhttp.open("GET", "images_get_latest_id.php", true);
   xhttp.send();
+}
+
+
+function loadLatestImage(){
+  const latestImageId = sessionStorage.getItem("latest_image_id");
+  if(latestImageId){
+    const image = document.querySelector(".picture[image-id='"+latestImageId+"']");
+    if(image){
+      image.scrollIntoView({behavior: "smooth"});
+    }
+  }
 }

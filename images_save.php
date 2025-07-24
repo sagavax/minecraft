@@ -9,7 +9,7 @@
         if(isset($_POST['modpack_id'])){
           $modpack_id = mysqli_real_escape_string($link, $_POST['modpack_id']);
         } else {
-          $modpack_id = 0;
+          $modpack_id = 2;
         }
         
         $add_image="INSERT INTO pictures (picture_title, picture_description, picture_name, picture_path, added_date) VALUES ('$pure_image_name', '$image_description','$image_url','$image_url',now())";
