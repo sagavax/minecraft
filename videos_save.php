@@ -32,7 +32,7 @@
 
           //saving basic information
           $save_video="INSERT INTO videos (video_title,video_url,edition,video_thumbnail ,video_source,added_date) VALUES ('$video_name','$video_url','$edition','$video_thumb','$video_source',now())";
-          echo $save_video;
+          //echo $save_video;
           $result=mysqli_query($link, $save_video) or die("MySQLi ERROR: ".mysqli_error($link));
 
               

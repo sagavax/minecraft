@@ -242,20 +242,29 @@ xhttp.send(data);
 }
 
 
-function checkImageExists(imageUrl){
-const xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-if (this.readyState == 4 && this.status == 200) {
-  if(this.responseText==="true"){
-    ShowMessage("Image already exists!");
-    //alert("Image already exists!");  
-        document.querySelector(".add_new_image input[name='image_url']").value="";
-  }  
+function checkImageExists(imageUrl) {
+  const xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+          if (this.responseText === "true") {
+              ShowMessage("Image already exists!");
+
+              const inputField = document.querySelector(".add_new_image input[name='image_url']");
+              inputField.style.border = "2px solid red";
+
+              setTimeout(() => {
+                  inputField.style.border = "1px solid #d1d1d1";
+                  inputField.value = "";
+              }, 3000);
+          }
+      }
+  };
+
+  xhttp.open("GET", "images_check.php?image_url=" + encodeURIComponent(imageUrl), true);
+  xhttp.send();
 }
-}
-xhttp.open("GET", "images_check.php?image_url="+encodeURIComponent(imageUrl), true);
-xhttp.send(); 
-}
+
 
 function addTagToImage(tagId){
   var xhttp = new XMLHttpRequest();
