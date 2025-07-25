@@ -114,6 +114,12 @@ picture_list.addEventListener("click", function(event) {
     } else if (buttonName === "image_modpack") {
       sessionStorage.setItem("image_id",imageId);var imageId = event.target.closest(".picture_action").getAttribute("image-id");
       modal_change_modpack.showModal();
+      if(modal_change_modpack.open){
+        const modal = document.querySelector('.modal_change_modpack');
+        const inner = document.querySelector('.inner_change_modpack_layer');
+        const innerHeight = inner.offsetHeight;
+        modal.style.height = (innerHeight + 50) + 'px';
+      }
     }
   }
 });

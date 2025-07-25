@@ -60,12 +60,14 @@
 
                               echo "<div class='picture_info'>";
                                   echo "<div class='picture_modpacks'>".GetImageModpack($picture_id)."</div>";
-                                  echo "<div class='image_description' title='click / tap here to put some wideo description here ...'>$picture_description</div>";  
+                                  echo "<div class='image_description' data-placeholder='image descriptpion. click / tap here to put some wideo description here ...' title='Image description'>$picture_description</div>";  
                                   echo "<div class='images_tags' tag-list='".GetImageTagListArray($picture_id)."'>".GetImageTagList($picture_id)."</div>";  
                                
                               echo "</div>"; //picture_info                                            
 
                            
+                             echo "<div class='comments_wrapper'>"; 
+
                              echo "<div class='picture_comm_info'><span><span id='nr_of_comments'>" . GetNrOfImageComments($picture_id) . "</span> comment(s)</span></div>";  
                             echo "<div class='picture_comments' id='comments'>";
                             
@@ -89,6 +91,7 @@
                                   echo "<div class='new_comment'><input type='text' name='picture_comment' id='picture_comment' autocomplete='off'><button name='add_comment' type='button' onclick='add_comment(); return false;'><i class='fa fa-plus'></i></button></div>";
 
                             echo "<div class='action_back'><button type='button''><i class='fas fa-sync'></i> Reload</button> <a href='images.php'><i class='fas fa-angle-left'></i> Back</a></div>";
+                            echo "</div>"; //div comments_wrapper
                             echo "</div>"; //div footer                 
                           echo "</div>";//div picture
                          } 

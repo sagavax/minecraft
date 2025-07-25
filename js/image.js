@@ -14,6 +14,12 @@ sessionStorage.setItem("picture_id",imageId);
 picture_modpacks.addEventListener("click", function(event){
   if (event.target.tagName === "BUTTON"){
     modal_change_modpack.showModal();
+     if(modal_change_modpack.open){
+        const modal = document.querySelector('.modal_change_modpack');
+        const inner = document.querySelector('.inner_change_modpack_layer');
+        const innerHeight = inner.offsetHeight;
+        modal.style.height = (innerHeight + 50) + 'px';
+      }
   }
 });
 

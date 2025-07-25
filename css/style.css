@@ -744,6 +744,13 @@ textarea::placeholder {
         padding-bottom: 5px;*/
 }
 
+.image_description:empty::before {
+  content: attr(data-placeholder);
+  color: #aaa;
+  pointer-events: none;
+  position: absolute;
+}
+
 .picture_action, .image_action {
     display: flex;
     justify-content: flex-end;
@@ -792,6 +799,7 @@ textarea::placeholder {
     padding: 5px;
     float: left;
 }
+
 
 .video_comments, .picture_comments {
     padding-left: 20px;
@@ -1170,6 +1178,14 @@ textarea::placeholder {
     font-weight: bold;
 }
 
+.comments_wrapper {
+    width: 100%;
+    border: 1px #d1d1d1 solid;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+}
 
 .picture_tags, .videos_tags
 .video_comm_info, .picture_comm_info {
