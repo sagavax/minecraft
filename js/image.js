@@ -6,7 +6,7 @@ var image_description = document.querySelector(".image_description");
 var modal_new_tags = document.querySelector(".modal_new_tags");
 var old_description = document.querySelector(".image_description").innerText;
 var picture_modpacks = document.querySelector(".picture_modpacks");
-var modal_change_modpack = document.querySelector(".modal_change_modpack");
+var modal_change_modpack = document.querySelector(".modal_change_modpack"); 
 //
 sessionStorage.setItem("picture_id",imageId);
 
