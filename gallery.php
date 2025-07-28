@@ -18,15 +18,8 @@
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="text/javascript" src="js/gallery.js" defer=""></script>
+    <script type="text/javascript" src="js/message.js" defer=""></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <script>
-        function show_welcome_message(){
-          setTimeout(function(){
-            document.getElementsByClassName('')[0].style.visibility = 'hidden';
-            //alert('hello world!');
-          }, 3000);
-        }
-    </script>
   </head>
   
   <body>
@@ -63,7 +56,7 @@
             <img src="">
     </div><!-- image-container -->    
     <div class="input-container"><!-- input-container -->
-        <input type="text" placeholder="write comment_here"><button type='button' class="button small_button"><i class='fa fa-plus'></i></button>
+        <input type="text" placeholder="write comment here"><button type='button' name="add_comment" class="button small_button" onclick="addComment(); return false;"><i class='fa fa-plus'></i></button>
      </div><!-- input-container -->
       <div class="image_comments"></div><!-- image_comments -->
 </dialog>

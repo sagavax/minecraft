@@ -1,6 +1,63 @@
 <?php 
 include("dbconnect.php");
 
+// 🧱 Validuj a dekóduj JSON
+function getJsonPayload(): array {
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Neplatný JSON formát']);
+        exit;
+    }
+
+    return $data;
+}
+
+// 🔗 Získaj YouTube video ID
+function extractYouTubeId(string $url): ?string {
+    if (strpos($url, 'youtube.com') !== false) {
+        parse_str(parse_url($url, PHP_URL_QUERY), $params);
+        return $params['v'] ?? null;
+    } elseif (strpos($url, 'youtu.be') !== false) {
+        return ltrim(parse_url($url, PHP_URL_PATH), '/');
+    }
+    return null;
+}
+
+// 🛡️ Over duplicitu videa
+function videoExists(mysqli $link, string $url): bool {
+    $urlEscaped = $link->real_escape_string($url);
+    $query = "SELECT 1 FROM videos WHERE video_url = '$urlEscaped' LIMIT 1";
+    $result = $link->query($query);
+    return $result && $result->num_rows > 0;
+}
+
+// 💾 Ulož video do databázy
+function insertVideo(mysqli $link, string $title, string $url, string $thumbnail, string $edition, string $source): int {
+    $query = "
+        INSERT INTO videos (video_title, video_url, edition, video_thumbnail, video_source, added_date)
+        VALUES ('$title', '$url', '$edition', '$thumbnail', '$source', NOW())
+    ";
+
+    if ($link->query($query) === TRUE) {
+        return $link->insert_id;
+    }
+
+    http_response_code(500);
+    echo json_encode(['error' => 'Chyba pri ukladaní videa: ' . $link->error]);
+    exit;
+}
+
+// 📦 Priraď video k modpacku
+function linkVideoToModpack(mysqli $link, int $video_id, int $modpack_id): void {
+    $query = "INSERT INTO videos_modpacks (video_id, modpack_id) VALUES ($video_id, $modpack_id)";
+    if ($link->query($query) !== TRUE) {
+        http_response_code(500);
+        echo json_encode(['error' => 'Chyba pri priraďovaní k modpacku: ' . $link->error]);
+        exit;
+    }
+}
 
 function GetImageModpack($image_id) {
 	global $link;

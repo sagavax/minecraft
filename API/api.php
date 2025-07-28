@@ -17,7 +17,11 @@ switch ($endpoint) {
             require 'create_video.php';
         } else if ($method === 'DELETE') {
            require 'delete_video.php';
-        } else {
+        }
+        elseif ($method === 'PUT' || $method === 'PATCH') {
+       require 'update_video.php'; // napríklad
+      }  
+         else {
             http_response_code(405); // Method Not Allowed
             echo json_encode(['error' => 'Method not allowed']);
         }

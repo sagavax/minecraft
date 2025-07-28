@@ -100,8 +100,8 @@ image_description.addEventListener("blur", function(event){
     }
 });
   
-this.contentEditable=false;  
-window.onload = function() {
+//this.contentEditable=false;  
+/* window.onload = function() {
 var anchors = document.querySelectorAll('.comment');
 for(var i = 0; i < anchors.length; i++) {
 var anchor = anchors[i];
@@ -113,7 +113,7 @@ anchor.onkeyup=update_comment(anchor.getAttribute('data-id'), anchor.innerHTML);
 }
   
 }
-
+ */
 
 function listenForDoubleClick(element) {
 element.contentEditable = true;
@@ -136,7 +136,7 @@ image_name_div.contentEditable = 'true';
 image_name_div.addEventListener("blur", function () {
 image_name_div.contentEditable = false;  // Corrected line
 var image_name = image_name_div.innerText;
-save_image_name(image_name);
+saveImageName(image_name);
 });
 
 
@@ -163,7 +163,7 @@ save_image_name(image_name);
 
 
 
-   function add_comment() {
+   function AddComment() {
      var comment_input = document.querySelector(".new_comment input");
       var comment_text = comment_input.value;
    
@@ -322,7 +322,7 @@ save_image_name(image_name);
  }
 
 
- function save_image_name(new_name){
+ function saveImageName(new_name){
    var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
        if (this.readyState == 4 && this.status == 200) {

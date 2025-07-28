@@ -23,6 +23,10 @@ new_tag_form.addEventListener("submit", function(event) {
     if (document.querySelector("#new_tag form input").value === "") {
         alert("Tag name cannot be empty!");
         return;
+    } else {
+        const tagName = document.querySelector("#new_tag form input").value;
+        addNewTag(tagName);
+        alert("Tag added successfully!");
     }
     
     // Ak je všetko v poriadku, pokračuj s formulárom
@@ -132,4 +136,33 @@ function saveNewTagName(tagId, tagName){
     xhttp.open("POST", "tags_change_tag_name.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);  
+}
+
+function addNewTag(tagName){
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            //document.querySelector("#tags_list").innerHTML=this.responseText;
+            //document.getElementById("notes_list").innerHTML = this.responseText;
+        }
+    };
+    const data = "tag_name="+tagName;
+    xhttp.open("POST", "tags_add_new_tag.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);  
+}
+
+function CreateTagInTagSphere(tagName){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            alert("Tag created in TagSphere!");
+        }
+    };
+    xhttp.open("POST", "tag_create_in_tagsphere.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    data = "tagName=" + encodeURIComponent(tagName);
+    xhttp.send(data);
+    
 }

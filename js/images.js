@@ -30,7 +30,6 @@ add_new_image.addEventListener("click", function(event){
 
 
 image_url_input.addEventListener("input", function(event) {
-  console.log("image url input changed");
   checkImageExists(image_url_input.value);
 }) 
 
@@ -262,6 +261,13 @@ function checkImageExists(imageUrl) {
               setTimeout(() => {
                   inputField.style.border = "1px solid #d1d1d1";
                   inputField.value = "";
+              }, 3000);
+          } else {
+              const inputField = document.querySelector(".add_new_image input[name='image_url']");
+              inputField.style.border = "2px solid green";
+
+              setTimeout(() => {
+                  inputField.style.border = "1px solid #d1d1d1";
               }, 3000);
           }
       }
