@@ -116,6 +116,7 @@ if(isset($_POST['edit_task'])){
                <div class="tab_view">
                 <button type="button" name="vanilla" class="button small_button">Vanilla</button>
                 <button type="button" name="modded" class="button small_button">Modded</button>
+                <button type="button" name="unassigned" class="button small_button">Unassigned</button>
                 <button type="button" name="all" class="button small_button">All</button>
               </div>
 
@@ -168,21 +169,25 @@ if(isset($_POST['edit_task'])){
               echo "<div class='task_footer'>";
               
               $category_name=GetModName($task_category_id);
-              $modpack_name=GetModpackName($task_modpack_id);
-              
-              if($category_name<>""){
-                $category_name="<button class='span_mod' type='button'>".$category_name."</button>";
-              }
-              if ($modpack_name<>""){
+
+              if($task_modpack_id==0) {
+                $modpack_name="<button class='button small_button' type='button' title='add modpack'><i class='fa fa-plus'></i></button>";
+              } else {
+                $modpack_name=GetModpackName($task_modpack_id);  
                 $modpack_name="<button class='span_modpack' type='button'>".$modpack_name."</button>";
               }
               
-                    //$mod_modpack.="".$category_name." ".$modpack_name."</div>";
+              
+              /* 
+              if($category_name<>""){
+                $category_name="<button class='span_mod' type='button'>".$category_name."</button>";
+              } */
+              $mod_modpack="<div class='task_modpacks'>".$category_name." ".$modpack_name."</div>";
               
               $button_edit="<button type='button' name='edit_task' class='button small_button pull-right'><i class='fas fa-edit'></i></button>";
               $button_task_complete="<button type='button' name='complete_task' class='button small_button pull-right'><i class='fa fa-check'></i></button>";
-
-              $mod_modpack="<div class='task_modpacks'>".$category_name." ".$modpack_name."</div>";
+              
+              
               
               if($is_completed==1){
                 
