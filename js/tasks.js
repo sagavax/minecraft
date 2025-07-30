@@ -66,7 +66,24 @@ tasks.addEventListener('click', function(event) {
   }
 });
 
+tasks.addEventListener('click', function(event) {
+  //const taskId = event.target.closest(".task").getAttribute("id");
+  if(event.target.classList.contains("task_body")) {
+    const taskId = event.target.closest(".task").getAttribute("id");
+     const taskBody = document.querySelector(`.task[id="${taskId}"] .task_body`);
+      taskBody.setAttribute("contenteditable", "true");
+      taskBody.focus();
+    //switchToTextarea(taskId);
+  }
+});
 
+
+tasks.addEventListener("blur", function(event) {
+  const taskId = event.target.closest(".task").getAttribute("id");
+  const taskBody = document.querySelector(`.task[id="${taskId}"] .task_body`);
+  taskBody.setAttribute("contenteditable", "false");
+  SaveTaskChanges(taskId, taskBody.innerText);
+});
 
 function taskCompleted(taskId) {
   const xhttp = new XMLHttpRequest();
@@ -239,5 +256,19 @@ function addModpackToTask(taskId, modpackId){
         xhttp.open("POST", "task_update_modpack.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         const data = "task_id="+encodeURIComponent(taskId)+"&modpack_id="+encodeURIComponent(modpackId);
+        xhttp.send(data);
+}
+
+function  SaveTaskChanges(taskId, taskBody){
+
+    var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        alert("Task has been updated");
+                }
+            };
+        xhttp.open("POST", "task_update_task_text.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        const data = "task_id="+encodeURIComponent(taskId)+"&task_text="+encodeURIComponent(taskBody);
         xhttp.send(data);
 }
