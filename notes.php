@@ -115,20 +115,25 @@
                             echo "<div class='note_header'><strong>".htmlspecialchars($note_header)."</strong></div>";
                             echo "<div class='note_text'>".convertLinks(html_entity_decode($note_text))."</div>";
                             
-                            $category_name=GetModName($note_mod);
-                            $modpack_name=GetModpackName($note_modpack);
-                             
-                            if($category_name<>""){
-                              $category_name="<div class='span_mod'>".$category_name."</div>";
-                            }
-                            if ($modpack_name<>""){
-                               $modpack_name="<div class='span_modpack'>".$modpack_name."</div>";
+                            if($note_mod!=0){
+                              $category_name=GetModName($note_mod);
+                              $category_name="<button class='span_mod'>".$category_name."</button>";
+                            } else {
+                               $category_name= "<button class='span_mod' type='button' name='add_mod' title='add mod'><i class='fa fa-plus'></i></button>";
                             }
                             
+                            
+                           
+                            if($note_modpack==0){
+                              $modpack_name= "<button class='span_mod' type='button' name='add_modpack'><i class='fa fa-plus'></i></button>";
+                            } else {
+                              $modpack_name=GetModpackName($note_modpack);
+                               $modpack_name="<button class='span_modpack' type='button' name='change_modpack' modpack-id=$note_modpack>".$modpack_name."</button>";
+                            }
+
+
                             //echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
                             echo "<div class='note_footer'>";
-                                  echo "<div class='notes_action'>".$category_name." ".$modpack_name."<form method='post' action='notes_attach_file.php' enctype='multipart/form-data'><input type='hidden' name=note_id value=$note_id><input type='file' name='image' id='file-attach-$note_id' accept='image/*' style='display:none'></form><button name='attach_image' type='button' class='button small_button'><i class='material-icons'>attach_file</i></button><button name='edit_note' type='submit' class='button small_button'><i class='material-icons'>edit</i></button><button name='delete_note' type='submit' class='button small_button'><i class='material-icons'>delete</i></button></div>";
-
                                   echo "<div class='note_attached_files'>";
                                   $get_files = "SELECT * from notes_file_attachements WHERE note_id=$note_id";
                                     //echo $get_files;
@@ -148,6 +153,9 @@
                                                ></i>";
                                   }
                                   echo "</div>";//attached images       
+                                  
+                                  //notes actions
+                                  echo "<div class='notes_action'>".$category_name." ".$modpack_name."<form method='post' action='notes_attach_file.php' enctype='multipart/form-data'><input type='hidden' name=note_id value=$note_id><input type='file' name='image' id='file-attach-$note_id' accept='image/*' style='display:none'></form><button name='attach_image' type='button' class='button small_button'><i class='material-icons'>attach_file</i></button><button name='edit_note' type='submit' class='button small_button'><i class='material-icons'>edit</i></button><button name='delete_note' type='submit' class='button small_button'><i class='material-icons'>delete</i></button></div>";
                          echo "</div>";//note footer
                       echo "</div>"; //note       
                         }    
@@ -177,7 +185,7 @@
           <div class="image_content"></div>
         </dialog>
 
-        <dialog class="modal_change_modpack">
+        <dialog class="dialog_modpacks">
           <div class="inner_modpacks_layer">
                   <?php 
                     echo GetListModpacks();

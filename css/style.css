@@ -654,6 +654,10 @@ textarea::placeholder {
     box-sizing: border-box;
 }
 
+.notes_action button {
+    cursor: pointer;
+}
+
 .picture_action {
     padding-right: 10px;
     min-width: 30%;
@@ -3215,8 +3219,7 @@ button[name="save_description"]{
 .modal_change_modpack {
     top:10%;
     left:20%;
-    height: 500px;
-    width: 50%;
+    width: 60%;
     box-sizing: border-box;
     padding:10px;
 }
@@ -3508,10 +3511,14 @@ button[name="save_description"]{
     padding-right: 5px;
 }
 
-.note_footer {
-    flex-direction: column;
+.note_footer button {
+    border: 1px solid;
+    border-radius: 5px;
+    height: 45px;
+    padding: 6px 12px;
+    font-size: 16px;
+    color: #fff;
 }
-
 
 .task_footer,
 .idea_footer {

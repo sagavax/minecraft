@@ -7,6 +7,7 @@ var note_attached_files = document.querySelector(".note_attached_files");
 var container_notes_action = document.querySelector(".notes_action");
 var container_notes_list = document.querySelector("#notes_list");
 var modal_change_modpack = document.querySelector(".modal_change_modpack");
+const dialog_modpacks = document.querySelector('.dialog_modpacks');
 // new_note.style.display="none";
 
 new_note_header_close_button.addEventListener("click", () => {
@@ -27,7 +28,7 @@ document.querySelector(".modal_image BUTTON").addEventListener("click", () => {
 });
 
 
-modal_change_modpack.addEventListener("click", (event) => {
+dialog_modpacks.addEventListener("click", (event) => {
     if (event.target.tagName === "BUTTON") {
         const modpackName = event.target.textContent;
         console.log("Selected modpack:", modpackName);
@@ -71,6 +72,11 @@ container_notes_list.addEventListener("click", function(event) {
             //RemoveNote(noteId);
         } else if (event.target.name === "edit_note") {
             // Implement edit functionality here
+            //editNote(noteId);
+        } else if (event.target.name === "change_modpack") {
+            dialog_modpacks.showModal(); // Open the dialog;
+        } else if (event.target.name === "add_mod") {
+            //dialog_modifications.showModal();
         }
 
     } else if (event.target.classList.contains("fa-file-image")) {
@@ -107,11 +113,6 @@ container_notes_list.addEventListener("click", function(event) {
         } else {
             console.log("File name attribute is missing.");
         }
-    } else if (event.target.tagName === "DIV" && event.target.classList.contains("span_modpack")) {
-        console.log("Kliknuté na modpack:", event.target.textContent);
-        modal_change_modpack.showModal();
-        //alert("Kliknuté na modpack: " + event.target.textContent);
-        // Tu môžete vykonať ďalšiu akciu, napríklad presmerovanie alebo otvorenie detailov
     }
 });
 
