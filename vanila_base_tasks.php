@@ -51,11 +51,11 @@
                   }  elseif($_GET['status']){
                     $status=$_GET['status'];
                     if($status=='finished'){
-                      $sql="SELECT * from to_do where is_completed=1 ORDER BY task_id DESC";
+                      $sql="SELECT * from tasks where is_completed=1 ORDER BY task_id DESC";
                     } elseif ($status=='active'){
-                      $sql="SELECT * from to_do where is_completed=0 ORDER BY task_id DESC";
+                      $sql="SELECT * from tasks where is_completed=0 ORDER BY task_id DESC";
                     } elseif($status=="all"){
-                        $sql="SELECT * from to_do where parent_task=0 ORDER BY  task_id  DESC";
+                        $sql="SELECT * from tasks where parent_task=0 ORDER BY  task_id  DESC";
                       }
                     }   
                 

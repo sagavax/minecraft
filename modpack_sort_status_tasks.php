@@ -7,11 +7,11 @@ $modpack_id=$_GET['modpack_id'];
 $status = $_GET['status'];
 
 if($status == "active"){
-	$sql="SELECT * from to_do where modpack_id=$modpack_id and is_completed=0";	
+	$sql="SELECT * from tasks where modpack_id=$modpack_id and is_completed=0";	
 } elseif ($status=="completed") {
-	$sql="SELECT * from to_do where modpack_id=$modpack_id and is_completed=1";
+	$sql="SELECT * from tasks where modpack_id=$modpack_id and is_completed=1";
 } elseif($status == "all"){
-	$sql="SELECT * from to_do where modpack_id=$modpack_id";
+	$sql="SELECT * from tasks where modpack_id=$modpack_id";
 }
 
 

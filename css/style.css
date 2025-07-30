@@ -3505,6 +3505,7 @@ button[name="save_description"]{
     justify-content: flex-end;
     gap:10px;
     box-sizing: border-box;
+    padding-right: 5px;
 }
 
 .note_footer {

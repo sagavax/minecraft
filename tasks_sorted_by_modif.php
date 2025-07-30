@@ -6,15 +6,15 @@
 
 	if($sort_by=="all"){
 
-		$get_tasks = "SELECT * from to_do ORDER BY task_id DESC";	
+		$get_tasks = "SELECT * from tasks ORDER BY task_id DESC";	
 
 	} elseif ($sort_by=="vanilla") {
 		
-		$get_tasks = "SELECT * from to_do WHERE modpack_id=99 ORDER BY task_id DESC";		
+		$get_tasks = "SELECT * from tasks WHERE modpack_id=2 ORDER BY task_id DESC";		
 
 	} elseif($sort_by=="modded"){
 	
-		$get_tasks = "SELECT * from to_do WHERE modpack_id<99 ORDER BY task_id DESC";		
+		$get_tasks = "SELECT * from tasks WHERE modpack_id NOT IN (1,2) ORDER BY task_id DESC";		
 	
 	}
 

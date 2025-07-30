@@ -4,7 +4,7 @@ const tasks = document.querySelector('.tasks');
 
 
 document.querySelector(".search_wrap input").addEventListener("keyup", () => {
-  search_task(document.querySelector(".search_wrap input").value);
+  searchTask(document.querySelector(".search_wrap input").value);
 });
 
 taskTopBarButton.addEventListener("click",function(){
@@ -24,10 +24,9 @@ document.querySelector("#new_task form").addEventListener("submit", function(eve
 
 tasks.addEventListener('click', function(event) {
   // Nájde najbližší element s triedou .task a získa task-id
-  const taskElement = event.target.closest(".task");
-  if (!taskElement) return; // ak by si klikol mimo .task
-
-  const taskId = taskElement.getAttribute("task-id");
+  
+  const taskId = event.target.closest(".task").getAttribute("id");
+  console.log(taskId);
 
   if (event.target.tagName === 'BUTTON') {
     const buttonName = event.target.name;
@@ -66,7 +65,7 @@ var container = document.querySelector('.task_view');
             // Get the name attribute of the clicked button
             var buttonName = event.target.getAttribute('name');
             
-            sort_tasks_by_status(buttonName);
+            sortTasksByStatus(buttonName);
             
             // Do something with the buttonName, for example, log it to the console
             console.log('Button clicked with name:', buttonName);
@@ -89,16 +88,16 @@ var container = document.querySelector('.task_view');
 
 
 
-var container = document.querySelector('.tab_view');
+var tab_view = document.querySelector('.tab_view');
 
     // Add a click event listener to the container
-    container.addEventListener('click', function(event) {
+    tab_view.addEventListener('click', function(event) {
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON'){
             // Get the name attribute of the clicked button
             var buttonName = event.target.getAttribute('name');
             
-            sort_tasks_by_modif(buttonName);
+            sortTasksByModif(buttonName);
             
             // Do something with the buttonName, for example, log it to the console
             console.log('Button clicked with name:', buttonName);
@@ -116,7 +115,7 @@ var container = document.querySelector('.modpack_view');
             var buttonName = event.target.getAttribute('name');
             var modpack_id = event.target.getAttribute("modpack-id");
             console.log(modpack_id);
-            sort_tasks_by_modpack(modpack_id);
+            sortTasksByModpack(modpack_id);
             
             // Do something with the buttonName, for example, log it to the console
             console.log('Button clicked with name:', buttonName);
@@ -125,7 +124,7 @@ var container = document.querySelector('.modpack_view');
     });
 
 
-    function sort_tasks_by_status(status){
+    function sortTasksByStatus(status){
 
        var xhttp = new XMLHttpRequest();
                   xhttp.onreadystatechange = function() {
@@ -141,7 +140,7 @@ var container = document.querySelector('.modpack_view');
     }
 
 
-      function sort_tasks_by_modif(sort_by){
+      function sortTasksByModif(sort_by){
 
        var xhttp = new XMLHttpRequest();
        //var search_text=document.getElementById("search_string").value;
@@ -156,7 +155,7 @@ var container = document.querySelector('.modpack_view');
     }
 
 
-      function sort_tasks_by_modpack(sort_by){
+      function sortTasksByModpack(sort_by){
 
        var xhttp = new XMLHttpRequest();
        //var search_text=document.getElementById("search_string").value;
@@ -192,8 +191,7 @@ function createTask(){
 
 
     var xhttp = new XMLHttpRequest();
-    var search_text=document.getElementById("search_string").value;
-    xhttp.onreadystatechange = function() {
+     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
         alert("Task has been added");
                 }

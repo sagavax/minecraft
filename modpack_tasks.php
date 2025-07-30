@@ -5,7 +5,7 @@
       if(isset($_POST['complete_task'])){
         
         $task_id=intval($_POST['task_id']);
-            $query="UPDATE to_do SET is_completed=1 WHERE task_id=$task_id";
+            $query="UPDATE tasks SET is_completed=1 WHERE task_id=$task_id";
           //  echo $query;
             mysqli_query($link, $query)  or die(mysqli_error($link));
             
@@ -84,7 +84,7 @@
 
                     $modpack_id = $_GET['modpack_id'];
 
-                   $sql="SELECT * from to_do WHERE modpack_id=$modpack_id ORDER BY task_id DESC";
+                   $sql="SELECT * from tasks WHERE modpack_id=$modpack_id ORDER BY task_id DESC";
                    $result=mysqli_query($link, $sql) or die("MySQL ERROR: ".mysqli_error($link));
                           
                  while ($row = mysqli_fetch_array($result)) {

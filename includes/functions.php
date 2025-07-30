@@ -796,7 +796,7 @@ function modpacks ($module){
 	echo "<ul>";
 	if($module=="tasks"){
 
-		$sql="SELECT DISTINCTROW a.modpack_id, b.modpack_name from to_do a, modpacks b where a.modpack_id=b.modpack_id";
+		$sql="SELECT DISTINCTROW a.modpack_id, b.modpack_name from tasks a, modpacks b where a.modpack_id=b.modpack_id";
 	} elseif ($module=="notes"){
 		$sql="SELECT DISTINCTROW a.modpack_id, b.modpack_name from notes a, modpacks b where a.modpack_id=b.modpack_id";
 	}
@@ -918,7 +918,7 @@ function  GetNrOfImageComments($picture_id){
 
   function GetCountTasks(){
 	global $link;
-	$sql="SELECT COUNT(*) as nr_tasks from to_do ORDER BY task_id DESC";
+	$sql="SELECT COUNT(*) as nr_tasks from tasks ORDER BY task_id DESC";
 	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$nr_tasks = $row['nr_tasks'];
@@ -1038,7 +1038,7 @@ function  GetNrOfImageComments($picture_id){
 
   function GetCountNewestTasks(){
 	global $link;
-	$sql="SELECT COUNT(*) as nr_tasks from to_do WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) ORDER BY task_id DESC";
+	$sql="SELECT COUNT(*) as nr_tasks from tasks WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) ORDER BY task_id DESC";
 	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$nr_tasks = $row['nr_tasks'];

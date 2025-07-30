@@ -7,11 +7,11 @@ $modpack_id = $_GET['modpack_id'];
 $status = mysqli_real_escape_string($link,$_GET['status']);
 
 if($status == "active"){
-    $get_tasks="SELECT * from to_do where modpack_id=$modpack_id and is_completed=0";	
+    $get_tasks="SELECT * from tasks where modpack_id=$modpack_id and is_completed=0";	
 } elseif ($status=="completed") {
-    $get_tasks="SELECT * from to_do where modpack_id=$modpack_id and is_completed=1";
+    $get_tasks="SELECT * from tasks where modpack_id=$modpack_id and is_completed=1";
 } elseif($status == "all"){
-    $get_tasks="SELECT * from to_do where modpack_id=$modpack_id ORDER BY task_id DESC";
+    $get_tasks="SELECT * from tasks where modpack_id=$modpack_id ORDER BY task_id DESC";
 }
 
 

@@ -9,7 +9,7 @@
           $task_category=$_POST['category'];
           $task_modpack=$_POST['modpack'];
 
-          $sql="UPDATE to_do SET task_id=$task_id, cat_id=$task_category, modpack_id=$task_modpack, task_text='$task_text' where task_id=$task_id";
+          $sql="UPDATE tasks SET task_id=$task_id, cat_id=$task_category, modpack_id=$task_modpack, task_text='$task_text' where task_id=$task_id";
           //echo $sql;
           $result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 
@@ -54,7 +54,7 @@
                 <?php
                     global $link; 
                     $task_id=$_GET['task_id'];
-                    $sql="SELECT modpack_id,cat_id,task_id, task_text from to_do where task_id=$task_id";
+                    $sql="SELECT modpack_id,cat_id,task_id, task_text from tasks where task_id=$task_id";
                     //echo $sql;
                     $result=mysqli_query($link, $sql);
                     while($row = mysqli_fetch_array($result)){

@@ -5,7 +5,7 @@
 	$sort_by = $_GET['sort_by'];
 
 		
-		$get_tasks = "SELECT * from to_do WHERE modpack_id=$sort_by ORDER BY task_id DESC";
+		$get_tasks = "SELECT * from tasks WHERE modpack_id=$sort_by ORDER BY task_id DESC";
     //echo $get_tasks;		
 	
 	                

@@ -6,11 +6,11 @@ include "includes/functions.php";
 $status = $_GET['status'];
 
 if($status == "active"){
-  $sql="SELECT * from to_do where is_completed=0";  
+  $sql="SELECT * from tasks where is_completed=0";  
 } elseif ($status=="completed") {
-  $sql="SELECT * from to_do where is_completed=1";
+  $sql="SELECT * from tasks where is_completed=1";
 } elseif($status == "all"){
-  $sql="SELECT * from to_do";
+  $sql="SELECT * from tasks";
 }
 
 $result=mysqli_query($link, $sql);

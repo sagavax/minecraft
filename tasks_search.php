@@ -2,7 +2,7 @@
       include "includes/functions.php";
 
      $search_string=$_GET['search'];
-      $sql="SELECT * from to_do where task_text LIKE'%".$search_string."%'";
+      $sql="SELECT * from tasks where task_text LIKE'%".$search_string."%'";
 
       $result=mysqli_query($link, $sql);
                           

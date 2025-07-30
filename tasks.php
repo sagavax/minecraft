@@ -5,7 +5,7 @@ include "includes/functions.php";
 if(isset($_POST['complete_task'])){
 
   $task_id=intval($_POST['task_id']);
-  $query="UPDATE to_do SET is_completed=1 WHERE task_id=$task_id";
+  $query="UPDATE tasks SET is_completed=1 WHERE task_id=$task_id";
           //  echo $query;
   mysqli_query($link, $query)  or die(mysqli_error($link));
 
@@ -129,7 +129,7 @@ if(isset($_POST['edit_task'])){
           <!-- filter tasks by modpack vanilla-->
           <div class="modpack_view">
               <?php
-                  $get_modpacks = "SELECT a.modpack_id, b.modpack_id, b.modpack_name from to_do a, modpacks b WHERE a.modpack_id=b.modpack_id GROUP BY a.modpack_id";
+                  $get_modpacks = "SELECT a.modpack_id, b.modpack_id, b.modpack_name from tasks a, modpacks b WHERE a.modpack_id=b.modpack_id GROUP BY a.modpack_id";
                   $result = mysqli_query($link, $get_modpacks) or die(mysqli_error($link));
                   while($row_modpacks = mysqli_fetch_array($result)){
                     $modpack_id =$row_modpacks ['modpack_id'];
@@ -150,7 +150,7 @@ if(isset($_POST['edit_task'])){
           $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
           $offset = ($current_page - 1) * $itemsPerPage;
           
-          $sql="SELECT * from to_do ORDER BY task_id DESC LIMIT $itemsPerPage OFFSET $offset";
+          $sql="SELECT * from tasks ORDER BY task_id DESC LIMIT $itemsPerPage OFFSET $offset";
           
           $result=mysqli_query($link, $sql);
           
@@ -208,7 +208,7 @@ if(isset($_POST['edit_task'])){
           
           <?php
           // Calculate the total number of pages
-          $count_tasks = "SELECT COUNT(*) as total FROM to_do";
+          $count_tasks = "SELECT COUNT(*) as total FROM tasks";
           $result=mysqli_query($link, $count_tasks);
           $row = mysqli_fetch_array($result);
           $totalItems = $row['total'];
@@ -225,11 +225,11 @@ if(isset($_POST['edit_task'])){
         
       </div><!--content -->? 
 
-     <!--  <dialog class="modpacks">
+     <dialog class="dialog_modpacks">
         <div class="inner_modpacks_layer">
           <?php 
             echo GetListModpacks();
           ?>
         </div>
-      </div> -->
+      </div>
 </body>    

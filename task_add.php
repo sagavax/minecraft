@@ -13,10 +13,10 @@ include("includes/functions.php");
         }
         
         
-        $query="INSERT into  to_do (cat_id,modpack_id, task_text, added_date) VALUES ($cat_id, $modpack_id, '$task_text', now())";
+        $query="INSERT into  tasks (cat_id,modpack_id, task_text, added_date) VALUES ($cat_id, $modpack_id, '$task_text', now())";
         mysqli_query($link, $query) or die("MySQLi ERROR: ".mysqli_error($link));
 
-        $sql="SELECT LAST_INSERT_ID() as last_id from to_do";
+        $sql="SELECT LAST_INSERT_ID() as last_id from tasks";
         $result=mysqli_query($link, $sql);
         while ($row = mysqli_fetch_array($result)) {          
           $last_task=$row['last_id'];
