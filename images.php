@@ -152,13 +152,17 @@
                         $picture_path = htmlspecialchars($row['picture_path'], ENT_QUOTES, 'UTF-8');
                         $modpack_name = GetImageModpack($picture_id);
 
+                        $picture_tags = GetImageTags($picture_id);
+
                         echo "<div class='picture' image-id='{$picture_id}'>
                                 <div class='picture_name' placeholder='image name here...'>{$picture_title}</div>
                                 <div class='pic' image-id='{$picture_id}'>
                                     <img src='{$picture_path}'>
                                 </div>
                                 <div class='picture_footer'>
+                                        <div class='picture_tags_main_view'>{$picture_tags}</div>
                                         <div class='picture_action' image-id='{$picture_id}'>
+                                       
                                         {$modpack_name}
                                          <button name='add_comment' type='button' class='button small_button' title='Add new comment'>
                                             <i class='fa fa-comment'></i>

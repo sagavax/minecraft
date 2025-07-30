@@ -1,5 +1,12 @@
 
 const taskTopBarButton = document.querySelector(".task_top_bar button");
+const tasks = document.querySelector('.tasks');
+
+
+document.querySelector(".search_wrap input").addEventListener("keyup", () => {
+  search_task(document.querySelector(".search_wrap input").value);
+});
+
 taskTopBarButton.addEventListener("click",function(){
     document.getElementById("new_task").style.display="none";
 })
@@ -9,53 +16,35 @@ document.querySelector("#new_task form").addEventListener("submit", function(eve
   if(document.querySelector("#new_task textarea").value === "") {
     alert("text cannot be empty!");  // Shortened the message a bit
     event.preventDefault(); // Prevent form submission
+  } else {
+    createTask();
   }
 });
 
-var taskRadiosContainers = document.querySelectorAll('.task_view');
 
-    // Convert NodeList to an array and loop through each container
-    Array.from(taskRadiosContainers).forEach(function (container) {
-      // Get all radio buttons inside the current container
-      var taskRadioButtons = container.querySelectorAll('input[type="radio"]');
+tasks.addEventListener('click', function(event) {
+  // Nájde najbližší element s triedou .task a získa task-id
+  const taskElement = event.target.closest(".task");
+  if (!taskElement) return; // ak by si klikol mimo .task
 
-      // Add click event listener to each radio button
-      taskRadioButtons.forEach(function (taskRadioButton) {
-        taskRadioButton.addEventListener('click', function () {
-          // Get the id of the clicked radio button
-          var status = taskRadioButton.id;
-          console.log(status);
-          sort_tasks_by_status(status);
-        });
-      });
-    });
+  const taskId = taskElement.getAttribute("task-id");
 
+  if (event.target.tagName === 'BUTTON') {
+    const buttonName = event.target.name;
 
-var buttons = document.querySelectorAll('.tasks button');
-
-// Add event listener to each button
-buttons.forEach(function(button) {
-  button.addEventListener('click', function() {
-    // Get the name attribute of the clicked button
-    var buttonName = button.getAttribute('name');
-    var taskId = button.getAttribute('task-id');
-
-    if(buttonName==="complete_task") {
-      alert("Complete task!");
-      task_completed(taskId);  
+    if (buttonName === "edit_task") {
+      window.location.href = "task.php?task_id=" + taskId;
     }
 
-    if(buttonName==="edit_task"){
-      window.location.href="task.php?task_id="+taskId;
+    if (buttonName === "complete_task") {
+      taskCompleted(taskId);
     }
-    
-    // Log the name attribute to the console (you can modify this part as needed)
-       // console.log('Button clicked: ' + buttonName + ', Task ID: ' + taskId);
-  });
+  }
 });
 
 
-function task_completed(taskId) {
+
+function taskCompleted(taskId) {
   const xhttp = new XMLHttpRequest();
           xhttp.onload = function() {
 
@@ -86,7 +75,7 @@ var container = document.querySelector('.task_view');
     });
 
 
-var tasks = document.querySelector('.tasks');
+
     // Add a click event listener to the container
     container.addEventListener('click', function(event) {
         // Check if the clicked element is a button
@@ -182,15 +171,36 @@ var container = document.querySelector('.modpack_view');
     }
 
  function searchTask(){
-             var xhttp = new XMLHttpRequest();
-             var search_text=document.getElementById("search_string").value;
-             xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("tasks").innerHTML =
-                    this.responseText;
-                       }
-                    };
-                xhttp.open("GET", "tasks_search.php?search="+search_text, true);
-                xhttp.send();
-                           
+  var xhttp = new XMLHttpRequest();
+  var search_text=document.getElementById("search_string").value;
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    document.getElementById("tasks").innerHTML =
+        this.responseText;
             }
+        };
+    xhttp.open("GET", "tasks_search.php?search="+search_text, true);
+    xhttp.send();
+                
+}
+
+function createTask(){
+    
+  const taskText = document.querySelector(`#new_task textarea[name="task_text"]`).value;
+    const mod = document.querySelector(`#new_task select[name="category"]`).value;
+    const modpack = document.querySelector(`#new_task select[name="modpack"]`).value;
+
+
+    var xhttp = new XMLHttpRequest();
+    var search_text=document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        alert("Task has been added");
+                }
+            };
+        xhttp.open("POST", "task_add.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        const data = "task_text="+encodeURIComponent(taskText)+"&category="+encodeURIComponent(mod)+"&modpack="+encodeURIComponent(modpack);
+        xhttp.send(data);
+                    
+}

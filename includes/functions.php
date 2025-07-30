@@ -332,6 +332,46 @@ function convertLinks($string) {
     return json_encode($tags_array);
 }
 
+function GetImageTagListByLetter($letter){
+
+	global $link;
+
+	$tags ="";
+
+	$get_tags = "SELECT * from tags_list  where tag_name like '$letter%'";
+	//echo $get_tags;
+	$result=mysqli_query($link, $get_tags);
+	while ($row = mysqli_fetch_array($result)) {
+		$tag_id= $row['tag_id'];
+		$tag_name= $row['tag_name'];
+
+		$tags .= "<button class='button small_button' name='add_new_tag' tag-id=$tag_id>$tag_name</button>";
+		};
+	return $tags;
+}
+
+
+ function GetImageTags($picture_id) {
+	global $link;
+	$count_all ="SELECT a.image_id, a.tag_id, b.tag_name from pictures_tags a, tags_list b where a.image_id=$picture_id and a.tag_id = b.tag_id";
+		$count_result=mysqli_query($link, $count_all);
+		$total = mysqli_num_rows($count_result);
+
+		$tags ="";
+		 $get_tags = "SELECT a.image_id, a.tag_id, b.tag_name from pictures_tags a, tags_list b where a.image_id=$picture_id and a.tag_id = b.tag_id";
+		 //echo $get_tags;
+	  $result=mysqli_query($link, $get_tags);
+		while ($row = mysqli_fetch_array($result)) {
+			$tag_id= $row['tag_id'];
+			$tag_name= $row['tag_name'];
+
+			//$tags .= "<button class='button' name='$tag_name' tag-id=$tag_id>$tag_name</button>";
+			$tags .= "<button class='button small_button'>$tag_name</button>";
+			};
+  return $tags;
+  }	
+
+
 
   function GetImageTagList($picture_id) {
 	global $link;

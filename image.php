@@ -54,13 +54,13 @@
                                 echo "<img src='gallery/$picture_path' title='$picture_title'></div>";
                               }
                             
-                              echo "<div class='picture_footer'>"; 
+                              echo "<div class='picture_detail_footer'>"; 
                               
                               //echo "<div class='mod_modpack'>".$modpack_name."</div>";
 
                               echo "<div class='picture_info'>";
                                   echo "<div class='picture_modpacks'>".GetImageModpack($picture_id)."</div>";
-                                  echo "<div class='image_description' data-placeholder='image descriptpion. click / tap here to put some wideo description here ...' title='Image description'>$picture_description</div>";  
+                                  echo "<div class='image_description' data-placeholder='image descriptpion. click / tap here to put some wideo description here ...' title='Image description'>$picture_description<button name='save_description' type='button' class='button small_button'><i class='fa fa-save'></i></button></div>";  
                                   echo "<div class='images_tags' tag-list='".GetImageTagListArray($picture_id)."'>".GetImageTagList($picture_id)."</div>";  
                                
                               echo "</div>"; //picture_info                                            

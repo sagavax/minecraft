@@ -1,6 +1,6 @@
 <?php include "includes/dbconnect.php";
 include "includes/functions.php";
-
+/* 
 
 if(isset($_POST['complete_task'])){
 
@@ -25,7 +25,7 @@ if(isset($_POST['complete_task'])){
 
 if(isset($_POST['edit_task'])){
   header('location:task.php?task_id='.$_POST['task_id']);
-}
+} */
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +107,7 @@ if(isset($_POST['edit_task'])){
 
           
           <div class="search_wrap">
-            <input type="text" name="search" onkeyup="searchTask(this.value);" id="search_string" autocomplete="off" placeholder="search tasks here..."><button type="button" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
+            <input type="text" name="search" id="search_string" autocomplete="off" placeholder="search tasks here..."><button type="button" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
           </div><!-- Search wrap-->
           
           <div id="tasks_wrap">   
@@ -129,7 +129,7 @@ if(isset($_POST['edit_task'])){
           <!-- filter tasks by modpack vanilla-->
           <div class="modpack_view">
               <?php
-                  $get_modpacks = "SELECT a.modpack_id, b.modpack_id, b.modpack_name from to_do a, modpacks b WHERE a.modpack_id<>99 and a.modpack_id=b.modpack_id GROUP BY a.modpack_id";
+                  $get_modpacks = "SELECT a.modpack_id, b.modpack_id, b.modpack_name from to_do a, modpacks b WHERE a.modpack_id=b.modpack_id GROUP BY a.modpack_id";
                   $result = mysqli_query($link, $get_modpacks) or die(mysqli_error($link));
                   while($row_modpacks = mysqli_fetch_array($result)){
                     $modpack_id =$row_modpacks ['modpack_id'];
@@ -163,69 +163,73 @@ if(isset($_POST['edit_task'])){
             
             $task_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $task_text);    
             
-                    echo "<div class='task' id='$task_id'>"; //task 
-                    echo "<div class='task_body'>$task_text</div>";
-                    echo "<div class='task_footer'>";
-                    
-                    $category_name=GetModName($task_category_id);
-                    $modpack_name=GetModpackName($task_modpack_id);
-                    
-                    if($category_name<>""){
-                      $category_name="<span class='span_mod'>".$category_name."</span>";
-                    }
-                    if ($modpack_name<>""){
-                      $modpack_name="<span class='span_modpack'>".$modpack_name."</span>";
-                    }
-                    
-                          //$mod_modpack.="".$category_name." ".$modpack_name."</div>";
-                    
-
-                    $button_edit="<button type='submit' name='edit_task' class='button small_button pull-right' task-id=$task_id><i class='fas fa-edit'></i></button>";
-                    $button_task_complete="<button type='submit' name='complete_task' class='button small_button pull-right'  task-id=$task_id><i class='fa fa-check'></i></button>";
-
-                    $mod_modpack="<div class='task_modpacks'>".$category_name." ".$modpack_name."</div>";
-                    
-                    if($is_completed==1){
-                      
-                      echo $mod_modpack;
-                      $task_completed="<span class='span_task_completed'>Complete</span>";
-                      echo $task_completed;
-                            //$mod_modpack="<div class='mod_modpack'>".$mod_modpack." ".$task_completed."</div>";
-                            //echo $mod_modpack;
-                      
-                      
-                    } elseif($is_completed==0){
-
-                      echo $mod_modpack;
-                      echo "<div class='task_action'>".$button_edit." ".$button_task_complete."</div>";
-                    }
-                    
-                    echo "</div>";//task_footer_wrap;  
-                    echo "</div>";//task
-                  }
-                  
-                  ?>       
-                </div><!--tasks -->
-                
-                <?php
-                // Calculate the total number of pages
-                $count_tasks = "SELECT COUNT(*) as total FROM to_do";
-                $result=mysqli_query($link, $count_tasks);
-                $row = mysqli_fetch_array($result);
-                $totalItems = $row['total'];
-                $totalPages = ceil($totalItems / $itemsPerPage);
-
-                // Display pagination links
-                echo '<div class="pagination">';
-                for ($i = 1; $i <= $totalPages; $i++) {
-                  echo '<a href="?page=' . $i . '" class="button app_badge">' . $i . '</a>';
-                }
-                echo '</div>';
-                ?> 
-              </div><!--list -->
+              echo "<div class='task' id='$task_id'>"; //task 
+              echo "<div class='task_body'>$task_text</div>";
+              echo "<div class='task_footer'>";
               
-            </div><!--content -->? 
-       <script>
+              $category_name=GetModName($task_category_id);
+              $modpack_name=GetModpackName($task_modpack_id);
+              
+              if($category_name<>""){
+                $category_name="<button class='span_mod' type='button'>".$category_name."</button>";
+              }
+              if ($modpack_name<>""){
+                $modpack_name="<button class='span_modpack' type='button'>".$modpack_name."</button>";
+              }
+              
+                    //$mod_modpack.="".$category_name." ".$modpack_name."</div>";
+              
+              $button_edit="<button type='button' name='edit_task' class='button small_button pull-right'><i class='fas fa-edit'></i></button>";
+              $button_task_complete="<button type='button' name='complete_task' class='button small_button pull-right'><i class='fa fa-check'></i></button>";
+
+              $mod_modpack="<div class='task_modpacks'>".$category_name." ".$modpack_name."</div>";
+              
+              if($is_completed==1){
+                
+                echo $mod_modpack;
+                $task_completed="<span class='button small_button'>Complete</span>";
+                echo $task_completed;
+                      //$mod_modpack="<div class='mod_modpack'>".$mod_modpack." ".$task_completed."</div>";
+                      //echo $mod_modpack;
+                
+                
+              } elseif($is_completed==0){
+
+                echo $mod_modpack;
+                echo "<div class='task_action'>".$button_edit." ".$button_task_complete."</div>";
+              }
+              
+              echo "</div>";//task_footer_wrap;  
+              echo "</div>";//task
+            }
             
-        </script>
-    </body>    
+            ?>       
+          </div><!--tasks -->
+          
+          <?php
+          // Calculate the total number of pages
+          $count_tasks = "SELECT COUNT(*) as total FROM to_do";
+          $result=mysqli_query($link, $count_tasks);
+          $row = mysqli_fetch_array($result);
+          $totalItems = $row['total'];
+          $totalPages = ceil($totalItems / $itemsPerPage);
+
+          // Display pagination links
+          echo '<div class="pagination">';
+          for ($i = 1; $i <= $totalPages; $i++) {
+            echo '<a href="?page=' . $i . '" class="button app_badge">' . $i . '</a>';
+          }
+          echo '</div>';
+          ?> 
+        </div><!--list -->
+        
+      </div><!--content -->? 
+
+     <!--  <dialog class="modpacks">
+        <div class="inner_modpacks_layer">
+          <?php 
+            echo GetListModpacks();
+          ?>
+        </div>
+      </div> -->
+</body>    

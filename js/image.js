@@ -10,6 +10,12 @@ var modal_change_modpack = document.querySelector(".modal_change_modpack");
 //
 sessionStorage.setItem("picture_id",imageId);
 
+image_description.addEventListener("keyup", function(event){
+    if(document.querySelector(".image_description").innerText.length>0){
+     showSaveDescriptionButton();
+     }
+  })
+
 
 picture_modpacks.addEventListener("click", function(event){
   if (event.target.tagName === "BUTTON"){
@@ -78,6 +84,11 @@ modal_new_tags.addEventListener("click", function(event) {
       // (Voliteľné) Ak chceš zmeniť stav na serveri alebo niečo podobné:
       // saveNewTagsToServer(tagsArray);
     }
+  } 
+
+  if(event.target.tagName === "BUTTON" && event.target.name == "letter"){
+    var letterButton = event.target.innerText;
+    sortImagesTagsByLetters(letterButton);
   }
 });
 
@@ -89,6 +100,7 @@ image_description.addEventListener("click", function(event){
 image_description.addEventListener("blur", function(event){
     var new_description = document.querySelector(".image_description").innerText;
     if(old_description==new_description){
+      hideSaveDescriptionButton();
       //ziadna zmena. nic sa nebude ukladat
       console.log("no change");
       return;
@@ -407,4 +419,14 @@ function sortImagesTagsByLetters(letterButton) {
   xhttp.open("POST", "image_tags_sort_by_letters.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(data);
+}
+
+function showSaveDescriptionButton (){
+  console.log("showSaveDescriptionButton");
+  document.querySelector(".image_description button").classList.add("show_save_button");
+}
+
+function hideSaveDescriptionButton(){
+  console.log("hideSaveDescriptionButton");
+  document.querySelector(".image_description button").classList.remove("show_save_button");
 }
