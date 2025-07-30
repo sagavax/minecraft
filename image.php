@@ -106,7 +106,7 @@
               <div class="video_tags_alphabet">
                 <?php 
                         foreach (range('A', 'Z') as $char) {
-                          echo "<button type='button' class='button small_button'>$char</button>";
+                          echo "<button type='button' class='button small_button' name='letter'>$char</button>";
 
                         }
                      ?>  

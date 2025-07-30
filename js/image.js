@@ -47,7 +47,7 @@ images_tags.addEventListener("click", function(event){
 });
 
 modal_new_tags.addEventListener("click", function(event) {
-  if (event.target.tagName === "BUTTON" && event.target.name == "tag") {
+  if (event.target.tagName === "BUTTON" && event.target.name == "add_new_tag") {
     // Získaj existujúce tagy zo stránky
     var existingTags = document.querySelector(".images_tags").getAttribute("tag-list");
     
@@ -392,6 +392,19 @@ function saveImageDescrition(pictureId, new_description) {
 
   // Odoslanie POST požiadavky
   xhttp.open("POST", "image_save_description.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
+
+function sortImagesTagsByLetters(letterButton) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".tags_list").innerHTML = this.responseText;
+      }
+  };
+  var data = "letter=" + letterButton;
+  xhttp.open("POST", "image_tags_sort_by_letters.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(data);
 }
