@@ -160,10 +160,7 @@
                                 <div class='picture_footer'>
                                         <div class='picture_action' image-id='{$picture_id}'>
                                         {$modpack_name}
-                                        <button name='add_tag' type='button' class='button small_button' title='Add tag'>
-                                            <i class='fas fa-tag'></i>
-                                        </button>
-                                        <button name='add_comment' type='button' class='button small_button' title='Add new comment'>
+                                         <button name='add_comment' type='button' class='button small_button' title='Add new comment'>
                                             <i class='fa fa-comment'></i>
                                         </button>
                                         <button name='view_image' type='button' class='button small_button' title='View image'>

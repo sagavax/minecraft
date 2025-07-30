@@ -87,7 +87,7 @@ image_description.addEventListener("click", function(event){
 })
 
 image_description.addEventListener("blur", function(event){
-    var new_description = document.querySelector(".image-description").innerText;
+    var new_description = document.querySelector(".image_description").innerText;
     if(old_description==new_description){
       //ziadna zmena. nic sa nebude ukladat
       console.log("no change");
@@ -100,20 +100,6 @@ image_description.addEventListener("blur", function(event){
     }
 });
   
-//this.contentEditable=false;  
-/* window.onload = function() {
-var anchors = document.querySelectorAll('.comment');
-for(var i = 0; i < anchors.length; i++) {
-var anchor = anchors[i];
-anchor.onclick = function() {
-   listenForDoubleClick(this);
-}
-anchor.onblur=this.contentEditable=false;
-anchor.onkeyup=update_comment(anchor.getAttribute('data-id'), anchor.innerHTML);
-}
-  
-}
- */
 
 function listenForDoubleClick(element) {
 element.contentEditable = true;
@@ -386,6 +372,26 @@ saveImageName(image_name);
 
   // Send the request
   xhttp.open("POST", "images_modpack_change.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
+
+function saveImageDescrition(pictureId, new_description) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          alert("Popis obrázku uložený!");
+      } else if (this.readyState == 4) {
+          // Ošetrenie chýb pri neúspešnej požiadavke
+          console.error("Chyba pri ukladaní popisu: " + this.status);
+      }
+  };
+
+  // Opravený preklep z "nre_description" na "new_description"
+  var data = "image_id=" + pictureId + "&description=" + encodeURIComponent(new_description);
+
+  // Odoslanie POST požiadavky
+  xhttp.open("POST", "image_save_description.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(data);
 }
