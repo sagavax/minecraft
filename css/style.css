@@ -3892,6 +3892,14 @@ td.zakladna_popis {
         outline: 0;
     }
 
+.dialog_modpacks {
+    position: fixed;
+    top:20%;
+    left:20%;
+    width: 60%;
+
+}
+
 .no_tasks {
     display: flex;
     align-items: center;

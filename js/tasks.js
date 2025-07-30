@@ -1,11 +1,25 @@
 
 const taskTopBarButton = document.querySelector(".task_top_bar button");
 const tasks = document.querySelector('.tasks');
+const dialog_modpacks = document.querySelector('.dialog_modpacks');
+
 
 
 document.querySelector(".search_wrap input").addEventListener("keyup", () => {
   searchTask(document.querySelector(".search_wrap input").value);
 });
+
+
+dialog_modpacks.addEventListener("click", function(event){
+  if(event.target.tagName === "BUTTON"){
+    const modpackId = event.target.getAttribute("modpack-id");
+    const taskId = sessionStorage.getItem("task_id");
+    //const taskId = sessionStorage.getItem("task_id");
+    addModpackToTask(taskId, modpackId);
+    dialog_modpacks.close();
+  }
+})
+
 
 taskTopBarButton.addEventListener("click",function(){
     document.getElementById("new_task").style.display="none";
@@ -26,8 +40,8 @@ tasks.addEventListener('click', function(event) {
   // Nájde najbližší element s triedou .task a získa task-id
   
   const taskId = event.target.closest(".task").getAttribute("id");
-  console.log(taskId);
-
+  sessionStorage.setItem("task_id", taskId);
+  
   if (event.target.tagName === 'BUTTON') {
     const buttonName = event.target.name;
 
@@ -38,6 +52,17 @@ tasks.addEventListener('click', function(event) {
     if (buttonName === "complete_task") {
       taskCompleted(taskId);
     }
+
+    if (buttonName === "add_modpack" || buttonName === "assigned_modpack") {
+      //check if task is not completed
+      const isCompleted = document.querySelector(`.task[id="${taskId}"] .task_footer span`);//.textContent === "Complete";
+      if(isCompleted) {
+        alert("Task is completed!");
+        return;
+      } else {
+        dialog_modpacks.showModal();  
+      }
+    }
   }
 });
 
@@ -46,7 +71,7 @@ tasks.addEventListener('click', function(event) {
 function taskCompleted(taskId) {
   const xhttp = new XMLHttpRequest();
           xhttp.onload = function() {
-
+            alert("Task completed!");
           }
           
         xhttp.open("POST", "task_completed.php",true);
@@ -56,10 +81,10 @@ function taskCompleted(taskId) {
 }
 
 
-var container = document.querySelector('.task_view');
+var taskView = document.querySelector('.task_view');
 
     // Add a click event listener to the container
-    container.addEventListener('click', function(event) {
+    taskView.addEventListener('click', function(event) {
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON'){
             // Get the name attribute of the clicked button
@@ -76,7 +101,7 @@ var container = document.querySelector('.task_view');
 
 
     // Add a click event listener to the container
-    container.addEventListener('click', function(event) {
+    taskView.addEventListener('click', function(event) {
         // Check if the clicked element is a button
         if (event.target.tagName === 'DIV'){
             console.log(event.target.tagName);
@@ -88,10 +113,10 @@ var container = document.querySelector('.task_view');
 
 
 
-var tab_view = document.querySelector('.tab_view');
+var tabView = document.querySelector('.tab_view');
 
     // Add a click event listener to the container
-    tab_view.addEventListener('click', function(event) {
+    tabView.addEventListener('click', function(event) {
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON'){
             // Get the name attribute of the clicked button
@@ -105,10 +130,10 @@ var tab_view = document.querySelector('.tab_view');
         }
     });
 
-var container = document.querySelector('.modpack_view');
+var modpackView = document.querySelector('.modpack_view');
 
     // Add a click event listener to the container
-    container.addEventListener('click', function(event) {
+    modpackView.addEventListener('click', function(event) {
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON'){
             // Get the name attribute of the clicked button
@@ -201,4 +226,18 @@ function createTask(){
         const data = "task_text="+encodeURIComponent(taskText)+"&category="+encodeURIComponent(mod)+"&modpack="+encodeURIComponent(modpack);
         xhttp.send(data);
                     
+}
+
+function addModpackToTask(taskId, modpackId){
+    
+    var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        alert("Modpack has been updated / added");
+                }
+            };
+        xhttp.open("POST", "task_update_modpack.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        const data = "task_id="+encodeURIComponent(taskId)+"&modpack_id="+encodeURIComponent(modpackId);
+        xhttp.send(data);
 }

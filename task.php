@@ -36,7 +36,7 @@
     <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
@@ -91,15 +91,11 @@
                         <select name="modpack">
                            <?php 
                            //echo "modpack:".$modpack_id;
-                            if($modpack_id==0){
-                                echo "<option value=0> -- Select modpack -- </option>";
-                            } else {
-                        
+                            
+                        echo "<option value=0> -- Select modpack -- </option>";
                         echo "<option value=$modpack_id selected='selected' >$modpack_name</option>";
-                        }
-
-                        $sql="SELECT * from modpacks ORDER BY modpack_id ASC";
-                        $result=mysqli_query($link, $sql);
+                        $update_task="SELECT * from modpacks ORDER BY modpack_id ASC";
+                        $result=mysqli_query($link, $update_task) or die("MySQLi ERROR: ".mysqli_error($link));
                           while ($row = mysqli_fetch_array($result)) {
                             $modpack_id=$row['modpack_id'];
                             $modpack_name=$row['modpack_name'];

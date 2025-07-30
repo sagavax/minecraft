@@ -102,7 +102,7 @@ function GetListModpacks() {
 	$modpack_id = $row['modpack_id'];	
 	$modpack_name = $row['modpack_name'];
 
-	$modpack_list= $modpack_list."<button class='button blue_button' modpack-id=$modpack_id>$modpack_name</button>";
+	$modpack_list= $modpack_list."<button class='button blue_button' name='modpack' modpack-id=$modpack_id>$modpack_name</button>";
 	}	
 	return $modpack_list;
 }

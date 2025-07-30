@@ -31,7 +31,7 @@ $result=mysqli_query($link, $sql);
               $category_name=GetModName($task_category_id);
 
               if($task_modpack_id==0) {
-                $modpack_name="<button class='button small_button' type='button' title='add modpack'><i class='fa fa-plus'></i></button>";
+                $modpack_name="<button class='button small_button' type='button' title='add modpack' name='add_modpack'><i class='fa fa-plus'></i></button>";
               } else {
                 $modpack_name=GetModpackName($task_modpack_id);  
                 $modpack_name="<button class='span_modpack' type='button'>".$modpack_name."</button>";
