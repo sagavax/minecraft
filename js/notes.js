@@ -31,9 +31,8 @@ document.querySelector(".modal_image BUTTON").addEventListener("click", () => {
 dialog_modpacks.addEventListener("click", (event) => {
     if (event.target.tagName === "BUTTON") {
         const modpackName = event.target.textContent;
-        console.log("Selected modpack:", modpackName);
-        //chenge modpack
-        changeModpack(modpackName); // Call the changeModpack function
+        const modpackId = event.target.getAttribute("modpack-id");
+        changeModpack(modpackName, modpackId); // Call the changeModpack function
     }
 })
 
@@ -42,6 +41,10 @@ container_notes_list.addEventListener("click", function(event) {
     //console.log("Clicked element:", event.target.name);
 
     if (event.target.tagName === "BUTTON") {
+        
+        const noteId = event.target.closest(".note").getAttribute("note-id");
+        sessionStorage.setItem("note_id", noteId);
+
         console.log(event.target.name);
         if (event.target.name === "attach_image") {
             const noteId = event.target.closest(".note").getAttribute("note-id");
@@ -240,18 +243,19 @@ function RemoveNote(noteId){
     xhttp.send(data);
 }
 
-function  changeModpack(modpackName){
+function  changeModpack(modpackName, modpackId) {
+    const noteId = sessionStorage.getItem("note_id");
     var xhttp = new XMLHttpRequest();
     var search_text = document.getElementById("search_string").value;
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             //change text for modpack in note 
             //document.querySelector(".note[note-id='" + noteId + "'] span_modpack").textContent = modpackName;
-            document.querySelector(`.note[note-id="${noteId}"] span_modpack`).textContent = modpackName;
-            //document.querySelector(`.note[note-id="449"] .span_modpack`);
+            document.querySelector(`.note[note-id="412"] button[name='change_modpack']`).textContent = modpackName;
+            document.querySelector(".dialog_modpacks").close();
         }
     };
-    data = "modpack_name="+modpackName;
+    data = "modpack_name="+modpackName+"&modpack_id="+modpackId+"&note_id="+noteId;
     xhttp.open("POST", "notes_change_modpack.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
