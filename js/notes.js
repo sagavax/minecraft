@@ -251,7 +251,7 @@ function  changeModpack(modpackName, modpackId) {
         if (this.readyState == 4 && this.status == 200) {
             //change text for modpack in note 
             //document.querySelector(".note[note-id='" + noteId + "'] span_modpack").textContent = modpackName;
-            document.querySelector(`.note[note-id="412"] button[name='change_modpack']`).textContent = modpackName;
+            document.querySelector(`.note[note-id="${noteId}"] button[name='change_modpack']`).textContent = modpackName;
             document.querySelector(".dialog_modpacks").close();
         }
     };

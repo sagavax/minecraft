@@ -5142,7 +5142,7 @@ input[name="base_name"] {
       }
 
 
-   .modal, .modal_modpack,.modal_video_tags,.modal_image, .modal_video_category, .modal_change_modpack, .modal_modpack_mods{
+   .modal, .modal_modpack,.modal_video_tags,.modal_image, .modal_video_category, .modal_modpack_mods{
     padding:5px;
     min-height:100px;
     width: 40%;

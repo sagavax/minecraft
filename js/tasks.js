@@ -66,15 +66,6 @@ tasks.addEventListener('click', function(event) {
   }
 });
 
-dialog_modpacks.addEventListener("click", function(event){
-  if(event.target.tagName === "BUTTON"){
-    const modpackId = event.target.getAttribute("modpack-id");
-    const noteId = sessionStorage.getItem("note_id");
-    //const taskId = sessionStorage.getItem("task_id");
-    addModpackToNote(noteId, modpackId);
-    dialog_modpacks.close();
-  }
-})
 
 
 tasks.addEventListener('click', function(event) {
