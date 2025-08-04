@@ -1,6 +1,22 @@
 <?php 
 include("dbconnect.php");
 
+
+function GetImageGallery($image_id) { 
+	global $link;
+	$get_gallery = "SELECT a.gallery_id, b.gallery_name 
+	                FROM pictures_gallery_images a, picture_galleries b 
+	                WHERE a.picture_id=$image_id AND a.gallery_id = b.gallery_id";
+	$result = mysqli_query($link, $get_gallery) or die(mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+
+	if(mysqli_num_rows($result) == 0) {
+		return "<button type='button' name='change_gallery' class='button small_button' title='Add to gallery'><i class='fa fa-image'></i></button>";
+	} else {
+		return "<button type='button' name='change_gallery' gallery-id='" . $row['gallery_id'] . "' class='button small_button'>" . htmlspecialchars($row['gallery_name']) . "</button>";
+	}
+}
+
 function GetAllImageGalleries(){
 	global $link;
 	$gallery ="";	
@@ -10,7 +26,7 @@ function GetAllImageGalleries(){
 		echo "<div class='no_gallery' gallery-id='0'>No galleries</div>";
 	} else {
 		while($row = mysqli_fetch_array($result)){
-		$gallery .= '<button class="button small_button" name="gallery" gallery-id="'.$row['gallery_id'].'">'.$row['gallery_name'].'</button>';
+		$gallery .= '<button class="button small_button jade_button" name="gallery" gallery-id="'.$row['gallery_id'].'">'.$row['gallery_name'].'</button>';
 	}
 		
 	}
@@ -385,7 +401,7 @@ function GetImageTagListByLetter($letter){
 			$tag_name= $row['tag_name'];
 
 			//$tags .= "<button class='button' name='$tag_name' tag-id=$tag_id>$tag_name</button>";
-			$tags .= "<button class='button small_button'>$tag_name</button>";
+			$tags .= "<button class='button tag_button'>$tag_name</button>";
 			};
   return $tags;
   }	

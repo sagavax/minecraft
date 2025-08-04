@@ -8,14 +8,9 @@ const old_description = document.querySelector(".image_description").innerText;
 const picture_modpacks = document.querySelector(".picture_modpacks");
 const modal_change_modpack = document.querySelector(".modal_change_modpack"); 
 const modal_change_gallery = document.querySelector(".modal_change_gallery");
-const modal_new_gallery = document.querySelector(".modal_new_gallery");
-const modal_new_gallery_input = document.querySelector(".modal_new_gallery input[name='gallery_name']");
-const modal_new_gallery_textarea = document.querySelector(".modal_new_gallery textarea[name='gallery_description']");
-const modal_new_gallery_select = document.querySelector(".modal_new_gallery select[name='gallery_category']");
+
 //
 sessionStorage.setItem("picture_id",imageId);
-
-
 
 
 
@@ -36,22 +31,37 @@ picture_modpacks.addEventListener("click", function(event){
         modal.style.height = (innerHeight + 50) + 'px';
       }
     }  else if (event.target.name==="change_gallery"){
-      modal_change_gallery.showModal();
+      modal_change_gallery.show();
     } 
   }
 });
 
 
+modal_change_gallery.addEventListener("click", function(event) {
+ if (event.target.tagName === "BUTTON" && event.target.name==="gallery") {
+     const galleryId = event.target.getAttribute("gallery-id");
+     const galleryName = event.target.innerText;
+     const imageId = sessionStorage.getItem("picture_id");
+     const oldName = document.querySelector(".picture_modpacks button[name='change_gallery']").innerText;
+     if(oldName==galleryName){
+      ShowMessage("Gallery has not been changed!");
+      return;
+     } else {
+      imageChangeGallery(imageId, galleryId,galleryName);
+     }
+   } else if(event.target.name==="close_gallery_modal"){
+     console.log("close_gallery_modal");
+     document.querySelector(".modal_change_gallery").close();
+   }
+})
+
 modal_change_modpack.addEventListener("click", function(event) {
   // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
  if (event.target.tagName === "BUTTON" && event.target.hasAttribute("modpack-id")) {
-     const modpackId = event.target.getAttribute("modpack-id"); 
+     const modpackId = event.target.getAttribute("modpack-id");
      const modpackName = event.target.innerText;
      const imageId = sessionStorage.getItem("picture_id");
      //degugg
-     console.log("Modpack name:", modpackName); // Alebo alert, ak preferuješ
-     console.log("Modpack ID:", modpackId); // Alebo alert, ak preferuješ
-     console.log("image id:", imageId);
      // change modpack
      imageChangeModpack(imageId, modpackId,modpackName);
  }
@@ -388,7 +398,8 @@ saveImageName(image_name);
 
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-          alert("Modpack zmenený!");
+          //alert("Modpack zmenený!");
+          ShowMessage("Modpack changed!");
           document.querySelector(".picture_modpacks button").innerText = modpackName;
           modal_change_modpack.close();
       }
@@ -441,4 +452,26 @@ function showSaveDescriptionButton (){
 function hideSaveDescriptionButton(){
   console.log("hideSaveDescriptionButton");
   document.querySelector(".image_description button").classList.remove("show_save_button");
+}
+
+function imageChangeGallery(imageId,galleryId,galleryName) {
+  var xhttp = new XMLHttpRequest();
+
+  // Prepare the data before the request
+  var data = "image_id=" + encodeURIComponent(imageId) + "&gallery_id=" + encodeURIComponent(galleryId)+"&gallery_name="+encodeURIComponent(galleryName);
+
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          //alert("Gallery zmenený!");
+          document.querySelector(".picture_modpacks button[name='change_gallery']").innerText = galleryName;
+          document.querySelector(".picture_modpacks button[name='change_gallery']").setAttribute("gallery-id", galleryId);
+          modal_change_gallery.close();
+          ShowMessage("Gallery has been changed!");
+      }
+  }
+
+  // Send the request
+  xhttp.open("POST", "picture_gallery_change.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
 }

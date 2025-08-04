@@ -9,10 +9,12 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>Minecraft - image</title>
       <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
+      <link rel="stylesheet" href="css/message.css?<?php echo time(); ?>">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
       <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
       <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
       <script type="text/javascript" defer src="js/image.js?<?php echo time(); ?>"></script>
+      <script type="text/javascript" defer src="js/message.js?<?php echo time(); ?>"></script>
 </head>
 <body>
        <?php include("includes/header.php") ?>
@@ -59,9 +61,7 @@
                               //echo "<div class='mod_modpack'>".$modpack_name."</div>";
 
                               echo "<div class='picture_info'>";
-                                  echo "<div class='picture_modpacks'>".GetImageModpack($picture_id)." <button type='button' name='change_gallery' class='button small_button' title='Add to gallery '>
-                                            <i class='fa fa-image'></i>
-                                        </button></div>";
+                                  echo "<div class='picture_modpacks'>".GetImageModpack($picture_id).GetImageGallery($picture_id)." </div>";
                                   echo "<div class='image_description' data-placeholder='image descriptpion. click / tap here to put some wideo description here ...' title='Image description'>$picture_description<button name='save_description' type='button' class='button small_button'><i class='fa fa-save'></i></button></div>";  
                                   echo "<div class='images_tags' tag-list='".GetImageTagListArray($picture_id)."'>".GetImageTagList($picture_id)."</div>";  
                                
@@ -139,6 +139,7 @@
 
          <dialog class="modal_change_gallery">
             <div class="inner_change_gallery_layer">
+                <button type="button" class='close_inner_modal' name='close_gallery_modal'><i class='fa fa-times'></i></button>
                 <input type="text" name="gallery_name" placeholder="gallery name ...." autocomplete="off">
                 <div class="gallery_list">
                     <?php echo GetAllImageGalleries() ?>
