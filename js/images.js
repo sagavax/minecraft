@@ -12,6 +12,59 @@ const modal_add_new_comment = document.querySelector('.modal_add_new_comment');
 const image_tags_map = document.querySelector('.image_tags_map');
 const submitButton = document.querySelector("button[name='add_new_ext_pic']");
 const add_new_image = document.querySelector(".add_new_image");
+const image_galleries = document.querySelector(".image_galleries");
+const modal_new_gallery = document.querySelector(".modal_new_gallery");
+const modal_new_gallery_input = document.querySelector(".modal_new_gallery input[name='gallery_name']");
+const modal_new_gallery_textarea = document.querySelector(".modal_new_gallery textarea[name='gallery_description']");
+const modal_new_gallery_select = document.querySelector(".modal_new_gallery select[name='gallery_category']");
+
+image_galleries.addEventListener("click", function(event) {
+  if (event.target.tagName === "BUTTON"){
+    if(event.target.name==="all_galleries"){
+      reloadGalleries();
+    } else if (event.target.name==="add_new_gallery"){
+     modal_new_gallery.showModal();
+    } else if (event.target.name==="modpacks_galleries"){
+      loadModpacksGalleries();
+    } else if (event.target.name==="vanilla_galleries"){
+      loadVanillaGalleries();
+    } else if (event.target.name==="new_gallery"){
+      modal_new_gallery.show();
+    }
+  }
+  if (event.target.tagName === "DIV" && event.target.hasAttribute("gallery-id")) {
+    const galleryId = event.target.getAttribute("gallery-id");
+    sessionStorage.setItem("galery_id", galleryIdId);
+    window.location.href = "gallery.php?gallery_id="+galleryId;
+  }
+});
+
+
+modal_new_gallery.addEventListener("click", function(event) {
+  if(event.target.tagName === "BUTTON" && event.target.name==="create_gallery"){
+    if(modal_new_gallery_input.value===""){
+      ShowMessage("Please enter a name for the gallery.");
+      return
+    } else {
+
+      checkIfGalleryExists(modal_new_gallery_input.value);
+      if(checkIfGalleryExists(modal_new_gallery_input.value)){
+        ShowMessage("Gallery with this name already exists.");
+        return;
+      } else {
+        createNewGallery();  
+      }
+      
+    }
+    //console.log("Volám createNewGallery()");
+    //createNewGallery();
+  } else if(event.target.tagName === "BUTTON" && event.target.name==="close_modal"){
+    document.querySelector(".modal_new_gallery textarea[name='gallery_description']").value = "";
+    document.querySelector(".modal_new_gallery input[name='gallery_name']").value = "";
+    modal_new_gallery.close();
+  }
+});
+
 
 image_tags_map.childNodes.forEach(node => {
   if (node.tagName === 'BUTTON') {
@@ -208,7 +261,7 @@ const image_description = document.querySelector('textarea[name="image_descripti
 
 const xhttp = new XMLHttpRequest();
 xhttp.onload = function() {
-  alert("Image has been uploaded"); 
+  ShowMessage("Image has been uploaded"); 
 };
 
 xhttp.open("POST", "images_add_ext_image.php", true);
@@ -438,4 +491,32 @@ function loadLatestImage(){
       image.scrollIntoView({behavior: "smooth"});
     }
   }
+}
+
+function createNewGallery(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      ShowMessage("Gallery created successfully!");
+      modal_new_gallery.close();
+      document.querySelector(".image_galleries_list").insertAdjacentHTML("afterbegin", "<button class='button small_button gallery_button'>"+modal_new_gallery_input.value+"</button>");
+    }
+  };
+  data = "gallery_name="+encodeURIComponent(modal_new_gallery_input.value)+"&gallery_description="+encodeURIComponent(modal_new_gallery_textarea.value)+"&gallery_category="+encodeURIComponent(modal_new_gallery_select.value);
+  xhttp.open("POST", "gallery_create.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
+
+function checkIfGalleryExists(galleryName) {
+  const galleryList = document.querySelector(".image_galleries_list"); // nebo '#image_galleries_list', záleží na vašem HTML
+  if (!galleryList) return false;
+
+  const buttons = galleryList.querySelectorAll("button");
+  for (let button of buttons) {
+    if (button.innerText === galleryName) {
+      return true;
+    }
+  }
+  return false;
 }

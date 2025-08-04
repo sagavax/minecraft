@@ -1,14 +1,23 @@
   //parse url and get image id
-var urlParams = new URLSearchParams(window.location.search);
-var imageId = urlParams.get('image_id');
-var images_tags = document.querySelector(".images_tags");
-var image_description = document.querySelector(".image_description");
-var modal_new_tags = document.querySelector(".modal_new_tags");
-var old_description = document.querySelector(".image_description").innerText;
-var picture_modpacks = document.querySelector(".picture_modpacks");
-var modal_change_modpack = document.querySelector(".modal_change_modpack"); 
+const urlParams = new URLSearchParams(window.location.search);
+const imageId = urlParams.get('image_id');
+const images_tags = document.querySelector(".images_tags");
+const image_description = document.querySelector(".image_description");
+const modal_new_tags = document.querySelector(".modal_new_tags");
+const old_description = document.querySelector(".image_description").innerText;
+const picture_modpacks = document.querySelector(".picture_modpacks");
+const modal_change_modpack = document.querySelector(".modal_change_modpack"); 
+const modal_change_gallery = document.querySelector(".modal_change_gallery");
+const modal_new_gallery = document.querySelector(".modal_new_gallery");
+const modal_new_gallery_input = document.querySelector(".modal_new_gallery input[name='gallery_name']");
+const modal_new_gallery_textarea = document.querySelector(".modal_new_gallery textarea[name='gallery_description']");
+const modal_new_gallery_select = document.querySelector(".modal_new_gallery select[name='gallery_category']");
 //
 sessionStorage.setItem("picture_id",imageId);
+
+
+
+
 
 image_description.addEventListener("keyup", function(event){
     if(document.querySelector(".image_description").innerText.length>0){
@@ -16,9 +25,9 @@ image_description.addEventListener("keyup", function(event){
      }
   })
 
-
 picture_modpacks.addEventListener("click", function(event){
   if (event.target.tagName === "BUTTON"){
+    if(event.target.name==="image_modpack"){
     modal_change_modpack.showModal();
      if(modal_change_modpack.open){
         const modal = document.querySelector('.modal_change_modpack');
@@ -26,6 +35,9 @@ picture_modpacks.addEventListener("click", function(event){
         const innerHeight = inner.offsetHeight;
         modal.style.height = (innerHeight + 50) + 'px';
       }
+    }  else if (event.target.name==="change_gallery"){
+      modal_change_gallery.showModal();
+    } 
   }
 });
 
@@ -55,7 +67,7 @@ images_tags.addEventListener("click", function(event){
 modal_new_tags.addEventListener("click", function(event) {
   if (event.target.tagName === "BUTTON" && event.target.name == "add_new_tag") {
     // Získaj existujúce tagy zo stránky
-    var existingTags = document.querySelector(".images_tags").getAttribute("tag-list");
+    const existingTags = document.querySelector(".images_tags").getAttribute("tag-list");
     
     // Preveď existujúce tagy na pole
     var tagsArray = existingTags ? JSON.parse(existingTags) : [];

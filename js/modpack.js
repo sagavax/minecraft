@@ -431,7 +431,7 @@ function SaveNote() {
                                     <div class="note_text">${noteText}</div>
                                     <div class="note_footer">
                                         <div class="notes_action">
-                                            <span class="span_modpack">${modpackName}</span>
+                                            <button class="span_mod" type="button" name="add_mod" title="add mod"><i class="fa fa-plus"></i></button><span class="span_modpack">${modpackName}</span>
                                             <form method="post" action="notes_attach_file.php" enctype="multipart/form-data">
                                                 <input type="hidden" name="note_id" value="${noteId}">
                                                 <input type="file" name="image" id="file-attach-${noteId}" accept="image/*" style="display: none;">
@@ -748,4 +748,20 @@ function GetLatestImageID() {
   };
   xhttp.open("GET", "images_get_latest_id.php", true);
   xhttp.send();
+}
+
+
+function saveNote(){
+  const note = document.querySelector('#new_note textarea[name="note_text"]').value;
+  var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          alert("Note saved successfully!");
+           document.querySelector('#new_note textarea[name="note_text"]').value="";
+      }
+     };
+   data = "note="+encodeURIComponent(note)+"&modpack_id="+encodeURIComponent(localStorage.getItem("modpack_id"));
+   xhttp.open("POST", "note_add.php", true);
+   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xhttp.send(data);
 }

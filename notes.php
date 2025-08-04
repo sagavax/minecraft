@@ -1,6 +1,50 @@
  
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
+
+      if(isset($_POST['note_add'])) {
+        
+        $note_header=mysqli_real_escape_string($link, $_POST['note_header']);
+        $note_text=htmlentities(mysqli_real_escape_string($link, $_POST['note_text']));
+        $modpack_id=$_POST['modpack'];
+        var_dump($_POST);
+     
+       $cat_id=0;
+            
+        $create_note="INSERT into notes (note_header,note_text,cat_id, modpack_id, added_date) VALUES ('$note_header', '$note_text',$cat_id,$modpack_id,now())";
+        $result=mysqli_query($link,$create_note) or  die("MySQLi ERROR: ".mysqli_error($link));
+
+        
+        //ziskat id posledne vytvorenej poznamky
+        $getlatestnote="SELECT LAST_INSERT_ID() as last_id from notes";
+        $result=mysqli_query($link, $getlatestnote) or die("MySQLi ERROR: ".mysqli_error($link));
+        while ($row = mysqli_fetch_array($result)) {          
+          $last_note=$row['last_id'];
+        } 
+            
+        //notes modpacks 
+        $insert_into_modpacks="INSERT INTO notes_modpacks (note_id, modpack_id) VALUES ($last_note, $modpack_id)";
+        $result = mysqli_query($link, $insert_into_modpacks) or die("MySQLi ERROR: ".mysqli_error($link));
+        
+        //insert into mods
+        $insert_into_mods="INSERT INTO notes_mods (note_id, cat_id) VALUES ($last_note, $cat_id)";
+        $result = mysqli_query($link, $insert_into_mods) or die("MySQLi ERROR: ".mysqli_error($link));
+
+
+
+        
+        $modpack_name = GetModPackName($modpack_id);
+        
+        if($note_header==""){
+          $diary_text="Bola vytvorena nova poznamka s id: <strong>$last_note</strong>";  
+        } else {
+          $diary_text="Bola vytvorena nova poznamka s nazvom <strong>$note_header</strong>";
+            }
+        
+        $addtolog="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
+        $result = mysqli_query($link, $addtolog) or die("MySQLi ERROR: ".mysqli_error($link));
+     
+      }
  ?>
 
 <!DOCTYPE html>
@@ -23,8 +67,7 @@
   
   <body>
   <?php
-     echo "<script>sessionStorage.setItem('current_module','notes')</script>";
-     include("includes/header.php") ?>
+         include("includes/header.php") ?>
       <div class="main_wrap">
       <div class="tab_menu">
           <?php include("includes/menu.php"); ?>
@@ -43,16 +86,10 @@
                 <button class="button small_button"><i class="fa fa-times"></i></button>
             </div><!--new note header -->
             
-            <form action="" method="POST" accept-charset="utf-8">
-                <div id="note_title">
-                    <input type="text" name="note_header" placeholder="title" value="">
-                </div><!-- note title -->
-                <div id="note_text">    
+            <form action="note_add.php" method="POST" accept-charset="utf-8">
+                    <input type="text" name="note_title" placeholder="title" value="" autocomplete="off">
                     <textarea name="note_text" placeholder="new text here..."></textarea>
-                </div><!--- note text --->    
-                <div id="new_note_footer">
-                    <div id="note_options">
-                            <select name="modpack">
+                     <select name="modpack">
                         <?php 
                         //echo "modpack:".$modpack_id;
                         
@@ -64,15 +101,13 @@
                             $modpack_name=$row['modpack_name'];
                         echo "<option value=$modpack_id>$modpack_name</option>";
                         }	
-                    ?>
-                </select> 
-                 <!-- <input type="checkbox" name="publish_to_wall" id="publish_to_wall" checked="checked"><label for="publish_to_wall">Publikovat na wall</label> -->
-                    
-                </div><!--- note options  --->
-                </div><!--- new note footer  ---> 
-                <div id="note_action">
+                     ?>
+                    </select> 
+                
+                  <div class="note_action">
                     <button name='note_add' type='submit' class='button small_button'>Add</button>
                 </div><!--- note action --->
+                
               </form>    
 
             </div><!-- new note -->
@@ -119,13 +154,13 @@
                               $category_name=GetModName($note_mod);
                               $category_name="<button class='span_mod'>".$category_name."</button>";
                             } else {
-                               $category_name= "<button class='span_mod' type='button' name='add_mod' title='add mod'><i class='fa fa-plus'></i></button>";
+                               $category_name= "<button class='span_mod' type='button' name='change_mods' title='add mod'><i class='fa fa-plus'></i></button>";
                             }
                             
                             
                            
                             if($note_modpack==0){
-                              $modpack_name= "<button class='span_mod' type='button' name='add_modpack'><i class='fa fa-plus'></i></button>";
+                              $modpack_name= "<button class='span_mod' type='button' name='change_modpack' title='add modpack'><i class='fa fa-plus'></i></button>";
                             } else {
                               $modpack_name=GetModpackName($note_modpack);
                                $modpack_name="<button class='span_modpack' type='button' name='change_modpack' modpack-id=$note_modpack>".$modpack_name."</button>";
@@ -193,5 +228,65 @@
                   ?>
               </div>
         </dialog>
+
+       <dialog class="dialog_mods">
+      <div class="inner_mods_layer">
+          
+        <div id="letter_list"><!-- letter list -->
+          <?php 
+            foreach (range('A', 'Z') as $char) {
+              echo "<button type='button'>$char</button>";
+            }
+            echo "<button type='button' name='all'>All</button>";
+            echo "<button type='button' name='dupes'>Find dupes</button>";
+          ?>  
+        </div><!-- letter list --> 
+          
+        <div id="categories_list">
+          <?php
+            $itemsPerPage = 30;
+            $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $offset = ($current_page - 1) * $itemsPerPage;
+
+            if (isset($_GET['alphabet'])) {
+              $char = $_GET['alphabet'];
+              
+              if ($char == "dupes") {
+                // Opravený SQL s chýbajúcou čiarkou pred COUNT(*) a GROUP BY
+                $sql = "SELECT cat_name, cat_description, COUNT(*) AS count FROM mods GROUP BY cat_name HAVING count > 1";
+              } elseif ($char == "all") {
+                $sql = "SELECT * FROM mods ORDER BY cat_name ASC LIMIT $itemsPerPage OFFSET $offset";
+              } else {
+                $char_escaped = mysqli_real_escape_string($link, $char);
+                $sql = "SELECT * FROM mods WHERE LEFT(cat_name,1) = '$char_escaped' ORDER BY cat_name ASC";
+              }
+            } else {
+              $sql = "SELECT * FROM mods ORDER BY cat_name ASC LIMIT $itemsPerPage OFFSET $offset";
+            }
+
+            $result = mysqli_query($link, $sql);
+
+            while ($row = mysqli_fetch_array($result)) {
+              $cat_id = $row['cat_id'];
+              $cat_name = htmlspecialchars($row['cat_name'], ENT_QUOTES, 'UTF-8');
+              $cat_description = htmlspecialchars($row['cat_description'], ENT_QUOTES, 'UTF-8');
+
+              echo "<div class='category' data-id='$cat_id'>";
+                echo "<div class='cat_name'>$cat_name</div>";
+                echo "<div class='cat_action'>";
+
+                  if ($cat_description == "") {
+                    echo "<div class='cat_description'><i class='fas fa-plus-circle' title='Add description'></i></div>";  
+                  }
+
+                  echo "<div class='cat_delete'><i class='fas fa-times-circle' title='Delete mod'></i></div>";
+                echo "</div>"; // div cat_action
+              echo "</div>";   // div category
+            }
+          ?>
+        </div><!-- categories_list -->
+      </div><!-- inner_mods_layer -->
+    </dialog>
+
     </body>
 </html>    

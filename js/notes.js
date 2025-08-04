@@ -1,14 +1,16 @@
 var new_note_container = document.querySelector(".add_notes");
+var new_note_form = document.querySelector("#new_note form");
 var container = document.querySelector('.sort_notes');
 var container_notes = document.querySelector("#notes_list");
 const new_note = document.querySelector("#new_note");
 var new_note_header_close_button = document.querySelector(".new_note_header button");
 var note_attached_files = document.querySelector(".note_attached_files");
 var container_notes_action = document.querySelector(".notes_action");
-var container_notes_list = document.querySelector("#notes_list");
+var notes_list = document.querySelector("#notes_list");
 var modal_change_modpack = document.querySelector(".modal_change_modpack");
 const dialog_modpacks = document.querySelector('.dialog_modpacks');
-// new_note.style.display="none";
+const note_header = document.querySelector('#new_note input[name="note_title"]')
+const dialog_mods = document.querySelector('.dialog_mods');
 
 new_note_header_close_button.addEventListener("click", () => {
     new_note.classList.remove("show"); // Odstráni triedu 'show' pre animáciu skrytia
@@ -36,8 +38,20 @@ dialog_modpacks.addEventListener("click", (event) => {
     }
 })
 
+// odoslanie formulára
+new_note_form.addEventListener("submit", (event) => {
+    const noteText = new_note_form.querySelector("textarea[name='note_text']").value.trim();
 
-container_notes_list.addEventListener("click", function(event) {
+    if(noteText === "") {
+        event.preventDefault();
+        alert("Note cannot be empty!");
+        return;
+    }
+    // žiadne preventDefault - bude bežať klasické odoslanie formulára na server
+});
+
+
+notes_list.addEventListener("click", function(event) {
     //console.log("Clicked element:", event.target.name);
 
     if (event.target.tagName === "BUTTON") {
@@ -78,8 +92,8 @@ container_notes_list.addEventListener("click", function(event) {
             //editNote(noteId);
         } else if (event.target.name === "change_modpack") {
             dialog_modpacks.showModal(); // Open the dialog;
-        } else if (event.target.name === "add_mod") {
-            //dialog_modifications.showModal();
+        } else if (event.target.name === "change_mods") {
+            dialog_mods.showModal();
         }
 
     } else if (event.target.classList.contains("fa-file-image")) {
@@ -116,44 +130,44 @@ container_notes_list.addEventListener("click", function(event) {
         } else {
             console.log("File name attribute is missing.");
         }
-    }
+    } else if (event.target.classList.contains("note_header")) {
+    console.log("Note header clicked");
+
+    const noteId = event.target.closest(".note").getAttribute("note-id");
+    sessionStorage.setItem("note_id", noteId);
+
+    const noteHeader = event.target;
+
+    // Zabránime opakovaniu
+    if (noteHeader.isContentEditable) return;
+
+    const oldText = noteHeader.textContent;
+
+    noteHeader.contentEditable = true;
+    noteHeader.focus();
+
+    // Listener na blur, spustí sa iba raz
+    noteHeader.addEventListener("blur", function handleBlur() {
+        noteHeader.contentEditable = false;
+
+        const newText = noteHeader.textContent;
+        if (newText !== oldText) {
+           alert("Note header changed.");
+            saveNoteHeader(noteId, newText);
+        } else {
+            console.log("No change to note header.");
+        }
+
+        noteHeader.removeEventListener("blur", handleBlur); // prevent repeated firing
+    }, { once: true }); // zabezpečí, že sa nespustí viackrát
+}
+
 });
 
-
-
-    //event.target.object attached file
-
-/* note_attached_files.addEventListener("click", (event) => {
-    // Kontrola či sa kliklo na ikonu
-    if (event.target.tagName !== "I") return;
-    
-    // Získanie potrebných dát
-    const fileName = event.target.getAttribute("file-name");
-    const noteId = event.target.closest(".note").getAttribute("note-id");
-    const imagePath = `gallery/note_attach_${noteId}/${fileName}`;
-    
-    // Práca s modalom
-    const modal = document.querySelector(".modal_image");
-    const modalContent = document.querySelector(".image_content");
-    
-    // Vytvorenie nového img elementu
-    const newImage = document.createElement('img');
-    newImage.src = imagePath;
-    
-    if (modal.style.display === "flex") {
-        // Ak je modal otvorený, nahraď existujúci obrázok
-        const existingImg = modalContent.querySelector("img");
-        if (existingImg) {
-            existingImg.remove();
-        }
-    } else {
-        // Ak je modal zatvorený, otvor ho
-        modal.style.display = "flex";
-    }
-    
-    // Vlož nový obrázok
-    modalContent.appendChild(newImage);
-}); */
+ note_header.addEventListener("blur", function() {
+        note_header.contentEditable = false;
+        saveNoteHeader(noteId, note_header.textContent);
+    });
 
 // Add a click event listener to the container
 container.addEventListener('click', function(event) {
@@ -257,6 +271,102 @@ function  changeModpack(modpackName, modpackId) {
     };
     data = "modpack_name="+modpackName+"&modpack_id="+modpackId+"&note_id="+noteId;
     xhttp.open("POST", "notes_change_modpack.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
+
+function AddNewNote(){
+    var note_text = document.querySelector('#new_note textarea[name="note_text"]').value;
+    var note_title = document.querySelector('#new_note input[name="note_title"]').value; 
+
+    var select = document.querySelector('#new_note select[name="modpack"]');
+    var modpackName = select.options[select.selectedIndex].text;
+    var selectValue = select.value;
+
+    console.log("select:"+selectValue);
+    console.log("modpackName:"+modpackName);
+    console.log("note_text:"+note_text);
+    console.log("note_title:"+note_title);
+
+    var modpackButtonHTML = "";
+
+    if (selectValue === "0") {
+        modpackButtonHTML = `<button class="span_modpack" type="button" name="change_modpack" title="add modpack">
+                                <i class="fa fa-plus"></i>
+                            </button>`;
+    } else {
+        modpackButtonHTML = `<button class="span_modpack" type="button" name="change_modpack" modpack-id="${selectValue}">
+                                ${modpackName}
+                            </button>`;
+    }
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            alert("Note saved successfully!");
+            document.querySelector('#new_note textarea[name="note_text"]').value = "";
+            document.querySelector('#new_note input[name="note_title"]').value = "";
+            document.querySelector('#new_note select[name="modpack"]').value = "0";
+
+            var response;
+            try {
+                response = JSON.parse(this.responseText);
+            } catch(e) {
+                alert("Chyba pri spracovaní odpovede servera: " + e.message);
+                return;
+            }
+            var noteId = response.noteId;  // napr. { "noteId": 123, ... }             
+
+            const noteHTML = `
+            <div class="note" note-id="${noteId}">
+                <div class="note_header">${note_title}</div>
+                <div class="note_text">${note_text}</div>
+                <div class="note_footer">
+                    <div class="notes_action">
+                        <button class="span_mod" type="button" name="add_mod" title="add mod"><i class="fa fa-plus"></i></button>
+                        ${modpackButtonHTML}
+                        <form method="post" action="notes_attach_file.php" enctype="multipart/form-data">
+                            <input type="hidden" name="note_id" value="${noteId}">
+                            <input type="file" name="image" id="file-attach-${noteId}" accept="image/*" style="display: none;">
+                        </form>
+                        <button name="attach_image" type="button" class="button small_button">
+                            <i class="material-icons">attach_file</i>
+                        </button>
+                        <button name="edit_note" type="submit" class="button small_button">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button name="delete_note" type="submit" class="button small_button">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                    <div class="note_attached_files"></div>
+                </div>
+            </div>`;
+
+            document.querySelector("#notes_list").insertAdjacentHTML("afterbegin", noteHTML);
+        }
+    };
+
+    var data = "note_title="+encodeURIComponent(note_title)
+             + "&note="+encodeURIComponent(note_text)
+             + "&modpack_id="+encodeURIComponent(localStorage.getItem("modpack_id"));
+
+    xhttp.open("POST", "note_add.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
+
+
+function saveNoteHeader(noteId, note_header) {
+    var xhttp = new XMLHttpRequest();
+    var search_text = document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            //document.getElementById("notes_list").innerHTML = this.responseText;
+        }
+    };
+    data = "note_id="+noteId+"&note_header="+encodeURIComponent(note_header);
+    xhttp.open("POST", "notes_change_header.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
 }

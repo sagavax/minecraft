@@ -302,8 +302,15 @@ textarea[name=modpack_description] {
 
 select {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 14px;
-    outline:0;
+    border: 1px #d1d1d1 solid;
+    background: #eff3f4;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 45px;
+    box-sizing: border-box;
+    outline: none;
 }
 
 input {
@@ -323,7 +330,7 @@ textarea {
     width: 100%;
     min-height: 60px;
     font-family: 'Noto Sans', sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     box-sizing: border-box;
     border: 1px #d1d1d1 solid;
     outline: none;
@@ -847,7 +854,7 @@ button[name="save_description"]{
     /*border-left: 2px solid #2ecc71*/
 }
 
-.video_tags_map, .image_tags_map {
+.video_tags_map, .image_tags_map,.image_galleries {
     border: 1px #d1d1d1 solid;
     box-sizing: border-box;
     padding-left:10px;
@@ -860,6 +867,10 @@ button[name="save_description"]{
     background-color: white;
     border-radius: 5px;
     margin-bottom: 15px;;
+   }
+
+   .image_galleries {
+    flex-direction: column;
    }
 
    .video_tags_map input, .image_tags_map input {
@@ -903,6 +914,59 @@ button[name="save_description"]{
     flex-wrap: wrap;
     gap:10px
 }
+
+
+.gallery_view {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image_galleries_list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-sizing: border-box;
+    padding:5px;
+}
+
+
+.gallery {
+    display: flex;
+    height: 200px;
+    width: 250px;
+    border: 1px #d1d1d1 solid;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); */
+}
+
+.no_gallery {
+    margin-top: 20px;
+    height: 50px;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px #d1d1d1 solid;
+    border-radius: 4px
+}
+
+.modal_new_gallery,.modal_change_gallery {
+    width:40%;
+    height:300px;
+    top:30%;
+    left: 30%;
+    position: fixed;
+    z-index: 100;
+}
+
 
 .video_details {
    border: 1px #d1d1d1 solid;
@@ -1240,6 +1304,7 @@ button[name="save_description"]{
     align-items: center;
     justify-content: flex-start;
     width: 100%;
+    gap:10px;
 }
 
 .video_tags, .picture_tags, .videos_tags, .images_tags {
@@ -1998,7 +2063,7 @@ button[name="save_description"]{
     word-break: break-all;
     height: auto;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px;
 }
 
 .note_text p img {
@@ -2015,6 +2080,9 @@ button[name="save_description"]{
     padding:10px;
 }
 
+.note_header input {
+    font-weight: bold;
+}
 
 
 .note_header, .note_text {
@@ -2554,16 +2622,34 @@ button[name="save_description"]{
 #new_task textarea {
     box-sizing: border-box;
     font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
 }
 
 #new_note form {
+    display: flex;
+    flex-direction: column;
     margin-top:10px
+}
+
+#new_note input, #new_note textarea, #new_note select {
+    margin-top:10px;
+    margin-bottom:10px
+}
+
+#new_note select {
+    height:45px;
+    border-radius: 5px;
+    border: 1px #d1d1d1 solid;
+    background: #eff3f4;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
 }
 
 #new_modpack form input,
 #new_video input,
 #edit_video input,
 #upload_new_video input,
+#new_note textarea,
 #new_video textarea,
 #new_image textarea,
 #edit_video textarea {
@@ -2575,6 +2661,14 @@ button[name="save_description"]{
     background: #eff3f4;
     font-family: 'Noto Sans', sans-serif;
 }
+
+#new_note textarea,
+#new_video textarea,
+#new_image textarea,
+#edit_video textarea {
+    font-weight: normal;
+}
+
 
 .radios {
     height: 45px;
@@ -2977,14 +3071,25 @@ button[name="save_description"]{
     height:160px;
 }
 
-.add_comment_action {
+.add_comment_action, .add_gallery_action {
     height:45px;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end
+    justify-content: flex-end;
+    margin-top: 10px;
 }
 
+.add_gallery_action {
+    gap:10px;
+}
+
+.add_gallery_action button {
+    display: flex;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+    }
 
 #mod_description span, #mod_description .mod_images {
     height:45px;
@@ -3181,12 +3286,19 @@ button[name="save_description"]{
 
 .sort_notes, .add_notes {
     display: flex;
+    width: 100%;
     height: 100%;
     gap:5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .sort_notes button, .add_notes button {
     height: 100%;
+}
+
+.add_notes {
+    justify-content: flex-end;
 }
 
 .sort_notes button:first-child{
@@ -3751,6 +3863,10 @@ background: #eff3f4;
     gap:5px;
 }
 
+.note_actioN{
+    justify-content: flex-end;
+}
+
 .bugs_action {
      box-sizing: border-box;
     align-items: center;
@@ -3770,17 +3886,6 @@ background: #eff3f4;
     padding:10px;
 }
 
-#new_note input,
-#new_note textarea {
-    width: 100%;
-    box-sizing: border-box;
-    padding:5px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border: 1px #d1d1d1 solid;
-    font-family: 'Noto sans',sans-serif;
-
-}
 
 #new_note textarea {
     min-height: 120px;
@@ -4510,11 +4615,6 @@ input[name="base_name"] {
     padding: 5px 10px;
 }*/
 
-#new_note textarea {
-    float: left;
-    margin-top: 2px;
-}
-
 .vanila_note_act {
     margin-top: 5px;
     display: flex;
@@ -5138,7 +5238,7 @@ input[name="base_name"] {
     top:0;
     left:0;
     background: rgba(0,0,0,0.8);
-    z-index: 100;
+    z-index: 1000000;
       }
 
 
@@ -5415,14 +5515,30 @@ input[name="base_name"] {
    }
 
 
-   .inner_layer, .inner_comment_layer, .inner_modpack_layer, .inner_tags_layer {
+   .inner_layer, .inner_comment_layer, .inner_modpack_layer, .inner_tags_layer, .inner_new_gallery_layer {
     justify-content: center;
     position: relative;
     height:100%;
     width:100%;
     }
 
+    .inner_new_gallery_layer,.inner_change_gallery_layer {
+        display: flex;
+        padding: 10px;
+        flex-direction: column;
+    }
 
+    .inner_change_gallery_layer {
+        padding:10px;
+    }
+
+    .inner_new_gallery_layer select {
+        border: 1px #d1d1d1 solid;
+        background: #eff3f4;
+        margin-top: 10px;
+        width: 100%;
+        height: 45px;
+    }
 
    .inner_layer ul {
     width:100%;

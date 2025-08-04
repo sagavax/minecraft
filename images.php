@@ -135,6 +135,20 @@
                 ?>
             </div>
 
+            <div class="image_galleries">
+                <div class="gallery_view">
+                    <button type="button" class="button small_button" name="all_galleris">All</button>
+                    <button type="button" class="button small_button" name="modpacks_galleries">Modpacks</button>
+                    <button type="button" class="button small_button" name="vanilla_galleries">Vanilla</button>
+                    <button type="button" class="button small_button" name="new_gallery"><i class="fa fa-plus"></i></button>
+                </div>
+
+                <div class="image_galleries_list">
+                    <?php  GetAllImageGalleries() ?>
+                 </div>   
+            </div>        
+
+
             <!-- Picture list -->
             <div id="picture_list">
                 <?php
@@ -239,6 +253,17 @@
                 <textarea name="comment" placeholder="comment ...."></textarea>
                 <div class="add_comment_action"><button type="button" class="button small_button">Save</button></div>
             </div>
-            
+        </dialog>
+
+        <dialog class="modal_new_gallery">
+            <div class="inner_new_gallery_layer">
+                <input type="text" name="gallery_name" placeholder="gallery name ...." autocomplete="off">
+                <textarea name="gallery_description" placeholder="gallery description ...."></textarea>
+                <select name="gallery_category">
+                    <option value="0">--- choose category --- </option>
+                    <option value="modpacks">Modpacks</option>
+                    <option value="vanilla">Vannila</option>
+                </select>    
+                <div class="add_gallery_action"><button type="button" name="close_modal" class="button small_button">Close</button><button type="button" name="create_gallery" class="button small_button"><i class="fa fa-plus"></i>Create</button></div>
         </dialog>
 </div>

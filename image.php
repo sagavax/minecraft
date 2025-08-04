@@ -59,7 +59,9 @@
                               //echo "<div class='mod_modpack'>".$modpack_name."</div>";
 
                               echo "<div class='picture_info'>";
-                                  echo "<div class='picture_modpacks'>".GetImageModpack($picture_id)."</div>";
+                                  echo "<div class='picture_modpacks'>".GetImageModpack($picture_id)." <button type='button' name='change_gallery' class='button small_button' title='Add to gallery '>
+                                            <i class='fa fa-image'></i>
+                                        </button></div>";
                                   echo "<div class='image_description' data-placeholder='image descriptpion. click / tap here to put some wideo description here ...' title='Image description'>$picture_description<button name='save_description' type='button' class='button small_button'><i class='fa fa-save'></i></button></div>";  
                                   echo "<div class='images_tags' tag-list='".GetImageTagListArray($picture_id)."'>".GetImageTagList($picture_id)."</div>";  
                                
@@ -134,5 +136,13 @@
                 ?>
               </div>
          </dialog>
+
+         <dialog class="modal_change_gallery">
+            <div class="inner_change_gallery_layer">
+                <input type="text" name="gallery_name" placeholder="gallery name ...." autocomplete="off">
+                <div class="gallery_list">
+                    <?php echo GetAllImageGalleries() ?>
+                </div>
+        </dialog>
 </body>
 </html>

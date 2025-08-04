@@ -1,14 +1,16 @@
 <?php
+include "includes/dbconnect.php";
+include "includes/functions.php";
 
-    include "includes/dbconnect.php";
-    include "includes/functions.php";
+$getlatestnote = "SELECT MAX(id) as last_id FROM notes";
+$result = mysqli_query($link, $getlatestnote) or die("MySQLi ERROR: " . mysqli_error($link));
 
+$last_note = null;
+if ($row = mysqli_fetch_assoc($result)) {
+    $last_note = $row['last_id'];
+}
 
-    $get_latest_note = "SELECT * FROM notes ORDER BY note_id DESC LIMIT 1";
-    $result = mysqli_query($link, $get_latest_note) or die("MySQLi ERROR: " . mysqli_error($link));
-
-    while ($row = mysqli_fetch_array($result)) {
-        $last_note = $row['note_id'];
-    }
-
-    echo $last_note;
+// Vráti hodnotu jako JSON, aby mohol JS správne načítať
+header('Content-Type: application/json');
+echo json_encode(['noteId' => $last_note]);
+?>

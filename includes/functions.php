@@ -1,6 +1,25 @@
 <?php 
 include("dbconnect.php");
 
+function GetAllImageGalleries(){
+	global $link;
+	$gallery ="";	
+	$query = "SELECT * from picture_galleries";
+	$result=mysqli_query($link, $query) or die(mysql_error());
+	if(mysqli_num_rows($result)==0) {
+		echo "<div class='no_gallery' gallery-id='0'>No galleries</div>";
+	} else {
+		while($row = mysqli_fetch_array($result)){
+		$gallery .= '<button class="button small_button" name="gallery" gallery-id="'.$row['gallery_id'].'">'.$row['gallery_name'].'</button>';
+	}
+		
+	}
+	echo $gallery;
+
+
+}
+
+
 // 🧱 Validuj a dekóduj JSON
 function getJsonPayload(): array {
     $data = json_decode(file_get_contents('php://input'), true);
