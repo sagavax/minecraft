@@ -87,7 +87,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="css/message.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script defer src="js/images.js?<?php echo time(); ?>"></script>
     <script defer src="js/message.js?<?php echo time(); ?>"></script>
@@ -140,6 +140,7 @@
                     <button type="button" class="button small_button" name="all_galleris">All</button>
                     <button type="button" class="button small_button" name="modpacks_galleries">Modpacks</button>
                     <button type="button" class="button small_button" name="vanilla_galleries">Vanilla</button>
+                    <button type="button" class="button small_button" name="reload_gallery">Reload</button>
                     <button type="button" class="button small_button" name="new_gallery"><i class="fa fa-plus"></i></button>
                 </div>
 

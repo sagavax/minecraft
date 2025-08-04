@@ -13,6 +13,7 @@
                         gallery_id = VALUES(gallery_id),
                         added_date = VALUES(added_date)";
 
+    $change_gallery = "UPDATE pictures_gallery_images SET gallery_id=$gallery_id, added_date=NOW() WHERE picture_id=$image_id";
     $result = mysqli_query($link, $change_gallery) or die("MySQLi ERROR: ".mysqli_error($link));
 
     // log

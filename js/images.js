@@ -28,6 +28,8 @@ image_galleries.addEventListener("click", function(event) {
       loadModpacksGalleries();
     } else if (event.target.name==="vanilla_galleries"){
       loadVanillaGalleries();
+    } else if (event.target.name==="reload_galleries"){
+      loadAllGalleries();
     } else if (event.target.name==="new_gallery"){
       modal_new_gallery.show();
     }
@@ -519,4 +521,15 @@ function checkIfGalleryExists(galleryName) {
     }
   }
   return false;
+}
+
+function loadAllGalleries(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.querySelector(".image_galleries_list").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "pictures_gallery_list.php", true);
+  xhttp.send();
 }
