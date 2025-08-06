@@ -953,7 +953,7 @@ button[name="save_description"]{
     /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); */
 }
 
-.gallery_list {
+.galleries_list {
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
@@ -962,7 +962,7 @@ button[name="save_description"]{
     margin-top:10px;
 }
 
-.no_gallery {
+.no_gallery, .no_gallery_found {
     margin-top: 20px;
     height: 50px;
     width: 100%;
@@ -973,6 +973,13 @@ button[name="save_description"]{
     border: 1px #d1d1d1 solid;
     border-radius: 4px
 }
+
+.no_gallery_found {
+    justify-content: flex-start;
+    border: 0px solid #d1d1d1;
+    gap: 10px;
+}
+
 
 .modal_new_gallery,.modal_change_gallery {
     width:40%;

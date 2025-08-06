@@ -8,7 +8,7 @@ const old_description = document.querySelector(".image_description").innerText;
 const picture_modpacks = document.querySelector(".picture_modpacks");
 const modal_change_modpack = document.querySelector(".modal_change_modpack"); 
 const modal_change_gallery = document.querySelector(".modal_change_gallery");
-
+const modal_change_gallery_input = document.querySelector(".modal_change_gallery input");
 //
 sessionStorage.setItem("picture_id",imageId);
 
@@ -32,7 +32,7 @@ picture_modpacks.addEventListener("click", function(event){
       }
     }  else if (event.target.name==="change_gallery"){
       modal_change_gallery.show();
-    } 
+    }  
   }
 });
 
@@ -52,8 +52,15 @@ modal_change_gallery.addEventListener("click", function(event) {
    } else if(event.target.name==="close_gallery_modal"){
      console.log("close_gallery_modal");
      document.querySelector(".modal_change_gallery").close();
-   }
+   } else if (event.target.name==="create_gallery"){
+      createNewGallery();
+    } 
 })
+
+modal_change_gallery_input .addEventListener("keyup", function(event){
+  searchGallery(event.target.value);
+})
+
 
 modal_change_modpack.addEventListener("click", function(event) {
   // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
@@ -474,4 +481,76 @@ function imageChangeGallery(imageId,galleryId,galleryName) {
   xhttp.open("POST", "picture_gallery_change.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(data);
+}
+
+function searchGallery(searchText) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".galleries_list").innerHTML = this.responseText;
+      }
+  };
+  var data = "search_text=" + encodeURIComponent(searchText);
+  xhttp.open("POST", "pictures_gallery_search.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
+
+function createNewGallery(){
+  const inputElement = document.querySelector(".modal_change_gallery input");
+  const newGalleryName = inputElement.value.trim();
+
+  if (checkIfGalleryExist(newGalleryName)) {
+    ShowMessage("Gallery already exists!");
+    return;
+  } 
+
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        ShowMessage("Gallery created successfully!");
+        inputElement.value = "";
+        reloadGalleries();
+      } else {
+        ShowMessage("Failed to create gallery. Please try again.");
+      }
+    }
+  };
+
+  const data = "gallery_name=" + encodeURIComponent(newGalleryName);
+  xhttp.open("POST", "gallery_create.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
+
+
+
+function reloadGalleries() {
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".galleries_list").innerHTML ="";
+          document.querySelector(".galleries_list").innerHTML = this.responseText;
+      }
+  };
+  xhttp.open("GET", "galleries_list.php", true);
+  xhttp.send();
+}
+
+
+function checkIfGalleryExist(galleryName) {
+  if (!galleryName) return false;
+
+  const galleryList = document.querySelector(".galleries_list"); // adjust selector as needed
+  if (!galleryList) return false;
+
+  const buttons = galleryList.querySelectorAll("button");
+  for (let button of buttons) {
+    if (button.textContent.trim() === galleryName.trim()) {
+      return true;
+    }
+  }
+  return false;
 }

@@ -140,7 +140,7 @@
                     <button type="button" class="button small_button" name="all_galleris">All</button>
                     <button type="button" class="button small_button" name="modpacks_galleries">Modpacks</button>
                     <button type="button" class="button small_button" name="vanilla_galleries">Vanilla</button>
-                    <button type="button" class="button small_button" name="reload_gallery">Reload</button>
+                    <button type="button" class="button small_button" name="reload_galleries">Reload</button>
                     <button type="button" class="button small_button" name="new_gallery"><i class="fa fa-plus"></i></button>
                 </div>
 

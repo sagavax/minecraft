@@ -141,7 +141,7 @@
             <div class="inner_change_gallery_layer">
                 <button type="button" class='close_inner_modal' name='close_gallery_modal'><i class='fa fa-times'></i></button>
                 <input type="text" name="gallery_name" placeholder="gallery name ...." autocomplete="off">
-                <div class="gallery_list">
+                <div class="galleries_list">
                     <?php echo GetAllImageGalleries() ?>
                 </div>
         </dialog>
