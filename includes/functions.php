@@ -17,6 +17,20 @@ function GetImageGallery($image_id) {
 	}
 }
 
+function GetImageGalleryName($image_id) { 
+	global $link;
+	$get_gallery = "SELECT a.gallery_id, b.gallery_name 
+	                FROM pictures_gallery_images a, picture_galleries b 
+	                WHERE a.picture_id=$image_id AND a.gallery_id = b.gallery_id";
+	$result = mysqli_query($link, $get_gallery) or die(mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+		if(mysqli_num_rows($result) > 0) {
+		return  htmlspecialchars($row['gallery_name']);
+	}
+		
+	
+}
+
 function GetAllImageGalleries(){
 	global $link;
 	$gallery ="";	

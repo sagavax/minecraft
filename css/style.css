@@ -3393,8 +3393,15 @@ button[name="save_description"]{
 .pic {
     margin-top: 10px;
     display: flex;
-    
+    position: relative;
 }
+
+.pic button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 
 .pic img {
     width: 100%;
