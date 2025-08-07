@@ -16,7 +16,7 @@
     <title>Minecraft IS</title>
     <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
     <script src="js/dashboard.js" defer></script>
@@ -43,6 +43,7 @@
                           <div class="tile" tile-id='tags';><div class='tile_title'>Tags</div><div class="tile_info"><span><?php echo GetCountTags(); ?> tags</div></div>
                           <div class="tile" tile-id='videos'><div class='tile_title'>Videos</div><div class="tile_info"><span><?php echo GetCountVideos();?> videos, <?php echo GetCountNewestVideos(); ?> the newest</span></div></div>
                           <div class="tile" tile-id='images'><div class='tile_title'>Gallery</div><div class="tile_info"><span><?php echo GetCountImages(); ?> images</span></div></div>
+                          <div class="tile" tile-id='influencers'><div class='tile_title'>Influencers</div><div class="tile_info"><span><?php //echo GetCountInfluencers(); ?> influencers</span></div></div>
                           <div class="tile"  tile-id='vanilla'><div class='tile_title'>Vanila</div><div class="tile_info"><span><?php echo GetCountBases()." bases ,".GetCountVanilaVideos()." videos,".GetCountVanilaNotes()." notes"; ?></span></div></div>
                           <div class="tile" tile-id='bugs'><div class='tile_title'>Bug / error reporting</div><div class="tile_info"><span><?php echo GetCountBugs();?> bug(s)</span></div></div>
                           <div class="tile" tile-id='ideas'><div class='tile_title'>Ideas</div><div class="tile_info"><span><?php echo GetCountIdeas();?> idea(s)</span></div></div>

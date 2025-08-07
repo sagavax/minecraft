@@ -2593,6 +2593,7 @@ button[name="save_description"]{
 #new_task,
 #upload_new_video,
 #mod_description,
+#new_influencer,
 .base {
     padding: 10px;
     box-sizing: border-box;
@@ -2639,7 +2640,7 @@ button[name="save_description"]{
 }
 
 
-#new_video, #edit_video, #new_note{
+#new_video, #edit_video, #new_note, #new_influencer{
     display: flex;
     flex-direction: column;
     border-top-right-radius: 6px ;     
@@ -2653,9 +2654,12 @@ button[name="save_description"]{
 #new_note form textarea,
 #new_modpack form input,
 #new_modpack form textarea,
+#new_info form input,
 #new_video input,
+#new_influencer input,
 #upload_new_video input,
 #new_video textarea,
+#new_influencer textarea,
 #new_image textarea,
 #new_task textarea {
     box-sizing: border-box;
@@ -2685,6 +2689,8 @@ button[name="save_description"]{
 
 #new_modpack form input,
 #new_video input,
+#new_influencer input,
+#new_influencer textarea,
 #edit_video input,
 #upload_new_video input,
 #new_note textarea,
@@ -2701,6 +2707,7 @@ button[name="save_description"]{
 }
 
 #new_note textarea,
+#new_influencer textarea,
 #new_video textarea,
 #new_image textarea,
 #edit_video textarea {
@@ -6003,8 +6010,8 @@ input[name="base_name"] {
 
 /* HTML: <div class="loader"></div> */
 .loader {
-  width: 50px;
-  padding: 8px;
+  width: 150px;
+  padding: 28px;
   aspect-ratio: 1;
   border-radius: 50%;
   background: #25b09b;
