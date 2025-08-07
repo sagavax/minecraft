@@ -17,6 +17,9 @@ const modal_new_gallery = document.querySelector(".modal_new_gallery");
 const modal_new_gallery_input = document.querySelector(".modal_new_gallery input[name='gallery_name']");
 const modal_new_gallery_textarea = document.querySelector(".modal_new_gallery textarea[name='gallery_description']");
 const modal_new_gallery_select = document.querySelector(".modal_new_gallery select[name='gallery_category']");
+const image_galleries_list = document.querySelector(".image_galleries_list");
+
+
 
 image_galleries.addEventListener("click", function(event) {
   if (event.target.tagName === "BUTTON"){
@@ -32,6 +35,9 @@ image_galleries.addEventListener("click", function(event) {
       loadAllGalleries();
     } else if (event.target.name==="new_gallery"){
       modal_new_gallery.show();
+    } else if (event.target.name==="gallery"){
+      const galleryId = event.target.getAttribute("gallery-id");
+      ShowImagedsByGallery(galleryId);
     }
   }
   if (event.target.tagName === "DIV" && event.target.hasAttribute("gallery-id")) {

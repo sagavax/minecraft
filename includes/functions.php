@@ -40,13 +40,19 @@ function GetAllImageGalleries(){
 		echo "<div class='no_gallery' gallery-id='0'>No galleries</div>";
 	} else {
 		while($row = mysqli_fetch_array($result)){
-		$gallery .= '<button class="button small_button jade_button" name="gallery" gallery-id="'.$row['gallery_id'].'">'.$row['gallery_name'].'</button>';
+		$gallery .= '<button class="button small_button jade_button" name="gallery" gallery-id="'.$row['gallery_id'].'">'.$row['gallery_name'].'<span>('.GetCountImagesInGallery($row['gallery_id']).')</span> </button>';
 	}
 		
 	}
 	echo $gallery;
+}
 
-
+function GetCountImagesInGallery($gallery_id){
+	global $link;
+	$query = "SELECT count(*) as count from pictures_gallery_images where gallery_id=$gallery_id";
+	$result=mysqli_query($link, $query) or die(mysql_error());
+	$row = mysqli_fetch_array($result);
+	return $row['count'];
 }
 
 

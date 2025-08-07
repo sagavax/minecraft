@@ -23,6 +23,17 @@ body {
     outline: none;
 }
 
+button[name="gallery"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button[name="gallery"] span {
+    margin-left:10px
+}
+
+
 :focus {
     outline: none; /* Použi akúkoľvek farbu alebo efekt */
 }  
