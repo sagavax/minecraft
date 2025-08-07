@@ -12,7 +12,7 @@
     $result = mysqli_query($link, $get_images) or die("MySQLi ERROR: ".mysqli_error($link));
     
      while ($row = mysqli_fetch_array($result)) {
-        print_r($row);
+        //print_r($row);
         $picture_id = $row['picture_id'];
         $picture_title = $row['picture_title'];
         $picture_description = $row['picture_description']; 
