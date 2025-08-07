@@ -5286,6 +5286,20 @@ input[name="base_name"] {
     z-index: 1000000;
       }
 
+    .overlay_white {
+    align-items: center;
+    justify-content: center;
+    width:100vw;
+    height:100vh;
+    position: fixed;
+    top:0;
+    left:0;
+    background: rgb(255,255,255,0.8);
+    z-index: 1000000;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+      }  
+
 
    .modal, .modal_modpack,.modal_video_tags,.modal_image, .modal_video_category, .modal_modpack_mods{
     padding:5px;
@@ -5986,3 +6000,21 @@ input[name="base_name"] {
     width: 60px;
     background: #d23f31;
 }
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #25b09b;
+  --_m: 
+    conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}

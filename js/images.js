@@ -36,8 +36,22 @@ image_galleries.addEventListener("click", function(event) {
     } else if (event.target.name==="new_gallery"){
       modal_new_gallery.show();
     } else if (event.target.name==="gallery"){
-      const galleryId = event.target.getAttribute("gallery-id");
+     const galleryId = event.target.getAttribute("gallery-id");
+
+     //loaders gallery
+     const overlay = document.createElement("div");
+     overlay.classList.add("overlay_white");
+     overlay.style.display = "flex";
+     const loader = document.createElement("div");
+     loader.classList.add("loader");
+     overlay.appendChild(loader);
+     document.body.appendChild(overlay); // nebo jiný rodičovský element
+     document.body.style.overflow = "hidden";
       ShowImagesByGallery(galleryId);
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+        document.body.style.overflow = "auto";
+      }, 5000);
     }
   }
   if (event.target.tagName === "DIV" && event.target.hasAttribute("gallery-id")) {
