@@ -37,7 +37,7 @@ image_galleries.addEventListener("click", function(event) {
       modal_new_gallery.show();
     } else if (event.target.name==="gallery"){
       const galleryId = event.target.getAttribute("gallery-id");
-      ShowImagedsByGallery(galleryId);
+      ShowImagesByGallery(galleryId);
     }
   }
   if (event.target.tagName === "DIV" && event.target.hasAttribute("gallery-id")) {
@@ -537,5 +537,16 @@ function loadAllGalleries(){
     }
   };
   xhttp.open("GET", "pictures_gallery_list.php", true);
+  xhttp.send();
+}
+
+function ShowImagesByGallery(galleryId){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.querySelector("#picture_list").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "pictures_by_gallery.php?gallery_id="+galleryId, true);
   xhttp.send();
 }
