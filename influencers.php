@@ -19,7 +19,7 @@ include "includes/functions.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet'
         type='text/css'>
-    <script defer src="js/influnencers.js?<?php echo time() ?>"></script>
+    <script defer src="js/influencers.js?<?php echo time() ?>"></script>
      <script defer src="js/message.js?<?php echo time() ?>"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 
@@ -32,17 +32,19 @@ include "includes/functions.php";
         </div>
         <div class="content">
             <div class='list'>
+                <h4>Add new minecraft influencer</h4>
                 <div id="new_influencer">
                     <div class="influencer_top_bar">
                         <button type="button" class="close_modal" title="hide"><i class="fa fa-times"></i></button>
                     </div>
-
                     <form action="influencer_save.php" enctype="multipart/form-data" method="post">
-                        <input type="text" name="influencer_title" placeholder="influencer name" autocomplete="off"
-                            id="influencer_title" value="">
+                         <input type="text" name="influencer_name" placeholder="influencer name" autocomplete="off"
+                       value="">
                         <input type="text" name="influencer_url" autocomplete="off" title="Influencer url" placeholder="Influencer url" value="">
 
                         <textarea name="influencer_description" placeholder="Influencer description"></textarea>
+
+                        <input type="text" name="influencer_image" autocomplete="off" title="Influencer image" placeholder="Influencer image" value="">
 
                         <div class="new_influencer_submit_wrap">
                             <button type="submit" name="add_new_influencer" class="button small_button">
@@ -54,7 +56,8 @@ include "includes/functions.php";
 
                 <div class="influencer_list">
                     <?php
-                        //GetAllInfluencer();
+                        GetAllInfluencers();
+
                     ?>
                 </div>
             </div><!-- list -->

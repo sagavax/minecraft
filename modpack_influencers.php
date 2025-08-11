@@ -10,7 +10,7 @@ include "includes/functions.php";
         <button type="button" class="close_modal" title="hide"><i class="fa fa-times"></i></button>
     </div>
 
-    <form action="influencer_save.php" enctype="multipart/form-data" method="post">
+    <form action="influencer_create.php" enctype="multipart/form-data" method="post">
         <input type="hidden" name="modpack_id" value="<?php echo $_GET['modpack_id'] ?>">
         <input type="text" name="influencer_title" placeholder="influencer name" autocomplete="off"
                id="influencer_title" value="">
@@ -25,3 +25,9 @@ include "includes/functions.php";
         </div>
     </form>
 </div>
+
+<div class="influencer_list">
+    <?php
+           GetInfluencer($_GET['modpack_id']);
+    ?>
+</div>    

@@ -538,6 +538,62 @@ textarea::placeholder {
     width: 100%;
 }
 
+.influencer_list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-sizing: border-box;
+    padding:5px;
+}
+
+.influencer {
+    height: auto;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px #d1d1d1 solid;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1.5px 3px rgba(0,0,0,0.06);
+}
+
+.influencer_name {
+    border-top: 1px #d1d1d1 solid;
+    margin-top:10px;
+    height:40px;
+    font-weight: normal;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.influencer_image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+ }
+
+ .new_influencer_submit_wrap {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    height: 45px;
+    box-sizing: border-box;
+ }
+
+.new_influencer_submit_wrap button {
+    width:100px;        
+    border-radius: 5px;
+}
+
+
 #drag_and_drop,
 #drop_zone {
     display: flex;
@@ -2714,6 +2770,9 @@ button[name="save_description"]{
     font-weight: normal;
 }
 
+#new_influencer input {
+    height:45px;
+}
 
 .radios {
     height: 45px;
