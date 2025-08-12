@@ -34,10 +34,7 @@ include "includes/functions.php";
             <div class='list'>
                 <h4>Add new minecraft influencer</h4>
                 <div id="new_influencer">
-                    <div class="influencer_top_bar">
-                        <button type="button" class="close_modal" title="hide"><i class="fa fa-times"></i></button>
-                    </div>
-                    <form action="influencer_save.php" enctype="multipart/form-data" method="post">
+                     <form action="influencer_save.php" enctype="multipart/form-data" method="post">
                          <input type="text" name="influencer_name" placeholder="influencer name" autocomplete="off"
                        value="">
                         <input type="text" name="influencer_url" autocomplete="off" title="Influencer url" placeholder="Influencer url" value="">
@@ -57,13 +54,28 @@ include "includes/functions.php";
                 <div class="influencer_list">
                     <?php
                         GetAllInfluencers();
-
+                        echo "<div class='influencer_modpacks'></div>"; //influencer_modpacks
                     ?>
                 </div>
             </div><!-- list -->
          </div><!--content-->
         </div><!-- main_wrap-->   
+        
+         <dialog class="modal_change_modpack">
+             <div class='inner_change_modpack_layer'>
+                <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button>  
+                <div class='change_modpack_list'>
+                <?php
+                   $get_modpacks = "SELECT * from modpacks ORDER BY modpack_name ASC";
+                    $result=mysqli_query($link, $get_modpacks);
 
-    
+                    while ($row = mysqli_fetch_array($result)) {                   
+                        $modpack_name = $row['modpack_name'];
+                        $modpack_id = $row['modpack_id']; 
+                        echo "<button modpack-id=$modpack_id class='button small_button jade_button' name='add_modpack'>$modpack_name</button>";
+                        }
+                ?>
+              </div>
+         </dialog>
 </body>
 </html>

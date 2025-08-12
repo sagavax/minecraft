@@ -579,6 +579,11 @@ textarea::placeholder {
     box-sizing: border-box;
  }
 
+ .influencer_image img {
+    cursor: pointer;
+ }
+
+
  .new_influencer_submit_wrap {
     display: flex;
     margin-top: 10px;
@@ -2773,6 +2778,106 @@ button[name="save_description"]{
 #new_influencer input {
     height:45px;
 }
+
+.influencer_modpacks {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding:5px;
+    gap: 10px;
+    flex-wrap: wrap;
+    border: none;
+    
+}
+
+.influencer_modpacks:not(:empty) {
+    border: 1px #d1d1d1 solid;
+    border-radius: 5px;
+}
+
+.infl_modpacks_header, .infl_modpacks_list {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    padding:5px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.infl_modpacks_header h4 {
+    margin: 0px;
+}
+
+.infl_modpacks_header {
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.infl_modpacks_list {
+    flex-direction: row;
+}
+
+.infl_modpack, .infl_modpack_add {
+  width:220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border:1px #d1d1d1 solid;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  padding: 5px;
+  gap:10px;
+}
+
+.infl_modpack_add {
+    background: none;
+    justify-content: center;
+}
+
+.infl_modpack img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.infl_modpack_image {
+    width: 200px;
+    overflow: hidden;
+    border: 1px #d1d1d1 solid;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.infl_modpack_name {
+    min-height:45px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 15px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center
+}
+
+.infl_modpack_action {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no_modpacks_found {
+    height:60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    gap: 10px;
+}
+
 
 .radios {
     height: 45px;

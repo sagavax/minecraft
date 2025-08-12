@@ -2,13 +2,22 @@
 include("dbconnect.php");
 
 
+function GetInfluencerName($influencer_id){
+	global $link;
+	$sql = "SELECT influencer_name FROM influencers WHERE id = $influencer_id";
+	$result = mysqli_query($link, $sql) or die(mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	return $row['influencer_name'];
+}
+
+
 function GetAllInfluencers() {
 	global $link;
 	$influncer = "";
 	$sql = "SELECT * FROM influencers ORDER BY id DESC";
 	$result = mysqli_query($link, $sql) or die(mysqli_error($link));
 	while($row = mysqli_fetch_array($result)) {
-	$influncer .= "<div class='influencer' influencer_id='".$row['id']."'>";	
+	$influncer .= "<div class='influencer' influencer-id='".$row['id']."'>";	
 		$influncer .= "<div class='influencer_image'><img src='".htmlspecialchars($row['influencer_image'], ENT_QUOTES)."'></div>";
 		$influncer .= "<div class='influencer_info'>";
 		$influncer .= "<div class='influencer_name'>" . htmlspecialchars($row['influencer_name'], ENT_QUOTES) . "</div>";
