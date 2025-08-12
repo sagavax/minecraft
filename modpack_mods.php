@@ -5,7 +5,25 @@
 
   $modpack_id = $_GET['modpack_id'];    
  
- //echo "<div class='modlist_mods_title'><h3>List of mod for the modpack ".GetModPackName($modpack_id)."</h3></div>";
+ //list of links with mods and their description
+ 
+ echo "<div class='modpack_mods_urls'>";
+
+        $get_list_of_liksnks = "SELECT * from mods_links where modpack_id = $modpack_id";
+        $result = mysqli_query($link, $get_list_of_liksnks) or die("MySQLi ERROR: ".mysqli_error($link));
+        if (mysqli_num_rows($result) === 0) {
+            echo "<div class='no_links'>No links. Whoud u like to add some? <button type='button' name='add_link' class='button small_button' title='Add to gallery'><i class='fa fa-plus'></i></button></div>";
+        } else {
+            while($row = mysqli_fetch_array($result)){ 
+                $link_id = $row['link_id'];
+                $link_name = $row['link_name'];
+                $link_url = $row['modpack_mods_url'];
+            }
+        }
+
+ echo "</div>";
+
+ 
  echo "<div class='modpack_mod_list'>";
  
 
@@ -15,10 +33,20 @@
           while($row = mysqli_fetch_array($result)){ 
           $mod_id = $row['mod_id'];
           $mod_name = $row['cat_name'];
-                                  echo "<button type='button' class='button blue_button' mod-id=$mod_id>$mod_name</buton>";
+            echo "<button type='button' class='button blue_button' mod-id=$mod_id>$mod_name</buton>";
          
        } 
 
          echo "<button type='button' title='Add new mod into modpack' onclick='toggle_popup_mods()' class='button small_button blue_button'><i class='fa fa-plus'></i></button>";
          echo "<button class='button blue_button' title='Reload mod list' onclick='reload_mods()''><i class='fas fa-sync-alt'></i></button>";                
  ?>
+
+ <dialog class="dialog_add_new_link">
+    <div class="dialog_inner_container">
+        <p>Add link to modpack</p>
+        <input type="text" name="link_url" placeholder="link url" autocomplete="off">
+        <div class="action">
+             <button class="small_button button"><i class="fa fa-plus"></i></button>  
+        </div>               
+    </div>
+ </dialog>

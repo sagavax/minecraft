@@ -7,7 +7,7 @@ var new_note = document.getElementById("new_note");
 var video_url = document.querySelector("input[name='video_url']");          
 //wrapper
 var list = document.querySelector(".list");
-
+const dialog_add_new_link = document.getElementById("dialog_add_new_link");
 
 
 
@@ -114,6 +114,12 @@ document.querySelector(".list").addEventListener("click", function(event) {
             saveVideo();
         }
         break;
+     
+     case "add_link":
+        // add nee link
+        //alert("add new link");
+        dialog_add_new_link.showModal();
+        break;    
 
     default:
         // handle other buttons
