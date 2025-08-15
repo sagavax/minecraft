@@ -8,8 +8,49 @@ var video_url = document.querySelector("input[name='video_url']");
 //wrapper
 var list = document.querySelector(".list");
 const dialog_add_new_link = document.querySelector(".dialog_add_new_link");
+const popup_mods_list = document.querySelector(".popup_mods_list");
 
 
+
+
+dialog_add_new_link.addEventListener("click", function(event) {
+
+    if (event.target.tagName === "INPUT") {
+
+        console.log("input");
+
+    } else if (event.target.tagName === "BUTTON") {
+
+        console.log("button");
+
+        const linkInput = document.querySelector(
+            ".dialog_add_new_link input[name='link_url']"
+        );
+        const linkValue = linkInput.value.trim();
+
+        if (linkValue === "") {
+            alert("Empty link URL");
+            return;
+        }
+
+        if (!isValidURL(linkValue)) {
+            alert("Invalid link URL");
+            return;
+        }
+
+        addNewLink(linkValue);
+    }
+
+});
+
+
+
+popup_mods_list.addEventListener("click", function(event) {
+   if (event.target.tagName === "BUTTON") {
+        console.log("button");
+               
+    }
+});
 
 
 //event listener for list
@@ -128,28 +169,6 @@ document.querySelector(".list").addEventListener("click", function(event) {
     }
 });
 
- 
-
-/* document.querySelector("input[name='video_title']").addEventListener("click", function(event){
-    if(event.target.tagName==="INPUT"){
-        alert("input");
-    }
-})
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const videoInput = document.querySelector("input[name='video_url']");
-  if (videoInput) {
-    videoInput.addEventListener("input", function () {
-      getYouTubeVideoName();
-      checkVideoExists(videoInput.value);
-    });
-  } else {
-    console.warn("Input video_url not found.");
-  }
-}); */
-
-  
 /**
  * Checks whether a given string is a valid URL.
  * @param {string} url The url to check
@@ -604,24 +623,6 @@ if (popupModsListContainer) {
     });
 }
 
-dialog_add_new_link.addEventListener("click", function(event) {
-    if(event.target.tagName==="INPUT"){
-        console.log("input");
-    } else if (event.target.tagName === "BUTTON") {
-        console.log("button");
-        const link = document.querySelector(".dialog_add_new_link input[name='link_url']").value;
-        if (link==""){
-            alert("Empty link url");
-            return false;
-        } else {
-            addNewLink(link)
-        }
-        
-    }
-});
-
-
-
 
 function reload_mods(modpack_id){
      var xhttp = new XMLHttpRequest();
@@ -802,4 +803,13 @@ function addNewLink(link){
    xhttp.open("POST", "modpack_mod_link_add.php", true);
    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    xhttp.send(data);
+}
+
+function isValidURL(str) {
+  try {
+    new URL(str); // ak je to neplatné, hodí chybu
+    return true;
+  } catch {
+    return false;
+  }
 }

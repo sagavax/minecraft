@@ -18,6 +18,8 @@
                 $link_id = $row['link_id'];
                 $link_name = $row['link_name'];
                 $link_url = $row['modpack_mods_url'];
+
+                echo "<div class='modpack_mods_url' data-id='$link_id'><a href='$link_url' target='_blank'>$link_name</a></div>";
             }
         }
 
