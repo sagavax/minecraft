@@ -72,7 +72,7 @@ popup_mods_list.addEventListener("click", function(event) {
         } else if (event.target.name == "add_mod_to_modpack") {
             modpackId = sessionStorage.getItem("modpack_id");
             addModToModpack(event.target.getAttribute("data-id"),modpackId);
-            
+
             event.target.remove();
         }  
     }
@@ -187,7 +187,14 @@ document.querySelector(".list").addEventListener("click", function(event) {
         //alert("add new link");
         dialog_add_new_link.showModal();
         break;    
+     case "add_mods":
+        // add mods
+        popup_mods_list.showModal();
+        break;
 
+     case "reload_mods":
+        const modpackId = sessionStorage.getItem("modpack_id");
+        reloadMods(modpackId);   
     default:
         // handle other buttons
         break;
@@ -557,22 +564,6 @@ function showNewNote() {
     }, 10); // Krátke oneskorenie pred pridaním triedy
 }
 
-function GetModpackName() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const modpack_id = urlParams.get('modpack_id');
-
-    var xhttp = new XMLHttpRequest();
-    // var search_text = document.getElementById("search_string").value;
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.querySelector(".modpack_name").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "modpack_name.php?modpack_id=" + modpack_id, true);
-    xhttp.send();
-}
-
-
 
 // Convert NodeList to an array and loop through each container
 Array.from(taskRadiosContainers).forEach(function(container) {
@@ -620,37 +611,7 @@ Array.from(imageRadiosContainers).forEach(function(container) {
 });
 
 
-
-// Check if the container exists
-/* if (popupModsListContainer) {
-    // Add click event listener to the container
-    popupModsListContainer.addEventListener('click', function(event) {
-        // Check if the clicked element is a button
-        if (event.target.tagName === 'BUTTON') {
-            // Get the data-id attribute of the clicked button
-            var dataId = event.target.getAttribute('data-id');
-
-            // Check if the data-id attribute exists
-            if (dataId) {
-                // Add mod to modpack
-                add_mod_to_modpack(dataId); // add mod(s) into a modpack list
-
-                // Remove button
-                var elementToRemove = document.querySelector('[data-id="' + dataId + '"]');
-                if (elementToRemove) {
-                    elementToRemove.remove();
-                }
-
-                // console.log('Clicked Button Data ID:', dataId);
-            } else {
-                // console.warn('Button has no data-id attribute');
-            }
-        }
-    });
- */
-
-
-function reload_mods(modpack_id){
+function reloadMods(modpack_id){
      var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -813,11 +774,13 @@ function addNewLink(link){
   var xhttp = new XMLHttpRequest();
    xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
+          document.querySelector('.dialog_add_new_link input[name="link_url"]').value="";
+          document.querySelector(".dialog_add_new_link").close();
           alert("Link added successfully!");
       }
      };
    data = "link="+encodeURIComponent(link)+"&modpack_id="+encodeURIComponent(localStorage.getItem("modpack_id"));
-   xhttp.open("POST", "modpack_mod_link_add.php", true);
+   xhttp.open("POST", "modpack_add_mods_link.php", true);
    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    xhttp.send(data);
 }

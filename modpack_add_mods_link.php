@@ -4,7 +4,7 @@
     include("includes/functions.php");
 
     $modpack_id = $_POST['modpack_id'];
-    $modpack_link = mysqli_real_escape_string($link,_POST['modpack_link']);
+    $modpack_link = mysqli_real_escape_string($link,$_POST['link']);
 
     $add_link = "INSERT INTO mods_links (modpack_id, modpack_mods_url, added_date) VALUES ($modpack_id, '$modpack_link', now())";
     $result = mysqli_query($link, $add_link) or die("MySQLi ERROR: ".mysqli_error($link));
