@@ -70,8 +70,14 @@ popup_mods_list.addEventListener("click", function(event) {
         } else if (event.target.name == "hide_popup") {
             document.querySelector(".popup_mods_list").style.display = "none";
         } else if (event.target.name == "add_mod_to_modpack") {
+            modID = event.target.getAttribute("data-id")
             modpackId = sessionStorage.getItem("modpack_id");
+            modName = event.target.innerText;
             addModToModpack(event.target.getAttribute("data-id"),modpackId);
+
+            const addButton = "document.querySelector(`.modpack_mod_list button[name='add_mods']`)";
+            const modList = document.querySelector(".modpack_mod_list");
+        modList.insertAdjacentHTML("afterbegin", `<button type='button' class='button blue_button' data-id=${modID} name='remove_mod_from_modpack'>${modName}</buton>`);
 
             event.target.remove();
         }  
@@ -636,7 +642,9 @@ function hide_popup() {
 
 function addModToModpack(mod_id, modpack_id) {
     const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {}
+    xhttp.onload = function() {
+        
+    }
 
     xhttp.open("POST", "modpack_add_mod.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

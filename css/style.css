@@ -5377,6 +5377,7 @@ input[name="base_name"] {
 }
 
 .modpack_mods_urls {
+    background-color: white;
     width: 100%;
     display: flex;
     align-items: center;  
@@ -5388,6 +5389,7 @@ input[name="base_name"] {
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    border-radius: 5px;
 }
 
 .modpack_mods_url {
