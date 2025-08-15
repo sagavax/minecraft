@@ -9,9 +9,24 @@ var video_url = document.querySelector("input[name='video_url']");
 var list = document.querySelector(".list");
 const dialog_add_new_link = document.querySelector(".dialog_add_new_link");
 const popup_mods_list = document.querySelector(".popup_mods_list");
+const popup_mods_list_input = document.querySelector(".popup_mods_list input");
+const modpack_mod_list = document.querySelector(".modpack_mod_list");
 
 
 
+modpack_mod_list.addEventListener("click", function(event) {
+    if (event.target.tagName === "BUTTON") {
+        console.log("button");
+        if (event.target.name == "remove_mod_from_modpack") {
+            removeModFromModpack(event.target.dataset.id);
+        }
+    }
+});
+
+
+popup_mods_list_input.addEventListener("input", function(event) {
+     popupSearchMod(popup_mods_list_input.value.trim())
+});
 
 dialog_add_new_link.addEventListener("click", function(event) {
 
@@ -48,7 +63,17 @@ dialog_add_new_link.addEventListener("click", function(event) {
 popup_mods_list.addEventListener("click", function(event) {
    if (event.target.tagName === "BUTTON") {
         console.log("button");
-               
+        if(event.target.name=="add_new_mod"){
+            addNewMod();
+        } else if (event.target.name == "char") { // list of characters / A-Z   
+            filterModsByChar(event.target.innerText);
+        } else if (event.target.name == "hide_popup") {
+            document.querySelector(".popup_mods_list").style.display = "none";
+        } else if (event.target.name == "add_mod_to_modpack") {
+            addModToModpack(event.target.getAttribute("data-id"));
+            
+            event.target.remove();
+        }  
     }
 });
 
@@ -596,7 +621,7 @@ Array.from(imageRadiosContainers).forEach(function(container) {
 
 
 // Check if the container exists
-if (popupModsListContainer) {
+/* if (popupModsListContainer) {
     // Add click event listener to the container
     popupModsListContainer.addEventListener('click', function(event) {
         // Check if the clicked element is a button
@@ -621,7 +646,7 @@ if (popupModsListContainer) {
             }
         }
     });
-}
+ */
 
 
 function reload_mods(modpack_id){
@@ -651,7 +676,7 @@ function hide_popup() {
     div.style.display = 'none';
 }
 
-function add_mod_to_modpack(mod_id) {
+function addModToModpack(mod_id) {
     var modpack_id = localStorage.getItem("modpack_id");
 
     const xhttp = new XMLHttpRequest();
@@ -659,15 +684,12 @@ function add_mod_to_modpack(mod_id) {
 
     xhttp.open("POST", "modpack_add_mod.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    var base_id = sessionStorage.getItem('base_id');
-    // data = "&video_id=" + encodeURIComponent(video_id) + "&video_comment=" + encodeURIComponent(new_note);
+   // data = "&video_id=" + encodeURIComponent(video_id) + "&video_comment=" + encodeURIComponent(new_note);
     var data = "mod_id=" + encodeURIComponent(mod_id) + "&modpack_id=" + encodeURIComponent(modpack_id);
-    console.log(data);
     xhttp.send(data);
-    // xhttp.send("note_group="+group+"&note_text="+encodeURIComponent(text));
 }
 
-function sort_mods_by_char(char) {
+/* function sort_mods_by_char(char) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -677,7 +699,7 @@ function sort_mods_by_char(char) {
     // xhttp.open("GET", "count_comments.php?video_id=<?php echo $_GET['video_id'] ?>", true);
     xhttp.open("GET", "modpack_sort_mods_by_char.php?char=" + char, true);
     xhttp.send();
-}
+} */
 
 function sort_tasks(status) {
     var xhttp = new XMLHttpRequest();
@@ -732,7 +754,7 @@ function search_mods(mod) {
     xhttp.send();
 }
 
-function popup_search_mod(mod) {
+function popupSearchMod(mod) {
     var xhttp = new XMLHttpRequest();
     // var search_text = document.getElementById("search_string").value;
     xhttp.onreadystatechange = function() {
@@ -812,4 +834,28 @@ function isValidURL(str) {
   } catch {
     return false;
   }
+}
+
+function filterModsByChar(char) {
+  var xhttp = new XMLHttpRequest();
+  const modpackId = sessionStorage.getItem("modpack_id");
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       document.querySelector(".popup_mods_list main").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", `mods_filter_by_char.php?char=${char}&modpack_id=${modpackId}`, true);
+  xhttp.send();
+}
+
+
+function removeModFromModpack(modId,modpackId){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       document.querySelector(".popup_mods_list main").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", `modpack_mod_remove.php?mod_id=${modId}&modpack_id=${modpackId}`, true);
+  xhttp.send();
 }

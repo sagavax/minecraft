@@ -9,8 +9,8 @@
  
  echo "<div class='modpack_mods_urls'>";
 
-        $get_list_of_liksnks = "SELECT * from mods_links where modpack_id = $modpack_id";
-        $result = mysqli_query($link, $get_list_of_liksnks) or die("MySQLi ERROR: ".mysqli_error($link));
+        $get_list_of_links = "SELECT * from mods_links where modpack_id = $modpack_id";
+        $result = mysqli_query($link, $get_list_of_links) or die("MySQLi ERROR: ".mysqli_error($link));
         if (mysqli_num_rows($result) === 0) {
             echo "<div class='no_links'>No links. Whoud u like to add some? <button type='button' name='add_link' class='button small_button' title='Add to gallery'><i class='fa fa-plus'></i></button></div>";
         } else {
@@ -34,7 +34,7 @@
           while($row = mysqli_fetch_array($result)){ 
           $mod_id = $row['mod_id'];
           $mod_name = $row['cat_name'];
-            echo "<button type='button' class='button blue_button' mod-id=$mod_id>$mod_name</buton>";
+            echo "<button type='button' class='button blue_button' data-id=$mod_id name='remove_mod_from_modpack'>$mod_name</buton>";
          
        } 
 

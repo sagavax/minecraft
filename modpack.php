@@ -81,23 +81,22 @@ if(isset($_POST['add_daily_note'])){
           <div class="popup_mods_list"><!-- popup mod list -->
             <header>
               <input type="text" name="search_mod" onkeyup="popup_search_mod(this.value);" autocomplete="off" spellcheck="false" placeholder="search mod(s) here...">
-              <button class='button blue_button' onclick="reload_modal_mods()"><i class="fas fa-sync-alt"></i></button>
-              <button class='button blue_button' onclick="hide_popup()"><i class='fa fa-times'></i></button>
+              <!-- <button class='button blue_button' onclick="reload_modal_mods()"><i class="fas fa-sync-alt"></i></button> -->
+              <button class='button blue_button' name="hide_popup" type="button"><i class="fas fa-times"></i></button>
             </header>
             <div id="letter_list">
               <ul>
                 <?php
                   foreach (range('A', 'Z') as $char) {
-                            echo "<li><button class='button small_button blue_button'>$char</button></li>";
+                            echo "<li><button class='button small_button blue_button' name='char'>$char</button></li>";
 
-                          }
-                            echo "<li><button class='button small_button blue_button'>All</button></li>";
+                          }                            
                     ?>        
                </ul>   
             </div>
             <main>
               <?php 
-              
+               //display just unassigned mods 
                $modpack_id = $_GET['modpack_id'];
                $get_mods = "select * from mods where cat_id not in (SELECT mod_id from modpack_mods where modpack_id=$modpack_id) order by cat_name ASC LIMIT 20";
                
@@ -105,7 +104,7 @@ if(isset($_POST['add_daily_note'])){
                 while ($row = mysqli_fetch_array($result)) {  
                     $id = $row['cat_id'];
                     $cat_name = $row['cat_name'];
-                    echo "<button class='button blue_button' data-id=$id onclic='add_mod_to_modpack($id)'>$cat_name</button>";
+                    echo "<button class='button blue_button' data-id=$id name='add_mod_to_modpack'>$cat_name</button>";
                 } 
 
             ?>
