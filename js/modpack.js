@@ -7,7 +7,7 @@ var new_note = document.getElementById("new_note");
 var video_url = document.querySelector("input[name='video_url']");          
 //wrapper
 var list = document.querySelector(".list");
-const dialog_add_new_link = document.getElementById("dialog_add_new_link");
+const dialog_add_new_link = document.querySelector(".dialog_add_new_link");
 
 
 
@@ -604,6 +604,25 @@ if (popupModsListContainer) {
     });
 }
 
+dialog_add_new_link.addEventListener("click", function(event) {
+    if(event.target.tagName==="INPUT"){
+        console.log("input");
+    } else if (event.target.tagName === "BUTTON") {
+        console.log("button");
+        const link = document.querySelector(".dialog_add_new_link input[name='link_url']").value;
+        if (link==""){
+            alert("Empty link url");
+            return false;
+        } else {
+            addNewLink(link)
+        }
+        
+    }
+});
+
+
+
+
 function reload_mods(modpack_id){
      var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -768,6 +787,19 @@ function saveNote(){
      };
    data = "note="+encodeURIComponent(note)+"&modpack_id="+encodeURIComponent(localStorage.getItem("modpack_id"));
    xhttp.open("POST", "note_add.php", true);
+   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xhttp.send(data);
+}
+
+function addNewLink(link){
+  var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          alert("Link added successfully!");
+      }
+     };
+   data = "link="+encodeURIComponent(link)+"&modpack_id="+encodeURIComponent(localStorage.getItem("modpack_id"));
+   xhttp.open("POST", "modpack_mod_link_add.php", true);
    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    xhttp.send(data);
 }

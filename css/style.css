@@ -3265,6 +3265,22 @@ button[name="save_description"]{
     flex-direction: column;
 }
 
+.dialog_inner_link_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:10px;
+    height:100%
+}
+
+.dialog_inner_container h4 {
+    margin-bottom: 15px;
+} 
+
+.dialog_inner_link_container button {
+    height: 80%;
+}
+
 .modal_add_new_comment {
     top:20%;
     left:30%;
@@ -4230,10 +4246,16 @@ td.zakladna_popis {
 
 .dialog_add_new_link {
     position: fixed;
-    height: 100px;
+    height: 85px;
     top:20%;
     left:20%;
     width: 60%;
+    padding:10px;
+}
+
+.dialog_add_new_link input, .dialog_add_new_link textarea {
+    height: 100%;
+   
 }
 
 
