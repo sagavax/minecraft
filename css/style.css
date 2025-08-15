@@ -5376,16 +5376,19 @@ input[name="base_name"] {
     cursor: pointer;
 }
 
+
+.modpack_mods_links_wrapper {
+    margin-bottom: 30px;
+}
+
+
 .modpack_mods_urls {
     background-color: white;
     width: 100%;
     display: flex;
     align-items: center;  
     margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px #d1d1d1 solid;
     box-sizing: border-box;
-    gap:5px;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
@@ -5396,13 +5399,21 @@ input[name="base_name"] {
     width: 100%;
     box-sizing: border-box;
     display: flex;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    height:50px;
     padding-left: 10px;
     padding-right: 10px;;
+    border-bottom:1px #d1d1d1 solid;
+    border-left:1px #d1d1d1 solid;
+    border-right:1px #d1d1d1 solid;
 }
 
-.mopack_mods_url_add {
+.modpack_mods_url:hover {
+    background-color: aliceblue;
+}
+
+.modpack_mods_url_add {
+    align-items: center;
+    background-color: #d2f9be82;
     width: 100%;
     box-sizing: border-box;
     display: flex;
@@ -5412,7 +5423,14 @@ input[name="base_name"] {
     justify-content: flex-end;
     border-bottom: 1px #d1d1d1 solid;
     padding-bottom: 10px;
+    gap:15px;
 }
+
+.modpack_mods_url_add h4 {
+    margin:0;
+}
+
+
 
 .modpack_mods_url a {
     display: flex;

@@ -11,7 +11,16 @@ const dialog_add_new_link = document.querySelector(".dialog_add_new_link");
 const popup_mods_list = document.querySelector(".popup_mods_list");
 const popup_mods_list_input = document.querySelector(".popup_mods_list input");
 const modpack_mod_list = document.querySelector(".modpack_mod_list");
+const modpack_mods_urls = document.querySelector(".modpack_mods_urls");
 
+
+console.log(document.querySelector(".modpack_mods_urls"));
+
+/* modpack_mods_urls.addEventListener("click", function(event) {
+    if (event.target.tagName === "DIV" && event.target.classList.contains("link_name"))  {
+        console.log("div[class='link_name']");
+    }
+}); */
 
 
 /* modpack_mod_list.addEventListener("click", function(event) {
@@ -23,7 +32,6 @@ const modpack_mod_list = document.querySelector(".modpack_mod_list");
     }
 });
  */
-
 popup_mods_list_input.addEventListener("input", function(event) {
      popupSearchMod(popup_mods_list_input.value.trim())
 });
