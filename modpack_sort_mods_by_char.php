@@ -9,5 +9,5 @@ $result=mysqli_query($link, $get_mods);
 while ($row = mysqli_fetch_array($result)) {  
    $id = $row['cat_id'];
    $cat_name = $row['cat_name'];
-    echo "<button class='button blue_button' data-id=$id onclic='add_mod_to_modpack($id)'>$cat_name</button>";
+    echo "<button class='button blue_button' data-id=$id name='add_mod_to_modpack'>$cat_name</button>";
   } 

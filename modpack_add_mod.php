@@ -7,6 +7,7 @@ $modpack_id = $_POST['modpack_id'];
 $mod_id = $_POST['mod_id'];
 
 $add_mod_to_modapck = "INSERT into modpack_mods (modpack_id, mod_id, added_date) VALUES ($modpack_id,$mod_id,now())";
+echo $add_mod_to_modapck;
 $result=mysqli_query($link, $add_mod_to_modapck);
 
  $diary_text="Minecraft IS: the mod <strong>".GetModName($mod_id)."</strong> bol pridany do modpacku".GetModpackName($modpack_id);

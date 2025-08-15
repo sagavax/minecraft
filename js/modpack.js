@@ -14,7 +14,7 @@ const modpack_mod_list = document.querySelector(".modpack_mod_list");
 
 
 
-modpack_mod_list.addEventListener("click", function(event) {
+/* modpack_mod_list.addEventListener("click", function(event) {
     if (event.target.tagName === "BUTTON") {
         console.log("button");
         if (event.target.name == "remove_mod_from_modpack") {
@@ -22,7 +22,7 @@ modpack_mod_list.addEventListener("click", function(event) {
         }
     }
 });
-
+ */
 
 popup_mods_list_input.addEventListener("input", function(event) {
      popupSearchMod(popup_mods_list_input.value.trim())
@@ -70,7 +70,8 @@ popup_mods_list.addEventListener("click", function(event) {
         } else if (event.target.name == "hide_popup") {
             document.querySelector(".popup_mods_list").style.display = "none";
         } else if (event.target.name == "add_mod_to_modpack") {
-            addModToModpack(event.target.getAttribute("data-id"));
+            modpackId = sessionStorage.getItem("modpack_id");
+            addModToModpack(event.target.getAttribute("data-id"),modpackId);
             
             event.target.remove();
         }  
@@ -663,12 +664,8 @@ function reload_mods(modpack_id){
 
 
 function toggle_popup_mods() {
-    var div = document.querySelector(".popup_mods_list");
-    if (div.style.display === 'none') {
-        div.style.display = 'flex';
-    } else {
-        div.style.display = 'none';
-    }
+    document.querySelector(".popup_mods_list").showModal();
+   
 }
 
 function hide_popup() {
@@ -676,9 +673,7 @@ function hide_popup() {
     div.style.display = 'none';
 }
 
-function addModToModpack(mod_id) {
-    var modpack_id = localStorage.getItem("modpack_id");
-
+function addModToModpack(mod_id, modpack_id) {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {}
 
@@ -844,7 +839,7 @@ function filterModsByChar(char) {
        document.querySelector(".popup_mods_list main").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", `mods_filter_by_char.php?char=${char}&modpack_id=${modpackId}`, true);
+  xhttp.open("GET", `modpack_sort_mods_by_char.php?char=${char}`, true);
   xhttp.send();
 }
 

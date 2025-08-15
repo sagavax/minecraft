@@ -78,9 +78,9 @@ if(isset($_POST['add_daily_note'])){
 
           </div>    
           
-          <div class="popup_mods_list"><!-- popup mod list -->
+          <dialog class="popup_mods_list"><!-- popup mod list -->
             <header>
-              <input type="text" name="search_mod" onkeyup="popup_search_mod(this.value);" autocomplete="off" spellcheck="false" placeholder="search mod(s) here...">
+              <input type="text" name="search_mod" autocomplete="off" spellcheck="false" placeholder="search mod(s) here...">
               <!-- <button class='button blue_button' onclick="reload_modal_mods()"><i class="fas fa-sync-alt"></i></button> -->
               <button class='button blue_button' name="hide_popup" type="button"><i class="fas fa-times"></i></button>
             </header>
@@ -89,7 +89,6 @@ if(isset($_POST['add_daily_note'])){
                 <?php
                   foreach (range('A', 'Z') as $char) {
                             echo "<li><button class='button small_button blue_button' name='char'>$char</button></li>";
-
                           }                            
                     ?>        
                </ul>   
@@ -109,7 +108,7 @@ if(isset($_POST['add_daily_note'])){
 
             ?>
             </main>
-          </div>
+          </dialog>
 
           <dialog class="dialog_add_new_link"><!-- add new link -->
             <div class="dialog_inner_link_container">

@@ -5303,7 +5303,6 @@ input[name="base_name"] {
 
 .popup_mods_list {
     position: fixed;
-    display: none;
     top:30%;
     left:20%;
     border: 1px #d1d1d1 solid;
@@ -5361,7 +5360,6 @@ input[name="base_name"] {
 
 .modpack_mod_list {
     width: 100%;
-    min-height: 100px;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
@@ -5375,6 +5373,7 @@ input[name="base_name"] {
     align-items: center;   
     height:40px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .modpack_mods_urls {

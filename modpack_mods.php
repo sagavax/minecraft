@@ -25,7 +25,6 @@
 
  echo "</div>";
 
- 
  echo "<div class='modpack_mod_list'>";
  
   //echo "<div class='modlist_mods_title'><h3>List of mod for the modpack ".GetModPackName($modpack_id)."</h3></div>";
@@ -40,4 +39,7 @@
 
          echo "<button type='button' title='Add new mod into modpack' onclick='toggle_popup_mods()' class='button small_button blue_button'><i class='fa fa-plus'></i></button>";
          echo "<button class='button blue_button' title='Reload mod list' onclick='reload_mods()''><i class='fas fa-sync-alt'></i></button>";                
- ?>
+ echo "</div>";   
+
+
+?>
