@@ -14,20 +14,23 @@ if ($filter == "active") {
 
 $result = mysqli_query($link, $filter_modpacks) or die(mysqli_error($link));
 
-while ($row = mysqli_fetch_array($result)) {
-    $modpack_id = $row['modpack_id'];
-    $modpack_name = $row['modpack_name'];
-    $modpack_image = $row['modpack_image'];
-    $is_active = $row['is_active'];
+while (
+    $row = mysqli_fetch_array($result)){
+        $modpack_id=$row['modpack_id'];
+        $modpack_name=$row['modpack_name'];
+        $modpack_image=$row['modpack_image'];
+        $is_active = $row['is_active'];
 
-    echo "<div class='modpack_thumb' draggable='true'>
-            <div class='modpack_thumb_pic'><img src='$modpack_image'></div>
-            <div class='modpack_thumb_name'>$modpack_name</div>
-            <div class='modpack_thumb_action'>
-                <a href='modpack.php?modpack_id=$modpack_id' class='white_outlined_button'>Enter</a>
-                <a href='modpack_edit.php?modpack_id=$modpack_id' class='white_outlined_button'>Edit</a>
-                <button type='button' data-id='$modpack_id' class='white_outlined_button is_active" . ($is_active == 1 ? " active" : " inactive") . "'>" . ($is_active == 1 ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i>") . "</button>
-            </div>
-          </div>";
-}
+        echo "<div class='modpack_thumb' draggable='true'>
+        <div class='modpack_thumb_pic'><img src='" . $modpack_image . "'></div>
+        <div class='modpack_thumb_name'>$modpack_name</div>
+        <div class='modpack_thumb_action'>
+            <button type='button' name='enter_modpack' class='white_outlined_button' data-id='$modpack_id'>Enter</button>
+            <button type='button' name='edit_modpack' class='white_outlined_button' data-id='$modpack_id'>Edit</button>
+            <button type='button' name='modpack_status' data-id='$modpack_id' class='white_outlined_button is_active" . ($is_active == 1 ? ' active' : ' inactive') . "'>" .
+                ($is_active == 1 ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i>") .
+            "</button>
+        </div>
+    </div>";
+    }
 ?>

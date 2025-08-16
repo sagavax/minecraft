@@ -88,12 +88,17 @@ dialog {
 }
 
 
-textarea[name=modpack_description] {
-    resize: none;
-    min-height: 100%;
+.modpack_description {
     border: 1px #d1d1d1 solid;
     box-sizing: border-box;
-    padding: 3px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;    
+    background: white;
+    border-radius: 5px;
+    border: 1px #d1d1d1 solid;
+    background: #eff3f4
 }
 
 .app_picture {
@@ -2982,6 +2987,7 @@ button[name="save_description"]{
     padding-bottom: 3px;
 }
 
+
 .modpack_pic_wrap img {
     max-width: 100%;
     max-height: 100%;
@@ -2998,12 +3004,24 @@ button[name="save_description"]{
     color: #d1d1d1;
 }
 
+.modpack_basic_info {
+    height:45px;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding-left: 5px;
+    gap:5px;
+}
+
+
 .modpack_details {
     width: 79%;
     box-sizing: border-box;
-    padding: 5px;
     height: 100%;
-    padding:10px;
+    padding-left:10px;
+    
 }
 
 .modpack_details input {

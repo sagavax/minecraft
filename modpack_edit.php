@@ -43,9 +43,12 @@
     <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    <link rel="stylesheet" href="css/message.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <script type="text/javascript" src="js/modpack_edit.js" defer></script>
+    <script type="text/javascript" src="js/message.js" defer></script>
   </head>
 
   <body>
@@ -88,13 +91,13 @@
                             //$modpack_url=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $modpack_url);
                         
                             echo "<div class='modpack'>";
-                            echo "<p>Detail of the <b>".GetModPackName($modpack_id)." </b> modpack</p>";
+                            echo "<div class='modpack_basic_info'>Detail of the <b>".GetModPackName($modpack_id)." </b> modpack</div>";
                             echo "<form action='' method='post'>";
                                 echo "<div class='modpack_pic_wrap'><img src='".$modpack_image."'></div>";
                                 echo "<div class='modpack_details'>";
                                     echo "<input type='hidden' name='modpack_id' value=$modpack_id>";
                                     echo "<input type='text' name='modpack_name' value='$modpack_name'>";
-                                    echo "<textarea name='modpack_description' placeholder='Modpack&apos; description here....' >$modpack_description</textarea>";
+                                    echo "<div class='modpack_description' placeholder='Modpack&apos; description here....' >$modpack_description</div>";
                                     echo "<input type='text' name='modpack_url' value='$modpack_url' placeholder='modpacks&apos; url'>";
                                     echo "<input type='text' name='modpack_image' value='$modpack_image'>";
                                     echo "<select name='modpack_status'>";
@@ -123,19 +126,7 @@
                          echo "<h3>List of mods:</h3>";
                        
                            echo GetModList($modpack_id);
-
-                        
-   
                 ?>
-               
-            </div><!-- list -->
-            <script type="text/javascript">
-                 var textbox = document.querySelector(".modpack textarea");
-                 console.log(textbox)  ;
-                 textbox.style.height = 'auto'; // Reset height to auto
-                  textbox.style.height = (textbox.scrollHeight) + 'px'; // Set height based on content
-
-            </script>
+            </div><!-- list -->         
         </div>    
-          
-        </div>  
+    </div>  
