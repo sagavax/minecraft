@@ -16,13 +16,22 @@ let urlParams = new URLSearchParams(window.location.search);
 
 new_image_container.addEventListener("click", (event)=>{
     if(event.target.tagName === "BUTTON"){
-        if(event.target.name==="add_new")
+        if(event.target.name==="add_new_image")
         dialog_new_image.showModal();
-    } 
+        } 
 
-    if (event.target.name==="reload"){
-        reload_images();
+    if (event.target.name==="reload_images"){
+        reloadImages();
     }
+
+    if(event.target.name==="new_video"){
+        dialog_new_video.show();
+    }
+
+    if(event.target.name==="reload_videos"){
+        reloadVideos();
+    }
+
 
     if (event.target.name==="back_to_mods"){
         window.location.href = "mods.php";
@@ -32,7 +41,7 @@ new_image_container.addEventListener("click", (event)=>{
 
 save_image.addEventListener("click", (event)=>{
     if(event.target.tagName === "BUTTON"){
-        mod_add_image();
+        modAddImage();
     }
 })
 
@@ -80,7 +89,7 @@ mod_details.addEventListener("focusout", function(event) {
 
 
 
-function mod_add_image() {
+function modAddImage() {
     let urlParams = new URLSearchParams(window.location.search);
     const mod_id = urlParams.get('mod_id');
     const image_title= document.querySelector('input[name="image_title"]').value;
@@ -101,7 +110,7 @@ function mod_add_image() {
             document.querySelector("#dialog_new_image").close();            
             // Prípadne pridaj nejakú vizuálnu spätnú väzbu pre používateľa
             //load noveho obrazku 
-            reload_images()
+            reloadImages()
         }
     };
 
@@ -117,7 +126,7 @@ function mod_add_image() {
 }
 
 
-function reload_images() {
+function reloadImages() {
        const mod_id = sessionStorage.getItem("mod_id");
        var xhttp = new XMLHttpRequest();
        //var search_text=document.getElementById("search_string").value;
@@ -131,6 +140,12 @@ function reload_images() {
        xhttp.send();
 
    }
+
+
+   function modAddVideo(){
+
+   }
+
 
   function update_mod_description() {
     const mod_id = sessionStorage.getItem("mod_id");
@@ -198,4 +213,19 @@ function update_mod_url() {
 function autoResizeTextarea(textarea) {
     textarea.style.height = 'auto'; // Resetovať výšku
     textarea.style.height = (textarea.scrollHeight+2) + 'px'; // Nastaviť na dynamickú výšku
+}
+
+
+function reloadVideos(){
+    const mod_id = sessionStorage.getItem("mod_id");
+    var xhttp = new XMLHttpRequest();
+    //var search_text=document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector(".mod_videos main").innerHTML =
+                this.responseText;
+        }
+    };
+    xhttp.open("GET", "categories_reload_videos.php?mod_id=" + encodeURIComponent(mod_id), true);
+    xhttp.send();
 }

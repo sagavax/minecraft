@@ -21,7 +21,7 @@
   
   <body>
   <?php 
-   echo "<script>sessionStorage.setItem('current_module','categories')</script>"; 
+   
   include("includes/header.php") ?>
       <div class="main_wrap">
       <div class="tab_menu">
@@ -46,32 +46,71 @@
                        echo "</div>"; //div details
                  }    
 
-                  $get_mod_images = "SELECT * from mod_images WHERE mod_id = $mod_id";
-                  $result_images=mysqli_query($link, $get_mod_images) or die(mysqli_error(($link)));
-                  
-                   echo "<div class='mod_images'>";  
-                      echo "<header>
-                                 <button class='button small_button' name='back_to_mods' title='back to mods'><i class='fas fa-arrow-left'></i></button>   
-                                 <button class='button small_button' name='reload' title='reload mod images'><i class='fas fa-sync'></i></button>
-                                 <button class='button small_button' name='add_new' title='Add new image'><i class='fa fa-plus'></i></button>
-                             </header>"; 
-                        echo "<main>";          
-                      
-                         while($row_images = mysqli_fetch_array($result_images)){
+                 echo "<div class='mod_images_videos_wrap'>";
+
+                     echo "<div class='mod_images_videos_tabs'><button type = 'button' class='button small_button' name='mods_images'>Images</button><button type = 'button' class='button small_button' name='mods_videos'>Videos</button></button><button type = 'button' class='button small_button' name='mods_videos_ikmages'>All resources</button></div>";
                     
-                         $image_id = $row_images['image_id'];
-                         $image_title = $row_images['image_title'];
-                         $image_url = $row_images['image_url'];
+                     
+                     echo "<div class='mod_images'>";  
+                            
+                            echo "<header>
+                                   <p>Mod's images</p>
+                                   <button class='button small_button' name='back_to_mods' title='back to mods'><i class='fas fa-arrow-left'></i></button>   
+                                   <button class='button small_button' name='reload_images' title='reload mod videos'><i class='fas fa-sync'></i></button>
+                                   <button class='button small_button' name='add_new_image' title='Add new video'><i class='fa fa-plus'></i></button>";
+                            echo "</header>"; 
 
-                        
-                       
-                            echo "<div class='mod_image' image-id=$image_id>";
-                                   echo "<img src='$image_url' alt='$image_title'>";
-                            echo "</div>"; //mod_image  
+                            echo "<main>";          
+                            
+                                   $get_mod_images = "SELECT * from mod_images WHERE mod_id = $mod_id";
+                                   $result_images=mysqli_query($link, $get_mod_images) or die(mysqli_error(($link)));
+                     
+                                   while($row_images = mysqli_fetch_array($result_images)){
+                            
+                                   $image_id = $row_images['image_id'];
+                                   $image_title = $row_images['image_title'];
+                                   $image_url = $row_images['image_url'];
 
-                   }         
-                  echo "</main>";   
-                  echo "</div>"; //images
+                                   echo "<div class='mod_image' image-id=$image_id>";
+                                          echo "<img src='$image_url' alt='$image_title'>";
+                                   echo "</div>"; //mod_image  
+
+                         }  
+
+                            echo "</main>";   
+                     echo "</div>"; //mod_images
+
+
+                     echo "<div class='mod_videos'>";
+                              
+                              echo "<header>
+                                   <p>Mod's videos</p>
+                                   <button class='button small_button' name='back_to_mods' title='back to mods'><i class='fas fa-arrow-left'></i></button>   
+                                   <button class='button small_button' name='reload_videos' title='reload mod images'><i class='fas fa-sync'></i></button>
+                                   <button class='button small_button' name='add_new_videos' title='Add new image'><i class='fa fa-plus'></i></button>";
+                            echo "</header>"; 
+              
+                            echo "<main>";
+                                   $get_mod_videos = "SELECT * from mod_videos WHERE mod_id = $mod_id";
+                                   $result_videos=mysqli_query($link, $get_mod_videos) or die(mysqli_error(($link)));
+                                   while($row_videos = mysqli_fetch_array($result_videos)){
+                     
+                                          $video_id = $row_videos['video_id'];
+                                          $video_title = $row_videos['video_title'];
+                                          $video_url = $row_videos['video_url'];
+
+                                          echo "div class='mod_video' video-id=$video_id>";
+                                                 echo "<iframe src='$video_url' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+                                          echo "</div>"; //mod_video 
+                                   }
+                            echo "</main>";   
+                     echo "</div>"; //mod_videos
+
+                     echo "<div class='mod_images_videos'>";
+                            echo "<div class='mod_images_videos_list'></div>";
+                     echo "</div>"; //mod_images_videos
+                  echo "</div>"; //mod_images_videos_wrap    
+
                   echo "<div class='mod_in_modpacks'>";
                             $get_modpacks = "SELECT a.mod_id, a.modpack_id, b.modpack_name from modpack_mods a, modpacks b WHERE a.mod_id=$mod_id and a.modpack_id = b.modpack_id";
                             $result_modpacks=mysqli_query($link, $get_modpacks) or die(mysqli_error(($link)));
@@ -79,8 +118,7 @@
                                    $modpack_name = $row_modpacks['modpack_name'];
 
                                    echo "<button class='button'>$modpack_name</button>";
-                             }      
-
+                     }      
                   echo "</div>";//mod in modpacks
              echo "</div>" // div modification
                 
