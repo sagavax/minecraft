@@ -89,6 +89,7 @@ dialog {
 
 
 .modpack_description {
+    min-height: 100px;
     border: 1px #d1d1d1 solid;
     box-sizing: border-box;
     padding: 10px;

@@ -113,7 +113,7 @@
                                     echo "</select>";
                               echo "<div class='modpack_action'>";
                                     echo "<button name='back' class='button small_button'>Back</button>";
-                                    echo "<button name='save_changes' class='button small_button'>Save</button>";
+                                    //echo "<button name='save_changes' class='button small_button'>Save</button>";
                               echo "</div>";      
                             echo "</form>";
                             echo "</div>"; //modpack details

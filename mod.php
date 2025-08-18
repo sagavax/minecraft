@@ -76,7 +76,7 @@
                                    $image_url = $row_images['image_url'];
 
                                    echo "<div class='mod_image' image-id=$image_id>";
-                                          echo "<button name='delete_image' title='Delete image' class='button small_button'><i class='fa fa-times'></i></button>";
+                                          echo "<button name='delete_image' title='Delete image' class='button small_button jade_button'><i class='fa fa-times'></i></button>";
                                           echo "<img src='$image_url' alt='$image_title'>";
                                    echo "</div>"; //mod_image  
 
