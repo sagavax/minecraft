@@ -3462,7 +3462,7 @@ button[name="save_description"]{
   }
 
 
-#dialog_new_image {
+#dialog_new_image, #dialog_new_video {
     top:10%;
     left:20%;
     height: 220px;
@@ -3471,7 +3471,8 @@ button[name="save_description"]{
     padding:10px;
 }
 
-#dialog_new_image input {
+#dialog_new_image input, #dialog_new_video input {
+    width: 100%;
     height:45px;
     margin-top:10px;
     margin-bottom: 10px;

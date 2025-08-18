@@ -44,11 +44,15 @@
                             echo "<div class='mod_description'><textarea name=mod_description placeholder='Mod description' readonly>$mod_description</textarea></div>";
                             echo "<div class='mod_url'><input type='text' name='mod_url' placeholder='mod url' value='$mod_url' readonly></div>";
                        echo "</div>"; //div details
-                 }    
+                     }    
 
                  echo "<div class='mod_images_videos_wrap'>";
 
-                     echo "<div class='mod_images_videos_tabs'><button type = 'button' class='button small_button' name='mods_images'>Images</button><button type = 'button' class='button small_button' name='mods_videos'>Videos</button></button><button type = 'button' class='button small_button' name='mods_videos_ikmages'>All resources</button></div>";
+                     echo "<div class='mod_images_videos_tabs'>";
+                            echo "<button type = 'button' class='button small_button' name='mods_images'>Images</button>";
+                            echo "<button type = 'button' class='button small_button' name='mods_videos'>Videos</button>";
+                            //echo "<button type = 'button' class='button small_button' name='mods_videos_ikmages'>All resources</button>";
+                     echo "</div>";
                     
                      
                      echo "<div class='mod_images'>";  
@@ -87,7 +91,7 @@
                                    <p>Mod's videos</p>
                                    <button class='button small_button' name='back_to_mods' title='back to mods'><i class='fas fa-arrow-left'></i></button>   
                                    <button class='button small_button' name='reload_videos' title='reload mod images'><i class='fas fa-sync'></i></button>
-                                   <button class='button small_button' name='add_new_videos' title='Add new image'><i class='fa fa-plus'></i></button>";
+                                   <button class='button small_button' name='add_new_video' title='Add new image'><i class='fa fa-plus'></i></button>";
                             echo "</header>"; 
               
                             echo "<main>";
@@ -99,19 +103,21 @@
                                           $video_title = $row_videos['video_title'];
                                           $video_url = $row_videos['video_url'];
 
-                                          echo "div class='mod_video' video-id=$video_id>";
+                                          echo "<div class='mod_video' video-id=$video_id>";
                                                  echo "<iframe src='$video_url' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
                                           echo "</div>"; //mod_video 
                                    }
                             echo "</main>";   
                      echo "</div>"; //mod_videos
 
-                     echo "<div class='mod_images_videos'>";
+                     /* echo "<div class='mod_images_videos'>";
                             echo "<div class='mod_images_videos_list'></div>";
-                     echo "</div>"; //mod_images_videos
+                     echo "</div>"; //mod_images_videos */
                   echo "</div>"; //mod_images_videos_wrap    
-
-                  echo "<div class='mod_in_modpacks'>";
+                echo "</div>"; // div modification
+                
+                
+                 echo "<div class='mod_in_modpacks'>";
                             $get_modpacks = "SELECT a.mod_id, a.modpack_id, b.modpack_name from modpack_mods a, modpacks b WHERE a.mod_id=$mod_id and a.modpack_id = b.modpack_id";
                             $result_modpacks=mysqli_query($link, $get_modpacks) or die(mysqli_error(($link)));
                             while($row_modpacks = mysqli_fetch_array($result_modpacks)){
@@ -120,7 +126,7 @@
                                    echo "<button class='button'>$modpack_name</button>";
                      }      
                   echo "</div>";//mod in modpacks
-             echo "</div>" // div modification
+             
                 
 
              ?> 
@@ -135,7 +141,18 @@
             <input type="text" name="image_title" placeholder="image title" autocomplete="off">   
             <input type="text" name="image_url" placeholder="image url" autocomplete="off">
             <div class="action">
-                 <button class="small_button button"><i class="fa fa-plus"></i></button>  
+                 <button class="small_button button" name="save_image"><i class="fa fa-plus"></i></button>  
+            </div>               
+        </div>    
+     </dialog>
+
+     <dialog id="dialog_new_video">
+        <div class="dialog_inner_container">
+            <p>Add video to mod</p>
+            <input type="text" name="video_title" placeholder="video title" autocomplete="off">   
+            <input type="text" name="video_url" placeholder="video url" autocomplete="off">
+            <div class="action">
+                 <button class="small_button button" name="save_video"><i class="fa fa-plus"></i></button>  
             </div>               
         </div>    
      </dialog>
