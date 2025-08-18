@@ -903,6 +903,10 @@ button[name="save_description"]{
     padding:5px;
 }
 
+.mod_name input {
+    font-weight: bold;
+}
+
 .mod_list {
     border: 1px #d1d1d1 solid;
     background: white;
