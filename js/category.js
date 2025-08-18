@@ -192,7 +192,7 @@ function reloadImages() {
             document.querySelector('input[name="video_title"]').value="";
             document.querySelector('input[name="video_url"]').value="";
     
-            document.querySelector("#dialog_new_image").close();            
+            document.querySelector("#dialog_new_video").close();            
             // Prípadne pridaj nejakú vizuálnu spätnú väzbu pre používateľa
             //load noveho obrazku 
             reloadVideos()

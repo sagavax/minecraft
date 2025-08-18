@@ -104,7 +104,10 @@
                                           $video_url = $row_videos['video_url'];
 
                                           echo "<div class='mod_video' video-id=$video_id>";
-                                                 echo "<iframe src='$video_url' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+                                                 $video_url = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", "<iframe src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>", $video_url);
+                                                 
+                                                 echo $video_url;
+
                                           echo "</div>"; //mod_video 
                                    }
                             echo "</main>";   
