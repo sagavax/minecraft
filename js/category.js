@@ -67,6 +67,12 @@ mod_images_videos_wrap.addEventListener("click", function(event) {
             reloadVideos();
             break;
 
+        case "delete_image":
+            const ImageId = event.target.closest(".mod_image").getAttribute("image-id");
+            deleteImage(ImageId);
+            document.querySelector(`.mod_image [image-id="${ImageId}"]`)?.remove();
+            break;
+
         default:
             // Optional: handle unknown button names
             console.warn("Unhandled button:", name);
@@ -292,4 +298,18 @@ function reloadVideos(){
     };
     xhttp.open("GET", "categories_reload_videos.php?mod_id=" + encodeURIComponent(mod_id), true);
     xhttp.send();
+}
+
+function deleteImage(imageId){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            alert("Image has been removed!");
+            reloadImages()
+        }
+    };
+    xhttp.open("POST", "categories_image_delete.php", true);
+    var data = "image_id=" + encodeURIComponent(imageId);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
 }

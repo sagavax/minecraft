@@ -3451,14 +3451,13 @@ button[name="save_description"]{
        width: 100px;
    }   
 
-  .mod_images  main, .mod_videos main {
+  .mod_images main, .mod_videos main {
     width: 100%;
     margin-top: 20px;
-    display: grid;
+    display: flex;
     box-sizing: border-box;
-    grid-template-columns: 250px 250px 250px auto;
     gap: 10px;
-
+    flex-wrap: wrap;
   }
 
 
@@ -3488,6 +3487,13 @@ button[name="save_description"]{
     border: 1px #d1d1d1 solid;
     border-radius: 6px;
     align-items: center;
+    position: relative;
+}
+
+.mod_image button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
 .mod_image img {
@@ -3498,11 +3504,23 @@ button[name="save_description"]{
 
 
 .mod_in_modpacks {
+    box-sizing: border-box;
+    padding:10px;
+    border: 1px #d1d1d1 solid;
+    border-radius: 6px;
     margin-top:20px;
     display: flex;
     margin-top: 30px;
     flex-wrap: wrap;
-    gap: 10px
+    gap: 10px;
+    background-color: white;
+}
+
+.mod_in_modpacks h4 {
+    width: 1000%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .mod_in_modpacks button {

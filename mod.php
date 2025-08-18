@@ -76,6 +76,7 @@
                                    $image_url = $row_images['image_url'];
 
                                    echo "<div class='mod_image' image-id=$image_id>";
+                                          echo "<button name='delete_image' title='Delete image' class='button small_button'><i class='fa fa-times'></i></button>";
                                           echo "<img src='$image_url' alt='$image_title'>";
                                    echo "</div>"; //mod_image  
 
@@ -118,9 +119,9 @@
                      echo "</div>"; //mod_images_videos */
                   echo "</div>"; //mod_images_videos_wrap    
                 echo "</div>"; // div modification
-                
-                
+              
                  echo "<div class='mod_in_modpacks'>";
+                            echo "<h4>Mod in modpacks:</h4>";
                             $get_modpacks = "SELECT a.mod_id, a.modpack_id, b.modpack_name from modpack_mods a, modpacks b WHERE a.mod_id=$mod_id and a.modpack_id = b.modpack_id";
                             $result_modpacks=mysqli_query($link, $get_modpacks) or die(mysqli_error(($link)));
                             while($row_modpacks = mysqli_fetch_array($result_modpacks)){
