@@ -1,6 +1,34 @@
 const vanilla_bases = document.querySelector("#vanilla_bases");
 const modal_new_base = document.getElementById('modal_new_base'); //modal_new_base
+const search_wrap_input = document.querySelector(".search_wrap input");
+const tab_view = document.querySelector(".tab_view");
 
+
+
+tab_view.addEventListener("click", (e) => {
+    if (event.target.tagName == "BUTTON") {
+        if (e.target.name==="reload_bases") {
+        console.log("reload bases");
+        reloadBases();
+    } else if ( e.target.name==="show_list") {
+        console.log("list");
+        document.querySelector("#vanilla_bases").style.flexDirection = "column";
+        showBasesList();
+    } else if (e.target.name==="show_grid") {
+        console.log("grid");
+        document.querySelector("#vanilla_bases").style.flexDirection = "row";
+        document.querySelector("#vanilla_bases").style.flexWrap = "wrap";
+        document.querySelector("#vanilla_bases").style.gap = "10px";
+        showBasesGrid();
+    }
+    }
+});
+
+
+
+search_wrap_input.addEventListener("keyup", () => {
+    searchBase(search_wrap_input.value);
+});
 
 
 modal_new_base.addEventListener("click", function(e) {
@@ -58,7 +86,7 @@ vanilla_bases.addEventListener("click", function(e) {
             e.target.innerText = originalText; // revert if empty or unchanged
         }
      };
-   }
+   } 
 });
 
 
@@ -98,12 +126,12 @@ var element = document.getElementById("new_note_wrap");
 element.style.display="flex";
 }
 
-function delete_base(base_id){
+function deleteBase(base_id){
     
         const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
 
-                reload_bases();
+                reloadBases();
             }    
         console.log(base_id);    
         xhttp.open("POST", "vanilla_delete_base.php",true);
@@ -112,7 +140,7 @@ function delete_base(base_id){
         xhttp.send(data);
 }
 
-function reload_bases(){
+function reloadBases(){
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 var bases = document.getElementById("vanilla_bases");
@@ -122,14 +150,14 @@ function reload_bases(){
             xhttp.send();
     }
 
-function base_details(base_id){
+function baseDetails(base_id){
     //alert(base_id);
     var url = "vanilla_base.php?base_id="+base_id;
     
     window.location.href = url;
 }
 
-function live_search(string){
+function SearchBase(string){
     const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
             var bases = document.getElementById("vanilla_bases");
@@ -139,9 +167,9 @@ function live_search(string){
         xhttp.send();
 }
 
-function clear_input(){
+function clearInput(){
     document.getElementById("search").value = "";
-    reload_bases();
+    reloadBases();
 }
 
 
@@ -180,4 +208,25 @@ function addNewBase(base_name, base_description, over_x, over_y, over_z) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "&base_name="+encodeURIComponent(base_name)+"&base_description="+encodeURIComponent(base_description)+"&over_x="+over_x+"&over_y="+over_y+"&over_z="+over_z;
     xhttp.send(data);
+}
+
+
+function showBasesList(){
+    const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            var bases = document.getElementById("vanilla_bases");
+            bases.innerHTML = this.responseText;
+        }
+        xhttp.open("GET", "vanilla_bases_list.php", true);
+        xhttp.send();
+}
+
+function showBasesGrid(){
+    const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            var bases = document.getElementById("vanilla_bases");
+            bases.innerHTML = this.responseText;
+        }
+        xhttp.open("GET", "vanilla_bases_grid.php", true);
+        xhttp.send();
 }

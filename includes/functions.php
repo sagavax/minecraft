@@ -630,10 +630,10 @@ function GetCountLogRecords(){
 
 function GetBanseNameByID($base_id){
 	global $link;
-	$query="SELECT zakladna_id, zakladna_meno from vanila_suradnice WHERE zakladna_id=$base_id";
+	$query="SELECT base_id, base_name from vanila_suradnice WHERE base_id=$base_id";
 	$result=mysqli_query($link, $query);
 	 $row = mysqli_fetch_array($result);
-	$base_name = $row['zakladna_meno'];
+	$base_name = $row['base_name'];
 	return $base_name;
 }
 
@@ -1196,7 +1196,7 @@ function  GetNrOfImageComments($picture_id){
 
   function GetCountBaseTasks($base_id){
 	global $link;  
-	  $nr_tasks = "SELECT COUNT(*) as nr_base_tasks from vanila_base_tasks WHERE zakladna_id=".$base_id;
+	  $nr_tasks = "SELECT COUNT(*) as nr_base_tasks from vanila_base_tasks WHERE base_id=".$base_id;
 	  $result = mysqli_query($link, $nr_tasks) or die("MySQLi ERROR: ".mysqli_error($link));
 	  $row = mysqli_fetch_array($result);
 	  $nr_base_tasks = $row['nr_base_tasks'];
@@ -1206,9 +1206,9 @@ function  GetNrOfImageComments($picture_id){
 
   function GetCountBaseNotes($base_id){
 	global $link;
-	$sql="SELECT count(*) as nr_of_notes from vanila_base_notes where zakladna_id=$base_id";
+	$sql="SELECT count(*) as nr_of_notes from vanila_base_notes where base_id=$base_id";
 	//echo $sql;
-	$result=mysqli_query($link, $sql);
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$nr_of_notes=$row['nr_of_notes'];
 
@@ -1217,9 +1217,9 @@ function  GetNrOfImageComments($picture_id){
 
  function GetCountBaseIdeas($base_id){
 	global $link;
-	$sql="SELECT count(*) as nr_of_ideas from vanila_base_ideas where zakladna_id=$base_id";
+	$sql="SELECT count(*) as nr_of_ideas from vanila_base_ideas where base_id=$base_id";
 	//echo $sql;
-	$result=mysqli_query($link, $sql);
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$nr_of_ideas=$row['nr_of_ideas'];
 

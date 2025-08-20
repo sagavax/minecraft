@@ -1,12 +1,6 @@
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
-      header("Access-Control-Allow-Origin: *");
-/*      SELECT x, y, z,
-    SQRT(POW(x - :given_x, 2) + POW(z - :given_z, 2)) AS distance
-        FROM your_table_name
-        ORDER BY distance
-        LIMIT 1;
-*/       
+      header("Access-Control-Allow-Origin: *");     
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.0/css/all.css">
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script src="js/vanila_bases.js" defer></script>
@@ -41,12 +35,15 @@
         <!--<div id="add_new_base"><a href="vanilla_add_base.php" class="button small_button">Add New Base</a></div>-->
 
         <div class="search_wrap">
-            <input type="text" name="search" autocomplete="off" placeholder="Search coordinates ..." onkeyup="live_search(this.value)" id="search"> <button type="button" title="clear search" class="button small_button clear_button tooltip>"><i class="fa fa-times"></i></button>
+            <input type="text" name="search" autocomplete="off" placeholder="Search coordinates ..." id="search"> <button type="button" title="clear search" class="button small_button clear_button tooltip>"><i class="fa fa-times"></i></button>
         </div>
 
 
         <div class="tab_view">
-            <button type="button" class="button small_button rounded_button" name="reload_bases">Reload</button>
+            <button type="button" class="button small_button rounded_button" name="reload_bases" title="Reload bases">Reload</button>
+            <button type="button" class="button small_button rounded_button" name="add_new_base" title="Add new base">Add New Base <i class="fa fa-plus"></i></button>
+            <button type="button" class="button small_button rounded_button" name="show_list" title ="Display as list">Show as list <i class="fa-solid fa-list"></i></button>
+            <button type="button" class="button small_button rounded_button" name="show_grid" title="Display as grid">Show as grid</button>
         </div>
 
 
@@ -118,7 +115,7 @@
         <div class="new_base_inner_layer">
             <input type="text" name="base_name" placeholder="name of the base ...." autocomplete="off">
             <textarea name="base_description" placeholder="description of the base ...."></textarea>
-           <div class="base_location">
+             <div class="base_location">
                 <div id="base_location_outworld"><h4>Outworld:</h4>
                     <div class="base_coord"><span>X:</span><input type="text" placeholder="X" name="over_x" required></div>
                     <div class="base_coord"><span>Y:</span><input type="text" placeholder="Y" name="over_y" required></div>
@@ -126,8 +123,8 @@
                 </div><!-- base location outworld -->
             </div>   
             <div class="action">
-                <button type="submit" class="button small_button" name="return_to_vanilla">Back</button>
-                <button type="submit" class="button small_button" name="add_base">Add base</button>
+                <button type="button" class="button small_button" name="return_to_vanilla">Back</button>
+                <button type="button" class="button small_button" name="add_base">Add base</button>
             </div>
         </div>
     </dialog>                         
