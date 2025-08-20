@@ -14,10 +14,9 @@
     $nether_y=intval($_POST['nether_y']);
     $nether_z=intval($_POST['nether_z']);
     
-    $sql="UPDATE vanila_suradnice SET zakladna_meno='$base_name',zakladna_popis='$base_description',x=$x,y=$y,z=$z, nether_x = $nether_x, nether_y = $nether_y, nether_z =$nether_z WHERE zakladna_id=$zakladna_id";
-    $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-    echo "<script>alert('Information updated');</script>";
-    
+    $update_base_coords="UPDATE vanila_suradnice SET zakladna_meno='$base_name',zakladna_popis='$base_description',x=$x,y=$y,z=$z, nether_x = $nether_x, nether_y = $nether_y, nether_z =$nether_z WHERE zakladna_id=$zakladna_id";
+    $result = mysqli_query($link, $update_base_coords) or die("MySQLi ERROR: ".mysqli_error($link));
+       
  }
 
 ?>

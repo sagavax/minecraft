@@ -63,7 +63,7 @@
                         <div id="basic_base_info">
                             <!--<input type="hidden" name="zakladna_id" value="<?php echo $row['base_id']; ?>">-->
                             <input name="base_name" type="text" placeholder="name your base..." value="<?php echo $row['base_name']; ?>">
-                            <title>Vanila base - <?php echo $row['zakladna_meno']; ?> </title>
+                            <title>Vanila base - <?php echo $row['base_name']; ?> </title>
                             <textarea name="description" placeholder="Describe your base somehow..."><?php echo $row['base_description']?></textarea>
                         </div>    
                         <div id="base_location">

@@ -2,19 +2,24 @@
       include ("includes/functions.php");
       header("Access-Control-Allow-Origin: *");
 
+if(isset($_POST['return_to_vanilla'])){
+    header('location:vanilla.php');
+}
+
  if(isset($_POST['add_base'])){
      //var_dump($_POST);
     $base_name=mysqli_real_escape_string($link,$_POST['base_name']);
     $x=$_POST['over_x'];
     $y=$_POST['over_y'];
     $z=$_POST['over_z'];
-    /*$nether_x=$_POST['nether_x'];
+    
+    /* $nether_x=$_POST['nether_x'];
     $nether_y=$_POST['nether_y'];
-    $nether_z=$_POST['nether_z'];*/
+    $nether_z=$_POST['nether_z']; */
+    
     $base_description = mysqli_real_escape_string($link, $_POST['description']);
-    $sql="INSERT INTO vanila_suradnice (zakladna_meno, zakladna_popis, x,y,z) VALUES ('$base_name','$base_description',$x,$y,$z)";
-    echo $sql;
-    $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+    $create_new_base="INSERT INTO vanila_suradnice (base_name, base_description, x,y,z) VALUES ('$base_name','$base_description',$x,$y,$z)";
+     $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
     
     echo "<script>alert('Nova zakladna ".$base_name." bola pridana');
     window.location.href='vanilla.php';
@@ -35,7 +40,7 @@
     <title>Vannila MC - add new base</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 </head>
@@ -48,22 +53,28 @@
          
          <div class="content">
             <div class="list">
-                <div id="add_new_base">
+                <div id="new_base">
                   
                     <form action="" method="post">
                         <input name="base_name" type="text" placeholder="name your base..." value=" Zakladna <?php echo GetMaxBaseId() + 1 ?>" required>
                         <textarea name="description" placeholder="Describe your base somehow..."></textarea>
-                        <div id="base_location"><h4>Base location:</h4>
-                            <div class="base_coord"><span>X:</span><input type="text" placeholder="X" name="over_x" required></div>
-                            <div class="base_coord"><span>Y:</span><input type="text" placeholder="Y" value="80" name="over_y" required></div>
-                            <div class="base_coord"><span>Z:</span><input type="text" placeholder="Z" name="over_z" required></div>
-                        </div><!-- base location -->
-                        <div id="base_location"><h4>Nether base / portal location:</h4>
-                            <div class="base_coord"><span>X:</span><input type="text" placeholder="X" name="nether_x"></div>
-                            <div class="base_coord"><span>Y:</span><input type="text" placeholder="Y" value="80" name="nether_y"></div>
-                            <div class="base_coord"><span>Z:</span><input type="text" placeholder="Z" name="nether_z"></div>
-                        </div><!-- base location -->
-                        <div id="add_base_action"><a class="button" href="vanilla.php">Back</a><button type="submit" class="button" name="add_base">Add base</button></div>
+                        <div class="base_location">
+                            <div id="base_location_outworld"><h4>Outworld:</h4>
+                                <div class="base_coord"><span>X:</span><input type="text" placeholder="X" name="over_x" required></div>
+                                <div class="base_coord"><span>Y:</span><input type="text" placeholder="Y" value="80" name="over_y" required></div>
+                                <div class="base_coord"><span>Z:</span><input type="text" placeholder="Z" name="over_z" required></div>
+                            </div><!-- base location -->
+                            
+                         <!--    <div id="base_location_nether"><h4>Nether location:</h4>
+                                <div class="base_coord"><span>X:</span><input type="text" placeholder="X" name="nether_x"></div>
+                                <div class="base_coord"><span>Y:</span><input type="text" placeholder="Y" value="80" name="nether_y"></div>
+                                <div class="base_coord"><span>Z:</span><input type="text" placeholder="Z" name="nether_z"></div>
+                            </div> -->
+                        </div>     
+                        
+                        <div id="add_base_action">
+                            <button type="submit" class="button small_button" name="return_to_vanilla">Back</button>
+                            <button type="submit" class="button small_button" name="add_base">Add base</button></div>
                     </form>
                  </div><!-- add new base -->
                 </div><!-- list -->  

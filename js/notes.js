@@ -160,8 +160,7 @@ notes_list.addEventListener("click", function(event) {
 
         noteHeader.removeEventListener("blur", handleBlur); // prevent repeated firing
     }, { once: true }); // zabezpečí, že sa nespustí viackrát
-}
-
+} 
 });
 
  note_header.addEventListener("blur", function() {
@@ -367,6 +366,15 @@ function saveNoteHeader(noteId, note_header) {
     };
     data = "note_id="+noteId+"&note_header="+encodeURIComponent(note_header);
     xhttp.open("POST", "notes_change_header.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
+
+
+function saveNoteCoordinates(noteId, axis, value) {
+    const xhttp = new XMLHttpRequest();
+    const data = `note_id=${noteId}&coordinate=${axis}&value=${encodeURIComponent(value)}`;
+    xhttp.open("POST", "notes_coordinates_update.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
 }
