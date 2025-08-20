@@ -8,7 +8,7 @@
         $title = mysqli_real_escape_string($link, $_POST['idea_title']);
         $text = mysqli_real_escape_string($link,$_POST['idea_text']);
 
-        $save_idea="INSERT into vanila_base_ideas (zakladna_id, idea_title, idea_text,added_date) VALUES ($base_id, '$title','$text',now())";
+        $save_idea="INSERT into vanila_base_ideas (base_id, idea_title, idea_text,added_date) VALUES ($base_id, '$title','$text',now())";
         $result=mysqli_query($link, $save_idea);
 
         echo "<script>alert('new idea has been added');
@@ -28,7 +28,7 @@
     <title>Minecraft IS</title>
     <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="text/javascript" src="js/vanilla_ideas.js" defer></script>
@@ -55,8 +55,8 @@
                         $get_bases = "SELECT * from vanila_bases";
                         $result_bases = mysqli_query($link, $get_bases) or die("MySQLi ERROR: ".mysqli_error($link));
                         while($row_bases = mysqli_fetch_array($result_bases)){
-                            $base_id = $row_bases['zakladna_id'];
-                            $base_name =$row_bases['zakladna_meno'];
+                            $base_id = $row_bases['base_id'];
+                            $base_name =$row_bases['base_name'];
                             echo "<option value=$base_id>$base_name</option>";
                          }   
                      ?>
@@ -70,8 +70,8 @@
                         $get_bases = "SELECT * from vanila_bases";
                         $result_bases = mysqli_query($link, $get_bases) or die("MySQLi ERROR: ".mysqli_error($link));
                         while($row_bases = mysqli_fetch_array($result_bases)){
-                            $base_id = $row_bases['zakladna_id'];
-                            $base_name =$row_bases['zakladna_meno'];
+                            $base_id = $row_bases['base_id'];
+                            $base_name =$row_bases['base_name'];
                             echo "<button type='button' class='button small_button' btn-id=$base_id>$base_name</button>";
                          }   
                      ?>  
@@ -85,7 +85,7 @@
                     while($row = mysqli_fetch_array($result)){
                         $idea_id = $row['idea_id'];
                         $idea_text = $row['idea_text'];
-                        $base_id = $row['zakladna_id'];
+                        $base_id = $row['base_id'];
 
                         $idea_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $idea_text);
                         

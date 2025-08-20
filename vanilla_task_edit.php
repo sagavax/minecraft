@@ -7,7 +7,7 @@
           $task_text=mysqli_real_escape_string($link, $_POST['task_text']);
           $base_id = $_POST['base'];
 
-          $sql="UPDATE vanilla_base_tasks SET zakladna_id=$base, task_text='$task_text' where task_id=$task_id";
+          $sql="UPDATE vanilla_base_tasks SET base_id=$base, task_text='$task_text' where task_id=$task_id";
           //echo $sql;
           $result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 
@@ -54,11 +54,11 @@
                 <?php
                     global $link; 
                     $task_id=$_GET['task_id'];
-                    $sql="SELECT zakladna_id, task_text from vanila_base_tasks where task_id=$task_id";
+                    $sql="SELECT base_id, task_text from vanila_base_tasks where task_id=$task_id";
                     //echo $sql;
                     $result=mysqli_query($link, $sql);
                     while($row = mysqli_fetch_array($result)){
-                        $base_id = $row['zakladna_id'];
+                        $base_id = $row['base_id'];
                         $task_text=$row['task_text'];
                       }  
                     ?>
@@ -73,8 +73,8 @@
                                 $result_bases = mysqli_query($link, $get_bases) or die("MySQLi ERROR: ".mysqli_error($link));
                                 
                                 while($row_bases = mysqli_fetch_array($result_bases)){
-                                    $base_id = $row_bases['zakladna_id'];
-                                    $base_name =$row_bases['zakladna_meno'];
+                                    $base_id = $row_bases['base_id'];
+                                    $base_name =$row_bases['base_name'];
                                     echo "<option value=$base_id>$base_name</option>";
                                  }   
                              ?>

@@ -57,6 +57,7 @@ if(isset($_POST['add_daily_note'])){
                       <li class="button small_button" onclick="LoadPage('description')">Description</li>
                       <!--<li class="button small_button" onclick="LoadPage('images')">Imges</li>-->
                       <li class="button small_button" onclick="LoadPage('images')">Images</li>
+                      <li class="button small_button" onclick="LoadPage('bases')">Bases</li>
                       <li class="button small_button" onclick="LoadPage('mods')">Mods</li>
                       <li class="button small_button" onclick="LoadPage('notes')">Notes</li>
                       <li class="button small_button" onclick="LoadPage('tasks')">Tasks</li>

@@ -5,7 +5,7 @@
      $note_text=mysqli_real_escape_string($link, $_POST['note_text']);   
      $base_id+$_POST['base_id'];
      $added_date=date('Y-m-d');
-     $sql="INSERT INTO vanila_base_info_note (zakladna_id, note_text, added_date) VALUES ($base_id,'$note_tex','$added_date')";
+     $sql="INSERT INTO vanila_base_info_note (base_id, note_text, added_date) VALUES ($base_id,'$note_tex','$added_date')";
      $result=mysqli_query($link, $sql);
  }
        
@@ -44,14 +44,14 @@
                         $sql="SELECT * from vanila_suradnice";
                         $result=mysqli_query($link, $sql);
                         while ($row = mysqli_fetch_array($result)) {
-                        $base_id=$row['zakladna_id'];
-                        $zakladna_meno=$row['zakladna_meno'];
+                        $base_id=$row['base_id'];
+                        $base_name=$row['base_name'];
                         $zakladna_popis=$row['zakladna_popis'];
                         $x=$row['X'];
                         $y=$row['Y'];
                         $z=$row['Z'];        
                         
-                            echo "<tr><td>$zakladna_meno</td><td  class='zakladna_popis'><div contenteditable='true' id='base-".$base_id."' onkeyup='update_info(".$base_id.");'>$zakladna_popis</div></td><td class='x'>$x</td><td class='y'>$y</td><td class='z'>$z</td><td>".get_nr_base_notes($base_id)."</td><td><ul class='base_action'><li><button class='button small_button' type='button' title='Pridat ulohu' onclick='add_new_task();'><i class='fas fa-plus'></i></button></li><li><button class='button small_button' type='button' title='Pridat poznamku' onclick='add_new_note();'><i class='fas fa-plus'></i></button></li><li><button class='button small_button' type='submit' title='Upravit'><i class='fas fa-edit'></i></button></li></td></tr>";
+                            echo "<tr><td>$base_name</td><td  class='zakladna_popis'><div contenteditable='true' id='base-".$base_id."' onkeyup='update_info(".$base_id.");'>$zakladna_popis</div></td><td class='x'>$x</td><td class='y'>$y</td><td class='z'>$z</td><td>".get_nr_base_notes($base_id)."</td><td><ul class='base_action'><li><button class='button small_button' type='button' title='Pridat ulohu' onclick='add_new_task();'><i class='fas fa-plus'></i></button></li><li><button class='button small_button' type='button' title='Pridat poznamku' onclick='add_new_note();'><i class='fas fa-plus'></i></button></li><li><button class='button small_button' type='submit' title='Upravit'><i class='fas fa-edit'></i></button></li></td></tr>";
                         }   
                     ?>
                 </table>

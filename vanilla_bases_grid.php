@@ -37,10 +37,10 @@
             echo "<div class='base_nr_tasks'>". GetCountBaseTasks($base_id)."</div>";
             echo "<div class='base_nr_ideas'>".GetCountBaseIdeas($base_id)."</div>";   
         echo "</div>";
-        
+
         echo "<div class='base_actions_card'>";
              echo "<button class='button small_button' name='edit_base' title='Edit the base'><i class='fas fa-edit'></i></button>";
-             echo "<button class='button small_button' type='button' title='Delete the base'><i class='fas fa-times'></i></button>";
+             echo "<button class='button small_button' name='delete_base' type='button' title='Delete the base'><i class='fas fa-times'></i></button>";
         echo "</div>";
 
        /*  echo "<div class='base_actions'><input type='hidden' name='base_id' value='$base_id'><ul class='base_action'><li><button class='button small_button' name='edit_base' title='Upravit' onclick='base_details($base_id)'><i class='fas fa-edit'></i></button></li><li><button class='button small_button' type='button' title='Zmazat' onclick='delete_base($base_id);' ><i class='fas fa-times'></i></button></li></div>"; */

@@ -1560,58 +1560,11 @@ button[name="save_description"]{
 }
 
 
- #letter_list ul {
-        display: flex;
-        list-style: none;
-        padding:0;
-        margin:0;
-        flex-wrap: wrap;
-    }
-
-    #letter_list ul li {
-        margin-left: 5px;
-        display: inline !important
-    }
-
-
-#letter_list {
-        display: flex;
-    margin-top: 20px;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-#letter_list button {
-    font-family: 'Noto Sans', sans-serif;
-    background: #aadd77;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: #aadd77 1px solid;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#letter_list button:hover {
-    background: #81b859;
-}
-
 .base_action {
     width: 100%;
     margin: 0;
     padding: 0;
-    list-style: none;
-}
-
-.base_action li {
-    margin: 5px;
-    display: inline-block;
-}
-
-#letter_list ul li a, #letter_list ul li button {
-    display: block;
-    margin-top: 5px;
+    
 }
 
 .modpack_action {
@@ -3953,7 +3906,7 @@ button[name="save_description"]{
 
 .coord {
     width: 100px;
-    height: 45px;
+    height: 40px;
     background: #aadd77;
     color: #fff;
     font-weight: bold;
@@ -4786,7 +4739,7 @@ td.zakladna_popis {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100px;
+    min-height: 160px;
     box-sizing: border-box;
     border: 1px #d1d1d1 solid;
     background-color: #fff;
@@ -4798,7 +4751,6 @@ td.zakladna_popis {
     width:300px;
     display: flex;
     flex-direction: column;
-    height: 300px;
     box-sizing: border-box;
     border: 1px #d1d1d1 solid;
     background-color: #fff;
@@ -4811,7 +4763,7 @@ td.zakladna_popis {
     width: 100%;
     display: flex;
     flex-direction: row;
-    height:80px;
+    height:90px;
     box-sizing: border-box;
 }
 
@@ -4828,14 +4780,14 @@ td.zakladna_popis {
     width: 40%;
     box-sizing: border-box;
     align-items: center;
-    height:80px;
+    height:100%;
     justify-content: flex-start;
 }
 
 .base_name {
     display: flex;
     width: 100%;
-    height: 50px;
+    height: 45px;
     justify-content: flex-start;
     align-items: center;
     font-weight: bold;
@@ -4852,10 +4804,12 @@ td.zakladna_popis {
     border: 1px #d1d1d1 solid;
     border-radius: 5px;
     box-sizing: border-box;
+    margin-left: 10px;
     padding:5px
 }
 
 .base_description_card {
+    margin-left: 0px;
     margin-top: 10px;
     overflow: ellipsis;
     height:100px;
@@ -4931,24 +4885,45 @@ input[name="base_name"] {
     justify-content: flex-end;
     align-items: center;
     gap: 10px;
+    padding-bottom: 10px;
 }
 
-.base_actions_card button[name="delete"] {
-    width:10%;}
 
+.base_actions_card button {
+    height: 45px;
+    border-radius: 6px;
+}
 
-.base_actions_card button[name="delete"]:hover {
+.base_actions_card button[name="delete_base"] {
+    width:20%;
     background-color: red;
 }
 
+
+.base_actions_card button[name="delete_base"]:hover {
+    
+}
+
 .base_actions_card button[name="edit_base"] {
-    width:90%;
+    width:80%;
 }
 
 .base_actions_card button[name="edit_base"]{
 
 }
 
+
+.base_note_tasks_ideas_wrap {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+     margin-left: 10px;
+     align-items: center;
+     justify-content: center;
+     box-sizing: border-box;
+     gap:10px;
+}
 
 .base_nr_notes,
 .base_nr_tasks,
@@ -5241,7 +5216,7 @@ input[name="base_name"] {
 }
 
 .tab_view {
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
 .tab_view_source {

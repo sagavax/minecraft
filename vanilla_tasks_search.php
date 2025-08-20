@@ -8,7 +8,7 @@ $result=mysqli_query($link, $sql);
 
 while ($row = mysqli_fetch_array($result)) {
   $task_text=$row['task_text'];
-  $base_id=$row['zakladna_id'];
+  $base_id=$row['base_id'];
   $task_id=$row['task_id'];
   $is_completed=$row['is_completed'];
 

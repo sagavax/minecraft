@@ -14,7 +14,7 @@
      $note_text=mysqli_real_escape_string($link, $_POST['note_text']);   
      $base_id+$_POST['base_id'];
      $task_text = $_POST['task_text'];
-     $add_task="INSERT INTO vanila_base_tasks (zakladna_id, task_text, added_date) VALUES ($base_id,'$task_text',now())";
+     $add_task="INSERT INTO vanila_base_tasks (base_id, task_text, added_date) VALUES ($base_id,'$task_text',now())";
      $result=mysqli_query($link, $task);
  }
 
@@ -24,7 +24,7 @@
      $idea_title = $_POST['idea_title'];
      $idea_text = $_POST['idea_text'];
      
-     $add_idea="INSERT INTO vanila_base_ideas (zakladna_id, idea_title, idea_text, added_date) VALUES ($base_id,'$idea_title',$idea_text',now())";
+     $add_idea="INSERT INTO vanila_base_ideas (base_id, idea_title, idea_text, added_date) VALUES ($base_id,'$idea_title',$idea_text',now())";
      $result=mysqli_query($link, $add_idea);
  }
 
@@ -61,7 +61,7 @@
                         $row = mysqli_fetch_array($result);    
                     ?>
                         <div id="basic_base_info">
-                            <!--<input type="hidden" name="zakladna_id" value="<?php echo $row['base_id']; ?>">-->
+                            <!--<input type="hidden" name="base_id" value="<?php echo $row['base_id']; ?>">-->
                             <input name="base_name" type="text" placeholder="name your base..." value="<?php echo $row['base_name']; ?>">
                             <title>Vanila base - <?php echo $row['base_name']; ?> </title>
                             <textarea name="description" placeholder="Describe your base somehow..."><?php echo $row['base_description']?></textarea>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="base_notes_list">
                             <?php 
-                                $sql="SELECT * from vanila_base_notes WHERE zakladna_id = $base_id ORDER BY note_id  DESC";
+                                $sql="SELECT * from vanila_base_notes WHERE base_id = $base_id ORDER BY note_id  DESC";
                                 $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 
                                  if(mysqli_num_rows($result)==0){
@@ -133,7 +133,7 @@
                         </div>
                         <div class="base_tasks_list">    
                             <?php
-                                $sql="SELECT * from vanila_base_tasks where zakladna_id = $base_id and is_completed=0 ORDER BY task_id DESC";
+                                $sql="SELECT * from vanila_base_tasks where base_id = $base_id and is_completed=0 ORDER BY task_id DESC";
                                 $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
                                 if(mysqli_num_rows($result)==0){
                                     echo "<div class='info_message'>No tasks available....</div>";
@@ -169,7 +169,7 @@
                         </div>
                         <div class="base_ideas_list">
                             <?php
-                                $sql="SELECT * from vanila_base_ideas where zakladna_id = $base_id ORDER BY idea_id DESC";
+                                $sql="SELECT * from vanila_base_ideas where base_id = $base_id ORDER BY idea_id DESC";
 
                                 $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
                                  if(mysqli_num_rows($result)==0){

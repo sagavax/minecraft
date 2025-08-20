@@ -16,6 +16,8 @@ tab_view.addEventListener("click", (e) => {
         showBasesList();
     } else if (e.target.name==="show_grid") {
         console.log("grid");
+        document.querySelector("#vanilla_bases").style.justifyContent = "center";
+        document.querySelector("#vanilla_bases").style.display = "flex";
         document.querySelector("#vanilla_bases").style.flexDirection = "row";
         document.querySelector("#vanilla_bases").style.flexWrap = "wrap";
         document.querySelector("#vanilla_bases").style.gap = "10px";

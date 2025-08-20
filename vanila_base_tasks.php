@@ -64,7 +64,7 @@
                   while ($row = mysqli_fetch_array($result)) {
                     $task_text=$row['task_text'];
                     $task_id=$row['task_id'];
-                    $zakladna_id=$row['zakladn_id'];
+                    $base_id=$row['zakladn_id'];
                     $is_completed=$row['is_completed'];
                     
                     $task_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $task_text);    

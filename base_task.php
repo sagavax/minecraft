@@ -8,7 +8,7 @@ $base_id+$_POST['base_id'];
  $task_title=mysqli_real_escape_string($link, $_POST['task_title']);
  $task_text=mysqli_real_escape_string($link, $_POST['task_text']);   
 
- $add_task="INSERT INTO vanila_base_tasks (zakladna_id, task_title, task_text, added_date) VALUES ($base_id,'$task_title',$task_text',now())";
+ $add_task="INSERT INTO vanila_base_tasks (base_id, task_title, task_text, added_date) VALUES ($base_id,'$task_title',$task_text',now())";
  $result=mysqli_query($link, $add_task);
 
 

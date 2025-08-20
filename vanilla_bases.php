@@ -54,7 +54,7 @@
             $result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
             while ($row = mysqli_fetch_array($result)) {
                 $base_id=$row['base_id'];
-                $zakladna_meno=$row['base_name'];
+                $base_name=$row['base_name'];
                 $zakladna_popis=$row['base_description'];
                 $x=$row['X'];
                 $y=$row['Y'];
@@ -65,7 +65,7 @@
                 //$base_screen_thumb = $row['zakladna_screen_thumb'];
 
                 echo "<div class='vanilla-base' base-id=$base_id>";
-                echo "<div class='base_name'>$zakladna_meno</div>";
+                echo "<div class='base_name'>$base_name</div>";
                
                 echo "<div class='base_details'>";
                 //echo "<div class='base_screen_thumb'><img src='gallery/base_" . $base_id."/".$base_screen_thumb . "'></div>";
@@ -80,11 +80,13 @@
                     echo "<div class='base_description'>$zakladna_popis</div>";
                 }
                 
-                //echo "<div class='base_description'>$zakladna_popis</div>";
-                echo "<div class='base_nr_notes'><span class='tooltip' title='Notes'>".GetCountBaseNotes($base_id)."</span></div>
-                <div class='base_nr_tasks'><span class='tooltip' title='Tasks'>". GetCountBaseTasks($base_id)."</span></div>
-                <div class='base_nr_ideas'><span class='tooltip' title='Ideas'>". GetCountBaseIdeas($base_id)."</span></div>";   
-                echo "<div class='base_actions'><input type='hidden' name='base_id' value='$base_id'><ul class='base_action'><li><button class='button small_button' name='edit_base' title='Upravit' onclick='base_details($base_id)'><i class='fas fa-edit'></i></button></li><li><button class='button small_button' type='button' title='Zmazat' onclick='delete_base($base_id);' ><i class='fas fa-times'></i></button></li></div>";
+                echo "<div class='base_note_tasks_ideas_wrap'>"; //wrap
+                    echo "<div class='base_nr_notes'><span class='tooltip' title='Notes'>".GetCountBaseNotes($base_id)."</span></div>";
+                    echo "<div class='base_nr_tasks'><span class='tooltip' title='Tasks'>". GetCountBaseTasks($base_id)."</span></div>";
+                    echo "<div class='base_nr_ideas'><span class='tooltip' title='Ideas'>". GetCountBaseIdeas($base_id)."</span></div>";
+                echo "</div>"; //wrap
+
+                echo "<div class='base_actions'><input type='hidden' name='base_id' value='$base_id'><ul class='base_action'><li><button class='button small_button' name='edit_base' title='Upravit' name='edit_base' onclick='base_details($base_id)'><i class='fas fa-edit'></i></button></li><li><button class='button small_button' type='button' title='Zmazat' name ='delete_base' onclick='delete_base($base_id);' ><i class='fas fa-times'></i></button></li></div>";
                         echo "</div>"; //base_details
                      echo "</div>";   
                              }   

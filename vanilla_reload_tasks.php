@@ -3,7 +3,7 @@
 
       $base_id = $_GET['base_id'];
 
-      $sql="SELECT * from vanila_base_tasks where zakladna_id = $base_id ORDER BY task_id DESC";
+      $sql="SELECT * from vanila_base_tasks where base_id = $base_id ORDER BY task_id DESC";
       $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
       while($row = mysqli_fetch_array($result)){
           $task_id = $row['task_id'];

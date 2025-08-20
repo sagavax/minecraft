@@ -5,7 +5,7 @@
 
       $base_id = $_GET['base_id'];
 
-  $sql="SELECT * from vanila_base_notes  WHERE zakladna_id = $base_id ORDER BY note_id DESC";
+  $sql="SELECT * from vanila_base_notes  WHERE base_id = $base_id ORDER BY note_id DESC";
 
                     $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
                     while($row = mysqli_fetch_array($result)){
@@ -13,7 +13,7 @@
                         $note_text = $row['note_text'];
                         $note_title = $row['note_title'];
                         $added_date = $row['added_date'];
-                        $base_id = $row['zakladna_id'];
+                        $base_id = $row['base_id'];
 
                         $note_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $note_text);
                         

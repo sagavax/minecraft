@@ -5,13 +5,13 @@
 
       $base_id = $_GET['base_id'];
 
-  $sql="SELECT * from vanila_base_ideas  WHERE zakladna_id = $base_id ORDER BY idea_id DESC";
+  $sql="SELECT * from vanila_base_ideas  WHERE base_id = $base_id ORDER BY idea_id DESC";
 
                     $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
                     while($row = mysqli_fetch_array($result)){
                         $idea_id = $row['idea_id'];
                         $idea_text = $row['idea_text'];
-                        $base_id = $row['zakladna_id'];
+                        $base_id = $row['base_id'];
 
                         $idea_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $idea_text);
                         

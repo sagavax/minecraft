@@ -8,7 +8,7 @@
         $base_id = $_POST['vanilla_base'];
 
 
-        $query="INSERT into  vanila_base_tasks (zakladna_id, task_title, task_text, added_date) VALUES ($base_id, '$task_text',$task_text', now())";
+        $query="INSERT into  vanila_base_tasks (base_id, task_title, task_text, added_date) VALUES ($base_id, '$task_text',$task_text', now())";
         mysqli_query($link, $query) or die("MySQLi ERROR: ".mysqli_error($link));
 
         $sql="SELECT LAST_INSERT_ID() as last_id from vanila_base_tasks";
@@ -65,8 +65,8 @@
                         $get_bases = "SELECT * from vanila_bases";
                         $result_bases = mysqli_query($link, $get_bases) or die("MySQLi ERROR: ".mysqli_error($link));
                         while($row_bases = mysqli_fetch_array($result_bases)){
-                            $base_id = $row_bases['zakladna_id'];
-                            $base_name =$row_bases['zakladna_meno'];
+                            $base_id = $row_bases['base_id'];
+                            $base_name =$row_bases['base_name'];
                             echo "<option value='$base_id'>$base_name</option>";
                          }   
                      ?>
@@ -104,7 +104,7 @@
                           
                   while ($row = mysqli_fetch_array($result)) {
                     $task_text=$row['task_text'];
-                    $base_id=$row['zakladna_id'];
+                    $base_id=$row['base_id'];
                     $task_id=$row['task_id'];
                     $is_completed=$row['is_completed'];
                     

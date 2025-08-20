@@ -3,11 +3,11 @@
 include("includes/dbconnect.php");
 include("includes/functions.php");
 
-$reload_bases = "SELECT * from vanila_bases ORDER BY zakladna_id ASC";
+$reload_bases = "SELECT * from vanila_bases ORDER BY base_id ASC";
 $result = mysqli_query($link, $reload_bases) or die("MySQLi ERROR: " . mysqli_error($link));
 while ($row = mysqli_fetch_array($result)) {
-    $base_id=$row['zakladna_id'];
-    $zakladna_meno=$row['zakladna_meno'];
+    $base_id=$row['base_id'];
+    $base_name=$row['base_name'];
     $zakladna_popis=$row['zakladna_popis'];
     $x=$row['X'];
     $y=$row['Y'];
@@ -18,7 +18,7 @@ while ($row = mysqli_fetch_array($result)) {
 
 
     echo "<div class='vanilla-base' base-id=$base_id>";
-    echo "<div class='base_name'>$zakladna_meno</div>";
+    echo "<div class='base_name'>$base_name</div>";
     echo "<div class='base_details'>";
     echo "<div class='coordinates'>";
     echo "<div class='base_coord'><div class='coord'>X: $x</div><div class='coord'>Y: $y</div><div class='coord'>Z:$z</div></div>";

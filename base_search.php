@@ -8,8 +8,8 @@ $sql="SELECT * from vanila_suradnice WHERE X LIKE '%".$search_string."%' OR Z li
 $result_comments = mysqli_query($link, $sql) or die(mysqli_error($link));
 $result = mysqli_query($link, $sql);
 while ($row = mysqli_fetch_array($result)) {
-    $base_id = $row['zakladna_id'];
-    $zakladna_meno = $row['zakladna_meno'];
+    $base_id = $row['base_id'];
+    $base_name = $row['base_name'];
     $zakladna_popis = $row['zakladna_popis'];
     $x = $row['X'];
     $y = $row['Y'];
@@ -18,7 +18,7 @@ while ($row = mysqli_fetch_array($result)) {
     $nether_y = $row['nether_Y'];
     $nether_z = $row['nether_Z'];
        echo "<div class='vanilla-base' base-id=$base_id>";
-                             echo "<div class='base_name'>$zakladna_meno</div>";
+                             echo "<div class='base_name'>$base_name</div>";
                              echo "<div class='base_details'>";
                                  echo "<div class='coordinates'>";
                                     echo "<div class='base_coord'><div class='coord'>X: $x</div><div class='coord'>Y: $y</div><div class='coord'>Z:$z</div></div>";

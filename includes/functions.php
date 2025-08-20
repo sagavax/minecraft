@@ -977,6 +977,17 @@ function  GetNrOfImageComments($picture_id){
 	return $nr_notes;
   }  
 
+	function GetVanillaBaseName($base_id){
+		global $link;
+		$sql="SELECT base_name from vanila_bases where base_id=$base_id";
+		$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+		$row = mysqli_fetch_array($result);
+		$name = $row['base_name'];
+		
+		return $name;
+	}
+
+
    function GetCountVanillaNotes(){
 	global $link;
 	$sql="SELECT COUNT(*) as nr_notes from vanila_base_notes ORDER BY note_id DESC";
@@ -1010,7 +1021,7 @@ function  GetNrOfImageComments($picture_id){
 
      function GetCountBases_old(){
 	global $link;
-	$sql="SELECT COUNT(*) as nr_bases from vanila_suradnice ORDER BY zakladna_id DESC";
+	$sql="SELECT COUNT(*) as nr_bases from vanila_suradnice ORDER BY base_id DESC";
 	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$nr_bases = $row['nr_bases'];
@@ -1020,7 +1031,7 @@ function  GetNrOfImageComments($picture_id){
 
    function GetCountNewestBases(){
 	global $link;
-	$sql="SELECT COUNT(*) as nr_new_bases from vanila_suradnice WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) ORDER BY zakladna_id DESC";
+	$sql="SELECT COUNT(*) as nr_new_bases from vanila_suradnice WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) ORDER BY base_id DESC";
 	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$nr_new_bases = $row['nr_new_bases'];
@@ -1117,7 +1128,6 @@ function  GetNrOfImageComments($picture_id){
   }  
 
 
-
   function GetCountNewestTasks(){
 	global $link;
 	$sql="SELECT COUNT(*) as nr_tasks from tasks WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) ORDER BY task_id DESC";
@@ -1129,10 +1139,6 @@ function  GetNrOfImageComments($picture_id){
   }  
 
 
-
-  
-
-  
   function GetCountNewestComments(){
 	global $link;
 	$sql="SELECT COUNT(*) as nr_comments from video_comments WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) ORDER BY id DESC";
@@ -1186,7 +1192,7 @@ function  GetNrOfImageComments($picture_id){
 
   function GetMaxBaseId(){
 	global $link;  
-	$sql="SELECT MAX(zakladna_id) as max_base_id from vanila_suradnice";
+	$sql="SELECT MAX(base_id) as max_base_id from vanila_suradnice";
 	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$max_id = $row['max_base_id'];

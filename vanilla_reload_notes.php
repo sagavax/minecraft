@@ -1,7 +1,7 @@
 <?php
 include("includes/dbconnect.php");
 $base_id = $_GET['base_id'];
-$sql = "SELECT * from vanila_base_notes WHERE zakladna_id = $base_id ORDER BY note_id  DESC";
+$sql = "SELECT * from vanila_base_notes WHERE base_id = $base_id ORDER BY note_id  DESC";
 $result = mysqli_query($link, $sql) or die("MySQLi ERROR: " . mysqli_error($link));
 while ($row = mysqli_fetch_array($result)) {
     $id = $row['note_id'];
