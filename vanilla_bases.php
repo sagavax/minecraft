@@ -34,7 +34,7 @@
 
         <div class="list">
 
-          <div class="fab fab-icon-holder" onclick="window.location.href='vanilla_add_base.php';">
+          <div class="fab fab-icon-holder" onclick="document.getElementById('modal_new_base').showModal();">
             <i class="fa fa-plus"></i>
         </div>   
 
@@ -78,7 +78,7 @@
                 </div>";    
                 
                 if($zakladna_popis == "") {
-                    echo "<div class='base_description' data-placeholder='Ender Description......'></div>";
+                    echo "<div class='base_description' data-placeholder='Enter base description......'></div>";
                 } else {
                     echo "<div class='base_description'>$zakladna_popis</div>";
                 }
@@ -114,5 +114,22 @@
         </form>
     </div>
   
+    <dialog id = modal_new_base>                         
+        <div class="new_base_inner_layer">
+            <input type="text" name="base_name" placeholder="name of the base ...." autocomplete="off">
+            <textarea name="base_description" placeholder="description of the base ...."></textarea>
+           <div class="base_location">
+                <div id="base_location_outworld"><h4>Outworld:</h4>
+                    <div class="base_coord"><span>X:</span><input type="text" placeholder="X" name="over_x" required></div>
+                    <div class="base_coord"><span>Y:</span><input type="text" placeholder="Y" name="over_y" required></div>
+                    <div class="base_coord"><span>Z:</span><input type="text" placeholder="Z" name="over_z" required></div>
+                </div><!-- base location outworld -->
+            </div>   
+            <div class="action">
+                <button type="submit" class="button small_button" name="return_to_vanilla">Back</button>
+                <button type="submit" class="button small_button" name="add_base">Add base</button>
+            </div>
+        </div>
+    </dialog>                         
 
   </body>

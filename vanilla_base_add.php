@@ -61,20 +61,20 @@ if(isset($_POST['return_to_vanilla'])){
                         <div class="base_location">
                             <div id="base_location_outworld"><h4>Outworld:</h4>
                                 <div class="base_coord"><span>X:</span><input type="text" placeholder="X" name="over_x" required></div>
-                                <div class="base_coord"><span>Y:</span><input type="text" placeholder="Y" value="80" name="over_y" required></div>
+                                <div class="base_coord"><span>Y:</span><input type="text" placeholder="Y" name="over_y" required></div>
                                 <div class="base_coord"><span>Z:</span><input type="text" placeholder="Z" name="over_z" required></div>
-                            </div><!-- base location -->
-                            
+                            </div><!-- base location outworld -->
+                        </div>   
                          <!--    <div id="base_location_nether"><h4>Nether location:</h4>
                                 <div class="base_coord"><span>X:</span><input type="text" placeholder="X" name="nether_x"></div>
                                 <div class="base_coord"><span>Y:</span><input type="text" placeholder="Y" value="80" name="nether_y"></div>
                                 <div class="base_coord"><span>Z:</span><input type="text" placeholder="Z" name="nether_z"></div>
                             </div> -->
-                        </div>     
                         
                         <div id="add_base_action">
                             <button type="submit" class="button small_button" name="return_to_vanilla">Back</button>
-                            <button type="submit" class="button small_button" name="add_base">Add base</button></div>
+                            <button type="submit" class="button small_button" name="add_base">Add base</button>
+                        </div>
                     </form>
                  </div><!-- add new base -->
                 </div><!-- list -->  

@@ -3932,12 +3932,16 @@ button[name="save_description"]{
     height: 50px
 }
 
-#new_base {
-    width: 100%;
-    margin-top: 10px;
-    background-color: white;
-    box-sizing: border-box;
-    padding: 10px;
+.modal_new_base {
+
+}
+
+
+#modal_new_base {
+    height: 300px;
+    width:60%;
+    top:20%;
+    left:20%;
 }
 
 #new_base form {
@@ -4848,7 +4852,7 @@ td.zakladna_popis {
 
 input[name="base_name"] {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .base_short_desc {
@@ -5994,14 +5998,14 @@ input[name="base_name"] {
    }
 
 
-   .inner_layer, .inner_comment_layer, .inner_modpack_layer, .inner_tags_layer, .inner_new_gallery_layer {
+   .inner_layer, .inner_comment_layer, .inner_modpack_layer, .inner_tags_layer, .inner_new_gallery_layer, .new_base_inner_layer {
     justify-content: center;
     position: relative;
     height:100%;
     width:100%;
     }
 
-    .inner_new_gallery_layer,.inner_change_gallery_layer {
+    .inner_new_gallery_layer,.inner_change_gallery_layer, .new_base_inner_layer {
         display: flex;
         padding: 10px;
         flex-direction: column;
