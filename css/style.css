@@ -3294,6 +3294,17 @@ button[name="save_description"]{
     height:160px;
 }
 
+.modal_add_coordinates {
+    top:20%;
+    left:30%;
+    height:80px;
+    width:30%;
+    box-sizing: border-box;
+    padding:10px;
+    border-radius: 5px;
+    border:1px #d1d1d1 solid;
+}
+
 .add_comment_action, .add_gallery_action {
     height:45px;
     width: 100%;
@@ -6026,6 +6037,15 @@ input[name="base_name"] {
     position: relative;
     height:100%;
     width:100%;
+    }
+
+    .inner_layer_flex_row {
+        height:100%;
+        width:100%;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        gap:10px
     }
 
     .inner_new_gallery_layer,.inner_change_gallery_layer, .new_base_inner_layer {

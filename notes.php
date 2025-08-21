@@ -192,7 +192,8 @@
                                   //notes actions
                                   echo "<div class='notes_action'>".$category_name." ".$modpack_name."<form method='post' action='notes_attach_file.php' enctype='multipart/form-data'><input type='hidden' name=note_id value=$note_id><input type='file' name='image' id='file-attach-$note_id' accept='image/*' style='display:none'></form><button name='attach_image' type='button' class='button small_button'><i class='material-icons'>attach_file</i></button><button name='edit_note' type='submit' class='button small_button'><i class='material-icons'>edit</i></button><button name='delete_note' type='submit' class='button small_button'><i class='material-icons'>delete</i></button></div>";
                          echo "</div>";//note footer
-                         echo "<div class='note_coord'><input type ='text' name='coord_x' placeholder='X' autocomplete='off'><input type ='text' name='coord_y' placeholder='Y' autocomplete='off'><input type ='text' name='coord_z' placeholder='Z' autocomplete='off'></div>";
+                         //echo "<div class='note_coord'><input type ='text' name='coord_x' placeholder='X' autocomplete='off'><input type ='text' name='coord_y' placeholder='Y' autocomplete='off'><input type ='text' name='coord_z' placeholder='Z' autocomplete='off'></div>";
+                         echo "<div class='note_coord'>".GetNotesCoordinates($note_id)."</div>";
                   
                       echo "</div>"; //note       
                         }    
@@ -231,7 +232,7 @@
               </div>
         </dialog>
 
-       <dialog class="dialog_mods">
+    <dialog class="dialog_mods">
       <div class="inner_mods_layer">
           
         <div id="letter_list"><!-- letter list -->
@@ -289,6 +290,18 @@
         </div><!-- categories_list -->
       </div><!-- inner_mods_layer -->
     </dialog>
+
+    <dialog class="modal_add_coordinates">
+      <div class="inner_layer">
+        <div class="inner_layer_flex_row">
+        <!-- <button type="button" class="close_inner_modal"><i class="fa fa-times"></i></button> -->
+        <input type="text" name="coord_x" placeholder="X" autocomplete="off">
+        <input type="text" name="coord_y" placeholder="Y" autocomplete="off">
+        <input type="text" name="coord_z" placeholder="Z" autocomplete="off">
+        <button type="button" name="set_coordinates" class="button small_button"><i class="fa fa-plus"></i></button>
+        </div>
+      </div>
+    </dialog>          
 
     </body>
 </html>    

@@ -11,6 +11,12 @@ var modal_change_modpack = document.querySelector(".modal_change_modpack");
 const dialog_modpacks = document.querySelector('.dialog_modpacks');
 const note_header = document.querySelector('#new_note input[name="note_title"]')
 const dialog_mods = document.querySelector('.dialog_mods');
+const dialog_add_coordinates = document.querySelector('.modal_add_coordinates');
+
+
+
+
+
 
 new_note_header_close_button.addEventListener("click", () => {
     new_note.classList.remove("show"); // Odstráni triedu 'show' pre animáciu skrytia
@@ -27,6 +33,23 @@ document.querySelector(".modal_image BUTTON").addEventListener("click", () => {
     var existingImg = content.querySelector("img");
     content.removeChild(existingImg);
     modal.style.display = "none";
+});
+
+
+dialog_add_coordinates.addEventListener("click", (event) => {
+    //dialog_add_coordinates.close();
+    if(event.target.tagName === "BUTTON"){
+       if(event.target.name==="set_coordinates"){
+        const noteId = sessionStorage.getItem("note_id");
+        console.log(noteId);
+        const coord_x = dialog_add_coordinates.querySelector("input[name='coord_x']").value;
+        const coord_y = dialog_add_coordinates.querySelector("input[name='coord_y']").value;
+        const coord_z = dialog_add_coordinates.querySelector("input[name='coord_z']").value;    
+        addCoordinates(noteId, coord_x, coord_y, coord_z);
+        alert("Koordinaty pre poznamku s id "+ noteId + " boli zmenene");
+        dialog_add_coordinates.close()
+       }
+    }
 });
 
 
@@ -94,6 +117,8 @@ notes_list.addEventListener("click", function(event) {
             dialog_modpacks.showModal(); // Open the dialog;
         } else if (event.target.name === "change_mods") {
             dialog_mods.showModal();
+        } else if (event.target.name === "add_coordinates") {
+            dialog_add_coordinates.showModal();
         }
 
     } else if (event.target.classList.contains("fa-file-image")) {
@@ -375,6 +400,15 @@ function saveNoteCoordinates(noteId, axis, value) {
     const xhttp = new XMLHttpRequest();
     const data = `note_id=${noteId}&coordinate=${axis}&value=${encodeURIComponent(value)}`;
     xhttp.open("POST", "notes_coordinates_update.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
+
+
+function addCoordinates(noteId, coord_x, coord_y, coord_z) {
+     const xhttp = new XMLHttpRequest();
+    const data = `note_id=${noteId}+&coord_x=${coord_x}&coord_y=${coord_y}&coord_z=${coord_z}`;
+    xhttp.open("POST", "notes_coordinates_add.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
 }

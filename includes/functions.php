@@ -1,6 +1,23 @@
 <?php 
 include("dbconnect.php");
 
+function GetNotesCoordinates($note_id) {
+	global $link;
+	$get_coordinates = "SELECT coord_x, coord_y, coord_z FROM notes_coordinates WHERE note_id = $note_id";
+	$result = mysqli_query($link, $get_coordinates) or die(mysqli_error($link));
+	if(mysqli_num_rows($result) == 0) {
+		return "<button class='button small_button' type='button' name='add_coordinates'><i class='fa fa-plus'></i></button>";
+	} else {
+		$row = mysqli_fetch_array($result);
+		$coord_x = $row['coord_x'];
+		$coord_y = $row['coord_y'];
+		$coord_z = $row['coord_z'];
+
+		return "<input type ='text' name='coord_x' placeholder='X' autocomplete='off' value='$coord_x'><input type ='text' name='coord_y' placeholder='Y' autocomplete='off' value='$coord_y'><input type ='text' name='coord_z' placeholder='Z' autocomplete='off' value='$coord_z'>";
+	};
+	
+			
+}
 
 function GetInfluencerName($influencer_id){
 	global $link;
@@ -1019,19 +1036,9 @@ function  GetNrOfImageComments($picture_id){
 	return $nr_tasks;
   }
 
-     function GetCountBases_old(){
-	global $link;
-	$sql="SELECT COUNT(*) as nr_bases from vanila_suradnice ORDER BY base_id DESC";
-	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-	$row = mysqli_fetch_array($result);
-	$nr_bases = $row['nr_bases'];
-	
-	return $nr_bases;
-  }
-
    function GetCountNewestBases(){
 	global $link;
-	$sql="SELECT COUNT(*) as nr_new_bases from vanila_suradnice WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) ORDER BY base_id DESC";
+	$sql="SELECT COUNT(*) as nr_new_bases from vanila_bases WHERE date(added_date)  BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 3 DAY) AND DATE(NOW()) ORDER BY base_id DESC";
 	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$nr_new_bases = $row['nr_new_bases'];

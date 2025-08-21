@@ -11,7 +11,7 @@
     $coord_z = $_POST['coord_z'];
 
 
-    $query = "INSERT INTO note_coords (note_id,coord_x,coord_y, coord_z, added_date) VALUES ($note_id,'$coord_x', '$coord_y', '$coord_z',now())";
+    $query = "INSERT INTO notes_coordinates (note_id,coord_x,coord_y, coord_z, added_date) VALUES ($note_id,'$coord_x', '$coord_y', '$coord_z',now())";
     $result = mysqli_query($link, $query) or die("MySQLi ERROR: ".mysqli_error($link));
 
     //add to log
