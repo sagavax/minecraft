@@ -47,6 +47,7 @@ a {
 ul {
     list-style: none;
 }
+
       
 #minecraft_is_info_wrap {
     /*float:left; */
@@ -222,11 +223,6 @@ dialog {
     justify-content: center;
     /*min-height: 100vh;*/
 }
-
-.list h3, .list h4 {
-    }
-
-
 
 .title {
     width: 100%;
@@ -548,6 +544,15 @@ textarea::placeholder {
     width: 100%;
 }
 
+#letter_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-sizing: border-box;
+    padding:5px;
+    margin-top: 20px;
+}
+
 .influencer_list {
     margin-top: 20px;
     display: flex;
@@ -743,6 +748,7 @@ textarea::placeholder {
 .bug_action,
 .image_action
 {
+    width: 100%;    
     display: flex;
     align-items: center;
     height: 45px;
@@ -1048,7 +1054,7 @@ button[name="save_description"]{
     margin-top:10px;
 }
 
-.no_gallery, .no_gallery_found {
+.no_gallery, .no_gallery_found, .no_base, .add_base {
     margin-top: 20px;
     height: 50px;
     width: 100%;
@@ -1059,6 +1065,24 @@ button[name="save_description"]{
     border: 1px #d1d1d1 solid;
     border-radius: 4px
 }
+
+.no_base {
+    justify-content: flex-start;
+    box-sizing: border-box;
+    border: 1px solid #d1d1d1;
+}
+
+.no_base p, .add_base p {
+    margin-left: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    }
+
+ .no_base button, .add_base button {
+    margin-right: 10px;
+ }   
 
 .no_gallery_found {
     justify-content: flex-start;
@@ -2184,9 +2208,10 @@ button[name="save_description"]{
     height: 50px;
     width: 100%;
     box-sizing: border-box;
-    padding:10px;
     gap:10px;
 }
+
+.nmp
 
 .note_coord input {
     width: 100px;
@@ -2584,7 +2609,7 @@ button[name="save_description"]{
     font-size: 12px;
 }
 
-#categories_list, #tags_list {
+#categories_list, #tags_list, .notes_mods_list {
     display: flex;
     /* flex-direction: column; */
     margin-top: 30px;
@@ -3294,7 +3319,7 @@ button[name="save_description"]{
     height:160px;
 }
 
-.modal_add_coordinates {
+.dialog_mods, .modal_add_coordinates {
     top:20%;
     left:30%;
     height:80px;
@@ -3302,7 +3327,16 @@ button[name="save_description"]{
     box-sizing: border-box;
     padding:10px;
     border-radius: 5px;
-    border:1px #d1d1d1 solid;
+    /* border:1px #d1d1d1 solid; */
+}
+
+.dialog_mods {
+    left:20%;
+    top:10%;
+    width:60%;
+    height: auto;
+    flex-direction: column;
+    gap:10px;
 }
 
 .add_comment_action, .add_gallery_action {
@@ -3936,6 +3970,7 @@ button[name="save_description"]{
 .idea_footer,
 .bug_footer
  {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -4730,6 +4765,8 @@ td.zakladna_popis {
     margin-top:15px;
 }
 
+
+
 .base_action button{
      font-weight: bold;
     font-family: 'Noto Sans', sans-serif;
@@ -4741,9 +4778,13 @@ td.zakladna_popis {
     margin-right: 5px;
 }
 
-#vanilla_bases {
+#vanilla_bases,.modpack_bases {
     display: flex;
     flex-direction: column;
+}
+
+.modpack_bases {
+    margin-top:20px;
 }
 
 .vanilla-base {
@@ -4768,6 +4809,7 @@ td.zakladna_popis {
     padding:10px;
     margin-bottom: 10px;
     border-radius: 6px;
+    height:400px;
 }
 
 .base_details {
@@ -4845,8 +4887,12 @@ input[name="base_name"] {
     height: 100px;
 }
 
-.base_coord_wrap {
+.base_coord_wrap, .note_coord_wrap {
     display: flex;
+}
+
+.note_coord_wrap {
+    gap:10px
 }
 
 .base_coord,.base_coord_card,

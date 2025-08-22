@@ -12,9 +12,28 @@ const popup_mods_list = document.querySelector(".popup_mods_list");
 const popup_mods_list_input = document.querySelector(".popup_mods_list input");
 const modpack_mod_list = document.querySelector(".modpack_mod_list");
 const modpack_mods_urls = document.querySelector(".modpack_mods_urls");
+const modal_new_base = document.getElementById('modal_new_base');
 
+ modal_new_base.addEventListener("click", function(e) {
+    if (e.target.tagName === "BUTTON" && e.target.name==="add_base") {
+        const modpackId = sessionStorage.getItem("modpack_id");
+        console.log(modpackId);
+        const base_name = modal_new_base.querySelector('input[name="base_name"]').value;
+        const base_description = modal_new_base.querySelector('textarea[name="base_description"]').value;
+        const over_x = modal_new_base.querySelector('input[name="over_x"]').value;
+        const over_y = modal_new_base.querySelector('input[name="over_y"]').value;
+        const over_z = modal_new_base.querySelector('input[name="over_z"]').value;
+        if (base_name === "" || over_x === "" || over_y === "" || over_z === "") {
+            alert("Please fill in all the fields.");
+            return;
+        } 
+           addNewModpackBase(modpackId, base_name, base_description, over_x, over_y, over_z);
+           modal_new_base.close();
+     } else if (e.target.tagName === "BUTTON" && e.target.name==="return_to_vanilla") {
+         modal_new_base.close();
+     }
+ })
 
-console.log(document.querySelector(".modpack_mods_urls"));
 
 /* modpack_mods_urls.addEventListener("click", function(event) {
     if (event.target.tagName === "DIV" && event.target.classList.contains("link_name"))  {
@@ -209,6 +228,11 @@ document.querySelector(".list").addEventListener("click", function(event) {
      case "reload_mods":
         const modpackId = sessionStorage.getItem("modpack_id");
         reloadMods(modpackId);   
+
+     case "add_base":
+        // add new base
+        modal_new_base.showModal();
+        break;
     default:
         // handle other buttons
         break;
@@ -693,6 +717,7 @@ function LoadPage(page) {
 
     const pages = {
         "description": "modpack_description.php",
+        "bases": "modpack_bases.php",
         "images": "modpack_images.php",
         "mods": "modpack_mods.php",
         "notes": "modpack_notes.php",
@@ -833,3 +858,17 @@ function removeModFromModpack(modId,modpackId){
   xhttp.open("GET", `modpack_mod_remove.php?mod_id=${modId}&modpack_id=${modpackId}`, true);
   xhttp.send();
 }
+
+
+function addNewModpackBase(modpackId, base_name, base_description, coord_x, coord_y, coord_z) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       document.querySelector(".popup_mods_list main").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "base_add.php", true);
+  const data = "modpack_id="+localStorage.getItem("modpack_id")+"&base_name="+encodeURIComponent(base_name)+"&base_description="+encodeURIComponent(base_description)+"&coord_x="+coord_x+"&coord_y="+coord_y+"&coord_z="+coord_z;
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}   

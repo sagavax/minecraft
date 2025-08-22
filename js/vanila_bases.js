@@ -203,10 +203,10 @@ function updateBaseDescription(base_id, base_new_description) {
 function addNewBase(base_name, base_description, over_x, over_y, over_z) {
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
-            alert("Update successful");
+            alert("New base created successfully");
         }    
     console.log(base_name);    
-    xhttp.open("POST", "vanilla_base_add.php",true);
+    xhttp.open("POST", "base_add.php",true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "&base_name="+encodeURIComponent(base_name)+"&base_description="+encodeURIComponent(base_description)+"&over_x="+over_x+"&over_y="+over_y+"&over_z="+over_z;
     xhttp.send(data);

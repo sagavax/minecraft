@@ -233,62 +233,26 @@
         </dialog>
 
     <dialog class="dialog_mods">
-      <div class="inner_mods_layer">
-          
-        <div id="letter_list"><!-- letter list -->
-          <?php 
-            foreach (range('A', 'Z') as $char) {
-              echo "<button type='button'>$char</button>";
-            }
-            echo "<button type='button' name='all'>All</button>";
-            echo "<button type='button' name='dupes'>Find dupes</button>";
-          ?>  
-        </div><!-- letter list --> 
-          
-        <div id="categories_list">
+       <div id="letter_list">
           <?php
-            $itemsPerPage = 30;
-            $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-            $offset = ($current_page - 1) * $itemsPerPage;
-
-            if (isset($_GET['alphabet'])) {
-              $char = $_GET['alphabet'];
-              
-              if ($char == "dupes") {
-                // Opravený SQL s chýbajúcou čiarkou pred COUNT(*) a GROUP BY
-                $sql = "SELECT cat_name, cat_description, COUNT(*) AS count FROM mods GROUP BY cat_name HAVING count > 1";
-              } elseif ($char == "all") {
-                $sql = "SELECT * FROM mods ORDER BY cat_name ASC LIMIT $itemsPerPage OFFSET $offset";
-              } else {
-                $char_escaped = mysqli_real_escape_string($link, $char);
-                $sql = "SELECT * FROM mods WHERE LEFT(cat_name,1) = '$char_escaped' ORDER BY cat_name ASC";
-              }
-            } else {
-              $sql = "SELECT * FROM mods ORDER BY cat_name ASC LIMIT $itemsPerPage OFFSET $offset";
-            }
-
-            $result = mysqli_query($link, $sql);
-
+             foreach (range('A', 'Z') as $char) {
+                echo "<button class='button small_button blue_button rounded_button' name='char'>$char</button>";
+                 }                            
+           ?>        
+        </div>
+        <intput type="text" name="search" placeholder="Search mods...." autocomplete="off"> 
+        <div class="notes_mods_list">
+         <?php
+            $get_mods = "SELECT * FROM mods WHERE cat_name like 'A%'";
+            $result = mysqli_query($link, $get_mods);
             while ($row = mysqli_fetch_array($result)) {
-              $cat_id = $row['cat_id'];
-              $cat_name = htmlspecialchars($row['cat_name'], ENT_QUOTES, 'UTF-8');
-              $cat_description = htmlspecialchars($row['cat_description'], ENT_QUOTES, 'UTF-8');
-
-              echo "<div class='category' data-id='$cat_id'>";
-                echo "<div class='cat_name'>$cat_name</div>";
-                echo "<div class='cat_action'>";
-
-                  if ($cat_description == "") {
-                    echo "<div class='cat_description'><i class='fas fa-plus-circle' title='Add description'></i></div>";  
-                  }
-
-                  echo "<div class='cat_delete'><i class='fas fa-times-circle' title='Delete mod'></i></div>";
-                echo "</div>"; // div cat_action
-              echo "</div>";   // div category
+                $mod_name = $row['cat_name'];
+                $mod_id = $row['cat_id'];
+                echo "<button mod-id=$mod_id class='button small_button blue_button rounded_button' name='add_mod'>$mod_name</button>";
             }
+            //echo GetAllUnassignedNotesMods();
           ?>
-        </div><!-- categories_list -->
-      </div><!-- inner_mods_layer -->
+        </div>
     </dialog>
 
     <dialog class="modal_add_coordinates">

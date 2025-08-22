@@ -89,7 +89,7 @@ if(isset($_POST['add_daily_note'])){
               <ul>
                 <?php
                   foreach (range('A', 'Z') as $char) {
-                            echo "<li><button class='button small_button blue_button' name='char'>$char</button></li>";
+                            echo "<li><button class='button blue_button rounded_button' name='char'>$char</button></li>";
                           }                            
                     ?>        
                </ul>   
@@ -104,7 +104,7 @@ if(isset($_POST['add_daily_note'])){
                 while ($row = mysqli_fetch_array($result)) {  
                     $id = $row['cat_id'];
                     $cat_name = $row['cat_name'];
-                    echo "<button class='button blue_button' data-id=$id name='add_mod_to_modpack'>$cat_name</button>";
+                    echo "<button class='button blue_button rounded_button' data-id=$id name='add_mod_to_modpack'>$cat_name</button>";
                 } 
 
             ?>
@@ -118,4 +118,23 @@ if(isset($_POST['add_daily_note'])){
               <input type="text" name="link_url" placeholder="Link url"><button type="button" class="button blue_button">Add</button>
             </div>
           </dialog>        
+
+          <dialog id = modal_new_base>                         
+          <div class="new_base_inner_layer">
+              <input type="text" name="base_name" placeholder="name of the base ...." autocomplete="off">
+              <textarea name="base_description" placeholder="description of the base ...."></textarea>
+              <div class="base_location">
+                  <div id="base_location_outworld"><h4>Outworld:</h4>
+                      <div class="base_coord"><span>X:</span><input type="text" placeholder="X" name="over_x" required></div>
+                      <div class="base_coord"><span>Y:</span><input type="text" placeholder="Y" name="over_y" required></div>
+                      <div class="base_coord"><span>Z:</span><input type="text" placeholder="Z" name="over_z" required></div>
+                  </div><!-- base location outworld -->
+              </div>   
+              <div class="action">
+                  <button type="button" class="button small_button" name="return_to_vanilla">Back</button>
+                  <button type="button" class="button small_button" name="add_base">Add base</button>
+              </div>
+          </div>
+        </dialog>
     </div><!--main_wrap-->  
+

@@ -13,7 +13,7 @@ function GetNotesCoordinates($note_id) {
 		$coord_y = $row['coord_y'];
 		$coord_z = $row['coord_z'];
 
-		return "<input type ='text' name='coord_x' placeholder='X' autocomplete='off' value='$coord_x'><input type ='text' name='coord_y' placeholder='Y' autocomplete='off' value='$coord_y'><input type ='text' name='coord_z' placeholder='Z' autocomplete='off' value='$coord_z'>";
+		return "<div class='note_coord_wrap'><input type ='text' name='coord_x' placeholder='X' autocomplete='off' value='$coord_x'><input type ='text' name='coord_y' placeholder='Y' autocomplete='off' value='$coord_y'><input type ='text' name='coord_z' placeholder='Z' autocomplete='off' value='$coord_z'><button class='button small_button' type='button' name='remove_coordinates'><i class='fa fa-times'></i></button></div>";
 	};
 	
 			
@@ -1238,3 +1238,35 @@ function  GetNrOfImageComments($picture_id){
 
 	return $nr_of_ideas;
 }
+
+  function GetCountModpackBaseTasks($base_id){
+	global $link;  
+	  $nr_tasks = "SELECT COUNT(*) as nr_base_tasks from modpack_base_tasks WHERE base_id=".$base_id;
+	  $result = mysqli_query($link, $nr_tasks) or die("MySQLi ERROR: ".mysqli_error($link));
+	  $row = mysqli_fetch_array($result);
+	  $nr_base_tasks = $row['nr_base_tasks'];
+
+	  return $nr_base_tasks;
+  }
+
+  function GetCountModpackBaseNotes($base_id){
+	global $link;
+	$sql="SELECT count(*) as nr_of_notes from modpack_base_notes where base_id=$base_id";
+	//echo $sql;
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$nr_of_notes=$row['nr_of_notes'];
+
+	return $nr_of_notes;
+}
+
+ function GetCountModpackBaseIdeas($base_id){
+	global $link;
+	$sql="SELECT count(*) as nr_of_ideas from modpack_base_ideas where base_id=$base_id";
+	//echo $sql;
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$nr_of_ideas=$row['nr_of_ideas'];
+
+	return $nr_of_ideas;
+ }

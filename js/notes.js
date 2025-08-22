@@ -15,7 +15,18 @@ const dialog_add_coordinates = document.querySelector('.modal_add_coordinates');
 
 
 
-
+dialog_mods.addEventListener("click", (event) => {
+    if (event.target.tagName === "BUTTON") {
+        if(event.target.name === "add_mod"){
+            const modName = event.target.textContent;
+            const modId = event.target.getAttribute("mod-id");
+            changeNotesMod(modName, modId); // Call the changeMod function    
+        } else if (evement.target.name === "char"){
+            changeModLstByChar(event.target.innerText);
+        }
+        
+    }
+})
 
 
 new_note_header_close_button.addEventListener("click", () => {
@@ -119,6 +130,11 @@ notes_list.addEventListener("click", function(event) {
             dialog_mods.showModal();
         } else if (event.target.name === "add_coordinates") {
             dialog_add_coordinates.showModal();
+        } else if (event.target.name === "remove_coordinates") {
+             const noteId = event.target.closest(".note").getAttribute("note-id");
+            removeCoordinates(noteId);
+            document.querySelector(".note[note-id='${noteId}'] .note_coord_wrap").remove()
+            alert("Koordinaty pre poznamku s id "+ noteId + " boli odstranene");
         }
 
     } else if (event.target.classList.contains("fa-file-image")) {
@@ -406,9 +422,49 @@ function saveNoteCoordinates(noteId, axis, value) {
 
 
 function addCoordinates(noteId, coord_x, coord_y, coord_z) {
-     const xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
     const data = `note_id=${noteId}+&coord_x=${coord_x}&coord_y=${coord_y}&coord_z=${coord_z}`;
     xhttp.open("POST", "notes_coordinates_add.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
+
+
+function removeCoordinates(noteId) {
+    const xhttp = new XMLHttpRequest();
+    const data = `note_id=${noteId}`;
+    xhttp.open("POST", "notes_coordinates_remove.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
+
+function changeModLstByChar(char){
+    var xhttp = new XMLHttpRequest();
+    var search_text = document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("notes_mods_list").innerHTML = this.responseText;
+        }
+    };
+    data = "char="+char;
+    xhttp.open("POST", "notes_mods_filter_by_char.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data); 
+}
+
+function  changeNotesMod(modName, modId) {
+    const noteId = sessionStorage.getItem("note_id");
+    var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            //change text for mod in note 
+            //document.querySelector(".note[note-id='" + noteId + "'] span_mod").textContent = modName;
+            document.querySelector(`.note[note-id="${noteId}"] button[name='add_mod']`).textContent = modName;
+            document.querySelector(".dialog_mods").close();
+        }
+    };
+    data = "mod_name="+modName+"&mod_id="+modId+"&note_id="+noteId;
+    xhttp.open("POST", "notes_mod_add.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
 }
