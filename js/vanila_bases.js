@@ -88,7 +88,20 @@ vanilla_bases.addEventListener("click", function(e) {
             e.target.innerText = originalText; // revert if empty or unchanged
         }
      };
-   } 
+   } else if(e.target.tagName === "BUTTON" && e.target.name==="delete_base") {
+        console.log(e.target);
+        const baseId = e.target.closest(".vanilla-base").getAttribute("base-id");
+        deleteBase(baseId);
+    } else if (e.target.tagName === "BUTTON" && e.target.name==="edit_base") {
+        console.log(e.target);
+        const parent = target.closest(".vanilla-base, .vanilla-base-card");
+        if(parent){ {
+            const baseId = parent.getAttribute("base-id");
+            editBase(baseId);    
+        }
+    }
+    }
+    
 });
 
 
@@ -231,4 +244,25 @@ function showBasesGrid(){
         }
         xhttp.open("GET", "vanilla_bases_grid.php", true);
         xhttp.send();
+}
+
+
+function editBase(base_id){
+    var url = "vanilla_base.php?base_id="+base_id;
+    window.location.href = url;
+}
+
+
+function deleteBase(base_id){
+    
+        const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+
+                reloadBases();
+            }    
+        console.log(base_id);    
+        xhttp.open("POST", "vanilla_base_delete.php",true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        var data = "&base_id="+encodeURIComponent(base_id);
+        xhttp.send(data);
 }

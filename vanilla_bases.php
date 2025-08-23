@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script src="js/vanila_bases.js" defer></script>
@@ -86,10 +86,10 @@
                     echo "<div class='base_nr_ideas'><span class='tooltip' title='Ideas'>". GetCountBaseIdeas($base_id)."</span></div>";
                 echo "</div>"; //wrap
 
-                echo "<div class='base_actions'><input type='hidden' name='base_id' value='$base_id'><ul class='base_action'><li><button class='button small_button' name='edit_base' title='Upravit' name='edit_base' onclick='base_details($base_id)'><i class='fas fa-edit'></i></button></li><li><button class='button small_button' type='button' title='Zmazat' name ='delete_base' onclick='delete_base($base_id);' ><i class='fas fa-times'></i></button></li></div>";
-                        echo "</div>"; //base_details
-                     echo "</div>";   
-                             }   
+                echo "<div class='base_actions'><button class='button small_button' name='edit_base' title='Edit the base'><i class='fas fa-edit'></i></button><button class='button small_button' type='button' title='Zmazat' name ='delete_base'><i class='fas fa-times'></i></button></div>";
+                echo "</div>"; //base_details
+                 echo "</div>";   
+                  }   
                  ?>
                              
                 </div><!-- vanilla bases -->

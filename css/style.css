@@ -2617,6 +2617,11 @@ button[name="save_description"]{
     gap: 10px;
 }
 
+.notes_mods_list button {
+
+}
+
+
 .category, .tag {
     display: flex;
     height: 55px;
@@ -4927,6 +4932,7 @@ input[name="base_name"] {
     width: 40%;
     justify-content: flex-end;
     align-items: center;
+    gap:10px;
 }
 
 .base_actions ul {

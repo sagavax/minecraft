@@ -14,7 +14,7 @@
     $nether_y=intval($_POST['nether_y']);
     $nether_z=intval($_POST['nether_z']);
     
-    $update_base_coords="UPDATE vanila_suradnice SET base_name='$base_name',zakladna_popis='$base_description',x=$x,y=$y,z=$z, nether_x = $nether_x, nether_y = $nether_y, nether_z =$nether_z WHERE base_id=$base_id";
+    $update_base_coords="UPDATE vanila_bases SET base_name='$base_name',zakladna_popis='$base_description',x=$x,y=$y,z=$z, nether_x = $nether_x, nether_y = $nether_y, nether_z =$nether_z WHERE base_id=$base_id";
     $result = mysqli_query($link, $update_base_coords) or die("MySQLi ERROR: ".mysqli_error($link));
        
  }

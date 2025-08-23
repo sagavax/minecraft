@@ -52,7 +52,7 @@
                  <select name="base">
                       <option value="1">hlavna zakladna</option>
                      <?php 
-                        $get_bases = "SELECT * from vanila_suradnice";
+                        $get_bases = "SELECT * from vanila_bases";
                         $result_bases = mysqli_query($link, $get_bases) or die("MySQLi ERROR: ".mysqli_error($link));
                         while($row_bases = mysqli_fetch_array($result_bases)){
                             $base_id = $row_bases['base_id'];

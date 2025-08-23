@@ -20,7 +20,8 @@ dialog_mods.addEventListener("click", (event) => {
         if(event.target.name === "add_mod"){
             const modName = event.target.textContent;
             const modId = event.target.getAttribute("mod-id");
-            changeNotesMod(modName, modId); // Call the changeMod function    
+            changeNotesMod(modName, modId); // Call the changeMod function   
+            event.target.remove(); 
         } else if (evement.target.name === "char"){
             changeModLstByChar(event.target.innerText);
         }

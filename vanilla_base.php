@@ -87,18 +87,18 @@
                  </div><!-- add new base -->
                  <div class="base_wall">
                      <div class="base_wall_tabs">
-                         <button data-tab="Notes" class="button small_button">Notes</button>
-                        <button data-tab="Tasks" class="button small_button">Tasks</button>
-                        <button data-tab="Ideas" class="button small_button">Ideas</button>
-                        <button data-tab="Images" class="button small_button">Images</button>  
+                         <button data-tab="notes" class="button small_button">Notes</button>
+                        <button data-tab="tasks" class="button small_button">Tasks</button>
+                        <button data-tab="ideas" class="button small_button">Ideas</button>
+                        <button data-tab="images" class="button small_button">Images</button>  
                      
                     </div><!-- add new note wrap-->
                     
-                     <div id="notes">
+                     <div class="base_notes_list">
                         <div class="new_base_note">
                             <input name="" type="text" id="base_note_title" value="" autocomplete="off" spellcheck="false" placeholder="note title...">
                             <textarea name="" id="base_note_text" placeholder="note text..."></textarea>
-                            <button class="button rounded_button">New note</button>
+                            <button class="button rounded_button" name="new_note">New note</button>
                         </div>
                         <div class="base_notes_list">
                             <?php 
@@ -125,7 +125,7 @@
                         </div><!--base notes list-->    
                      </div><!-- notes --> 
 
-                     <div id="tasks">
+                     <div class="base_tasks_list">
                         <div class="new_base_task">
                             <input name="" type="text" id="base_task_title" value="" autocomplete="off" spellcheck="false" placeholder="task title...">
                             <textarea name="" id="base_task_text" placeholder="task text..."></textarea>
@@ -161,7 +161,7 @@
                         </div><!--base tasks list-->            
                     </div><!-- tasks -->
 
-                    <div id="ideas"><!-- ideas -->
+                    <div class="base_ideas_lisr"><!-- ideas -->
                         <div class="new_base_idea">
                             <input type="text" id="base_idea_title" value="" autocomplete="off" spellcheck="false" placeholder="ides title...">
                             <textarea name="" id="base_idea_text" placeholder="idea text..."></textarea>

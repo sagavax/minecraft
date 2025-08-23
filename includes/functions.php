@@ -647,7 +647,7 @@ function GetCountLogRecords(){
 
 function GetBanseNameByID($base_id){
 	global $link;
-	$query="SELECT base_id, base_name from vanila_suradnice WHERE base_id=$base_id";
+	$query="SELECT base_id, base_name from vanila_bases WHERE base_id=$base_id";
 	$result=mysqli_query($link, $query);
 	 $row = mysqli_fetch_array($result);
 	$base_name = $row['base_name'];
@@ -1199,7 +1199,7 @@ function  GetNrOfImageComments($picture_id){
 
   function GetMaxBaseId(){
 	global $link;  
-	$sql="SELECT MAX(base_id) as max_base_id from vanila_suradnice";
+	$sql="SELECT MAX(base_id) as max_base_id from vanila_bases";
 	$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	$max_id = $row['max_base_id'];

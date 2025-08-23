@@ -39,7 +39,7 @@
             echo "<div class='base_nr_ideas'><span class='tooltip' title='Ideas'>". GetCountBaseIdeas($base_id)."</span></div>";
         echo "</div>"; //wrap
 
-        echo "<div class='base_actions'><input type='hidden' name='base_id' value='$base_id'><ul class='base_action'><li><button class='button small_button' name='edit_base' title='Upravit' name='edit_base' onclick='base_details($base_id)'><i class='fas fa-edit'></i></button></li><li><button class='button small_button' type='button' title='Zmazat' name ='delete_base' onclick='delete_base($base_id);' ><i class='fas fa-times'></i></button></li></div>";
+        echo "<div class='base_actions'><input type='hidden' name='base_id' value='$base_id'><ul class='base_action'><button class='button small_button' name='edit_base' title='Upravit' name='edit_base'><i class='fas fa-edit'></i></button><button class='button small_button' type='button' title='Zmazat' name ='delete_base'><i class='fas fa-times'></i></button></div>";
                 echo "</div>"; //base_details
                 echo "</div>";   
                         } 

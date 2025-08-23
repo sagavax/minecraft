@@ -1,5 +1,7 @@
 <?php
 include("includes/dbconnect.php");
+include ("includes/functions.php");
+
     //var_dump($_POST);
     //$diary_text =mysqli_real_escape_string($db,$_GET['note_text']);
     $note_text =mysqli_real_escape_string($link,$_POST['note_text']);
@@ -8,15 +10,17 @@ include("includes/dbconnect.php");
     $sql="INSERT INTO vanila_base_notes (base_id, note_title, note_text,added_date) VALUES ($base_id, '$note_title','$note_text',now())";
     $result=mysqli_query($link,$sql) or die("MySQL ERROR: ".mysqli_error($link));
 
-
+    //get max id
     $getmax_id = "SELECT max(note_id) as max_id from vanila_base_notes";
-	$result = mysqli_query($link, $getmax_id) or die("MySQLi ERROR: ".mysqli_error($link));
+    $result = mysqli_query($link, $getmax_id) or die("MySQLi ERROR: ".mysqli_error($link));
     $row = mysqli_fetch_array($result);   
     $max_id = $row['max_id'];
 
-    echo $max_id;
 
-    $diary_text="Minecraft IS: Bolo vytvorena base note s id $max_id";";
-    $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text', now())";
+    //vlozit do wallu 
+    $diary_text="Bola vytvorena nova poznamka s id $max_id pre base <b>".GetbaseNameById($base_id)." </b>";
+    $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
     $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-
+    echo "<script>alert('new note has been added');
+        window.location.href='vanilla_notes.php';
+    </script>";

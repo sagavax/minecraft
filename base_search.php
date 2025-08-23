@@ -3,7 +3,7 @@ include "includes/dbconnect.php";
 include "includes/functions.php";
 
 $search_string = $_GET['search_string'];
-$sql="SELECT * from vanila_suradnice WHERE X LIKE '%".$search_string."%' OR Z like '%".$search_string."%' OR nether_X LIKE '%".$search_string."%' OR nether_Z LIKE '%".$search_string."%'";
+$sql="SELECT * from vanila_bases WHERE X LIKE '%".$search_string."%' OR Z like '%".$search_string."%' OR nether_X LIKE '%".$search_string."%' OR nether_Z LIKE '%".$search_string."%'";
 //echo $sql;
 $result_comments = mysqli_query($link, $sql) or die(mysqli_error($link));
 $result = mysqli_query($link, $sql);

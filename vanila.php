@@ -41,7 +41,7 @@
                         <th>meno zakladne</th><th>Zakladna popis</th><th>x</th><th>y</th><th>z</th><th></th><th></th>
                     </tr>
                     <?php 
-                        $sql="SELECT * from vanila_suradnice";
+                        $sql="SELECT * from vanila_bases";
                         $result=mysqli_query($link, $sql);
                         while ($row = mysqli_fetch_array($result)) {
                         $base_id=$row['base_id'];

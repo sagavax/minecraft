@@ -18,7 +18,7 @@ if(isset($_POST['return_to_vanilla'])){
     $nether_z=$_POST['nether_z']; */
     
     $base_description = mysqli_real_escape_string($link, $_POST['description']);
-    $create_new_base="INSERT INTO vanila_suradnice (base_name, base_description, x,y,z) VALUES ('$base_name','$base_description',$x,$y,$z)";
+    $create_new_base="INSERT INTO vanila_bases (base_name, base_description, x,y,z) VALUES ('$base_name','$base_description',$x,$y,$z)";
      $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
     
     echo "<script>alert('Nova zakladna ".$base_name." bola pridana');
