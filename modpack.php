@@ -86,13 +86,12 @@ if(isset($_POST['add_daily_note'])){
               <button class='button blue_button' name="hide_popup" type="button"><i class="fas fa-times"></i></button>
             </header>
             <div id="letter_list">
-              <ul>
-                <?php
+               <?php
                   foreach (range('A', 'Z') as $char) {
-                            echo "<li><button class='button blue_button rounded_button' name='char'>$char</button></li>";
+                            echo "<button class='button blue_button rounded_button' name='char'>$char</button>";
                           }                            
                     ?>        
-               </ul>   
+              
             </div>
             <main>
               <?php 

@@ -18,7 +18,7 @@ include ("includes/functions.php");
 
 
     //vlozit do wallu 
-    $diary_text="Bola vytvorena nova poznamka s id $max_id pre base <b>".GetbaseNameById($base_id)." </b>";
+    $diary_text="Bola vytvorena nova poznamka s id $max_id pre base <b>".GetBaseNameById($base_id)." </b>";
     $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
     $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
     echo "<script>alert('new note has been added');

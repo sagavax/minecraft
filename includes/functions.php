@@ -645,7 +645,7 @@ function GetCountLogRecords(){
 }
 
 
-function GetBanseNameByID($base_id){
+function GetBaseNameByID($base_id){
 	global $link;
 	$query="SELECT base_id, base_name from vanila_bases WHERE base_id=$base_id";
 	$result=mysqli_query($link, $query);

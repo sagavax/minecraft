@@ -13,5 +13,6 @@
     <li><a href="ideas.php">Ideas</a></li> -->
     <li><a href="app_log.php">Logs</a></li>
     <li><a href="about.php">About</a></li>
+    <li><a href="administration.php">Admin</a></li>
     <li><a href="logout.php">Logout</a></li>
 </ul>

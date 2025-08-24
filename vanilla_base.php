@@ -3,19 +3,12 @@
 
 
  if(isset($_POST['new_note'])){
-     $note_text=mysqli_real_escape_string($link, $_POST['note_text']);   
-     $base_id+$_POST['base_id'];
-     $add_note="INSERT INTO vanila_base_notes (base_id, note_text, added_date) VALUES ($base_id,'$note_title',$note_text',now())";
-     $result=mysqli_query($link, $add_note);
+    
  }
 
 
  if(isset($_POST['new_task'])){
-     $note_text=mysqli_real_escape_string($link, $_POST['note_text']);   
-     $base_id+$_POST['base_id'];
-     $task_text = $_POST['task_text'];
-     $add_task="INSERT INTO vanila_base_tasks (base_id, task_text, added_date) VALUES ($base_id,'$task_text',now())";
-     $result=mysqli_query($link, $task);
+   
  }
 
   if(isset($_POST['new_idea'])){
@@ -87,18 +80,18 @@
                  </div><!-- add new base -->
                  <div class="base_wall">
                      <div class="base_wall_tabs">
-                         <button data-tab="notes" class="button small_button">Notes</button>
-                        <button data-tab="tasks" class="button small_button">Tasks</button>
-                        <button data-tab="ideas" class="button small_button">Ideas</button>
-                        <button data-tab="images" class="button small_button">Images</button>  
+                         <button data-tab="Notes" class="button small_button">Notes</button>
+                        <button data-tab="Tasks" class="button small_button">Tasks</button>
+                        <button data-tab="Ideas" class="button small_button">Ideas</button>
+                        <button data-tab="Images" class="button small_button">Images</button>  
                      
                     </div><!-- add new note wrap-->
                     
-                     <div class="base_notes_list">
+                     <div id="notes">
                         <div class="new_base_note">
                             <input name="" type="text" id="base_note_title" value="" autocomplete="off" spellcheck="false" placeholder="note title...">
                             <textarea name="" id="base_note_text" placeholder="note text..."></textarea>
-                            <button class="button rounded_button" name="new_note">New note</button>
+                            <button class="button rounded_button" name="new_base_note">New note</button>
                         </div>
                         <div class="base_notes_list">
                             <?php 
@@ -125,11 +118,11 @@
                         </div><!--base notes list-->    
                      </div><!-- notes --> 
 
-                     <div class="base_tasks_list">
+                     <div id="tasks">
                         <div class="new_base_task">
                             <input name="" type="text" id="base_task_title" value="" autocomplete="off" spellcheck="false" placeholder="task title...">
                             <textarea name="" id="base_task_text" placeholder="task text..."></textarea>
-                            <button class="button rounded_button">New task</button>
+                            <button class="button rounded_button" name="new_base_task">New task</button>
                         </div>
                         <div class="base_tasks_list">    
                             <?php
@@ -161,11 +154,11 @@
                         </div><!--base tasks list-->            
                     </div><!-- tasks -->
 
-                    <div class="base_ideas_lisr"><!-- ideas -->
+                    <div id="ideas"><!-- ideas -->
                         <div class="new_base_idea">
-                            <input type="text" id="base_idea_title" value="" autocomplete="off" spellcheck="false" placeholder="ides title...">
-                            <textarea name="" id="base_idea_text" placeholder="idea text..."></textarea>
-                            <button class="button rounded_button">New idea</button>
+                            <input type="text" name="base_idea_title" value="" autocomplete="off" spellcheck="false" placeholder="idea title...">
+                            <textarea name="" placeholder="idea text..." name="base_idea_text"></textarea>
+                            <button class="button rounded_button" name="new_base_idea">New idea</button>
                         </div>
                         <div class="base_ideas_list">
                             <?php

@@ -35,25 +35,22 @@ const modal_new_base = document.getElementById('modal_new_base');
  })
 
 
-/* modpack_mods_urls.addEventListener("click", function(event) {
-    if (event.target.tagName === "DIV" && event.target.classList.contains("link_name"))  {
-        console.log("div[class='link_name']");
-    }
-}); */
-
-
-/* modpack_mod_list.addEventListener("click", function(event) {
-    if (event.target.tagName === "BUTTON") {
-        console.log("button");
-        if (event.target.name == "remove_mod_from_modpack") {
-            removeModFromModpack(event.target.dataset.id);
-        }
-    }
-});
- */
 popup_mods_list_input.addEventListener("input", function(event) {
      popupSearchMod(popup_mods_list_input.value.trim())
 });
+
+popup_mods_list_input.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        if(popup_mods_list_input.value.trim() === ""){
+            alert("Please enter a mod name.");
+            return;
+        }
+        AddModtoMods(popup_mods_list_input.value.trim());
+        popup_mods_list_input.value = "";
+        alert("Mod added successfully!");
+    }
+});
+
 
 dialog_add_new_link.addEventListener("click", function(event) {
 
@@ -176,7 +173,7 @@ document.querySelector(".list").addEventListener("click", function(event) {
         event.preventDefault();
         const noteText = document.querySelector(`#new_note textarea[name="note_text"]`).value;
         const noteHeader = document.querySelector(`#new_note input[name="note_header"]`).value;
-        if (!noteText || !noteHeader) {
+        if (noteText==="") {
             alert("Empty text");
             return;
         }
@@ -872,3 +869,17 @@ function addNewModpackBase(modpackId, base_name, base_description, coord_x, coor
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(data);
 }   
+
+
+function AddModtoMods(mod){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    /* if (this.readyState == 4 && this.status == 200) {
+       document.querySelector(".popup_mods_list main").innerHTML = this.responseText;
+    } */
+  };
+  xhttp.open("POST", "mod_add.php", true);
+  const data = "mod="+encodeURIComponent(mod);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}

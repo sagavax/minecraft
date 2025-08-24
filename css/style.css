@@ -5162,6 +5162,7 @@ input[name="base_name"] {
     justify-content: space-between;
     box-sizing: border-box;
     background: white;
+    gap:5px;
 
 }
 

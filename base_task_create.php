@@ -5,11 +5,10 @@ include("includes/functions.php");
 
 
  $base_id=$_POST['base_id'];
- $task_title=mysqli_real_escape_string($link, $_POST['task_title']);
  $task_text=mysqli_real_escape_string($link, $_POST['task_text']);   
 
- $add_task="INSERT INTO vanila_base_tasks (base_id, task_title, task_text, added_date) VALUES ($base_id,'$task_title',$task_text',now())";
- $result=mysqli_query($link, $add_task);
+ $add_task="INSERT INTO vanila_base_tasks (base_id, task_text, added_date) VALUES ($base_id,$task_text',now())";
+ $result=mysqli_query($link, $add_task) or die("MySQLi ERROR: ".mysqli_error($link));
 
 //get max id
   $getmax_id = "SELECT max(task_id) as max_id from vanila_base_tasks";

@@ -7,25 +7,23 @@ const images_container = document.querySelector('#images');
 const notes_container = document.querySelector('#notes');
 const tasks_container = document.querySelector('#tasks');
 
-//shows tab
+//shows default tab
 showTab("Notes");    
-        
-document.getElementById("notes").style.display="block";	
-document.getElementById("tasks").style.display="none";	
-document.getElementById("ideas").style.display="none";	
-document.getElementById("images").style.display="none";	
 
 
-/* const add_note = document.getElementById("add_new_note");
-const saveNoteBaseBtn  = document.getElementById("save_note");
-const add_task = document.getElementById("add_new_task");
-const saveTaskBtn  =document.getElementById("save_task");
-const saveIdeaBtn = document.getElementById("save_idea");
- */
+//hide the rest
+document.getElementById("ideas").style.display = "none";
+document.getElementById("images").style.display = "none";
+document.getElementById("tasks").style.display = "none";
+
 
 base_wall_tabs.addEventListener("click", function(event) {
     if (event.target.tagName === "BUTTON") {
-        showTab(event.target.getAttribute("data-tab"));
+        base_wall_tabs.querySelectorAll("button").forEach(button => {
+            button.classList.remove("jade_button");
+        });
+        event.target.classList.add("jade_button");
+        showTab(event.target.getAttribute("data-tab").toLowerCase());
     }
 });
 
@@ -47,14 +45,16 @@ ideas_container.addEventListener('click', function(event) {
     // Add a click event listener to the container
 notes_container.addEventListener('click', function(event) {
     // Check if the clicked element is a button
-        noteId = event.target.closest(".base_note").getAttribute("note-id");
-        sessionStorage.setItem("base_note_id", noteId);
+        const url = new URL(window.location.href); 
+        const baseId = url.searchParams.get("base_id"); 
+        
+        sessionStorage.setItem("base_id", baseId);
     if (event.target.tagName === 'BUTTON'){
-        if(event.target.name==="new_note"){
-            const noteId=sessionStorage.getItem("base_note_id");
-            saveBaseNote(noteId);
+        if(event.target.name==="new_base_note"){
+            const baseId=sessionStorage.getItem("base_id");
+            saveBaseNote(baseId);
         } else if (event.target.name==="remove_note"){
-            const noteId=sessionStorage.getItem("base_note_id");
+            const noteId=event.target.closest(".base_note").getAttribute("note-id");
             document.querySelector(".base_note[note-id='"+noteId+"']").remove
             removeNote(noteId);
         }
@@ -65,19 +65,36 @@ notes_container.addEventListener('click', function(event) {
     
 
     // Add a click event listener to the container
-tasks_container.addEventListener('click', function(event) {
+tasks_container.addEventListener("click", function (event) {
     // Check if the clicked element is a button
-    if (event.target.tagName === 'BUTTON' |event.target.tagName === 'I' ){
-            
-            //alert("task to be competed");
-            const complete_button = event.target;
-            const top_div = complete_button.closest('.task')
-            const taskId = top_div.getAttribute('task-id');
-            //console.log(taskId);
-            taskComplete(taskId) ;
+    if (event.target.tagName === "BUTTON") {
+
+        if (event.target.name === "new_base_task") {
+            const taskInput = document.getElementById("base_task_text");
+
+            if (taskInput.value === "") {
+                alert("Please enter a task name.");
+                return;
+            }
+
+            const url = new URL(window.location.href);
+            const baseId = url.searchParams.get("base_id");
+            saveBaseTask(baseId);
+        } 
         
+        else if (event.target.name === "mark_complete") {
+            const taskId = event.target.closest(".base_task").getAttribute("task-id");
+            taskComplete(taskId);
+        } 
+        
+        else if (event.target.name === "remove_task") {
+            const taskId = event.target.closest(".base_task").getAttribute("task-id");
+            document.querySelector(".base_task[task-id='" + taskId + "']").remove();
+            removeTask(taskId);
+        }
     }
 });
+
 
 
     
@@ -137,16 +154,31 @@ images_container.addEventListener('click', function(event) {
 });
 
 
+function showTab(tabName) {
+    tabName = tabName.toLowerCase(); // Ensure tabName is in lowercase
+    localStorage.setItem("base_info_tab", tabName);
+    //base_ideas_list
+    const tabs = ["notes","tasks", "ideas", "images"];
+    tabs.forEach(tab => {
+        console.log(document.querySelector(".base_"+tab+"_list"));
+        document.getElementById(tab).style.display = "none";
+       
+    });
+
+    document.getElementById(tabName).style.display = "flex";
+}
+
+
 function saveBaseIdea(){
 
-const idea_title = document.getElementById("base_idea_title").value;
-const idea_text = document.getElementById("base_idea_text").value;
-const ideas_container = document.querySelector('.base_ideas_list');
-    
-const xhttp = new XMLHttpRequest();
+    const idea_title = document.getElementById("base_idea_title").value;
+    const idea_text = document.getElementById("base_idea_text").value;
+           
+    const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             const max_idea_id = this.responseText.trim(); 
+            const ideas_container = document.querySelector('.base_ideas_list');
             ideas_container.insertAdjacentHTML("afterbegin","<div class='idea vanilla_idea' idea-id="+max_idea_id+"><div class='base_idea_title'>"+idea_title+"</div><div class='base_idea_text'>"+idea_text+"</div><div class='base_idea_footer'><div class='vanila_note_act'><button class='button small_button' name='delete_idea';'><i class='fa fa-times' title='Delete idea'></i></button></div></div></div>"); 
             document.getElementById("base_idea_text").value="";
             document.getElementById("base_idea_title").value="";
@@ -180,11 +212,20 @@ function saveBaseTask(){
             xhttp.send(data);
         }
 
-async function saveBaseNote() {
+function removeBaseTask(taskId) {
+    base_id = sessionStorage.getItem("base_id");
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "base_task_remove.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    const data = "task_id="+taskId+"&base_id="+base_id;
+    xhttp.send(data);
+}
+
+
+async function saveBaseNote(baseId) {
         const noteText = document.getElementById("base_note_text").value;
         const noteTitle = document.getElementById("base_note_title").value;
 
-        const baseId = sessionStorage.getItem('base_id');
         const data = new URLSearchParams({
             'note_text': noteText,
             'note_title': noteTitle,
@@ -192,7 +233,7 @@ async function saveBaseNote() {
         });
 
         try {
-            const response = await fetch('base_create_note.php', {
+            const response = await fetch('base_note_create.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -202,6 +243,7 @@ async function saveBaseNote() {
 
             if (response.ok) {
                 const maxNoteId = await response.text();
+                const notes_container = document.querySelector('.base_notes_list');
                 notes_container.insertAdjacentHTML("afterbegin", `
                     <div class='base_note' note-id="${maxNoteId}">
                         <div class='vanila_note_title'>${noteTitle}</div>
@@ -356,15 +398,3 @@ function DeleteImage(imageId){
 
 }
 
-function showTab(tabName) {
-    tabName = tabName.toLowerCase(); // Ensure tabName is in lowercase
-    localStorage.setItem("base_info_tab", tabName);
-
-    const tabs = ["notes","tasks", "ideas", "images"];
-    tabs.forEach(tab => {
-        console.log(document.getElementById(tab));
-        document.getElementById(tab).style.display = "none";
-    });
-
-    document.getElementById(tabName).style.display = "flex";
-}

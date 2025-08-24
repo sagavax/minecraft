@@ -1,21 +1,20 @@
-var container = document.querySelector('.sort_bases');
+const base_notes_list = document.querySelector('.base_notes_list');
+var sort_bases= document.querySelector('.sort_bases');
+
     // Add a click event listener to the container
-    container.addEventListener('click', function(event) {
+    sort_bases.addEventListener('click', function(event) {
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON'){
             // Get the name attribute of the clicked button
             var baseId = event.target.getAttribute('btn-id');
             sortNotesByBase(baseId);            
-            // Do something with the buttonName, for example, log it to the console
-            console.log('Button clicked with Id:', baseId);
-            //console.log('Button clicked with video-id:', videoId);
         }
     });
 
 
-var container_remove_btn = document.querySelector('.base_notes_list');
+
     // Add a click event listener to the container
-    container_remove_btn.addEventListener('click', function(event) {
+    base_notes_list.addEventListener('click', function(event) {
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON'){
             // Get the name attribute of the clicked button
