@@ -45,10 +45,10 @@
                           <div class="tile" tile-id='images'><div class='tile_title'>Gallery</div><div class="tile_info"><span><?php echo GetCountImages(); ?> images</span></div></div>
                           <div class="tile" tile-id='influencers'><div class='tile_title'>Influencers</div><div class="tile_info"><span><?php //echo GetCountInfluencers(); ?> influencers</span></div></div>
                           <div class="tile"  tile-id='vanilla'><div class='tile_title'>Vanila</div><div class="tile_info"><span><?php echo GetCountBases()." bases ,".GetCountVanilaVideos()." videos,".GetCountVanilaNotes()." notes"; ?></span></div></div>
-                          <div class="tile" tile-id='bugs'><div class='tile_title'>Bug / error reporting</div><div class="tile_info"><span><?php echo GetCountBugs();?> bug(s)</span></div></div>
-                          <div class="tile" tile-id='ideas'><div class='tile_title'>Ideas</div><div class="tile_info"><span><?php echo GetCountIdeas();?> idea(s)</span></div></div>
+                          <!-- <div class="tile" tile-id='bugs'><div class='tile_title'>Bug / error reporting</div><div class="tile_info"><span><?php echo GetCountBugs();?> bug(s)</span></div></div>
+                          <div class="tile" tile-id='ideas'><div class='tile_title'>Ideas</div><div class="tile_info"><span><?php echo GetCountIdeas();?> idea(s)</span></div></div> -->
                           <div class="tile" tile-id='app_log'><div class='tile_title'>Log</div><div class="tile_info"><span><?php echo GetCountLogRecords();?> records(s)</span></div></div>
-                          <div class="tile" tile-id='maintenance'><div class='tile_title'>Maintenance</div></div>
+                          <!-- <div class="tile" tile-id='maintenance'><div class='tile_title'>Maintenance</div></div> -->
                         </div><!-- tile list -->
                       
                                   

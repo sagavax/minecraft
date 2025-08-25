@@ -13,6 +13,22 @@ const popup_mods_list_input = document.querySelector(".popup_mods_list input");
 const modpack_mod_list = document.querySelector(".modpack_mod_list");
 const modpack_mods_urls = document.querySelector(".modpack_mods_urls");
 const modal_new_base = document.getElementById('modal_new_base');
+const modpack_bases = document.querySelector(".modpack_bases");
+
+
+
+modpack_bases.addEventListener("click", function(e) {
+    if (e.target.tagName === "BUTTON" && e.target.name==="add_base") {
+        if (e.target.name === "add_base") {
+            modal_new_base.showModal();
+        } else if (e.target.name === "edit_base") {
+            window.location.href = "vanilla_base.php?base_id=" + e.target.getAttribute("base-id");
+        } else if (e.target.name === "delete_base") {
+            removeBase(e.target.getAttribute("base-id"));
+        }
+    }
+})
+
 
  modal_new_base.addEventListener("click", function(e) {
     if (e.target.tagName === "BUTTON" && e.target.name==="add_base") {
@@ -880,6 +896,19 @@ function AddModtoMods(mod){
   };
   xhttp.open("POST", "mod_add.php", true);
   const data = "mod="+encodeURIComponent(mod);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
+
+function removeBase(baseId){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       document.querySelector(".popup_mods_list main").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "base_remove.php?", true);
+  data = "base_id="+baseId;
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(data);
 }
