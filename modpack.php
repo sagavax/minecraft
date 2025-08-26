@@ -35,6 +35,7 @@ if(isset($_POST['add_daily_note'])){
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="js/modpack.js?<?php echo time() ?>"></script>
+    <script defer src="js/modpack_bases.js?<?php echo time() ?>"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
   
@@ -70,7 +71,7 @@ if(isset($_POST['add_daily_note'])){
                   <div class="list">
                     <div class="pic">
                         <img src="<?php echo GetModpackImage(); ?>">
-                    </ddiv>
+                    </div>
                   </div> 
 
                </div><!--modpack_content -->
@@ -118,7 +119,7 @@ if(isset($_POST['add_daily_note'])){
             </div>
           </dialog>        
 
-          <dialog id = modal_new_base>                         
+          <dialog id = "modal_new_base">                         
           <div class="new_base_inner_layer">
               <input type="text" name="base_name" placeholder="name of the base ...." autocomplete="off">
               <textarea name="base_description" placeholder="description of the base ...."></textarea>
