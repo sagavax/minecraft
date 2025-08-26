@@ -5,24 +5,25 @@ document.addEventListener("click", function(e) {
     if (!modpack_bases) return; // Exit if not within modpack_bases
     if (e.target.tagName === "BUTTON") {
         if(e.target.name==="modal_new_base") {
-                    modal_new_base.showModal();
+              modal_new_base.showModal();
         } else if (e.target.name === "edit_base") {
             const baseId = parseInt(e.target.closest(".vanilla-base-card").getAttribute("base-id"));
             const modpackId = parseInt(e.target.closest(".vanilla-base-card").getAttribute("modpack-id"));
             window.location.href = "modpack_base.php?base_id=" + baseId + "&modpack_id=" + modpackId;
         } else if (e.target.name === "delete_base") {
-            removeBase(e.target.getAttribute("base-id"));
+            const baseId = e.target.getAttribute("base-id")
+            removeBase(baseId);
         } 
     } 
 
     if(e.target.tagName==="DIV") {
         if(e.target.classList.contains("base_description_card")) {
-            console.log("focus description");
+            //console.log("focus description");
         e.target.contentEditable = true;
         e.target.focus();
-            console.log(e.target);
+            //console.log(e.target);
         }  else if (e.target.classList.contains("base_name")) {
-            console.log(e.target.innerText);
+            //console.log(e.target.innerText);
         e.target.contentEditable = true;
         e.target.focus();
         }
@@ -38,7 +39,7 @@ document.addEventListener("focusout", function(e){
             const baseDescription = e.target.innerText;
 
             modpackBaseDescriptionUpdate(baseId, baseDescription);
-            console.log("lost focus description"+e.target.innerText);
+            //console.log("lost focus description"+e.target.innerText);
         e.target.contentEditable = false;
         }  else if (e.target.classList.contains("base_name")) {
             //console.log("lost focus "+e.target.innerText);
@@ -75,7 +76,7 @@ function modpackBaseDescriptionUpdate(baseId, baseDescription) {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
          // Refresh the bases content after removal
-        
+         alert("Update successful");
       }
     };
     xhttp.open("POST", "modapck_base_description_update.php", true);
@@ -84,11 +85,11 @@ function modpackBaseDescriptionUpdate(baseId, baseDescription) {
     xhttp.send(data);
   }
 
-  function baseUpdateName(baseId, modpackId, baseName) {
+  function modpackBaseUpdateName(baseId, modpackId, baseName) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-         // Refresh the bases content after removal
+         alert("Update successful");
         
       }
     };

@@ -5,7 +5,7 @@
 
     $base_id = $_POST['base_id'];
     $modpack_id = $_POST['modpack_id'];
-    $base_description = $_POST['base_description'];
+    $base_description = mysqli_real_escape_string($link, $_POST['base_description']); //$_POST['base_description'];
 
 
     $update_base_description = "UPDATE modpack_bases SET base_description='$base_description' WHERE base_id=$base_id and modpack_id=$modpack_id";
