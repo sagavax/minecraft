@@ -2867,8 +2867,15 @@ button[name="save_description"]{
 }
 
 .infl_modpack_add {
-    background: none;
+    background: white;
     justify-content: center;
+}
+
+.infl_modpack_add button {
+    height: 100%;
+    width: 100%;
+    padding:10px;
+    font-size: 40px;
 }
 
 .infl_modpack img {
