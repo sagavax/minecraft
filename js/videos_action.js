@@ -84,7 +84,7 @@ container.addEventListener('click', function(event) {
                 sessionStorage.setItem("video_id", videoId);
                 console.log("add mod");
                 //check what typpe of game Vanilla or modded it is. 
-                if(document.querySelector(`.video[video-id='${videoId}'] .video_modpack_info button[name='video_modpack'`).innerText=="Vanilla Minecraft"){
+                if(document.querySelector(`.video[video-id='${videoId}'] .video_modpack_info button[name='change_modpack'`).innerText=="Vanilla Minecraft"){
                     alert("Vanilla Minecraft games don't have modpacks. You can't add mods to them.");
                     return;
                 } else{
