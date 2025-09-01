@@ -6,27 +6,34 @@
   $modpack_id = $_GET['modpack_id'];    
  
  //list of links with mods and their description
-echo "<dict class='modpack_mods_links_wrapper'>";
-  echo "<div class='modpack_mods_urls'>";
+//echo "<div class='modpack_mods_links_wrapper'>";
+  echo "<div class='modpack_mods_links'>";
+      echo "<div class='modpack_mods_url_add'><h4>Add new link</h4><div class='link_button_wrap'><button type='button' name='add_link' class='button small_button' title='Add new link'><i class='fa fa-plus'></i></button><button class='button small_button' name='reload_links' title='Reload links'><i class='fas fa-sync-alt'></i></button></div></div>";   
+      
+      $get_list_of_links = "SELECT link_id, link_name, modpack_mods_url from modpack_mods_links where modpack_id=$modpack_id";
+      $result = mysqli_query($link, $get_list_of_links) or die("MySQLi ERROR: ".mysqli_error($link));  
 
-          $get_list_of_links = "SELECT * from mods_links where modpack_id = $modpack_id";
-          $result = mysqli_query($link, $get_list_of_links) or die("MySQLi ERROR: ".mysqli_error($link));
-          if (mysqli_num_rows($result) === 0) {
-              echo "<div class='no_links'>No links. Whoud u like to add some? <button type='button' name='add_link' class='button small_button' title='Add to gallery'><i class='fa fa-plus'></i></button></div>";
+        if (mysqli_num_rows($result) === 0) {
+      echo "<div class='no_links'>No links. Whoud u like to add some? <button type='button' name='add_link' class='button small_button' title='Add to gallery'><i class='fa fa-plus'></i></button></div>";
+        } else {
+
+          while($row = mysqli_fetch_array($result)){ 
+          $link_id = $row['link_id'];
+          $link_name = $row['link_name'];
+          $link_url = $row['modpack_mods_url'];
+
+          echo "<div class='modpack_mods_link' data-id='$link_id'><a href='$link_url' target='_blank'>$link_url</a>";
+          if(!empty($link_name)){
+            echo "<div class='link_name'>$link_name</div>";
           } else {
-
-              echo "<div class='modpack_mods_url_add'><h4>Add new link</h4><button type='button' name='add_link' class='button small_button' title='Add to gallery'><i class='fa fa-plus'></i></button></div>";   
-              while($row = mysqli_fetch_array($result)){ 
-                  $link_id = $row['link_id'];
-                  $link_name = $row['link_name'];
-                  $link_url = $row['modpack_mods_url'];
-
-                  echo "<div class='modpack_mods_url' data-id='$link_id'><a href='$link_url' target='_blank'>$link_url</a><div class='link_name'>$link_name</div><div class='link_action'><button class='button blue_button' name='remove_link' type='button'><i class='fas fa-times'></i></button></div></div>";
-              }
+            echo "<div class='link_name'><button class='button small_button' name='add_link_name' type='button'><i class='fas fa-plus'></i></button></div>";
           }
+          echo "<div class='link_action'><button class='button blue_button' name='remove_link' type='button'><i class='fas fa-times'></i></button></div></div>";  
+        }
+      } 
 
-  echo "</div>";
-echo "</dict>";//modpack_mods_links_wrapper 
+  echo "</div>";//modpack_mods_links
+//echo "</div>";//modpack_mods_links_wrapper 
 
   echo "<div class='modpack_mod_list'>";
   

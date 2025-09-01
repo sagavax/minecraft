@@ -667,6 +667,8 @@ textarea::placeholder {
     display: flex;
     flex-direction: column;
     width:80%;
+    margin-top: 70px;
+    
 }
 
 
@@ -3318,6 +3320,7 @@ button[name="save_description"]{
 }
 
 .dialog_inner_link_container {
+    padding:10px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -4404,6 +4407,21 @@ td.zakladna_popis {
     left:20%;
     width: 60%;
     padding:10px;
+}
+
+.dialog_link_name {
+    width:40%;
+    height: 85px;
+    top:20%;
+    left:20%;
+    
+}
+
+.link_button_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap:5px;
 }
 
 .dialog_add_new_link input, .dialog_add_new_link textarea {
@@ -5637,7 +5655,7 @@ input[name="base_name"] {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    margin-top: 10px;
+    margin-top: 90px;
 }    
 
 
@@ -5656,38 +5674,39 @@ input[name="base_name"] {
 }
 
 
-.modpack_mods_urls {
+.modpack_mods_links {
+    display: flex;
+    border-radius: 6px;
     background-color: white;
     width: 100%;
-    display: flex;
-    align-items: center;  
-    margin-top: 10px;
     box-sizing: border-box;
-    align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    border-radius: 5px;
+    border-top: 1px #d1d1d1 solid;
+    border-left: 1px #d1d1d1 solid;
+    border-right: 1px #d1d1d1 solid;
 }
 
-.modpack_mods_url {
+.modpack_mods_link {
     width: 100%;
     box-sizing: border-box;
     display: flex;
-    height:50px;
-    padding-left: 10px;
-    padding-right: 10px;;
+    align-items: center;
+    height:60px;
+    background-color: white;
     border-bottom:1px #d1d1d1 solid;
     border-left:1px #d1d1d1 solid;
     border-right:1px #d1d1d1 solid;
 }
 
-.modpack_mods_url:hover {
+.modpack_mods_link:hover {
     background-color: aliceblue;
 }
 
 .modpack_mods_url_add {
     align-items: center;
     background-color: #d2f9be82;
+    background-color: white;
     width: 100%;
     box-sizing: border-box;
     display: flex;
@@ -5706,10 +5725,11 @@ input[name="base_name"] {
 
 
 
-.modpack_mods_url a {
+.modpack_mods_link a {
     display: flex;
     width: 100%;
     align-items: center;
+    margin-left : 15px;
 }
 
 
@@ -5717,10 +5737,31 @@ input[name="base_name"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 10%;
     border-left:1px #d1d1d1 solid;
     cursor: pointer;
 }
+
+.link_action {
+ display: flex;
+    width: 60px;
+}
+
+.no_links {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: white;
+}
+
+
+
+
+
+
+
+
 
 .modpack_videos {
     display: flex;

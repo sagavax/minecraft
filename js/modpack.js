@@ -13,6 +13,25 @@ const popup_mods_list_input = document.querySelector(".popup_mods_list input");
 const modpack_mod_list = document.querySelector(".modpack_mod_list");
 const modpack_mods_urls = document.querySelector(".modpack_mods_urls");
 const modal_new_base = document.getElementById('modal_new_base');
+const modal_new_link_name = document.querySelector('.dialog_link_name');
+
+
+
+modal_new_link_name.addEventListener("click", function(e) {
+    if (e.target.tagName === "BUTTON" && e.target.name==="add_link") {
+        const link_name = modal_new_link_name.querySelector('input[name="link_name"]').value;
+        
+        if (link_name === "") {
+            alert("Cannot be empty.");
+            return;
+        } 
+           modpack_id = sessionStorage.getItem("modpack_id");
+           addNewLinkName(link_name, modpackId);
+           modal_new_link_name.close();
+     } 
+})
+
+
 
 modal_new_base.addEventListener("click", function(e) {
     if (e.target.tagName === "BUTTON" && e.target.name==="add_base") {
@@ -232,6 +251,9 @@ document.querySelector(".list").addEventListener("click", function(event) {
         // add new base
         modal_new_base.showModal();
         break;
+
+    case "add_link_name":
+        modal_new_link_name.showModal();    
     default:
         // handle other buttons
         break;
@@ -677,7 +699,7 @@ function addModToModpack(mod_id, modpack_id) {
         
     }
 
-    xhttp.open("POST", "modpack_add_mod.php", true);
+    xhttp.open("POST", "modpack_mod_add.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    // data = "&video_id=" + encodeURIComponent(video_id) + "&video_comment=" + encodeURIComponent(new_note);
     var data = "mod_id=" + encodeURIComponent(mod_id) + "&modpack_id=" + encodeURIComponent(modpack_id);
@@ -820,7 +842,7 @@ function addNewLink(link){
       }
      };
    data = "link="+encodeURIComponent(link)+"&modpack_id="+encodeURIComponent(localStorage.getItem("modpack_id"));
-   xhttp.open("POST", "modpack_add_mods_link.php", true);
+   xhttp.open("POST", "modpack_mods_link_add.php", true);
    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    xhttp.send(data);
 }
@@ -887,3 +909,13 @@ function AddModtoMods(mod){
   xhttp.send(data);
 }
 
+function addNewLinkName(link_name, linkId){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       document.querySelector(".popup_mods_list main").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", `modpack_link_name_add.php?link_name=${link_name}&link_id=${linkkId}`, true);
+  xhttp.send();
+}

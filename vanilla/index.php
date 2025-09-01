@@ -1,8 +1,8 @@
 <?php 
       session_start();
      
-      include "../includes/dbconnect.php";
-      include "../includes/functions.php";
+      include ("../includes/dbconnect.php");
+      include ("../includes/functions.php");
  
 ?>
 
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
-    <script type="text/javascript" defer src="../js/dashboard.js"></script>
+    <script type="text/javascript" defer src="../js/vanila_dashboard.js"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
   </head>
   
@@ -27,12 +27,12 @@
   <?php include("../includes/header.php") ?>
       <div class="main_wrap">
         <div class="tab_menu">
-          <?php include("../includes/vamilla_menu.php"); ?>
+          <?php include("../includes/vanila_menu.php"); ?>
         </div>    
          <div class="content">
            <div class="dashboard_wrap">
               <div class="dashboard">   
-                  <div class="dashboard_header">Vanilla: Chose where you want to go:</div>
+                  <!-- <div class="dashboard_header">Vanilla: Chose where you want to go:</div> -->
                   <div class="tile_list">
                     <div class="tile" tile-id='vanilla_bases'><div class="tile_title">Bases</div><div class="tile_info"><span><?php echo GetCountBases() ?> bases, <?php echo GetCountNewestBases(); ?> the newest </span></div></div>
                     <div class="tile" tile-id='vanilla_notes'><div class="tile_title">Notes</div><div class="tile_info"><span><?php echo GetCountVanillaNotes() ?> notes, <?php echo GetCountNewestVanillaNotes(); ?> the newest </span></div></div>

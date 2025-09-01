@@ -119,6 +119,13 @@ if(isset($_POST['add_daily_note'])){
             </div>
           </dialog>        
 
+          <dialog class="dialog_link_name"><!-- add new image -->      
+            <div class="dialog_inner_link_container">
+              <input type="text" name="link_name" placeholder="Link name"><button type="button" class="button blue_button">Add</button>
+            </div>
+          </dialog>  
+
+
           <dialog id = "modal_new_base">                         
           <div class="new_base_inner_layer">
               <input type="text" name="base_name" placeholder="name of the base ...." autocomplete="off">

@@ -1,1 +1,0 @@
-INSERT into ideas_comments (idea_id,idea_comm_header, idea_comment, comment_date) VALUES (46,'',' implementoval som jednoduchu kontrolu,ze ci je to vanilla alebo nie',now())
