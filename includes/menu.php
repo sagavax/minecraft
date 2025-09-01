@@ -8,7 +8,7 @@
     <li><a href="images.php">Images</a></li>
     <li><a href="influencers.php">Influencers</a></li>
     <li><a href="tags.php">Tags</a></li>
-    <li><a href="vanilla.php">Vanilla</a></li>
+    <li><a href="vanilla\indfex.php">Vanilla</a></li>
    <!--  <li><a href="bugs.php">Bugs</a></li>
     <li><a href="ideas.php">Ideas</a></li> -->
     <li><a href="app_log.php">Logs</a></li>

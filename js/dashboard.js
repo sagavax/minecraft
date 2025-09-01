@@ -9,7 +9,11 @@
     tile.onclick = function() {
       // Your onclick logic here
       var id = tile.getAttribute("tile-id");
+      if (id == "vanilla") {
+        id = "vanilla/index";
+      }
       var url = id+".php";
+      console.log(url);
       window.location.href=url;
       console.log('Tile clicked:', tile.textContent);
     };
