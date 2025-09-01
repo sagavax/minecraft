@@ -1,7 +1,7 @@
 
 const base_wall_tabs = document.querySelector(".base_wall_tabs");
-const base_info = document.getElementById("basic_base_info");
-const coords = document.getElementById("base_location");
+const base_info = document.querySelector(".basic_base_info");
+const coords = document.querySelector(".base_location");
 const ideas_container = document.querySelector('#ideas');
 const images_container = document.querySelector('#images');
 const notes_container = document.querySelector('#notes');

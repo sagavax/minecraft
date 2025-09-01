@@ -6,5 +6,5 @@
     <li><a href="vanilla_notes.php">Notes</a></li>
     <li><a href="vanilla_tasks.php">Tasks</a></li>
     <li><a href="vanilla_videos.php">Videos</a></li>
-    <li><a href="vanilla.php">Back</a></li>
+    <li><a href="index.php">Back</a></li>
 </ul>

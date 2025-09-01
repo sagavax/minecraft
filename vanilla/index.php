@@ -16,7 +16,7 @@
     <title>Minecraft IS</title>
     <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="../css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/../css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
     <script type="text/javascript" defer src="../js/dashboard.js"></script>
@@ -27,7 +27,7 @@
   <?php include("../includes/header.php") ?>
       <div class="main_wrap">
         <div class="tab_menu">
-          <?php include("../includes/menu.php"); ?>
+          <?php include("../includes/vamilla_menu.php"); ?>
         </div>    
          <div class="content">
            <div class="dashboard_wrap">

@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="../css/style.css?<?php echo time(); ?>">
     
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1//css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="../js/vanila_base.js" defer></script>
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -41,7 +41,7 @@
 <?php include("../includes/header.php") ?> 
     <div class="main_wrap">
          <div class="tab_menu">
-             <?php include("../includes/menu.php"); ?>
+             <?php include("../includes/vanila_menu.php"); ?>
          </div>
 
          <div class="content">
@@ -53,31 +53,37 @@
                         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
                         $row = mysqli_fetch_array($result);    
                     ?>
-                        <div id="basic_base_info">
+
+                     <div class="basic_base_info">
+                            <h3>Base info:</h3>
                             <!--<input type="hidden" name="base_id" value="<?php echo $row['base_id']; ?>">-->
                             <input name="base_name" type="text" placeholder="name your base..." value="<?php echo $row['base_name']; ?>">
                             <title>Vanila base - <?php echo $row['base_name']; ?> </title>
                             <textarea name="description" placeholder="Describe your base somehow..."><?php echo $row['base_description']?></textarea>
-                        </div>    
-                        <div id="base_location">
-                            <div id="base_outworld_location"><h4>Base location:</h4>
+                        </div><!-- basic base info -->  
+
+                        <div class="base_location">
+                            <div id="base_outworld_location"><h4>Base location overworld:</h4>
                                 <div class="base_coord_wrap">
                                     <div class="base_coord" ><span>X:</span><input type="number" placeholder="X" value="<?php echo $row['X']; ?>" name="outworld_z" autocomplete="off"></div>
                                     <div class="base_coord"><span>Y:</span><input type="number" placeholder="Y" value="<?php echo $row['Y']; ?>" name="outworld_z" autocompletee="off"></div>
                                     <div class="base_coord"><span>Z:</span><input type="number" placeholder="Z" value="<?php echo $row['Z']; ?>" name="outworld_z" autocomplete="off"></div>
-                                </div>
+                                </div><!-- base coord wrap -->
                             </div><!-- base outworld location -->
+
                             <div id="base_nether_location"><h4>Base nether location:</h4>
-                            <div class="base_coord_wrap">    
-                                <div class="base_coord"><span>X:</span><input type="number" placeholder="X" value="<?php echo $row['nether_X']; ?>" name="nether_x" name="nether_x" autocomplete="off"></div>
-                                <div class="base_coord"><span>Y:</span><input type="number" placeholder="Y" value="<?php echo $row['nether_Y']; ?>" name="nether_y" name="nether_y" autocomplete="off"></div>
-                                <div class="base_coord"><span>Z:</span><input type="number" placeholder="Z" value="<?php echo $row['nether_Z']; ?>"  name="nether_z" name="nether_z" autocomplete="off"></div>
-                                </div>  
+                                <div class="base_coord_wrap">    
+                                    <div class="base_coord"><span>X:</span><input type="number" placeholder="X" value="<?php echo $row['nether_X']; ?>" name="nether_x" name="nether_x" autocomplete="off"></div>
+                                    <div class="base_coord"><span>Y:</span><input type="number" placeholder="Y" value="<?php echo $row['nether_Y']; ?>" name="nether_y" name="nether_y" autocomplete="off"></div>
+                                    <div class="base_coord"><span>Z:</span><input type="number" placeholder="Z" value="<?php echo $row['nether_Z']; ?>"  name="nether_z" name="nether_z" autocomplete="off"></div>
+                                    </div><!-- base coord wrap -->  
                             </div><!-- base netherlocation -->
-                        </div><!-- base location-->    
-                        <div class="base_action"><a class="button" href="vanilla_bases.php">Back</a></div>
-                    </form>
-                 </div><!-- add new base -->
+                        </div><!-- base location-->   
+                       
+                         <div class="base_action"><a class="button" href="vanilla_bases.php">Back</a></div>
+
+                </div><!-- base -->    
+
                  <div class="base_wall">
                      <div class="base_wall_tabs">
                          <button data-tab="Notes" class="button small_button">Notes</button>
