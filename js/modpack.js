@@ -14,8 +14,13 @@ const modpack_mod_list = document.querySelector(".modpack_mod_list");
 const modpack_mods_urls = document.querySelector(".modpack_mods_urls");
 const modal_new_base = document.getElementById('modal_new_base');
 const modal_new_link_name = document.querySelector('.dialog_link_name');
+const input_search_mod = document.querySelector('input[name="search_mods"]');
 
 
+
+input_search_mod.addEventListener("input", function(event) {
+    searchMod(input_search_mod.value.trim())
+});
 
 modal_new_link_name.addEventListener("click", function(e) {
     if (e.target.tagName === "BUTTON" && e.target.name==="save_link_name") {
@@ -264,9 +269,19 @@ document.querySelector(".list").addEventListener("click", function(event) {
         break;
 
     case "add_link_name":
-        linkId = event.target.closest(".modpack_mods_link").getAttribute("link-id");
+        const linkId = event.target.closest(".modpack_mods_link").getAttribute("link-id");
         sessionStorage.setItem("link_id", linkId);
-        modal_new_link_name.showModal();    
+        modal_new_link_name.showModal(); 
+        
+    case "remove_mod_from_modpack":
+        //remove mod from modpack
+        const modId = event.target.getAttribute("data-id");
+        const modpackId = sessionStorage.getItem("modpack_id");
+        event.target.remove();
+        alert("remove mod from modpack");
+        //removeModFromModpack(modId, modpackId);
+        break;
+
     default:
         // handle other buttons
         break;
@@ -946,4 +961,17 @@ function reloadModLinks(modpackId){
   };
   xhttp.open("GET", `modpack_mods_links_reload.php?modpack_id=${modpackId}`, true);
   xhttp.send();
+}
+
+function removeModFromModpack(modId,modpackId){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       alert("Mod removed from modpack");
+    }
+  };
+  xhttp.open("POST", `modpack_mod_remove.php?`, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  const data = "mod_id="+encodeURIComponent(modId)+"&modpack_id="+encodeURIComponent(modpackId);
+  xhttp.send(data);
 }

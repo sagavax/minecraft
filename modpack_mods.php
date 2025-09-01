@@ -40,11 +40,13 @@ echo "<div class='modlist_mods_title'><h3>Mods for the modpack ".GetModPackName(
 
   echo "</div>";//modpack_mods_links_wrap
 
+
+  echo "<input type='text' name='search_mods' placeholder='Search mods by name....' autocomplete='off'>";
+
   echo "<div class='modpack_mod_list'>";
   
-    //echo "<div class='modlist_mods_title'><h3>List of mod for the modpack ".GetModPackName($modpack_id)."</h3></div>";
-        $sql="SELECT a.mod_id, a.modpack_id, b.cat_name from modpack_mods a, mods b where a.mod_id = b.cat_id and a.modpack_id=$modpack_id and a.mod_id order by cat_name ASC";
-            $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+        $get_mods="SELECT a.mod_id, a.modpack_id, b.cat_name from modpack_mods a, mods b where a.mod_id = b.cat_id and a.modpack_id=$modpack_id and a.mod_id order by cat_name ASC";
+            $result = mysqli_query($link, $get_mods) or die("MySQLi ERROR: ".mysqli_error($link));
             while($row = mysqli_fetch_array($result)){ 
             $mod_id = $row['mod_id'];
             $mod_name = $row['cat_name'];
