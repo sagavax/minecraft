@@ -1,5 +1,5 @@
-<?php include(include "../includes/dbconnect.php");
-      include ("includes/functions.php");
+<?php include("../includes/dbconnect.php");
+      include ("../includes/functions.php");
 
 
 
@@ -35,7 +35,7 @@
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="text/javascript" src="../js/vanilla_notes.js" defer></script>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 
     <body>
       <?php include("../includes/header.php") ?>

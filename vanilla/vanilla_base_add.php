@@ -1,5 +1,5 @@
-<?php include(include "../includes/dbconnect.php");
-      include ("includes/functions.php");
+<?php include("../includes/dbconnect.php");
+      include ("../includes/functions.php");
       header("Access-Control-Allow-Origin: *");
 
 if(isset($_POST['return_to_vanilla'])){
@@ -42,7 +42,7 @@ if(isset($_POST['return_to_vanilla'])){
     <link rel="stylesheet" href="../css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/../css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 </head>
 <body>
 <?php include("../includes/header.php") ?> 

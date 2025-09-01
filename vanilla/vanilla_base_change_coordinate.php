@@ -1,6 +1,6 @@
 <?php
 
-	include(include "../includes/dbconnect.php");
+	include("../includes/dbconnect.php");
 
 $location = $_POST['location'];
 $base_id = $_POST['base_id'];

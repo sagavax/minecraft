@@ -1,5 +1,5 @@
 <?php
-include(include "../includes/dbconnect.php");
+include("../includes/dbconnect.php");
 $base_id = $_GET['base_id'];
 $sql = "SELECT * from vanila_base_notes WHERE base_id = $base_id ORDER BY note_id  DESC";
 $result = mysqli_query($link, $sql) or die("MySQLi ERROR: " . mysqli_error($link));

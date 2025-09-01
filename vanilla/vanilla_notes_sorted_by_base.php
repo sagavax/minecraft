@@ -1,6 +1,6 @@
   <?php
 
-      include(include "../includes/dbconnect.php");
+      include("../includes/dbconnect.php");
       include("../includes/functions.php");
 
       $base_id = $_GET['base_id'];

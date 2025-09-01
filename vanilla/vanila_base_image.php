@@ -1,6 +1,6 @@
 <?php 
 
-	include(include "../includes/dbconnect.php");
+	include("../includes/dbconnect.php");
 
 	$image_id = $_GET['image_id'];
 

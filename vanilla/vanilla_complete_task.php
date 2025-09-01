@@ -1,5 +1,5 @@
-<?php include(include "../includes/dbconnect.php");
-      include ("includes/functions.php");
+<?php include("../includes/dbconnect.php");
+      include ("../includes/functions.php");
 
 
       $task_id = $_GET["task_id"];

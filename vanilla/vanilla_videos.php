@@ -50,7 +50,7 @@
     <script defer src="./../js/videos_action.js"></script>
     <script defer src="./../js/video_get_yt_name.js"></script>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
   </head>
 
   <body>

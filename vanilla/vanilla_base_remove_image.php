@@ -1,5 +1,5 @@
 <?php
-	include(include "../includes/dbconnect.php");
+	include("../includes/dbconnect.php");
 
 	$image_id = $_POST['image_id'];
 	$base_id = $_POST['base_id'];

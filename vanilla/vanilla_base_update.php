@@ -1,6 +1,6 @@
 <?php 
-      include(include "../includes/dbconnect.php");
-      include ("includes/functions.php");
+      include("../includes/dbconnect.php");
+      include ("../includes/functions.php");
 
  if(isset($_POST['update_base'])){
     $base_id = $_POST['base_id']; 

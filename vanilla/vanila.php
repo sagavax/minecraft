@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="../css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/../css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
     <script defer src="../js/app_event_tracker.js?<?php echo time() ?>"></script>
   </head>
 

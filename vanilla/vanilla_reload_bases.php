@@ -1,6 +1,6 @@
 <?php
 
-include(include "../includes/dbconnect.php");
+include("../includes/dbconnect.php");
 include("../includes/functions.php");
 
 $reload_bases = "SELECT * from vanila_bases ORDER BY base_id ASC";
