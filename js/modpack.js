@@ -18,15 +18,15 @@ const modal_new_link_name = document.querySelector('.dialog_link_name');
 
 
 modal_new_link_name.addEventListener("click", function(e) {
-    if (e.target.tagName === "BUTTON" && e.target.name==="add_link") {
+    if (e.target.tagName === "BUTTON" && e.target.name==="save_link_name") {
         const link_name = modal_new_link_name.querySelector('input[name="link_name"]').value;
         
         if (link_name === "") {
             alert("Cannot be empty.");
             return;
         } 
-           modpack_id = sessionStorage.getItem("modpack_id");
-           addNewLinkName(link_name, modpackId);
+           const linkId = sessionStorage.getItem("link_id");
+           addNewLinkName(link_name, linkId);
            modal_new_link_name.close();
      } 
 })
@@ -244,8 +244,12 @@ document.querySelector(".list").addEventListener("click", function(event) {
         break;
 
      case "reload_mods":
-        const modpackId = sessionStorage.getItem("modpack_id");
-        reloadMods(modpackId);   
+        reloadMods(sessionStorage.getItem("modpack_id"));   
+        break;
+
+     case "reload_links":
+        reloadModLinks(sessionStorage.getItem("modpack_id"));   
+        break;
 
      case "add_base":
         // add new base
@@ -253,6 +257,8 @@ document.querySelector(".list").addEventListener("click", function(event) {
         break;
 
     case "add_link_name":
+        linkId = event.target.closest(".modpack_mods_link").getAttribute("link-id");
+        sessionStorage.setItem("link_id", linkId);
         modal_new_link_name.showModal();    
     default:
         // handle other buttons
@@ -696,7 +702,7 @@ function hide_popup() {
 function addModToModpack(mod_id, modpack_id) {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
-        
+        document.querySelector(".popup_mods_list input").value = "";
     }
 
     xhttp.open("POST", "modpack_mod_add.php", true);
@@ -916,6 +922,21 @@ function addNewLinkName(link_name, linkId){
        document.querySelector(".popup_mods_list main").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", `modpack_link_name_add.php?link_name=${link_name}&link_id=${linkkId}`, true);
+  xhttp.open("POSt", `modpack_link_name_add.php`, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  data = "link_name="+encodeURIComponent(link_name)+"&link_id="+encodeURIComponent(linkId);
+  xhttp.send(data);
+}
+
+
+function reloadModLinks(modpackId){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       document.querySelector(".modpack_mods_links").innerHTML = this.responseText;
+       alert("Links reloaded");
+    }
+  };
+  xhttp.open("GET", `modpack_mods_links_reload.php?modpack_id=${modpackId}`, true);
   xhttp.send();
 }

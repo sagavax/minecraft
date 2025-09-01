@@ -5669,12 +5669,12 @@ input[name="base_name"] {
 }
 
 
-.modpack_mods_links_wrapper {
-    margin-bottom: 30px;
+.modpack_mods_links {
+    
 }
 
 
-.modpack_mods_links {
+.modpack_mods_links_wrap {
     display: flex;
     border-radius: 6px;
     background-color: white;
@@ -5685,6 +5685,7 @@ input[name="base_name"] {
     border-top: 1px #d1d1d1 solid;
     border-left: 1px #d1d1d1 solid;
     border-right: 1px #d1d1d1 solid;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1.5px 3px rgba(0,0,0,0.06);
 }
 
 .modpack_mods_link {
@@ -5695,8 +5696,6 @@ input[name="base_name"] {
     height:60px;
     background-color: white;
     border-bottom:1px #d1d1d1 solid;
-    border-left:1px #d1d1d1 solid;
-    border-right:1px #d1d1d1 solid;
 }
 
 .modpack_mods_link:hover {
@@ -5740,6 +5739,16 @@ input[name="base_name"] {
     border-left:1px #d1d1d1 solid;
     cursor: pointer;
 }
+
+.link_name {
+    min-width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding-left: 10px;
+}   
+
 
 .link_action {
  display: flex;

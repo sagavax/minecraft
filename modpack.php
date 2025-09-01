@@ -121,7 +121,7 @@ if(isset($_POST['add_daily_note'])){
 
           <dialog class="dialog_link_name"><!-- add new image -->      
             <div class="dialog_inner_link_container">
-              <input type="text" name="link_name" placeholder="Link name"><button type="button" class="button blue_button">Add</button>
+              <input type="text" name="link_name" placeholder="Link name" autocomplete="off"><button type="button" class="button blue_button" name="save_link_name">Add</button>
             </div>
           </dialog>  
 
