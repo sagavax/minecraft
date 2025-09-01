@@ -116,6 +116,13 @@ popup_mods_list.addEventListener("click", function(event) {
             modID = event.target.getAttribute("data-id")
             modpackId = sessionStorage.getItem("modpack_id");
             modName = event.target.innerText;
+
+            //ceck if mod is already in modpack
+            if(document.querySelector(`.modpack_mod_list button[data-id="${modID}"]`)){
+                alert("Mod is already in modpack");
+                return;
+            }
+
             addModToModpack(event.target.getAttribute("data-id"),modpackId);
 
             const addButton = "document.querySelector(`.modpack_mod_list button[name='add_mods']`)";
