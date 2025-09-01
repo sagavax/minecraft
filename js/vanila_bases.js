@@ -6,26 +6,27 @@ const tab_view = document.querySelector(".tab_view");
 
 
 tab_view.addEventListener("click", (e) => {
-    if (event.target.tagName == "BUTTON") {
-        if (e.target.name==="reload_bases") {
-        console.log("reload bases");
-        reloadBases();
-    } else if ( e.target.name==="show_list") {
-        console.log("list");
-        document.querySelector("#vanilla_bases").style.flexDirection = "column";
-        showBasesList();
-    } else if (e.target.name==="show_grid") {
-        console.log("grid");
-        document.querySelector("#vanilla_bases").style.justifyContent = "center";
-        document.querySelector("#vanilla_bases").style.display = "flex";
-        document.querySelector("#vanilla_bases").style.flexDirection = "row";
-        document.querySelector("#vanilla_bases").style.flexWrap = "wrap";
-        document.querySelector("#vanilla_bases").style.gap = "10px";
-        showBasesGrid();
-    }
+    if (e.target.tagName === "BUTTON") {
+        switch (e.target.name) {
+            case "reload_bases":
+                console.log("reload bases");
+                reloadBases();
+                break;
+
+            case "show_list":
+                showBasesList();
+                break;
+
+            case "show_grid":
+                showBasesGrid();
+                break;
+
+            case "add_new_base":
+                modal_new_base.showModal();
+                break;
+        }
     }
 });
-
 
 
 search_wrap_input.addEventListener("keyup", () => {
@@ -94,7 +95,7 @@ vanilla_bases.addEventListener("click", function(e) {
         deleteBase(baseId);
     } else if (e.target.tagName === "BUTTON" && e.target.name==="edit_base") {
         console.log(e.target);
-        const parent = target.closest(".vanilla-base, .vanilla-base-card");
+        const parent = e.target.closest(".vanilla-base, .vanilla-base-card");
         if(parent){ {
             const baseId = parent.getAttribute("base-id");
             editBase(baseId);    
@@ -227,6 +228,8 @@ function addNewBase(base_name, base_description, over_x, over_y, over_z) {
 
 
 function showBasesList(){
+    console.log("list");
+    document.querySelector("#vanilla_bases").style.flexDirection = "column";
     const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
             var bases = document.getElementById("vanilla_bases");
@@ -237,6 +240,12 @@ function showBasesList(){
 }
 
 function showBasesGrid(){
+     console.log("grid");
+        document.querySelector("#vanilla_bases").style.justifyContent = "center";
+        document.querySelector("#vanilla_bases").style.display = "flex";
+        document.querySelector("#vanilla_bases").style.flexDirection = "row";
+        document.querySelector("#vanilla_bases").style.flexWrap = "wrap";
+        document.querySelector("#vanilla_bases").style.gap = "10px";
     const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
             var bases = document.getElementById("vanilla_bases");

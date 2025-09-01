@@ -4810,6 +4810,7 @@ td.zakladna_popis {
 
 #vanilla_bases,.modpack_bases {
     display: flex;
+    flex-direction: column;
     gap:10px;
 }
 

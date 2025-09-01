@@ -160,7 +160,7 @@ function showTab(tabName) {
     //base_ideas_list
     const tabs = ["notes","tasks", "ideas", "images"];
     tabs.forEach(tab => {
-        console.log(document.querySelector(".base_"+tab+"_list"));
+        //console.log(document.querySelector(".base_"+tab+"_list"));
         document.getElementById(tab).style.display = "none";
        
     });
