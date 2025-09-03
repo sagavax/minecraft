@@ -862,20 +862,24 @@ textarea::placeholder {
     background: #eff3f4;
 }
 
-.image_description {
+/* .image_description {
     background: #fff;
     box-sizing: border-box;
     padding: 10px 0px 10px 0px;
     margin-bottom: 10px;
     position: relative;
-}
+} */
 
-.image_description:empty::before {
+.image_description:not(:empty)::before,.image_description:not(:empty):not(:focus):before  {
   content: attr(data-placeholder);
   color: #aaa;
-  pointer-events: none;
-  position: absolute;
+  pointer-events:none; position:absolute
 }
+
+/* .base_description:empty:not(:focus):before, .base_description_card:empty:not(:focus):before {
+	content: attr(data-placeholder);
+  color: #999999;
+} */
 
 
 button[name="save_description"]{
@@ -1009,6 +1013,7 @@ button[name="save_description"]{
     border-radius: 4px;
     padding: 15px;
     min-height:100px;
+    flex-wrap: wrap;
 }
 
 .image_tags {
@@ -1075,6 +1080,10 @@ button[name="save_description"]{
     justify-content: center;
     border: 1px #d1d1d1 solid;
     border-radius: 4px
+}
+
+.no_gallery_found {
+    margin-top: 0px;
 }
 
 .no_base {
@@ -1498,7 +1507,7 @@ button[name="save_description"]{
     height:35px;
 } 
 
-.video_action button[name="delete_video"]:hover {
+.video_action button[name="delete_video"]:hover, button[name="remove_from_gallery"]:hover {
   background:red;
 }
 

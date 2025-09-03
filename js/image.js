@@ -9,13 +9,17 @@ const picture_modpacks = document.querySelector(".picture_modpacks");
 const modal_change_modpack = document.querySelector(".modal_change_modpack"); 
 const modal_change_gallery = document.querySelector(".modal_change_gallery");
 const modal_change_gallery_input = document.querySelector(".modal_change_gallery input");
+const modal_change_gallery_close_button = document.querySelector(".modal_change_gallery button[name='close_gallery_modal']");
 //
 sessionStorage.setItem("picture_id",imageId);
 
-
+modal_change_gallery_close_button.addEventListener("click", function(event){
+  document.querySelector(".modal_change_gallery").close();
+})
 
 image_description.addEventListener("keyup", function(event){
     if(document.querySelector(".image_description").innerText.length>0){
+     console.log(document.querySelector(".image_description").innerText.length);  
      showSaveDescriptionButton();
      }
   })
@@ -54,7 +58,10 @@ modal_change_gallery.addEventListener("click", function(event) {
      document.querySelector(".modal_change_gallery").close();
    } else if (event.target.name==="create_gallery"){
       createNewGallery();
-    } 
+    } else if (event.target.name==="remove_from_gallery"){
+      const imageId = sessionStorage.getItem("picture_id");
+      removeImageFromGallery(imageId);
+    }
 })
 
 modal_change_gallery_input .addEventListener("keyup", function(event){
@@ -540,6 +547,21 @@ function reloadGalleries() {
 }
 
 
+function deleteGallery(galleryId) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          ShowMessage("Gallery deleted successfully!");
+          reloadGalleries();
+      }
+  };
+  var data = "gallery_id=" + galleryId;
+  xhttp.open("POST", "gallery_delete.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
+
+
 function checkIfGalleryExist(galleryName) {
   if (!galleryName) return false;
 
@@ -553,4 +575,20 @@ function checkIfGalleryExist(galleryName) {
     }
   }
   return false;
+}
+
+
+function removeImageFromGallery(imageId) {
+  var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".modal_change_gallery").close(); //modal_change_gallery
+          ShowMessage("Image has been removed from gallery successfully!");
+          //replace button with gallery name to no galler
+      }
+  };
+  var data = "image_id=" + imageId;
+  xhttp.open("POST", "picture_remove_from_gallery.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
 }

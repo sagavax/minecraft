@@ -55,7 +55,7 @@ function GetImageGallery($image_id) {
 	$row = mysqli_fetch_array($result);
 
 	if(mysqli_num_rows($result) == 0) {
-		return "<button type='button' name='change_gallery' class='button small_button' title='Add to gallery'><i class='fa fa-image'></i></button>";
+		return "<button type='button' name='change_gallery' class='button small_button' title='Add to gallery'>Add to gallery <i class='fa fa-plus'></i></button>";
 	} else {
 		return "<button type='button' name='change_gallery' gallery-id='" . $row['gallery_id'] . "' class='button small_button'>" . htmlspecialchars($row['gallery_name']) . "</button>";
 	}
@@ -84,9 +84,10 @@ function GetAllImageGalleries(){
 		echo "<div class='no_gallery' gallery-id='0'>No galleries</div>";
 	} else {
 		while($row = mysqli_fetch_array($result)){
-		$gallery .= '<button class="button small_button jade_button" name="gallery" gallery-id="'.$row['gallery_id'].'">'.$row['gallery_name'].'<span>('.GetCountImagesInGallery($row['gallery_id']).')</span> </button>';
+			$gallery_name = $row['gallery_name'];
+		$gallery .= '<button class="button small_button jade_button" name="gallery" gallery-id="'.$row['gallery_id'].'">'.$gallery_name.'</button>';
 	}
-		
+		$gallery .= '<button class="button small_button jade_button" name="remove_from_gallery"><i class="fa fa-times"></i></button>';
 	}
 	echo $gallery;
 }
