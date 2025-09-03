@@ -48,7 +48,7 @@
                           <!-- <div class="tile" tile-id='bugs'><div class='tile_title'>Bug / error reporting</div><div class="tile_info"><span><?php echo GetCountBugs();?> bug(s)</span></div></div>
                           <div class="tile" tile-id='ideas'><div class='tile_title'>Ideas</div><div class="tile_info"><span><?php echo GetCountIdeas();?> idea(s)</span></div></div> -->
                           <div class="tile" tile-id='app_log'><div class='tile_title'>Log</div><div class="tile_info"><span><?php echo GetCountLogRecords();?> records(s)</span></div></div>
-                          <!-- <div class="tile" tile-id='maintenance'><div class='tile_title'>Maintenance</div></div> -->
+                          <div class="tile" tile-id='admin'><div class='tile_title'>Administration</div></div>
                         </div><!-- tile list -->
                       
                                   

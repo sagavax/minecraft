@@ -39,6 +39,7 @@
                           <div class="tile" tile-id='bugs'><div class='tile_title'>Bugs</div><div class="tile_info"><span><?php echo GetCountBugs()?> bugs</div></div>
                           <div class="tile" tile-id='app_log'><div class='tile_title'>Log</div><div class="tile_info"><span><?php echo GetCountLogRecords();?> records(s)</span></div></div>
                           <div class="tile" tile-id='maintenance'><div class='tile_title'>Maintenance</div></div>
+                          <div class="tile" tile-id='settings'><div class='tile_title'>Settings</div></div>
                         </div><!-- tile list -->
                     </div><!-- dashboard -->  
                 </div><!--wrap-->    

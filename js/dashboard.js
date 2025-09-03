@@ -11,6 +11,8 @@
       var id = tile.getAttribute("tile-id");
       if (id == "vanilla") {
         id = "vanilla/index";
+      } else if (id == "admin") {
+        id = "administration/index";
       }
       var url = id+".php";
       console.log(url);
