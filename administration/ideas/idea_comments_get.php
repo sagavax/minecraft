@@ -1,6 +1,7 @@
 <?php
-    include("includes/dbconnect.php");
-
+     include "../../includes/dbconnect.php";
+      include "../../includes/functions.php";
+     
     $idea_id  =  $_POST['idea_id'];
 
     $get = "SELECT a.comm_id, a.idea_id, a.idea_comm_header, a.idea_comment, a.comment_date, b.is_applied from ideas_comments a, ideas b WHERE a.idea_id=$idea_id and b.idea_id=a.idea_id";

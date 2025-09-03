@@ -1,9 +1,7 @@
-<?php 
-      include "../../includes/dbconnect.php";
-      include "../../includes/functions.php";
-     
+<?php include "includes/dbconnect.php";
+      include "includes/functions.php";
       session_start();
-/* 
+
 
      if(isset($_POST['save_idea_comment'])){
         $comment_header = $_POST['idea_comment_header'];
@@ -29,7 +27,7 @@
     
          echo "<script>message('Comment deleted','success')</script>";
       }
- */
+
 ?>
 
 
@@ -42,19 +40,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Minecraft IS</title>
-    <link rel="stylesheet" href="../../css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
-    <script type="text/javascript" src="../../js/idea.js?<?php echo time(); ?>" defer></script>  <!-- this file contains functions for like, comment, apply -->
-    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
-    
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <style type="text/css">
+    </style>
+
   </head>
   <body>
-        <?php include("../../includes/header.php") ?>   
+        <?php include("includes/header.php") ?>   
       <div class="main_wrap">
       <div class="tab_menu">
-          <?php include("../../includes/menu.php"); ?>
+          <?php include("includes/menu.php"); ?>
         </div>    
         <div class="main_wrap">
          <div class="content">
@@ -64,7 +63,7 @@
               <div class="list">
                
                   <?php
-                        $idea_id = $_GET['idea_id'];
+                        $idea_id = $_SESSION['idea_id'];
                         $is_applied = $_SESSION['is_applied'];
 
                         $get_idea = "SELECT * from ideas WHERE idea_id =$idea_id";
@@ -108,7 +107,7 @@
                                     $comm_text = $row_comment['idea_comment'];
                                     $comm_date = $row_comment['comment_date'];
 
-                                    echo "<div class='idea_comment' data-comment-id=$comm_id>";
+                                    echo "<div class='idea_comment'>";
                                         echo "<div class='connector-line'></div>";
                                         echo "<div class='idea_top_banner'></div>";
                                         
@@ -116,16 +115,16 @@
                                             echo "<div class='idea_comm_title'>$comm_title</div>";    
                                         }
                                         echo "<div class='idea_comm_text'>$comm_text</div>";
-                                        echo "<div class='idea_comm_action'>";
+                                        echo "<div class='idea_comm_action'><form action='' method='post'><input type='hidden' name='comm_id' value=$comm_id>";
 
                                         if ($is_applied == 1) {
                                                   // If $is_disabled is 1, add the disabled attribute to the button
-                                                  echo "<button type='button' name='delete_comment' class='button small_button' disabled><i class='fa fa-times'></i></button>";
+                                                  echo "<button type='submit' name='delete_comm' class='button small_button' disabled><i class='fa fa-times'></i></button>";
                                               } else {
                                                   // If $is_disabled is not 1, do not add the disabled attribute
-                                                  echo "<button type='button' name='delete_comment' class='button small_button'><i class='fa fa-times'></i></button>";
+                                                  echo "<button type='submit' name='delete_comm' class='button small_button'><i class='fa fa-times'></i></button>";
                                               }
-                                              echo "</div>";
+                                              echo "</form></div>";
                                     echo "</div>";
                                  }   
                               ?>  
@@ -133,7 +132,7 @@
                               
                              <div class="idea_comment_new">
                                 <h4>Add a comment</h4>
-                                
+                                <form action="idea_save_comment.php" method="post">
                                 <input type="text" name="idea_comment_header" autocomplete="off" placeholder="type title here">
                                 <textarea name="idea_comment" placeholder="type comment here..."></textarea>
                                 
@@ -147,7 +146,7 @@
                                   ?>  
                                   
                                 </div>
-                            
+                            </form>   
                         </div><!--idea comment -->
                     </div><!-- idea comment list-->    
                 </div><!-- list-->

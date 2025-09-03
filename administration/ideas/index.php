@@ -1,56 +1,7 @@
-<?php include "includes/dbconnect.php";
-      include "includes/functions.php";
+<?php
+      include "../../includes/dbconnect.php";
+      include "../../includes/functions.php";
       session_start();
-
-/* 
-      if(isset($_POST['to_apply'])){
-            $idea_id = $_POST['idea_id'];
-
-            $to_apply = "UPDATE ideas SET is_applied=1 WHERE idea_id=$idea_id";
-            $result=mysqli_query($link, $to_apply);
-
-          
-            $diary_text="Minecraft IS: Ideas s id $idea_id bola aplikovana do IS ";
-            $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-            $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-            
-
-            echo "<script>alert('Minecraft IS: Ideas s id $idea bola aplikovana do IS');
-              window.location.href='ideas.php';
-              </script>";
-      }
-
-
-      if(isset($_POST['see_idea_details'])){
-        $idea_id = $_POST['idea_id'];
-        $_SESSION['idea_id']=$idea_id;
-        $_SESSION['is_applied']=$is_applied;
-        header("location:idea.php");
-      }
-
-
-      if(isset($_POST['delete_idea'])){
-       
-        $idea_id = $_POST['idea_id'];
-
-        //remove idea
-        $delete_idea = "DELETE from ideas WHERE idea_id=$idea_id";
-        $result = mysqli_query($link, $delete_idea) or die("MySQLi ERROR: ".mysqli_error($link));
-
-        //remove comments
-        $delete_comments = "DELETE from ideas_comments WHERE idea_id=$idea_id";
-        $result = mysqli_query($link, $delete_comments) or die("MySQLi ERROR: ".mysqli_error($link));
-
-
-        $diary_text="Minecraft IS: Ideas s id $idea_id bola vymazana ";
-            $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-            $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-
-         echo "<script>alert('Minecraft IS: Ideas s id $idea_id vratend komentarov bola vymazana');
-              window.location.href='ideas.php';
-              </script>";
-
-      } */
 
 ?>
 
@@ -64,21 +15,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Minecraft IS</title>
-    <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="css/ideas.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/style.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/ideas.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
-    <script type="text/javascript" defer src="js/ideas.js?<?php echo time(); ?>"></script>
-    <script type="text/javascript" defer src="js/message.js"></script>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <script type="text/javascript" defer src="../../js/ideas.js?<?php echo time(); ?>"></script>
+    <script type="text/javascript" defer src="../../js/message.js"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 
   </head>
   <body>
-        <?php include("includes/header.php") ?>   
+        <?php include("../../includes/header.php") ?>   
       <div class="main_wrap">
       <div class="tab_menu">
-          <?php include("includes/menu.php"); ?>
+          <?php include("../../includes/menu.php"); ?>
         </div>    
         <div class="main_wrap">
          <div class="content">
@@ -129,6 +80,7 @@
                           $idea_text = htmlspecialchars($row['idea_text'] ?? '', ENT_QUOTES, 'UTF-8');
                           $idea_priority = htmlspecialchars($row['priority'] ?? '', ENT_QUOTES, 'UTF-8');
                           $idea_status = htmlspecialchars($row['status'] ?? '', ENT_QUOTES, 'UTF-8');
+                          //$idea_status =$row['status'];
                           $is_applied = htmlspecialchars($row['is_applied'] ?? '', ENT_QUOTES, 'UTF-8');
                           $added_date = htmlspecialchars($row['added_date'] ?? '', ENT_QUOTES, 'UTF-8');
 
@@ -142,7 +94,7 @@
                                       echo "<input type='hidden' name='is_applied' value=$is_applied>";
                                       $nr_of_comments = GetCountIdeaComments($idea_id);
                                       echo "<div class='nr_of_comments'>$nr_of_comments comment(s)</div>";
-                                      echo "<div class='idea_status'>$idea_status</div><div class='idea_priority $idea_priority'>$idea_priority</div>";
+                                      echo "<div class='idea_status'>$idea_status</div><div class='idea_priority'>$idea_priority</div>";
                                       echo "<button type='submit' name='see_idea_details' class='button small_button'><i class='fa fa-eye'></i></button>";
                                       
 

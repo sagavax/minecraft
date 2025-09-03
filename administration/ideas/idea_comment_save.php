@@ -1,5 +1,8 @@
-<?php include "includes/dbconnect.php";
-      include "includes/functions.php";
+<?php 
+
+       include "../../includes/dbconnect.php";
+      include "../../includes/functions.php";
+     
       
         $comment_header = mysqli_real_escape_string($link, $_POST['comment_title']);
         $comment = mysqli_real_escape_string($link, $_POST['comment']);
@@ -12,7 +15,7 @@
          $result=mysqli_query($link, $save_comment);
          
 	      
-        $diary_text="Minecraft IS: Bolo pridany novy kommentar k idei id <b>$idea_id</b>";
+        $diary_text="Bol pridany novy kommentar k idei id <b>$idea_id</b>";
         $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
         //echo "<script>message('Comment added','success')</script>";

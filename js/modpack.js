@@ -14,13 +14,13 @@ const modpack_mod_list = document.querySelector(".modpack_mod_list");
 const modpack_mods_urls = document.querySelector(".modpack_mods_urls");
 const modal_new_base = document.getElementById('modal_new_base');
 const modal_new_link_name = document.querySelector('.dialog_link_name');
-const input_search_mod = document.querySelector('input[name="search_mods"]');
+//const input_search_mod = document.querySelector('input[name="search_mods"]');
 
 
 
-input_search_mod.addEventListener("input", function(event) {
+/* document.querySelector('input[name="search_mods"]').addEventListener("input", function(event) {
     searchMod(input_search_mod.value.trim())
-});
+}); */
 
 modal_new_link_name.addEventListener("click", function(e) {
     if (e.target.tagName === "BUTTON" && e.target.name==="save_link_name") {
@@ -132,7 +132,7 @@ popup_mods_list.addEventListener("click", function(event) {
 
             const addButton = "document.querySelector(`.modpack_mod_list button[name='add_mods']`)";
             const modList = document.querySelector(".modpack_mod_list");
-        modList.insertAdjacentHTML("afterbegin", `<button type='button' class='button blue_button' data-id=${modID} name='remove_mod_from_modpack'>${modName}</buton>`);
+        modList.insertAdjacentHTML("afterbegin", `<button type='button' class='button blue_button' data-id=${modID} name='remove_mod_from_modpack'>${modName}</button>`);
 
             event.target.remove();
         }  
@@ -974,4 +974,16 @@ function removeModFromModpack(modId,modpackId){
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   const data = "mod_id="+encodeURIComponent(modId)+"&modpack_id="+encodeURIComponent(modpackId);
   xhttp.send(data);
+}
+
+
+function searchMod(mod_name){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       document.querySelector(".popup_mods_list main").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", `modpack_mod_search.php?mod_name=${mod_name}`, true);
+  xhttp.send();
 }

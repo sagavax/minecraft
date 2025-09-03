@@ -18,7 +18,7 @@ echo "<div class='modlist_mods_title'><h3>Mods for the modpack ".GetModPackName(
         $result = mysqli_query($link, $get_list_of_links) or die("MySQLi ERROR: ".mysqli_error($link));  
 
           if (mysqli_num_rows($result) === 0) {
-        echo "<div class='no_links'>No links. Whoud u like to add some? <button type='button' name='add_link' class='button small_button' title='Add to gallery'><i class='fa fa-plus'></i></button></div>";
+        echo "<div class='no_links'>No links. Whoud u like to add some?</div>";
           } else {
 
             while($row = mysqli_fetch_array($result)){ 

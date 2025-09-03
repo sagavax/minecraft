@@ -1,6 +1,8 @@
 <?php
 
-    include("includes/dbconnect.php");
+     include "../../includes/dbconnect.php";
+      include "../../includes/functions.php";
+     
 
 
     $comm_id = $_POST['comm_id'];

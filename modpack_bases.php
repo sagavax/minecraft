@@ -53,9 +53,10 @@
                 echo "</div>"; //base_actions_card
                 echo "</div>"; //vanilla-base-card  
             }
+             echo "<div class='vanilla-base-card'><button type='button' name='modal_new_base' class='button small_button' title='Add the base'><i class='fa fa-plus'></i></button></div>";
         }
 
-        echo "<div class='vanilla-base-card'><button type='button' name='modal_new_base' class='button small_button' title='Add the base'><i class='fa fa-plus'></i></button></div>";
+       
     ?>
 </div><!-- modpack bases -->
 

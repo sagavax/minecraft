@@ -66,11 +66,7 @@
     cursor: pointer;
     padding: 6px 12px;
     height:38px;
-}
-
-.idea_status {
     border:1px #666 solid;
-    
 }
 
 .idea_comment_new form {

@@ -48,6 +48,8 @@ ul {
     list-style: none;
 }
 
+
+
       
 #minecraft_is_info_wrap {
     /*float:left; */
@@ -214,7 +216,7 @@ dialog {
 }
 
 
-.list{
+.list, .middle_list{
     display: flex;
     flex-direction: column;
     margin: 70px auto;
@@ -1076,9 +1078,11 @@ button[name="save_description"]{
 }
 
 .no_base {
+    height:60px;
     justify-content: flex-start;
     box-sizing: border-box;
     border: 1px solid #d1d1d1;
+    padding: 5px;
 }
 
 .no_base p, .add_base p {
@@ -1089,9 +1093,19 @@ button[name="save_description"]{
     justify-content: flex-start;
     }
 
- .no_base button, .add_base button {
+ .add_base button {
     margin-right: 10px;
  }   
+
+.no_base button {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height:50px;
+    width: 50px;
+    border-radius: 5px;
+}
+
 
 .no_gallery_found {
     justify-content: flex-start;
@@ -2309,6 +2323,8 @@ button[name="save_description"]{
 }
 
 
+/* adminstration */
+
 
 
 #new_task, .new_bug, .new_idea {
@@ -2320,9 +2336,27 @@ button[name="save_description"]{
 }
 
 .new_idea form input {
+    margin-top: 10px;
+    width: 100%;
     height:40px;
+
     font-weight: bolder;
 }
+
+.new_idea form textarea {
+    margin-top: 10px;
+    width: 100%;
+    font-weight: bolder;
+}
+
+.new_idea form select {
+    margin-top: 10px;
+    width: 100%;
+    font-weight: bolder;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem
+}
+
 
 
 #task_edit,.bug_comment, .bug_comment_new, .new_idea, .idea_comment_new,.idea_comment {
@@ -4200,7 +4234,7 @@ button[name="save_description"]{
 
 .new_bug form select, .new_idea form select{
     width:100%;
-    height:35px;
+    height:45px;
     margin-top:10px;
     background: #eff3f4;
     border: 1px #d1d1d1 solid;
@@ -4871,9 +4905,10 @@ td.zakladna_popis {
     height:400px;
 }
 
-.vanilla-base-card button[name="modal_add_base"] {
+button[name="modal_new_base"] {
    height: 100%;
    font-size: 32px;
+   border-radius: 6px;
 }
 
 .base_details {

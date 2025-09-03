@@ -1,7 +1,5 @@
-<?php 
-       include "../../includes/dbconnect.php";
-      include "../../includes/functions.php";
-     
+<?php include "includes/dbconnect.php";
+      include "includes/functions.php";
                     
         $idea_id = $_POST['idea_id'];
 
