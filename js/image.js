@@ -584,6 +584,7 @@ function removeImageFromGallery(imageId) {
       if (this.readyState == 4 && this.status == 200) {
           document.querySelector(".modal_change_gallery").close(); //modal_change_gallery
           ShowMessage("Image has been removed from gallery successfully!");
+          document.querySelector(".picture_modpacks button[name='change_gallery']").innerHTML = "Add to gallery <i class='fa fa-plus'></i>";
           //replace button with gallery name to no galler
       }
   };
