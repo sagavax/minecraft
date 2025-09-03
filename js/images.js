@@ -35,9 +35,42 @@ image_galleries.addEventListener("click", function(event) {
       loadAllGalleries();
     } else if (event.target.name==="new_gallery"){
       modal_new_gallery.show();
-    } else if (event.target.name==="gallery"){
-     const galleryId = event.target.getAttribute("gallery-id");
+    } 
+  }
+  if (event.target.tagName === "DIV" && event.target.hasAttribute("gallery-id")) {
+    const galleryId = event.target.getAttribute("gallery-id");
+    sessionStorage.setItem("galery_id", galleryIdId);
+    window.location.href = "gallery.php?gallery_id="+galleryId;
+  } else if (event.target.tagName === "DIV" && event.target.classList.contains("gallery_name")) {
+    const nameEl = event.target;
+    const galleryId = nameEl.closest(".gallery_list_item").getAttribute("gallery-id");
+    const originalName = nameEl.innerText.trim();
 
+    nameEl.contentEditable = "true";
+    nameEl.focus();
+
+    nameEl.addEventListener("blur", function saveOnBlur() {
+        nameEl.contentEditable = "false";
+        nameEl.removeEventListener("blur", saveOnBlur);
+
+        const newName = nameEl.innerText.trim();
+
+        if (newName && newName !== originalName) {
+            updateGalleryName(galleryId, newName);
+        } else {
+            nameEl.innerText = originalName;
+        }
+    });
+    
+  } else if(event.target.tagName === "DIV" && event.target.classList.contains("gallery_remove")) {
+    const galleryId = event.target.closest(".gallery_list_item").getAttribute("gallery-id");
+    console.log(galleryId);
+    deleteGallery(galleryId);
+  }
+  
+
+  /* else if (event.target.name==="gallery_list_item"){
+     const galleryId = event.target.getAttribute("gallery-id");
      //loaders gallery
      const overlay = document.createElement("div");
      overlay.classList.add("overlay_white");
@@ -52,13 +85,8 @@ image_galleries.addEventListener("click", function(event) {
         document.body.removeChild(overlay);
         document.body.style.overflow = "auto";
       }, 5000);
-    }
-  }
-  if (event.target.tagName === "DIV" && event.target.hasAttribute("gallery-id")) {
-    const galleryId = event.target.getAttribute("gallery-id");
-    sessionStorage.setItem("galery_id", galleryIdId);
-    window.location.href = "gallery.php?gallery_id="+galleryId;
-  }
+    } */
+
 });
 
 
@@ -563,4 +591,56 @@ function ShowImagesByGallery(galleryId){
   };
   xhttp.open("GET", "pictures_by_gallery.php?gallery_id="+galleryId, true);
   xhttp.send();
+}
+
+
+function deleteGallery(galleryId) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          ShowMessage("Gallery has been deleted successfully!");
+          document.querySelector(".image_galleries_list .gallery_list_item").remove(); // ← tu si mazas element image_galleries_list
+          //reloadGalleries();
+      }
+  };
+  var data = "gallery_id=" + galleryId;
+  xhttp.open("POST", "gallery_delete.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
+
+function loadVanillaGalleries(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.querySelector(".image_galleries_list").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "pictures_vanilla_galleries.php", true);
+  xhttp.send();
+}
+
+function loadModpacksGalleries(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.querySelector(".image_galleries_list").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "pictures_modpacks_galleries.php", true);
+  xhttp.send();
+}
+
+
+function updateGalleryName(galleryId, galleryName){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.querySelector(".image_galleries_list").innerHTML = this.responseText;
+    }
+  };
+  var data = "gallery_id=" + galleryId + "&gallery_name=" + encodeURIComponent(galleryName);
+  xhttp.open("POST", "pictures_gallery_name_update.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
 }

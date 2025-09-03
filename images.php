@@ -69,7 +69,7 @@
         
     
         ////vlozim do wallu 
-        $diary_text="Minecraft IS: Bol pridany novy obrazok s nazvom <strong>$image_name</strong>";
+        $diary_text="Bol pridany novy obrazok s nazvom <strong>$image_name</strong>";
         $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
   
@@ -145,7 +145,15 @@
                 </div>
 
                 <div class="image_galleries_list">
-                    <?php  GetAllImageGalleries() ?>
+                    <?php  
+                    
+                    $get_gallery = "SELECT gallery_id, gallery_name FROM picture_galleries";
+                        $result = mysqli_query($link, $get_gallery) or die(mysqli_error($link));
+                        while($row = mysqli_fetch_array($result)) {
+                            echo  "<div gallery-id='" . $row['gallery_id'] . "' class='gallery_list_item button small_button'><div class='gallery_name'>" . htmlspecialchars($row['gallery_name']) . "</div><div class='gallery_remove'><i class='fa fa-times'></i></div></div>";
+                            
+                        }                                                            
+                    ?>
                  </div>   
             </div>        
 
