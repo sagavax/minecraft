@@ -107,7 +107,8 @@ mod_details.addEventListener("focusout", function(event) {
 
     if (event.target.tagName === "INPUT") {
         event.target.setAttribute("readonly", true);
-        console.log("Input element blurred with name:", event.target.name);
+        //console.log("Input element blurred with name:", event.target.name);
+        alert("Mod name updated successful");
 
         if (event.target.name === "mod_name") {
             updateModName();
@@ -116,8 +117,9 @@ mod_details.addEventListener("focusout", function(event) {
         }
     } else if (event.target.tagName === "TEXTAREA") {
         event.target.setAttribute("readonly", true);
-        console.log("Textarea element blurred");
+        //console.log("Textarea element blurred");
         updateModDescription();
+        alert("Mod description updated successful");
     }
 });
 
@@ -247,7 +249,7 @@ function updateModName() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.querySelector('input[name="mod_name"]').setAttribute("readonly", true);
-            alert("Mod name updated successful");
+
         }
     };
 
