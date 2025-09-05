@@ -286,6 +286,10 @@ document.querySelector(".list").addEventListener("click", function(event) {
         // handle other buttons
         break;
     }
+    } if(event.target.classList.contains("link_name")){
+        const linkId = event.target.closest(".modpack_mods_link").getAttribute("link-id");
+        sessionStorage.setItem("link_id", linkId);
+        modal_new_link_name.showModal();
     }
 });
 
