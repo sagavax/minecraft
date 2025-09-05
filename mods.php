@@ -82,11 +82,11 @@
                <div id="letter_list"><!--letter list -->
                    <?php 
                         foreach (range('A', 'Z') as $char) {
-                          echo "<button type='button'>$char</button>";
+                          echo "<button type='button' class='button dark_blue_button rounded_button' name='letter'>$char</button>";
 
                         }
-                          echo "<button type='button' name='all''>All</button>";
-                          echo "<button type='button' name='dupes'>Find dupes</a></li>";
+                          echo "<button type='button' class='button dark_blue_button rounded_button' name='all''>All</button>";
+                          echo "<button type='button' class='button dark_blue_button rounded_button' name='dupes'>Find dupes</a></li>";
                           ?>  
                                              
                 </div><!--letter list --> 

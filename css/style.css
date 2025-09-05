@@ -560,7 +560,9 @@ textarea::placeholder {
     margin-top: 20px;
 }
 
-#letter_list buttons
+#letter_list button {
+
+}
 
 .influencer_list {
     margin-top: 20px;
@@ -3239,6 +3241,14 @@ button[name="save_description"]{
     padding: 6px 12px;
 }
 
+.dark_blue_button {
+    background: #087EA6;
+    border: 1px solid #087EA6;
+/*     background-color: #0A8EBB;
+    border: 1px solid #0A8EBB; */
+    color: #fff;
+    padding: 6px 12px;
+}
 
 .span_mod a {
     color: #fff;

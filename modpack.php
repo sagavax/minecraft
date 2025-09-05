@@ -89,7 +89,7 @@ if(isset($_POST['add_daily_note'])){
             <div id="letter_list">
                <?php
                   foreach (range('A', 'Z') as $char) {
-                            echo "<button class='button blue_button rounded_button' name='char'>$char</button>";
+                            echo "<button class='button dark_blue_button rounded_button' name='char'>$char</button>";
                           }                            
                     ?>        
               

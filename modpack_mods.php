@@ -58,8 +58,8 @@ echo "<div class='modlist_mods_title'><h3>Mods for the modpack ".GetModPackName(
   echo "</div>";   
 
   echo "<div class='add_reload_mods'>";
-        echo "<button type='button' title='Add new mod into modpack' name='add_mods' class='button small_button blue_button'><i class='fa fa-plus'></i></button>";
-          echo "<button class='button blue_button' name='reload_mods' title='Reload mod list'><i class='fas fa-sync-alt'></i></button>";                
+        echo "<button type='button' title='Add new mod into modpack' name='add_mods' class='button small_button dark_blue_button'><i class='fa fa-plus'></i></button>";
+          echo "<button class='button dark_blue_button' name='reload_mods' title='Reload mod list'><i class='fas fa-sync-alt'></i></button>";                
   echo "</div>";
 
 ?>
