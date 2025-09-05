@@ -759,7 +759,7 @@ textarea::placeholder {
 .bug_action,
 .image_action
 {
-    width: 100%;    
+   /*  width: 100%; */    
     display: flex;
     align-items: center;
     height: 45px;
@@ -833,12 +833,7 @@ textarea::placeholder {
 .notes_action {
     /*width:20%;*/
 }
-.task_action {
-    display: flex;
-    margin-right: 0;
-    justify-content: center;
-    padding-left: 5px;
-}
+
 
 
 .picture_footer, .picture_detail_footer {
@@ -4444,8 +4439,9 @@ td.zakladna_popis {
    .task_modpacks {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     box-sizing: border-box;
+    width: 100%;
     }
 
     .task_modpacks button {

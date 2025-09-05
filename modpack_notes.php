@@ -50,10 +50,6 @@
           ?>
               <div class='modlist_mods_title'><h3><?php echo "Notes for the modpack ".GetModPackName($_GET['modpack_id']); ?></h3></div>
               
-               <div class="search_wrap">
-                <input type="text" name="search" onkeyup="search_note(this.value);" id="search_string" autocomplete="off" placeholder="search notes here"><button type="button" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
-              </div><!-- Search wrap-->
-         
             <div id="new_note">
               <form action="" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="modpack_id" value="<?php echo $_GET['modpack_id'];?>"> 
@@ -72,6 +68,11 @@
                  </div>   
               </div>  
           
+           
+              <div class="search_wrap">
+                <input type="text" name="search" onkeyup="search_note(this.value);" id="search_string" autocomplete="off" placeholder="search notes here"><button type="button" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
+              </div><!-- Search wrap-->
+           
               <div id="notes_list">
                 <?php    
                    
