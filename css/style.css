@@ -3656,7 +3656,7 @@ button[name="save_description"]{
 
 .search_wrap {
     display: flex;
-    margin-top: 30px;
+    margin-top: 60px;
     box-sizing: border-box;
     height: 55px;
     margin-bottom: 20px;
@@ -4900,9 +4900,8 @@ td.zakladna_popis {
     margin-right: 5px;
 }
 
-#vanilla_bases,.modpack_bases {
+#vanilla_bases, .modpack_bases {
     display: flex;
-    flex-direction: column;
     gap:10px;
 }
 

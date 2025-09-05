@@ -63,10 +63,10 @@
 
             </div><!-- new note -->
 
-              <div class="add_notes"> 
+              <!-- <div class="add_notes"> 
                     <button name="add_note" type="button" class="button small_button tooltip" title="New note"><i class="fa fa-plus"></i></button>              
                  </div>   
-              </div>  
+              </div>   -->
           
            
               <div class="search_wrap">

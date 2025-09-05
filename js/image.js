@@ -547,21 +547,6 @@ function reloadGalleries() {
 }
 
 
-function deleteGallery(galleryId) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          ShowMessage("Gallery deleted successfully!");
-          reloadGalleries();
-      }
-  };
-  var data = "gallery_id=" + galleryId;
-  xhttp.open("POST", "gallery_delete.php", true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send(data);
-}
-
-
 function checkIfGalleryExist(galleryName) {
   if (!galleryName) return false;
 
