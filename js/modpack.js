@@ -258,6 +258,7 @@ document.querySelector(".list").addEventListener("click", function(event) {
 
      case "reload_mods":
         reloadMods(sessionStorage.getItem("modpack_id"));   
+        
         break;
 
      case "reload_links":
@@ -718,11 +719,12 @@ function reloadMods(modpack_id){
      var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.querySelector(".popup_mods_list main").innerHTML = this.responseText;
+            document.querySelector(".modpack_mod_list").innerHTML = this.responseText;
+            alert("reloaded mods");
         }
     };
     // xhttp.open("GET", "count_comments.php?video_id=<?php echo $_GET['video_id'] ?>", true);
-    xhttp.open("GET", "modpack_reaload_mods.php", true);
+    xhttp.open("GET", "modpack_reload_mods.php?modpack_id=" + modpack_id, true);
     xhttp.send();
 }
 
