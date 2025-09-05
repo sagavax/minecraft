@@ -5718,16 +5718,24 @@ input[name="base_name"] {
 
 
 
-.toggle_regime {
+
+.toggle_regime, .add_reload_mods {
     width:100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     margin-top: 10px;
     margin-bottom: 10px;
+    gap:10px;
 }
 
-.toggle_regime button {
+.toggle_regime {
+   margin-top: 40px; 
+}
+
+
+
+.toggle_regime button, .add_reload_mods button {
     height: 45px;
     width: 75px;
     border-radius: 6px;
@@ -5748,6 +5756,11 @@ input[name="search_mods"] {
     flex-wrap: wrap;
     gap: 5px;
     margin-top: 10px;
+    background-color: white;
+    border: 1px #d1d1d1 solid;
+    border-radius: 6px;
+    padding: 10px;
+    box-sizing: border-box;
 }    
 
 

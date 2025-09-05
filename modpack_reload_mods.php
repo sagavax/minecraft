@@ -15,8 +15,6 @@ while ($row = mysqli_fetch_array($result)) {
             $mod_name = $row['cat_name'];
               echo "<button type='button' class='button blue_button' data-id=$mod_id name='modification'>$mod_name</buton>";
         } 
-
-         echo "<button type='button' title='Add new mod into modpack' name='add_mods' class='button small_button blue_button'><i class='fa fa-plus'></i></button>";
-          echo "<button class='button blue_button' name='reload_mods' title='Reload mod list'><i class='fas fa-sync-alt'></i></button>";                   
+            
 }
 ?>
