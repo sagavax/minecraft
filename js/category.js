@@ -225,6 +225,7 @@ function reloadImages() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.querySelector('textarea[name="mod_description"]').setAttribute("readonly", true);
+            alert("Mod description updated successful");
         }
     };
 
@@ -246,13 +247,14 @@ function updateModName() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.querySelector('input[name="mod_name"]').setAttribute("readonly", true);
+            alert("Mod name updated successful");
         }
     };
 
     var data = "mod_name=" + encodeURIComponent(mod_name) + 
                "&mod_id=" + encodeURIComponent(mod_id);
     
-    console.log(data); // Na ladenie
+    //console.log(data); // Na ladenie
     
     xhttp.open("POST", "category_name_update.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
