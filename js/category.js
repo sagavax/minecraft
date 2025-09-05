@@ -103,23 +103,25 @@ mod_details.addEventListener("click",function(event){
 
 
 mod_details.addEventListener("focusout", function(event) {
-    console.log("Event triggered on:", event.target);
-
+   
     if (event.target.tagName === "INPUT") {
         event.target.setAttribute("readonly", true);
         //console.log("Input element blurred with name:", event.target.name);
-        alert("Mod name updated successful");
-
+   
         if (event.target.name === "mod_name") {
+            
             updateModName();
+            alert("Updated successfully");
         } else if (event.target.name === "mod_url") {
+            
             updateModUrl();
+            alert("Updated successfully");
         }
     } else if (event.target.tagName === "TEXTAREA") {
         event.target.setAttribute("readonly", true);
         //console.log("Textarea element blurred");
         updateModDescription();
-        alert("Mod description updated successful");
+        alert("Mod description updated successfully");
     }
 });
 
@@ -183,40 +185,39 @@ function reloadImages() {
 
    function modAddVideo(){
         let urlParams = new URLSearchParams(window.location.search);
-    const mod_id = urlParams.get('mod_id');
-    const video_title= document.querySelector('input[name="video_title"]').value;
-    const video_url = document.querySelector('input[name="video_url"]').value;
-    
-    if (video_title === "" && video_url === "") {
-        alert("url or title cannot be empty");
-        return; // Zastaví ďalšie vykonávanie funkcie, ak je popis prázdny
-    }
-    
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            alert("Update successful");
-            document.querySelector('input[name="video_title"]').value="";
-            document.querySelector('input[name="video_url"]').value="";
-    
-            document.querySelector("#dialog_new_video").close();            
-            // Prípadne pridaj nejakú vizuálnu spätnú väzbu pre používateľa
-            //load noveho obrazku 
-            reloadVideos()
+        const mod_id = urlParams.get('mod_id');
+        const video_title= document.querySelector('input[name="video_title"]').value;
+        const video_url = document.querySelector('input[name="video_url"]').value;
+        
+        if (video_title === "" && video_url === "") {
+            alert("url or title cannot be empty");
+            return; // Zastaví ďalšie vykonávanie funkcie, ak je popis prázdny
         }
-    };
+        
+        var xhttp = new XMLHttpRequest();
 
-    var data = "video_title=" + encodeURIComponent(video_title) + 
-               "&video_url=" + encodeURIComponent(video_url) + 
-               "&mod_id=" + encodeURIComponent(mod_id);
-    
-    console.log(data); // Na ladenie
-    
-    xhttp.open("POST", "categories_video_update.php", true);
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send(data);
-   }
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                alert("Update successful");
+                document.querySelector('input[name="video_title"]').value="";
+                document.querySelector('input[name="video_url"]').value="";
+        
+                document.querySelector("#dialog_new_video").close();            
+                // Prípadne pridaj nejakú vizuálnu spätnú väzbu pre používateľa
+                //load noveho obrazku 
+                reloadVideos()
+            }
+        };
+
+        var data = "video_title=" + encodeURIComponent(video_title) + 
+                "&video_url=" + encodeURIComponent(video_url) + 
+                "&mod_id=" + encodeURIComponent(mod_id);
+        
+            
+        xhttp.open("POST", "categories_video_update.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(data);
+    }
 
 
   function updateModDescription() {
@@ -226,16 +227,15 @@ function reloadImages() {
     
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.querySelector('textarea[name="mod_description"]').setAttribute("readonly", true);
-            alert("Mod description updated successful");
+            //document.querySelector('textarea[name="mod_description"]').setAttribute("readonly", true);
+            
         }
     };
 
     var data = "mod_description=" + encodeURIComponent(mod_description) + 
                "&mod_id=" + encodeURIComponent(mod_id);
     
-    console.log(data); // Na ladenie
-    
+        
     xhttp.open("POST", "category_description_update.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send(data);
@@ -256,8 +256,7 @@ function updateModName() {
     var data = "mod_name=" + encodeURIComponent(mod_name) + 
                "&mod_id=" + encodeURIComponent(mod_id);
     
-    //console.log(data); // Na ladenie
-    
+       
     xhttp.open("POST", "category_name_update.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send(data);
@@ -277,8 +276,7 @@ function updateModUrl() {
     var data = "mod_url=" + encodeURIComponent(mod_url) + 
                "&mod_id=" + encodeURIComponent(mod_id);
     
-    console.log(data); // Na ladenie
-    
+      
     xhttp.open("POST", "category_url_update.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send(data);

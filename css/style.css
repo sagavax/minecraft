@@ -3235,8 +3235,10 @@ button[name="save_description"]{
 
 
 .blue_button, .blue_badge {
-     background: #0b9ed0;
-     border: 1px solid #0b9ed0;
+    /*  background: #0b9ed0;
+     border: 1px solid #0b9ed0; */
+     background-color: #0CAEE4;
+     border: 1px solid #0CAEE4;
     color: #fff;
     padding: 6px 12px;
 }
