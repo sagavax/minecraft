@@ -43,6 +43,8 @@ echo "<div class='modlist_mods_title'><h3>Mods for the modpack ".GetModPackName(
 
   echo "<input type='text' name='search_mods' placeholder='Search mods by name....' autocomplete='off'>";
 
+  echo "<div class='toggle_regime'><button class='button blue_button' name='toggle_view_remove_regime' title='Change regime'>View</button></div>";    
+
   echo "<div class='modpack_mod_list'>";
   
         $get_mods="SELECT a.mod_id, a.modpack_id, b.cat_name from modpack_mods a, mods b where a.mod_id = b.cat_id and a.modpack_id=$modpack_id and a.mod_id order by cat_name ASC";
@@ -50,7 +52,7 @@ echo "<div class='modlist_mods_title'><h3>Mods for the modpack ".GetModPackName(
             while($row = mysqli_fetch_array($result)){ 
             $mod_id = $row['mod_id'];
             $mod_name = $row['cat_name'];
-              echo "<button type='button' class='button blue_button' data-id=$mod_id name='remove_mod_from_modpack'>$mod_name</buton>";
+              echo "<button type='button' class='button blue_button' data-id=$mod_id name='modification'>$mod_name</buton>";
           
         } 
 

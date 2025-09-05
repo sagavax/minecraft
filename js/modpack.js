@@ -274,13 +274,24 @@ document.querySelector(".list").addEventListener("click", function(event) {
         sessionStorage.setItem("link_id", linkId);
         modal_new_link_name.showModal(); 
         
-    case "remove_mod_from_modpack":
+    case "modification":
         //remove mod from modpack
-        const modId = event.target.getAttribute("data-id");
-        const modpackId = sessionStorage.getItem("modpack_id");
-        event.target.remove();
-        alert("remove mod from modpack");
-        //removeModFromModpack(modId, modpackId);
+        const regime = document.querySelector(".toggle_regime button").innerHTML;
+        if(regime==="Edit"){
+            const modId = event.target.getAttribute("data-id");
+             const modpackId = sessionStorage.getItem("modpack_id");
+             event.target.remove();
+             removeModFromModpack(modId,modpackId)
+             alert("remove mod from modpack");
+        } else if (regime==="View") {
+             const modId = event.target.getAttribute("data-id");
+             console.log(modId);
+        }
+        break;
+ 
+    case "toggle_view_remove_regime":
+        // toggle view remove regime
+        event.target.innerHTML = event.target.innerHTML === "Edit" ? "View" : "Edit";
         break;
 
     default:

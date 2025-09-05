@@ -5717,7 +5717,24 @@ input[name="base_name"] {
     }
 
 
+
+.toggle_regime {
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.toggle_regime button {
+    height: 45px;
+    width: 75px;
+    border-radius: 6px;
+}
+
 input[name="search_mods"] {
+    padding: 0.75rem 1rem;
     width: 100%;
     margin-top: 80px;
     margin-bottom:10px;
@@ -5734,7 +5751,6 @@ input[name="search_mods"] {
 }    
 
 
-
 .modpack_mod_list button {
     display: flex;
     align-items: center;   
@@ -5745,7 +5761,7 @@ input[name="search_mods"] {
 
 
 .modpack_mods_links {
-    
+    font-size: 1.125rem;
 }
 
 
