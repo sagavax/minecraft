@@ -5869,6 +5869,10 @@ input[name="search_mods"] {
     width: 60px;
 }
 
+.link_action button {
+    margin-right: 5px;
+}
+
 .no_links {
     width: 100%;
     display: flex;
