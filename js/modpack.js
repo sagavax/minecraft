@@ -32,6 +32,7 @@ modal_new_link_name.addEventListener("click", function(e) {
         } 
            const linkId = sessionStorage.getItem("link_id");
            addNewLinkName(link_name, linkId);
+           modal_new_link_name.querySelector('input[name="link_name"]').value = "";
            modal_new_link_name.close();
      } 
 })
