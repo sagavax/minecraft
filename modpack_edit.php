@@ -2,7 +2,7 @@
       include "includes/functions.php";
 
        if(isset($_POST['save_changes'])) {
-        $modpack_id=$_POST['modpack_id'];
+     /*    $modpack_id=$_POST['modpack_id'];
         $modpack_name=mysqli_real_escape_string($link, $_POST['modpack_name']);
         $modpack_description=mysqli_real_escape_string($link, $_POST['modpack_description']);
         $modpack_url=mysqli_real_escape_string($link, $_POST['modpack_url']);
@@ -28,8 +28,8 @@
         
         
         $url="modpack_edit.php?modpack_id=$modpack_id";
-        //echo $url;
-        header("location: ".$url);
+        //echo $url; 
+        header("location: ".$url);*/
        }
 
 
@@ -80,6 +80,7 @@
                             $is_active=$row['is_active'];
                             $is_visible = $row['is_visible'];
                             $modpack_image=$row['modpack_image'];
+                            $modpack_index_id=$row['modpack_index_id'];
 
                             if($modpack_image<>""){
                                 $modpack_image=$row['modpack_image'];
@@ -99,6 +100,7 @@
                                     echo "<input type='text' name='modpack_name' value='$modpack_name'>";
                                     echo "<div class='modpack_description' placeholder='Modpack&apos; description here....' >$modpack_description</div>";
                                     echo "<input type='text' name='modpack_url' value='$modpack_url' placeholder='modpacks&apos; url'>";
+                                    echo "<input type='text' name='modpack_index_id' value='$modpack_index_id' placeholder='modpack index id' title='modpack_index.com id'>";
                                     echo "<input type='text' name='modpack_image' value='$modpack_image'>";
                                     echo "<select name='modpack_status'>";
                                         echo "<option value='$is_active' selected='selected'>";
@@ -122,11 +124,10 @@
                           echo "</div>"; //modpack
                           
 
-                         echo "<div class='mod_list'>";
-                         echo "<h3>List of mods:</h3>";
-                       
-                           echo GetModList($modpack_id);
+                         //echo "<div class='mod_list'>";
+                         //echo "<h3>List of mods:</h3>";
+                           //echo GetModList($modpack_id);
+                         //eho "</div>";//mod list  
                 ?>
-            </div><!-- list -->         
-        </div>    
-    </div>  
+        </div><!-- list -->    
+    </div><!-- content -->  

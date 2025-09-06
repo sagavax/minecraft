@@ -3512,12 +3512,11 @@ button[name="save_description"]{
 
 
 .modification {
-    border:1px #d1d1d1 solid;
+    /* border:1px #d1d1d1 solid;
+    background: white; */
     border-radius: 6px;
-    background: white;
     box-sizing: border-box;
-    padding:10px;
-}
+ }
 
 .modification .mod_url {
     margin-top: 10px;
@@ -3538,12 +3537,30 @@ button[name="save_description"]{
     display: flex;
  }
 
+.mod_details {
+    width: 100%;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 100px;
+    display: flex;
+    background-color: white;
+    border:1px #d1d1d1 solid;
+    border-radius: 6px;
+    padding:10px;
+}
+
 
 .mod_images_videos_wrap {
+    background-color: white;
+    border:1px #d1d1d1 solid;
+    border-radius: 6px;
+    margin-top: 20px;
     width: 100%;
     margin-top:20px;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .mod_images_videos_wrap header {
@@ -5673,7 +5690,7 @@ input[name="base_name"] {
 
 .popup_mods_list {
     position: fixed;
-    top:30%;
+    top:10%;
     left:20%;
     border: 1px #d1d1d1 solid;
     box-sizing: border-box;

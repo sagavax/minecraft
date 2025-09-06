@@ -45,8 +45,9 @@
                             echo "<div class='mod_url'><input type='text' name='mod_url' placeholder='mod url' value='$mod_url' readonly></div>";
                        echo "</div>"; //div details
                      }    
-
-                 echo "<div class='mod_images_videos_wrap'>";
+           
+           
+            echo "<div class='mod_images_videos_wrap'>";
 
                      echo "<div class='mod_images_videos_tabs'>";
                             echo "<button type = 'button' class='button small_button' name='mods_images'>Images</button>";
@@ -84,7 +85,7 @@
 
                             echo "</main>";   
                      echo "</div>"; //mod_images
-
+               
 
                      echo "<div class='mod_videos'>";
                               
@@ -118,7 +119,7 @@
                             echo "<div class='mod_images_videos_list'></div>";
                      echo "</div>"; //mod_images_videos */
                   echo "</div>"; //mod_images_videos_wrap    
-                echo "</div>"; // div modification
+                echo "</div>"; // div modification         
               
                  echo "<div class='mod_in_modpacks'>";
                             echo "<h4>Mod in modpacks:</h4>";
