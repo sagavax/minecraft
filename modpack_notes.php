@@ -48,7 +48,7 @@
 
 
           ?>
-              <div class='modlist_mods_title'><h3><?php echo "Notes for the modpack ".GetModPackName($_GET['modpack_id']); ?></h3></div>
+              <!-- <div class='modlist_mods_title'><h3><?php echo "Notes for the modpack ".GetModPackName($_GET['modpack_id']); ?></h3></div> -->
               
             <div id="new_note">
               <form action="" method="POST" accept-charset="utf-8">

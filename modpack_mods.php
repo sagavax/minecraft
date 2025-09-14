@@ -6,7 +6,7 @@
   $modpack_id = $_GET['modpack_id'];    
   $modpack_name=GetModPackName($modpack_id);
  
-echo "<div class='modlist_mods_title'><h3>Mods for the modpack ".GetModPackName($_GET['modpack_id'])."</h3></div>";
+//echo "<div class='modlist_mods_title'><h3>Mods for the modpack ".GetModPackName($_GET['modpack_id'])."</h3></div>";
 
  //list of links with mods and their description
   echo "<div class='modpack_mods_links_wrap'>";

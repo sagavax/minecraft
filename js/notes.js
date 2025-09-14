@@ -12,7 +12,14 @@ const dialog_modpacks = document.querySelector('.dialog_modpacks');
 const note_header = document.querySelector('#new_note input[name="note_title"]')
 const dialog_mods = document.querySelector('.dialog_mods');
 const dialog_add_coordinates = document.querySelector('.modal_add_coordinates');
+const search_wrap_input = document.querySelector('.search_wrap input');
 
+
+
+search_wrap_input.addEventListener("keyup", (event) => {
+    const searchText = event.target.value;
+    searchNote(searchText);
+});
 
 
 dialog_mods.addEventListener("click", (event) => {
@@ -264,7 +271,7 @@ function previewImage(eventTarget) {
     // show image
 }
 
-function search_note(text) {
+function searchNote(text) {
     var xhttp = new XMLHttpRequest();
     var search_text = document.getElementById("search_string").value;
     xhttp.onreadystatechange = function() {

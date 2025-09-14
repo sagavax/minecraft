@@ -1,6 +1,42 @@
 <?php 
 include("dbconnect.php");
 
+
+function asciiOnly(string $text): string {
+    return preg_replace('/[^\x20-\x7E]/', '', $text);
+}
+
+function GetModListModpackIndex($modpack_id) {
+	global $link;
+	//get modpack index id 
+	$modpack_index_id = GetModPackIndexID($modpack_id);
+	echo $modpack_index_id;
+	//get mod list
+	
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, "https://www.modpackindex.com/api/v1/modpack/".$modpack_index_id."/mods");
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+		$response = curl_exec($ch);
+		curl_close($ch);
+
+		return $response;
+	//return $mod_list;
+}
+
+
+function GetModPackIndexID($modpack_id){
+	global $link;
+	$get_modpack_index_id = "SELECT modpack_index_id FROM modpacks WHERE modpack_id = $modpack_id";
+	$result = mysqli_query($link, $get_modpack_index_id) or die(mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$modpack_index_id = $row['modpack_index_id'];
+	return $modpack_index_id;
+}
+
+
 function GetNotesCoordinates($note_id) {
 	global $link;
 	$get_coordinates = "SELECT coord_x, coord_y, coord_z FROM notes_coordinates WHERE note_id = $note_id";
@@ -692,15 +728,11 @@ function GetModpackImage(){
 function GetModPackName($modpack_id){
 	global $link;
 	$modpack_name="";
-	if($modpack_id==999){
-		$modpack_name="Unspecified";
-	} else {
-	$query="SELECT modpack_name from modpacks where modpack_id=$modpack_id";
-	$result=mysqli_query($link, $query);
-   	while ($row = mysqli_fetch_array($result)) {
-		$modpack_name= $row['modpack_name'];
-		}
-	}	
+	$get_modpack_name="SELECT modpack_name from modpacks where modpack_id=$modpack_id";
+	$result=mysqli_query($link, $get_modpack_name);
+   	$row = mysqli_fetch_array($result);
+	$modpack_name= $row['modpack_name'];
+			
 	return $modpack_name;	
 }
 

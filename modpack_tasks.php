@@ -33,7 +33,7 @@
         </div>
           
 
-         <div class='modlist_mods_title'><h3><?php echo "Tasks for the modpack ".GetModPackName($_GET['modpack_id']); ?></h3></div>
+         <!-- <div class='modlist_mods_title'><h3><?php echo "Tasks for the modpack ".GetModPackName($_GET['modpack_id']); ?></h3></div> -->
           
           <!-- new task form -->
           <div id='new_task'>

@@ -5,7 +5,6 @@ include "includes/functions.php";
 $modpack_id = $_GET['modpack_id'];
 ?>
 
-<h3><?php echo GetModPackName($modpack_id); ?> images</h3>
 
 <!-- Upload Form -->
 <div id="new_image">

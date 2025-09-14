@@ -3,19 +3,6 @@ session_start();
 include "includes/dbconnect.php";
 include "includes/functions.php";
 
-if(isset($_POST['add_note'])){
-  header('location:note_add.php');
-}
-
-if(isset($_POST['add_task'])){
-  header('location:task_add.php');
-}
-
-
-if(isset($_POST['add_daily_note'])){
-  header('location:note_add.php?curr_date=now');
-}
-
 ?>
 
 
@@ -29,6 +16,7 @@ if(isset($_POST['add_daily_note'])){
     <title>Minecraft IS</title>
     <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/message.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="css/modpack_images.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="css/modpack_videos.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
@@ -36,6 +24,8 @@ if(isset($_POST['add_daily_note'])){
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="js/modpack.js?<?php echo time() ?>"></script>
     <script defer src="js/modpack_bases.js?<?php echo time() ?>"></script>
+    <script type="text/javascript" src="js/modpack_edit.js" defer></script>
+    <script type="text/javascript" src="js/message.js" defer></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
   
@@ -53,10 +43,17 @@ if(isset($_POST['add_daily_note'])){
                 <!-- <div id="modpack_menu"><ul><li><a href="#">Description</a></li><li><a href="#">Tasks</a></li><li><a href="#">Notes</a></li><li><a href="#">Videos</a></li><li><a href="#">Pictures</a></li></ul></div>-->
                 
                 <div id="modpack_menu">
-                    <div class="modpack_name"></div>
+                    <div class="modpack_name">
+                      <?php
+                      if(isset($_GET['modpack_id'])){
+                        $modpack_id=$_GET['modpack_id'];
+                        echo GetModPackName($modpack_id);
+                      }
+                    ?>
+                    </div>
                     <ul>
+                      <li class="button small_button" onclick="LoadPage('info')">Details</li>
                       <li class="button small_button" onclick="LoadPage('description')">Description</li>
-                      <!--<li class="button small_button" onclick="LoadPage('images')">Imges</li>-->
                       <li class="button small_button" onclick="LoadPage('images')">Images</li>
                       <li class="button small_button" onclick="LoadPage('bases')">Bases</li>
                       <li class="button small_button" onclick="LoadPage('mods')">Mods</li>
@@ -69,9 +66,67 @@ if(isset($_POST['add_daily_note'])){
 
                 <div id="modpack_content">
                   <div class="list">
-                    <div class="pic">
-                        <img src="<?php echo GetModpackImage(); ?>">
-                    </div>
+                   <?php
+                    if(isset($_GET['modpack_id'])){
+                    $modpack_id=$_GET['modpack_id'];
+                } else {
+                    header('location:modpacks.php');
+                }
+                       
+                    $sql="SELECT * from modpacks where modpack_id=$modpack_id";
+                    //echo $sql;
+                    $result=mysqli_query($link, $sql);
+                        while ($row = mysqli_fetch_array($result)) {
+                            $modpack_id=$row['modpack_id'];
+                            $modpack_name=$row['modpack_name'];
+                            $modpack_description=$row['modpack_description'];
+                            $modpack_url=$row['modpack_url'];
+                            $is_active=$row['is_active'];
+                            $is_visible = $row['is_visible'];
+                            $modpack_image=$row['modpack_image'];
+                            $modpack_index_id=$row['modpack_index_id'];
+
+                            if($modpack_image<>""){
+                                $modpack_image=$row['modpack_image'];
+                            } else {
+                                $modpack_image="./pics/noimage.jpg";
+                            }
+                           
+
+                            //$modpack_url=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $modpack_url);
+                        
+                            echo "<div class='modpack'>";
+                            //echo "<div class='modpack_basic_info'>Detail of the <b>".GetModPackName($modpack_id)." </b> modpack</div>";
+                            echo "<form action='' method='post'>";
+                                echo "<div class='modpack_pic_wrap'><img src='".$modpack_image."'></div>";
+                                echo "<div class='modpack_details'>";
+                                    echo "<input type='hidden' name='modpack_id' value=$modpack_id>";
+                                    echo "<input type='text' name='modpack_name' value='$modpack_name'>";
+                                    echo "<div class='modpack_description' placeholder='Modpack&apos; description here....' >$modpack_description</div>";
+                                    echo "<input type='text' name='modpack_url' value='$modpack_url' placeholder='modpacks&apos; url'>";
+                                    echo "<input type='text' name='modpack_index_id' value='$modpack_index_id' placeholder='modpack index id' title='modpack_index.com id'>";
+                                    echo "<input type='text' name='modpack_image' value='$modpack_image'>";
+                                    echo "<select name='modpack_status'>";
+                                        echo "<option value='$is_active' selected='selected'>";
+                                            if($is_active==1){
+                                                echo "Active";
+                                            } else {
+                                                echo "Inactive";
+                                            };
+                                        echo "</option>";
+                                        echo "<option value=1>Active</option>";
+                                        echo "<option value=0>Inactive</option>";
+                                    echo "</select>";
+                              echo "<div class='modpack_action'>";
+                                    //echo "<button name='back' class='button small_button'>Back</button>";
+                                    //echo "<button name='save_changes' class='button small_button'>Save</button>";
+                              echo "</div>";      
+                            echo "</form>";
+                            echo "</div>"; //modpack details
+                            }        
+                          
+                          echo "</div>"; //modpack
+                          ?>
                   </div> 
 
                </div><!--modpack_content -->

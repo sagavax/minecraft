@@ -10,5 +10,5 @@
        $row = mysqli_fetch_array($result);
        $modpack_description=$row['modpack_description'];
 
-       echo "<div id='modpack_title'>$modpack_name</div>";
+       //echo "<div id='modpack_title'>$modpack_name</div>";
        echo "<div id='modpack_description'>$modpack_description</div>";

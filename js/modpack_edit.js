@@ -3,13 +3,21 @@ const modpack_description = document.querySelector(".modpack_description");
 const modpack_status = document.querySelector("select[name='modpack_status']");
 const modpack_image = document.querySelector("input[name='modpack_image']");
 const modpack_index_id = document.querySelector("input[name='modpack_index_id']");
-
+const modpack_url = document.querySelector("input[name='modpack_url']");
 
 modpack_index_id.addEventListener("input", (e) => {
   const modpack_index_id = document.querySelector("input[name='modpack_index_id']").value; 
   modpackChangeModpackIndexId(modpack_index_id);
   ShowMessage("Modpack Index id has been updated ...");
 });
+
+
+modpack_url.addEventListener("input", (e) => {
+  const modpack_url = document.querySelector("input[name='modpack_url']").value; 
+  modpackUpdateUrl(modpack_url);
+  ShowMessage("Modpack URL has been updated ...");
+});
+
 
 modpack_image.addEventListener("input", (e) => {
   const modpack_image = document.querySelector("input[name='modpack_image']").value; 
@@ -92,5 +100,16 @@ function modpackChangeModpackIndexId(indexId) {
   xhttp.open("POST", "modpack_index_id_update.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var data = "modpack_id=" + encodeURIComponent(modpackId) + "&modpack_index_id=" + encodeURIComponent(indexId);
+  xhttp.send(data);
+}
+
+
+function modpackUpdateUrl(link) {
+ const url = new URL(window.location.href);  
+ const modpackId = url.searchParams.get("modpack_id"); 
+ const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "modpack_url_update.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  var data = "modpack_url=" + encodeURIComponent(link)+ "&modpack_id=" + encodeURIComponent(modpackId);
   xhttp.send(data);
 }

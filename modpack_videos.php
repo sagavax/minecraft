@@ -3,10 +3,10 @@
     include("includes/functions.php");
 ?>
 
-<div class='modlist_mods_title'>
+<!-- <div class='modlist_mods_title'>
     <h3><?php echo "Videos for the modpack " . GetModPackName($_GET['modpack_id']); ?></h3>
 </div>
-
+ -->
 <div id="new_video">
     <div class="video_top_bar">
         <button type="button" class="close_modal" title="hide"><i class="fa fa-times"></i></button>

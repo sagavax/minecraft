@@ -783,6 +783,7 @@ function LoadPage(page) {
     const modpack_id = urlParams.get('modpack_id');
 
     const pages = {
+        "info": "modpack_info.php",
         "description": "modpack_description.php",
         "bases": "modpack_bases.php",
         "images": "modpack_images.php",

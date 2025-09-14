@@ -36,10 +36,8 @@
 
 #new_image input {
     margin-top: 5px;
-    padding: 5px;
-    height: 40px;
     border: 1px #d1d1d1 solid;
-    background: #eff3f4;
+    /* background: #eff3f4; */
     font-family: 'Noto Sans', sans-serif;
     width: 100%;
     margin-bottom:10px

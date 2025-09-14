@@ -6,7 +6,6 @@
     $modpack_id = $_GET['modpack_id'];
 ?>
 
-<h3><?php echo GetModPackName($modpack_id); ?> bases</h3>
 <div class="modpack_bases">
     <?php 
         $modpack_id=$_GET['modpack_id'];

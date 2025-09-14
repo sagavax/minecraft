@@ -78,7 +78,7 @@
           <div class="list">
             
             <div class="search_wrap">
-                <input type="text" name="search" onkeyup="search_note(this.value);" id="search_string" autocomplete="off" placeholder="search notes here"><button type="button" name="clear_search" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
+                <input type="text" name="search" id="search_string" autocomplete="off" placeholder="search notes here"><button type="button" name="clear_search" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
               </div><!-- Search wrap-->
          
             <div id="new_note">
@@ -169,6 +169,7 @@
 
                             //echo "<div class='mod_modpack'>".$category_name." ".$modpack_name."</div>";
                             echo "<div class='note_footer'>";
+                               echo "<div class='note_coord'>".GetNotesCoordinates($note_id)."</div>";
                                   echo "<div class='note_attached_files'>";
                                   $get_files = "SELECT * from notes_file_attachements WHERE note_id=$note_id";
                                     //echo $get_files;
@@ -193,7 +194,7 @@
                                   echo "<div class='notes_action'>".$category_name." ".$modpack_name."<form method='post' action='notes_attach_file.php' enctype='multipart/form-data'><input type='hidden' name=note_id value=$note_id><input type='file' name='image' id='file-attach-$note_id' accept='image/*' style='display:none'></form><button name='attach_image' type='button' class='button small_button'><i class='material-icons'>attach_file</i></button><button name='edit_note' type='submit' class='button small_button'><i class='material-icons'>edit</i></button><button name='delete_note' type='submit' class='button small_button'><i class='material-icons'>delete</i></button></div>";
                          echo "</div>";//note footer
                          //echo "<div class='note_coord'><input type ='text' name='coord_x' placeholder='X' autocomplete='off'><input type ='text' name='coord_y' placeholder='Y' autocomplete='off'><input type ='text' name='coord_z' placeholder='Z' autocomplete='off'></div>";
-                         echo "<div class='note_coord'>".GetNotesCoordinates($note_id)."</div>";
+                         
                   
                       echo "</div>"; //note       
                         }    

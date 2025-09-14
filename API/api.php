@@ -40,6 +40,7 @@ switch ($endpoint) {
             echo json_encode(['error' => 'Method not allowed']);
         }
         break;
+      
 
     // Pridaj ďalšie endpointy podľa potreby
 
