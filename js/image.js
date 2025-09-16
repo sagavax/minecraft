@@ -216,7 +216,7 @@ saveImageName(image_name);
       xhttp.onreadystatechange = function() {
          if (this.readyState == 4 && this.status == 200) {
             alert("Komment bol vytvoreny!");
-            count_comments();
+            countComments();
             //div_delete = querySelectorAll()
             //reload_comments();
           }
@@ -282,7 +282,7 @@ saveImageName(image_name);
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.querySelector(".picture_comments").innerHTML = this.responseText;
-      count_comments();
+      countComments();
     }
   };
   picture_id=sessionStorage.getItem('picture_id');
@@ -291,7 +291,7 @@ saveImageName(image_name);
   xhttp.send();
   }
 
-  function count_comments(){
+  function countComments(){
       var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -306,7 +306,7 @@ saveImageName(image_name);
   xhttp.send();
   }
 
-  function update_comment(comm_id,content){
+  function updateComment(comm_id,content){
   var url= "image_comment_update.php?comm_id="+encodeURIComponent(comm_id)+"&comment="+encodeURIComponent(content);
   //var url= "update_base_descr.php?base_id="+encodeURIComponent(base_id);
   var xhttp = new XMLHttpRequest();
@@ -327,7 +327,7 @@ saveImageName(image_name);
           // If the comment to delete is found, you can proceed with removing it
           if (commentToDelete) {
               commentToDelete.remove(); // This will remove the element from the DOM
-              count_comments()
+              countComments()
           } else {
               console.log('Comment not found');
           }
@@ -360,11 +360,11 @@ saveImageName(image_name);
    var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
        if (this.readyState == 4 && this.status == 200) {
-         
+         alert("Image name has been changed!");
         }
       };
-    imageId=sessionStorage.getItem('picture_id');
-    data = "new_name="+encodeURIComponent(new_name)+"&image_id="+imageId;
+    const imageId=sessionStorage.getItem('picture_id');
+    const data = "new_name="+encodeURIComponent(new_name)+"&image_id="+imageId;
     xhttp.open("POST", "image_save_name.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);

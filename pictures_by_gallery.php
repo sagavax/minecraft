@@ -22,7 +22,10 @@
 
         $picture_tags = GetImageTags($picture_id);
 
-        echo "<div class='picture' image-id='{$picture_id}'>
+
+         echo "<div class='gallery_item' id='$picture_id'><img src='$picture_path' alt=''><div class='gallery_item_description'>$picture_description</div></div>";
+
+        /* echo "<div class='picture' image-id='{$picture_id}'>
                 <div class='picture_name' placeholder='image name here...'>{$picture_title}</div>
                 <div class='pic' image-id='{$picture_id}'>
                     <img src='{$picture_path}'>";
@@ -46,6 +49,6 @@
                         </button>
                     </div>
                 </div>
-            </div>";
+            </div>"; */
     }
 ?>
