@@ -86,12 +86,10 @@
 
                     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $offset = ($current_page - 1) * $itemsPerPage;  
-
-
                     $get_notes="SELECT  a.note_id, a.note_header,  a.note_text, a.added_date, b.modpack_id FROM notes AS a
 INNER JOIN notes_modpacks AS b ON a.note_id = b.note_id ORDER BY a.note_id DESC LIMIT $itemsPerPage OFFSET $offset";
 
-                      echo $get_notes;
+                      //echo $get_notes;
                     $result=mysqli_query($link, $get_notes) or die("MySQLi ERROR: ".mysqli_error($link));
                         while ($row = mysqli_fetch_array($result)) {  
                           if(empty($row['note_header'])){

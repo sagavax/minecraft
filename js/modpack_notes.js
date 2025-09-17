@@ -258,7 +258,7 @@ function  changeModpack(modpackName, modpackId) {
     xhttp.send(data);
 }
 
-function AddNewNote(){
+/* function AddNewNote(){
     var note_text = document.querySelector('#new_note textarea[name="note_text"]').value;
     var note_title = document.querySelector('#new_note input[name="note_title"]').value; 
     console.log("Note text:", note_text);
@@ -284,7 +284,7 @@ function AddNewNote(){
     xhttp.open("POST", "note_add.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
-}
+} */
 
 
 function saveNoteHeader(noteId, note_header) {

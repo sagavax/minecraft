@@ -40,7 +40,9 @@
               <div id="notes_list">
                 <?php    
                    $modpack_id=$_GET['modpack_id'];
-                   $get_notes="SELECT  a.note_id, a.note_header, a.note_text, a.added_date, b.modpack_id FROM notes AS a INNER JOIN notes_modpacks AS b ON a.note_id = b.note_id and b.modpack_id=$modpack_id ORDER BY a.note_id DESC";
+
+                   $get_notes="SELECT  a.note_id, a.note_header,  a.note_text, a.added_date, b.modpack_id FROM notes AS a
+INNER JOIN notes_modpacks AS b ON a.note_id = b.note_id WHERE b.modpack_id=$modpack_id ORDER BY a.note_id DESC";
                    
                       $result=mysqli_query($link, $get_notes) or die("MySQLi ERROR: ".mysqli_error($link));
                         while ($row = mysqli_fetch_array($result)) {  

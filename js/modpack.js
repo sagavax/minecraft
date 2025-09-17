@@ -214,6 +214,13 @@ document.querySelector(".list").addEventListener("click", function(event) {
         saveNote();
         break;
 
+     case "delete_note":
+        // delete logic
+        remnoveNote(button.closest(".note").getAttribute("note-id"));
+        //remove from DOM
+        document.querySelector(`.note[note-id='${button.closest(".note").getAttribute("note-id")}']`).remove();
+        break;    
+
     case "clear_search":
         // clear search
         break;
@@ -229,10 +236,7 @@ document.querySelector(".list").addEventListener("click", function(event) {
        alert("edit note");
         break;
 
-    case "delete_note":
-        // delete logic
-        alert("delete note");
-        break;
+   
 
     case "add_new_video":
         // add video
@@ -817,6 +821,23 @@ function saveNote(){
    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    xhttp.send(data);
 }
+
+function RemoveNote(noteId){
+    var xhttp = new XMLHttpRequest();
+    var search_text = document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            //document.getElementById("notes_list").innerHTML = this.responseText;
+            ShowMessage("Note removed");
+        }
+    };
+    data = "note_id="+noteId;
+    xhttp.open("POST", "notes_remove.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
+
+
 
 function addNewLink(link){
   var xhttp = new XMLHttpRequest();
