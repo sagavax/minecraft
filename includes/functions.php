@@ -756,7 +756,7 @@ function GetCountVanilaVideos(){
 
 function GetCountVanilaNotes(){
 	global $link;
-	$query = "SELECT COUNT(*) as vanila_notes from notes where modpack_id=99";
+	$query = "SELECT COUNT(*) as vanila_notes";
 	$result=mysqli_query($link, $query);
 	$row = mysqli_fetch_array($result);
 	 $vanila_notes= $row['vanila_notes'];
@@ -767,7 +767,7 @@ function GetCountVanilaNotes(){
 function GetCountIdeas(){
 	global $link;
 	$query = "SELECT COUNT(*) as nr_of_ideas from ideas";
-	$result=mysqli_query($link, $query);
+	$result=mysqli_query($link, $query) or die(mysql_error($link));
 	$row = mysqli_fetch_array($result);
 	 $nr_of_ideas= $row['nr_of_ideas'];
 	return $nr_of_ideas;	
@@ -776,7 +776,7 @@ function GetCountIdeas(){
 function GetCountIdeaComments($idea_id){
 	global $link;
 	$query = "SELECT COUNT(*) as nr_of_comms from ideas_comments WHERE idea_id=$idea_id";
-	$result=mysqli_query($link, $query);
+	$result=mysqli_query($link, $query)or die(mysql_error($link));
 	$row = mysqli_fetch_array($result);
 	 $nr_of_comms= $row['nr_of_comms'];
 	return $nr_of_comms;			
