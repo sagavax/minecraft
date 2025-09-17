@@ -2856,7 +2856,6 @@ button[name="enter_modpack"] {
     border: 1px #d1d1d1 solid;
     /* background: #eff3f4; */
     font-family: 'Noto Sans', sans-serif;
-    font-weight: bold;
 }
 
 #new_modpack form input,
@@ -2865,7 +2864,7 @@ button[name="enter_modpack"] {
 #new_influencer textarea,
 #edit_video input,
 #upload_new_video input,
-#new_note textarea,
+#new_note form textarea,
 #new_video textarea,
 #new_image textarea,
 #edit_video textarea {
@@ -2874,6 +2873,7 @@ button[name="enter_modpack"] {
     min-height: 50px;
     border: 1px #d1d1d1 solid;
     font-family: 'Noto Sans', sans-serif;
+    font-weight: normal
 }
 
 #new_note textarea,

@@ -76,7 +76,8 @@
               <div id="notes_list">
                 <?php    
                    
-                   $get_notes="SELECT * from notes where modpack_id=".$_GET['modpack_id']." ORDER BY note_id DESC";
+                   $get_notes="SELECT a.note_id,a.note_header, a.note_text, a.added_date,b.modpack_id, c.cat_id from notes a, notes_modpacks b, notes_mods c where b.modpack_id=".$_GET['modpack_id']." and a.note_id=b.note_id ORDER BY a.note_id DESC";
+                  
                       $result=mysqli_query($link, $get_notes) or die("MySQLi ERROR: ".mysqli_error($link));
                         while ($row = mysqli_fetch_array($result)) {  
                           if(empty($row['note_header'])){
@@ -87,9 +88,9 @@
                           $note_id=$row['note_id'];
                           $note_header=$row['note_header'];
                           $note_text=$row['note_text'];
-                          $note_mod=$row['cat_id'];
+                          $note_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $note_text);
+                          $note_mod =$row['cat_id'];
                           $note_modpack=$row['modpack_id'];
-                          //$note_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $note_text);
 
                           echo "<div class='note' note-id='$note_id'>";
                             echo "<div class='note_header'><strong>".htmlspecialchars($note_header)."</strong></div>";
