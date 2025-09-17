@@ -24,6 +24,7 @@ include "includes/functions.php";
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="js/modpack.js?<?php echo time() ?>"></script>
     <script defer src="js/modpack_bases.js?<?php echo time() ?>"></script>
+   <!--  <script defer src="js/modpack_notes.js?<?php echo time() ?>"></script> -->
     <script type="text/javascript" src="js/modpack_edit.js" defer></script>
     <script type="text/javascript" src="js/message.js" defer></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">

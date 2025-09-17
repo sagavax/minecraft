@@ -206,7 +206,7 @@ document.querySelector(".list").addEventListener("click", function(event) {
     case "note_add":
         event.preventDefault();
         const noteText = document.querySelector(`#new_note textarea[name="note_text"]`).value;
-        const noteHeader = document.querySelector(`#new_note input[name="note_header"]`).value;
+        const noteHeader = document.querySelector(`#new_note input[name="note_title"]`).value;
         if (noteText==="") {
             alert("Empty text");
             return;
@@ -560,72 +560,6 @@ function createTask() {
 }       
 
 
-/**
- * Saves a new note.
- * @param {string} noteTitle The title of the new note
- * @param {string} noteText The text of the new note
- * @param {number} modpack_id The ID of the modpack to add the note to
- */
-function SaveNote() {
-    const noteTitle = document.querySelector(`#new_note input[name="note_header"]`).value;
-    const noteText = document.querySelector(`#new_note textarea[name="note_text"]`).value;
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const modpack_id = urlParams.get('modpack_id');
-
-    // Najskôr ulož poznámku
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-
-            // Získaj posledné note_id
-            fetch("GetLatestNoteId.php")
-                .then(response => response.text())
-                .then(noteId => {
-                    // Potom zisti meno modpacku
-                    fetch("modpack_name.php?modpack_id=" + modpack_id)
-                        .then(response => response.text())
-                        .then(modpackName => {
-
-                            const noteHTML = `
-                                <div class="note">
-                                    <div class="note_header">${noteTitle}</div>
-                                    <div class="note_text">${noteText}</div>
-                                    <div class="note_footer">
-                                        <div class="notes_action">
-                                            <button class="span_mod" type="button" name="add_mod" title="add mod"><i class="fa fa-plus"></i></button><span class="span_modpack">${modpackName}</span>
-                                            <form method="post" action="notes_attach_file.php" enctype="multipart/form-data">
-                                                <input type="hidden" name="note_id" value="${noteId}">
-                                                <input type="file" name="image" id="file-attach-${noteId}" accept="image/*" style="display: none;">
-                                            </form>
-                                            <button name="attach_image" type="button" class="button small_button">
-                                                <i class="material-icons">attach_file</i>
-                                            </button>
-                                            <button name="edit_note" type="submit" class="button small_button">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button name="delete_note" type="submit" class="button small_button">
-                                                <i class="material-icons">delete</i>
-                                            </button>
-                                        </div>
-                                        <div class="note_attached_files"></div>
-                                    </div>
-                                </div>`;
-
-                            document.querySelector("#notes_list").insertAdjacentHTML("afterbegin", noteHTML);
-                        })
-                        .catch(err => console.error("Chyba pri načítaní mena modpacku:", err));
-                })
-                .catch(err => console.error("Chyba pri získavaní note_id:", err));
-        }
-    };
-
-    xhttp.open("POST", "notes_save.php", true);
-    const params = "note_title=" + encodeURIComponent(noteTitle) + "&note_text=" + encodeURIComponent(noteText);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(params);
-}
-
 
 /**
  * Získa meno modpacku podľa URL parametrov a vypíše ho do elementu .modpack_name
@@ -865,7 +799,12 @@ function GetLatestImageID() {
 
 
 function saveNote(){
-  const note = document.querySelector('#new_note textarea[name="note_text"]').value;
+  const note_text = document.querySelector('#new_note textarea[name="note_text"]').value;
+  const note_title = document.querySelector('#new_note input[name="note_title"]').value;
+  const urlParams = new URLSearchParams(window.location.search);
+  const modpack_id = urlParams.get('modpack_id');  
+
+
   var xhttp = new XMLHttpRequest();
    xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -873,7 +812,7 @@ function saveNote(){
            document.querySelector('#new_note textarea[name="note_text"]').value="";
       }
      };
-   data = "note="+encodeURIComponent(note)+"&modpack_id="+encodeURIComponent(localStorage.getItem("modpack_id"));
+   data = "note_text="+encodeURIComponent(note_text)+"&modpack_id="+encodeURIComponent(modpack_id)+"&note_title="+encodeURIComponent(note_title);
    xhttp.open("POST", "note_add.php", true);
    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    xhttp.send(data);

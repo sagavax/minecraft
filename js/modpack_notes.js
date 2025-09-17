@@ -1,8 +1,7 @@
-var new_note_container = document.querySelector(".add_notes");
 var new_note_form = document.querySelector("#new_note form");
 var container = document.querySelector('.sort_notes');
 var container_notes = document.querySelector("#notes_list");
-const new_note = document.querySelector("#new_note");
+//const new_note = document.querySelector("#new_note");
 var new_note_header_close_button = document.querySelector(".new_note_header button");
 var note_attached_files = document.querySelector(".note_attached_files");
 var container_notes_action = document.querySelector(".notes_action");
@@ -90,8 +89,6 @@ new_note_form.addEventListener("submit", (event) => {
         return;
     }
     // žiadne preventDefault - bude bežať klasické odoslanie formulára na server
-    AddNewNote();
-    
 });
 
 
@@ -214,64 +211,6 @@ notes_list.addEventListener("click", function(event) {
 } 
 });
 
-/*  note_header.addEventListener("blur", function() {
-        note_header.contentEditable = false;
-        saveNoteHeader(noteId, note_header.textContent);
-    }); */
-
-// Add a click event listener to the container
-container.addEventListener('click', function(event) {
-    // Check if the clicked element is a button
-    if (event.target.tagName === 'BUTTON') {
-        // Get the name attribute of the clicked button
-        var buttonName = event.target.getAttribute('name');
-        
-        sortNotes(buttonName);
-        
-        // Do something with the buttonName, for example, log it to the console
-        console.log('Button clicked with name:', buttonName);
-    }
-});
-
-new_note_container.addEventListener('click', function(event) {
-    // Check if the clicked element is a button
-    if (event.target.tagName === 'BUTTON') {
-        // Get the name attribute of the clicked button
-        var buttonName = event.target.getAttribute('name');
-                                
-        // Do something with the buttonName, for example, log it to the console
-        console.log('Button clicked with name:', buttonName);
-        showNewNote();
-    }
-});
-
-function sortNotes(sort_by) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("notes_list").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "notes_sorted_by.php?sort_by=" + sort_by, true);
-    xhttp.send();
-}
-
-function showContextMenu(event, targetElement) {
-    var rect = targetElement.getBoundingClientRect();
-    var iconX = rect.left + rect.width / 2;
-    var iconY = rect.top + rect.height / 2;
-    
-    contextMenu.style.display = "block";
-    contextMenu.style.left = iconX + "px";
-    contextMenu.style.top = iconY + "px";
-}
-
-function previewImage(eventTarget) {
-    // show modal
-    console.log("show modal");
-    // get id note
-    // show image
-}
 
 function searchNote(text) {
     var xhttp = new XMLHttpRequest();
@@ -285,12 +224,6 @@ function searchNote(text) {
     xhttp.send();
 }
 
-function showNewNote() {
-    new_note.style.display = "flex";  // Zobrazíme element
-    setTimeout(() => {
-        new_note.classList.add("show"); // Pridáme triedu na zobrazenie s animáciou
-    }, 10); // Krátke oneskorenie pred pridaním triedy
-}
 
 
 function RemoveNote(noteId){
@@ -317,7 +250,6 @@ function  changeModpack(modpackName, modpackId) {
             //document.querySelector(".note[note-id='" + noteId + "'] span_modpack").textContent = modpackName;
             document.querySelector(`.note[note-id="${noteId}"] button[name='change_modpack']`).textContent = modpackName;
             document.querySelector(".dialog_modpacks").close();
-            alert("Modpack changed.");
         }
     };
     data = "modpack_name="+modpackName+"&modpack_id="+modpackId+"&note_id="+noteId;
@@ -329,30 +261,15 @@ function  changeModpack(modpackName, modpackId) {
 function AddNewNote(){
     var note_text = document.querySelector('#new_note textarea[name="note_text"]').value;
     var note_title = document.querySelector('#new_note input[name="note_title"]').value; 
-    
-    var select = document.querySelector('#new_note select[name="modpack"]');
-    var modpackName = select.options[select.selectedIndex].text;
-    var selectValue = select.value;
-
-    console.log("Selected modpack:", modpackName, "with ID:", selectValue);
-
-
-    var modpackButtonHTML = "";
-
-    if (selectValue === "0") {
-        modpackButtonHTML = `<button class="span_modpack" type="button" name="change_modpack" title="add modpack">
-                                <i class="fa fa-plus"></i>
-                            </button>`;
-    } else {
-        modpackButtonHTML = `<button class="span_modpack" type="button" name="change_modpack" modpack-id="${selectValue}">
-                                ${modpackName}
-                            </button>`;
-    }
+    console.log("Note text:", note_text);
+    console.log("Note title:", note_title);
+    //get modpackId z url http://localhost/minecraft/modpack.php?modpack_id=20
+    const urlParams = new URLSearchParams(window.location.search);
+    const modpack = urlParams.get('modpack_id');
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-           
             alert("Note saved successfully!");
             document.querySelector('#new_note textarea[name="note_text"]').value = "";
             document.querySelector('#new_note input[name="note_title"]').value = "";
@@ -362,8 +279,8 @@ function AddNewNote(){
 
     var data = "note_header="+encodeURIComponent(note_title)
              + "&note_text="+encodeURIComponent(note_text)
-             + "&modpack="+selectValue;
-
+             + "&modpack="+modpack;
+    console.log("Data to send:", data);
     xhttp.open("POST", "note_add.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
