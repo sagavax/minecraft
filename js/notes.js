@@ -129,8 +129,10 @@ notes_list.addEventListener("click", function(event) {
             fileInput.addEventListener('change', changeListener);
         } else if (event.target.name === "delete_note") {
             const noteId = event.target.closest(".note").getAttribute("note-id");
-            alert("remove note: " + noteId);
-            //RemoveNote(noteId);
+            document.querySelector(`.note[note-id='${noteId}']`).remove();
+            ShowMessage("Note has been removed");
+            RemoveNote(noteId);
+
         } else if (event.target.name === "edit_note") {
             // Implement edit functionality here
             //editNote(noteId);
@@ -144,7 +146,8 @@ notes_list.addEventListener("click", function(event) {
              const noteId = event.target.closest(".note").getAttribute("note-id");
             removeCoordinates(noteId);
             document.querySelector(".note[note-id='${noteId}'] .note_coord_wrap").remove()
-            alert("Koordinaty pre poznamku s id "+ noteId + " boli odstranene");
+            ShowMessage("Coordinates for note with ID:"+noteId+" removed");
+            
         }
 
     } else if (event.target.classList.contains("fa-file-image")) {
@@ -214,10 +217,10 @@ notes_list.addEventListener("click", function(event) {
 } 
 });
 
-/*  note_header.addEventListener("blur", function() {
+ note_header.addEventListener("blur", function() {
         note_header.contentEditable = false;
         saveNoteHeader(noteId, note_header.textContent);
-    }); */
+    });
 
 // Add a click event listener to the container
 container.addEventListener('click', function(event) {
@@ -298,7 +301,7 @@ function RemoveNote(noteId){
     var search_text = document.getElementById("search_string").value;
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            //document.getElementById("notes_list").innerHTML = this.responseText;
+           
         }
     };
     data = "note_id="+noteId;

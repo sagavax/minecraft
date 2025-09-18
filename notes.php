@@ -1,5 +1,7 @@
  
-<?php include "includes/dbconnect.php";
+<?php 
+
+      include "includes/dbconnect.php";
       include "includes/functions.php";
 
  ?>
@@ -14,10 +16,12 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/message.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <!-- <link rel="stylesheet" type="text/css" href="http://www.tinymce.com/css/codepen.min.css"> -->
     <script defer type="text/javascript" src="js/notes.js"></script>
+    <script defer type="text/javascript" src="js/message.js"></script>
     <!-- <script defer type="text/javascript" src="js/app_event_tracker.js"></script> -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
