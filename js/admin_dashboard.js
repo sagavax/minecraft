@@ -1,22 +1,24 @@
- var tileListContainer = document.querySelector(".tile_list");
- console.log(tileListContainer);
+const tileListContainer = document.querySelector(".tile_list");
+const tiles = tileListContainer.querySelectorAll(".tile");
 
-  // Get all div elements with class "tile" within the container
-  var tiles = tileListContainer.querySelectorAll('.tile');
+// mapa tile-id -> URL
+const routes = {
+  ideas: "ideas/index.php",
+  bugs: "bugs/index.php",
+  app_log: "app_log.php",
+  maintenance: "maintenance.php",
+  settings: "settings.php",
+  dashboard_back: "../dashboard.php"
+};
 
-  // Assign an onclick event listener to each tile
-  tiles.forEach(function(tile) {
-    tile.onclick = function() {
-      // Your onclick logic here
-      var id = tile.getAttribute("tile-id");
-      if (id == "ideas") {
-        id = "ideas/index";
-      } else if (id == "bugs") {
-        id = "bugs/index";
-      }
-      var url = id+".php";
-      console.log(url);
-      window.location.href=url;
-      //console.log('Tile clicked:', tile.textContent);
-    };
+tiles.forEach((tile) => {
+  tile.addEventListener("click", () => {
+    const id = tile.getAttribute("tile-id");
+    const url = routes[id];
+    if (url) {
+      window.location.href = url;
+    } else {
+      console.warn(`⚠️ Neznáma tile-id: ${id}`);
+    }
   });
+});

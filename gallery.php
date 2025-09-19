@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="css/gallery.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="css/message.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="text/javascript" src="js/gallery.js" defer=""></script>
@@ -57,7 +58,7 @@
                     $get_gallery = "SELECT gallery_id, gallery_name FROM picture_galleries";
                         $result = mysqli_query($link, $get_gallery) or die(mysqli_error($link));
                         while($row = mysqli_fetch_array($result)) {
-                            echo  "<div gallery-id='" . $row['gallery_id'] . "' class='gallery_list_item button small_button'><div class='gallery_name'>" . htmlspecialchars($row['gallery_name']) . "</div><div class='gallery_remove'><i class='fa fa-times'></i></div></div>";
+                            echo  "<div gallery-id='" . $row['gallery_id'] . "' class='gallery_list_item button small_button'><i class=='fa fa-image'></i><div class='gallery_name'>" . htmlspecialchars($row['gallery_name']) . "</div><div class='gallery_remove'><i class='fa fa-times'></i></div></div>";
                             
                         }                                                            
                     ?>

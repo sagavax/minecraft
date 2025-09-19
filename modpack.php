@@ -14,7 +14,6 @@ include "includes/functions.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Minecraft IS</title>
-    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="css/message.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="css/modpack_images.css?<?php echo time(); ?>">
@@ -24,8 +23,7 @@ include "includes/functions.php";
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="js/modpack.js?<?php echo time() ?>"></script>
     <script defer src="js/modpack_bases.js?<?php echo time() ?>"></script>
-   <!--  <script defer src="js/modpack_notes.js?<?php echo time() ?>"></script> -->
-    <script type="text/javascript" src="js/modpack_edit.js" defer></script>
+       <script type="text/javascript" src="js/modpack_edit.js" defer></script>
     <script type="text/javascript" src="js/message.js" defer></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
