@@ -1,5 +1,7 @@
 //import {ShowMessage} from '/videos.js';
 var container = document.querySelector('.videos_list');
+var addModpackButton = document.querySelector(".modpack_container button");
+
 
 // Add a click event listener to the container
 container.addEventListener('click', function(event) {
@@ -46,9 +48,9 @@ container.addEventListener('click', function(event) {
                 delete_video(videoId);
                 //alert('Removed!');
                 break;
-            case 'edit_video':
+           /*  case 'edit_video':
                 window.location.href = "video_edit.php?video_id=" + videoId;
-                break;
+                break; */
             case 'add_note':
                 // Implement your add_note functionality here
                 //alert("Adding new node/comment");
@@ -101,7 +103,7 @@ container.addEventListener('click', function(event) {
     }
 });
 
-var addModpackButton = document.querySelector(".modpack_container button");
+
 addModpackButton.addEventListener("click", function(){
     document.querySelector(".modal_modpack").showModal();
 })
@@ -184,5 +186,3 @@ addModpackButton.addEventListener("click", function(){
     var data = "video_id=" + encodeURIComponent(videoId);
     xhttp.send(data);
 }
-
-

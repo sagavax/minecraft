@@ -18,7 +18,7 @@
         }   
 
         
-        $diary_text="Minecraft IS: Bol vytvoreny novy task s nazvom <b>$task_text</b> pre zakladnu id $base_id";
+        $diary_text="Bol vytvoreny novy task s nazvom <b>$task_text</b> pre zakladnu id $base_id";
         $sql="INSERT INTO app_log (diary_text, date_added,location,isMobile,is_read) VALUES ('$task_text',now(),'',0,0)";
         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
                 
@@ -40,7 +40,7 @@
     <title>Minecraft IS</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script defer src="../js/base_tasks.js"></script>
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">

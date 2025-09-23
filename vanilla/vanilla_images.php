@@ -12,7 +12,8 @@
     <title>Minecraft IS</title>
     <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="../css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    <link rel="stylesheet" href="../css/gallery.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -25,27 +26,30 @@
           </div>
           <div class="content">
              <div class="list">
-                <div class="base_images_list">
+                <div class="add_new_image">
+                 <h3>Add new image</h3>   
+                 <input type="text" name="image_name" placeholder="Picture title" autocomplete="off">
+                    <input type="text" name="image_url" placeholder="Image URL" autocomplete="off" id="image_url">
+                    <textarea name="image_description" placeholder="Something about..."></textarea>
+                    <div class="action">
+                        <button type="button" name="add_new_ext_pic" class="button pull-right">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div><!-- add_new_image -->
+                <div class="gallery_wrap">
                     <!-- get list of images -->
                     <?php
-                        $get_base_images = "SELECT * from vanila_base_images";
-                        $result = mysqli_query($link, $get_base_images) or die("MySQLi ERROR: ".mysqli_error($link));
-                        while($row = mysqli_fetch_array($result)){
-                            $img_id = $row['img_id'];
-                            $base_id = $row['base_id'];
-                            $image_name = $row['image_name'];
-                            //echo $image_name;
-                            echo "<div class='base_image'>"; //base_image
-                                $root = "gallery/";
+                       $get_vanilla_images = "SELECT a.* FROM pictures a, pictures_modpacks b WHERE b.modpack_id = 2 AND a.picture_id = b.image_id ORDER BY a.picture_id DESC";
+                    $result = mysqli_query($link, $get_vanilla_images) or die(mysqli_error($link));
+                    while($row = mysqli_fetch_array($result)){
+                        $picture_id = $row['picture_id'];
+                        $picture_name = $row['picture_name'];
+                        $picture_description = $row['picture_description'];
+                        $picture_path = htmlspecialchars($row['picture_path'], ENT_QUOTES, 'UTF-8');
 
-                                echo "<img src='".$root."base_".$base_id."/".$image_name."'>";
-                                echo "<div class='image_footer'>";
-                                echo "<div class='image_action'>";
-                                echo "<button name='add_tag' type='button' class='button small_button' title='Add tagg'><i class='fas fa-tag'></i></button><button name='add_comment' type='button' class='button small_button' title='Add new comment'><i class='fa fa-comment'></i></button><button name='view_image' type='button'class='button small_button' title='View image'><i class='fa fa-eye'></i></button>";
-                                echo "</div>";
-                               echo "</div>"; 
-                            echo "</div>"; //base image
-                        }    
+                        echo "<div class='gallery_item' id='$picture_id'><img src='$picture_path' alt=''><div class='gallery_item_description'>$picture_description</div></div>";
+                    }
                      ?>   
              </div><!--base omage list -->        
          </div><!-- list -->

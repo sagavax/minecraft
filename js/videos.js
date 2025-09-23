@@ -27,9 +27,13 @@ var video_mods_list = document.querySelector(".video_mods_list");
 var video_tags_alphabet = document.querySelector(".video_tags_alphabet");
 var video_tags_map = document.querySelector(".video_tags_map");
 var video_tags_map_input = document.querySelector(".video_tags_map input");;
+var container_fav_later = document.querySelector('.tab_view_fav_later');
+var container_view_tags = document.querySelector(".tab_view_tags");
+var container = document.querySelector('.tab_view');
+var container_view_export = document.querySelector(".tab_view_export");
 
 
-
+//search video tags in the map
 video_tags_map_input.addEventListener("keyup", function(event) {
             SearchVideoTag(video_tags_map_input.value);
 });
@@ -217,23 +221,7 @@ modal_modpack_input.addEventListener("input", function(){
         }
       })
 
-    
 
-  /*  const tags_map = document.querySelector(".tags_map");
-    tags_map.addEventListener("click",function(event){
-        if(event.target.tagName==="BUTTON"){
-            console.log(event.target.textContent);
-        }
-    })*/
-
-   
-    // Get the input element
-
-
-    // Attach the first function to the input change event
-    //video_url.addEventListener("input", check_video_exists);
-
-    // Attach the second function to the input change event
     video_url.addEventListener("input", getYouTubeVideoName);
 
    
@@ -242,6 +230,124 @@ modal_modpack_input.addEventListener("input", function(){
    //document.getElementById("videos_cards").style.display = "none";
 
    
+
+    // Add a click event listener to the container
+    container.addEventListener('click', function(event) {
+        // Check if the clicked element is a button
+        if (event.target.tagName === 'BUTTON'){
+            // Get the name attribute of the clicked button
+            var buttonName = event.target.getAttribute('name');
+            
+            sort_videos_by_modif(buttonName);
+            
+            // Do something with the buttonName, for example, log it to the console
+            console.log('Button clicked with name:', buttonName);
+            //console.log('Button clicked with video-id:', videoId);
+        }
+    });
+
+//show_favorites of watch later
+
+
+    // Add a click event listener to the container
+    container_fav_later.addEventListener('click', function(event) {
+        // Check if the clicked element is a button
+        if (event.target.tagName === 'BUTTON' || event.target.tagName==='I'){
+            // Get the name attribute of the clicked button
+            var buttonName = event.target.getAttribute('name');
+            
+            sort_videos_by_fav_watch_later(buttonName);
+            
+            // Do something with the buttonName, for example, log it to the console
+            console.log('Button clicked with name:', buttonName);
+            //console.log('Button clicked with video-id:', videoId);
+        }
+    });
+
+
+
+
+//show list or grid
+
+//console.log(container_view_style);
+
+    // Add a click event listener to the container
+    container_view_style.addEventListener('click', function(event) {
+        // Check if the clicked element is a button
+        if (event.target.tagName === 'BUTTON'){
+            // Get the name attribute of the clicked button
+            var buttonName = event.target.getAttribute('name');
+            
+            videos_display_as(buttonName);
+            
+            // Do something with the buttonName, for example, log it to the console
+            console.log('Button clicked with name:', buttonName);
+            //console.log('Button clicked with video-id:', videoId);
+        }
+    });
+
+
+
+
+//sorts videos by source 
+
+    // Add a click event listener to the container
+    container_view_source.addEventListener('click', function(event) {
+        // Check if the clicked element is a button
+        if (event.target.tagName === 'BUTTON'){
+            // Get the name attribute of the clicked button
+            var buttonName = event.target.getAttribute('name');
+            
+            sort_videos_by_source(buttonName);
+            
+            // Do something with the buttonName, for example, log it to the console
+            console.log('Button clicked with name:', buttonName);
+            //console.log('Button clicked with video-id:', videoId);
+        }
+    });
+
+  //sorts videos by edition
+    
+
+    // Add a click event listener to the container
+    container_view_source.addEventListener('click', function(event) {
+        // Check if the clicked element is a button
+        if (event.target.tagName === 'BUTTON'){
+            // Get the name attribute of the clicked button
+            var buttonName = event.target.getAttribute('name');
+            
+            sort_videos_by_edition(buttonName);
+            
+            // Do something with the buttonName, for example, log it to the console
+            console.log('Button clicked with name:', buttonName);
+            //console.log('Button clicked with video-id:', videoId);
+        }
+    });
+
+
+
+    // Add a click event listener to the container
+    container_view_tags.addEventListener('click', function(event) {
+         if(event.target.tagName==="BUTTON"){
+            document.querySelector(".modal_video_tags").showModal();
+         }
+        
+    });
+
+
+
+    // Add a click event listener to the container
+    container_view_export.addEventListener('click', function(event) {
+         if(event.target.tagName==="BUTTON"||event.target.tagName==="I"){
+             buttonName = event.target.name;
+            if(buttonName ==="export_all_videos_cvs"){
+               exportCSV();
+            }   else if (buttonName==="eport_farms_cvs"){
+                exportFarmsCSV();
+            }
+        }
+    });
+
 
 
    function search_the_video(text) {
@@ -456,124 +562,6 @@ function set_readonly(object){
 
 //source videos by mod
 
-var container = document.querySelector('.tab_view');
-
-    // Add a click event listener to the container
-    container.addEventListener('click', function(event) {
-        // Check if the clicked element is a button
-        if (event.target.tagName === 'BUTTON'){
-            // Get the name attribute of the clicked button
-            var buttonName = event.target.getAttribute('name');
-            
-            sort_videos_by_modif(buttonName);
-            
-            // Do something with the buttonName, for example, log it to the console
-            console.log('Button clicked with name:', buttonName);
-            //console.log('Button clicked with video-id:', videoId);
-        }
-    });
-
-//show_favorites of watch later
-var container_fav_later = document.querySelector('.tab_view_fav_later');
-
-    // Add a click event listener to the container
-    container_fav_later.addEventListener('click', function(event) {
-        // Check if the clicked element is a button
-        if (event.target.tagName === 'BUTTON' || event.target.tagName==='I'){
-            // Get the name attribute of the clicked button
-            var buttonName = event.target.getAttribute('name');
-            
-            sort_videos_by_fav_watch_later(buttonName);
-            
-            // Do something with the buttonName, for example, log it to the console
-            console.log('Button clicked with name:', buttonName);
-            //console.log('Button clicked with video-id:', videoId);
-        }
-    });
-
-
-
-
-//show list or grid
-
-//console.log(container_view_style);
-
-    // Add a click event listener to the container
-    container_view_style.addEventListener('click', function(event) {
-        // Check if the clicked element is a button
-        if (event.target.tagName === 'BUTTON'){
-            // Get the name attribute of the clicked button
-            var buttonName = event.target.getAttribute('name');
-            
-            videos_display_as(buttonName);
-            
-            // Do something with the buttonName, for example, log it to the console
-            console.log('Button clicked with name:', buttonName);
-            //console.log('Button clicked with video-id:', videoId);
-        }
-    });
-
-
-
-
-//sorts videos by source 
-
-    // Add a click event listener to the container
-    container_view_source.addEventListener('click', function(event) {
-        // Check if the clicked element is a button
-        if (event.target.tagName === 'BUTTON'){
-            // Get the name attribute of the clicked button
-            var buttonName = event.target.getAttribute('name');
-            
-            sort_videos_by_source(buttonName);
-            
-            // Do something with the buttonName, for example, log it to the console
-            console.log('Button clicked with name:', buttonName);
-            //console.log('Button clicked with video-id:', videoId);
-        }
-    });
-
-  //sorts videos by edition
-    
-
-    // Add a click event listener to the container
-    container_view_source.addEventListener('click', function(event) {
-        // Check if the clicked element is a button
-        if (event.target.tagName === 'BUTTON'){
-            // Get the name attribute of the clicked button
-            var buttonName = event.target.getAttribute('name');
-            
-            sort_videos_by_edition(buttonName);
-            
-            // Do something with the buttonName, for example, log it to the console
-            console.log('Button clicked with name:', buttonName);
-            //console.log('Button clicked with video-id:', videoId);
-        }
-    });
-
-var container_view_tags = document.querySelector(".tab_view_tags");
-
-    // Add a click event listener to the container
-    container_view_tags.addEventListener('click', function(event) {
-         if(event.target.tagName==="BUTTON"){
-            document.querySelector(".modal_video_tags").showModal();
-         }
-        
-    });
-
-var container_view_export = document.querySelector(".tab_view_export");
-
-    // Add a click event listener to the container
-    container_view_export.addEventListener('click', function(event) {
-         if(event.target.tagName==="BUTTON"||event.target.tagName==="I"){
-             buttonName = event.target.name;
-            if(buttonName ==="export_all_videos_cvs"){
-               exportCSV();
-            }   else if (buttonName==="eport_farms_cvs"){
-                exportFarmsCSV();
-            }
-        }
-    });
 
 //sorts videos according the source like pinterest, youtube, tiktok
 function sort_videos_by_source(source){

@@ -270,7 +270,7 @@
                                           echo "<button name='remove_from_favorites' type='button' title='remove from favorites' class='button app_badge' video-id='$video_id'><i class='fas fa-star'></i></button>";
                                         }
 
-                                        echo "<button name='add_note' title='add note' class='button app_badge open-button' video-id=$video_id><i class='fa fa-comment'></i></button><button name='edit_video' type='button' class='button app_badge' video-id='$video_id' ><i class='far fa-edit'></i></button><button name='delete_video' type='button' class='button app_badge' video-id='$video_id'><i class='fas fa-times'></i></button><button class='button app_badge video_edition'>$video_edition</button>";
+                                        echo "<button name='add_note' title='add note' class='button app_badge open-button' video-id=$video_id><i class='fa fa-comment'></i></button><button name='delete_video' type='button' class='button app_badge' video-id='$video_id'><i class='fas fa-times'></i></button><button class='button app_badge video_edition'>$video_edition</button>";
                                        echo "</div>";//video actiom 
                                        echo "<div class='videos_tags' video-id=$video_id>";
                                           echo GetVideoTagList($video_id);

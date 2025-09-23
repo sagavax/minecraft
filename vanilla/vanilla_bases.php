@@ -63,32 +63,34 @@
                 $nether_y=$row['nether_Y'];   
                 $nether_z=$row['nether_Z'];   
                 
-                echo "<div class='vanilla-base' base-id=$base_id>";
-                echo "<div class='base_name'>$base_name</div>";
-               
-                echo "<div class='base_details'>";
-                    echo "<div class='coordinates'>";
-                    echo "<div class='base_coord'><div class='coord tooltip' title='X'>$x</div><div class='coord tooltip' title='Y'>$y</div><div class='coord tooltip'  title='Z'>$z</div></div>";
-                    echo "<div class='nether_coord'><div class='coord tooltip_2'  title='X'>$nether_x</div><div class='coord tooltip_2' title='Y'>$nether_y</div><div class='coord tooltip_2'  title='Z'>$nether_z</div></div>
-                </div>";    
-                
+             echo "<div class='vanilla-base-card' base-id=$base_id>";
+                 echo "<div class='base_name'>$base_name</div>";
+       
                 if($base_description == "") {
-                    echo "<div class='base_description' data-placeholder='Enter base description......'></div>";
+                    echo "<div class='base_description_card' data-placeholder='Enter base description......'></div>";
                 } else {
-                    echo "<div class='base_description'>$base_description</div>";
+                    echo "<div class='base_description_card'>$base_description</div>";
                 }
-                
-                echo "<div class='base_note_tasks_ideas_wrap'>"; //wrap
-                    echo "<div class='base_nr_notes'><span class='tooltip' title='Notes'>".GetCountBaseNotes($base_id)."</span></div>";
-                    echo "<div class='base_nr_tasks'><span class='tooltip' title='Tasks'>". GetCountBaseTasks($base_id)."</span></div>";
-                    echo "<div class='base_nr_ideas'><span class='tooltip' title='Ideas'>". GetCountBaseIdeas($base_id)."</span></div>";
-                echo "</div>"; //wrap
+            
+                    echo "<div class='coordinates_card'>";
+                        echo "<div class='base_coord_card'><div class='coord tooltip' title='X'>$x</div><div class='coord tooltip' title='Y'>$y</div><div class='coord tooltip'  title='Z'>$z</div></div>";
+                        echo "<div class='nether_coord_card'><div class='coord tooltip_2'  title='X'>$nether_x</div><div class='coord tooltip_2' title='Y'>$nether_y</div><div class='coord tooltip_2'  title='Z'>$nether_z</div></div>
+                    </div>";//coordinates card    
+                    
+                    
+                    echo "<div class='base_basic_info'>";
+                        echo "<div class='base_nr_notes'>".GetCountBaseNotes($base_id)."</div>";
+                        echo "<div class='base_nr_tasks'>". GetCountBaseTasks($base_id)."</div>";
+                        echo "<div class='base_nr_ideas'>".GetCountBaseIdeas($base_id)."</div>";   
+                    echo "</div>";//base basic info
 
-                echo "<div class='base_actions'><button class='button small_button' name='edit_base' title='Edit the base'><i class='fas fa-edit'></i></button><button class='button small_button' type='button' title='Zmazat' name ='delete_base'><i class='fas fa-times'></i></button></div>";
-                echo "</div>"; //base_details
-                 echo "</div>"; 
-                    }
-                               
+                    echo "<div class='base_actions_card'>";
+                        echo "<button class='button small_button' name='edit_base' title='Edit the base'><i class='fas fa-edit'></i></button>";
+                        echo "<button class='button small_button' name='delete_base' type='button' title='Delete the base'><i class='fas fa-times'></i></button>";
+                    echo "</div>"; //base actions card
+
+                echo "</div>"; //vanilla-base-card  
+                }                        
                  ?>
                              
                 </div><!-- vanilla bases -->
