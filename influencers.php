@@ -72,7 +72,7 @@ include "includes/functions.php";
                     while ($row = mysqli_fetch_array($result)) {                   
                         $modpack_name = $row['modpack_name'];
                         $modpack_id = $row['modpack_id']; 
-                        echo "<button modpack-id=$modpack_id class='button small_button jade_button' name='add_modpack'>$modpack_name</button>";
+                        echo "<button modpack-id=$modpack_id class='button small_button' name='add_modpack'>$modpack_name</button>";
                         }
                 ?>
               </div>

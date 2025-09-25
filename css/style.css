@@ -2936,7 +2936,6 @@ button[name="enter_modpack"] {
 
 .infl_modpack_image {
     width: 200px;
-    min-height: 310px;
     overflow: hidden;
     border: 1px #d1d1d1 solid;
     object-fit: cover;
@@ -6047,7 +6046,20 @@ input[name="search_mods"] {
 
 
    .change_modpack_list button {
-     font-size: 13px;
+    font-size: 16px;
+    background: white;
+    height: 50px;
+    border: 1px #d1d1d1 solid;
+    color: #222;
+    font-weight: bold;
+    border-radius: 5px;
+   }
+
+   .change_modpack_list button:hover {
+    background-color: #d2f9be82;
+    /* background: #0b9ed0;
+    color: white;
+    border: 1px #0b9ed0 solid; */
    }
 
    .modal_modpack_mods {

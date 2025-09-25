@@ -5,6 +5,10 @@ const new_influencer_input_influencer_name = document.querySelector("#new_influe
 const new_influencer_input_influencer_link = document.querySelector("#new_influencer input[name='influencer_url']");
 
 
+
+document.querySelector(".influencer_modpacks").style.background = "transparent";
+
+
 // get influencer name from link
 new_influencer_input_influencer_link.addEventListener("input", () => {
     new_influencer_input_influencer_name.value = (new_influencer_input_influencer_link.value).split("@")[1];
@@ -64,6 +68,7 @@ function LoadInflencersModpacks(influencerId){
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           document.querySelector(".influencer_modpacks").innerHTML = this.responseText;
+          document.querySelector(".influencer_modpacks").style.background = "#fff";
       }
   };
   xhttp.open("POST", "influencer_modpacks.php", true);
@@ -87,6 +92,7 @@ function InfluencerChangeModpack(influencerId, modpackId, modpackName){ {
         if (this.readyState == 4 && this.status == 200) {
             document.querySelector(".influencer_modpacks").innerHTML = "";
             LoadInflencersModpacks(influencerId);
+            
         }
     };
     xhttp.open("POST", "influencer_change_modpack.php", true);
@@ -94,4 +100,17 @@ function InfluencerChangeModpack(influencerId, modpackId, modpackName){ {
     var params = "influencer_id=" + influencerId + "&modpack_id=" + modpackId + "&modpack_name=" + modpackName;
     xhttp.send(params);
     }
+}
+
+function getInfluencerLists(influncer){
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector(".influencer_modpacks").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "influencer_lists.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var params="influencer-id="+influncer;
+    xhttp.send(params);
 }
