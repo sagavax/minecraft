@@ -41,7 +41,7 @@
                         $news_author = $row_news['news_author'];
                         echo "<div class='single_news' id='news_$news_id'>
                                 <div class='news_header'>
-                                    <div class='news_date'>".format_the_date($news_date)."</div>
+                                    <div class='news_date'>".$news_date."</div>
                                     <div class='news_actions'>
                                         <button type='button' class='button small_button edit_news' data-id='$news_id' title='Edit news'><i class='fa fa-edit'></i></button>
                                         <button type='button' class='button small_button delete_news' data-id='$news_id' title='Delete news'><i class='fa fa-trash'></i></button>

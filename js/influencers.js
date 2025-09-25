@@ -19,7 +19,10 @@ influencer_list.addEventListener("click", (event) => {
     if(event.target.tagName ==="IMG"){
         console.log("clicked");
         const influencerId = event.target.closest(".influencer").getAttribute("influencer-id");
+        const influencerYtId = event.target.closest(".influencer").getAttribute("influncer-yt-id");
         sessionStorage.setItem("influencer_id", influencerId);
+        sessionStorage.setItem("influencer_yt_id", influencerYtId);
+        getInfluencerLists(influencerYtId);
         LoadInflencersModpacks(influencerId);
     } if (event.target.tagName === "BUTTON") {
         if(event.target.name === "add_modpack"){
@@ -106,10 +109,10 @@ function getInfluencerLists(influncer){
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.querySelector(".influencer_modpacks").innerHTML = this.responseText;
+            document.querySelector(".influencer_playlists").innerHTML = this.responseText;
         }
     };
-    xhttp.open("POST", "influencer_lists.php", true);
+    xhttp.open("POST", "influencer_playlists.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var params="influencer-id="+influncer;
     xhttp.send(params);

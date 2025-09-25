@@ -1128,7 +1128,7 @@ button[name="save_description"]{
 }
 
 
-.modal_new_gallery,.modal_change_gallery {
+.modal_new_gallery,.modal_change_gallery,.modal_add_news {
     width:40%;
     height:300px;
     top:30%;
@@ -6305,7 +6305,7 @@ input[name="search_mods"] {
    }
 
 
-   .inner_layer, .inner_comment_layer, .inner_modpack_layer, .inner_tags_layer, .inner_new_gallery_layer, .new_base_inner_layer {
+   .inner_layer, .inner_comment_layer, .inner_modpack_layer, .inner_tags_layer, .inner_new_gallery_layer, .new_base_inner_layer,.add_news_inner_layer {
     justify-content: center;
     position: relative;
     height:100%;

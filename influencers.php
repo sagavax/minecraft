@@ -54,9 +54,11 @@ include "includes/functions.php";
                 <div class="influencer_list">
                     <?php
                         GetAllInfluencers();
-                        echo "<div class='influencer_modpacks'></div>"; //influencer_modpacks
+                        echo "<div class='influencer_modpacks'></div>"; //influencer modpacks
+                        echo "<div class='influencer_playlists'></div>";//influencer playlists
                     ?>
                 </div>
+                
             </div><!-- list -->
          </div><!--content-->
         </div><!-- main_wrap-->   

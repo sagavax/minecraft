@@ -70,7 +70,7 @@ function GetAllInfluencers() {
 	$sql = "SELECT * FROM influencers ORDER BY id DESC";
 	$result = mysqli_query($link, $sql) or die(mysqli_error($link));
 	while($row = mysqli_fetch_array($result)) {
-	$influncer .= "<div class='influencer' influencer-id='".$row['id']."'>";	
+	$influncer .= "<div class='influencer' influncer-yt-id='@".htmlspecialchars($row['influencer_name'], ENT_QUOTES)."' influencer-id='".$row['id']."'>";	
 		$influncer .= "<div class='influencer_image'><img src='".htmlspecialchars($row['influencer_image'], ENT_QUOTES)."'></div>";
 		$influncer .= "<div class='influencer_info'>";
 		$influncer .= "<div class='influencer_name'>" . htmlspecialchars($row['influencer_name'], ENT_QUOTES) . "</div>";
@@ -767,7 +767,7 @@ function GetCountVanilaNotes(){
 function GetCountIdeas(){
 	global $link;
 	$query = "SELECT COUNT(*) as nr_of_ideas from ideas";
-	$result=mysqli_query($link, $query) or die(mysql_error($link));
+	$result=mysqli_query($link, $query) or die(mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	 $nr_of_ideas= $row['nr_of_ideas'];
 	return $nr_of_ideas;	
@@ -776,7 +776,7 @@ function GetCountIdeas(){
 function GetCountIdeaComments($idea_id){
 	global $link;
 	$query = "SELECT COUNT(*) as nr_of_comms from ideas_comments WHERE idea_id=$idea_id";
-	$result=mysqli_query($link, $query)or die(mysql_error($link));
+	$result=mysqli_query($link, $query)or die(mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	 $nr_of_comms= $row['nr_of_comms'];
 	return $nr_of_comms;			
