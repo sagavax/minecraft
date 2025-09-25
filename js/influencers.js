@@ -22,6 +22,8 @@ influencer_list.addEventListener("click", (event) => {
         const influencerYtId = event.target.closest(".influencer").getAttribute("influncer-yt-id");
         sessionStorage.setItem("influencer_id", influencerId);
         sessionStorage.setItem("influencer_yt_id", influencerYtId);
+        console.log("influencerId: "+influencerId);
+        console.log("influencerYtId: "+influencerYtId);
         getInfluencerLists(influencerYtId);
         LoadInflencersModpacks(influencerId);
     } if (event.target.tagName === "BUTTON") {
@@ -72,6 +74,7 @@ function LoadInflencersModpacks(influencerId){
       if (this.readyState == 4 && this.status == 200) {
           document.querySelector(".influencer_modpacks").innerHTML = this.responseText;
           document.querySelector(".influencer_modpacks").style.background = "#fff";
+          document.querySelector(".influencer_playlists").style.background = "#fff";
       }
   };
   xhttp.open("POST", "influencer_modpacks.php", true);
