@@ -2886,6 +2886,7 @@ button[name="enter_modpack"] {
 }
 
 .playlist_item {
+    height: 350px;
     box-sizing: border-box;
     padding: 10px;
     width: 30%;
