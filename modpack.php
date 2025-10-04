@@ -198,5 +198,14 @@ include "includes/functions.php";
               </div>
           </div>
         </dialog>
+
+        <dialog class ="modal_new_seed">
+            <div class="inner_layer">
+                <input type="text" name="see_number" placeholder="seed number...." autocomplete="off">
+                <div class="action">
+                  <button type="button" class="button small_button" name="create_new_seed"><i class="fa fa-plus"></i></button>
+                </div> 
+            </div><!-- inner layer -->
+        </dialog>    
     </div><!--main_wrap-->  
 

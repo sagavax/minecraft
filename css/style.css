@@ -1799,9 +1799,6 @@ button[name="enter_modpack"] {
     float: right;
 }
 
-.action {
-    margin-top: 5px;
-}
 
 .new_note,
 .new_task, .new_bug {
@@ -2853,36 +2850,37 @@ button[name="enter_modpack"] {
 }
 
 
-.modpack_seed_wrap,.modpack_seeds_wrap {
+.seed, .seed_number {
     width: 100%;
     display: flex;
     box-sizing: border-box;
     padding:5px;
+    align-items: center;
+    cursor: pointer;
 }
 
-.modpack_seeds_wrap {
-    background-color: white;
-    border: 1px #d1d1d1 solid;
-    border-radius: 5px;
+.seed:hover {
+    background-color: #d2f9be82
 }
 
 .modpack_seeds {
+    border-radius: 5px;
+    background: #fff;
+    border: 1px #d1d1d1 solid;
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding:5px;
 }
 
-.no_seed {
+.no_seeds {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    
+    border-bottom: 1px #d1d1d1 solid;
+    padding: 5px;
 }
-
-
-
-
 
 #new_modpack form input,
 #new_video input,
@@ -3150,10 +3148,13 @@ button[name="enter_modpack"] {
 }
 
 .action {
+    margin-top: 5px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+    box-sizing: border-box;
+    padding: 5px;
 }
 
 .modpack_details_wrap {
@@ -3499,7 +3500,7 @@ button[name="enter_modpack"] {
     height: 80%;
 }
 
-.modal_add_new_comment {
+.modal_add_new_comment,.modal_new_seed {
     top:20%;
     left:30%;
     height:250px;
@@ -3509,6 +3510,12 @@ button[name="enter_modpack"] {
     border-radius: 5px;
     border:1px #d1d1d1 solid;
 }
+
+.modal_new_seed {
+    height: 130px;
+    width: 500px;
+}
+
 
 .modal_add_new_comment textarea {
     height:160px;

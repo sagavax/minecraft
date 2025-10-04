@@ -15,7 +15,23 @@ const modpack_mods_urls = document.querySelector(".modpack_mods_urls");
 const modal_new_base = document.getElementById('modal_new_base');
 const modal_new_link_name = document.querySelector('.dialog_link_name');
 //const input_search_mod = document.querySelector('input[name="search_mods"]');
+const modal_new_seed = document.querySelector(".modal_new_seed");
 
+
+modal_new_seed.addEventListener("click", function(e) {
+    if (e.target.tagName === "BUTTON" && e.target.name==="create_new_seed") {
+        if(document.querySelector(".modal_new_seed input").value === "") {
+            alert("Please fill in the seed name.");
+            return;
+        }
+        const seedNumber = document.querySelector(".modal_new_seed input").value.trim();
+        const urlParams = new URLSearchParams(window.location.search);
+        const modpackId = urlParams.get('modpack_id');
+        addNewSeed(seedNumber, modpackId);
+        modal_new_seed.close();
+        document.querySelector(".modal_new_seed input").value = "";
+    }
+})
 
 
 /* document.querySelector('input[name="search_mods"]').addEventListener("input", function(event) {
@@ -201,7 +217,18 @@ document.querySelector(".list").addEventListener("click", function(event) {
         // filter all tasks no matter status
         filterTasks(modpackId,"all");
         break;
+    
+    case "add_seed":
+        // add seed
+        modal_new_seed.showModal();
+        break;
+
+    case "delete_seed":
+        // delete seed
+        deleteSeed(button.closest(".seed").getAttribute("seed-id"));
+        //remove from DOM
         
+        break;
 
     case "note_add":
         event.preventDefault();
@@ -236,9 +263,7 @@ document.querySelector(".list").addEventListener("click", function(event) {
        alert("edit note");
         break;
 
-   
-
-    case "add_new_video":
+   case "add_new_video":
         // add video
         const videoTitle = document.querySelector(`#new_video input[name="video_title"]`).value;
         const videoUrl = document.querySelector(`#new_video input[name="video_url"]`).value;
@@ -966,4 +991,33 @@ function searchMod(mod_name){
   };
   xhttp.open("GET", `modpack_mod_search.php?mod_name=${mod_name}`, true);
   xhttp.send();
+}
+
+function addNewSeed(seedNumber, modpackId){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       document.querySelector(".modpack_seeds").innerHTML = this.responseText;
+       alert("Seed added");
+    }
+  };
+  xhttp.open("POST", `modpack_seed_add.php`, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  const data = "seed_number="+encodeURIComponent(seedNumber)+"&modpack_id="+encodeURIComponent(modpackId);
+  xhttp.send(data);
+}
+ 
+function deleteSeed(seedId){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       document.querySelector(".modpack_seeds").innerHTML = this.responseText;
+       document.querySelector(`.seed[seed-id='${button.closest(".seed").getAttribute("seed-id")}']`).remove();
+       alert("Seed deleted");
+    }
+  };
+  xhttp.open("POST", `modpack_seed_delete.php`, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  const data = "seed_id="+encodeURIComponent(seedId);
+  xhttp.send(data);
 }
