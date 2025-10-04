@@ -723,6 +723,7 @@ function LoadPage(page) {
     const pages = {
         "info": "modpack_info.php",
         "description": "modpack_description.php",
+        "seeds": "modpack_seeds.php",
         "bases": "modpack_bases.php",
         "images": "modpack_images.php",
         "mods": "modpack_mods.php",
