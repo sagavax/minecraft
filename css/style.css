@@ -2852,6 +2852,38 @@ button[name="enter_modpack"] {
     font-family: 'Noto Sans', sans-serif;
 }
 
+
+.modpack_seed_wrap,.modpack_seeds_wrap {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    padding:5px;
+}
+
+.modpack_seeds_wrap {
+    background-color: white;
+    border: 1px #d1d1d1 solid;
+    border-radius: 5px;
+}
+
+.modpack_seeds {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.no_seed {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    
+}
+
+
+
+
+
 #new_modpack form input,
 #new_video input,
 #new_influencer input,
