@@ -1,4 +1,8 @@
 <?php
+include "includes/dbconnect.php";
+include "includes/functions.php";
+
+
 
 // Nastav svoj YouTube Data API v3 kľúč
 $apiKey = 'AIzaSyAC_XmxuN31PHNDUX2ghzRcOAr80PFOfBU';
@@ -110,7 +114,11 @@ foreach ($playlists as $pl) {
     $title = htmlspecialchars($pl['title'], ENT_QUOTES, 'UTF-8');
     $thumb = htmlspecialchars($pl['thumb'], ENT_QUOTES, 'UTF-8');
     $href  = htmlspecialchars($pl['url'], ENT_QUOTES, 'UTF-8');
-    echo "<div class='playlist_item'>
+
+   $add_to_db = "INSERT IGNORE INTO influencer_playlists (influencer_id, playlist_id, playlist_title, playlist_thumb, added_date) VALUES ('$channelInput', '{$pl['id']}','{$pl['title']}','{$pl['thumb']}', NOW())";    
+   $result = mysqli_query($link, $add_to_db) or die(mysqli_error($link));
+
+    echo "<div class='playlist_item' data-id='{$pl['id']}'>
               <img src='{$thumb}' alt='{$title}'>
               <div class='playlist_title'>{$title}</div>
           </div>";

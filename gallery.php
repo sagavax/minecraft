@@ -65,6 +65,8 @@
                  </div>   
             </div>        
  
+            <input type="text" name="search_image" placeholder="Search..." autocomplete="off" id="search">            
+
             <div class="gallery_wrap">
 
                 <?php

@@ -73,8 +73,8 @@ function LoadInflencersModpacks(influencerId){
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           document.querySelector(".influencer_modpacks").innerHTML = this.responseText;
-          document.querySelector(".influencer_modpacks").style.background = "#fff";
-          document.querySelector(".influencer_playlists").style.background = "#fff";
+          //document.querySelector(".influencer_modpacks").style.background = "#fff";
+          //document.querySelector(".influencer_playlists").style.background = "#fff";
       }
   };
   xhttp.open("POST", "influencer_modpacks.php", true);
