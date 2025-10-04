@@ -2743,6 +2743,17 @@ button[name="enter_modpack"] {
     background: #fff;
 }
 
+
+#new_tag h4 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+#new_tag input {
+    margin-bottom: 15px;
+}
+
+
 .base_location {
     display: flex;
     flex-direction: column;
