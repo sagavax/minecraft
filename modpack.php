@@ -53,6 +53,7 @@ include "includes/functions.php";
                     <ul>
                       <li class="button small_button" onclick="LoadPage('info')">Details</li>
                       <li class="button small_button" onclick="LoadPage('description')">Description</li>
+                      <li class="button small_button" onclick="LoadPage('seeds')">Seeds</li>
                       <li class="button small_button" onclick="LoadPage('images')">Images</li>
                       <li class="button small_button" onclick="LoadPage('bases')">Bases</li>
                       <li class="button small_button" onclick="LoadPage('mods')">Mods</li>
