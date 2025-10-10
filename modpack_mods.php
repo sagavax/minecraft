@@ -58,8 +58,11 @@
   echo "</div>";   
 
   echo "<div class='add_reload_mods'>";
+      
         echo "<button type='button' title='Add new mod into modpack' name='add_mods' class='button small_button dark_blue_button'><i class='fa fa-plus'></i></button>";
           echo "<button class='button dark_blue_button' name='reload_mods' title='Reload mod list'><i class='fas fa-sync-alt'></i></button>";                
+          echo "<button class='button dark_blue_button' name='delete_mods_from_modpack' title='delete all mods'><i class='fa fa-times'></i></button>";   
+          echo "<button class='button dark_blue_button' name='reunload_mods' title='Reload mod list'><i class='fas fa-cloud-upload-alt'></i></button>";             
   echo "</div>";
 
 ?>
