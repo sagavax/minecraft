@@ -106,7 +106,7 @@ dialog {
     background: white;
     border-radius: 5px;
     border: 1px #d1d1d1 solid;
-    background-color: white;
+    background-color: #fcfafa;
     /* background: #eff3f4 */
 }
 
@@ -328,7 +328,7 @@ select {
     font-family: 'Noto Sans', sans-serif;
     border: 1px #d1d1d1 solid;
     /* background: #eff3f4; */
-    background-color: white;
+    background-color: #fcfafa;
     font-size: 16px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -347,7 +347,7 @@ input {
     border: 1px #d1d1d1 solid;
     padding: 10px;
     outline: none;
-    background-color: white;
+    background-color: #fcfafa;
     border-radius: 5px;
    /*  background: #eff3f4 */
 }
@@ -362,7 +362,7 @@ textarea {
     border: 1px #d1d1d1 solid;
     outline: none;
     padding: 10px;
-    background-color: white;
+    background-color: #fcfafa;
     /* background: #eff3f4 */
 }
 
@@ -754,7 +754,7 @@ textarea::placeholder {
     min-height: 100px;
     box-sizing: border-box;
     padding: 10px;
-    background: #fff;
+    background-color: #fcfafa;
     border: 1px #d1d1d1 solid;
     border-radius: 5px;
 }
@@ -3124,7 +3124,7 @@ button[name="enter_modpack"] {
     height:48px;
     width: 100%;
     margin-bottom: 5px;
-    background: #eff3f4;
+    /* background: #eff3f4; */
     text-transform: uppercase;
     font-weight: bold;
     border:1px #d1d1d1 solid;
@@ -4193,7 +4193,6 @@ button[name="enter_modpack"] {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap:10px;
     box-sizing: border-box;
     padding-right: 5px;
 }
@@ -4209,8 +4208,8 @@ button[name="enter_modpack"] {
 
 .task_footer,
 .idea_footer {
-    height:40px;
-    padding-bottom: 10px;
+    height:auto;
+   
 }
 
 
@@ -4565,7 +4564,8 @@ td.zakladna_popis {
     justify-content: flex-end;
     box-sizing: border-box;
     width: 100%;
-    }
+    height:auto;
+     }
 
     .task_modpacks button {
         height: 40px;        
@@ -4579,6 +4579,7 @@ td.zakladna_popis {
         box-sizing: border-box;
         cursor: pointer;
         outline: 0;
+        margin-right: 5px;
     }
 
 .dialog_modpacks {

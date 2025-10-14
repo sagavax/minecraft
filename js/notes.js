@@ -90,7 +90,7 @@ new_note_form.addEventListener("submit", (event) => {
         return;
     }
     // žiadne preventDefault - bude bežať klasické odoslanie formulára na server
-    AddNewNote();
+    addNewNote();
     
 });
 
@@ -329,18 +329,22 @@ function  changeModpack(modpackName, modpackId) {
     xhttp.send(data);
 }
 
-function AddNewNote(){
-    var note_text = document.querySelector('#new_note textarea[name="note_text"]').value;
-    var note_title = document.querySelector('#new_note input[name="note_title"]').value; 
+/**
+ * Add a new note to the notes list
+ * @param {String} note_text - The text of the new note
+ * @param {String} note_title - The title of the new note
+ * @param {String} modpackName - The name of the selected modpack
+ * @param {String} selectValue - The value of the selected modpack (modpackId)
+ */
+function addNewNote(){
+    const note_text = document.querySelector('#new_note textarea[name="note_text"]').value;
+    const note_title = document.querySelector('#new_note input[name="note_title"]').value; 
     
-    var select = document.querySelector('#new_note select[name="modpack"]');
-    var modpackName = select.options[select.selectedIndex].text;
-    var selectValue = select.value;
+    const select = document.querySelector('#new_note select[name="modpack"]');
+    const modpackName = select.options[select.selectedIndex].text;
+    const selectValue = select.value;
 
-    console.log("Selected modpack:", modpackName, "with ID:", selectValue);
-
-
-    var modpackButtonHTML = "";
+        var modpackButtonHTML = "";
 
     if (selectValue === "0") {
         modpackButtonHTML = `<button class="span_modpack" type="button" name="change_modpack" title="add modpack">
@@ -355,7 +359,6 @@ function AddNewNote(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-           
             alert("Note saved successfully!");
             document.querySelector('#new_note textarea[name="note_text"]').value = "";
             document.querySelector('#new_note input[name="note_title"]').value = "";

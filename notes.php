@@ -47,7 +47,7 @@
                 <button class="button small_button"><i class="fa fa-times"></i></button>
             </div><!--new note header -->
             
-            <form action="note_add.php" method="POST" accept-charset="utf-8">
+            <form action="" method="POST" accept-charset="utf-8">
                     <input type="text" name="note_title" placeholder="title" value="" autocomplete="off">
                     <textarea name="note_text" placeholder="new text here..."></textarea>
                      <select name="modpack">
