@@ -1,31 +1,6 @@
-<?php include "includes/dbconnect.php";
-include "includes/functions.php";
-/* 
-
-if(isset($_POST['complete_task'])){
-
-  $task_id=intval($_POST['task_id']);
-  $query="UPDATE tasks SET is_completed=1 WHERE task_id=$task_id";
-          //  echo $query;
-  mysqli_query($link, $query)  or die(mysqli_error($link));
-
-   ///$link1=mysqli_connect("localhost", "root", "", "brick_wall");
-  //$link1 = mysqli_connect(null, "brick_wall", "h3jSXv3gLf", "brick_wall", null, "/tmp/mariadb55.sock");
-  
-  $diary_text="Task s id <strong>$task_id</strong> bol oznaceny ako hotovy";
-  $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-  $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-  
-
-  echo "<script>
-  alert('Task s id $task_id bol dokonceny');
-  window.location.href='tasks.php';
-  </script>";
-}
-
-if(isset($_POST['edit_task'])){
-  header('location:task.php?task_id='.$_POST['task_id']);
-} */
+<?php 
+      include "includes/dbconnect.php";
+      include "includes/functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +50,7 @@ if(isset($_POST['edit_task'])){
                                   } 
                                 ?>  
                           </select>
+                          
                           <select name="modpack">
                               <?php 
                               //echo "modpack:".$modpack_id;
@@ -176,13 +152,8 @@ if(isset($_POST['edit_task'])){
                 $modpack_name=GetModpackName($task_modpack_id);  
                 $modpack_name="<button class='span_modpack' type='button' name='assigned_modpack' modpack-id=$task_modpack_id>".$modpack_name."</button>";
               }
-              
-              
-              /* 
-              if($category_name<>""){
-                $category_name="<button class='span_mod' type='button'>".$category_name."</button>";
-              } */
-              $mod_modpack="<div class='task_modpacks'>".$category_name." ".$modpack_name."</div>";
+             
+               $mod_modpack="<div class='task_modpacks'>".$category_name." ".$modpack_name."</div>";
               
               $button_edit="<button type='button' name='edit_task' class='button small_button pull-right'><i class='fas fa-edit'></i></button>";
               $button_task_complete="<button type='button' name='complete_task' class='button small_button pull-right'><i class='fa fa-check'></i></button>";
@@ -192,7 +163,7 @@ if(isset($_POST['edit_task'])){
               if($is_completed==1){
                 
                 echo $mod_modpack;
-                $task_completed="<span class='button small_button'>Complete</span>";
+                $task_completed="<div class='task_status'><button type='button' class='button small_button'>Complete</div>";
                 echo $task_completed;
                       //$mod_modpack="<div class='mod_modpack'>".$mod_modpack." ".$task_completed."</div>";
                       //echo $mod_modpack;
@@ -201,7 +172,7 @@ if(isset($_POST['edit_task'])){
               } elseif($is_completed==0){
 
                 echo $mod_modpack;
-                echo "<div class='task_action'>".$button_edit." ".$button_task_complete."</div>";
+                echo "<div class='task_status'><button type='button' class='button small_button'>In progress</div><div class='task_action'>".$button_edit." ".$button_task_complete."</div>";
               }
               
               echo "</div>";//task_footer_wrap;  

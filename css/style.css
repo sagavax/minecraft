@@ -3348,7 +3348,6 @@ button[name="enter_modpack"] {
     margin-right:5px;
 }
 
-.span_modpack,
 .video_action span {
     margin-right: 5px;
 }
@@ -4197,6 +4196,10 @@ button[name="enter_modpack"] {
     padding-right: 5px;
 }
 
+.task_footer {
+    gap:5px;
+}
+
 .note_footer button {
     border: 1px solid;
     border-radius: 5px;
@@ -4563,7 +4566,6 @@ td.zakladna_popis {
     align-items: center;
     justify-content: flex-end;
     box-sizing: border-box;
-    width: 100%;
     height:auto;
      }
 
@@ -4579,8 +4581,12 @@ td.zakladna_popis {
         box-sizing: border-box;
         cursor: pointer;
         outline: 0;
-        margin-right: 5px;
     }
+
+
+.task_status {
+    /* width:150px; */
+}
 
 .dialog_modpacks {
     position: fixed;

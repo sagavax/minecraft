@@ -46,7 +46,7 @@ tasks.addEventListener('click', function(event) {
     const buttonName = event.target.name;
 
     if (buttonName === "edit_task") {
-      window.location.href = "task.php?task_id=" + taskId;
+      //window.location.href = "task.php?task_id=" + taskId;
     }
 
     if (buttonName === "complete_task") {
@@ -63,12 +63,36 @@ tasks.addEventListener('click', function(event) {
         dialog_modpacks.showModal();  
       }
     }
+  } else if(event.target.classList.contains("task_body")) {
+    const taskId = event.target.closest(".task").getAttribute("id");
+    const taskBody = document.querySelector(`.task[id="${taskId}"] .task_body`);
+    const taskStatus = document.querySelector(`.task[id="${taskId}"] .task_status button`).innerText;
+    const taskAction = document.querySelector(`.task[id="${taskId}"] .task_action`);
+       
+    if(taskStatus === "Complete") {
+      alert("Task is completed! Cannot edit.");
+      return;
+    } 
+    //check if task is not completed
+    if(taskStatus === "In progress") {
+      taskBody.setAttribute("contenteditable", "true");
+      taskBody.focus(); 
+
+      event.target.addEventListener("blur", function(){
+      const taskId = event.target.closest(".task").getAttribute("id");
+      const taskBody = document.querySelector(`.task[id="${taskId}"] .task_body`);  
+      event.target.removeAttribute("contenteditable");
+      SaveTaskChanges(taskId, taskBody.innerText);
+            }, { once: true }); // <- spustí sa iba raz
+    }
+      
+    //switchToTextarea(taskId);
   }
 });
 
 
 
-tasks.addEventListener('click', function(event) {
+/* tasks.addEventListener('click', function(event) {
   //const taskId = event.target.closest(".task").getAttribute("id");
   if(event.target.classList.contains("task_body")) {
     const taskId = event.target.closest(".task").getAttribute("id");
@@ -77,7 +101,7 @@ tasks.addEventListener('click', function(event) {
       taskBody.focus();
     //switchToTextarea(taskId);
   }
-});
+}); */
 
 
 tasks.addEventListener("blur", function(event) {
