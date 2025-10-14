@@ -76,11 +76,16 @@ tasks.addEventListener('click', function(event) {
     //check if task is not completed
     if(taskStatus === "In progress") {
       taskBody.setAttribute("contenteditable", "true");
-      taskBody.focus(); 
+      taskBody.focus();
+      const oldText = taskBody.innerText; 
 
       event.target.addEventListener("blur", function(){
       const taskId = event.target.closest(".task").getAttribute("id");
       const taskBody = document.querySelector(`.task[id="${taskId}"] .task_body`);  
+      if(oldText === taskBody.innerText) {
+        event.target.removeAttribute("contenteditable");
+        return; // No changes made, exit the function
+      }
       event.target.removeAttribute("contenteditable");
       SaveTaskChanges(taskId, taskBody.innerText);
             }, { once: true }); // <- spustí sa iba raz
