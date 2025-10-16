@@ -96,19 +96,6 @@ tasks.addEventListener('click', function(event) {
 });
 
 
-
-/* tasks.addEventListener('click', function(event) {
-  //const taskId = event.target.closest(".task").getAttribute("id");
-  if(event.target.classList.contains("task_body")) {
-    const taskId = event.target.closest(".task").getAttribute("id");
-     const taskBody = document.querySelector(`.task[id="${taskId}"] .task_body`);
-      taskBody.setAttribute("contenteditable", "true");
-      taskBody.focus();
-    //switchToTextarea(taskId);
-  }
-}); */
-
-
 tasks.addEventListener("blur", function(event) {
   const taskId = event.target.closest(".task").getAttribute("id");
   const taskBody = document.querySelector(`.task[id="${taskId}"] .task_body`);
