@@ -25,8 +25,8 @@ var change_modpack_list = document.querySelector(".change_modpack_list");
 var video_mods_alphabet = document.querySelector(".video_mods_alphabet");
 var video_mods_list = document.querySelector(".video_mods_list");
 var video_tags_alphabet = document.querySelector(".video_tags_alphabet");
-var video_tags_map = document.querySelector(".video_tags_map");
-var video_tags_map_input = document.querySelector(".video_tags_map input");;
+var video_tags_map_wrap = document.querySelector(".video_tags_map_wrap");
+var video_tags_map_wrap_input = document.querySelector(".video_tags_map_wrap input");
 var container_fav_later = document.querySelector('.tab_view_fav_later');
 var container_view_tags = document.querySelector(".tab_view_tags");
 var container = document.querySelector('.tab_view');
@@ -34,8 +34,8 @@ var container_view_export = document.querySelector(".tab_view_export");
 
 
 //search video tags in the map
-video_tags_map_input.addEventListener("keyup", function(event) {
-            SearchVideoTag(video_tags_map_input.value);
+video_tags_map_wrap_input.addEventListener("keyup", function(event) {
+            SearchVideoTag(video_tags_map_wrap_input.value);
 });
 
 

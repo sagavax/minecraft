@@ -193,18 +193,20 @@
                         </main>
                     </div>
 
-                    <div class="video_tags_map">
+                    <div class="video_tags_map_wrap">
                         <input type="text" name="search_tag" placeholder="Search a tag" autocomplete="off">
-                        <?php 
-                            $get_videos_tags = "SELECT a.tag_id,b.tag_name from video_tags a, tags_list b WHERE a.tag_id NOT IN (0) and a.tag_id = b.tag_id GROUP BY b.tag_name ORDER BY b.tag_name ASC";
-                            $result_tags=mysqli_query($link, $get_videos_tags);
-                            while ($row_tags = mysqli_fetch_array($result_tags)) {
-                                $tag_id = $row_tags['tag_id'];
-                                $tag_name=$row_tags['tag_name'];
-                                echo "<button type='button' class='button small_button' name='tag'  tag-id=$tag_id>$tag_name</button>";
-                            }
+                        <div class="video_tags_map">
+                            <?php 
+                                $get_videos_tags = "SELECT a.tag_id,b.tag_name from video_tags a, tags_list b WHERE a.tag_id NOT IN (0) and a.tag_id = b.tag_id GROUP BY b.tag_name ORDER BY b.tag_name ASC";
+                                $result_tags=mysqli_query($link, $get_videos_tags);
+                                while ($row_tags = mysqli_fetch_array($result_tags)) {
+                                    $tag_id = $row_tags['tag_id'];
+                                    $tag_name=$row_tags['tag_name'];
+                                    echo "<button type='button' class='button small_button' name='tag'  tag-id=$tag_id>$tag_name</button>";
+                                }
                             ?>
-                    </div>
+                        </div><!-- video_tags_map -->    
+                    </div><!-- video_tags_map_wrap -->
 
                     <div class='videos_list' id='videos_list'>
 

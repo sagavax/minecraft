@@ -976,29 +976,35 @@ button[name="save_description"]{
     /*border-left: 2px solid #2ecc71*/
 }
 
-.video_tags_map, .image_tags_map,.image_galleries_list,.image_galleries  {
+.video_tags_map_wrap, .image_tags_map,.image_galleries_list,.image_galleries  {
+    display: flex;
     border: 1px #d1d1d1 solid;
+    flex-direction: column;
     box-sizing: border-box;
     padding-left:10px;
     padding-right:10px;
     padding-top: 10px;
     padding-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
     gap: 5px;
     background-color: white;
     border-radius: 5px;
     margin-bottom: 15px;;
    }
 
+.video_tags_map {
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
+
 
   
 
-   .video_tags_map input, .image_tags_map input {
+   .video_tags_map_wrap input, .image_tags_map input {
     margin-bottom: 10px;
    }
 
-   .video_tags_map button {
+   .video_tags_map_wrap button {
     display: flex;
         height: 35px;
    align-items: center;     
@@ -1529,7 +1535,7 @@ button[name="enter_modpack"] {
     flex:1
 }
 
-.video_tags_list ul li i{
+/* .video_tags_list ul li i{
   display: flex;
   height: 20px;
   width: 20px;
@@ -1538,12 +1544,11 @@ button[name="enter_modpack"] {
   font-size: 12px;
   cursor: pointer;
   border-radius: 50%;
-  /*background: #dfdfdf;*/
   background: #52a535;
   align-items: center;
   justify-content: center;
 }
-
+ */
 
 .video_tags ul input{
   flex: 1;
