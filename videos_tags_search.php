@@ -1,7 +1,7 @@
 <?php 
 	include("includes/dbconnect.php");
 
-	$search_tag = $_GET['search_tag'];
+	$search_tag = $_POST['search_tag'];
 	$tags = "";
 
 	if (!empty($search_tag)) {
