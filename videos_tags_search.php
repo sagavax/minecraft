@@ -5,12 +5,13 @@
 	$tags = "";
 
 	if (!empty($search_tag)) {
-		$get_all_tags = "SELECT * FROM tags_list WHERE tag_name LIKE '%$search_tag%'";
+		$get_all_tags = "SELECT * FROM tags_list WHERE tag_name LIKE '%$search_tag%' ORDER BY tag_name ASC";
 	} else {
-		$itemsPerPage = 10;
-		$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-		$offset = ($current_page - 1) * $itemsPerPage;  
-		$get_all_tags = "SELECT * FROM tags_list LIMIT $offset, $itemsPerPage";
+		//$itemsPerPage = 10;
+		//$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+		//$offset = ($current_page - 1) * $itemsPerPage;  
+		//$get_all_tags = "SELECT * FROM tags_list LIMIT $offset, $itemsPerPage";
+		$get_all_tags = "SELECT * FROM tags_list ORDER BY tag_name ASC";
 	}
 
 	// Execute the SQL query
