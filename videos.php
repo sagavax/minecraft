@@ -274,7 +274,7 @@
 
                                         echo "<button name='add_note' title='add note' class='button app_badge open-button' video-id=$video_id><i class='fa fa-comment'></i></button><button name='delete_video' type='button' class='button app_badge' video-id='$video_id'><i class='fas fa-times'></i></button><button class='button app_badge video_edition'>$video_edition</button>";
                                        echo "</div>";//video actiom 
-                                       echo "<div class='video_tags_wrap' video-id='$video_id'>";
+                                       echo "<div class='video_tags_wrap' video-id=$video_id>";
                                           
                                           echo "<div class='videos_tags'>";
                                              echo GetVideoTagList($video_id);
@@ -333,7 +333,7 @@
                         foreach (range('A', 'Z') as $char) {
                           echo "<button type='button' class='button small_button' name='letter'>$char</button>";
                         }
-                        echo "<button type='button' class='button small_button' name='add_new_tag' title='Add new tag'><i class='fa fa-plus'></i></button>";
+                        echo "<button type='button' class='button small_button' name='create_new_tag' title='create new tag'><i class='fa fa-plus'></i></button>";
                      ?>
                 </div>
                 <div class="tags_list"><?php echo GetAllUnassignedVideosTags()?></div>

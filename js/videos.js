@@ -242,6 +242,8 @@ modal_modpack_input.addEventListener("input", function(){
                 } else if(event.target.name === "letter"){ // ← else if
                     const letterButton = event.target.innerText;
                     sortVideosTagsByLetters(letterButton);
+                } else if (event.target.name === "create_new_tag"){
+                    createTag(modal_new_video_tags_input.value);
                 }
             }
         });
@@ -1343,5 +1345,20 @@ function sortVideosTagsByLetters(letterButton){
     xhttp.open("POST", "videos_tags_search.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     const params="search_tag="+tag;
+    xhttp.send(params);
+  }
+
+
+  function createTag(tag){
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".tags_list").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "video_tags_create.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    const params="tag="+tag;
     xhttp.send(params);
   }
