@@ -887,10 +887,15 @@ function loadVideoTags(videoId) {
         .then(response => response.json())
         .then(tagsObj => {
             for (const [id, tag] of Object.entries(tagsObj)) {
-                const buttonTag = `
+                /*const buttonTag = `
                     <button class='button small_button'>
                         ${tag}
                         <i class="fa fa-times" onclick="remove(this, '${tag}')"></i>
+                    </button>
+                `;*/
+                const buttonTag = `
+                    <button class='button small_button'>
+                        ${tag}
                     </button>
                 `;
                 videoTags.insertAdjacentHTML("afterbegin", buttonTag);

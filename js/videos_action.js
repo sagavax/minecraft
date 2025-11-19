@@ -19,8 +19,8 @@ videosContainer.addEventListener('click', function(event) {
     // If a button is found
     if (button) {
         var buttonName = button.getAttribute('name');
-        var videoId = button.getAttribute('video-id');
-        
+        let videoId = button.closest(".video_tags_wrap").getAttribute('video-id');
+        sessionStorage.setItem("video_id", videoId)        
         switch (buttonName) {
             case 'add_to_favorites':
             case 'watch_later':
@@ -80,22 +80,20 @@ videosContainer.addEventListener('click', function(event) {
             break;
 
             case 'video_tags_count':
-                var videoId = event.target.closest(".videos_tags").getAttribute("video-id");
-                sessionStorage.setItem("video_id", videoId);
+                //sessionStorage.setItem("video_id", videoId);
                 console.log("getting list of tags");
-                loadVideoTags(videoId); // zavolá funkci před zobrazením modalu
+                // /const existingvideoId = sessionStorage.getItem("video-id");
+                loadVideoTags(sessionStorage.getItem("video_id")); // zavolá funkci před zobrazením modalu
                 document.querySelector(".modal_video_tags").showModal();
                 break;
 
             case 'change_modpack':
-                var videoId = event.target.closest(".video").getAttribute("video-id");
-                sessionStorage.setItem("video_id", videoId);
+                //sessionStorage.setItem("video_id", videoId);
                 console.log("change modpack");
                 document.querySelector(".modal_change_modpack").showModal();
                 break;
             case 'add_mod':
-                var videoId = event.target.closest(".video").getAttribute("video-id");
-                sessionStorage.setItem("video_id", videoId);
+                //sessionStorage.setItem("video_id", videoId);
                 console.log("add mod");
                 //check what typpe of game Vanilla or modded it is. 
                 if(document.querySelector(`.video[video-id='${videoId}'] .video_modpack_info button[name='change_modpack'`).innerText=="Vanilla Minecraft"){
