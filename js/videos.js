@@ -231,6 +231,13 @@ modal_modpack_input.addEventListener("input", function(){
                     }
                     
                     // Ulož tag
+                    const selector = '.video_tags_wrap[video-id="' + videoId + '"]';
+
+
+                    //document.querySelector(selector).appendChild(event.target);
+                    //document.querySelector(selector).insertAdjacentHTML("afterbegin", event.target);
+                    document.querySelector(selector).insertAdjacentHTML("afterbegin", '<button class="tag_button" tag-id="'+tagId+'">'+event.target.innerText+'</button>');
+                    //document.querySelector('.video_tags_wrap[video-id="843"]');;
                     savetoVideoTagList(tagId, videoId);
                     
                     // Pridaj do array pre ďalšie kontroly v tejto session
@@ -1354,7 +1361,7 @@ function sortVideosTagsByLetters(letterButton){
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
-          document.querySelector(".tags_list").innerHTML = this.responseText;
+          document.querySelector(".modal_new_tags input" ).value = "";
         }
     };
     xhttp.open("POST", "video_tags_create.php", true);
