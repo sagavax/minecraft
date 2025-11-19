@@ -374,10 +374,12 @@ textarea::placeholder {
 .button {
     font-family: 'Noto Sans', sans-serif;
     background: #aadd77;
+    background-color: #239e57;
     color: #fff;
     padding: 11px 48px;
     border-radius: 2px;
-    border: #aadd77 1px solid;
+    /* border: #aadd77 1px solid; */
+    border: 1px #239e57 solid;
     font-size: 18px;
     transition: 0.5s ease;
 }
@@ -1010,6 +1012,7 @@ button[name="save_description"]{
    align-items: center;     
    background: #0b9ed0;
    border: 1px#0b9ed0 solid;
+   border-radius: 5px;
 }
 
 
@@ -1507,11 +1510,17 @@ input[name="search_image"]{
     border: 0;
 }
 
+.video_tags_wrap {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px;
+}
 
-.picture_tags ul li, .videos_tags button{
+.videos_tags button, .video_tags_wrap button {
   display: flex;
   color: white;
-  margin: 4px 3px;
   list-style: none;
   align-items: center;
   justify-content: center;
@@ -1519,12 +1528,23 @@ input[name="search_image"]{
   background: #2ecc71;
   padding: 5px 8px 5px 10px;
   border: 1px solid #e3e1e1;
+  
 }
 
-.videos_tags button {
+.videos_tags {
+    width:auto;
+    margin-top: 0;
+}
+
+.videos_tags button,.video_tags_wrap button {
     font-size:12px;
     height:35px;
 } 
+
+.video_tags_wrap button {
+    margin-left: 5px;
+}
+
 
 .video_action button[name="delete_video"]:hover, button[name="remove_from_gallery"]:hover {
   background:red;
@@ -2666,7 +2686,8 @@ button[name="enter_modpack"] {
     padding: 4px 8px;
     color: #fff;
     /*background-color: #75c54f;*/
-    background: #aadd77;
+    /* background: #aadd77; */
+    background-color: #239e57;
     border-radius: 5px;
     justify-content: center;
     width:80px
@@ -6302,13 +6323,13 @@ input[name="search_mods"] {
     margin-top: 5px;
    }
 
-   .video_tags {
-    margin-top:40px;
+   .video_tags{
     display: flex;
     flex-wrap: wrap;
     gap:10px;
    }
 
+   
    .video_tags_list {
     margin-top:15px;
     display: flex;
@@ -6370,8 +6391,10 @@ input[name="search_mods"] {
    }
 
     .video_edition {
-        background-color: #84e4f7;
-        border: 1px #84e4f7 solid;
+        /* background-color: #84e4f7;
+        border: 1px #84e4f7 solid; */
+        background-color: #09aecd;
+        border: 1px #09aecd solid;
         border-radius: 5px;
         color: #fff;
         height: 45px;

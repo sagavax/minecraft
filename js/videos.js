@@ -10,33 +10,68 @@ const modal_modpack_input = document.querySelector(".inner_modpack_layer input")
 const modpal_comm_button = document.querySelector(".modal_notes_action");
 const closeCommButton=document.querySelector(".modal_notes button");
 const closeModpackButton = document.querySelector(".inner_modpack_layer button");
-var search_input=document.querySelector(".search_wrap input");
-var clear_button= document.querySelector(".search_wrap button");
-var video_url = document.getElementById("video_url");
-var videos_tag_list = document.querySelector(".modal_video_tags");
-var videos_tag_list_close_button = document.querySelector(".modal_video_tags button");
+const search_input=document.querySelector(".search_wrap input");
+const clear_button= document.querySelector(".search_wrap button");
+const video_url = document.getElementById("video_url");
+const videos_tag_list = document.querySelector(".modal_video_tags");
+const videos_tag_list_close_button = document.querySelector(".modal_video_tags button");
+
+//add new tag dialog
 const modal_new_video_tags = document.querySelector(".modal_new_tags");
+const modal_new_video_tags_input = document.querySelector(".modal_new_tags input");
 const modal_new_video_tags_closeButton = document.querySelector(".modal_new_tags button");
-var container_view_source = document.querySelector('.tab_view_edition');
+
+
 const selectElement =document.querySelector('select[name="modpack_vanilla"]');
-var container_view_style = document.querySelector('.tab_view_list_grid');
-var container_view_source = document.querySelector('.tab_view_source');
-var change_modpack_list = document.querySelector(".change_modpack_list");
-var video_mods_alphabet = document.querySelector(".video_mods_alphabet");
-var video_mods_list = document.querySelector(".video_mods_list");
-var video_tags_alphabet = document.querySelector(".video_tags_alphabet");
-var video_tags_map_wrap = document.querySelector(".video_tags_map_wrap");
-var video_tags_map_wrap_input = document.querySelector(".video_tags_map_wrap input");
-var container_fav_later = document.querySelector('.tab_view_fav_later');
-var container_view_tags = document.querySelector(".tab_view_tags");
-var container = document.querySelector('.tab_view');
-var container_view_export = document.querySelector(".tab_view_export");
+const container_view_style = document.querySelector('.tab_view_list_grid');
+const container_view_source = document.querySelector('.tab_view_source');
+const change_modpack_list = document.querySelector(".change_modpack_list");
+const video_mods_alphabet = document.querySelector(".video_mods_alphabet");
+const video_mods_list = document.querySelector(".video_mods_list");
+const video_tags_alphabet = document.querySelector(".video_tags_alphabet");
+const video_tags_map = document.querySelector(".video_tags_map");
+const video_tags_map_wrap = document.querySelector(".video_tags_map_wrap");
+const video_tags_map_wrap_input = document.querySelector(".video_tags_map_wrap input");
+const container_fav_later = document.querySelector('.tab_view_fav_later');
+const container_view_tags = document.querySelector(".tab_view_tags");
+const container = document.querySelector('.tab_view');
+const container_view_export = document.querySelector(".tab_view_export");
 
 
 //search video tags in the map
 video_tags_map_wrap_input.addEventListener("keyup", function(event) {
             SearchVideoTag(video_tags_map_wrap_input.value);
 });
+
+
+//sort vidseos by tag
+document.querySelector(".video_tags_map").addEventListener('click', function(event){
+    if(event.target.tagName==="BUTTON"){
+        //const videoId = sessionStorage.getItem("video_id");
+        const tagId = event.target.getAttribute("tag-id");
+        console.log(tagId);
+        sortVideosByTag(tagId);
+     }
+});
+
+
+video_tags_alphabet.addEventListener("change", function(event){
+    if(event.target.tagName==="BUTTON"){
+        const char = event.target.innerText;
+        sortTagsByChar(char);
+    }
+});
+
+video_mods_alphabet.addEventListener("click", function(event){
+    console.log("alphabet clicked");
+    // Add your logic to handle alphabetical sorting here
+    if(event.target.name=="char"){
+        //alert("Alphabet clicked: " + event.target.innerText);
+        sortModsByChar(event.target.innerText);
+    }
+});
+
+
 
 
 selectElement.addEventListener("change", (event) => {
@@ -57,31 +92,6 @@ selectElement.addEventListener("change", (event) => {
 });
 
 
-video_tags_map.addEventListener('click', function(event){
-    if(event.target.tagName==="BUTTON"){
-        //const videoId = sessionStorage.getItem("video_id");
-        const tagId = event.target.getAttribute("tag-id");
-        console.log(tagId);
-        sortByVideoTag(tagId);
-     }
-});
-
-
-video_tags_alphabet.addEventListener("change", function(event){
-    if(event.target.tagName==="BUTTON"){
-        const char = event.target.innerText;
-        sortTagsByChar(char);
-    }
-});
-
-video_mods_alphabet.addEventListener("click", function(event){
-    console.log("alphabet clicked");
-    // Add your logic to handle alphabetical sorting here
-    if(event.target.name=="char"){
-        //alert("Alphabet clicked: " + event.target.innerText);
-        sortModsByChar(event.target.innerText);
-    }
-});
 
 video_mods_list.addEventListener("click", function(event){
     if(event.target.tagName==="BUTTON"){
@@ -108,7 +118,7 @@ videos_tag_list_close_button.addEventListener("click", ()=>{
 
 
 // Attach event listener to the parent element
-parentElement.addEventListener("input", function(event) {
+/* parentElement.addEventListener("input", function(event) {
     // Check if the target element is the input field
     if (event.target.matches(".inner_layer input")) {
         // Remove previous search results
@@ -121,7 +131,7 @@ parentElement.addEventListener("input", function(event) {
         }
     }
 });
-
+ */
 
 change_modpack_list.addEventListener("click", function(event) {
      // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
@@ -197,28 +207,47 @@ modal_modpack_input.addEventListener("input", function(){
 
 
     //clear search input
-    //var search_wrap = document.querySelector(".search_wrap");
+    //const search_wrap = document.querySelector(".search_wrap");
 
     clear_button.addEventListener("click", function(){
         search_input.value="";
     })
 
 
-    modal_new_video_tags.addEventListener("click", function(event){
-        if(event.target.tagName==="BUTTON"){
-          console.log(event.target.name);
-          if(event.target.name==="add_new_tag"){
-            var  tagId = event.target.getAttribute("tag-id");
-            var videoId = sessionStorage.getItem("video_id");
-             console.log(tagId,videoId);
-            savetoVideoTagList(tagId, videoId);
-            //remove from the list to avoid confusion
-            document.querySelector(".modal_new_tags .tags_list").removeChild(event.target);
-          } if(event.target.name==="letter"){
-            var letterButton = event.target.innerText;
-            sortVideosTagsByLetters(letterButton);
-          }
-        }
+        modal_new_video_tags.addEventListener("click", function(event){
+            if(event.target.tagName === "BUTTON"){
+                console.log(event.target.name);
+                
+                if(event.target.name === "add_new_tag"){
+                    const tagId = event.target.getAttribute("tag-id");
+                    const videoId = sessionStorage.getItem("video_id");
+                    
+                    console.log(tagId, videoId);
+                    
+                    // Kontrola duplicity
+                    if(existingVideoTags.includes(tagId)){
+                        alert("Tag already exists!");
+                        return;
+                    }
+                    
+                    // Ulož tag
+                    savetoVideoTagList(tagId, videoId);
+                    
+                    // Pridaj do array pre ďalšie kontroly v tejto session
+                    existingVideoTags.push(tagId);
+                    
+                    // Odstráň z modálneho zoznamu
+                    document.querySelector(".modal_new_tags .tags_list").removeChild(event.target);
+                    
+                } else if(event.target.name === "letter"){ // ← else if
+                    const letterButton = event.target.innerText;
+                    sortVideosTagsByLetters(letterButton);
+                }
+            }
+        });
+
+      modal_new_video_tags_input.addEventListener("input", function(event){
+            TagAutocomplete(event.target.value);
       })
 
 
@@ -236,7 +265,7 @@ modal_modpack_input.addEventListener("input", function(){
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON'){
             // Get the name attribute of the clicked button
-            var buttonName = event.target.getAttribute('name');
+            const buttonName = event.target.getAttribute('name');
             
             sort_videos_by_modif(buttonName);
             
@@ -254,7 +283,7 @@ modal_modpack_input.addEventListener("input", function(){
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON' || event.target.tagName==='I'){
             // Get the name attribute of the clicked button
-            var buttonName = event.target.getAttribute('name');
+            const buttonName = event.target.getAttribute('name');
             
             sort_videos_by_fav_watch_later(buttonName);
             
@@ -276,7 +305,7 @@ modal_modpack_input.addEventListener("input", function(){
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON'){
             // Get the name attribute of the clicked button
-            var buttonName = event.target.getAttribute('name');
+            const buttonName = event.target.getAttribute('name');
             
             videos_display_as(buttonName);
             
@@ -296,7 +325,7 @@ modal_modpack_input.addEventListener("input", function(){
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON'){
             // Get the name attribute of the clicked button
-            var buttonName = event.target.getAttribute('name');
+            const buttonName = event.target.getAttribute('name');
             
             sort_videos_by_source(buttonName);
             
@@ -314,7 +343,7 @@ modal_modpack_input.addEventListener("input", function(){
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON'){
             // Get the name attribute of the clicked button
-            var buttonName = event.target.getAttribute('name');
+            const buttonName = event.target.getAttribute('name');
             
             sort_videos_by_edition(buttonName);
             
@@ -352,8 +381,8 @@ modal_modpack_input.addEventListener("input", function(){
 
    function search_the_video(text) {
       
-       var xhttp = new XMLHttpRequest();
-       //var search_text=document.getElementById("search_string").value;
+       const xhttp = new XMLHttpRequest();
+       //const search_text=document.getElementById("search_string").value;
        xhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
                document.getElementById("videos_list").innerHTML =
@@ -383,7 +412,7 @@ modal_modpack_input.addEventListener("input", function(){
        document.getElementById("videos_list").style.display = "block";
        //document.getElementById("videos_cards").style.display = "none";
 
-       var xhttp = new XMLHttpRequest();
+       const xhttp = new XMLHttpRequest();
        xhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
 
@@ -399,30 +428,30 @@ modal_modpack_input.addEventListener("input", function(){
        //zobrazim modal 
        document.getElementById("add_new_video_note_modal").classList.add("show-modal");
        //console.log(video_id);
-       var modal_head = document.getElementById("modal_header");
+       const modal_head = document.getElementById("modal_header");
        //vlozime text do hlavicky
        modal_head.innerHTML = "Add new note to video id " + video_id;
 
       
-       var show_modal = document.getElementById('modal_footer').querySelector('.submit_note');
-       var close_modal = document.getElementById('modal_footer').querySelector('.close_modal')
+       const show_modal = document.getElementById('modal_footer').querySelector('.submit_note');
+       const close_modal = document.getElementById('modal_footer').querySelector('.close_modal')
        close_modal.onclick = function() {
            document.getElementById("add_new_video_note_modal").classList.remove("show-modal");
        }
 
 
-       //for(var i=0; i<kbButtons.length; i++) {
+       //for(const i=0; i<kbButtons.length; i++) {
        //    kbButton=kbButtons[i];
        show_modal.setAttribute("video-id", video_id);
    }
 
    function add_new_note(e) {
        //text co napiseme do textarea
-       var new_note = document.getElementById("new_note").value;
-       var video_id = e.getAttribute("video-id");
+       const new_note = document.getElementById("new_note").value;
+       const video_id = e.getAttribute("video-id");
 
        //posleme to comment.php
-       var xhttp = new XMLHttpRequest();
+       const xhttp = new XMLHttpRequest();
        xhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
                alert("novy comment pridany!!");
@@ -430,7 +459,7 @@ modal_modpack_input.addEventListener("input", function(){
                document.getElementById("add_new_video_note_modal").classList.remove("show-modal");
            }
        };
-       var data = "&video_id=" + encodeURIComponent(video_id) + "&video_comment=" + encodeURIComponent(new_note);
+       const data = "&video_id=" + encodeURIComponent(video_id) + "&video_comment=" + encodeURIComponent(new_note);
 
        //console.log(data);
        xhttp.open("POST", "comment.php", true);
@@ -439,7 +468,7 @@ modal_modpack_input.addEventListener("input", function(){
    }
 
    function validate_form() {
-       var x = document.forms["upload_videos"]["video_title"].value;
+       const x = document.forms["upload_videos"]["video_title"].value;
        if (x == "") {
            alert("Chyba titulok videa");
        }
@@ -457,7 +486,7 @@ modal_modpack_input.addEventListener("input", function(){
 
 
 function getYouTubeVideoName() {
-    var url = document.getElementById("video_url").value;
+    const url = document.getElementById("video_url").value;
 
     // Validácia URL
     if (!isValidUrl(url)) {
@@ -494,10 +523,10 @@ function getYouTubeVideoName() {
                     if (video_name) {
                         document.getElementById("video_title").value = video_name;
 
-                        let bedrockVariants = ["Bedrock", "bedrock", "BEDROCK"];
+                        let bedrockconstiants = ["Bedrock", "bedrock", "BEDROCK"];
 
-                        // Kontrola, či názov videa obsahuje varianty "Bedrock"
-                        if (bedrockVariants.some(variant => video_name.includes(variant))) {
+                        // Kontrola, či názov videa obsahuje constianty "Bedrock"
+                        if (bedrockconstiants.some(constiant => video_name.includes(constiant))) {
                             document.querySelector('select[name="edition"]').value = "bedrock";
                         }
                     } else {
@@ -521,15 +550,15 @@ function getYouTubeVideoName() {
 }
 
 function checkVideoExists() {
-    url = document.getElementById("video_url").value;
-    var xhttp = new XMLHttpRequest();
+    const url = document.getElementById("video_url").value;
+    const xhttp = new XMLHttpRequest();
     const icon1 = document.querySelector(".icon1");
     const icon2 = document.querySelector(".icon2");
 
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
 
-            video_url = document.getElementById("video_url");
+            const video_url = document.getElementById("video_url");
             if (this.responseText == 1) {
 
                 video_url.style.borderWidth = "3px";
@@ -565,8 +594,8 @@ function set_readonly(object){
 
 //sorts videos according the source like pinterest, youtube, tiktok
 function sort_videos_by_source(source){
-      var xhttp = new XMLHttpRequest();
-       //var search_text=document.getElementById("search_string").value;
+      const xhttp = new XMLHttpRequest();
+       //const search_text=document.getElementById("search_string").value;
        xhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
                document.getElementById("videos_list").innerHTML =
@@ -580,8 +609,8 @@ function sort_videos_by_source(source){
 
 //sorts videos according edition like Java, Bedrock, both
 function sort_videos_by_edition(source){
-      var xhttp = new XMLHttpRequest();
-       //var search_text=document.getElementById("search_string").value;
+      const xhttp = new XMLHttpRequest();
+       //const search_text=document.getElementById("search_string").value;
        xhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
                document.getElementById("videos_list").innerHTML =
@@ -594,8 +623,8 @@ function sort_videos_by_edition(source){
 
 //sorts videos according particular tag
 function sort_videos_by_tag(source){
-      var xhttp = new XMLHttpRequest();
-       //var search_text=document.getElementById("search_string").value;
+      const xhttp = new XMLHttpRequest();
+       //const search_text=document.getElementById("search_string").value;
        xhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
                document.getElementById("videos_list").innerHTML =
@@ -609,7 +638,7 @@ function sort_videos_by_tag(source){
 
 
     //modpack list hide button
-    var hide_btn = document.querySelector(".video_modpacks header button");
+    const hide_btn = document.querySelector(".video_modpacks header button");
             hide_btn.addEventListener("click", function(){
                      document.querySelector(".video_modpacks").style.display="none";
             })  
@@ -620,8 +649,8 @@ function sort_videos_by_tag(source){
 
 //reload modpacks in new video forms
 function LoadVideosModpacks(){
-      var xhttp = new XMLHttpRequest();
-       //var search_text=document.getElementById("search_string").value;
+      const xhttp = new XMLHttpRequest();
+       //const search_text=document.getElementById("search_string").value;
        xhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
                document.getElementById("videos_modpacks").innerHTML =
@@ -640,7 +669,7 @@ function sort_videos_by_modif(source){
         document.querySelector(".video_modpacks").style.display = "flex";
         
         // Get the container for modpack buttons
-        var containerModpackList = document.querySelector(".video_modpacks main");
+        const containerModpackList = document.querySelector(".video_modpacks main");
                 
         // Check if the container was found
         if (containerModpackList) {
@@ -660,7 +689,7 @@ function sort_videos_by_modif(source){
     }
 
     // Create an XMLHttpRequest object
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
 
     // Set up the callback function for when the request is complete
     xhttp.onreadystatechange = function () {
@@ -678,7 +707,7 @@ function sort_videos_by_modif(source){
 
 //sorts videos according modpack
 function videos_sorted_by_mdpk(mdpk_id){
-        var xhttp = new XMLHttpRequest();
+        const xhttp = new XMLHttpRequest();
 
     // Set up the callback function for when the request is complete
     xhttp.onreadystatechange = function () {
@@ -696,7 +725,7 @@ function videos_sorted_by_mdpk(mdpk_id){
 
 //sorts videos according watch later status
 function sort_videos_by_fav_watch_later(source){
-        var xhttp = new XMLHttpRequest();
+        const xhttp = new XMLHttpRequest();
 
     // Set up the callback function for when the request is complete
     xhttp.onreadystatechange = function () {
@@ -713,12 +742,12 @@ function sort_videos_by_fav_watch_later(source){
 
 //this function should swtich displaying video content from list to card and vice versa
 function videos_display_as(source){
-      var xhttp = new XMLHttpRequest();
+      const xhttp = new XMLHttpRequest();
         console.log(source);
         if((source)==="cards"){
-            var url = "videos_display_as_cards.php";
+            const url = "videos_display_as_cards.php";
         }else {
-            var url="videos_display_as_list.php";
+            const url="videos_display_as_list.php";
         }
 
 
@@ -758,7 +787,7 @@ function createVideoTag(tag_name){
 
         xhttp.open("POST", "video_create_tag.php",true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        var data = "video_id="+encodeURIComponent(video_id)+"&tag_name="+encodeURIComponent(tag_name);                
+        const data = "video_id="+encodeURIComponent(video_id)+"&tag_name="+encodeURIComponent(tag_name);                
         xhttp.send(data);
 }
 
@@ -776,7 +805,7 @@ function createVideoComment(comment){
 
         xhttp.open("POST", "video_comment_create.php",true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        var data = "video_id="+encodeURIComponent(video_id)+"&comment="+encodeURIComponent(comment);                
+        const data = "video_id="+encodeURIComponent(video_id)+"&comment="+encodeURIComponent(comment);                
         xhttp.send(data);
 }
 
@@ -794,7 +823,7 @@ function reloadTags(videoId){
 
         xhttp.open("POST", "video_tags_reload.php",true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        var data = "video_id="+encodeURIComponent(videoId);                
+        const data = "video_id="+encodeURIComponent(videoId);                
         xhttp.send(data);
 }
 
@@ -831,15 +860,9 @@ function createNewModpack(modpack_name) {
 
     xhttp.open("POST", "video_modpack_create.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    var data = "modpack_name=" + encodeURIComponent(modpack_name);
+    const data = "modpack_name=" + encodeURIComponent(modpack_name);
     xhttp.send(data);
 }
-
-
-// Event listener for the input field to trigger autocomplete
-document.querySelector(".inner_layer input").addEventListener("keyup", function() {
-    TagAutocomplete(this.value);
-});
 
 
 //clears autocomplete from previous results
@@ -879,7 +902,7 @@ function loadVideoTags(videoId) {
 
 //searches tags in modal tags dialog
  function searchModalTags(tag) {
-       var xhttp = new XMLHttpRequest();
+       const xhttp = new XMLHttpRequest();
        xhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
 
@@ -892,7 +915,7 @@ function loadVideoTags(videoId) {
 
 //pagination for modal tags
 function PaginateTags(pageNumber){
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
        xhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
 
@@ -908,7 +931,7 @@ function PaginateTags(pageNumber){
 
 //show off new video form
 function showNewVideoForm(){
-    var div = document.getElementById('new_video');
+    const div = document.getElementById('new_video');
     div.style.display = 'flex';
    window.scrollTo({
   top: 0,
@@ -938,7 +961,7 @@ function ShowMessage(text){
 document.querySelector('#new_video form').addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent the default form submission
 
-    var formData = new FormData(this); // Create a FormData object from the form
+    const formData = new FormData(this); // Create a FormData object from the form
 
     fetch('videos_save.php', {
         method: 'POST',
@@ -1025,7 +1048,7 @@ function clearNewVideoform(){
 }
 
 function exportCSV() {
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
 
     // Check the state of the AJAX request
     xhttp.onreadystatechange = function() {
@@ -1040,9 +1063,9 @@ function exportCSV() {
     xhttp.open("POST", "videos_export_to_csv.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    // You need to define the `data` variable before calling `exportCSV()`
+    // You need to define the `data` constiable before calling `exportCSV()`
     // For example:
-    // var data = "param1=value1&param2=value2";
+    // const data = "param1=value1&param2=value2";
 
     // Send the request with data (assuming `data` is defined elsewhere)
     xhttp.send();
@@ -1050,7 +1073,7 @@ function exportCSV() {
 
 
 function exportFarmsCSV() {
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
 
     // Check the state of the AJAX request
     xhttp.onreadystatechange = function() {
@@ -1065,9 +1088,9 @@ function exportFarmsCSV() {
     xhttp.open("POST", "videos_export_farms_to_csv.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    // You need to define the `data` variable before calling `exportCSV()`
+    // You need to define the `data` constiable before calling `exportCSV()`
     // For example:
-    // var data = "param1=value1&param2=value2";
+    // const data = "param1=value1&param2=value2";
 
     // Send the request with data (assuming `data` is defined elsewhere)
     xhttp.send();
@@ -1075,14 +1098,14 @@ function exportFarmsCSV() {
 
 function modpackExists(text) {
     console.log(text);
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4) {
             if (this.status === 200) {
                 if (this.responseText === "1") {
                     // Warning modpack exists and remove text from input
-                    var modalModpackInput = document.querySelector(".modal_modpack input");
+                    const modalModpackInput = document.querySelector(".modal_modpack input");
                     modalModpackInput.style.border = "2px solid red";
                     ShowMessage("Modpack already exists!");
                     //return input style back to normal
@@ -1121,8 +1144,16 @@ function hasTimeParameter(url) {
 }
 
 
+/**
+ * Saves a video tag by sending a POST request to 'video_tag_save.php'.
+ * The request includes the tag ID and video ID as parameters.
+ * Shows a message when the request is successful.
+ *
+ * @param {number} tagId The ID of the tag to be saved.
+ * @param {number} videoId The ID of the video to which the tag is associated.
+ */
 function savetoVideoTagList(tagId, videoId){
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
     console.log("video id:"+videoId+", tag id: "+tagId);
     // Check the state of the AJAX request
     xhttp.onreadystatechange = function() {
@@ -1137,9 +1168,9 @@ function savetoVideoTagList(tagId, videoId){
     xhttp.open("POST", "video_tag_save.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    // You need to define the `data` variable before calling `exportCSV()`
+    // You need to define the `data` constiable before calling `exportCSV()`
     // For example:
-     var data = "tag_id="+tagId+"&video_id="+videoId;
+     const data = "tag_id="+tagId+"&video_id="+videoId;
 
     // Send the request with data (assuming `data` is defined elsewhere)
     xhttp.send(data);
@@ -1150,7 +1181,7 @@ function removeFromVideoTagList(videoId, tagId){
 }
 
 function changeModpack(videoId, modpackId,modpackName) {
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
     console.log("video id: " + videoId + ", modpack Id: " + modpackId);
 
     // Check for duplicate modpack - Find the button for the specific video
@@ -1189,13 +1220,13 @@ function changeModpack(videoId, modpackId,modpackName) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     // Send the request with the videoId and modpackId
-    var params = "video_id=" + encodeURIComponent(videoId) + "&modpack_id=" + encodeURIComponent(modpackId);
+    const params = "video_id=" + encodeURIComponent(videoId) + "&modpack_id=" + encodeURIComponent(modpackId);
     xhttp.send(params);
 }
 
 
 function sortModsByChar(char){
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
@@ -1206,12 +1237,12 @@ function sortModsByChar(char){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     // Send the request with the videoId and modpackId
-    var params = "char=" + encodeURIComponent(char);
+    const params = "char=" + encodeURIComponent(char);
     xhttp.send(params);
 }
 
 function sortTagsByChar(char){
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
@@ -1222,12 +1253,12 @@ function sortTagsByChar(char){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     // Send the request with the videoId and modpackId
-    var params = "char=" + encodeURIComponent(char);
+    const params = "char=" + encodeURIComponent(char);
     xhttp.send(params);
 }
 
 function addModforVideo(videoId, modId){
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
@@ -1238,13 +1269,13 @@ function addModforVideo(videoId, modId){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     // Send the request with the videoId and modpackId
-    var params = "videoId=" + encodeURIComponent(videoId) + "&modId=" + encodeURIComponent(modId);
+    const params = "videoId=" + encodeURIComponent(videoId) + "&modId=" + encodeURIComponent(modId);
     xhttp.send(params);  
 }
 
 
-function sortByVideoTag(tagId){
-    var xhttp = new XMLHttpRequest();
+function sortVideosByTag(tagId){
+    const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
@@ -1253,12 +1284,12 @@ function sortByVideoTag(tagId){
     };
     xhttp.open("POST", "videos_sorted_by_tag.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    var params="tag_id="+tagId;
+    const params="tag_id="+tagId;
     xhttp.send(params);
 }
 
 function SearchVideoTag(tagValue){
-    var xhttp = new XMLHttpRequest();
+    const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
@@ -1267,7 +1298,7 @@ function SearchVideoTag(tagValue){
     };
     xhttp.open("POST", "videos_tags_search.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    var params="search_tag="+tagValue;
+    const params="search_tag="+tagValue;
     xhttp.send(params);
 }
 
@@ -1288,9 +1319,24 @@ function sortVideosTagsByLetters(letterButton){
     xhttp.open("POST", "video_tags_sort_by_letters.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   
-    // You need to define the `data` variable before calling `exportCSV()`
+    // You need to define the `data` constiable before calling `exportCSV()`
     // For example:
-    var data = "letter="+letterButton;
+    const data = "letter="+letterButton;
     // Send the request with data (assuming `data` is defined elsewhere)
     xhttp.send(data);
+  }
+
+
+  function TagAutocomplete(tag){
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".tags_list").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "videos_tags_search.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    const params="search_tag="+tag;
+    xhttp.send(params);
   }

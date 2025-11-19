@@ -1,10 +1,10 @@
 //import {ShowMessage} from '/videos.js';
-var container = document.querySelector('.videos_list');
+var videosContainer = document.querySelector('.videos_list');
 var addModpackButton = document.querySelector(".modpack_container button");
-
+let existingVideoTags = [];
 
 // Add a click event listener to the container
-container.addEventListener('click', function(event) {
+videosContainer.addEventListener('click', function(event) {
     var target = event.target;
 
     // Find the closest button ancestor of the clicked element
@@ -59,13 +59,25 @@ container.addEventListener('click', function(event) {
                 sessionStorage.setItem("video_id", videoId);
                 break;
 
-            case 'new_tag':
-                console.log("create new tag(s)");    
-                //document.querySelector(".modal").style.display = "flex";
-                document.querySelector(".modal_new_tags").showModal();
-                const video_id = event.target.closest(".videos_tags").getAttribute("video-id");
-                sessionStorage.setItem("video_id", videoId);
-                break;
+           case 'new_tag':
+            //console.log("create new tag(s)");
+            document.querySelector(".modal_new_tags").showModal();
+            
+            // Vyčisti array
+            existingVideoTags = [];
+            
+            const parent = event.target.closest(".video_tags_wrap");
+            const videoId = parent.getAttribute("video-id"); // ← OPRAV: bolo to AŽ za break
+            sessionStorage.setItem("video_id", videoId);
+            
+            const tagButtons = parent.querySelectorAll(".videos_tags button");
+            
+            for (const tagButton of tagButtons) { // ← pridaj const
+                existingVideoTags.push(tagButton.getAttribute("tag-id"));
+            }
+            
+            //console.log("Existing video tags:", existingVideoTags);
+            break;
 
             case 'video_tags_count':
                 var videoId = event.target.closest(".videos_tags").getAttribute("video-id");

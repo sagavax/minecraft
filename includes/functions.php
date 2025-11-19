@@ -548,7 +548,7 @@ function GetImageTagListByLetter($letter){
 			$tag_name= $row['tag_name'];
 
 			//$tags .= "<button class='button' name='$tag_name' tag-id=$tag_id>$tag_name</button>";
-			$tags .= "<button class='button small_button'>$tag_name</button>";
+			$tags .= "<button class='button small_button' tag-id=$tag_id>$tag_name</button>";
 			}
 	   
 		//echo "<button class='button' name='video_tags_count'>".GetCountVideoTags($video_id)."</button>";	
