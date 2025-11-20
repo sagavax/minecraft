@@ -19,7 +19,7 @@ videosContainer.addEventListener('click', function(event) {
     // If a button is found
     if (button) {
         var buttonName = button.getAttribute('name');
-        let videoId = button.closest(".video_tags_wrap").getAttribute('video-id');
+        let videoId = button.closest(".video").getAttribute('video-id');
         sessionStorage.setItem("video_id", videoId)        
         switch (buttonName) {
             case 'add_to_favorites':
@@ -93,10 +93,10 @@ videosContainer.addEventListener('click', function(event) {
                 document.querySelector(".modal_change_modpack").showModal();
                 break;
             case 'add_mod':
-                //sessionStorage.setItem("video_id", videoId);
+                //const videoId = sessionStorage.getItem("video_id"); // ← OPRAV: bolo to AŽ za break sessionStorage.setItem("video_id", videoId);
                 console.log("add mod");
                 //check what typpe of game Vanilla or modded it is. 
-                if(document.querySelector(`.video[video-id='${videoId}'] .video_modpack_info button[name='change_modpack'`).innerText=="Vanilla Minecraft"){
+                if(document.querySelector(`.video[video-id='${sessionStorage.getItem("video_id")}'] .video_modpack_info button[name='change_modpack'`).innerText=="Vanilla Minecraft"){
                     alert("Vanilla Minecraft games don't have modpacks. You can't add mods to them.");
                     return;
                 } else{

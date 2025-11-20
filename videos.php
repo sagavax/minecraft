@@ -114,7 +114,7 @@
 
 
                         <div class="new_video_submit_wrap"><button type="submit" name="add_new_video"
-                                class="button pull-right"><i class="fa fa-plus"></i></button></div>
+                                class="button"><i class="fa fa-plus"></i></button></div>
 
                     </form>
 

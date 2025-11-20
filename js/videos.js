@@ -233,11 +233,8 @@ modal_modpack_input.addEventListener("input", function(){
                     // Ulož tag
                     const selector = '.video_tags_wrap[video-id="' + videoId + '"]';
 
-
-                    //document.querySelector(selector).appendChild(event.target);
-                    //document.querySelector(selector).insertAdjacentHTML("afterbegin", event.target);
+                    //
                     document.querySelector(selector).insertAdjacentHTML("afterbegin", '<button class="tag_button" tag-id="'+tagId+'">'+event.target.innerText+'</button>');
-                    //document.querySelector('.video_tags_wrap[video-id="843"]');;
                     savetoVideoTagList(tagId, videoId);
                     
                     // Pridaj do array pre ďalšie kontroly v tejto session
@@ -1016,7 +1013,8 @@ function fetchLatestVideo() {
                         <button name="edit_video" type="button" class="button app_badge" video-id="${data.video_id}"><i class="far fa-edit"></i></button>
                         <button name="delete_video" type="button" class="button app_badge" video-id="${data.video_id}"><i class="fas fa-times"></i></button>
                     </div>
-                    <div class='videos_tags' video-id="${data.video_id}"></div>
+                    <div class='videos_tags_wrap' video-id="${data.video_id}"><div class='videos_tags'></div></div>
+                    <div class='video_modpack_information_wrap'><div class='video_modpack_info'><button class='button blue_button' name='change_modpack' title='change modpack'><i class='fa fa-edit'></i></button></div><div class='video_mods'><button class='button blue_button' name='add_mod' title='add mod(a)'><i class='fa fa-plus'></i></button></div></div>
                 </div>
                 <div class='video_banner_list'></div>
                 <div class='video_action_play'>
