@@ -103,12 +103,16 @@ while ($row = mysqli_fetch_array($result)) {
                  
                 echo "<div class='video_info'>";
                     echo "<div class='video_tags_list'>".VideoTags($video_id)."<button name='add_new_tag' class='button small_button'><i class='fa fa-plus'></i></button></div>";
-                    echo "<div class='video_comm_info'><div class='video_edition'><button class='button small_button'>".$video_edition." edition</button></div><span><span id='nr_of_comments'>" . GetNrOfComments($video_id) . "</span>comment(s)</span></div></div>";
+                
+                    echo "<div class='video_comm_info'></div></div>";
                 echo "<div class='video_comments_wrap'>";
+                echo "<div class='video_comments_title'><span id='nr_of_comments'>" . GetNrOfComments($video_id) . "</span>Comments</div>";
                 echo "<div class='video_comments' id='comments'>";
-                //echo "<ul>";
+                
+
+                
                 $video_comments = "SELECT * from video_comments where video_id=$video_id";
-                //echo $video_comments;
+                
                 $result_comments = mysqli_query($link, $video_comments);
                 while ($row_comments = mysqli_fetch_array($result_comments)) {
                     $comm_id = $row_comments['comm_id'];
@@ -126,7 +130,7 @@ while ($row = mysqli_fetch_array($result)) {
                 }
                 echo "</div>"; 
                 echo "<div class='new_comment'><input type='text' name='video_comment' id='video_comment' autocomplete='off'><button name='add_comment' type='button'><i class='fa fa-plus'></i></button></div></div>";
-                echo "<div class='action_back'><button onclick='reload_comments();' ><i class='fas fa-sync'></i> Reload</button> <a href='videos.php'><i class='fas fa-angle-left'></i> Back</a></div>";
+                echo "<div class='action_back'><button onclick='reload_comments();' ><i class='fas fa-sync'></i> Reload</button> <button type='button' onclick='go_back();'><i class='fas fa-angle-left'></i>Back</button></div>";
                 echo "</div>"; // div video comments_wrap
                 echo "</div>"; // div video details
             }

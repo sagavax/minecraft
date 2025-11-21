@@ -971,6 +971,18 @@ button[name="save_description"]{
     float: left;
 }
 
+.video_comments_title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    height:45px;
+    padding:5px;
+    justify-content: flex-end;
+
+    /* margin-bottom: 10px */
+}
+
 
 .video_comments, .picture_comments {
     padding-left: 20px;
@@ -1591,30 +1603,16 @@ button[name="enter_modpack"] {
         justify-content: flex-start;
         box-sizing: border-box;
         border: 1px #d1d1d1 solid;
-        margin-top: 10px
+        margin-top: 10px;
+        align-items: center;
 
 }
 
-.picture_comm_info {
-    border:0;
-    height:auto;
-    gap:15px;
-}
+
 
 .video_comm_info {
     margin-bottom: 20px;
-}
-
-.video_edition {
-    width:90%;
-    display: flex;
-    align-items: center;
-}
-
-.video_edition button {
-    border-radius: 6px;
-    width: 200px;
-    cursor: none;
+    justify-content: flex-end;
 }
 
 
@@ -4874,13 +4872,18 @@ td.zakladna_popis {
     box-sizing: border-box;
 }
 
-.action_back a,
 .action_back button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #fff;
     background: #2ecc71;
     font-size: 16px;
+    height:45px;
     padding: 6px 14px;
     border-radius: 5px;
+    gap:5px;
+    width:110px;
 }
 
 .action_back button {
