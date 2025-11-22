@@ -42,7 +42,7 @@
                 </div><!-- add_new_image -->
 
                  <div class="image_galleries">
-                <div class="gallery_view">
+                <div class="gallery_view_tabs">
                     <!-- <button type="button" class="button small_button" name="all_galleris">All</button> -->
                     <button type="button" class="button small_button" name="modpacks_galleries">Modpacks</button>
                     <button type="button" class="button small_button" name="vanilla_galleries">Vanilla</button>
