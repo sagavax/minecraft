@@ -16,7 +16,8 @@ if ($row = mysqli_fetch_assoc($result)) {
         'video_url' => $row['video_url'],
         'is_favorite' => $row['is_favorite'],
         'watch_later' => $row['watch_later'],
-        'video_thumbnail' => $row['video_thumbnail']
+        'video_thumbnail' => $row['video_thumbnail'],
+        'video_edition' => $row['edition'] 
     );
 }
 

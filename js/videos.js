@@ -1011,7 +1011,7 @@ function fetchLatestVideo() {
                         <button name="add_to_favorites" type="button" title="Add to favorites" class="button small_button app_badge" video-id="${data.video_id}"><i class="far fa-star"></i></button>
                         <button name="add_note" title="Add note" class="button app_badge open-button" video-id="${data.video_id}"><i class="fa fa-comment"></i></button>
                         <button name="edit_video" type="button" class="button app_badge" video-id="${data.video_id}"><i class="far fa-edit"></i></button>
-                        <button name="delete_video" type="button" class="button app_badge" video-id="${data.video_id}"><i class="fas fa-times"></i></button>
+                        <button name="delete_video" type="button" class="button app_badge" video-id="${data.video_id}"><i class="fas fa-times"></i></button><button class='button app_badge video_edition'>${data.video_edition}</button>
                     </div>
                     <div class='videos_tags_wrap' video-id="${data.video_id}"><div class='videos_tags'></div></div>
                     <div class='video_modpack_information_wrap'><div class='video_modpack_info'><button class='button blue_button' name='change_modpack' title='change modpack'><i class='fa fa-edit'></i></button></div><div class='video_mods'><button class='button blue_button' name='add_mod' title='add mod(a)'><i class='fa fa-plus'></i></button></div></div>
