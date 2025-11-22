@@ -44,10 +44,10 @@
                  <div class="image_galleries">
                 <div class="gallery_view_tabs">
                     <!-- <button type="button" class="button small_button" name="all_galleris">All</button> -->
-                    <button type="button" class="button small_button" name="modpacks_galleries">Modpacks</button>
-                    <button type="button" class="button small_button" name="vanilla_galleries">Vanilla</button>
-                    <button type="button" class="button small_button" name="reload_galleries">Reload</button>
-                    <button type="button" class="button small_button" name="new_gallery"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="button small_button gallery_tab" name="modpacks_galleries">Modpacks</button>
+                    <button type="button" class="button small_button gallery_tab" name="vanilla_galleries">Vanilla</button>
+                    <button type="button" class="button small_button gallery_tab" name="reload_galleries">Reload</button>
+                    <button type="button" class="button small_button gallery_tab" name="new_gallery"><i class="fa fa-plus"></i></button>
                 </div>
 
                 <div class="image_galleries_list">

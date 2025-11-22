@@ -168,6 +168,19 @@
     gap: 10px;
 }
 
+.gallery_tab {
+    background-color: white;
+    color: #222;
+    height:50px;
+    border-radius: 5px;
+    font-weight: bolder;
+}
+
+.gallery_tab:hover {
+    background-color: #239e57;
+    color: #fff;
+}
+
 .image_galleries_list {
     width: 100%;
     display: flex;
