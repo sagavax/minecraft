@@ -40,7 +40,7 @@ $sql = "SELECT * from videos where video_id=$video_id";
 
 $result = mysqli_query($link, $sql);
 while ($row = mysqli_fetch_array($result)) {
-    $cat_id = $row['cat_id'];
+    //$cat_id = $row['cat_id'];
     //$modpack_id = $row['modpack_id'];
     //$cat_name = GetModName($cat_id);
     //$modpack_name = GetModPackName($modpack_id);
