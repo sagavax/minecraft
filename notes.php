@@ -27,8 +27,9 @@
   </head>
   
   <body>
-  <?php
-         include("includes/header.php") ?>
+    <?php
+         include("includes/header.php") 
+    ?>
       <div class="main_wrap">
       <div class="tab_menu">
           <?php include("includes/menu.php"); ?>

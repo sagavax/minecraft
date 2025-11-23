@@ -102,15 +102,14 @@ while ($row = mysqli_fetch_array($result)) {
                 }
                  
                 echo "<div class='video_info'>";
-                    echo "<div class='video_tags_list'>".VideoTags($video_id)."<button name='add_new_tag' class='button small_button'><i class='fa fa-plus'></i></button></div>";
+                    echo "<div class='video_tags_list'>".VideoTags($video_id)."<button name='add_new_tag' class='button small_button'><i class='fa fa-plus'></i></button></div></div>";
                 
-                    echo "<div class='video_comm_info'></div></div>";
+                //echo "<div class='video_comm_info'></div>";
                 echo "<div class='video_comments_wrap'>";
                 echo "<div class='video_comments_title'><span id='nr_of_comments'>" . GetNrOfComments($video_id) . "</span>Comments</div>";
                 echo "<div class='video_comments' id='comments'>";
                 
-
-                
+               
                 $video_comments = "SELECT * from video_comments where video_id=$video_id";
                 
                 $result_comments = mysqli_query($link, $video_comments);

@@ -51,6 +51,10 @@
         
       document.querySelector(".new_comment").addEventListener("click",function(event){
           if(event.target.tagName==="BUTTON"){
+            if(document.querySelector(".new_comment input").value===""){
+              alert("Cannot be empty!!!");
+              return;
+            }
               //alert("add comment");
               addComment();
           }

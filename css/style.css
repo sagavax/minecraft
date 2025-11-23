@@ -865,20 +865,15 @@ textarea::placeholder {
     flex-direction: column;
 }
 
-.picture_description,
-.image_description {
+.picture_description, .image_description {
     padding: 5px;
     box-sizing: border-box;
-    background: #eff3f4;
-}
-
-/* .image_description {
-    background: #fff;
-    box-sizing: border-box;
-    padding: 10px 0px 10px 0px;
-    margin-bottom: 10px;
+    background: white;
+    height: 100px;
+    border: 1px #d1d1d1 solid;
+    margin-top: 20px;
     position: relative;
-} */
+}
 
 .image_description:not(:empty)::before,.image_description:not(:empty):not(:focus):before  {
   content: attr(data-placeholder);
@@ -978,6 +973,7 @@ button[name="save_description"]{
     gap: 10px;
     height:45px;
     padding:5px;
+    padding-right: 10px;
     justify-content: flex-end;
 
     /* margin-bottom: 10px */
@@ -1281,6 +1277,12 @@ input[name="search_image"]{
     width:100%
 }
 
+.comment_footer button {
+    height: 35px;
+    width: 35px;
+    border-radius: 5px;
+}
+
 .comment:before {
     content: "";
     display: block;
@@ -1305,12 +1307,13 @@ input[name="search_image"]{
 
 .new_comment {
     display: flex;
+    margin-bottom: 20px;
+    margin-left:15px;
 }
 
 .comment_delete {
     height: 35px;
-    width: 35px;
-    
+   width: 35px;
     border: 1px #2ecc71 solid;
     background-color: #2ecc71;
     position: absolute;
@@ -1337,6 +1340,13 @@ input[name="search_image"]{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     width: 50px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.new_comment button:active {
+    outline: none;
+    background-color: #239e57;
 }
 
 .video_comments ul,
@@ -4815,7 +4825,7 @@ td.zakladna_popis {
     justify-content: center;
     color: #fff;
     background: #2ecc71;
-    font-size: 16px;
+    font-size: 18px;
     height:45px;
     padding: 6px 14px;
     border-radius: 5px;
