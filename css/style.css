@@ -1414,7 +1414,6 @@ input[name="search_image"]{
     flex-direction: column;
     justify-content: flex-start;
     margin-top: 10px;
-    height: 50px;
 }
 
 .video_info span {
@@ -1465,6 +1464,18 @@ input[name="search_image"]{
     justify-content: flex-start;
     flex-wrap: wrap;
 }
+
+.images_tags {
+    display: flex;
+    height:50px;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    border: 1px #d1d1d1 solid;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
 
 .videos_tags {
     border: 0;
@@ -1534,9 +1545,9 @@ button[name="enter_modpack"] {
         height: 50px;
         padding: 10px;
         width: 100%;
-        justify-content: flex-start;
+        justify-content: flex-end;
         box-sizing: border-box;
-        border: 1px #d1d1d1 solid;
+        /* border: 1px #d1d1d1 solid; */
         margin-top: 10px;
         align-items: center;
 
