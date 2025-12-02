@@ -39,9 +39,7 @@
            
           <div class="list">
             
-            <div class="search_wrap">
-                <input type="text" name="search" id="search_string" autocomplete="off" placeholder="search notes here"><button type="button" name="clear_search" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
-              </div><!-- Search wrap-->
+          
          
             <div id="new_note">
               <div class="new_note_header">
@@ -84,6 +82,12 @@
                     <button name="add_note" type="button" class="button small_button tooltip" title="New note"><i class="fa fa-plus"></i></button>              
                  </div>   
               </div>  
+
+              <div class="search_wrap">
+                  <input type="text" name="search" id="search_string" autocomplete="off" placeholder="search notes here"><button type="button" name="clear_search" title="clear search" class="button small_button tooltip>"><i class="fa fa-times"></i></button>
+              </div><!-- Search wrap-->            
+
+
 
               <div id="notes_list">
                 <?php    
