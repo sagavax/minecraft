@@ -24,11 +24,16 @@ search_wrap_input.addEventListener("keyup", () => {
 
 tab_view.addEventListener("click", (event) => {
   if (event.target.tagName == "BUTTON") {
-
+    if (event.target.name ==="show_list"){
+    showModpacksList();
+  } else if ( event.target.name ==="show_grid"){
+    showModpacksGrid();
+  } else {
     document.querySelectorAll(".tab_view button").forEach(button => { button.style.backgroundColor = "#aadd77"; });
     
     event.target.style.backgroundColor = "#52a535";
     show_modpacks(event.target.name);
+     } 
   }
 });
 
@@ -117,5 +122,31 @@ function show_modpacks(status) {
     }
   };
   xhttp.open("GET", "modpacks_filter.php?filter=" + status, true);
+  xhttp.send();
+}
+
+function showModpacksList(){
+  console.log("list");
+  modpack_list.replaceChildren();
+
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    var modpacks = document.querySelector(".modpack_list");
+    modpacks.innerHTML = this.responseText;
+  }
+  xhttp.open("GET", "modpacks_list.php", true);
+  xhttp.send();
+}
+
+function showModpacksGrid(){
+  console.log("grid");
+  modpack_list.replaceChildren();
+
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    var modpacks = document.querySelector(".modpack_list");
+    modpacks.innerHTML = this.responseText;
+  }
+  xhttp.open("GET", "modpacks_grid.php", true);
   xhttp.send();
 }

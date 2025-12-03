@@ -59,7 +59,10 @@
          <div class="dashboard_header">Modpack list</div>
          <div class="search_wrap"><input type="search" placeholder="Search modpack here" autocomplete="off" spellcheck="false"></div>
 
+
          <div class="tab_view">
+             <button class="button small_button" name="show_list">List</button>
+             <button class="button small_button" name="show_grid">Grid</button> 
              <button class="button small_button" name="active">Active</button>
              <button class="button small_button" name="inactive">Inactive</button>
              <button class="button small_button" name="all">All</button>
