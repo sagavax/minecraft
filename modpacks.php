@@ -26,7 +26,7 @@
     <title>Minecraft IS</title>
     <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,700italic,400italic' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="text/javascript" src="js/modpacks.js" defer=""></script>
@@ -52,10 +52,8 @@
        
         <div class="modpack_list_wrap">
             <!-- <div class="fab fab-icon-holder" onclick="window.location.href='modpack_add.php';"> -->
-            <div class="fab fab-icon-holder" onclick="document.getElementById('new_modpack').showModal();">
-                <i class="fa fa-plus"></i>
-              </div>    
-         
+            <button class="button small_button" name="add_modpack" title="add new modpack" onclick="document.getElementById('new_modpack').showModal()"><i class="fa fa-plus"></i></button>  
+            
          <div class="dashboard_header">Modpack list</div>
          <div class="search_wrap"><input type="search" placeholder="Search modpack here" autocomplete="off" spellcheck="false"></div>
 
