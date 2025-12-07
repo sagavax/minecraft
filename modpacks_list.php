@@ -20,14 +20,14 @@ include "includes/functions.php";
                         <div class='modpack_list_item_details_wrap'>
                             <div class='modpack_thumb_name'>$modpack_name</div>
                                <div class='modpack_list_item_action_wrap'>
-                                    <div class='modpack_list_description' title='Description'><i class='fa-solid fa-pen-to-square'></i></div>
-                                    <div class='modpack_list_seeds' title='Seeds'><i class='fa-solid fa-seedling'></i></div>
-                                    <div class='modpack_list_images' title='Images'><i class='fa-regular fa-image'></i></div>
-                                    <div class='modpack_list_bases' title='Bases'><i class='fa-solid fa-house'></i></div>
-                                    <div class='modpack_list_mods' title='Mods'><i class='fa-solid fa-gear'></i></div>
-                                    <div class='modpack_list_notes' title='Notes'><i class='fa-solid fa-pen'></i></div>
-                                    <div class='modpack_list_tasks' title='Tasks'><i class='fa-solid fa-list-check'></i></div>
-                                    <div class='modpack_list_videos' title='Videos'><i class='fa-solid fa-video'></i></div>
+                                    <div class='modpack_list_description' title='Description'><div class='list_item_action_title'>Description</div><div class='list_item_action_logo'><i class='fa-solid fa-pen-to-square'></i></div></div>
+                                    <div class='modpack_list_seeds' title='Seeds'><div class='list_item_action_title'>Seed</div><div class='list_item_action_logo'><i class='fa-solid fa-seedling'></i></div></div>
+                                    <div class='modpack_list_images' title='Images'><div class='list_item_action_title'>Images</div><div class='list_item_action_logo'><i class='fa-regular fa-image'></i></div></div>
+                                    <div class='modpack_list_bases' title='Bases'><div class='list_item_action_title'>Bases</div><div class='list_item_action_logo'><i class='fa-solid fa-house'></i></div></div>
+                                    <div class='modpack_list_mods' title='Mods'><div class='list_item_action_title'>Mods</div><div class='list_item_action_logo'><i class='fa-solid fa-gear'></i></div></div>
+                                    <div class='modpack_list_notes' title='Notes'><div class='list_item_action_title'>Notes</div><div class='list_item_action_logo'><i class='fa-solid fa-pen'></i></div></div>
+                                    <div class='modpack_list_tasks' title='Tasks'><div class='list_item_action_title'>Tasks</div><div class='list_item_action_logo'><i class='fa-solid fa-list-check'></i></div></div>
+                                    <div class='modpack_list_videos' title='Videos'><div class='list_item_action_title'>Videos</div><div class='list_item_action_logo'><i class='fa-solid fa-video'></i></div></div>
                                 </diiv>
                             </div>
                         </div> 

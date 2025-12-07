@@ -1,7 +1,7 @@
   //parse url and get image id
 const urlParams = new URLSearchParams(window.location.search);
 const imageId = urlParams.get('image_id');
-const images_tags = document.querySelector(".images_tags");
+const images_tags = document.querySelector(".image_detail_tags");
 const image_description = document.querySelector(".image_description");
 const modal_new_tags = document.querySelector(".modal_new_tags");
 const old_description = document.querySelector(".image_description").innerText;

@@ -1465,17 +1465,6 @@ input[name="search_image"]{
     flex-wrap: wrap;
 }
 
-.images_tags {
-    display: flex;
-    height:50px;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    border: 1px #d1d1d1 solid;
-    box-sizing: border-box;
-    padding: 5px;
-}
-
 
 .videos_tags {
     border: 0;
@@ -4645,10 +4634,26 @@ td.zakladna_popis {
     border-radius: 5px;
     color: #fff;
     font-size:30px;
-    align-items: center;
-    justify-content: center;
     padding: 10px;
 }
+
+    .list_item_action_title, 
+    .list_item_action_logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:100%
+    }
+
+    .list_item_action_title {
+        font-size: 14px;
+        height:40%
+    }
+
+    .list_item_action_logo {
+        height:60%
+    }
+
 
    .task_modpacks {
     display: flex;
@@ -6210,6 +6215,9 @@ input[name="search_mods"] {
 }
 
    .overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width:100vw;
     height:100vh;
     position: fixed;

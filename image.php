@@ -10,6 +10,7 @@
       <title>Minecraft - image</title>
       <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
       <link rel="stylesheet" href="css/message.css?<?php echo time(); ?>">
+      <link rel="stylesheet" href="css/gallery.css?<?php echo time(); ?>">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
       <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
       <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -63,7 +64,7 @@
                               echo "<div class='picture_info'>";
                                   echo "<div class='picture_modpacks'>".GetImageModpack($picture_id).GetImageGallery($picture_id)." </div>";
                                   echo "<div class='image_description' data-placeholder='image descriptpion. click / tap here to put some wideo description here ...' title='Image description'>$picture_description<button name='save_description' type='button' class='button small_button'><i class='fa fa-save'></i></button></div>";  
-                                  echo "<div class='images_tags' tag-list='".GetImageTagListArray($picture_id)."'>".GetImageTagList($picture_id)."</div>";  
+                                  echo "<div class='image_detail_tags' tag-list='".GetImageTagListArray($picture_id)."'>".GetImageTagList($picture_id)."</div>";  
                                
                               echo "</div>"; //picture_info                                            
 

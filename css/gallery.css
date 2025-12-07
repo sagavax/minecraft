@@ -160,6 +160,18 @@
     gap:10px
 }
 
+.image_detail_tags {
+    margin-top:10px;
+    display: flex;
+    height:60px;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    border: 1px #d1d1d1 solid;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
 
 .gallery_view_tabs {
     width: 100%;
