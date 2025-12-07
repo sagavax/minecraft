@@ -578,3 +578,7 @@ function removeImageFromGallery(imageId) {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(data);
 }
+
+function go_back(){
+  window.history.back();
+}
