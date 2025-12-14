@@ -107,15 +107,15 @@ function GetImageGalleryName($image_id) {
 		if(mysqli_num_rows($result) > 0) {
 		return  htmlspecialchars($row['gallery_name']);
 	}
-		
+
 	
 }
 
 function GetAllImageGalleries(){
 	global $link;
 	$gallery ="";	
-	$query = "SELECT * from picture_galleries";
-	$result=mysqli_query($link, $query) or die(mysql_error());
+	$query = "SELECT * from picture_galleries ORDER BY gallery_name ASC";
+	$result=mysqli_query($link, $query) or die(mysqli_error($link));
 	if(mysqli_num_rows($result)==0) {
 		echo "<div class='no_gallery' gallery-id='0'>No galleries</div>";
 	} else {
