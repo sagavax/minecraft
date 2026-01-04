@@ -38,8 +38,8 @@
             <div class='list'>
 
                 <!--<div class="fab fab-icon-holder" onclick="document.getElementById('new_video').style.display='flex'">-->
-                <div class="fab fab-icon-holder" onclick="showNewVideoForm()">
-                    <i class="fas fa-plus"></i>
+                <div class="new_video fab-icon-holder" >
+                    <i class="fas fa-plus" title="Add new video" onclick="showNewVideoForm()"></i>
                 </div>
 
                 <div id="new_video">

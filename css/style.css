@@ -1779,10 +1779,29 @@ button[name="enter_modpack"] {
             justify-content: flex-end;
         }*/
 
-.fab {
+.new_video {
     height: 60px;
     width: 60px;
+    background-color: #de5a4d;
+    border-radius: 50%;
+    color:white;
+    font-size: 18px;
+    position: fixed;
+    right:10%;
+    top: 30%;
+}
+
+.new_video i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.new_video :hover {
     background: #d23f31;
+    cursor: pointer;
+    border-radius: 50%;
 }
 
 button[name="add_modpack"] {

@@ -38,6 +38,8 @@ const container = document.querySelector('.tab_view');
 const container_view_export = document.querySelector(".tab_view_export");
 
 
+document.querySelector("#new_video").style.display="none";
+
 //search video tags in the map
 video_tags_map_wrap_input.addEventListener("keyup", function(event) {
             SearchVideoTag(video_tags_map_wrap_input.value);
