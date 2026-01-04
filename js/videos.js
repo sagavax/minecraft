@@ -30,6 +30,8 @@ const video_mods_alphabet = document.querySelector(".video_mods_alphabet");
 const video_mods_list = document.querySelector(".video_mods_list");
 const video_tags_alphabet = document.querySelector(".video_tags_alphabet");
 const video_tags_map = document.querySelector(".video_tags_map");
+const video_tags_map_header = document.querySelector(".video_tags_map_header");
+const video_tags_map_header_button = document.querySelector(".video_tags_map_header button");
 const video_tags_map_wrap = document.querySelector(".video_tags_map_wrap");
 const video_tags_map_wrap_input = document.querySelector(".video_tags_map_wrap input");
 const container_fav_later = document.querySelector('.tab_view_fav_later');
@@ -38,7 +40,22 @@ const container = document.querySelector('.tab_view');
 const container_view_export = document.querySelector(".tab_view_export");
 
 
+//hide the new video form
 document.querySelector("#new_video").style.display="none";
+
+
+video_tags_map_header_button.addEventListener("click", function(){
+    const videoTagsWrap = document.querySelector("#video_tags_wrap");
+    // Získame reálny vypočítaný štýl, nie len ten z inline atribútu
+   
+    if (videoTagsWrap.style.display == "none") {
+        videoTagsWrap.style.display = "flex";    
+        video_tags_map_header_button.innerHTML = "<i class='fa fa-chevron-up'></i>";
+    } else {
+        videoTagsWrap.style.display = "none";
+        video_tags_map_header_button.innerHTML = "<i class='fa fa-chevron-down'></i>";
+    }
+});
 
 //search video tags in the map
 video_tags_map_wrap_input.addEventListener("keyup", function(event) {

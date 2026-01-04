@@ -194,6 +194,8 @@
                     </div>
 
                     <div class="video_tags_map_wrap">
+                        <div class="video_tags_map_header">Tags<button type="button" class="button small_button"><i class="fa  fa-chevron-up"></i></button></div>
+                        <div id="video_tags_wrap">
                         <input type="text" name="search_tag" placeholder="Search a tag" autocomplete="off">
                         <div class="video_tags_map">
                             <?php 
@@ -205,7 +207,8 @@
                                     echo "<button type='button' class='button small_button' name='tag'  tag-id=$tag_id>$tag_name</button>";
                                 }
                             ?>
-                        </div><!-- video_tags_map -->    
+                         </div><!-- video_tags_map -->
+                        </div><!-- video_tags_wrap -->    
                     </div><!-- video_tags_map_wrap -->
 
                     <div class='videos_list' id='videos_list'>

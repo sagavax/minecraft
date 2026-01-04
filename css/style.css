@@ -1001,11 +1001,24 @@ button[name="save_description"]{
     margin-bottom: 15px;;
    }
 
+   .video_tags_map_header {
+    display: flex;
+    align-items: center;
+    background-color:#0b9ed0;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+   }
+
+
 .video_tags_map {
     display: flex;
     flex-wrap: wrap;
     gap:10px;
 }
+
 
 
   
@@ -1489,6 +1502,13 @@ input[name="search_image"]{
   padding: 5px 8px 5px 10px;
   border: 1px solid #e3e1e1;
   
+}
+
+#video_tags_wrap {
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    margin: 5px;
 }
 
 .videos_tags {
