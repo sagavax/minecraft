@@ -12,6 +12,8 @@ document.querySelector(".influencer_modpacks").style.background = "transparent";
 // get influencer name from link
 new_influencer_input_influencer_link.addEventListener("input", () => {
     new_influencer_input_influencer_name.value = (new_influencer_input_influencer_link.value).split("@")[1];
+    //check if influnecer name is in the database
+    checkIfInfluencerExists(new_influencer_input_influencer_name.value);
 })
 
 
@@ -73,6 +75,7 @@ function LoadInflencersModpacks(influencerId){
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           document.querySelector(".influencer_modpacks").innerHTML = this.responseText;
+          alert("Modpacks have been loaded!");
           //document.querySelector(".influencer_modpacks").style.background = "#fff";
           //document.querySelector(".influencer_playlists").style.background = "#fff";
       }
@@ -118,5 +121,39 @@ function getInfluencerLists(influncer){
     xhttp.open("POST", "influencer_playlists.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var params="influencer-id="+influncer;
+    xhttp.send(params);
+}
+
+
+function checkIfInfluencerExists(influencerName) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText === "true") {
+                new_influencer_input_influencer_name.style.background = "#f6d1d1";
+                new_influencer_input_influencer_link.style.background = "#f6d1d1";
+                
+                
+                setTimeout(() => {
+                    new_influencer_input_influencer_name.value = "";
+                    new_influencer_input_influencer_link.value = "";
+                    new_influencer_input_influencer_name.style.background = "#fcfafa";
+                    new_influencer_input_influencer_link.style.background = "#fcfafa";    
+                }, 3000);
+                //ShowMessage("Influencer already exists!");
+            } else if (this.responseText === "false"){
+                new_influencer_input_influencer_name.style.background = "#D1F6D1";
+                new_influencer_input_influencer_link.style.background = "#D1F6D1";
+
+                setTimeout(() => {
+                    new_influencer_input_influencer_name.style.background = "#fcfafa";
+                    new_influencer_input_influencer_link.style.background = "#fcfafa";    
+                }, 3000);
+            }
+        }
+    };
+    xhttp.open("POST", "influencer_exists.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var params="influencer-name="+influencerName;
     xhttp.send(params);
 }

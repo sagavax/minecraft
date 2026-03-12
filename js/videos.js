@@ -42,7 +42,7 @@ const container_view_export = document.querySelector(".tab_view_export");
 
 //hide the new video form
 document.querySelector("#new_video").style.display="none";
-
+document.querySelector("#video_tags_wrap").style.display="none";
 
 video_tags_map_header_button.addEventListener("click", function(){
     const videoTagsWrap = document.querySelector("#video_tags_wrap");

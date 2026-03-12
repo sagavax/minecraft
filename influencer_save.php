@@ -3,6 +3,12 @@
 include "includes/dbconnect.php";
 include "includes/functions.php";
 
+// Validacia - kontrola ci su povinne polia vyplnene
+if (empty($_POST['influencer_name']) || empty($_POST['influencer_url'])) {
+    header("Location: influencers.php");
+    exit();
+}
+
 $influncer_name = mysqli_real_escape_string($link,$_POST['influencer_name']);
 $influncer_description = mysqli_real_escape_string($link,$_POST['influencer_description']);
 $influncer_channel_link = mysqli_real_escape_string($link,$_POST['influencer_url']);

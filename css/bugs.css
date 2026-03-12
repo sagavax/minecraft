@@ -111,3 +111,7 @@ dialog.show {
         padding: 10px;
         border-radius: 5px;
 }
+
+.nr_of_comments {
+    cursor: pointer;
+}

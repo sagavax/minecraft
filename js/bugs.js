@@ -1,10 +1,62 @@
 const bug_list = document.querySelector('.bug_list');
 const modal_show_status = document.querySelector('.modal_show_status');
 const modal_show_priority = document.querySelector('.modal_show_priority');
+const new_bug = document.querySelector('.new_bug');
+const bug_footer = document.querySelector('.bug_footer');
 
 //markdown editor
 
-        
+
+
+bug_footer.addEventListener('click', function(event) {
+    if(event.target.classList.contains('bug_status')) {
+        const bugId = event.target.closest(".bug").getAttribute('bug-id');
+        sessionStorage.setItem('bug_id', bugId);
+        console.log(bugId);
+        modal_show_status.showModal();
+    } else if(event.target.classList.contains('bug_priority')) {
+        const bugId = event.target.closest(".bug").getAttribute('bug-id');
+        sessionStorage.setItem('bug_id', bugId);
+        console.log(bugId);
+        modal_show_priority.showModal();
+    } else if (event.target.classList.contains('nr_of_comments')) {
+        const bugId = event.target.closest(".bug").getAttribute('bug-id');
+        sessionStorage.setItem('bug_id', bugId);
+        console.log(bugId);
+        localBugComments(bugId);
+    } else if (event.target.tagName === 'BUTTON') {
+        if(event.target.name === "delete_bug"){
+            const bugId = event.target.closest(".bug").getAttribute('bug-id');
+            sessionStorage.setItem('bug_id', bugId);
+            console.log(bugId);
+            removeBug(bugId);
+        } else if(event.target.name === "mark_fixed"){
+            const bugId = event.target.closest(".bug").getAttribute('bug-id');
+            sessionStorage.setItem('bug_id', bugId);
+            console.log(bugId);
+            markBugAsFixed(bugId);
+        }
+    }
+});
+
+
+new_bug.addEventListener('submit', function(event) {
+    if(event.target.tagName === 'BUTTON') {
+     
+            event.preventDefault(event);
+            /* const bugTitle = document.querySelector('input[name="bug_title"]').value;
+            const bugDescription = document.querySelector('textarea[name="bug_text"]').value;
+            const bugPriority = document.querySelector('select[name="bug_priority"]').value;
+            const bugStatus = document.querySelector('select[name="bug_status"]').value;
+            if(bugTitle === "" || bugDescription === ""){
+                alert("Please fill in all required fields.");
+                return;
+            }
+            SaveBug(bugTitle, bugDescription, bugPriority, bugStatus);
+            console.log(`New bug added: ${bugTitle} - ${bugDescription}`); */
+        }
+   
+});
 
 
 bug_list.addEventListener('click', function(event) {
@@ -125,4 +177,18 @@ function changeBugPriority(bugId, bugPriority) {
 
 function addNewComment(bugId) {
     document.queryselector('.modal_add_comment').showModal();
+}
+
+function SaveBug(bugTitle, bugDescription, bugPriority, bugStatus) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+            alert("Bug added successfully!");
+            console.log(this.responseText);
+            ccconsole.log("Bug added successfully!");
+        }
+    };
+    xhttp.open("POST", "bugs_add.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 }

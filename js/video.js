@@ -13,7 +13,9 @@
   video_tag_list.addEventListener('click', function(event) {
     if(event.target.tagName.toLowerCase()=="i"){
       videoId = sessionStorage.getItem("video_id");
+      event.target.remove();
       remove_tag_from_video(event.target.parentElement.getAttribute('tag-id'), videoId);
+      
     }  
   });    
 
@@ -65,7 +67,7 @@
           if(event.target.name==="add_new_tag"){
             document.querySelector(".modal_new_tags").showModal();
           }
-        }
+        } 
       })
 
       modal_new_video_tags.addEventListener("click", function(event){
@@ -316,6 +318,17 @@ function savetoVideoTagList(tagId, videoId){
 
 function remove_tag_from_video(tagId,videoId ){
   alert("video id: "+videoId+" tag id: "+tagId);
+  //remove_tag_from_video(tagId,videoId);
+/*   var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        alert("Tag has been removed ...");
+      }
+    };
+  var data = "video_id="+videoId+"&tag_id="+tagId;
+  xhttp.open("POST", "video_tag_remove.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data); */
 }
 
 function sortVideosTagsByLetters(letterButton){

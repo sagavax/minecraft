@@ -1,88 +1,51 @@
 <?php 
-       include "../../includes/dbconnect.php";
-      include "../../includes/functions.php";
      
+      include "../../includes/dbconnect.php";
+      include "../../includes/functions.php";
+
       session_start();
 
 
-
-      if(isset($_POST['save_bug'])){
-        $bug_title = $_POST['bug_title'] ?? '';
-        $bug_text = $_POST['bug_text'] ?? '';
-        
-        $bug_priority = (isset($_POST['bug_priority']) && $_POST['bug_priority'] != 0) ? $_POST['bug_priority'] : 'low';
-        $bug_status = (isset($_POST['bug_status']) && $_POST['bug_status'] != 0) ? $_POST['bug_status'] : 'new';
-        
-        $is_fixed = 0;
-    
-        // Použitie pripraveného SQL dotazu na bezpečné vloženie
-        $save_bug = "INSERT INTO bugs (bug_title, bug_text, priority, status, is_fixed, added_date) 
-                     VALUES (?, ?, ?, ?, ?, now())";
-        
-        $stmt = mysqli_prepare($link, $save_bug);
-        mysqli_stmt_bind_param($stmt, "ssssi", $bug_title, $bug_text, $bug_priority, $bug_status, $is_fixed);
-        mysqli_stmt_execute($stmt);
-        
-        // Získanie posledného ID bezpečne
-        $max_id = mysqli_insert_id($link);
-    
-        // Logovanie do app_log
-        $diary_text = "Minecraft IS: Bol zaznamenaný nový bug s ID $max_id";
-        $log_sql = "INSERT INTO app_log (diary_text, date_added) VALUES (?, now())";
-        
-        $log_stmt = mysqli_prepare($link, $log_sql);
-        mysqli_stmt_bind_param($log_stmt, "s", $diary_text);
-        mysqli_stmt_execute($log_stmt);
-    }
-
-
-      if(isset($_POST['see_bug_details'])){
-        $bug_id = $_POST['bug_id'];
-        $_SESSION['bug_id']=$bug_id;
-        $_SESSION['is_fixed']=$is_fixed;
-        header("location:bug.php");
+      // Dynamické nastavenie URL pre API podľa prostredia (localhost vs produkcia)      
+      $currAddress = $_SERVER['SERVER_NAME'];
+      if($currAddress == 'localhost') {
+          $api_host = "http://localhost/bugbuster";
+      } else {
+          $api_host = "https://bugbuster.tmisura.sk";
       }
 
-      if (isset($_POST['bug_remove'])) {
-        $bug_id = intval($_POST['bug_id']); // Ošetrenie vstupu
+      $apiUrl = 'http://localhost/bugbuster/api/api.php?endpoint=bugs&app_name=minecraft';
     
-        if ($bug_id > 0) {
-            // Spustiť transakciu
-            mysqli_begin_transaction($link);
     
-            try {
-                // Odstrániť bug
-                $remove_bug = "DELETE FROM bugs WHERE bug_id=?";
-                $stmt = mysqli_prepare($link, $remove_bug);
-                mysqli_stmt_bind_param($stmt, "i", $bug_id);
-                mysqli_stmt_execute($stmt);
-                mysqli_stmt_close($stmt);
-    
-                // Odstrániť komentáre k bugom
-                $delete_comments = "DELETE FROM bugs_comments WHERE bug_id=?";
-                $stmt = mysqli_prepare($link, $delete_comments);
-                mysqli_stmt_bind_param($stmt, "i", $bug_id);
-                mysqli_stmt_execute($stmt);
-                mysqli_stmt_close($stmt);
-    
-                // Logovanie do denníka
-                $diary_text = "Minecraft IS: Bol vymazaný bug s ID $bug_id";
-                $sql = "INSERT INTO app_log (diary_text, date_added) VALUES (?, NOW())";
-                $stmt = mysqli_prepare($link, $sql);
-                mysqli_stmt_bind_param($stmt, "s", $diary_text);
-                mysqli_stmt_execute($stmt);
-                mysqli_stmt_close($stmt);
-    
-                // Commit transakcie
-                mysqli_commit($link);
-    
-            } catch (Exception $e) {
-                mysqli_rollback($link); // Ak niečo zlyhá, vráti zmeny späť
-                die("MySQLi ERROR: " . mysqli_error($link));
-            }
-        }
-    }
-    
+      // Inicializácia cURL pro požiadavku na API
+      $ch = curl_init();
+
+          curl_setopt_array($ch, [
+              CURLOPT_URL => $apiUrl,
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_TIMEOUT => 10,
+              CURLOPT_HTTPGET => true,
+          ]);
+
+          $response = curl_exec($ch);
+          $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+          $curlError = curl_error($ch);
+
+          $data = null;
+          $errorMessage = null;
+
+          if ($response === false || $curlError !== '') {
+              $errorMessage = 'Nepodarilo sa spojiť s API.';
+          } elseif ($httpCode !== 200) {
+              $errorMessage = 'API vrátilo HTTP kód: ' . $httpCode;
+          } else {
+              $data = json_decode($response, true);
+
+              if (json_last_error() !== JSON_ERROR_NONE) {
+                  $errorMessage = 'Odpoveď z API nie je validný JSON.';
+              }
+          }
+
 
 ?>
 
@@ -143,83 +106,48 @@
               </div><!-- new bug-->
               
               <div class="bug_list">
-                  <?php
-
-                          $itemsPerPage = 10;
-
-                     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                     $offset = ($current_page - 1) * $itemsPerPage;
-
-
-                        $get_bugs = "SELECT * from bugs ORDER BY bug_id DESC LIMIT $itemsPerPage OFFSET $offset";
-                        $result=mysqli_query($link, $get_bugs);
-                        while ($row = mysqli_fetch_array($result)) {
-                          // Sanitizácia údajov na ochranu pred XSS
-                          $bug_id = (int) ($row['bug_id'] ?? 0); // ID musí byť číslo
-                          $bug_title = htmlspecialchars($row['bug_title'] ?? '', ENT_QUOTES, 'UTF-8');
-                          $bug_text = htmlspecialchars($row['bug_text'] ?? '', ENT_QUOTES, 'UTF-8');
-                          $bug_priority = htmlspecialchars($row['priority'] ?? '', ENT_QUOTES, 'UTF-8');
-                          $bug_status = htmlspecialchars($row['status'] ?? '', ENT_QUOTES, 'UTF-8');
-                          $is_fixed = (int) ($row['is_fixed'] ?? 0);
-                          $added_date = htmlspecialchars($row['added_date'] ?? '', ENT_QUOTES, 'UTF-8');
-
-                      
-                          // Počet komentárov
-                          $nr_of_comments = GetCountBugComments($bug_id);
-                      
-                          // Ak je bug FIXED, zobrazí štítok + mení akčné tlačidlá
-                          $add_comment = "<button type='button' name='add_comment' class='button small_button' onclick='addNewComment();')><i class='fa fa-comment'></i></button>";
-                          $fixed_label = $is_fixed ? "<div class='span_fixed'>fixed</div>" : "";
-                          $action_buttons = $is_fixed ? 
-                              "<button type='button' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button>
-                               <button type='button' name='bug_remove' class='button small_button'><i class='fa fa-times'></i></button>
-                               {$add_comment}" : // Pridanie komentára aj pre fixed stav
-                              "<button type='button' name='see_bug_details' class='button small_button'><i class='fa fa-eye'></i></button>
-                               <button type='button' name='to_fixed' class='button small_button'><i class='fa fa-check'></i></button>
-                               <button type='button' name='bug_remove' class='button small_button'><i class='fa fa-times'></i></button>
-                               {$add_comment}"; // Pridanie komentára aj pre nefixed stav
+               <?php if ($errorMessage): ?>
+                      <p class="error-message"><?= htmlspecialchars($errorMessage) ?></p>
+                  <?php elseif ($data): ?>
+                      <?php foreach ($data as $bug):
+                          $bug_id         = $bug['bug_id'];
+                          $bug_title      = $bug['bug_title'];
+                          $bug_text       = $bug['bug_text'];
+                          $bug_status     = $bug['bug_status'];
+                          $bug_priority   = $bug['bug_priority'];
+                          $is_fixed       = $bug['is_fixed'];
+                          $nr_of_comments = $bug['count_comments'];
                           
-                      
-                          // Generovanie HTML výstupu
-                         
-                          echo "<div class='bug' bug-id='{$bug_id}'>
-                          <div class='bug_title'>{$bug_title} {$fixed_label}</div>
-                          <div class='bug_text'>{$bug_text}</div>
-                          <div class='bug_footer'>
-                              <div class='bug_status {$bug_status}'>{$bug_status}</div>
-                              <div class='bug_priority {$bug_priority}'>{$bug_priority}</div>
-                              <div class='nr_of_comments'>{$nr_of_comments} comments</div>
-                              <div class='bug_action'>
-                                    {$action_buttons}
+                          $fixed_label = $is_fixed == 1 ? "<span class='fixed_label'>fixed</span>" : "";
+                          
+                          if ($is_fixed == 0) {
+                              $action_buttons = "
+                                  <button type='submit' name='delete_bug' class='button small_button'><i class='fa fa-times'></i></button>
+                                  <button type='submit' name='mark_fixed' class='button small_button'><i class='fa fa-check'></i></button>
+                              ";
+                          } else {
+                              $action_buttons = "<div class='span_modpack'>fixed</div>";
+                          }
+                      ?>
+
+                      <div class="bug" bug-id="<?= $bug_id ?>">
+                          <div class="bug_title"><?= htmlspecialchars($bug_title) ?> <?= $fixed_label ?></div>
+                          <div class="bug_text"><?= htmlspecialchars($bug_text) ?></div>
+                          <div class="bug_footer">
+                              <div class="bug_status <?= $bug_status ?>"><?= htmlspecialchars($bug_status) ?></div>
+                              <div class="bug_priority <?= $bug_priority ?>"><?= htmlspecialchars($bug_priority) ?></div>
+                              <div class="nr_of_comments"><?= $nr_of_comments ?> comments</div>
+                              <div class="bug_action">
+                                  <?= $action_buttons ?>
                               </div>
                           </div>
-                      </div>";
-                      
-                      }
-                           
-                  ?>
-              </div>
-                  <?php
-                    // Calculate the total number of pages
-                    $sql = "SELECT COUNT(*) as total FROM bugs";
-                    $result = mysqli_query($link, $sql);
-                    
-                    $totalItems = 0; // Predvolene nulová hodnota
-                    
-                    if ($row = mysqli_fetch_array($result)) {
-                        $totalItems = (int) $row['total']; // Zaistenie, že hodnota je celé číslo
-                    }
-                    
-                    // Výpočet počtu strán
-                    $totalPages = ($totalItems > 0) ? ceil($totalItems / $itemsPerPage) : 1;
-                    
-                    // Zobrazenie stránkovania
-                    echo '<div class="pagination">';
-                    for ($i = 1; $i <= $totalPages; $i++) {
-                        echo '<a href="?page=' . $i . '">' . $i . '</a>'; // Opravené úvodzovky
-                    }
-                    echo '</div>';
-                  ?> 
+                      </div>
+
+                      <?php endforeach; ?>
+                  <?php else: ?>
+                      <p>Žiadne bugy.</p>
+                  <?php endif; ?>
+              </div><!-- bug list-->                
             </div><!-- list-->
 
         </div><!--content-->

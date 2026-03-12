@@ -2746,6 +2746,9 @@ button[name="add_modpack"] {
     background: #fff;
 }
 
+#new_influencer {
+    margin-top: 15px;
+}
 
 #new_tag h4 {
     margin-top: 10px;
@@ -4216,6 +4219,7 @@ button[name="add_modpack"] {
     justify-content: flex-end;
     box-sizing: border-box;
     padding-right: 5px;
+    gap:5px;
 }
 
 .task_footer {

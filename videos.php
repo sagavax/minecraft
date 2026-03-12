@@ -194,7 +194,7 @@
                     </div>
 
                     <div class="video_tags_map_wrap">
-                        <div class="video_tags_map_header">Tags<button type="button" class="button small_button"><i class="fa  fa-chevron-up"></i></button></div>
+                        <div class="video_tags_map_header">Tags<button type="button" class="button small_button"><i class="fa  fa-chevron-down"></i></button></div>
                         <div id="video_tags_wrap">
                         <input type="text" name="search_tag" placeholder="Search a tag" autocomplete="off">
                         <div class="video_tags_map">

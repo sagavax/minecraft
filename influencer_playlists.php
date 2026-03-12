@@ -115,8 +115,12 @@ foreach ($playlists as $pl) {
     $thumb = htmlspecialchars($pl['thumb'], ENT_QUOTES, 'UTF-8');
     $href  = htmlspecialchars($pl['url'], ENT_QUOTES, 'UTF-8');
 
-   $add_to_db = "INSERT IGNORE INTO influencer_playlists (influencer_id, playlist_id, playlist_title, playlist_thumb, added_date) VALUES ('$channelInput', '{$pl['id']}','{$pl['title']}','{$pl['thumb']}', NOW())";    
-   $result = mysqli_query($link, $add_to_db) or die(mysqli_error($link));
+   $esc_channel = mysqli_real_escape_string($link, $channelId);
+   $esc_id = mysqli_real_escape_string($link, $pl['id']);
+   $esc_title = mysqli_real_escape_string($link, $pl['title']);
+   $esc_thumb = mysqli_real_escape_string($link, $pl['thumb']);
+   //$add_to_db = "INSERT IGNORE INTO influencer_playlists (influencer_id, playlist_id, playlist_title, playlist_thumb, added_date) //VALUES ('$esc_channel', '$esc_id', '$esc_title', '$esc_thumb', NOW())";
+   //$result = mysqli_query($link, $add_to_db) or die(mysqli_error($link));
 
     echo "<div class='playlist_item' data-id='{$pl['id']}'>
               <img src='{$thumb}' alt='{$title}'>

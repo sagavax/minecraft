@@ -28,7 +28,7 @@
         echo "</div>";
        }    
 
-       echo "<div class='infl_modpack_add'><button type='button' name='add_modpack' class='button small_button' title='Add modpack to influencer'><i class='fa fa-plus'></i></button></div>";
+       //echo "<div class='infl_modpack_add'><button type='button' name='add_modpack' class='button small_button' title='Add modpack to influencer'><i class='fa fa-plus'></i></button></div>";
     }
 
     echo "</div>";//infl_modpacks_list

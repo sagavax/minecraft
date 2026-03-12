@@ -3,7 +3,44 @@
       include "../../includes/functions.php";
       session_start();
 
-?>
+      $currAddress = $_SERVER['SERVER_NAME'];
+      if($currAddress == 'localhost') {
+          $api_host = "http://localhost/bugbuster";
+      } else {
+          $api_host = "https://bugbuster.tmisura.sk";
+      }
+
+      $apiUrl = 'http://localhost/bugbuster/api/api.php?endpoint=ideas&app_name=minecraft';
+    
+      $ch = curl_init();
+
+          curl_setopt_array($ch, [
+              CURLOPT_URL => $apiUrl,
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_TIMEOUT => 10,
+              CURLOPT_HTTPGET => true,
+          ]);
+
+          $response = curl_exec($ch);
+          $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+          $curlError = curl_error($ch);
+
+          $data = null;
+          $errorMessage = null;
+
+          if ($response === false || $curlError !== '') {
+              $errorMessage = 'Nepodarilo sa spojiť s API.';
+          } elseif ($httpCode !== 200) {
+              $errorMessage = 'API vrátilo HTTP kód: ' . $httpCode;
+          } else {
+              $data = json_decode($response, true);
+
+              if (json_last_error() !== JSON_ERROR_NONE) {
+                  $errorMessage = 'Odpoveď z API nie je validný JSON.';
+              }
+          }
+
+      ?>
 
 
 
@@ -61,75 +98,55 @@
                       </div>
                </form>
               </div><!-- new idea-->
-              
-              <div class="ideas_list">
-                  <?php
+              <h1>Dáta z API</h1>
 
-                          $itemsPerPage = 10;
+             <div class="ideas_list">
 
-                     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                     $offset = ($current_page - 1) * $itemsPerPage;
+    <?php if ($errorMessage): ?>
+    <p class="error-message"><?= htmlspecialchars($errorMessage) ?></p>
+                <?php elseif ($data): ?>
+                    <?php foreach ($data as $idea):
+                        $idea_id        = $idea['idea_id'];
+                        $idea_title     = $idea['idea_title'];
+                        $idea_text      = $idea['idea_text'];
+                        $idea_status    = $idea['idea_status'];
+                        $idea_priority  = $idea['idea_priority'];
+                        $is_applied     = $idea['is_implemented'];
+                        $nr_of_comments = $idea['count_comments'];
+                    ?>
 
+                    <div class="idea" idea-id="<?= $idea_id ?>">
+                        <div class="idea_title"><?= htmlspecialchars($idea_title) ?></div>
+                        <div class="idea_text"><?= htmlspecialchars($idea_text) ?></div>
+                        <div class="idea_footer">
+                            <input type="hidden" name="idea_id" value="<?= $idea_id ?>">
+                            <input type="hidden" name="is_applied" value="<?= $is_applied ?>">
+                            <div class="nr_of_comments"><?= $nr_of_comments ?> comment(s)</div>
+                            <div class="idea_status"><?= htmlspecialchars($idea_status) ?></div>
+                            <div class="idea_priority"><?= htmlspecialchars($idea_priority) ?></div>
+                            <button type="submit" name="see_idea_details" class="button small_button">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                            <?php if ($is_applied == 0): ?>
+                                <button type="submit" name="delete_idea" class="button small_button">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <button type="submit" name="to_apply" class="button small_button">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                            <?php else: ?>
+                                <div class="span_modpack">applied</div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
 
-                        $get_ideas = "SELECT * from ideas ORDER BY idea_id DESC LIMIT $itemsPerPage OFFSET $offset";
-                        $result=mysqli_query($link, $get_ideas);
-                       
-                        while ($row = mysqli_fetch_array($result)) {
-                          $idea_id = htmlspecialchars($row['idea_id'] ?? '', ENT_QUOTES, 'UTF-8');
-                          $idea_title = htmlspecialchars($row['idea_title'] ?? '', ENT_QUOTES, 'UTF-8');
-                          $idea_text = htmlspecialchars($row['idea_text'] ?? '', ENT_QUOTES, 'UTF-8');
-                          $idea_priority = htmlspecialchars($row['priority'] ?? '', ENT_QUOTES, 'UTF-8');
-                          $idea_status = htmlspecialchars($row['status'] ?? '', ENT_QUOTES, 'UTF-8');
-                          //$idea_status =$row['status'];
-                          $is_applied = htmlspecialchars($row['is_applied'] ?? '', ENT_QUOTES, 'UTF-8');
-                          $added_date = htmlspecialchars($row['added_date'] ?? '', ENT_QUOTES, 'UTF-8');
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Žiadne nápady.</p>
+                <?php endif; ?>
 
-                              echo "<div class='idea' idea-id=$idea_id>";
-                                    //echo "<form action='' method='post'>";
-                                    echo "<div class='idea_title'>$idea_title</div>";
-                                    echo "<div class='idea_text'>$idea_text</div>";
-                                    echo "<div class='idea_footer'>";
-                                    
-                                      echo "<input type='hidden' name='idea_id' value=$idea_id>";
-                                      echo "<input type='hidden' name='is_applied' value=$is_applied>";
-                                      $nr_of_comments = GetCountIdeaComments($idea_id);
-                                      echo "<div class='nr_of_comments'>$nr_of_comments comment(s)</div>";
-                                      echo "<div class='idea_status'>$idea_status</div><div class='idea_priority'>$idea_priority</div>";
-                                      echo "<button type='submit' name='see_idea_details' class='button small_button'><i class='fa fa-eye'></i></button>";
-                                      
-
-                                   if($is_applied==0){
-                                      echo "<button type='submit' name='delete_idea' class='button small_button'><i class='fa fa-times'></i></button>";
-                                        echo "<button type='submit' name='to_apply' class='button small_button'><i class='fa fa-check'></i></button>";
-                                          
-                                    } else {
-
-                                          echo "<div class='span_modpack'>applied</div>";
-                                    }        
-
-
-                                    //echo "</form>";      
-                                    echo "</div>";
-                              echo "</div>"; // idea
-                        }      
-                  ?>
-              </div>
-             <?php
-                // Calculate the total number of pages
-                $sql = "SELECT COUNT(*) as total FROM ideas";
-                $result=mysqli_query($link, $sql);
-                $row = mysqli_fetch_array($result);
-                $totalItems = $row['total'];
-                $totalPages = ceil($totalItems / $itemsPerPage);
-
-                // Display pagination links
-                echo '<div class="pagination">';
-                for ($i = 1; $i <= $totalPages; $i++) {
-                    echo '<a href="?page=' . $i . '"">' . $i . '</a>';
-                      //echo '<a href="?page=' . $i . '" class="button app_badge">' . $i . '</a>';
-                }
-                echo '</div>';
-             ?>
+                </div><!-- ideas_list-->
+             
             </div><!-- list-->
 
         </div><!--content-->

@@ -40,8 +40,40 @@ switch ($endpoint) {
             echo json_encode(['error' => 'Method not allowed']);
         }
         break;
-      
-
+    
+     case 'modpacks':
+        if ($method === 'GET') {
+            require 'get_modpacks.php';
+        } elseif ($method === 'POST') {
+            // Tu spracuj vytvorenie novej tagy
+            require 'create_modpacks.php';
+        } elseif ($method === 'DELETE') {
+            require 'delete_modpacks.php';
+        } else {
+            http_response_code(405); // Method Not Allowed
+            echo json_encode(['error' => 'Method not allowed']);
+        }
+        break;
+     
+    case 'mods':
+        if ($method === 'GET') {
+            require 'get_mods.php';
+        } elseif ($method === 'POST') {
+            // Tu spracuj vytvorenie novej tagy
+            require 'create_mods.php';
+        } elseif ($method === 'DELETE') {
+            require 'delete_mods.php';
+        } else {
+            http_response_code(405); // Method Not Allowed
+            echo json_encode(['error' => 'Method not allowed']);
+        }
+        break;
+    case 'get_latest_video_id': 
+        if ($method === 'GET') {
+            require 'get_latest_video_id.php';
+        }
+        break;
+    
     // Pridaj ďalšie endpointy podľa potreby
 
     default:

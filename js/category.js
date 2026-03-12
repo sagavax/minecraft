@@ -102,28 +102,24 @@ mod_details.addEventListener("click",function(event){
 })
 
 
-mod_details.addEventListener("focusout", function(event) {
+mod_details.addEventListener("blur", function(event) {
    
     if (event.target.tagName === "INPUT") {
         event.target.setAttribute("readonly", true);
-        //console.log("Input element blurred with name:", event.target.name);
    
         if (event.target.name === "mod_name") {
-            
             updateModName();
             alert("Updated successfully");
         } else if (event.target.name === "mod_url") {
-            
             updateModUrl();
             alert("Updated successfully");
         }
     } else if (event.target.tagName === "TEXTAREA") {
         event.target.setAttribute("readonly", true);
-        //console.log("Textarea element blurred");
         updateModDescription();
         alert("Mod description updated successfully");
     }
-});
+}, true);
 
 
 
