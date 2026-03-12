@@ -17,6 +17,11 @@ $data = [
     'bug_application' => 'minecraft'
 ];
 
+
+$currServer = $_SERVER['HTTP_HOST'];
+$api_host = ($currServer == 'localhost') ? "http://localhost/bugbuster" : "https://bugbuster.tmisura.sk";
+
+
 $curl = curl_init();
 curl_setopt_array($curl, [
     CURLOPT_URL => $api_host."/api/api.php?endpoint=bugs",
