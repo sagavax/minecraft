@@ -104,6 +104,7 @@ dialog ul li:hover {
     cursor: pointer;
 }
 
-dialog.show {
- 
+
+.nr_of_comments {
+    cursor: pointer;
 }

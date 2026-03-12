@@ -1,6 +1,31 @@
 const ideas_list = document.querySelector('.ideas_list');
 const modal_show_status = document.querySelector('.modal_show_status');
 const modal_show_priority = document.querySelector('.modal_show_priority');
+const idea_footer = document.querySelector('.idea_footer');
+
+idea_footer.addEventListener('click', function(event) {
+    if(event.target.classList.contains('idea_status')){
+        const ideaId = event.target.closest(".idea").getAttribute('idea-id');
+        sessionStorage.setItem('idea_id', ideaId);
+        modal_show_status.showModal();
+    } else if (event.target.classList.contains('idea_priority')) {
+        const ideaId = event.target.closest(".idea").getAttribute('idea-id');
+        sessionStorage.setItem('idea_id', ideaId);
+        modal_show_priority.showModal();
+    } else if(event,target.tagName==="BUTTON") {
+        if(event.target.name==="see_idea_details"){
+            const ideaId = event.target.closest(".idea").getAttribute('idea-id');
+            sessionStorage.setItem('idea_id', ideaId);
+            window.location.href = `idea.php?idea_id=${ideaId}`;
+        } else if(event.target.name==="to_apply"){
+            const ideaId = event.target.closest(".idea").getAttribute('idea-id');
+            sessionStorage.setItem('idea_id', ideaId);
+            alert(`Idea ${ideaId} moved to the Apply section.`);
+            moveIdeaToApply(ideaId);
+        }        
+    } 
+});
+
 
 
 ideas_list.addEventListener('click', function(event) {

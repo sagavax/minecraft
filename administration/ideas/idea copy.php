@@ -3,9 +3,33 @@
       include "../../includes/functions.php";
      
       session_start();
+/* 
 
+     if(isset($_POST['save_idea_comment'])){
+        $comment_header = $_POST['idea_comment_header'];
+        $comment = $_POST['idea_comment'];
+        $idea_id = $_SESSION['idea_id'];
 
+        $save_comment = "INSERT into ideas_comments (idea_id,idea_comm_header, idea_comment, comment_date) VALUES ($idea_id,'$comment_header','$comment',now())";
+         //echo $save_comment;
+         $result=mysqli_query($link, $save_comment);
+      
+         header("Location: " . $_SERVER['REQUEST_URI']);
+         exit();
 
+      }
+
+      
+      if(isset($_POST['delete_comm'])){
+        $comm_id = $_POST['comm_id'];
+        //var_dump($_POST);
+        $delete_comment = "DELETE from ideas_comments WHERE comm_id = $comm_id";
+        //echo $delete_comment;
+        $result=mysqli_query($link, $delete_comment);
+    
+         echo "<script>message('Comment deleted','success')</script>";
+      }
+ */
 ?>
 
 
@@ -41,65 +65,20 @@
                
                   <?php
                         $idea_id = $_GET['idea_id'];
-                         $is_implemented = 0;
+                        $is_implemented = 0;
 
+                        $get_idea = "SELECT * from ideas WHERE idea_id=$idea_id";
+                        echo $get_idea;
+                        $result=mysqli_query($link, $get_idea);
+                        while ($row_idea = mysqli_fetch_array($result)) {
+                              $idea_id = $row_idea['idea_id'];
+                              $idea_title = $row_idea['idea_title'];
+                              $idea_text = $row_idea['idea_text'];
+                              $is_implemented = $row_idea['is_implemented'];
 
-                         // Dynamické nastavenie URL pre API podľa prostredia (localhost vs produkcia)      
-                        $currAddress = $_SERVER['SERVER_NAME'];
-                        if($currAddress == 'localhost') {
-                            $api_host = "http://localhost/bugbuster";
-                        } else {
-                            $api_host = "https://bugbuster.tmisura.sk";
-                        }
+                              $added_date = $row['added_date'];
 
-                        $apiUrl = 'http://localhost/bugbuster/api/api.php?endpoint=idea&idea_id='.$idea_id;
-                        
-                        
-                        // Inicializácia cURL pro požiadavku na API
-                        $ch = curl_init();
-
-                            curl_setopt_array($ch, [
-                                CURLOPT_URL => $apiUrl,
-                                CURLOPT_RETURNTRANSFER => true,
-                                CURLOPT_TIMEOUT => 10,
-                                CURLOPT_HTTPGET => true,
-                            ]);
-
-                            $response = curl_exec($ch);
-                            $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                            $curlError = curl_error($ch);
-
-                            $data = null;
-                            $errorMessage = null;
-
-                            if ($response === false || $curlError !== '') {
-                                $errorMessage = 'Nepodarilo sa spojiť s API.';
-                            } elseif ($httpCode !== 200) {
-                                $errorMessage = 'API vrátilo HTTP kód: ' . $httpCode;
-                            } else {
-                                $data = json_decode($response, true);
-
-                                if (json_last_error() !== JSON_ERROR_NONE) {
-                                    $errorMessage = 'Odpoveď z API nie je validný JSON.';
-                                }
-                            }
-
-                          echo "<div class='idea'>";
-
-                            if ($errorMessage !== null) {
-                                echo "<div class='error_message'>$errorMessage</div>";
-                            } else {
-                                
-                                $idea_title = $data['idea_title'] ?? null;
-                                $idea_text = $data['idea_text'] ?? null;
-                                $idea_status = $data['idea_status'] ?? null;
-                                $idea_priority = $data['idea_priority'] ?? null;
-                                $is_implemented = $data['is_implemented'] ?? null;
-                                $nr_of_comments = $data['nr_of_comments'] ?? null;
-                                $idea_date = $data['added_date'] ?? null;
-                                $idea_application = $data['idea_application'] ?? null;
-                                $idea_author = $data['idea_author'] ?? null;
-
+                             echo "<div class='idea'>";
                                     if(isset($idea_title)){
                                         echo "<div class='idea_title'>$idea_title</div>";    
                                     }
@@ -114,15 +93,11 @@
                                     } elseif ($is_implemented == 1) {
                                         echo "<div class='span_modpack'>Idea implemented</div>";
                                     }
-
                                     echo "</div>"; // idea_footer
                                     echo "</div>"; // idea
-                            }   
-                                
-                        
+                                                        }      
+                                                  ?>
 
-                    ?>
-                    
                     <div class="idea_comments_list">
                               <?php
 
