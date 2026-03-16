@@ -84,7 +84,7 @@
                                 }
                             }
 
-                          echo "<div class='idea'>";
+                          echo "<div class='idea' idea-id='$idea_id'>";
 
                             if ($errorMessage !== null) {
                                 echo "<div class='error_message'>$errorMessage</div>";
@@ -121,12 +121,68 @@
                                 
                         
 
-                    ?>
                     
+                    //komenbte
+                     $apiUrlComments = 'http://localhost/bugbuster/api/api.php?endpoint=idea_comments&idea_id='.$idea_id;
+
+                    $ch = curl_init();
+
+                            curl_setopt_array($ch, [
+                                CURLOPT_URL => $apiUrlComments,
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_TIMEOUT => 10,
+                                CURLOPT_HTTPGET => true,
+                            ]);
+
+                            $response = curl_exec($ch);
+                            $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                            $curlError = curl_error($ch);
+
+                            $data = null;
+                            $errorMessage = null;
+
+                            if ($response === false || $curlError !== '') {
+                                $errorMessage = 'Nepodarilo sa spojiť s API.';
+                            } elseif ($httpCode !== 200) {
+                                $errorMessage = 'API vrátilo HTTP kód: ' . $httpCode;
+                            } else {
+                                $data = json_decode($response, true);
+
+                                if (json_last_error() !== JSON_ERROR_NONE) {
+                                    $errorMessage = 'Odpoveď z API nie je validný JSON.';
+                                }
+                            }
+                        ?>        
+
                     <div class="idea_comments_list">
                               <?php
 
-                                $get_comments = "SELECT * from ideas_comments wHERE idea_id=$idea_id";
+                                if ($errorMessage !== null) {
+                                    echo "<div class='error_message'>$errorMessage</div>";
+                                }     
+                                else{
+                                    
+                                }
+                                foreach ($data as $comment) {
+                                    $comm_id = $comment['comm_id'];
+                                    $comm_title = $comment['idea_comm_header'];
+                                    $comm_text = $comment['idea_comment'];
+                                    $comm_date = $comment['comment_date'];
+
+                                    echo "<div class='idea_comment' data-comment-id=$comm_id>";
+                                        echo "<div class='connector-line'></div>";
+                                        echo "<div class='idea_top_banner'></div>";
+                                        
+                                        if($comm_title!=""){
+                                            echo "<div class='idea_comm_title'>$comm_title</div>";    
+                                        }
+                                        echo "<div class='idea_comm_text'>$comm_text</div>";
+                                        echo "<div class='idea_comm_action'>";
+                                            echo "<div class='idea_comm_date'>$comm_date</div>";
+                                        echo "</div>"; // idea_comm_action
+                                    echo "</div>"; // idea_comment
+                                }    
+                               /*  $get_comments = "SELECT * from ideas_comments wHERE idea_id=$idea_id";
                                 //echo $get_comments;
                                 $result_comment=mysqli_query($link, $get_comments);
                                  while ($row_comment = mysqli_fetch_array($result_comment)) {
@@ -154,7 +210,7 @@
                                               }
                                               echo "</div>";
                                     echo "</div>";
-                                 }   
+                                 }    */
                               ?>  
 
                               

@@ -5,7 +5,7 @@
       session_start();
 
 
-      if(isset($_POST['save_comment'])){
+    /*   if(isset($_POST['save_comment'])){
         ///var_dump($_POST);
         $comment_header = mysqli_real_escape_string($link,$_POST['bug_comment_header']);
         $comment = mysqli_real_escape_string($link, $_POST['bug_comment']);
@@ -52,7 +52,7 @@
         $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
         $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
         
-      }
+      } */
 
 ?>
 
@@ -90,9 +90,53 @@
                
                   <?php
                         $bug_id = $_GET['bug_id'];
-                        $get_bug = "SELECT * from bugs WHERE bug_id =$bug_id";
-                        $result=mysqli_query($link, $get_bug) or  die();
-                        while ($row = mysqli_fetch_array($result)) {
+
+                         $idea_id = $_GET['idea_id'];
+                         $is_implemented = 0;
+
+
+                         // Dynamické nastavenie URL pre API podľa prostredia (localhost vs produkcia)      
+                        $currAddress = $_SERVER['SERVER_NAME'];
+                        if($currAddress == 'localhost') {
+                            $api_host = "http://localhost/bugbuster";
+                        } else {
+                            $api_host = "https://bugbuster.tmisura.sk";
+                        }
+
+                        $apiUrl = 'http://localhost/bugbuster/api/api.php?endpoint=bug&bug_id='.$bug_id;
+                        
+                        
+                        // Inicializácia cURL pro požiadavku na API
+                        $ch = curl_init();
+
+                            curl_setopt_array($ch, [
+                                CURLOPT_URL => $apiUrl,
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_TIMEOUT => 10,
+                                CURLOPT_HTTPGET => true,
+                            ]);
+
+                            $response = curl_exec($ch);
+                            $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                            $curlError = curl_error($ch);
+
+                            $data = null;
+                            $errorMessage = null;
+
+                            if ($response === false || $curlError !== '') {
+                                $errorMessage = 'Nepodarilo sa spojiť s API.';
+                            } elseif ($httpCode !== 200) {
+                                $errorMessage = 'API vrátilo HTTP kód: ' . $httpCode;
+                            } else {
+                                $data = json_decode($response, true);
+
+                                if (json_last_error() !== JSON_ERROR_NONE) {
+                                    $errorMessage = 'Odpoveď z API nie je validný JSON.';
+                                }
+                            }
+
+                        if ($data !== null) {             
+                              $row = $data[0];                          
                               $bug_id = $row['bug_id'];
                               $bug_title = $row['bug_title'];
                               $bug_text = $row['bug_text'];
@@ -119,10 +163,37 @@
 
                     <div class="bug_comments_list">
                               <?php
+                              $apiUrl = 'http://localhost/bugbuster/api/api.php?endpoint=bug_comments&bug_id='.$bug_id;
+                              $ch = curl_init();
+                              curl_setopt_array($ch, [
+                                  CURLOPT_URL => $apiUrl,
+                                  CURLOPT_RETURNTRANSFER => true,
+                                  CURLOPT_TIMEOUT => 10,
+                                  CURLOPT_HTTPGET => true,
+                              ]);
+                              $response = curl_exec($ch);
+                              $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                              $curlError = curl_error($ch);
 
-                                $get_comments = "SELECT * from bugs_comments wHERE bug_id=$bug_id";
-                                $result_comment=mysqli_query($link, $get_comments);
-                                 while ($row_comment = mysqli_fetch_array($result_comment)) {
+                              $commentsData = null;
+                              $errorMessage = null;
+
+                              if ($response === false || $curlError !== '') {
+                                  $errorMessage = 'Nepodarilo sa spojiť s API.';
+                              } elseif ($httpCode !== 200) {
+                                  $errorMessage = 'API vrátilo HTTP kód: ' . $httpCode;
+                              } else {
+                                  $commentsData = json_decode($response, true);
+
+                                  if (json_last_error() !== JSON_ERROR_NONE) {
+                                      $errorMessage = 'Odpoveď z API nie je validný JSON.';
+                                  }
+                              }
+
+                              if ($commentsData !== null) {
+                                  foreach ($commentsData as $row_comment) {
+
+
                                     $comm_id = $row_comment['comm_id'];
                                     $comm_title = $row_comment['bug_comm_header'];
                                     $comm_text = $row_comment['bug_comment'];
@@ -138,6 +209,9 @@
                                         echo "<div class='bug_comm_action'><form action='' method='post'><input type='hidden' name='comm_id' value=$comm_id><button type='submit' name='delete_comm' class='button small_button'><i class='fa fa-times'></i></button></form></div>";
                                     echo "</div>";
                                  }   
+                              } else {
+                                  echo "<div class='error_message'>Žiadne komentáre k tomuto bug-u.</div>";
+                              }
                               ?>  
 
                               <h4>Add a comment</h4>
