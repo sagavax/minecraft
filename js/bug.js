@@ -3,6 +3,10 @@ const bug_comment_new_form = document.querySelector(".bug_comment_new form");
 
 
 
+const bugId = new URLSearchParams(window.location.search).get('bug_id');
+sessionStorage.setItem("bug_id", bugId);
+
+
 footer.addEventListener("click",function(ev){
     const bugId =sessionStorage.getItem("bug_id");
     if(ev.target.tagName==="BUTTON"){
@@ -18,15 +22,14 @@ footer.addEventListener("click",function(ev){
 bug_comment_new_form.addEventListener("submit", function(event){
 //form validation
     event.preventDefault(); // Prevent form submission
-  //get comment text from textarea  
-    
-       //store comment in database
-    
+    const bug_comment_header = document.querySelector(".bug_comment_new form input[name='bug_comment_header']").value.trim();
     const textarea = document.querySelector(".bug_comment_new form textarea");
     if(textarea.value.trim() === ""){
         alert("Please enter a comment.");
         return;
     }
+
+    createComment(bugId, bug_comment_header, textarea.value.trim());
 });
 
 
@@ -59,4 +62,20 @@ function BugReopened(bugId){
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         var data = "bug_id="+encodeURIComponent(bugId);                
         xhttp.send(data);
+}
+
+
+function createComment(bugId, commentHeader, commentText){
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+    alert("comment added successfully;");
+    //clear textarea and input
+    document.querySelector(".bug_comment_new form textarea").value="";
+    document.querySelector(".bug_comment_new form input[name='bug_comment_header']").value="";
+    }
+        
+    xhttp.open("POST", "bug_comments_create.php",true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var data = "bug_id="+encodeURIComponent(bugId)+"&comment_header="+encodeURIComponent(commentHeader)+"&comment_text="+encodeURIComponent(commentText);                
+    xhttp.send(data);
 }
