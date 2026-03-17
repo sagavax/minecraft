@@ -1,30 +1,31 @@
 const ideas_list = document.querySelector('.ideas_list');
 const modal_show_status = document.querySelector('.modal_show_status');
 const modal_show_priority = document.querySelector('.modal_show_priority');
-const idea_footer = document.querySelector('.idea_footer');
+const new_idea_form = document.querySelector('.new_idea form');
 
-idea_footer.addEventListener('click', function(event) {
-    if(event.target.classList.contains('idea_status')){
-        const ideaId = event.target.closest(".idea").getAttribute('idea-id');
-        sessionStorage.setItem('idea_id', ideaId);
-        modal_show_status.showModal();
-    } else if (event.target.classList.contains('idea_priority')) {
-        const ideaId = event.target.closest(".idea").getAttribute('idea-id');
-        sessionStorage.setItem('idea_id', ideaId);
-        modal_show_priority.showModal();
-    } else if(event,target.tagName==="BUTTON") {
-        if(event.target.name==="see_idea_details"){
-            const ideaId = event.target.closest(".idea").getAttribute('idea-id');
-            sessionStorage.setItem('idea_id', ideaId);
-            window.location.href = `idea.php?idea_id=${ideaId}`;
-        } else if(event.target.name==="to_apply"){
-            const ideaId = event.target.closest(".idea").getAttribute('idea-id');
-            sessionStorage.setItem('idea_id', ideaId);
-            alert(`Idea ${ideaId} moved to the Apply section.`);
-            moveIdeaToApply(ideaId);
-        }        
-    } 
+
+
+
+new_idea_form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const ideaTitle = document.getElementById('idea_title').value;
+    const ideaText = document.getElementById('idea_text').value;
+    
+    if (ideaText.trim() === '') {
+        alert("Please fill in the description of the idea.");
+        return;
+    }
+
+    let ideaPriority = document.querySelector('select[name="idea_priority"]').value;
+    let ideaStatus = document.querySelector('select[name="idea_status"]').value;
+
+    if (ideaPriority === '0') ideaPriority = 'medium';
+    if (ideaStatus === '0') ideaStatus = 'new';
+
+    saveNewIdea(ideaTitle, ideaText, ideaPriority, ideaStatus);
 });
+
+
 
 
 
@@ -60,7 +61,7 @@ ideas_list.addEventListener('click', function(event) {
             alert(`Idea ${ideaId} deleted.`);
             deleteIdea(ideaId);
             //document.querySelector(`.idea[idea-id='${ideaId}']`).remove();
-        } else if (buttun.name==="to_apply"){
+        } else if (button.name==="to_apply"){
             alert(`Idea ${ideaId} moved to the Apply section.`);
             moveIdeaToApply(ideaId);
             //document.querySelector(`.idea[idea-id='${ideaId}']`).remove();
@@ -175,5 +176,20 @@ function moveIdeaToApply($ideaId) {
     xhttp.open("POST", "ideas_move_to_apply.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var params = "idea_id=" + encodeURIComponent($ideaId);
+    xhttp.send(params);
+}
+
+
+function saveNewIdea(ideaTitle, ideaText, ideaPriority, ideaStatus) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+            
+        }
+    };
+    xhttp.open("POST", "ideas_create.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var params = "idea_title=" + encodeURIComponent(ideaTitle) + "&idea_text=" + encodeURIComponent(ideaText) + "&idea_priority=" + encodeURIComponent(ideaPriority) + "&idea_status=" + encodeURIComponent(ideaStatus);
     xhttp.send(params);
 }

@@ -1,7 +1,7 @@
 const bug_list = document.querySelector('.bug_list');
 const modal_show_status = document.querySelector('.modal_show_status');
 const modal_show_priority = document.querySelector('.modal_show_priority');
-const new_bug = document.querySelector('.new_bug');
+const new_bug_form = document.querySelector('.new_bug form'); // Assuming this is the form element for adding a new bug
 const bug_footer = document.querySelector('.bug_footer');
 
 //markdown editor
@@ -35,29 +35,35 @@ bug_footer.addEventListener('click', function(event) {
             sessionStorage.setItem('bug_id', bugId);
             console.log(bugId);
             markBugAsFixed(bugId);
+        } else if(event.target.name === "see_bug_details"){
+            const bugId = event.target.closest(".bug").getAttribute('bug-id');
+            sessionStorage.setItem('bug_id', bugId);
+            console.log(bugId);
+            window.location.href = `bug.php?bug_id=${bugId}`;
         }
     }
 });
 
 
-new_bug.addEventListener('submit', function(event) {
-    if(event.target.tagName === 'BUTTON') {
-     
-            event.preventDefault(event);
-            /* const bugTitle = document.querySelector('input[name="bug_title"]').value;
-            const bugDescription = document.querySelector('textarea[name="bug_text"]').value;
-            const bugPriority = document.querySelector('select[name="bug_priority"]').value;
-            const bugStatus = document.querySelector('select[name="bug_status"]').value;
-            if(bugTitle === "" || bugDescription === ""){
-                alert("Please fill in all required fields.");
-                return;
-            }
-            SaveBug(bugTitle, bugDescription, bugPriority, bugStatus);
-            console.log(`New bug added: ${bugTitle} - ${bugDescription}`); */
-        }
-   
-});
+new_bug_form.addEventListener('submit', function(event) {
+    event.preventDefault();
 
+    const bugTitle = document.querySelector('input[name="bug_title"]').value;
+    const bugDescription = document.querySelector('textarea[name="bug_text"]').value;
+    let bugPriority = document.querySelector('select[name="bug_priority"]').value;
+    let bugStatus = document.querySelector('select[name="bug_status"]').value;
+    
+    if (bugDescription === "") {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    if (bugPriority === "0") bugPriority = "medium";
+    if (bugStatus === "0") bugStatus = "new";
+
+    //console.log(`New bug added: ${bugTitle} - ${bugDescription} - ${bugPriority} - ${bugStatus}`);
+    SaveBug(bugTitle, bugDescription, bugPriority, bugStatus);
+});
 
 bug_list.addEventListener('click', function(event) {
     const targetClass = event.target.classList;
@@ -180,15 +186,34 @@ function addNewComment(bugId) {
 }
 
 function SaveBug(bugTitle, bugDescription, bugPriority, bugStatus) {
+    //console.log(`Saving bug: ${bugTitle} - ${bugDescription} - ${bugPriority} - ${bugStatus}`);
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText === "Bug created successfully") {
+                alert("Bug added successfully!");
+                console.log("Bug added successfully!");
+            }
+        }
+    };
+    xhttp.open("POST", "bugs_create.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var params = "bug_title=" + encodeURIComponent(bugTitle) + "&bug_description=" + encodeURIComponent(bugDescription) + "&bug_priority=" + encodeURIComponent(bugPriority) + "&bug_status=" + encodeURIComponent(bugStatus);
+    xhttp.send(params);
+}
+
+
+
+function markBugAsFixed(bugId) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
-            alert("Bug added successfully!");
-            console.log(this.responseText);
-            ccconsole.log("Bug added successfully!");
+            document.querySelector(`.bug[bug-id='${bugId}'] .bug_status`).innerText = "Fixed";    
         }
-    };
-    xhttp.open("POST", "bugs_add.php", true);
+    }
+    xhttp.open("POST", "bugs_mark_as_fixed.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var params = "bug_id=" + encodeURIComponent(bugId);
+    xhttp.send(params);
 }

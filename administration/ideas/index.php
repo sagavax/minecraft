@@ -74,7 +74,7 @@
               
               <h3>Ideas for the informating system</h3>
               <div class="new_idea">
-                <form action="ideas_save.php" method="post">
+                <form action="" method="post">
                       <input type="text" name="idea_title" placeholder="idea title here" id="idea_title" autocomplete="off">
                       <textarea name="idea_text" placeholder="Put a your idea(s) here..." id="idea_text"></textarea>
                       <select name="idea_priority">

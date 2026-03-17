@@ -135,7 +135,7 @@
                         "<button type='button' name='see_bug_details' title='bug details' class='button small_button'><i class='fa fa-eye'></i></button>" : // Pridanie komentára aj pre fixed stav
                         "<button type='button' name='see_bug_details' title='bug details' class='button small_button'><i class='fa fa-eye'></i></button>
                         <button type='button' name='move_to_ideas' title='move to ideas' class='button small_button'><i class='fas fa-chevron-right'></i></button>
-                        <button type='button' name='to_fixed' title='mark as fixed' class='button small_button'><i class='fa fa-check'></i></button>
+                        <button type='button' name='mark_fixed' title='mark as fixed' class='button small_button'><i class='fa fa-check'></i></button>
                         <button type='button' name='bug_remove' title='remove bug' class='button small_button'><i class='fa fa-times'></i></button>
                         {$add_comment}"; // Pridanie komentára aj pre nefixed stav  
                        ?>

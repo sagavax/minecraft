@@ -91,8 +91,7 @@
                   <?php
                         $bug_id = $_GET['bug_id'];
 
-                         $idea_id = $_GET['idea_id'];
-                         $is_implemented = 0;
+                         $is_fixed = 0;
 
 
                          // Dynamické nastavenie URL pre API podľa prostredia (localhost vs produkcia)      

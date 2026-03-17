@@ -1,16 +1,23 @@
 <?php
+    include '../../includes/dbconnect.php';
+     
+    $bug_title = mysqli_real_escape_string($link,$_POST['bug_title']) ?? '';
+    $bug_text = mysqli_real_escape_string($link,$_POST['bug_description']);   
 
-    include "../includes/dbconnect.php";
-    include "../includes/functions.php";
-
+    $bug_priority = mysqli_real_escape_string($link,$_POST['bug_priority'] );
+    $bug_status = mysqli_real_escape_string($link,$_POST['bug_status']);
+     
 
     $data = [
     'bug_title' => $bug_title,
     'bug_text' => $bug_text,
     'bug_priority' => $bug_priority,
     'bug_status' => $bug_status,
-    'bug_application' => 'mineccraft'
+    'bug_application' => 'minecraft'
 ];
+
+$api_host = (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'localhost') ? 'http://localhost/bugbuster' : 'https://bugbuster.sk';
+
 
 $curl = curl_init();
 curl_setopt_array($curl, [
