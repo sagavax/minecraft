@@ -4,56 +4,6 @@
      
       session_start();
 
-
-    /*   if(isset($_POST['save_comment'])){
-        ///var_dump($_POST);
-        $comment_header = mysqli_real_escape_string($link,$_POST['bug_comment_header']);
-        $comment = mysqli_real_escape_string($link, $_POST['bug_comment']);
-        $bug_id = $_POST['bug_id'];
-
-        $save_comment = "INSERT into bugs_comments (bug_id,bug_comm_header, bug_comment, comment_date) VALUES ($bug_id,'$comment_header','$comment',now())";
-        //echo $save_comment;
-         $result=mysqli_query($link, $save_comment) or die("MySQLi ERROR: ".mysqli_error($link));
-
-        //app log
-        $diary_text="Minecraft IS: Bolo pridane novy kommentar k bugu id <b>$bug_id</b>";
-        $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-        $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-
-         header("Location: " . $_SERVER['REQUEST_URI']);
-         exit();
-      }
-
-
-      if(isset($_POST['reopen_bug'])){
-        $bug_id = $_SESSION['bug_id'];
-        $_SESSION['is_fixed']=0;
-        $reopen_bug = "UPDATE bugs set is_fixed = 0 wHERE bug_id=$bug_id";
-        //echo $reopen_bug;
-        $result=mysqli_query($link, $reopen_bug);
-
-       
-        $diary_text="Minecraft IS: Bug s id <b>$bug_id</b> bol znovu otvoreny";
-        $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-        $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-        
-      }
-
-      if(isset($_POST['delete_comm'])){
-        $comm_id = $_POST['comm_id'];
-        //var_dump($_POST);
-        $delete_comment = "DELETE from bugs_comments WHERE comm_id = $comm_id";
-        //echo $delete_comment;
-        $result=mysqli_query($link, $delete_comment);
-
-
-       
-        $diary_text="Minecraft IS: Komment s id <b>$comm_id</b> bol vymazany";
-        $sql="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
-        $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-        
-      } */
-
 ?>
 
 
@@ -67,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Minecraft IS</title>
     <link rel="stylesheet" href="../../css/style.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/bugs.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     
@@ -205,7 +156,7 @@
                                             echo "<div class='bug_title'>$comm_title</div>";    
                                         }
                                         echo "<div class='bug_text'>$comm_text</div>";
-                                        echo "<div class='bug_comm_action'><form action='' method='post'><input type='hidden' name='comm_id' value=$comm_id><button type='submit' name='delete_comm' class='button small_button'><i class='fa fa-times'></i></button></form></div>";
+                                        echo "<div class='bug_comm_action'><form action='' method='post'><input type='hidden' name='comm_id' value=$comm_id>$comm_date<button type='submit' name='delete_comm' class='button small_button'><i class='fa fa-times'></i></button></form></div>";
                                     echo "</div>";
                                  }   
                               } else {

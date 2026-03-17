@@ -115,3 +115,11 @@ dialog.show {
 .nr_of_comments {
     cursor: pointer;
 }
+
+.bug_comm_action form {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
