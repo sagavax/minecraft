@@ -20,8 +20,7 @@ function GetModListModpackIndex($modpack_id) {
 		curl_setopt($ch, CURLOPT_HEADER, FALSE);
 
 		$response = curl_exec($ch);
-		curl_close($ch);
-
+		
 		return $response;
 	//return $mod_list;
 }
@@ -131,7 +130,7 @@ function GetAllImageGalleries(){
 function GetCountImagesInGallery($gallery_id){
 	global $link;
 	$query = "SELECT count(*) as count from pictures_gallery_images where gallery_id=$gallery_id";
-	$result=mysqli_query($link, $query) or die(mysql_error());
+	$result=mysqli_query($link, $query) or die(mysqli_error($link));
 	$row = mysqli_fetch_array($result);
 	return $row['count'];
 }
@@ -774,12 +773,44 @@ function GetCountIdeas(){
 }
 
 function GetCountIdeaComments($idea_id){
-	global $link;
-	$query = "SELECT COUNT(*) as nr_of_comms from ideas_comments WHERE idea_id=$idea_id";
-	$result=mysqli_query($link, $query)or die(mysqli_error($link));
-	$row = mysqli_fetch_array($result);
-	 $nr_of_comms= $row['nr_of_comms'];
-	return $nr_of_comms;			
+	  $currAddress = $_SERVER['SERVER_NAME'];
+      if($currAddress == 'localhost') {
+          $api_host = "http://localhost/bugbuster";
+      } else {
+          $api_host = "https://bugbuster.tmisura.sk";
+      }
+
+      $apiUrl = 'http://localhost/bugbuster/api/api.php?endpoint=idea_comments_count&idea_id='.$idea_id;
+    
+      $ch = curl_init();
+
+          curl_setopt_array($ch, [
+              CURLOPT_URL => $apiUrl,
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_TIMEOUT => 10,
+              CURLOPT_HTTPGET => true,
+          ]);
+
+          $response = curl_exec($ch);
+          $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+          $curlError = curl_error($ch);
+
+          $data = null;
+          $errorMessage = null;
+
+          if ($response === false || $curlError !== '') {
+              $errorMessage = 'Nepodarilo sa spojiť s API.';
+          } elseif ($httpCode !== 200) {
+              $errorMessage = 'API vrátilo HTTP kód: ' . $httpCode;
+          } else {
+              $data = json_decode($response, true);
+
+              if (json_last_error() !== JSON_ERROR_NONE) {
+                  $errorMessage = 'Odpoveď z API nie je validný JSON.';
+              }
+          }
+		//print_r($data);
+		 return  $data[0]['count'];  
 }
 
 
@@ -794,12 +825,44 @@ function GetCountBugs(){
 
 
 function GetCountBugComments($bug_id){
-	global $link;
-	$query = "SELECT COUNT(*) as nr_of_comms from bugs_comments WHERE bug_id=$bug_id";
-	$result=mysqli_query($link, $query);
-	$row = mysqli_fetch_array($result);
-	 $nr_of_comms= $row['nr_of_comms'];
-	return $nr_of_comms;			
+	 $currAddress = $_SERVER['SERVER_NAME'];
+      if($currAddress == 'localhost') {
+          $api_host = "http://localhost/bugbuster";
+      } else {
+          $api_host = "https://bugbuster.tmisura.sk";
+      }
+
+      $apiUrl = 'http://localhost/bugbuster/api/api.php?endpoint=idea_comments_count&idea_id='.$bug_id;
+    
+      $ch = curl_init();
+
+          curl_setopt_array($ch, [
+              CURLOPT_URL => $apiUrl,
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_TIMEOUT => 10,
+              CURLOPT_HTTPGET => true,
+          ]);
+
+          $response = curl_exec($ch);
+          $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+          $curlError = curl_error($ch);
+
+          $data = null;
+          $errorMessage = null;
+
+          if ($response === false || $curlError !== '') {
+              $errorMessage = 'Nepodarilo sa spojiť s API.';
+          } elseif ($httpCode !== 200) {
+              $errorMessage = 'API vrátilo HTTP kód: ' . $httpCode;
+          } else {
+              $data = json_decode($response, true);
+
+              if (json_last_error() !== JSON_ERROR_NONE) {
+                  $errorMessage = 'Odpoveď z API nie je validný JSON.';
+              }
+          }
+		//print_r($data);
+		 return  $data[0]['count'];;			
 }
 
 

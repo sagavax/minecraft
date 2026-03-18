@@ -116,3 +116,21 @@ dialog ul li:hover {
     align-items: center;
     gap: 5px;
 }
+
+.idea_status {
+    border: 1px #666 solid;
+}
+
+.idea_status,
+.idea_priority {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 4px;
+    min-width: 100px;
+    cursor: pointer;
+    padding: 6px 12px;
+    height: 38px;
+    box-sizing: border-box;
+}

@@ -1,14 +1,8 @@
 <?php 
       include "../../includes/dbconnect.php";
       include "../../includes/functions.php";
-     
-      session_start();
-
-
-
+    
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -17,8 +11,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Minecraft IS</title>
+    <title>Minecraft IS - Idea</title>
     <link rel="stylesheet" href="../../css/style.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/ideas.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
@@ -106,15 +101,19 @@
                                     
                                     echo "<div class='idea_text'>$idea_text</div>";
                                     echo "<div class='idea_footer'>";
-                                    if ($is_implemented == 0) {
-                                        echo "<form action='' method='post'>";
-                                        echo "<input type='hidden' name='idea_id' value='$idea_id'>";
-                                        echo "<button type='submit' name='to_apply' class='button small_button'><i class='fa fa-check'></i></button>";
-                                        echo "</form>";
-                                    } elseif ($is_implemented == 1) {
-                                        echo "<div class='span_modpack'>Idea implemented</div>";
-                                    }
+                                        $nr_of_comments = GetCountIdeaComments($idea_id);
+                                        echo "<div class='nr_of_comments'>$nr_of_comments comment(s)</div>";
+                                        echo "<div class='idea_status'>$idea_status</div><div class='idea_priority $idea_priority'>$idea_priority</div>";
+                                        //echo "<button type='button' name='see_idea_details' class='button small_button'><i class='fa fa-eye'></i></button>";
 
+                                        if ($is_implemented == 0) {
+                                            echo "<form action='' method='post'>";
+                                            echo "<input type='hidden' name='idea_id' value='$idea_id'>";
+                                            echo "<button type='submit' name='to_apply' class='button small_button'><i class='fa fa-check'></i></button>";
+                                            echo "</form>";
+                                        } elseif ($is_implemented == 1) {
+                                            echo "<div class='idea_implemented'>Implemented</div>";
+                                        }
                                     echo "</div>"; // idea_footer
                                     echo "</div>"; // idea
                             }   

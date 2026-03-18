@@ -92,18 +92,22 @@
                               $bug_text = $row['bug_text'];
                               $is_fixed = $row['is_fixed'];
                               $added_date = $row['added_date'];
+                              $bug_status = $row['bug_status'];
+                              $bug_priority = $row['bug_priority'];
+                              $added_date = $row['added_date'];
 
                               echo "<div class='bug'>";
                                     echo "<div class='bug_title'>$bug_title</div>";
                                     echo "<div class='bug_text'>$bug_text</div>";
                                     echo "<div class='bug_footer'>";
+                                       echo "<div class='bug_status $bug_status'>$bug_status</div><div class='bug_priority $bug_priority'>$bug_priority</div><div class='bug_added_date'>$added_date</div>";   
                                        if($is_fixed==0){
                                                 echo "<button type='button' title='mark the bug as fixed' name='bug_set_fixed' class='button small_button'><i class='fa fa-check'></i></button>";
-                                          
-                                    } elseif ($is_fixed==1){
+                                                
+                                        } elseif ($is_fixed==1){
 
-                                          echo "<button type='button' title='mark the bug as fixed' class='button small_button' name='reopen_bug'>Reopen</button><div class='span_modpack'>fixed</div>";
-                                    }        
+                                            echo "<button type='button' title='mark the bug as fixed' class='button small_button' name='reopen_bug'>Reopen</button><div class='bug_fixed'>fixed</div>";
+                                        }             
 
                                           
                                     echo "</div>";
