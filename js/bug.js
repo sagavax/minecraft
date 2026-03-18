@@ -11,22 +11,26 @@ sessionStorage.setItem("bug_id", bugId);
 
 bug.addEventListener("click", function(ev){
     if(ev.target.classList.contains("bug_title")){
+        const el = document.querySelector(".bug_title");
+        if(el.getAttribute("contenteditable") === "true") return;
         const bugId = sessionStorage.getItem("bug_id");
-        document.querySelector(".bug_title").setAttribute("contenteditable", "true");
-        document.querySelector(".bug_title").focus();
-        document.querySelector(".bug_title").addEventListener("blur", function(){
-            const newTitle = document.querySelector(".bug_title").textContent.trim();
-            changeBugTitle(bugId, newTitle);
+        el.setAttribute("contenteditable", "true");
+        el.focus();
+        el.addEventListener("blur", function(){
+            el.removeAttribute("contenteditable");
+            changeBugTitle(bugId, el.textContent.trim());
         }, { once: true });
-    } 
-    
+    }
+
     if(ev.target.classList.contains("bug_text")){
+        const el = document.querySelector(".bug_text");
+        if(el.getAttribute("contenteditable") === "true") return;
         const bugId = sessionStorage.getItem("bug_id");
-        document.querySelector(".bug_text").setAttribute("contenteditable", "true");
-        document.querySelector(".bug_text").focus();
-        document.querySelector(".bug_text").addEventListener("blur", function(){
-            const newDescription = document.querySelector(".bug_text").textContent.trim();
-            changeBugDescription(bugId, newDescription);
+        el.setAttribute("contenteditable", "true");
+        el.focus();
+        el.addEventListener("blur", function(){
+            el.removeAttribute("contenteditable");
+            changeBugDescription(bugId, el.textContent.trim());
         }, { once: true });
     }
 });

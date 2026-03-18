@@ -1,9 +1,9 @@
-<?php 
+<?php
 
-   $bug_id = $_POST['bug_id'];
-   $bug_title = $_POST['new_title'];
+   $idea_id = $_POST['idea_id'];
+   $idea_title = $_POST['new_title'];
 
-  $data = ['bug_id' => $bug_id, 'bug_title' => $bug_title];
+  $data = ['idea_id' => $idea_id, 'idea_title' => $idea_title];
 
 $currServer = $_SERVER['HTTP_HOST'];
 $api_host = ($currServer == 'localhost') ? "http://localhost/bugbuster" : "https://bugbuster.tmisura.sk";
@@ -11,7 +11,7 @@ $api_host = ($currServer == 'localhost') ? "http://localhost/bugbuster" : "https
 
 $curl = curl_init();
 curl_setopt_array($curl, [
-    CURLOPT_URL => $api_host."/api/api.php?endpoint=bug&bug_id=".$bug_id."&bug_title=".$bug_title,
+    CURLOPT_URL => $api_host."/api/api.php?endpoint=idea&idea_id=".$idea_id."&idea_title=".$idea_title,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_POST => true,
     CURLOPT_CUSTOMREQUEST => "PUT",

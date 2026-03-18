@@ -1,10 +1,38 @@
 const idea_comment_new_form= document.querySelector(".idea_comment_new form" );
 const idea_comments_list = document.querySelector(".idea_comments_list");
 const idea_comment_action = document.querySelector(".idea_comment_action");
-
-
+const idea = document.querySelector(".idea");
+ 
 const ideaId = new URLSearchParams(window.location.search).get('idea_id');
 sessionStorage.setItem("idea_id", ideaId);
+
+
+idea.addEventListener("click", function(ev){
+    if(ev.target.classList.contains("idea_title")){
+        const el = document.querySelector(".idea_title");
+        if(el.getAttribute("contenteditable") === "true") return;
+        const ideaId = sessionStorage.getItem("idea_id");
+        el.setAttribute("contenteditable", "true");
+        el.focus();
+        el.addEventListener("blur", function(){
+            el.removeAttribute("contenteditable");
+            changeIdeaTitle(ideaId, el.textContent.trim());
+        }, { once: true });
+    }
+
+    if(ev.target.classList.contains("idea_text")){
+        const el = document.querySelector(".idea_text");
+        if(el.getAttribute("contenteditable") === "true") return;
+        const ideaId = sessionStorage.getItem("idea_id");
+        el.setAttribute("contenteditable", "true");
+        el.focus();
+        el.addEventListener("blur", function(){
+            el.removeAttribute("contenteditable");
+            changeIdeaDescription(ideaId, el.textContent.trim());
+        }, { once: true });
+    }
+});
+
 
 
 idea_comment_action.addEventListener("click", function(event) {
@@ -79,3 +107,28 @@ function clearIdeaComments() {
         idea_comments_list.removeChild(idea_comments_list.firstChild);
     }
 }
+
+
+function changeIdeaTitle(ideaId, newTitle) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        alert("idea title changed successfully;");
+    }
+        
+    xhttp.open("POST", "idea_title_change.php",true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var data = "idea_id="+encodeURIComponent(ideaId)+"&new_title="+encodeURIComponent(newTitle);                
+    xhttp.send(data);
+}
+
+function changeIdeaDescription(ideaId, newDescription) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        alert("idea description changed successfully;");
+    }
+        
+    xhttp.open("POST", "idea_description_change.php",true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var data = "idea_id="+encodeURIComponent(ideaId)+"&new_description="+encodeURIComponent(newDescription);                
+    xhttp.send(data);
+} 

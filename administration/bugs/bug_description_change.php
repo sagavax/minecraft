@@ -1,7 +1,7 @@
 <?php
 
    $bug_id = $_POST['bug_id'];
-   $bug_description = $_POST['bug_description'];
+   $bug_description = $_POST['new_description'];
 
   $data = ['bug_id' => $bug_id, 'bug_description' => $bug_description];
 

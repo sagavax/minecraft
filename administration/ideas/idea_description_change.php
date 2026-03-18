@@ -1,9 +1,9 @@
-<?php 
+<?php
 
-   $bug_id = $_POST['bug_id'];
-   $bug_title = $_POST['new_title'];
+   $idea_id = $_POST['idea_id'];
+   $idea_description = $_POST['new_description'];
 
-  $data = ['bug_id' => $bug_id, 'bug_title' => $bug_title];
+  $data = ['idea_id' => $idea_id, 'idea_description' => $idea_description];
 
 $currServer = $_SERVER['HTTP_HOST'];
 $api_host = ($currServer == 'localhost') ? "http://localhost/bugbuster" : "https://bugbuster.tmisura.sk";
@@ -11,7 +11,7 @@ $api_host = ($currServer == 'localhost') ? "http://localhost/bugbuster" : "https
 
 $curl = curl_init();
 curl_setopt_array($curl, [
-    CURLOPT_URL => $api_host."/api/api.php?endpoint=bug&bug_id=".$bug_id."&bug_title=".$bug_title,
+    CURLOPT_URL => $api_host."/api/api.php?endpoint=idea&idea_id=".$idea_id."&idea_description=".$idea_description,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_POST => true,
     CURLOPT_CUSTOMREQUEST => "PUT",
@@ -31,4 +31,4 @@ if ($errno) {
     die(json_encode(['error' => "cURL Error: $error"]));
 } else {
     echo $response; // Vráť odpoveď z API
-}
+}  
