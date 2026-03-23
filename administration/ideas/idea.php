@@ -178,6 +178,7 @@
                                         echo "<div class='idea_comm_text'>$comm_text</div>";
                                         echo "<div class='idea_comm_action'>";
                                             echo "<div class='idea_comm_date'>$comm_date</div>";
+                                            echo "<button type='button' name='delete_comment' class='button small_button'><i class='fa fa-times'></i></button>";
                                         echo "</div>"; // idea_comm_action
                                     echo "</div>"; // idea_comment
                                 }    

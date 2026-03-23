@@ -55,7 +55,7 @@ idea_comments_list.addEventListener("click",function(event) {
         if (event.target.name==="delete_comment"){
             const commentId = event.target.closest(".idea_comment").getAttribute("data-comment-id");
             console.log(commentId);
-            deleteIdeaComment(commentId);
+            deleteComment(commentId);
         }
         
     }
@@ -72,7 +72,7 @@ function deleteIdeaComment(commentId) {
         }
       };
     var data = "comm_id="+commentId;
-    xhttp.open("POST", "idea_comment_remove.php", true);
+    xhttp.open("POST", "idea_comments_remove.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
 }
@@ -132,3 +132,16 @@ function changeIdeaDescription(ideaId, newDescription) {
     var data = "idea_id="+encodeURIComponent(ideaId)+"&new_description="+encodeURIComponent(newDescription);                
     xhttp.send(data);
 } 
+
+function deleteComment(commentId){
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+    document.querySelector(`.idea_comment[data-comment-id='${commentId}']`).remove();    
+    alert("comment has been deleted;");
+    }
+        
+    xhttp.open("POST", "idea_comments_remove.php",true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var data = "comm_id="+encodeURIComponent(commentId);                
+    xhttp.send(data);
+}

@@ -1,12 +1,24 @@
 const footer = document.querySelector(".bug_footer");
 const bug_comment_new_form = document.querySelector(".bug_comment_new form");
 const bug = document.querySelector(".bug");
-
+const bug_comments_list = document.querySelector(".bug_comments_list");
 
 
 const bugId = new URLSearchParams(window.location.search).get('bug_id');
 sessionStorage.setItem("bug_id", bugId);
 
+
+
+bug_comments_list.addEventListener("click",function(event) {
+    if(event.target.tagName==="BUTTON"){
+        if (event.target.name==="delete_comment"){
+            const commentId = event.target.closest(".bug_comment").getAttribute("data-comment-id");
+            console.log(commentId);
+            deleteComment(commentId);
+        }
+        
+    }
+});
 
 
 bug.addEventListener("click", function(ev){
@@ -36,7 +48,7 @@ bug.addEventListener("click", function(ev){
 });
 
 
-footer.addEventListener("click",function(ev){
+/* footer.addEventListener("click",function(ev){
     const bugId =sessionStorage.getItem("bug_id");
     if(ev.target.tagName==="BUTTON"){
         buttonName=ev.target.name;
@@ -46,7 +58,7 @@ footer.addEventListener("click",function(ev){
             BugFixed(bugId);
         }
      }   
-})
+}) */
 
 bug_comment_new_form.addEventListener("submit", function(event){
 //form validation
@@ -134,3 +146,16 @@ function changeBugDescription(bugId, newDescription){
     var data = "bug_id="+encodeURIComponent(bugId)+"&new_description="+encodeURIComponent(newDescription);                
     xhttp.send(data);
 }   
+
+function deleteComment(commentId){
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+    document.querySelector(`.bug_comment[data-comment-id='${commentId}']`).remove();    
+    alert("comment has been deleted;");
+    }
+        
+    xhttp.open("POST", "bug_comments_remove.php",true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var data = "comm_id="+encodeURIComponent(commentId);                
+    xhttp.send(data);
+}

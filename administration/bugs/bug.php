@@ -153,14 +153,14 @@
                                     $comm_text = $row_comment['bug_comment'];
                                     $comm_date = $row_comment['comment_date'];
 
-                                    echo "<div class='bug_comment'>";
+                                    echo "<div class='bug_comment' data-comment-id='$comm_id'>";
                                         echo "<div class='connector-line'></div>";
                                         echo "<div class='bug_top_banner'></div>";
                                         if($comm_title!=""){
                                             echo "<div class='bug_title'>$comm_title</div>";    
                                         }
                                         echo "<div class='bug_text'>$comm_text</div>";
-                                        echo "<div class='bug_comm_action'><form action='' method='post'><input type='hidden' name='comm_id' value=$comm_id>$comm_date<button type='submit' name='delete_comm' class='button small_button'><i class='fa fa-times'></i></button></form></div>";
+                                        echo "<div class='bug_comm_action'><input type='hidden' name='comm_id' value=$comm_id>$comm_date<button type='button' name='delete_comment' class='button small_button'><i class='fa fa-times'></i></button></div>";
                                     echo "</div>";
                                  }   
                               } else {

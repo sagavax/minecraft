@@ -134,3 +134,10 @@ dialog ul li:hover {
     height: 38px;
     box-sizing: border-box;
 }
+
+.idea_comm_action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}

@@ -1,17 +1,24 @@
 <?php
 
-   $bug_id = $_POST['bug_id'];
-   $bug_description = $_POST['new_description'];
 
-  $data = ['bug_id' => $bug_id, 'bug_description' => $bug_description];
+include "../../includes/dbconnect.php";
+include "../../includes/functions.php";
+
+
+
+//$bug_id = (int)($_POST['bug_id']);
+$comment_id = (int)($_POST['comm_id']);
 
 $currServer = $_SERVER['HTTP_HOST'];
 $api_host = ($currServer == 'localhost') ? "http://localhost/bugbuster" : "https://bugbuster.tmisura.sk";
 
+$data = [
+    'comment_id' => $comment_id
+];
 
 $curl = curl_init();
 curl_setopt_array($curl, [
-    CURLOPT_URL => $api_host."/api/api.php?endpoint=bug_comments&bug_id=".$bug_id,
+    CURLOPT_URL => $api_host."/api/api.php?endpoint=bug_comments",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CUSTOMREQUEST => "DELETE",
     CURLOPT_HTTPHEADER => [

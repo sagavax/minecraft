@@ -8,7 +8,7 @@ const bug_footer = document.querySelector('.bug_footer');
 
 
 
-bug_footer.addEventListener('click', function(event) {
+/* bug_footer.addEventListener('click', function(event) {
     if(event.target.classList.contains('bug_status')) {
         const bugId = event.target.closest(".bug").getAttribute('bug-id');
         sessionStorage.setItem('bug_id', bugId);
@@ -42,7 +42,7 @@ bug_footer.addEventListener('click', function(event) {
             window.location.href = `bug.php?bug_id=${bugId}`;
         }
     }
-});
+}); */
 
 
 new_bug_form.addEventListener('submit', function(event) {
