@@ -66,7 +66,9 @@ switch ($endpoint) {
             require 'create_mods.php';
         } elseif ($method === 'DELETE') {
             require 'delete_mods.php';
-        } else {
+        } 
+        
+        else {
             http_response_code(405); // Method Not Allowed
             echo json_encode(['error' => 'Method not allowed']);
         }
