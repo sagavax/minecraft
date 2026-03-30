@@ -9,6 +9,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 /* //api/api.php?endpoint=products alebo /api/api.php?endpoint=users */
 
 switch ($endpoint) {
+    
     case 'videos':
         if ($method === 'GET') {
             require 'videos.php';
@@ -82,12 +83,13 @@ switch ($endpoint) {
     case 'video_modpacks':
         if ($method === 'PATCH' || $method === 'PUT') {
             require 'update_modpack_for_video.php';
+        } else if ($method === 'GET') {
+            require 'get_video_modpack.php';
         } else {
             http_response_code(405); // Method Not Allowed
             echo json_encode(['error' => 'Method not allowed']);
         }
         break;
-
     // Pridaj ďalšie endpointy podľa potreby
 
     default:
