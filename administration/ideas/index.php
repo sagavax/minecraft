@@ -10,7 +10,7 @@
           $api_host = "https://bugbuster.tmisura.sk";
       }
 
-      $apiUrl = 'http://localhost/bugbuster/api/api.php?endpoint=ideas&app_name=minecraft';
+      $apiUrl = $api_host.'/api/api.php?endpoint=ideas&app_name=minecraft';
     
       $ch = curl_init();
 

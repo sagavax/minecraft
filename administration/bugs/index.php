@@ -14,7 +14,7 @@
           $api_host = "https://bugbuster.tmisura.sk";
       }
 
-      $apiUrl = 'http://localhost/bugbuster/api/api.php?endpoint=bugs&app_name=minecraft';
+      $apiUrl = $api_host.'/bugbuster/api/api.php?endpoint=bugs&app_name=minecraft';
     
     
       // Inicializácia cURL pro požiadavku na API

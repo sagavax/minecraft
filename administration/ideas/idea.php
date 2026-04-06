@@ -47,7 +47,7 @@
                             $api_host = "https://bugbuster.tmisura.sk";
                         }
 
-                        $apiUrl = 'http://localhost/bugbuster/api/api.php?endpoint=idea&idea_id='.$idea_id;
+                        $apiUrl = $api_host.'/api/api.php?endpoint=idea&idea_id='.$idea_id;
                         
                         
                         // Inicializácia cURL pro požiadavku na API
@@ -122,7 +122,7 @@
 
                     
                     //komenbte
-                     $apiUrlComments = 'http://localhost/bugbuster/api/api.php?endpoint=idea_comments&idea_id='.$idea_id;
+                     $apiUrlComments = $api_host.'/api/api.php?endpoint=idea_comments&idea_id='.$idea_id;
 
                     $ch = curl_init();
 

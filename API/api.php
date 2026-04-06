@@ -90,6 +90,15 @@ switch ($endpoint) {
             echo json_encode(['error' => 'Method not allowed']);
         }
         break;
+
+     case 'video_mods':
+        if ($method === 'GET') {
+            require 'get_video_mods.php';
+        } else {
+            http_response_code(405); // Method Not Allowed
+            echo json_encode(['error' => 'Method not allowed']);
+        }
+        break;    
     // Pridaj ďalšie endpointy podľa potreby
 
     default:
