@@ -56,7 +56,7 @@
                         </select>
 
 
-                        <select name="modpack_vanilla">
+                        <select name="modpack">
                             <?php
                                 echo "<option value='0'>Vanilla Minecraft</option>";   
                                 echo "<option value=1>Modded Minecraft</option>";
