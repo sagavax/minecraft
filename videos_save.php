@@ -2,7 +2,7 @@
          include("includes/dbconnect.php");
          include("includes/functions.php");
  
-          //var_dump($_POST);
+        
           $video_name=mysqli_real_escape_string($link, $_POST['video_title']);
           $video_url=mysqli_real_escape_string($link, $_POST['video_url']);
           
@@ -53,8 +53,7 @@
 
        //add to modpacks
        $add_video_modpack = "INSERT INTO videos_modpacks (video_id, modpack_id) VALUES ($newest_video_id,$modpack_id)";
-        mysqli_query($link, $add_video_modpack) or die("MySQLi ERROR: ".mysqli_error($link));    
-
+       mysqli_query($link, $add_video_modpack) or die("MySQLi ERROR: ".mysqli_error($link));    
        
 
 

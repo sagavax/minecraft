@@ -39,6 +39,9 @@ const container_view_tags = document.querySelector(".tab_view_tags");
 const container = document.querySelector('.tab_view');
 const container_view_export = document.querySelector(".tab_view_export");
 
+const selectModpack = document.querySelector('select[name="modpack"]')
+const selectMod = document.querySelector('select[name="category"]');
+
 
 //hide the new video form
 document.querySelector("#new_video").style.display="none";
@@ -91,6 +94,19 @@ video_mods_alphabet.addEventListener("click", function(event){
 });
 
 
+if(selectModpack){
+selectModpack.addEventListener("change", function(event){
+    const modpack = event.target.options[event.target.selectedIndex].text;
+    sessionStorage.setItem("selected_modpack", modpack);
+   });
+}
+ 
+if(selectMod){
+selectMod.addEventListener("change", function(event){
+    const mod = event.target.options[event.target.selectedIndex].text;
+    sessionStorage.setItem("selected_mod", mod);
+   });
+}
 
 
 selectElement.addEventListener("change", (event) => {
@@ -1020,6 +1036,8 @@ function fetchLatestVideo() {
         // Assuming 'data' contains the latest video record
         // Append the latest video record to the beginning of the list
         const latestVideoContainer = document.querySelector('.videos_list');
+        const selectedModpackName = sessionStorage.getItem("selected_modpack");
+        const selectedModName = sessionStorage.getItem("selected_mod");
         const videoHTML = `
             <div class="video" video-id="${data.video_id}">
                 <div class="video_thunb"><img src="${data.video_thumbnail}" alt="Video Thumbnail"></div>
@@ -1033,7 +1051,7 @@ function fetchLatestVideo() {
                         <button name="delete_video" type="button" class="button app_badge" video-id="${data.video_id}"><i class="fas fa-times"></i></button><button class='button app_badge video_edition'>${data.video_edition}</button>
                     </div>
                     <div class='video_tags_wrap' video-id="${data.video_id}"><div class='videos_tags'></div><button class='button small_button' name='new_tag' title='Add new tag(s)'><i class='fa fa-plus'></i></button></div>
-                    <div class='video_modpack_information_wrap'><div class='video_modpack_info'><button class='button blue_button' name='change_modpack' title='change modpack'><i class='fa fa-edit'></i></button></div><div class='video_mods'><button class='button blue_button' name='add_mod' title='add mod(a)'><i class='fa fa-plus'></i></button></div></div>
+                    <div class='video_modpack_information_wrap'><div class='video_modpack_info'><button class='button blue_button' name='change_modpack' title='change modpack'>${selectedModpackName !== null ? selectedModpackName : '<i class="fa fa-plus"></i>'}</button></div><div class='video_mods'><button class='button blue_button' name='add_mod' title='add mod(a)'>${selectedModName !== null ? selectedModName : '<i class="fa fa-plus"></i>'}</button></div></div>
                 </div>
                 <div class='video_banner_list'></div>
                 <div class='video_action_play'>
