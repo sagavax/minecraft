@@ -416,6 +416,7 @@
                         echo "<button modpack-id=$modpack_id class='button small_button'>$modpack_name</button>";
 
                     }
+                    echo "<button class='button small_button' name='add_new_modpack' title='Add new modpack'><i class='fa fa-plus'></i> Add Modpack</button>";
                 ?>
         </div>
 </dialog>
