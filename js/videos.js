@@ -22,7 +22,7 @@ const modal_new_video_tags_input = document.querySelector(".modal_new_tags input
 const modal_new_video_tags_closeButton = document.querySelector(".modal_new_tags button");
 
 
-const selectElement =document.querySelector('select[name="modpack"]');
+const selectElement =document.querySelector('select[name="modpack_vanila"]');
 const container_view_style = document.querySelector('.tab_view_list_grid');
 const container_view_source = document.querySelector('.tab_view_source');
 const change_modpack_list = document.querySelector(".change_modpack_list");
@@ -103,7 +103,7 @@ selectElement.addEventListener("change", (event) => {
     } 
 
     if(event.target.value==0){
-        console.log("modded");
+        console.log("vanilla");
         document.querySelector('select[name="modpack"]').setAttribute("disabled",true);
         document.querySelector('select[name="category"]').setAttribute("disabled",true);
     }
