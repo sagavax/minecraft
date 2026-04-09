@@ -1010,6 +1010,7 @@ button[name="save_description"]{
     border-radius: 5px;
     margin-bottom: 10px;
     box-sizing: border-box;
+    justify-content: right;
    }
 
 
