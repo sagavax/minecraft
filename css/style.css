@@ -2322,6 +2322,10 @@ button[name="add_modpack"] {
     font-weight: bolder;
 }
 
+.modpack input[name="modpack_name"]::placeholder {
+    font-weight: normal;}
+
+
 .modpack_info_wrap {
     float: left;
     width: 100%;
@@ -6341,6 +6345,27 @@ input[name="search_mods"] {
     border: 1px #0b9ed0 solid; */
    }
 
+   input[name="modpack_name"] {
+    display: flex;
+    width: 88%;
+    border: 1px #d1d1d1 solid;
+    border-radius: 6px;
+    padding: 5px;
+    box-sizing: border-box;
+    font-weight: bold;
+     font-family: 'Noto Sans', sans-serif;
+     font-size: 16px;
+   }
+
+   .new_modpack_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+    width:100%;
+    margin-top:10px;
+   }
+
+
    .modal_modpack_mods {
     width: 80%;
     top:10%;
@@ -7055,3 +7080,16 @@ input[name="search_mods"] {
   animation: l3 1s infinite linear;
 }
 @keyframes l3 {to{transform: rotate(1turn)}}
+
+
+.notification_message {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    font-size: 16px;
+    font-family: 'Noto Sans', sans-serif;
+    color: #fff;
+    margin-top: 5px;
+}

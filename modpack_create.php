@@ -1,13 +1,45 @@
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
 
+          
           $modpack_name=mysqli_real_escape_string($link, $_POST['modpack_name']);
-          $modpack_version=mysqli_real_escape_string($link,$_POST['modpack_version']);
-          $modpack_author=mysqli_real_escape_string($link,$_POST['modpack_author']);
-          $modpack_image=mysqli_real_escape_string($link, $_POST['modpack_image']);
-          $modpack_description=mysqli_real_escape_string($link, $_POST['modpack_description']);
-          $modpack_url=mysqli_real_escape_string($link, $_POST['modpack_url']);
 
+        //check if modpack with the same name already exists
+        $sql="SELECT * FROM modpacks WHERE modpack_name='$modpack_name'";
+        $result=mysqli_query($link, $sql);
+        if(mysqli_num_rows($result)>0){
+            echo "<script>alert('Modpack with the same name already exists.');</script>";
+            exit();
+        }
+
+          if(isset($_POST['modpack_version'])){
+            $modpack_version=mysqli_real_escape_string($link,$_POST['modpack_version']);
+          } else {
+            $modpack_version="";
+          }
+          
+          if(isset($_POST['modpack_author'])){
+            $modpack_author=mysqli_real_escape_string($link,$_POST['modpack_author']);
+          } else {
+            $modpack_author="";
+          }
+
+          if(isset($_POST['modpack_image'])){
+            $modpack_image=mysqli_real_escape_string($link, $_POST['modpack_image']);
+          } else {
+            $modpack_image="";
+          }
+
+          if(isset($_POST['modpack_description'])){
+            $modpack_description=mysqli_real_escape_string($link, $_POST['modpack_description']);
+          } else {
+            $modpack_description="";
+          }
+          if(isset($_POST['modpack_url'])){
+            $modpack_url=mysqli_real_escape_string($link, $_POST['modpack_url']);
+          } else {
+            $modpack_url="";
+          }
           
           //ziskam poslednu najvyssiu hodnotu pre load order 
           $sql="SELECT MAX(load_order) as max_load_order from modpacks";

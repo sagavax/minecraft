@@ -22,6 +22,9 @@ const modal_new_video_tags_input = document.querySelector(".modal_new_tags input
 const modal_new_video_tags_closeButton = document.querySelector(".modal_new_tags button");
 
 
+const modal_change_modpack = document.querySelector(".modal_change_modpack");
+
+
 const selectElement =document.querySelector('select[name="modpack_vanila"]');
 const container_view_style = document.querySelector('.tab_view_list_grid');
 const container_view_source = document.querySelector('.tab_view_source');
@@ -41,6 +44,8 @@ const container_view_export = document.querySelector(".tab_view_export");
 
 const selectModpack = document.querySelector('select[name="modpack"]')
 const selectMod = document.querySelector('select[name="category"]');
+
+const new_modpack_wrapper = document.querySelector(".new_modpack_wrapper");
 
 
 //hide the new video form
@@ -63,6 +68,14 @@ video_tags_map_header_button.addEventListener("click", function(){
 //search video tags in the map
 video_tags_map_wrap_input.addEventListener("keyup", function(event) {
             SearchVideoTag(video_tags_map_wrap_input.value);
+});
+
+
+modal_change_modpack.addEventListener("cancel", function() {
+    //reset the input
+    document.querySelector(".modal_change_modpack input").value="";
+    // Close the modal
+    modal_change_modpack.close();
 });
 
 
@@ -149,24 +162,6 @@ videos_tag_list_close_button.addEventListener("click", ()=>{
     videos_tag_list.close();
 })
 
-// Identify a common parent element
-
-
-// Attach event listener to the parent element
-/* parentElement.addEventListener("input", function(event) {
-    // Check if the target element is the input field
-    if (event.target.matches(".inner_layer input")) {
-        // Remove previous search results
-        RemovePrevResults();
-
-        // Check if the input field is not empty
-        if (event.target.value !== "") {
-            // Call TagAutocomplete function with the input value
-            TagAutocomplete(event.target.value);
-        }
-    }
-});
- */
 
 change_modpack_list.addEventListener("click", function(event) {
      // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
@@ -189,6 +184,20 @@ change_modpack_list.addEventListener("click", function(event) {
     });
 
 
+    new_modpack_wrapper.addEventListener("click", function(event){
+        if(event.target.tagName==="BUTTON"){
+            //if(event.target.name === "add_new_modpack"){
+            //check if the input is not empty
+            if(document.querySelector(".new_modpack_wrapper input").value==""){
+                alert("Input cannot be empty!");
+            } else {
+            //check if the modpack already exists
+            modpackExistsInModal(document.querySelector(" .new_modpack_wrapper input").value);   
+            document.querySelector(".new_modpack_wrapper input").value="";    
+                }
+            }
+        //}
+    });
 
 
 modal_comm_textarea.addEventListener("keydown", function(event) {
@@ -1403,4 +1412,64 @@ function sortVideosTagsByLetters(letterButton){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     const params="tag="+tag;
     xhttp.send(params);
+  }
+
+
+  function createModpack(modpack){
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          const modpackInput = document.querySelector(".modal_change_modpack input")
+          modpackInput.value = "";
+          // Show a message when the export is successful
+          document.querySelector(".notification_message").innerHTML = "modpack has been created!";
+          document.querySelector(".notification_message").style.display = "flex";
+          document.querySelector(".notification_message").style.backgroundColor = "#27ae60";
+            setTimeout(function() {
+                document.querySelector(".notification_message").style.display = "none";
+            }, 3000);
+          reloadModpacks();
+        }
+    };
+    xhttp.open("POST", "modpack_create.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    const params="modpack_name="+modpack;
+    xhttp.send(params);
+  }
+
+  function modpackExistsInModal(modpack){
+    //get all modpacks names in array in change_modpack_list div
+    const modpackButtons = document.querySelectorAll(".change_modpack_list button");
+    const modpackNames = Array.from(modpackButtons).map(button => button.innerText);
+    if (modpackNames.includes(modpack)) {
+        
+         document.querySelector(".notification_message").innerHTML = "modpack already exists!";
+          document.querySelector(".notification_message").style.display = "flex";
+          document.querySelector(".notification_message").style.backgroundColor = "#f24822";
+            setTimeout(function() {
+                document.querySelector(".notification_message").style.display = "none";
+            }, 3000);
+           document.querySelector(".modal_change_modpack input").value = "";
+           
+    } else {
+        createModpack(modpack);
+    }
+  }
+
+function reloadModpacks(){
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".change_modpack_list").innerHTML = this.responseText;
+          document.querySelector(".notification_message").innerHTML = "modpacks reloaded!";
+          document.querySelector(".notification_message").style.display = "flex";
+            setTimeout(function() {
+                document.querySelector(".notification_message").style.display = "none";
+            }, 3000);
+        }
+    };
+    xhttp.open("GET", "modpacks_modal.php", true);
+    xhttp.send();
   }

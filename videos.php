@@ -414,9 +414,10 @@
                         $modpack_name = $row['modpack_name'];
                         $modpack_id = $row['modpack_id']; 
                         echo "<button modpack-id=$modpack_id class='button small_button'>$modpack_name</button>";
-
                     }
-                    echo "<button class='button small_button' name='add_new_modpack' title='Add new modpack'><i class='fa fa-plus'></i> Add Modpack</button>";
                 ?>
-        </div>
+        </div><!-- change modpack list-->
+        <div class='new_modpack_wrapper'><input type='text' name='modpack_name' placeholder='name of the modpack ....' autocomplete='off'><button class='button small_button' name='add_new_modpack' title='Add new modpack'><i class='fa fa-plus'></i> Add Modpack</button></div>
+        <div class="notification_message"></div>
+    </div><!-- inner change modpack layer-->
 </dialog>
