@@ -42,6 +42,86 @@
                     <i class="fas fa-plus" title="Add new video" onclick="showNewVideoForm()"></i>
                 </div>
 
+                <div id="new_video">
+                    <div class="video_top_bar"><button type="button" class="close_modal" title="hide"><i
+                                class="fa fa-times"></i></button></div>
+                    <form action="videos_save.php" enctype="multipart/form-data" method="post">
+                        <input type="text" name="video_title" placeholder='Video title' autocomplete=off
+                            id="video_title" readonly ondblclick="remove_readonly(this)" onblur="set_readonly(this)">
+                        <input type="text" name="video_url" placeholder='Video url' id="video_url" autocomplete="off">
+
+                        <select name="edition">
+                            <option value='java'>java edition</option>
+                            <option value='bedrock'>bedrock edition</option>
+                        </select>
+
+
+                        <select name="modpack_vanila">
+                            <?php
+                                echo "<option value='0'>Vanilla Minecraft</option>";   
+                                echo "<option value=1>Modded Minecraft</option>";
+                             ?>
+                        </select>
+
+                        <div class="modpack_container">
+
+                            <select name="category" disabled>
+                                <option value=0>-- Select modification -- </option>
+                                <?php
+                                    $sql="SELECT * from mods ORDER BY cat_name ASC";
+                                    $result=mysqli_query($link, $sql);
+                                      while ($row = mysqli_fetch_array($result)) {
+                                        $cat_id=$row['cat_id'];
+                                        $cat_name=$row['cat_name'];
+                                    echo "<option value=$cat_id>$cat_name</option>";
+                                    }	
+                                  ?>
+                            </select>
+                            <select name="modpack" disabled>
+                                <?php      
+                                  $get_modpacks = "SELECT * from modpacks ORDER BY modpack_name ASC";
+                                    $result=mysqli_query($link, $get_modpacks);
+
+                                    echo "<option value=1>Custom modpack</option>";
+                                    while ($row = mysqli_fetch_array($result)) {                   
+                                        $modpack_name = $row['modpack_name'];
+                                        $modpack_id = $row['modpack_id']; 
+                                        echo "<option value=$modpack_id>$modpack_name</option>";
+
+                                    }      
+                                    ?>
+
+                            </select>
+
+                            <button type="button" title="add new modpack" class="button small_button"><i
+                                    class="fa fa-plus"></i></button>
+                        </div><!-- modpack container -->
+
+                        <div class="brand_radio">
+                            <label class="brand_label">
+                                <input type="radio" class="brand" name="video_source" value="YouTube" checked>
+                                <i class="fab fa-youtube"></i>
+                            </label>
+                            <label class="brand_label">
+                                <input type="radio" class="brand" name="video_source" value="Tiktok">
+                                <i class="fab fa-tiktok"></i>
+                            </label>
+                            <label class="brand_label">
+                                <input type="radio" class="brand" name="video_source" value="Pinterest">
+                                <i class="fab fa-pinterest"></i>
+                            </label>
+                        </div>
+
+
+                        <div class="new_video_submit_wrap"><button type="submit" name="add_new_video"
+                                class="button"><i class="fa fa-plus"></i></button></div>
+
+                    </form>
+
+                </div><!-- new video -->
+
+
+
 
                 <div id="videos_wrap">
                     <div class="search_wrap">

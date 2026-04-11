@@ -16,6 +16,8 @@ const video_url = document.getElementById("video_url");
 const videos_tag_list = document.querySelector(".modal_video_tags");
 const videos_tag_list_close_button = document.querySelector(".modal_video_tags button");
 
+const modal_new_video = document.querySelector(".modal_new_video");
+
 //add new tag dialog
 const modal_new_video_tags = document.querySelector(".modal_new_tags");
 const modal_new_video_tags_input = document.querySelector(".modal_new_tags input");
@@ -49,7 +51,6 @@ const new_modpack_wrapper = document.querySelector(".new_modpack_wrapper");
 
 
 //hide the new video form
-document.querySelector("#new_video").style.display="none";
 document.querySelector("#video_tags_wrap").style.display="none";
 
 video_tags_map_header_button.addEventListener("click", function(){
@@ -421,7 +422,7 @@ modal_modpack_input.addEventListener("input", function(){
              buttonName = event.target.name;
             if(buttonName ==="export_all_videos_cvs"){
                exportCSV();
-            }   else if (buttonName==="eport_farms_cvs"){
+            }   else if (buttonName==="export_farms_cvs"){
                 exportFarmsCSV();
             }
         }
@@ -536,7 +537,7 @@ modal_modpack_input.addEventListener("input", function(){
 
 
 function getYouTubeVideoName() {
-    const url = document.getElementById("video_url").value;
+    let url = document.getElementById("video_url").value;
 
     // Validácia URL
     if (!isValidUrl(url)) {
@@ -986,12 +987,13 @@ function PaginateTags(pageNumber){
 
 //show off new video form
 function showNewVideoForm(){
-    const div = document.getElementById('new_video');
+   document.querySelector(".modal_new_video").showModal(); 
+    /*  const div = document.getElementById('new_video');
     div.style.display = 'flex';
    window.scrollTo({
   top: 0,
   behavior: 'smooth' // This makes the scrolling smooth, omit if not needed
-});
+}); */
 }
 
 
@@ -1013,7 +1015,7 @@ function ShowMessage(text){
 
 
 //create new video
-document.querySelector('#new_video form').addEventListener('submit', function(e) {
+document.querySelector('.modal_new_video form').addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent the default form submission
 
     const formData = new FormData(this); // Create a FormData object from the form
@@ -1049,7 +1051,7 @@ function fetchLatestVideo() {
         const selectedModName = sessionStorage.getItem("selected_mod");
         const videoHTML = `
             <div class="video" video-id="${data.video_id}">
-                <div class="video_thunb"><img src="${data.video_thumbnail}" alt="Video Thumbnail"></div>
+                <div class="video_thumb"><img src="${data.video_thumbnail}" alt="Video Thumbnail"></div>
                 <div class="video_list_details">
                     <div class="video_name"><span>${data.video_title}</span></div>
                     <div class="video_action">
@@ -1103,6 +1105,7 @@ function clearNewVideoform(){
     document.getElementById("video_title").value = "";
     document.querySelector('select[name="edition"]').value = "java";   
     document.querySelector('select[name="modpack"]').value = "0";   
+    document.querySelector('.modal_new_video').close();
 }
 
 function exportCSV() {
@@ -1307,7 +1310,7 @@ function sortTagsByChar(char){
           document.querySelector(".tags_list").innerHTML = this.responseText;
         }
     };
-    xhttp.open("POST", "videos_tags_short_by_char.php", true);
+    xhttp.open("POST", "videos_tags_sort_by_char.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     // Send the request with the videoId and modpackId

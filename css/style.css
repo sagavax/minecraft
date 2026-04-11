@@ -377,11 +377,11 @@ textarea::placeholder {
     background-color: #239e57;
     color: #fff;
     padding: 11px 48px;
-    border-radius: 2px;
     /* border: #aadd77 1px solid; */
     border: 1px #239e57 solid;
     font-size: 18px;
     transition: 0.5s ease;
+    border-radius: 5px;;
 }
 
 .button:hover {
@@ -7094,3 +7094,45 @@ input[name="search_mods"] {
     color: #fff;
     margin-top: 5px;
 }
+
+.tag_creation_action {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap:10px;
+    margin-top: 20px;
+    }
+
+.tag_creation_action button {
+    height: 45px;
+    display: flex;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    }
+    .tag_creation_action input {
+        height: 45px;
+        border: 1px #d1d1d1 solid;
+        border-radius: 6px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-family: 'Noto Sans', sans-serif;
+        margin:0;
+    }
+
+    .modal_new_video {
+        top: 25%;
+        left: 20%;
+        width: 60%;
+        background: white;
+        border: 1px #d1d1d1 solid;
+        border-radius: 6px;
+        flex-direction: column;
+        padding:10px;
+    }
+
+    input[name="video_title"] {
+     margin-bottom: 10px;
+    }
