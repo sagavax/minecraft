@@ -1051,7 +1051,7 @@ function fetchLatestVideo() {
         const selectedModName = sessionStorage.getItem("selected_mod");
         const videoHTML = `
             <div class="video" video-id="${data.video_id}">
-                <div class="video_thumb"><img src="${data.video_thumbnail}" alt="Video Thumbnail"></div>
+                <div class="video_thunb"><img src="${data.video_thumbnail}"></div>
                 <div class="video_list_details">
                     <div class="video_name"><span>${data.video_title}</span></div>
                     <div class="video_action">
