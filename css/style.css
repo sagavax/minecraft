@@ -7136,3 +7136,10 @@ input[name="search_mods"] {
     input[name="video_title"] {
      margin-bottom: 10px;
     }
+
+    .tag_applications {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap:10px;
+    }

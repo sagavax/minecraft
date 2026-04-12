@@ -1026,10 +1026,19 @@ document.querySelector('.modal_new_video form').addEventListener('submit', funct
     })
     .then(response => response.json()) // Assuming the response is JSON
     .then(data => {
+        
         // Display your message based on the response
         ShowMessage("Video added successfully!");
-       fetchLatestVideo();
-       clearNewVideoform();
+
+        //remove selected mod and modpack from session storage
+        sessionStorage.removeItem("selected_modpack");
+        sessionStorage.removeItem("selected_mod");
+        
+        // Fetch and display the latest video in the list
+        fetchLatestVideo();
+
+        // Clear the form fields and reset the form
+        clearNewVideoform();
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -1071,6 +1080,9 @@ function fetchLatestVideo() {
             </div>
         `;
         latestVideoContainer.insertAdjacentHTML('afterbegin', videoHTML);
+
+        //remove selected mod and modpack from session storage
+        
 
         // Fetch and load video tags for the newly added video
         //getVideosTags(data.video_id);
@@ -1273,6 +1285,11 @@ function changeModpack(videoId, modpackId,modpackName) {
             // Update the modpack info button
             modpack.setAttribute('modpack-id', modpackId);
             modpack.textContent = `${modpackName}`;
+            modpack.setAttribute("name", "video_modpack");
+            const btn = modpack.insertAdjacentElement('afterend', document.createElement('button'));
+            btn.classList.add("button", "blue_button");
+            btn.setAttribute("name", "change_modpack");
+            btn.insertAdjacentHTML('afterbegin', '<i class="fa fa-edit"></i>');
         }
     };
 
