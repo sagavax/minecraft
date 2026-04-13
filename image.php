@@ -91,7 +91,7 @@
                                   //echo "</ul>";
                             echo "</div>"; //video comments
 
-                                  echo "<div class='new_comment'><input type='text' name='picture_comment' id='picture_comment' autocomplete='off'><button name='add_comment' type='button' onclick='add_comment(); return false;'><i class='fa fa-plus'></i></button></div>";
+                                  echo "<div class='new_comment'><input type='text' name='picture_comment' id='picture_comment' autocomplete='off'><button name='add_comment' type='button'><i class='fa fa-plus'></i></button></div>";
 
                             echo "<div class='action_back'><button type='button''><i class='fas fa-sync'></i> Reload</button> <button type='button' onclick='go_back();'><i class='fas fa-angle-left'></i> Back</button></div>";
                             echo "</div>"; //div comments_wrapper

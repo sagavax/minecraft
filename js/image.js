@@ -579,6 +579,10 @@ function removeImageFromGallery(imageId) {
   xhttp.send(data);
 }
 
+document.querySelector("button[name='add_comment']").addEventListener("click", function() {
+  AddComment();
+});
+
 function go_back(){
   window.history.back();
 }
