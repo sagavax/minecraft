@@ -1285,11 +1285,11 @@ function changeModpack(videoId, modpackId,modpackName) {
             // Update the modpack info button
             modpack.setAttribute('modpack-id', modpackId);
             modpack.textContent = `${modpackName}`;
-            modpack.setAttribute("name", "video_modpack");
-            const btn = modpack.insertAdjacentElement('afterend', document.createElement('button'));
+            modpack.setAttribute("name", "change_modpack");
+            /* const btn = modpack.insertAdjacentElement('afterend', document.createElement('button'));
             btn.classList.add("button", "blue_button");
-            btn.setAttribute("name", "change_modpack");
-            btn.insertAdjacentHTML('afterbegin', '<i class="fa fa-edit"></i>');
+            /*btn.setAttribute("name", "change_modpack");
+            btn.insertAdjacentHTML('afterbegin', '<i class="fa fa-edit"></i>'); */
         }
     };
 
