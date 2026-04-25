@@ -100,7 +100,10 @@ videosContainer.addEventListener('click', function(event) {
                 if(document.querySelector(`.video[video-id='${sessionStorage.getItem("video_id")}'] .video_modpack_info button[name='change_modpack']`).innerText=="Vanilla Minecraft"){
                     alert("Vanilla Minecraft games don't have modpacks. You can't add mods to them.");
                     return;
-                } else{
+                } else if(document.querySelector(`.video[video-id='${sessionStorage.getItem("video_id")}'] .video_modpack_info button[name='change_modpack']`).innerText.includes("No modpack")){
+                    alert("This video doesn't have a modpack. Please assign a modpack to it before adding mods.");
+                    return;
+                } else {
                     document.querySelector(".modal_modpack_mods").showModal();
                 }
                 
