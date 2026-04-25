@@ -6469,6 +6469,11 @@ input[name="search_mods"] {
     flex-direction: column;
    }
 
+   .modal_notes h3 {
+    margin:0;
+    margin-bottom: 10px;
+   }
+
    .modal_notes textarea {
         width: 100%;
         height:90%;

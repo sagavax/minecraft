@@ -273,6 +273,7 @@
 
 
         <dialog class="modal_notes">
+            <h3>add new note:</h3>
             <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button>
             <textarea name="video_comment" placeholder="type your comment here ...."></textarea>
             <div class="modal_notes_action"><button type="button" class="button small_button">Save</button></div>
