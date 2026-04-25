@@ -56,11 +56,7 @@
   
   <body>
     <div class="login-page">
-         
           <div class="form">
-            <div class="product_info">
-            <h1>welcome to minecraft information system</h1>
-          </div> 
            <form class="login-form" action="" method="post">
               <input type="text" placeholder="username" name="username" autocomplete="off">
               <input type="password" placeholder="password" name="password" autocomplete="off" />

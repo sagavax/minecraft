@@ -2102,7 +2102,8 @@ button[name="add_modpack"] {
 
 .video_modpack_information_wrap button {
     border-radius: 5px;
-    font-size: 12px;
+    height: 40px;
+    font-size: large;
 }
 
 .video_modpack_info,.video_mods {
@@ -6561,7 +6562,7 @@ input[name="search_mods"] {
         border-radius: 5px;
         color: #fff;
         height: 45px;
-        
+        min-width: 100px;
     }
 
    .modal_video_tags {
