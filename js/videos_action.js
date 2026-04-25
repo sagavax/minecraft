@@ -59,25 +59,26 @@ videosContainer.addEventListener('click', function(event) {
                 sessionStorage.setItem("video_id", videoId);
                 break;
 
-           case 'new_tag':
+           case 'new_tag': {
             //console.log("create new tag(s)");
             document.querySelector(".modal_new_tags").showModal();
-            
+
             // Vyčisti array
             existingVideoTags = [];
-            
+
             const parent = event.target.closest(".video_tags_wrap");
-            const videoId = parent.getAttribute("video-id"); // ← OPRAV: bolo to AŽ za break
-            sessionStorage.setItem("video_id", videoId);
-            
+            const tagVideoId = parent.getAttribute("video-id");
+            sessionStorage.setItem("video_id", tagVideoId);
+
             const tagButtons = parent.querySelectorAll(".videos_tags button");
-            
-            for (const tagButton of tagButtons) { // ← pridaj const
+
+            for (const tagButton of tagButtons) {
                 existingVideoTags.push(tagButton.getAttribute("tag-id"));
             }
-            
+
             //console.log("Existing video tags:", existingVideoTags);
             break;
+            }
 
             case 'video_tags_count':
                 //sessionStorage.setItem("video_id", videoId);
