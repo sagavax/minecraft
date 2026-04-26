@@ -2764,7 +2764,7 @@ button[name="add_modpack"] {
     height: 55px;
     border:1px #999 solid;
     box-sizing: border-box;
-    background: white;
+    background-color:#0b9ed0;
     align-items: center;
     padding-left:5px;
     border-radius: 5px;
@@ -2774,7 +2774,6 @@ button[name="add_modpack"] {
     height:45px;
     border:1px #5FA3D1;
     font-weight: normal;
-    background-color: #5FA3D1;
     color:white;
     opacity: 1;
     
@@ -2783,7 +2782,7 @@ button[name="add_modpack"] {
 }
 
 .tag:hover {
-     background-color: #508AA1;
+     /* background-color: #508AA1; */
      cursor: pointer;
 }
 
@@ -3508,7 +3507,6 @@ button[name="add_modpack"] {
 
 .cat_name:hover {
     cursor: pointer;
-    color:#0b9ed0;
 }
 
 .log_text {
