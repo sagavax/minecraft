@@ -4,10 +4,10 @@
       include "includes/functions.php";
 
 
-      $task_id = $_POST['task_id'];
-      $status = $_POST['status'];
+      $task_id = intval($_POST['task_id']); //$_POST['task_id'];
+      $status = mysqli_real_escape_string($link, $_POST['status']); //$_POST['status'];
 
-      $update_task_status = "UPDATE tasks SET task_status=$status WHERE task_id=$task_id"; 
+      $update_task_status = "UPDATE tasks SET task_status='$status' WHERE task_id=$task_id"; 
       $result=mysqli_query($link, $update_task_status) or die("MySQLi ERROR: ".mysqli_error($link));
 
       //add log

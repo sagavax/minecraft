@@ -12,8 +12,10 @@ document.querySelector(".search_wrap input").addEventListener("keyup", () => {
 
 dialog_status.addEventListener("click", function(event){
   if(event.target.tagName === "BUTTON"){
-    const status = event.target.getAttribute("name");
-    const taskId = event.target.closest(".task").getAttribute("id");
+    const status = event.target.innerText;
+    const taskId = sessionStorage.getItem("task_id");
+    console.log(status, taskId);
+
     changeTaskStatus(taskId, status);
     dialog_status.close();
   }
@@ -23,8 +25,8 @@ dialog_status.addEventListener("click", function(event){
 dialog_modpacks.addEventListener("click", function(event){
   if(event.target.tagName === "BUTTON"){
     const modpackId = event.target.getAttribute("modpack-id");
-    const taskId = event.target.closest(".task").getAttribute("id");
-    //const taskId = sessionStorage.getItem("task_id");
+    const taskId = sessionStorage.getItem("task_id");
+    //const taskId = event.target.closest(".task").getAttribute("id");
     addModpackToTask(taskId, modpackId);
     dialog_modpacks.close();
   }
@@ -54,13 +56,13 @@ tasks.addEventListener('click', function(event) {
   
   if (event.target.tagName === 'BUTTON') {
     const buttonName = event.target.name;
-
-    if (buttonName === "edit_task") {
-      //window.location.href = "task.php?task_id=" + taskId;
-    }
-
+   
     if (buttonName === "complete_task") {
       taskCompleted(taskId);
+    }
+
+    if(buttonName === "change_status") {
+      dialog_status.showModal();
     }
 
     if (buttonName === "add_modpack" || buttonName === "assigned_modpack") {

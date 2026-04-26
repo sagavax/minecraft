@@ -2605,6 +2605,26 @@ button[name="add_modpack"] {
     width: 100%;
 }
 
+
+.dialog_status {
+    top: 30%;
+    left: 45%;
+    width: 20%;
+    height:100px;
+    
+}
+
+.inner_status_layer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+    height: 100%;
+}
+
+
+
 .subtask_action {
     margin-top: 20px;
 }

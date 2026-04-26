@@ -137,6 +137,7 @@
             $task_category_id=$row['cat_id'];
             $task_modpack_id=$row['modpack_id'];
             $is_completed=$row['is_completed'];
+            $task_status=$row['task_status'];
             
             $task_text=preg_replace("~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~","<a href=\"\\0\">\\0</a>", $task_text);    
             
@@ -173,7 +174,7 @@
               } elseif($is_completed==0){
 
                 echo $mod_modpack;
-                echo "<div class='task_status'><button type='button' class='button small_button'>In progress</div><div class='task_action'>".$button_edit." ".$button_task_complete."</div>";
+                echo "<div class='task_status'><button type='button' class='button small_button' name='change_status'>$task_status</div><div class='task_action'>".$button_edit." ".$button_task_complete."</div>";
               }
               
               echo "</div>";//task_footer_wrap;  
@@ -212,9 +213,8 @@
 
     <dialog class="dialog_status">
         <div class="inner_status_layer">
-          <p>Task status</p>
-          <button type="button" name="in_progress" class="button small_button">In progress</button>
-          <button type="button" name="active" class="button small_button">Pending</button>
-          <button type="button" name="completed" class="button small_button">Completed</button>
+          <button type="button" name="in_progress" class="button small_button">in progress</button>
+          <button type="button" name="active" class="button small_button">pending</button>
+          <button type="button" name="completed" class="button small_button">completed</button>
         </div><!--inner_status_layer -->
 </body>    
