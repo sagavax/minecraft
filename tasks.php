@@ -178,6 +178,7 @@
               }
               
               echo "</div>";//task_footer_wrap;  
+              echo "<div class='info_task'>Editing mode, editing time: <span id='editing_time'>".date('Y-m-d H:i:s')."</span></div>";
               echo "</div>";//task
             }
             

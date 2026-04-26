@@ -4799,6 +4799,17 @@ td.zakladna_popis {
         font-size: large;
     }
 
+.info_task {
+    display: none;
+    align-items: center;
+    justify-content: flex-start;
+    gap:10px;
+    margin: 10px;
+    background: green;
+    color: #fff;
+    padding: 5px 10px;
+}
+
 
 .task_status {
     /* width:150px; */

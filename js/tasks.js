@@ -88,9 +88,10 @@ tasks.addEventListener('click', function(event) {
       return;
     } 
     //check if task is not completed
-    if(taskStatus === "In progress") {
+      document.querySelector(`.task[id="${taskId}"] .info_task`).style.display = "flex";
       taskBody.setAttribute("contenteditable", "true");
       taskBody.focus();
+       // Show editing info
       const oldText = taskBody.innerText; 
 
       event.target.addEventListener("blur", function(){
@@ -98,13 +99,14 @@ tasks.addEventListener('click', function(event) {
       const taskBody = document.querySelector(`.task[id="${taskId}"] .task_body`);  
       if(oldText === taskBody.innerText) {
         event.target.removeAttribute("contenteditable");
+        document.querySelector(`.task[id="${taskId}"] .info_task`).style.display = "none";
         return; // No changes made, exit the function
       }
       event.target.removeAttribute("contenteditable");
+      document.querySelector(`.task[id="${taskId}"] .info_task`).style.display = "none"; // Remove editing info if exists
       SaveTaskChanges(taskId, taskBody.innerText);
             }, { once: true }); // <- spustí sa iba raz
-    }
-      
+          
     //switchToTextarea(taskId);
   }
 });
