@@ -15,12 +15,27 @@ body {
     height: 100%;
     font-family: 'Noto Sans', sans-serif;
     font-size: 16px;
-    color: #2C2A20;
-    /*background: #eee;*/
-    /*background: #f5f5f5;*/
-    background-color: #d2f9be82;
-    /*background: white;*/
+    /* color: #2C2A20; */
+    color: white;
+    background-color: #0f2031;
+    
     outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Sans', sans-serif;
+    color: #b2d530;
+}
+
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #b2d530;
+    margin-left: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 button[name="gallery"] {
@@ -73,11 +88,10 @@ ul {
 }
 
 dialog {
-    border:1px #d1d1d1 solid;
+    border:1px #b2d530 solid;
     border-radius: 5px;
-    background-color: ;
+    background-color: #0f2031;
     font-family: 'Noto Sans', sans-serif;
-    background-color: #d2f9be82;
 }
 
 
@@ -86,20 +100,22 @@ dialog {
 }
 
 .header {
-       width: 100%;
-    height: 110px;
-    background: url(../pics/background.png);
-    text-align: center;
+    color: #b2d530;
+    width: 100%;
+    height: 80px;
+    background: #0f2031;
     margin-top: 0;
     margin-left: 0;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+    border-bottom: 1px #b2d530 solid;
 }
 
 .timer {
-    font-size: 18px;
-    color:white;
+    font-size: 26px;
+    font-weight: 600;
+    color:#b2d530;
     font-family: 'Noto Sans',sans-serif;
     margin-right: 10px;
 }
@@ -244,7 +260,7 @@ dialog {
     width: 100%;
 }
 
-.tile {
+/* .tile {
     position: relative;
     display: flex;
     align-items: center;
@@ -252,19 +268,16 @@ dialog {
     width: 200px;
     height: 250px;
     box-sizing: border-box;
-    /* background: #aadd77;
-    background: #4aada9;*/
-    background: #02C39A;
+  
+    background: #4aada9;
+  
     color: white;
     font-weight: bold;
     text-align: center;
     border-radius: 5px;
-    flex-direction: column;
-    /*box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);*/
-    /*box-shadow: 0 3px 7px -1px rgba(#000, .1);*/
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    ;
-}
+    flex-direction: column; 
+    
+} */
 
 .tile {
     position: relative;
@@ -274,14 +287,14 @@ dialog {
     width: 250px;
     height: 250px;
     box-sizing: border-box;
-    /* background: #aadd77;
-    background: #4aada9;*/
-    background: #02C39A;
-    color: white;
+    /* background: #02C39A; */
+    background-color: #162432;
+    color: #b2d530;
     font-weight: bold;
     text-align: center;
     border-radius: 5px;
     flex-direction: column;
+    border: 1px #b2d530 solid;
     /*box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);*/
     /*box-shadow: 0 3px 7px -1px rgba(#000, .1);*/
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -296,20 +309,23 @@ dialog {
 }
 
 .tile_title {
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .tile_title {
     display: flex;
     height: 100%;
     width: 100%;
-    color: #fff;
+    color: #b2d530;
     align-items: center;
     justify-content: center;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: normal;
+    gap: 10px;
 }
 
 .tile_info {
-    background: #fff;
+    background-color: #b2d530;
     position: absolute;
     display: flex;
     box-sizing: border-box;
@@ -317,7 +333,9 @@ dialog {
     align-items: center;
     justify-content: center;
     bottom: 0;
-    color: #222;
+    color: #162432;
+    font-family: 'Noto Sans', sans-serif;
+    
     font-weight: normal;
     height: 50px;
     width: 100%;
@@ -325,7 +343,7 @@ dialog {
 }
 
 .tile_info span {
-    font-size: 14px;
+    font-size: large;
 }
 
 .tile_info:hover {
@@ -337,7 +355,8 @@ select {
     font-family: 'Noto Sans', sans-serif;
     border: 1px #d1d1d1 solid;
     /* background: #eff3f4; */
-    background-color: #fcfafa;
+    color: #b2d530;
+    background: #2C2A20;
     font-size: 16px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -353,10 +372,10 @@ input {
     font-family: 'Noto Sans', sans-serif;
     font-size: 16px;
     box-sizing: border-box;
-    border: 1px #d1d1d1 solid;
+    color: #b2d530;
+    background: #2C2A20;
     padding: 10px;
     outline: none;
-    background-color: #fcfafa;
     border-radius: 5px;
    /*  background: #eff3f4 */
 }
@@ -368,16 +387,23 @@ textarea {
     font-family: 'Noto Sans', sans-serif;
     font-size: 16px;
     box-sizing: border-box;
-    border: 1px #d1d1d1 solid;
+    border: 1px #b2d530 solid;
     outline: none;
     padding: 10px;
-    background-color: #fcfafa;
+    color: #b2d530;
+    background: #2C2A20;
+    font-weight: normal;
     /* background: #eff3f4 */
 }
 
 input::placeholder,
 textarea::placeholder {
-    color: #777;
+    color: #b2d530;
+    font-weight: normal;
+}
+
+input::placeholder {
+    font-weight: bolder;
 }
 
 .button {
@@ -690,8 +716,10 @@ textarea::placeholder {
 
 .dashboard {
     display: flex;
-    flex-direction: column;
-    width:80%;
+    flex-wrap: wrap;    
+    justify-content: center;
+    box-sizing: border-box;
+    padding:10px;
     margin-top: 70px;
     
 }
@@ -725,12 +753,13 @@ textarea::placeholder {
 
 
 
-.modpack_list, .tile_list {
+.modpack_list,.tile_list {
     display: flex;
     flex-wrap: wrap;
     gap:20px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 70%;
 }
 
 .modpack_list {
@@ -1911,8 +1940,9 @@ button[name="add_modpack"] {
 }
 
 .note, .bug {
-    border: 1px #d1d1d1 solid;
-    background: white;
+    border: 1px #b2d530 solid;
+    color: #b2d530;
+    background: #2C2A20;
     margin-top:10px;
     box-sizing: border-box;
     padding:5px;
@@ -2548,7 +2578,13 @@ button[name="add_modpack"] {
 
 .task {
     margin-top: 3px;
+    background-color: #0f2031;
+    color: #fff;
+    border: 1px #b2d530 solid;
+    border-radius: 5px;
 }
+
+
 
 .task_id {
     float: left;
@@ -2753,8 +2789,8 @@ button[name="add_modpack"] {
 #new_influencer{
     padding: 10px;
     box-sizing: border-box;
-    border: 1px #d1d1d1 solid;
-    background: #fff;
+    border: 1px #b2d530 solid;
+    background: #2C2A20;
 }
 
 #new_influencer {
@@ -2872,13 +2908,19 @@ button[name="add_modpack"] {
 
 #new_note input, #new_note textarea, #new_note select {
     margin-top:10px;
-    margin-bottom:10px
+    margin-bottom:10px;
+    border-radius: 5px;
+    border: 1px #b2d530 solid;
+    color: #b2d530;
+    background: #2C2A20;
 }
 
 #new_note select {
     /* height:45px; */
     border-radius: 5px;
-    border: 1px #d1d1d1 solid;
+    border: 1px #b2d530 solid;
+    color: #b2d530;
+    background: #2C2A20;
     /* background: #eff3f4; */
     font-family: 'Noto Sans', sans-serif;
 }
@@ -2922,14 +2964,15 @@ button[name="add_modpack"] {
 #new_influencer textarea,
 #edit_video input,
 #upload_new_video input,
-#new_note form textarea,
 #new_video textarea,
 #new_image textarea,
 #edit_video textarea {
     margin-top: 5px;
     margin-bottom: 5px;
     min-height: 50px;
-    border: 1px #d1d1d1 solid;
+    border: 1px #b2d530 solid;
+    color: #b2d530;
+    background: #2C2A20;
     font-family: 'Noto Sans', sans-serif;
     font-weight: normal
 }
@@ -4231,6 +4274,8 @@ button[name="add_modpack"] {
     box-sizing: border-box;
     padding-right: 5px;
     gap:5px;
+    margin-top:15px;
+    margin-bottom: 10px;
 }
 
 .task_footer {
@@ -4263,7 +4308,7 @@ button[name="add_modpack"] {
     align-items: center;
     flex-wrap: wrap;
     box-sizing: border-box;
-    padding:10px;
+    padding:15px;
     font-size: 14px;
   }
 
@@ -4499,6 +4544,9 @@ background: #eff3f4;
     flex-direction: column;
     box-sizing: border-box;
     padding:10px;
+    border: 1px #b2d530 solid;
+    background: #0f2031;
+    border-radius: 6px;
 }
 
 

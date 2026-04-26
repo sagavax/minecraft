@@ -155,7 +155,8 @@
              
                $mod_modpack="<div class='task_modpacks'>".$category_name." ".$modpack_name."</div>";
               
-              $button_edit="<button type='button' name='edit_task' class='button small_button pull-right'><i class='fas fa-edit'></i></button>";
+              //$button_edit="<button type='button' name='edit_task' class='button small_button pull-right'><i class='fas fa-edit'></i></button>";
+              $button_edit="";
               $button_task_complete="<button type='button' name='complete_task' class='button small_button pull-right'><i class='fa fa-check'></i></button>";
               
               
@@ -206,6 +207,14 @@
           <?php 
             echo GetListModpacks();
           ?>
-        </div>
-      </div>
+        </div><!--inner_modpacks_layer -->   
+    </dialog>
+
+    <dialog class="dialog_status">
+        <div class="inner_status_layer">
+          <p>Task status</p>
+          <button type="button" name="in_progress" class="button small_button">In progress</button>
+          <button type="button" name="active" class="button small_button">Pending</button>
+          <button type="button" name="completed" class="button small_button">Completed</button>
+        </div><!--inner_status_layer -->
 </body>    

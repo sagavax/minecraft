@@ -80,6 +80,14 @@ function GetAllInfluencers() {
 	echo $influncer;
 }
 
+function GetCountInfluencers() {
+	global $link;
+	$sql = "SELECT COUNT(*) as count FROM influencers";
+	$result = mysqli_query($link, $sql) or die(mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	return $row['count'];
+}
+
 
 function GetImageGallery($image_id) { 
 	global $link;

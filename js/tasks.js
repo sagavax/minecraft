@@ -2,7 +2,7 @@
 const taskTopBarButton = document.querySelector(".task_top_bar button");
 const tasks = document.querySelector('.tasks');
 const dialog_modpacks = document.querySelector('.dialog_modpacks');
-
+const dialog_status = document.querySelector('.dialog_status');
 
 
 document.querySelector(".search_wrap input").addEventListener("keyup", () => {
@@ -10,10 +10,20 @@ document.querySelector(".search_wrap input").addEventListener("keyup", () => {
 });
 
 
+dialog_status.addEventListener("click", function(event){
+  if(event.target.tagName === "BUTTON"){
+    const status = event.target.getAttribute("name");
+    const taskId = event.target.closest(".task").getAttribute("id");
+    changeTaskStatus(taskId, status);
+    dialog_status.close();
+  }
+})
+
+
 dialog_modpacks.addEventListener("click", function(event){
   if(event.target.tagName === "BUTTON"){
     const modpackId = event.target.getAttribute("modpack-id");
-    const taskId = sessionStorage.getItem("task_id");
+    const taskId = event.target.closest(".task").getAttribute("id");
     //const taskId = sessionStorage.getItem("task_id");
     addModpackToTask(taskId, modpackId);
     dialog_modpacks.close();
@@ -288,5 +298,20 @@ function  SaveTaskChanges(taskId, taskBody){
         xhttp.open("POST", "task_update_task_text.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         const data = "task_id="+encodeURIComponent(taskId)+"&task_text="+encodeURIComponent(taskBody);
+        xhttp.send(data);
+}
+
+
+function changeTaskStatus(taskId, status){
+
+    var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        alert("Task has been updated");
+                }
+            };
+        xhttp.open("POST", "task_update_status.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        const data = "task_id="+encodeURIComponent(taskId)+"&status="+encodeURIComponent(status);
         xhttp.send(data);
 }

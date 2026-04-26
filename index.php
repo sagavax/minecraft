@@ -59,7 +59,7 @@
          
           <div class="form">
             <div class="product_info">
-            <h1>welcome to minecraft information system</h1>
+            <h1>welcome to <i class="fa fa-cube" style="padding-left: 8px;"></i> Minecraft IS</h1>
           </div> 
            <form class="login-form" action="" method="post">
               <input type="text" placeholder="username" name="username" autocomplete="off">

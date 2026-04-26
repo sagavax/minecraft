@@ -1,1 +1,1 @@
-<div class="header"><div class="timer"></div></div>
+<div class="header"><div class="logo"><i class="fa fa-cube"></i>Minecraft IS</div><div class="timer"></div></div>
