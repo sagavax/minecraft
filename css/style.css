@@ -4796,6 +4796,7 @@ td.zakladna_popis {
         box-sizing: border-box;
         cursor: pointer;
         outline: 0;
+        font-size: large;
     }
 
 
