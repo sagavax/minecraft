@@ -14,8 +14,10 @@ dialog_status.addEventListener("click", function(event){
   if(event.target.tagName === "BUTTON"){
     const status = event.target.innerText;
     const taskId = sessionStorage.getItem("task_id");
-    console.log(status, taskId);
-
+    //upfate task status in frontend
+    const taskStatusButton = document.querySelector(`.task[id="${taskId}"] .task_status button`);
+    taskStatusButton.innerText = status;
+    //update task status in database
     changeTaskStatus(taskId, status);
     dialog_status.close();
   }
