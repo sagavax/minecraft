@@ -102,11 +102,18 @@ mod_details.addEventListener("click",function(event){
 })
 
 
+mod_details.addEventListener("focus", function(event) {
+    if (event.target.tagName === "INPUT" || event.target.tagName === "TEXTAREA") {
+        event.target.dataset.originalValue = event.target.value;
+    }
+}, true);
+
 mod_details.addEventListener("blur", function(event) {
-   
     if (event.target.tagName === "INPUT") {
         event.target.setAttribute("readonly", true);
-   
+        if (event.target.value === event.target.dataset.originalValue) return;
+        event.target.dataset.originalValue = event.target.value;
+
         if (event.target.name === "mod_name") {
             updateModName();
             alert("Updated successfully");
@@ -116,6 +123,9 @@ mod_details.addEventListener("blur", function(event) {
         }
     } else if (event.target.tagName === "TEXTAREA") {
         event.target.setAttribute("readonly", true);
+        if (event.target.value === event.target.dataset.originalValue) return;
+        event.target.dataset.originalValue = event.target.value;
+
         updateModDescription();
         alert("Mod description updated successfully");
     }

@@ -166,6 +166,7 @@ INNER JOIN notes_modpacks AS b ON a.note_id = b.note_id ORDER BY a.note_id DESC 
                                   //notes actions
                                   echo "<div class='notes_action'>".$category_name." ".$modpack_name."<form method='post' action='notes_attach_file.php' enctype='multipart/form-data'><input type='hidden' name=note_id value=$note_id><input type='file' name='image' id='file-attach-$note_id' accept='image/*' style='display:none'></form><button name='attach_image' type='button' class='button small_button'><i class='material-icons'>attach_file</i></button><button name='edit_note' type='submit' class='button small_button'><i class='material-icons'>edit</i></button><button name='delete_note' type='submit' class='button small_button'><i class='material-icons'>delete</i></button></div>";
                          echo "</div>";//note footer
+                         echo "<div class='notification_message'>Editing mode, editing time: <span id='editing_time'>".date('Y-m-d H:i:s')."</span></div>";//modification
                       echo "</div>"; //note       
                         }    
                 ?>     

@@ -2300,6 +2300,7 @@ button[name="add_modpack"] {
 }
 
 
+
 #note_text {
     box-sizing: border-box;
     width: 100%;
@@ -3732,12 +3733,17 @@ button[name="add_modpack"] {
     box-sizing: border-box;
     min-height: 100px;
     display: flex;
-    background-color: white;
-    border:1px #d1d1d1 solid;
+    background-color: #0f2031;
+    border:1px #b2d530 solid;
     border-radius: 6px;
     padding:10px;
 }
 
+.mod_details input, .mod_details textarea {
+    margin-bottom: 5px;
+    margin-top: 5px;
+     border: 1px #b2d530 solid;
+}
 
 .mod_images_videos_wrap {
     background-color: white;
@@ -4307,6 +4313,7 @@ button[name="add_modpack"] {
     padding: 6px 12px;
     font-size: 16px;
     color: #fff;
+    margin-left: 5px;
 }
 
 .task_footer,
@@ -4593,6 +4600,15 @@ background: #eff3f4;
     padding:5px;
 }
 
+.new_note_header button {
+    background: #0f2031;
+    border: 1px #0f2031 solid;
+}
+
+.new_note_header button:hover {
+     background-color: #193653;
+}
+
 
 #note_title input,
 #note_text textarea {
@@ -4638,6 +4654,11 @@ background: #eff3f4;
     align-items: center;
     margin-top: 20px;
 }
+
+.note_action button {
+    width: 100px;
+}
+
 
 td.zakladna_popis {
     width: 400px;
@@ -7173,6 +7194,7 @@ input[name="search_mods"] {
 
 .notification_message {
     display: none;
+    background-color: green;
     align-items: center;
     justify-content: center;
     height: 50px;

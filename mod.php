@@ -40,9 +40,9 @@
 
                     echo "<div class='modification'>";
                         echo "<div class='mod_details'>";
-                            echo "<div class='mod_name'><input type='text' name='mod_name' value='$mod_name' readonly></div>";
-                            echo "<div class='mod_description'><textarea name=mod_description placeholder='Mod description' readonly>$mod_description</textarea></div>";
-                            echo "<div class='mod_url'><input type='text' name='mod_url' placeholder='mod url' value='$mod_url' readonly></div>";
+                            echo "<input type='text' name='mod_name' value='$mod_name' readonly>";
+                            echo "<textarea name='mod_description' placeholder='Mod description' readonly>$mod_description</textarea>";
+                            echo "<input type='text' name='mod_url' placeholder='mod url' value='$mod_url' readonly>";
                        echo "</div>"; //div details
                      }    
            

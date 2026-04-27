@@ -196,14 +196,14 @@ notes_list.addEventListener("click", function(event) {
     if (noteHeader.isContentEditable) return;
 
     const oldText = noteHeader.textContent;
-
+    document.querySelector(`.note[note-id="${noteId}"] .notification_message`).style.display = "flex";
     noteHeader.contentEditable = true;
     noteHeader.focus();
 
     // Listener na blur, spustí sa iba raz
     noteHeader.addEventListener("blur", function handleBlur() {
         noteHeader.contentEditable = false;
-
+        document.querySelector(`.note[note-id="${noteId}"] .notification_message`).style.display = "none";
         const newText = noteHeader.textContent;
         if (newText !== oldText) {
            alert("Note header changed.");
@@ -215,9 +215,41 @@ notes_list.addEventListener("click", function(event) {
         noteHeader.removeEventListener("blur", handleBlur); // prevent repeated firing
     }, { once: true }); // zabezpečí, že sa nespustí viackrát
 } 
+else if (event.target.classList.contains("note_text")) {
+    console.log("Note text clicked");
+
+    const noteId = event.target.closest(".note").getAttribute("note-id");
+    sessionStorage.setItem("note_id", noteId);
+    const noteText = event.target;
+
+    // Zabránime opakovaniu
+    if (noteText.isContentEditable) return;
+
+    const oldText = noteText.textContent;
+    document.querySelector(`.note[note-id="${noteId}"] .notification_message`).style.display = "flex";
+    noteText.contentEditable = true;
+    noteText.focus();
+
+    // Listener na blur, spustí sa iba raz
+    noteText.addEventListener("blur", function handleBlur() {
+        noteText.contentEditable = false;
+        document.querySelector(`.note[note-id="${noteId}"] .notification_message`).style.display = "none";
+        const newText = noteText.textContent;
+        if (newText !== oldText) {
+            alert("Note text changed.");
+            saveNoteText(noteId, newText);
+        } else {
+            console.log("No change to note text.");
+        }
+
+        noteText.removeEventListener("blur", handleBlur); // prevent repeated firing
+    }, { once: true }); // zabezpečí, že sa nespustí viackrát
+}
+
 });
 
  note_header.addEventListener("blur", function() {
+        document.querySelector(`.note[note-id="${noteId}"] .notification_message`).style.display = "none";
         note_header.contentEditable = false;
         saveNoteHeader(noteId, note_header.textContent);
     });
@@ -444,6 +476,21 @@ function  changeNotesMod(modName, modId) {
     };
     data = "mod_name="+modName+"&mod_id="+modId+"&note_id="+noteId;
     xhttp.open("POST", "notes_mod_add.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
+
+
+function saveNoteText(noteId, note_text) {
+    var xhttp = new XMLHttpRequest();
+    var search_text = document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            //document.getElementById("notes_list").innerHTML = this.responseText;
+        }
+    };
+    data = "note_id="+noteId+"&note_text="+encodeURIComponent(note_text);
+    xhttp.open("POST", "notes_change_text.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);
 }
