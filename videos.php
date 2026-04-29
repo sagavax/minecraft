@@ -199,7 +199,7 @@
                                           echo "<button name='remove_from_favorites' type='button' title='remove from favorites' class='button app_badge' video-id='$video_id'><i class='fas fa-star'></i></button>";
                                         }
 
-                                        echo "<button name='add_note' title='add note' class='button app_badge open-button' video-id=$video_id><i class='fa fa-comment'></i></button><button name='delete_video' type='button' class='button app_badge' video-id='$video_id'><i class='fas fa-times'></i></button><button class='button app_badge video_edition'>$video_edition</button>";
+                                        echo "<button name='add_note' title='add note' class='button app_badge open-button' video-id=$video_id><i class='fa fa-comment'></i></button><button name='delete_video' type='button' class='button app_badge' video-id='$video_id'><i class='fas fa-times'></i></button><button class='button app_badge video_edition' name='change_edition' title ='Video minecraft edition'>$video_edition</button>";
                                        echo "</div>";//video actiom 
                                        echo "<div class='video_tags_wrap' video-id=$video_id>";
                                           
@@ -428,3 +428,12 @@
             </form>
         </div><!-- inner new video layer-->
    </dialog>      
+
+   <dialog class="modal_minecraft_edition">
+       <div class="inner_minecraft_edition">
+            <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button>
+            <button type="button" name="java_edition" class="button small_button">Java Edition</button>
+            <button type="button" name="bedrock_edition" class="button small_button">Bedrock Edition</button>
+       </div>
+       <div class="notification_message"></div>
+   </dialog>    

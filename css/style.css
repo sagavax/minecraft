@@ -374,6 +374,7 @@ input {
     box-sizing: border-box;
     color: #b2d530;
     background: #2C2A20;
+    border: 1px #b2d530 solid;
     padding: 10px;
     outline: none;
     border-radius: 5px;
@@ -1145,6 +1146,48 @@ input[name="search_image"]{
     border-radius: 5px;
     border: 1px #d1d1d1 solid;
 }
+
+.modal_minecraft_edition {
+    width: 18%;
+    height: 200px;
+    top: 30%;
+    left: 35%;
+    position: fixed;
+    z-index: 100;
+    border-radius: 5px;
+    border: 1px #b2d530 solid;
+}
+
+.inner_minecraft_edition button {
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: #b2d530;
+  color: #0f2031;
+}
+
+.inner_minecraft_edition .close_inner_modal {
+    background-color: #0f2031;
+    color: #b2d530;
+}
+
+.inner_minecraft_edition .close_inner_modal:hover {
+    background-color: #b2d530;
+    color: #0f2031;
+}
+
+.inner_minecraft_edition {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+     background-color: #0f2031;
+     color: #b2d530;
+     box-sizing: border-box;
+     padding:10px;
+}
+
 
 .video_details {
    border: 1px #d1d1d1 solid;
@@ -3231,8 +3274,9 @@ button[name="add_modpack"] {
 
 
 #new_cat form input {
-     background-color: #eee;
-    border: none;
+    background: #2C2A20;
+    color: #b2d530;
+    border: 1px #b2d530 solid;
     margin: 8px 0;
     padding: 10px 15px;
     font-size: 13px;

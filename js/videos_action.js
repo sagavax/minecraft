@@ -3,6 +3,38 @@ var videosContainer = document.querySelector('.videos_list');
 var addModpackButton = document.querySelector(".modpack_container button");
 let existingVideoTags = [];
 
+const modal_minecraft_edition = document.querySelector(".modal_minecraft_edition")
+
+
+
+
+document.querySelector(".modal_minecraft_edition").addEventListener("click", function(event){
+    if(event.target.tagName === "BUTTON"){
+        console.log("button clicked");
+       if(event.target.classList.contains("close_inner_modal")) {
+        document.querySelector(".modal_minecraft_edition").close();
+         }
+       if(event.target.name==="java_edition" || event.target.name==="bedrock_edition"){
+        const target = event.target;
+        const edition = target.name;
+        if(edition === "java_edition") {
+        sessionStorage.setItem("new_minecraft_edition", "java");
+        } else if ( edition === "bedrock_edition"){
+        sessionStorage.setItem("new_minecraft_edition", "bedrock");
+        }   
+        
+        if(document.querySelector(`.video[video-id='${sessionStorage.getItem("video_id")}'] .video_edition`).innerText == edition){
+                alert("This video is already assigned to " + edition + " edition.");
+                return;
+            }
+         changeMinecraftEdition(sessionStorage.getItem("video_id"), sessionStorage.getItem("new_minecraft_edition"));
+            //modal_minecraft_edition.close();    
+        }  
+    }
+  }
+)      
+
+
 // Add a click event listener to the container
 videosContainer.addEventListener('click', function(event) {
     var target = event.target;
@@ -110,7 +142,10 @@ videosContainer.addEventListener('click', function(event) {
                 
                 break;
             
-                
+            case 'change_edition':
+                console.log("change edition");
+                document.querySelector(".modal_minecraft_edition").showModal();
+                break;    
             default:
                 // Handle default case or ignore
                 break;
@@ -199,5 +234,21 @@ addModpackButton.addEventListener("click", function(){
     
     // Send the request with data
     var data = "video_id=" + encodeURIComponent(videoId);
+    xhttp.send(data);
+}
+
+
+function changeMinecraftEdition(videoId, edition) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            document.querySelector(".modal_minecraft_edition").close();
+            document.querySelector(`.video[video-id='${videoId}'] .video_edition`).innerText = edition;
+            alert("Minecraft edition has been changed to " + edition);
+        }
+    };
+    xhttp.open("POST", "videos_change_edition.php",true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    data = "&video_id=" + encodeURIComponent(videoId) + "&edition=" + encodeURIComponent(edition);
     xhttp.send(data);
 }
