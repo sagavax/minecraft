@@ -695,22 +695,7 @@ input::placeholder {
     font-size: 50px;
 }
 
-.add_new_image {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    box-sizing: border-box;
-    padding:10px;
-    margin-bottom: 15px;
-    border: 1px #d1d1d1 solid;
-    border-radius: 4px;
-}
 
-.add_new_image input {
-    width: 100%;
-    padding: 5x;
-    margin-bottom: 10px;
-}
 
 .progressbar {
     background: #57b13b;
@@ -3304,13 +3289,19 @@ button[name="add_modpack"] {
 }
 
 .action {
-    margin-top: 5px;
+    margin-top: 15px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
     gap: 10px;
     box-sizing: border-box;
     padding: 5px;
+}
+
+.action button {
+    background: #b2d530;
+    color: #0f2031;
+    font-weight: bolder;
 }
 
 .modpack_details_wrap {

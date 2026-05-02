@@ -1,3 +1,20 @@
+.add_new_image {
+    display: flex;
+    flex-direction: column;
+    background-color: #0f2031;
+    margin-bottom: 15px;
+    border: 1px #b2d530 solid;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding:10px;
+}
+
+.add_new_image input {
+    width: 100%;
+    padding: 5x;
+    margin-bottom: 10px;
+}
+
 .gallery_wrap {
     display: flex;
     flex-wrap: wrap;
