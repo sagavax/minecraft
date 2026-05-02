@@ -218,8 +218,9 @@ input[name="search_image"] {
 .image_description {
     margin-top:20px;
     width: 100%;
-    border: 1px #d1d1d1 solid;
-    background: #fff;
+    border-color: 1px #b2d530 solid;
+    color: #b2d530;
+    background: #0f2031;;
     display: flex;
     border-radius: 4px;
     padding: 15px;
