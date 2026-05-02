@@ -248,10 +248,18 @@ input[name="search_image"] {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    border: 1px #d1d1d1 solid;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 10px;
+    margin-top: 20px;
     gap:10px;
+}
+
+.image_detail_tags button {
+    height: 40px;
+    border-radius: 5px;
+    background-color: #b2d530;
+    color: #0f2031;
+    font-weight: bolder;
 }
 
 
