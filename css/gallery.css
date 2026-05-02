@@ -33,8 +33,23 @@
     color: #b2d530;
     background-color: #0f2031;
     border-radius: 5px;
-    margin-bottom: 15px;;
+    margin-bottom: 15px;
    }
+
+   .image_galleries {
+    border:0px;
+    margin-top:20px;
+   }
+
+
+   .image_galleries_list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;   
+    padding:5px;
+    margin-top: 25px;
+}
 
    .image_galleries {
     margin-top: 20px;
@@ -233,15 +248,7 @@ input[name="search_image"] {
     color: #fff;
 }
 
-.image_galleries_list {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    box-sizing: border-box;
-    padding:5px;
-    margin-top: 20px;
-}
+
 
 
 .gallery {
