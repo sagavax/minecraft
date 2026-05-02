@@ -1023,7 +1023,7 @@ button[name="save_description"]{
     /*border-left: 2px solid #2ecc71*/
 }
 
-.video_tags_map_wrap, .image_tags_map,.image_galleries_list,.image_galleries  {
+.video_tags_map_wrap  {
     display: flex;
     border: 1px #b2d530 solid;
     flex-direction: column;
