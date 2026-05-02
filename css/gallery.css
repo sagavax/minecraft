@@ -228,6 +228,16 @@ input[name="search_image"] {
     flex-wrap: wrap;
 }
 
+button[name="save_description"] {
+    background-color: #b2d530;
+    color: #0f2031;
+    font-weight: bolder;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .image_tags {
     margin-top:10px;
     box-sizing: border-box;
