@@ -36,7 +36,9 @@
     box-sizing: border-box;
     padding-left: 10px;
     font-weight: bolder;
-    color:#b2d530;
+    background-color: #b2d530;
+    color:#0f2031;
+    border-radius: 5px;
 }
 
 

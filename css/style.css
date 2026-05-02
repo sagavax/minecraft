@@ -1954,8 +1954,7 @@ button[name="add_modpack"] {
 
 
 .note,
-.video,
-.picture{
+.video{
     border: 1px #d1d1d1 solid;
     background: #fff;
     box-sizing: border-box;
@@ -2016,28 +2015,6 @@ button[name="add_modpack"] {
     box-sizing: border-box;
 }
 
-.picture {
-    background: white;
-    border: 1px #d1d1d1 solid;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    padding:10px;
-}
-
-
-.picture_name {
-    height: 50px;
-    display:flex;
-    align-items: center;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    padding-left: 10px;
-    font-weight: bolder;
-    bordeR:1px #d1d1d1 solid;
-}
 
 .video_body {
     box-sizing: border-box;
