@@ -318,3 +318,10 @@ button[name="save_description"] {
     padding:5px;
     margin-top:10px;
 }
+
+.image_description:empty:before {
+  content: attr(data-text);
+  color: #b2d530;;
+  font-style: italic;
+  pointer-events: none;
+}
