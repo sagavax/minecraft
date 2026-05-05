@@ -7,8 +7,7 @@ include('../includes/functions.php');
 
     $video_id = $_GET['minecraft_is_id'];
     $mod_name = "";
-
-    $get_mod = "SELECT a.cat_name from mods a, videos_mods b where b.video_id = $video_id and a.mod_id = b.mod_id";
+    $get_mod = "SELECT a.cat_name from mods a, videos_mods b where b.video_id = $video_id and a.cat_id = b.cat_id";
     $result = mysqli_query($link, $get_mod) or die(mysqli_error($link));
      
     while($row = mysqli_fetch_array($result)) {
