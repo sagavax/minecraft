@@ -2035,7 +2035,7 @@ button[name="add_modpack"] {
     position: relative;
     height: 100%;
     width: 10%;
-    background: #4aada9;
+    background: #b2d530;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
 }
@@ -2045,7 +2045,7 @@ button[name="add_modpack"] {
     width: 100px;
     border-radius: 50%;
     border: 6px solid white;
-    background: #4aada9;
+    background: #b2d530;
     position: absolute;
     top: 55px;
     left: -45px;
