@@ -415,12 +415,11 @@ input::placeholder {
 
 .button {
     font-family: 'Noto Sans', sans-serif;
-    background: #aadd77;
-    background-color: #239e57;
-    color: #fff;
+    background-color: #b2d530;
+    color: #0f2031;
     padding: 11px 48px;
     /* border: #aadd77 1px solid; */
-    border: 1px #239e57 solid;
+    border: 1px #b2d530 solid;
     font-size: 18px;
     transition: 0.5s ease;
     border-radius: 5px;;
@@ -2225,7 +2224,7 @@ button[name="add_modpack"] {
 
 
 .video_name span {
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 5px;
 }
 
@@ -2754,13 +2753,13 @@ button[name="add_modpack"] {
     display: flex;
     align-items: center;
     padding: 4px 8px;
-    color: #fff;
+    color: #0f2031;
     /*background-color: #75c54f;*/
     /* background: #aadd77; */
-    background-color: #239e57;
+    background-color: #b2d530;
     border-radius: 5px;
     justify-content: center;
-    width:80px
+    width:80px;
 }
 
 .badge {
@@ -4404,7 +4403,7 @@ button[name="add_modpack"] {
 .brand_radio .fab, .videos_radio_buttons .fab {
     height: 60px;
     width: 30px;
-    background: white; 
+    background: #0f2031; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7280,7 +7279,7 @@ input[name="search_mods"] {
         top: 25%;
         left: 20%;
         width: 60%;
-        background: white;
+        background: #0f2031;
         border: 1px #d1d1d1 solid;
         border-radius: 6px;
         flex-direction: column;
