@@ -2047,7 +2047,7 @@ button[name="add_modpack"] {
     border: 6px solid white;
     background: #b2d530;
     position: absolute;
-    top: 55px;
+    top: 75px;
     left: -45px;
     transition-duration: 0.5s;
 }
