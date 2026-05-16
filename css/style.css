@@ -6479,16 +6479,17 @@ input[name="search_mods"] {
 
    .change_modpack_list button {
     font-size: 16px;
-    background: white;
+    background: #b2d530;
     height: 50px;
-    border: 1px #d1d1d1 solid;
-    color: #222;
+    border: 1px #b2d530 solid;
+    color: #0f2031;
+    font-family: 'Noto Sans',sans-serif;
     font-weight: bold;
     border-radius: 5px;
    }
 
    .change_modpack_list button:hover {
-    background-color: #d2f9be82;
+    opacity: 0.8;
     /* background: #0b9ed0;
     color: white;
     border: 1px #0b9ed0 solid; */
