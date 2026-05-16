@@ -6445,8 +6445,8 @@ input[name="search_mods"] {
     position: fixed;
     top:35%;
     left:40%;
-    background: white;
-    border: 1px #d1d1d1 solid;
+    background: #0f2031;
+    border: 2px #b2d530 solid;
     border-radius: 6px;
     align-items: center;
     flex-direction: column;
