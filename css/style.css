@@ -2158,7 +2158,7 @@ button[name="add_modpack"] {
 
 .video_modpack_info,.video_mods {
     display: flex;
-    border: 1px #ccc solid;
+    /* border: 1px #ccc solid; */
     padding:10px;
     justify-content: center;
     align-items: center;
