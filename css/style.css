@@ -1417,21 +1417,18 @@ input[name="search_image"]{
 }
 
 .new_comment button {
-    margin-left: 5px;
-    background: #2ecc71;
-    color: #fff;
+    font-size: 24px;
     padding: 3px 14px;
-    border: 1px #2ecc71 solid;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     width: 50px;
+    margin-left: 5px;
     cursor: pointer;
-    font-size: 24px;
 }
 
 .new_comment button:active {
     outline: none;
-    background-color: #239e57;
+    opacity: 0.8;
 }
 
 .video_comments ul,
@@ -1970,10 +1967,15 @@ button[name="add_modpack"] {
 }
 
 .note,
-.video{
+.video {
     border-radius: 5px;
     color: #b2d530;
     background: #2C2A20;
+}
+
+.video_details {
+    background-color: #0f2031;
+     border: 2px #b2d530 solid;
 }
 
 .video > * {
@@ -5107,28 +5109,29 @@ td.zakladna_popis {
     box-sizing: border-box;
 }
 
-.action_back button {
+.action_back button, .new_comment button {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    background: #2ecc71;
-    font-size: 18px;
-    height:45px;
-    padding: 6px 14px;
-    border-radius: 5px;
-    gap:5px;
-    width:110px;
+    color: #0f2031;
+    background: #b2d530;
+    border: 1px #b2d530 solid;
+    cursor: pointer;
 }
 
 .action_back button {
+    font-size: 18px;
+    height: 45px;
+    padding: 6px 14px;
+    border-radius: 5px;
+    gap: 5px;
+    width: 110px;
     margin-right: 10px;
-    border: #239e57 1px solid;
 }
 
 .action_back a:hover,
 .action_back button:hover {
-    background: #239e57;
+    opacity: 0.8;;
 }
 
 
@@ -6498,7 +6501,7 @@ input[name="search_mods"] {
    input[name="modpack_name"] {
     display: flex;
     width: 88%;
-    border: 1px #d1d1d1 solid;
+    border: 1px #b2d530 solid;
     border-radius: 6px;
     padding: 10px;
     box-sizing: border-box;
@@ -6649,10 +6652,11 @@ input[name="search_mods"] {
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    border: 1px #d1d1d1 solid;
+    /* border: 1px #d1d1d1 solid; */
     box-sizing: border-box;
     padding:5px;
-    height: 100%;
+    min-height: 50px;
+    margin-top: 20px;
    }
 
    .video_tags_list {
