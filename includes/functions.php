@@ -273,11 +273,13 @@ function GetVideoMods($video_id) {
 	$get_video_mods = "SELECT b.cat_id, b.cat_name from videos_mods a, mods b WHERE video_id = $video_id and a.cat_id = b.cat_id";
 	//echo $get_video_modpack;
 	$result=mysqli_query($link, $get_video_mods);
-	while ($row = mysqli_fetch_array($result)) {
-	$mod_id = $row['cat_id'];	
-	$mod_name = $row['cat_name'];
-
-	$mod_list= $mod_list."<button class='button blue_button' mod-id=$mod_id>$mod_name</button>";
+	if ($result && $row = mysqli_fetch_array($result)) {
+		$mod_name = $row['cat_name'];
+		$mod_id = $row['cat_id'];
+		$mod_list= $mod_list = "<button class='button blue_button' mod-id=$mod_id>$mod_name</button>";
+	} else {
+		$mod_list = "<button class='button blue_button' name='add_mod'><i class='fa fa-plus'></i> Add mod(s)</button>"; // Alebo nechaj prázdne: $mod_list = "";
+	
 	}	
 	return $mod_list;
 }
