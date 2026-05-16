@@ -1060,8 +1060,8 @@ button[name="save_description"]{
     display: flex;
         height: 35px;
    align-items: center;     
-   background: #0b9ed0;
-   border: 1px#0b9ed0 solid;
+   background: #b2d530;
+   border: 1px#b2d530 solid;
    border-radius: 5px;
 }
 
@@ -3221,6 +3221,8 @@ button[name="add_modpack"] {
 }
 
 .video_top_bar button, .task_top_bar button  {
+    background-color: #0f2031;
+    color: #b2d530;
     border-radius: 50%;
     right: 5px;
     top: 5px;
@@ -3243,7 +3245,7 @@ button[name="add_modpack"] {
     width: 100%;
     text-transform: uppercase;
     font-weight: bold;
-    border:1px #d1d1d1 solid;
+    border:1px #b2d530 solid;
 }
 #edit_video select {
     margin-bottom: 5px;
@@ -4418,7 +4420,7 @@ button[name="add_modpack"] {
     cursor: pointer;
     padding: 10px;
     font-size: 24px; /* Adjust size as needed */
-    color: #888; /* Default color */
+    color: #b2d530; /* Default color */
     transition: color 0.3s;
 }
 
