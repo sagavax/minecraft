@@ -16,7 +16,6 @@
 
       $apiUrl = $api_host.'/api/api.php?endpoint=bugs&app_name=minecraft';
     
-      echo "API URL: " . $apiUrl;
     
       // Inicializácia cURL pro požiadavku na API
       $ch = curl_init();
