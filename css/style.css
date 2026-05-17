@@ -2148,7 +2148,7 @@ button[name="add_modpack"] {
 }
 
 .video_modpack_information_wrap {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-bottom: 10px;
 }
 
@@ -2160,8 +2160,7 @@ button[name="add_modpack"] {
 
 .video_modpack_info,.video_mods {
     display: flex;
-    /* border: 1px #ccc solid; */
-    padding:10px;
+    /* border: 1px #ccc solid; */    
     justify-content: center;
     align-items: center;
     gap:5px
