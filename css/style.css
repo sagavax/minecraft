@@ -1557,7 +1557,7 @@ input[name="search_image"]{
     width: 100%;
     justify-content: flex-start;
     align-items: center;
-    margin: 5px;
+    margin-top: 15px;
 }
 
 .videos_tags button, .video_tags_wrap button {
