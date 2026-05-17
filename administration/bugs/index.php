@@ -183,8 +183,10 @@
     </dialog>
 
     <dialog class="modal_add_comment">
-      <textarea name="comment_text" placeholder="Add a comment here"></textarea>
-      <button type="submit" name="add_comment" class="button small_button">Add</button>
+      <div class="inner_wrap"> 
+        <textarea name="comment_text" placeholder="Add a comment here"></textarea>
+        <button type="submit" name="add_comment" class="button small_button">Add</button>
+       </div>
     </dialog>                  
     
               

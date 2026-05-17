@@ -105,7 +105,8 @@ bug_list.addEventListener('click', function(event) {
                 alert("reopen bug");
                 break;
             case "add_comment":
-                 document.queryselector('.modal_add_comment').showModal()
+                console.log("add comment");
+                 document.querySelector('.modal_add_comment').showModal()
                 break;    
         }
     }
@@ -185,7 +186,7 @@ function changeBugPriority(bugId, bugPriority) {
 
 
 function addNewComment(bugId) {
-    document.queryselector('.modal_add_comment').showModal();
+    document.querySelector('.modal_add_comment').showModal();
 }
 
 function SaveBug(bugTitle, bugDescription, bugPriority, bugStatus) {
