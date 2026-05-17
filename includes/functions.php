@@ -210,9 +210,9 @@ function GetImageModpack($image_id) {
 	if ($result && $row = mysqli_fetch_array($result)) {
 		$modpack_name = $row['modpack_name'];
 		$modpack_id = $row['modpack_id'];
-		$modpack_name = "<button class='button blue_button' modpack-id=$modpack_id name='image_modpack'>$modpack_name</button>";
+		$modpack_name = "<button class='button yellow_button' modpack-id=$modpack_id name='image_modpack'>$modpack_name</button>";
 	} else {
-		$modpack_name = "<button class='button blue_button' name='image_modpack'>No modpack</button>" ; // Alebo nechaj prázdne: $modpack_name = "";
+		$modpack_name = "<button class='button yellow_button' name='image_modpack'>No modpack</button>" ; // Alebo nechaj prázdne: $modpack_name = "";
 	}
 
 
@@ -276,9 +276,9 @@ function GetVideoMods($video_id) {
 	if ($result && $row = mysqli_fetch_array($result)) {
 		$mod_name = $row['cat_name'];
 		$mod_id = $row['cat_id'];
-		$mod_list= $mod_list = "<button class='button blue_button' mod-id=$mod_id>$mod_name</button>";
+		$mod_list= $mod_list = "<button class='button yellow_button' mod-id=$mod_id>$mod_name</button>";
 	} else {
-		$mod_list = "<button class='button blue_button' name='add_mod'><i class='fa fa-plus'></i> Add mod(s)</button>"; // Alebo nechaj prázdne: $mod_list = "";
+		$mod_list = "<button class='button yellow_button' name='add_mod'><i class='fa fa-plus'></i> Add mod(s)</button>"; // Alebo nechaj prázdne: $mod_list = "";
 	
 	}	
 	return $mod_list;
@@ -295,9 +295,9 @@ function GetVideoModpack($video_id) {
 	if ($result && $row = mysqli_fetch_array($result)) {
 		$modpack_name = $row['modpack_name'];
 		$modpack_id = $row['modpack_id'];
-		$modpack_name = "<button class='button blue_button' modpack-id=$modpack_id name='change_modpack'>$modpack_name</button>";
+		$modpack_name = "<button class='button' modpack-id=$modpack_id name='change_modpack'>$modpack_name</button>";
 	} else {
-		$modpack_name = "<button class='button blue_button' name='change_modpack'><i class='fa fa-plus'></i> No modpack</button>"; // Alebo nechaj prázdne: $modpack_name = "";
+		$modpack_name = "<button class='button yellow_button' name='change_modpack'><i class='fa fa-plus'></i> No modpack</button>"; // Alebo nechaj prázdne: $modpack_name = "";
 	}
 
 
