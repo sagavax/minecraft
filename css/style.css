@@ -2450,8 +2450,9 @@ button[name="add_modpack"] {
 
 
 #task_edit,.bug_comment, .bug_comment_new, .new_idea, .idea_comment_new,.idea_comment {
-    background: white;
-    border: 1px #d1d1d1 solid;
+    background: #0f2031;
+     color: #b2d530;
+    border: 1px #b2d530 solid;
     box-sizing: border-box;
     padding: 5px;
     border-radius: 5px;
@@ -2468,7 +2469,9 @@ button[name="add_modpack"] {
 
 
 .bug_comment_new {
+    margin-top: 20px;
     margin-left:0;
+    padding:15px
 }
 
 .bug_comment,.bug_comment_new, .idea_comment,.idea_comment_new  {
@@ -4533,7 +4536,7 @@ button[name="add_modpack"] {
 
 
 #new_task,.new_bug, #new_vanilla_task {
-    background: white;
+    background: #0f2031;
     display: flex;
     box-sizing: border-box;
     margin-bottom: 10px;
