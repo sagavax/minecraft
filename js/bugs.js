@@ -104,6 +104,9 @@ bug_list.addEventListener('click', function(event) {
             case "to_reopen":
                 alert("reopen bug");
                 break;
+            case "add_comment":
+                 document.queryselector('.modal_add_comment').showModal()
+                break;    
         }
     }
 });
