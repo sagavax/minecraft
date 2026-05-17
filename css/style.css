@@ -1562,14 +1562,14 @@ input[name="search_image"]{
 
 .videos_tags button, .video_tags_wrap button {
   display: flex;
-  color: white;
+  color: #0f2031;
   list-style: none;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background: #2ecc71;
+  background: #fdf376;
   padding: 5px 8px 5px 10px;
-  border: 1px solid #e3e1e1;
+  border: 1px solid #fdf376
   
 }
 

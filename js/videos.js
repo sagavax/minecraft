@@ -291,7 +291,7 @@ modal_modpack_input.addEventListener("input", function(){
                 } else if(event.target.name === "letter"){ // ← else if
                     const letterButton = event.target.innerText;
                     sortVideosTagsByLetters(letterButton);
-                } else if (event.target.name === "create_new_tag"){
+                } else if (event.target.name === "create_tag"){
                     createTag(modal_new_video_tags_input.value);
                 }
             }
