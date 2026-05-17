@@ -3460,6 +3460,13 @@ button[name="add_modpack"] {
     padding: 6px 12px;
 }
 
+.yellow_button {
+    background: #fdf376;;
+    border: 1px solid #fdf376;
+    color: #0f2031;
+    padding: 6px 12px;
+}
+
 .dark_blue_button {
     background: #087EA6;
     border: 1px solid #087EA6;
