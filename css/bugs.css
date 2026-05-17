@@ -161,3 +161,12 @@ dialog.show {
     box-sizing: border-box;
     padding:10px;
     }
+
+.modal_add_comment button {
+    width: 100px;
+}
+
+.modal_add_comment_action {
+    display: flex;
+    justify-content: flex-end;
+}
