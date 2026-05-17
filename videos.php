@@ -260,7 +260,7 @@
                         foreach (range('A', 'Z') as $char) {
                           echo "<button type='button' class='button small_button' name='letter'>$char</button>";
                         }
-                        echo "<button type='button' class='button small_button' name='create_new_tag' title='create new tag'><i class='fa fa-plus'></i></button>";
+                        //echo "<button type='button' class='button small_button' name='create_new_tag' title='create new tag'><i class='fa fa-plus'></i></button>";
                      ?>
                 </div>
                 <div class="tags_list"><?php echo GetAllUnassignedVideosTags()?></div>
