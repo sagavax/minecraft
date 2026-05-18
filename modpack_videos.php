@@ -90,9 +90,9 @@
 
                     echo "<div class='video_modpack_information_wrap'>";
                         echo "<div class='video_modpack_info'>" . GetVideoModpack($video_id) . 
-                             "<button class='button blue_button' name='change_modpack' title='Change modpack'><i class='fa fa-edit'></i></button></div>";
+                             "<button class='button yellow_button' name='change_modpack' title='Change modpack'><i class='fa fa-edit'></i></button></div>";
                         echo "<div class='video_mods'>" . GetVideoMods($video_id) . 
-                             "<button class='button blue_button' name='add_mod' title='Add mod(s)'><i class='fa fa-plus'></i></button></div>";
+                             "<button class='button yellow_button' name='add_mod' title='Add mod(s)'><i class='fa fa-plus'></i></button></div>";
                     echo "</div>";
                 echo "</div>"; // video_list_details
 

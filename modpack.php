@@ -138,13 +138,13 @@ include "includes/functions.php";
           <dialog class="popup_mods_list"><!-- popup mod list -->
             <header>
               <input type="text" name="search_mod" autocomplete="off" spellcheck="false" placeholder="search mod(s) here...">
-              <!-- <button class='button blue_button' onclick="reload_modal_mods()"><i class="fas fa-sync-alt"></i></button> -->
-              <button class='button blue_button' name="hide_popup" type="button"><i class="fas fa-times"></i></button>
+              <!-- <button class='button yellow_button' onclick="reload_modal_mods()"><i class="fas fa-sync-alt"></i></button> -->
+              <button class='button yellow_button' name="hide_popup" type="button"><i class="fas fa-times"></i></button>
             </header>
             <div id="letter_list">
                <?php
                   foreach (range('A', 'Z') as $char) {
-                            echo "<button class='button dark_blue_button rounded_button' name='char'>$char</button>";
+                            echo "<button class='button dark_yellow_button rounded_button' name='char'>$char</button>";
                           }                            
                     ?>        
               
@@ -159,7 +159,7 @@ include "includes/functions.php";
                 while ($row = mysqli_fetch_array($result)) {  
                     $id = $row['cat_id'];
                     $cat_name = $row['cat_name'];
-                    echo "<button class='button blue_button rounded_button' data-id=$id name='add_mod_to_modpack'>$cat_name</button>";
+                    echo "<button class='button yellow_button rounded_button' data-id=$id name='add_mod_to_modpack'>$cat_name</button>";
                 } 
 
             ?>
@@ -170,13 +170,13 @@ include "includes/functions.php";
             <div class="dialog_inner_link_container">
               <!-- <h4>Add new link</h4> -->
               <!-- <input type="text" name="link_name" placeholder="Link name"> -->
-              <input type="text" name="link_url" placeholder="Link url"><button type="button" class="button blue_button">Add</button>
+              <input type="text" name="link_url" placeholder="Link url"><button type="button" class="button yellow_button">Add</button>
             </div>
           </dialog>        
 
           <dialog class="dialog_link_name"><!-- add new image -->      
             <div class="dialog_inner_link_container">
-              <input type="text" name="link_name" placeholder="Link name" autocomplete="off"><button type="button" class="button blue_button" name="save_link_name">Add</button>
+              <input type="text" name="link_name" placeholder="Link name" autocomplete="off"><button type="button" class="button yellow_button" name="save_link_name">Add</button>
             </div>
           </dialog>  
 

@@ -209,7 +209,7 @@ INNER JOIN notes_modpacks AS b ON a.note_id = b.note_id ORDER BY a.note_id DESC 
        <div id="letter_list">
           <?php
              foreach (range('A', 'Z') as $char) {
-                echo "<button class='button small_button blue_button rounded_button' name='char'>$char</button>";
+                echo "<button class='button small_button yellow_button rounded_button' name='char'>$char</button>";
                  }                            
            ?>        
         </div>
@@ -221,7 +221,7 @@ INNER JOIN notes_modpacks AS b ON a.note_id = b.note_id ORDER BY a.note_id DESC 
             while ($row = mysqli_fetch_array($result)) {
                 $mod_name = $row['cat_name'];
                 $mod_id = $row['cat_id'];
-                echo "<button mod-id=$mod_id class='button small_button blue_button rounded_button' name='add_mod'>$mod_name</button>";
+                echo "<button mod-id=$mod_id class='button small_button yellow_button rounded_button' name='add_mod'>$mod_name</button>";
             }
             //echo GetAllUnassignedNotesMods();
           ?>

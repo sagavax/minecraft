@@ -45,7 +45,7 @@
                             $result=mysqli_query($link, $check_mod) or die("MySQLi ERROR: ".mysqli_error($link));
                             if(mysqli_num_rows($result)>0){
                                 //mod is in the central database
-                                echo "<button type='button' name='modification' class='button blue_button'>". $mod['name']. "</button>";
+                                echo "<button type='button' name='modification' class='button yellow_button'>". $mod['name']. "</button>";
                                 //check if the mod is in the modpacks database
                                                               
                             } else {

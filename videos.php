@@ -93,7 +93,7 @@
 
 
                     <div class='video_modpacks'>
-                        <header><button type='button' class='button blue_button app_badge'><i
+                        <header><button type='button' class='button yellow_button app_badge'><i
                                     class='fa fa-times'></i></button></header>
                         <main>
                             <?php 

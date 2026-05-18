@@ -19,5 +19,5 @@
           } else {
             echo "<div class='link_name'><button class='button small_button' name='add_link_name' type='button'><i class='fas fa-plus'></i></button></div>";
           }
-          echo "<div class='link_action'><button class='button blue_button' name='remove_link' type='button'><i class='fas fa-times'></i></button></div></div>";  
+          echo "<div class='link_action'><button class='button yellow_button' name='remove_link' type='button'><i class='fas fa-times'></i></button></div></div>";  
         }   

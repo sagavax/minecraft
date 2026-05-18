@@ -2800,9 +2800,9 @@ button[name="add_modpack"] {
 .category, .tag {
     display: flex;
     height: 55px;
-    border:1px #999 solid;
+    border:1px #fdf376 solid;
     box-sizing: border-box;
-    background-color:#0b9ed0;
+    background-color:#fdf376;
     align-items: center;
     padding-left:5px;
     border-radius: 5px;
@@ -2810,7 +2810,7 @@ button[name="add_modpack"] {
 
 .tag {
     height:45px;
-    border:1px #5FA3D1;
+    border:1px #fdf376 solid;
     font-weight: normal;
     color:white;
     opacity: 1;

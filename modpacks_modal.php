@@ -7,5 +7,5 @@
      while ($row_modpacks = mysqli_fetch_array($result)) {
         $modpack_id = $row_modpacks['modpack_id'];
         $modpack_name = $row_modpacks['modpack_name'];
-        echo "<button class='button blue_button' name='modpack' modpack-id=$modpack_id>$modpack_name</butt>";
+        echo "<button class='button yellow_button' name='modpack' modpack-id=$modpack_id>$modpack_name</butt>";
      }

@@ -13,7 +13,7 @@ while ($row = mysqli_fetch_array($result)) {
             while($row = mysqli_fetch_array($result)){ 
             $mod_id = $row['mod_id'];
             $mod_name = $row['cat_name'];
-              echo "<button type='button' class='button blue_button' data-id=$mod_id name='modification'>$mod_name</buton>";
+              echo "<button type='button' class='button yellow_button' data-id=$mod_id name='modification'>$mod_name</buton>";
         } 
             
 }

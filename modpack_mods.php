@@ -32,7 +32,7 @@
             } else {
               echo "<div class='link_name'><button class='button small_button' name='add_link_name' type='button'><i class='fas fa-plus'></i></button></div>";
             }
-            echo "<div class='link_action'><button class='button blue_button' name='remove_link' type='button'><i class='fas fa-times'></i></button></div></div>";  
+            echo "<div class='link_action'><button class='button yellow_button' name='remove_link' type='button'><i class='fas fa-times'></i></button></div></div>";  
           }
       } 
 
@@ -43,7 +43,7 @@
 
   echo "<input type='text' name='search_mods' placeholder='Search mods by name....' autocomplete='off'>";
 
-  echo "<div class='toggle_regime'><button class='button blue_button' name='toggle_view_remove_regime' title='Change regime'>View</button></div>";    
+  echo "<div class='toggle_regime'><button class='button yellow_button' name='toggle_view_remove_regime' title='Change regime'>View</button></div>";    
 
   echo "<div class='modpack_mod_list'>";
   
@@ -52,17 +52,17 @@
             while($row = mysqli_fetch_array($result)){ 
             $mod_id = $row['mod_id'];
             $mod_name = $row['cat_name'];
-              echo "<button type='button' class='button blue_button' data-id=$mod_id name='modification'>$mod_name</buton>";
+              echo "<button type='button' class='button yellow_button' data-id=$mod_id name='modification'>$mod_name</buton>";
           
         } 
   echo "</div>";   
 
   echo "<div class='add_reload_mods'>";
       
-        echo "<button type='button' title='Add new mod into modpack' name='add_mods' class='button small_button dark_blue_button'><i class='fa fa-plus'></i></button>";
-          echo "<button class='button dark_blue_button' name='reload_mods' title='Reload mod list'><i class='fas fa-sync-alt'></i></button>";                
-          echo "<button class='button dark_blue_button' name='delete_mods_from_modpack' title='delete all mods'><i class='fa fa-times'></i></button>";   
-          echo "<button class='button dark_blue_button' name='reunload_mods' title='Reload mod list'><i class='fas fa-cloud-upload-alt'></i></button>";             
+        echo "<button type='button' title='Add new mod into modpack' name='add_mods' class='button small_button dark_yellow_button'><i class='fa fa-plus'></i></button>";
+          echo "<button class='button dark_yellow_button' name='reload_mods' title='Reload mod list'><i class='fas fa-sync-alt'></i></button>";                
+          echo "<button class='button dark_yellow_button' name='delete_mods_from_modpack' title='delete all mods'><i class='fa fa-times'></i></button>";   
+          echo "<button class='button dark_yellow_button' name='reunload_mods' title='Reload mod list'><i class='fas fa-cloud-upload-alt'></i></button>";             
   echo "</div>";
 
 ?>
