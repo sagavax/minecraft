@@ -2806,9 +2806,11 @@ button[name="add_modpack"] {
     align-items: center;
     padding-left: 5px;
     border-radius: 5px;
+    color: #0f2031;
+    font-weight: bold;
 }
 
-.tag {
+.tag{
     height: 45px;
     font-weight: normal;
     color: #0f2031;
@@ -2839,10 +2841,11 @@ button[name="add_modpack"] {
 #upload_new_video,
 #mod_description,
 #new_influencer{
-    padding: 10px;
+    padding: 15px;
     box-sizing: border-box;
     border: 1px #fdf376 solid;
     background: #0f2031;
+    border-radius: 6px;
 }
 
 #new_influencer {
@@ -3269,10 +3272,16 @@ button[name="add_modpack"] {
     border: 1px #fdf376 solid;
     margin: 8px 0;
     padding: 10px 15px;
-    font-size: 13px;
+    font-size: 16px;
     border-radius: 5px;
     width: 100%;
     outline: none;
+    font-style: normal;
+}
+
+#new_cat h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #upload_new_video button {
@@ -3288,7 +3297,6 @@ button[name="add_modpack"] {
     justify-content: flex-end;
     gap: 10px;
     box-sizing: border-box;
-    padding: 5px;
 }
 
 .action button {

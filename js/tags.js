@@ -50,10 +50,7 @@ tags_list.addEventListener("click", function(event) {
     // Hľadáme najbližší rodičovský element s triedou "tag_name"
     let tagElement = event.target.closest(".tag_name");
     const tagId = event.target.closest(".tag").getAttribute("data-id");
-    
     if (tagElement) {
-        //let tagName = tagElement.innerText; // Získaj text zo správneho elementu
-        //alert(tagName);
         tagElement.setAttribute("contenteditable", "true");
         //on blur save tag name
         tagElement.addEventListener("blur", function() {
