@@ -43,6 +43,7 @@
          
             <div id="new_note">
               <div class="new_note_header">
+                <h4>New note</h4>
                 <button class="button small_button"><i class="fa fa-times"></i></button>
             </div><!--new note header -->
             

@@ -30,6 +30,8 @@
     filter: alpha(opacity=100);
     z-index: 20000;
      } 
+    
+    
      .login-page {
     width: 40%;
     padding: 8% 0 0;
@@ -72,7 +74,8 @@
     margin: 0 auto 100px;
     /* padding: 5px; */
     text-align: center;
-    /*border: #2980b9 4px solid;*/
+    border: #fdf376 2px solid;
+    border-radius: 6px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     
   }

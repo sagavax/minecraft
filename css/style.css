@@ -2847,7 +2847,7 @@ button[name="add_modpack"] {
     padding: 10px;
     box-sizing: border-box;
     border: 1px #fdf376 solid;
-    background: #2C2A20;
+    background: #0f2031;
 }
 
 #new_influencer {
@@ -2969,7 +2969,7 @@ button[name="add_modpack"] {
     border-radius: 5px;
     border: 1px #fdf376 solid;
     color: #fdf376;
-    background: #2C2A20;
+    background: #0f2031;
 }
 
 #new_note select {
@@ -2977,7 +2977,7 @@ button[name="add_modpack"] {
     border-radius: 5px;
     border: 1px #fdf376 solid;
     color: #fdf376;
-    background: #2C2A20;
+    background: #0f2031;
     /* background: #eff3f4; */
     font-family: 'Noto Sans', sans-serif;
 }
@@ -4649,7 +4649,7 @@ background: #eff3f4;
 }
 
 #note_title,
-#note_text,.new_note_header {
+#note_text,.new_note_header, .new_note_header h4 {
     width: 100%;
     display: flex;
 }
