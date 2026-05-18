@@ -168,8 +168,9 @@
                               }
                               ?>  
 
-                              <h4>Add a comment</h4>
+                              
                              <div class="bug_comment_new">
+                                <h4>Add a comment</h4>
                                 <form action="" method="post">
                                   <input type="hidden" name="bug_id" value="<?php echo $bug_id?>">
                                   <input type="text" name="bug_comment_header" autocomplete="off" placeholder="type title here">
