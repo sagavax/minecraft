@@ -2479,6 +2479,15 @@ button[name="add_modpack"] {
     margin-bottom: 10px;
 }
 
+.bug_comment_new h4 {
+    margin-top: 10px;
+    margin-bottom:10px;
+}
+
+.bug_comment_new input {
+    margin-bottom: 10px;
+}
+
 .bug_comment::before, .idea_comment::before {
   content: "";
             position: absolute;
@@ -4598,7 +4607,7 @@ background: #eff3f4;
     height: 45px;
     align-items: center;
     justify-content: flex-end;
-    gap:5px;
+    gap:10px;
 }
 
 .note_actioN{
