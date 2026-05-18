@@ -2800,28 +2800,23 @@ button[name="add_modpack"] {
 .category, .tag {
     display: flex;
     height: 55px;
-    border:1px #fdf376 solid;
+    border: 1px #fdf376 solid;
     box-sizing: border-box;
-    background-color:#fdf376;
+    background-color: #fdf376;
     align-items: center;
-    padding-left:5px;
+    padding-left: 5px;
     border-radius: 5px;
 }
 
 .tag {
-    height:45px;
-    border:1px #fdf376 solid;
+    height: 45px;
     font-weight: normal;
-    color:white;
-    opacity: 1;
-    
-    padding-left: 5px;
+    color: #0f2031;
     padding-right: 5px;
 }
 
 .tag:hover {
-     /* background-color: #508AA1; */
-     cursor: pointer;
+    cursor: pointer;
 }
 
 #applog_list ul li {
