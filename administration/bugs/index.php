@@ -129,7 +129,7 @@
                               $action_buttons = "<div class='span_modpack'>fixed</div>";
                           }
                     
-                       $add_comment = "<button type='button' title='add comment' name='add_comment' class='button small_button' onclick='addNewComment();')><i class='fa fa-comment'></i></button>";
+                       $add_comment = "<button type='button' title='add comment' name='add_comment' class='button small_button'><i class='fa fa-comment'></i></button>";
                           $fixed_label = $is_fixed ? "<div class='span_fixed'>fixed</div>" : "";  
                       $action_buttons = $is_fixed ? 
                         "<button type='button' name='see_bug_details' title='bug details' class='button small_button'><i class='fa fa-eye'></i></button>" : // Pridanie komentára aj pre fixed stav
@@ -186,7 +186,7 @@
       <div class="inner_wrap"> 
         <textarea name="comment_text" placeholder="Add a comment here"></textarea>
         <div class="modal_add_comment_action">
-            <button type="submit" name="add_comment" class="button small_button">Add</button>
+            <button type="submit" name="create_comment" class="button small_button">Add</button>
         </div>
        </div>
     </dialog>                  

@@ -44,8 +44,8 @@ const modal_add_comment = document.querySelector('.modal_add_comment');
     }
 }); */
 
-modal_add_comment.addEventListener("ckick", function(event) {
-    if(event.target.name === "add_comment"){
+modal_add_comment.addEventListener("click", function(event) {
+    if(event.target.name === "create_comment"){
         const bugId = sessionStorage.getItem('bug_id');
         const commentText = document.querySelector('.modal_add_comment textarea[name="comment_text"]').value;
         if(commentText.trim() === "") {
@@ -53,6 +53,8 @@ modal_add_comment.addEventListener("ckick", function(event) {
             return;
         }
         SaveComment(bugId, commentText);
+        document.querySelector('.modal_add_comment textarea[name="comment_text"]').value = "";
+        document.querySelector('.modal_add_comment').close();
     }
 });
 
@@ -231,3 +233,21 @@ function markBugAsFixed(bugId) {
     var params = "bug_id=" + encodeURIComponent(bugId);
     xhttp.send(params);
 }
+
+
+function SaveComment(bugId, commentText) {
+    var xhttp = new XMLHttpRequest();    
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText === "Comment added successfully") {
+                alert("Comment added successfully!");
+                console.log("Comment added successfully!");
+                
+            }
+        }
+    };
+    xhttp.open("POST", "bug_comments_create.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    var params = "bug_id=" + encodeURIComponent(bugId) + "&comment_text=" + encodeURIComponent(commentText);
+    xhttp.send(params);
+    }

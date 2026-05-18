@@ -1,6 +1,7 @@
 <?php
 
-    include "../../includes/dbconnect.php";    
+    include "../../includes/dbconnect.php";   
+     
     $api_host = (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'localhost') ? 'http://localhost/bugbuster' : 'https://bugbuster.sk';
 
 
