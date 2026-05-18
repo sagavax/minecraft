@@ -3,7 +3,7 @@ const modal_show_status = document.querySelector('.modal_show_status');
 const modal_show_priority = document.querySelector('.modal_show_priority');
 const new_bug_form = document.querySelector('.new_bug form'); // Assuming this is the form element for adding a new bug
 const bug_footer = document.querySelector('.bug_footer');
-
+const modal_add_comment = document.querySelector('.modal_add_comment');
 //markdown editor
 
 
@@ -43,6 +43,18 @@ const bug_footer = document.querySelector('.bug_footer');
         }
     }
 }); */
+
+modal_add_comment.addEventListener("ckick", function(event) {
+    if(event.target.name === "add_comment"){
+        const bugId = sessionStorage.getItem('bug_id');
+        const commentText = document.querySelector('.modal_add_comment textarea[name="comment_text"]').value;
+        if(commentText.trim() === "") {
+            alert("Comment cannot be empty.");
+            return;
+        }
+        SaveComment(bugId, commentText);
+    }
+});
 
 
 new_bug_form.addEventListener('submit', function(event) {
@@ -185,9 +197,7 @@ function changeBugPriority(bugId, bugPriority) {
 }
 
 
-function addNewComment(bugId) {
-    document.querySelector('.modal_add_comment').showModal();
-}
+
 
 function SaveBug(bugTitle, bugDescription, bugPriority, bugStatus) {
     //console.log(`Saving bug: ${bugTitle} - ${bugDescription} - ${bugPriority} - ${bugStatus}`);
