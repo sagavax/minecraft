@@ -144,7 +144,7 @@ include "includes/functions.php";
             <div id="letter_list">
                <?php
                   foreach (range('A', 'Z') as $char) {
-                            echo "<button class='button dark_yellow_button rounded_button' name='char'>$char</button>";
+                            echo "<button class='button yellow_button rounded_button' name='char'>$char</button>";
                           }                            
                     ?>        
               
