@@ -1,7 +1,10 @@
 <?php
 
-    $note_id = $_GET['note_id'];
-    $note_text = $_GET['note_text'];
+    include("includes/dbconnect.php");
+    include("includes/functions.php");
+
+    $note_id = $_POST['note_id'];
+    $note_text = mysqli_real_escape_string($link, $_POST['note_text']) ?? $_POST['note_text'];
 
     $query = "UPDATE notes SET note_text = '$note_text' WHERE note_id = '$note_id'";
     $result = mysqli_query($link, $query) or die(mysqli_error($link));

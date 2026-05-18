@@ -3431,8 +3431,8 @@ button[name="add_modpack"] {
 .span_modpack,.span_task_completed,.nr_of_comments, .span_fixed, .span_mod {
     display: flex;
     margin-left: 5px;
-    background: #0b9ed0;
-    color: #fff;
+    background: #fdf376;
+    color: #0f2031;
     padding: 6px 12px;
     border-radius: 0px;
     align-items: center;    
@@ -4374,7 +4374,7 @@ button[name="add_modpack"] {
     height: 45px;
     padding: 6px 12px;
     font-size: 16px;
-    color: #fff;
+    color: #0f2031;
     margin-left: 5px;
 }
 
