@@ -3802,17 +3802,46 @@ button[name="add_modpack"] {
 }
 
 .mod_images_videos_wrap {
-    background-color: white;
-    border:1px #d1d1d1 solid;
+    background-color: #0f2031;
+    border: 1px #fdf376 solid;
     border-radius: 6px;
-    margin-top: 20px;
+    margin-top: 25px;
     width: 100%;
-    margin-top:20px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     padding: 10px;
 }
+
+.mod_in_modpacks {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px #fdf376 solid;
+    border-radius: 6px;
+    margin-top: 30px;
+    background-color: #0f2031;
+}
+
+.mod_in_modpacks h4 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.mod_in_modpacks button {
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+
 
 .mod_images_videos_wrap header {
     width:100%;
@@ -3905,32 +3934,6 @@ button[name="add_modpack"] {
 }
 
 
-.mod_in_modpacks {
-    box-sizing: border-box;
-    padding:10px;
-    border: 1px #d1d1d1 solid;
-    border-radius: 6px;
-    margin-top:20px;
-    display: flex;
-    margin-top: 30px;
-    flex-wrap: wrap;
-    gap: 10px;
-    background-color: white;
-}
-
-.mod_in_modpacks h4 {
-    width: 1000%;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.mod_in_modpacks button {
-    height: 40px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-}
 
 
 
