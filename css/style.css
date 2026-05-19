@@ -359,7 +359,7 @@ dialog {
 
 select {
     font-family: 'Noto Sans', sans-serif;
-    border: 1px #d1d1d1 solid;
+    border: 1px #fdf376 solid;
     /* background: #eff3f4; */
     color: #fdf376;
     background: #2C2A20;
@@ -749,8 +749,8 @@ input::placeholder {
     flex-wrap: wrap;
     gap:20px;
     align-items: center;
-    justify-content: flex-start;
-    width: 70%;
+    justify-content:center;
+    width: 100%;
 }
 
 .modpack_list {
@@ -785,8 +785,8 @@ input::placeholder {
     min-height: 100px;
     box-sizing: border-box;
     padding: 10px;
-    background-color: #fcfafa;
-    border: 1px #d1d1d1 solid;
+    background: #2C2A20;
+    border: 1px #fdf376 solid;
     border-radius: 5px;
 }
 
@@ -1598,7 +1598,7 @@ input[name="search_image"]{
   background:red;
 }
 
-.modpack_thumb_action button {
+.modpack_thumb_action button, button[name="add_modpack"]  {
     background-color: #fdf376;
     border: 1px #fdf376 solid;
     color: #0f2031; 
@@ -1906,9 +1906,8 @@ button[name="add_modpack"] {
     width: 60px;
     height: 60px;
     border-radius: 100%;
-    background: #4aada9;
     box-shadow: 0 0 4px rgb(0 0 0 / 14%), 0 4px 8px rgb(0 0 0 / 28%);
-    color: #fff;
+    
 }
 
 .fab-icon-holder i {
@@ -2396,8 +2395,8 @@ button[name="add_modpack"] {
     width: 100%;
     box-sizing: border-box;
     padding: 5px;
-    background: #fff;
-    border: 1px #d1d1d1 solid;
+    background: #0f2031;
+    border: 1px #fdf376 solid;
     border-radius: 5px;
 }
 
@@ -2809,17 +2808,16 @@ button[name="add_modpack"] {
     box-sizing: border-box;
     background-color: #fdf376;
     align-items: center;
-    padding-left: 5px;
+    padding: 5px;
     border-radius: 5px;
     color: #0f2031;
     font-weight: bold;
+    gap:10px;
 }
 
 .tag{
     height: 45px;
     font-weight: normal;
-    color: #0f2031;
-    padding-right: 5px;
 }
 
 .tag:hover {
@@ -3372,11 +3370,11 @@ button[name="add_modpack"] {
 .modpack {
     display: flex;
     flex-direction: column;
-    background: white;
-    border: 1px #d1d1d1 solid;
+    background: #0f2031;
+    border: 2px #fdf376 solid;
     box-sizing: border-box;
     border-radius: 6px;
-    padding: 10px;
+    padding: 15px
 }
 
 
@@ -3388,8 +3386,9 @@ button[name="add_modpack"] {
 }
 
 .modpack input, .modpack textarea {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     width:100%;
+    border: 1px #fdf376 solid;
 }
 
 .modpack select {
@@ -3549,6 +3548,12 @@ button[name="add_modpack"] {
     width: 95%;
 }
 
+.tag_actions .delete_button {
+    background: #fdf376;;
+    background: #fdf376;;
+    border: 1px solid #fdf376;
+    color: #0f2031;
+}
 
    .cat_delete:hover, .tag_delete:hover {
         cursor:pointer;
@@ -3564,7 +3569,7 @@ button[name="add_modpack"] {
     }
 
 .cat_name, .tag_name {
-    padding:5px;
+    
 }
 
 .cat_name:hover {

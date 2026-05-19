@@ -1,47 +1,48 @@
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
-
-      if(isset($_POST['add_new_tag'])){
-        $tag_name=trim(mysqli_real_escape_string($link, $_POST['new_tag_name']));
-        
-        if($tag_name==""){
-            echo "<script>alert('Nic si nevlozil !!!');
-            window.lotagion.href='tags.php';
-            </script>";
-        } else {
-        
-        $sql="SELECT * from tags_list where tag_name='$tag_name'";    
-        $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
-        $num_now=mysqli_num_rows($result);
-        if($num_now>0){
-            echo "<script>alert('Pozor duplikat !!!');
-            window.lotagion.href='tags.php';
-            </script>";
-            
-        }
-        else {
-
-
-        $sql="INSERT INTO tags_list (tag_name, tag_modified) VALUES ('$tag_name',now())";
-       //echo $sql;
-        $result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));;
-
-      
-        
-        $diary_text="Minecraft IS: Bolo bol pridany tag s nazvom <b>$tag_name</b>";
-        $create_record="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text', now())";
-        $result = mysqli_query($link, $create_record) or die("MySQLi ERROR: ".mysqli_error($link));
-        
-      
-       echo "<script>
-            alert('Novy mod $tag_name bol pridany');
-            window.lotagion.href='tags_list.php';
-        </script>";
-        
-        }
+ $currAddress = $_SERVER['SERVER_NAME'];
+      if($currAddress == 'localhost') {
+          $api_host = "http://localhost/tagsphere/";
+      } else {
+          $api_host = "https://tagsphere.tmisura.sk";
       }
+
+      $apiUrl = $api_host.'/api/api.php?application_name=minecraft';
+    
+      echo "<p style='color: #fff; text-align: center;'>$apiUrl</p>";
+
+    
+      // Požiadavka na API
      
-    }
+    
+      // Inicializácia cURL pro požiadavku na API
+      $ch = curl_init();
+
+          curl_setopt_array($ch, [
+              CURLOPT_URL => $apiUrl,
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_TIMEOUT => 10,
+              CURLOPT_HTTPGET => true,
+          ]);
+
+          $response = curl_exec($ch);
+          $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+          $curlError = curl_error($ch);
+
+          $data = null;
+          $errorMessage = null;
+
+          if ($response === false || $curlError !== '') {
+              $errorMessage = 'Nepodarilo sa spojiť s API.';
+          } elseif ($httpCode !== 200) {
+              $errorMessage = 'API vrátilo HTTP kód: ' . $httpCode;
+          } else {
+              $data = json_decode($response, true);
+
+              if (json_last_error() !== JSON_ERROR_NONE) {
+                  $errorMessage = 'Odpoveď z API nie je validný JSON.';
+              }
+          }
 ?>      
 <!DOCTYPE html>
 <html lang="en">
@@ -54,9 +55,9 @@
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <script src="js/tags.js" defer></script>
+    <script src="js/tags.js?<?php echo time() ?>" defer></script>
     <!-- <script defer src="js/app_event_tracker.js?<?php echo time() ?>"></script> -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
   
   <body>
@@ -90,61 +91,29 @@
                 </div><!--letter list --> 
                 
                 <div id='tags_list'>
-                      
-                      <?php
-
-                        $itemsPerPage = 30;
-
-                      $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                      $offset = ($current_page - 1) * $itemsPerPage;  
-
-
-                        if(isset($_GET['alphabet'])){
-                            $char=$_GET['alphabet'];
-                            if($char=="dupes"){
-                              $sql="SELECT tag_name,  COUNT(*) AS count FROM tags_list GROUP BY tag_name HAVING count > 1";
-                            } else if($char=="all"){
-                              $sql="SELECT * from tags_list ORDER BY tag_name ASC LIMIT $itemsPerPage OFFSET $offset";
-                            } else {
-                              $sql="SELECT * from tags_list where left(tag_name,1)='$char' ORDER BY tag_name ASC";  
+                     <?php
+                        if ($errorMessage) {
+                            echo "<p style='color: red; text-align: center;'>$errorMessage</p>";
+                        } elseif ($data) {
+                            // Zobrazit data z API
+                            foreach ($data as $tag) {
+                                echo "<div class='tag' data-tag-id='{$tag['tag_id']}'>";
+                                echo "<span class='tag_name'>{$tag['tag_name']}</span>";
+                                echo "<div class='tag_actions'>";
+                                //echo "<button class='edit_button'><i class='fa fa-edit'></i></button>";
+                                echo "<button class='delete_button'><i class='fa fa-trash'></i></button>";
+                                echo "</div>";
+                                echo "</div>";
                             }
-                         } else {
-                          $sql="SELECT * from tags_list ORDER BY tag_name ASC LIMIT $itemsPerPage OFFSET $offset";
-                         }  
-                        //echo $sql;   
-                        $result=mysqli_query($link, $sql) or die(mysqli_error($link));
-                        while ($row = mysqli_fetch_array($result)) {
-                            $tag_id=$row['tag_id'];
-                            $tag_name=$row['tag_name'];
-                            //$tag_description=$row['tag_description'];
-                        
-                            echo "<div class='tag' data-id=$tag_id><div class='tag_name'>$tag_name</div><div class='tag_action'><i class='fas fa-times-circle' title='Delete tag'></i>";
+                        } else {
+                            echo "<p style='color: red; text-align: center;'>Žádná data k zobrazení.</p>";
+                        }
 
-                             /*  if($tag_description==""){
-                                echo "<div class='tag_description'><i class='fas fa-plus-circle'></i></div>";  
-                              }
- */
-                              echo "</div>"; //div class tag action
-                            echo "</div>"; //div class tag tagegory
-                        }  
-
-                      ?>
+                  ?>
                       
                   </div><!-- tagegories / tags_list list -->
                      <?php
-                    // Calculate the total number of pages
-                    $count_tags_list = "SELECT COUNT(*) as total FROM tags_list";
-                    $result=mysqli_query($link, $count_tags_list);
-                    $row = mysqli_fetch_array($result);
-                    $totalItems = $row['total'];
-                    $totalPages = ceil($totalItems / $itemsPerPage);
-
-                    // Display pagination links
-                    echo '<div class="pagination">';
-                    for ($i = 1; $i <= $totalPages; $i++) {
-                      echo '<a href="?page=' . $i . '" class="button app_badge">' . $i . '</a>';
-                    }
-                    echo '</div>';
+                   
                    ?> 
                 </div><!--list -->
         </div><!--content -->      
