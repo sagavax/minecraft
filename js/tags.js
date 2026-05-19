@@ -18,9 +18,11 @@ letter_list.addEventListener("click", function(event) {
 
         if(/^[A-Z]$/i.test(event.target.innerText.trim())){
             const letter = event.target.innerText.trim();
+            console.log(letter);
             SortTagsByLetter(letter);
             console.log("Sort by letter:", letter);
         }
+     }
 });
 
 
@@ -48,10 +50,11 @@ new_tag_form.addEventListener("submit", function(event) {
 tags_list.addEventListener("click", function(event) {
     if (event.target.tagName === "I") {
         //const tagName = event.target.closest(".tag_name").innerText;
-        const tagId = event.target.closest(".tag").getAttribute("data-id");
+        const tagId = event.target.closest(".tag").getAttribute("data-tag-id");
+        const tagName = event.target.closest(".tag").innerText;
         console.log(tagId, tagName);
-        document.querySelector("#tags_list").removeChild(document.querySelector(`.tag[data-id='${tagId}']`));
-        //removeTag(tagId, tagName);
+        document.querySelector("#tags_list").removeChild(document.querySelector(`.tag[data-tag-id='${tagId}']`));
+        removeTag(tagId, tagName);
     }
     
 });
@@ -88,16 +91,17 @@ function search_tags(search_text) {
 }
 
 
-function removeTag(tagId) {
+function removeTag(tagId, tagName) {
+    console.log("Removing tag with ID:", tagId, "and Name:", tagName);
     var xhttp = new XMLHttpRequest();
-    var search_text = document.getElementById("search_string").value;
-    xhttp.onreadystatechange = function() {
+     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.querySelector(`.tag[data-id='${tagId}']`).removeChild(document.querySelector("tags_list"));
+            alert("Tag removed successfully!");
+            //document.querySelector(`.tag[data-id='${tagId}']`).removeChild(document.querySelector("tags_list"));
             //document.getElementById("notes_list").innerHTML = this.responseText;
         }
     };
-    const data = "tag_id="+tagId;
+    const data = "tag_id="+tagId+"&tag_name="+tagName;
     xhttp.open("POST", "tags_remove.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);  
@@ -111,10 +115,10 @@ function SortTagsByLetter(letter){
             //document.getElementById("notes_list").innerHTML = this.responseText;
         }
     };
-    const data = "letter="+letter;
-    xhttp.open("POST", "tags_sort_by_char.php", true);
+    
+    xhttp.open("GET", "tags_sort_by_char.php?letter=" + encodeURIComponent(letter), true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(data);  
+    xhttp.send();  
 }
 
 function findDuplicates(){

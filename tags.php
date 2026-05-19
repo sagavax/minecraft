@@ -85,6 +85,7 @@
 
                         }
                           echo "<button type='button' class='button yellow_button rounded_button' name='all''>All</button>";
+                          echo "<button type='button' class='button yellow_button rounded_button' name='reload'>Reload</button>";
                           echo "<button type='button' class='button yellow_button rounded_button' name='dupes'>Find dupes</button>";
                           ?>  
                                              
