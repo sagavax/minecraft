@@ -1,7 +1,7 @@
 const tags_list = document.querySelector("#tags_list");
 const new_tag_form = document.querySelector("#new_tag form");
 const letter_list = document.querySelector("#letter_list");
-
+const new_tag = document.querySelector("#new_tag");
 
 
 
@@ -25,7 +25,7 @@ new_tag_form.addEventListener("submit", function(event) {
         return;
     } else {
         const tagName = document.querySelector("#new_tag form input").value;
-        addNewTag(tagName);
+        CreateTagInTagSphere(tagName);
         alert("Tag added successfully!");
     }
     
@@ -135,7 +135,8 @@ function saveNewTagName(tagId, tagName){
     xhttp.send(data);  
 }
 
-function addNewTag(tagName){
+function CreateTagInTagSphere(tagName){
+    console.log(tagName);
     var xhttp = new XMLHttpRequest();
     
     xhttp.onreadystatechange = function() {
@@ -144,22 +145,8 @@ function addNewTag(tagName){
             //document.getElementById("notes_list").innerHTML = this.responseText;
         }
     };
-    const data = "tag_name="+tagName;
+    const data = "tag_name="+tagName+"&application_name=minecraft";
     xhttp.open("POST", "tags_add_new_tag.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);  
-}
-
-function CreateTagInTagSphere(tagName){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            alert("Tag created in TagSphere!");
-        }
-    };
-    xhttp.open("POST", "tag_create_in_tagsphere.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    data = "tagName=" + encodeURIComponent(tagName);
-    xhttp.send(data);
-    
 }
