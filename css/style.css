@@ -370,6 +370,7 @@ select {
     height: 50px;
     box-sizing: border-box;
     outline: none;
+    padding:10px;
 }
 
 input {
@@ -1149,6 +1150,10 @@ input[name="search_image"]{
     z-index: 100;
     border-radius: 5px;
     border: 1px #fdf376 solid;
+}
+
+.inner_new_video_layer {
+    padding:10px;
 }
 
 .inner_minecraft_edition button {
