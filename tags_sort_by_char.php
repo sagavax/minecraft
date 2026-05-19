@@ -12,7 +12,8 @@ $currAddress = $_SERVER['SERVER_NAME'];
       }
 
       $letter = mysqli_real_escape_string($link, $_POST['letter']);
-      $apiUrl = $api_host.'/api/api.php?letter=' . urlencode($letter);
+      $apiUrl = $api_host.'/api/api.php';
+      $postData = json_encode(['letter' => $letter, 'application_name' => 'minecraft']);
 
       $ch = curl_init();
 
@@ -20,7 +21,12 @@ $currAddress = $_SERVER['SERVER_NAME'];
               CURLOPT_URL => $apiUrl,
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_TIMEOUT => 10,
-              CURLOPT_HTTPGET => true,
+              CURLOPT_POST => true,
+              CURLOPT_POSTFIELDS => $postData,
+              CURLOPT_HTTPHEADER => [
+                  "Content-Type: application/json",
+                  "Accept: application/json"
+              ],
           ]);
 
           $response = curl_exec($ch);
