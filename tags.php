@@ -73,7 +73,7 @@
               <div id="new_tag">
                   <h4>Add new tag(s):</h4>
                   <form action='' method='post'>
-                      <input type="input" name='new_tag_name' autocomplete="off" placeholder="Add new tag..." spellcheck="false" oninput="search_tags(this.value)">
+                      <input type="input" name='new_tag_name' autocomplete="off" placeholder="Add new tag..." spellcheck="false" required>
                       <div class='action'><button type='submit' name='add_new_tag' class='button small_button pull-right'><i class='fa fa-plus'></i> Add new</button></div>
                   </form>   
                </div><!-- new tag / mod -->   

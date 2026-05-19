@@ -10,7 +10,7 @@ $currAddress = $_SERVER['SERVER_NAME'];
           $api_host = "https://tagsphere.tmisura.sk";
       }
 
-      $search_string = mysqli_real_escape_string($link, $_GET['search_text']);
+      $search_string = mysqli_real_escape_string($link, $_GET['search_text'] ?? '');
       $apiUrl = $api_host.'/api/api.php?application_name=minecraft&letter=' . urlencode($search_string);
 
       //echo "<p style='color: #fff; text-align: center;'>$apiUrl</p>";
