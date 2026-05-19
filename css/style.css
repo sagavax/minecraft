@@ -3697,7 +3697,7 @@ button[name="add_modpack"] {
     box-sizing: border-box;
     padding:10px;
     border-radius: 5px;
-    /* border:1px #d1d1d1 solid; */
+     border:1px #fdf376 solid;
 }
 
 .dialog_mods {
@@ -4076,6 +4076,11 @@ button[name="add_modpack"] {
     width: 60%;
     box-sizing: border-box;
     padding:10px;
+    border: #fdf376  1px solid;
+}
+
+.modal_new_video {
+    border: #fdf376  1px solid;
 }
 
 .inner_modpacks_layer {
