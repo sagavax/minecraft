@@ -7,10 +7,20 @@ const new_tag = document.querySelector("#new_tag");
 
 letter_list.addEventListener("click", function(event) {
      if(event.target.tagName ==="BUTTON") {
-        const letter = event.target.innerText;
-        SortTagsByLetter(letter);
-        console.log("Sort by letter:", letter);
-    }
+        if(event.target.name === "reload"){
+            reloadTags();
+            return;
+        }
+        if(event.target.name === "dupes"){
+            findDuplicates();
+            return;
+        }
+
+        if(/^[A-Z]$/i.test(event.target.innerText.trim())){
+            const letter = event.target.innerText.trim();
+            SortTagsByLetter(letter);
+            console.log("Sort by letter:", letter);
+        }
 });
 
 
