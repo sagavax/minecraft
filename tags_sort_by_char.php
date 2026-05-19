@@ -11,9 +11,10 @@ $currAddress = $_SERVER['SERVER_NAME'];
           $api_host = "https://tagsphere.tmisura.sk";
       }
 
-      $letter = mysqli_real_escape_string($link, $_POST['letter']);
-      $apiUrl = $api_host.'/api/api.php';
-      $postData = json_encode(['letter' => $letter, 'application_name' => 'minecraft']);
+      $letter = mysqli_real_escape_string($link, $_GET['letter']);
+      $apiUrl = $api_host.'/api/api.php?application_name=minecraft&letter=' . urlencode($letter);
+
+      //echo "<p style='color: #fff; text-align: center;'>$apiUrl</p>";
 
       $ch = curl_init();
 
@@ -21,12 +22,7 @@ $currAddress = $_SERVER['SERVER_NAME'];
               CURLOPT_URL => $apiUrl,
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_TIMEOUT => 10,
-              CURLOPT_POST => true,
-              CURLOPT_POSTFIELDS => $postData,
-              CURLOPT_HTTPHEADER => [
-                  "Content-Type: application/json",
-                  "Accept: application/json"
-              ],
+              CURLOPT_HTTPGET => true,
           ]);
 
           $response = curl_exec($ch);
@@ -37,13 +33,22 @@ $currAddress = $_SERVER['SERVER_NAME'];
           $errorMessage = null;
 
           if ($response === false || $curlError !== '') {
-              $errorMessage = 'Nepodarilo sa spojiť s API.';
+              echo "<p style='color:red'>Nepodarilo sa spojiť s API.</p>";
           } elseif ($httpCode !== 200) {
-              $errorMessage = 'API vrátilo HTTP kód: ' . $httpCode;
+              echo "<p style='color:red'>API vrátilo HTTP kód: $httpCode</p>";
           } else {
               $data = json_decode($response, true);
 
               if (json_last_error() !== JSON_ERROR_NONE) {
-                  $errorMessage = 'Odpoveď z API nie je validný JSON.';
+                  echo "<p style='color:red'>Odpoveď z API nie je validný JSON.</p>";
+              } elseif ($data) {
+                  foreach ($data as $tag) {
+                      echo "<div class='tag' data-tag-id='{$tag['tag_id']}'>";
+                      echo "<span class='tag_name'>{$tag['tag_name']}</span>";
+                      echo "<div class='tag_actions'>";
+                      echo "<button class='delete_button'><i class='fa fa-trash'></i></button>";
+                      echo "</div>";
+                      echo "</div>";
+                  }
               }
-            }
+          }
