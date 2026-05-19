@@ -2,7 +2,13 @@ const tags_list = document.querySelector("#tags_list");
 const new_tag_form = document.querySelector("#new_tag form");
 const letter_list = document.querySelector("#letter_list");
 const new_tag = document.querySelector("#new_tag");
+const new_tag_form_input = document.querySelector("#new_tag form input");
 
+
+new_tag_form_input.addEventListener("input", function() {
+    const search_text = new_tag_form_input.value;
+    searchTags(search_text);
+});
 
 
 letter_list.addEventListener("click", function(event) {
@@ -76,7 +82,7 @@ tags_list.addEventListener("click", function(event) {
 });
 
 
-function search_tags(search_text) {
+function searchTags(search_text) {
     var xhttp = new XMLHttpRequest();
        xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -84,10 +90,10 @@ function search_tags(search_text) {
             //document.getElementById("notes_list").innerHTML = this.responseText;
         }
     };
-    const data = "search_text="+search_text;
-    xhttp.open("POST", "tags_search.php", true);
+    
+    xhttp.open("GET", "tags_search.php?search_text=" + encodeURIComponent(search_text), true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(data);  
+    xhttp.send();  
 }
 
 
