@@ -170,3 +170,17 @@ function CreateTagInTagSphere(tagName){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(data);  
 }
+
+
+function reloadTags(){
+    var xhttp = new XMLHttpRequest();
+    var search_text = document.getElementById("search_string").value;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector("#tags_list").innerHTML=this.responseText;
+            //document.getElementById("notes_list").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("get", "tags_reload.php", true);
+    xhttp.send();
+}
