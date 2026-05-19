@@ -52,7 +52,7 @@
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <script src="js/tags.js?<?php echo time() ?>" defer></script>
     <!-- <script defer src="js/app_event_tracker.js?<?php echo time() ?>"></script> -->
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
   
   <body>
