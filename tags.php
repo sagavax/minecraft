@@ -1,6 +1,7 @@
 <?php include "includes/dbconnect.php";
       include "includes/functions.php";
- $currAddress = $_SERVER['SERVER_NAME'];
+      
+      $currAddress = $_SERVER['SERVER_NAME'];
       if($currAddress == 'localhost') {
           $api_host = "http://localhost/tagsphere/";
       } else {
@@ -8,13 +9,7 @@
       }
 
       $apiUrl = $api_host.'/api/api.php?application_name=minecraft';
-    
-      echo "<p style='color: #fff; text-align: center;'>$apiUrl</p>";
-
-    
-      // Požiadavka na API
-     
-    
+  
       // Inicializácia cURL pro požiadavku na API
       $ch = curl_init();
 

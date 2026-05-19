@@ -14,6 +14,7 @@ new_tag_form_input.addEventListener("input", function() {
 letter_list.addEventListener("click", function(event) {
      if(event.target.tagName ==="BUTTON") {
         if(event.target.name === "reload"){
+            document.querySelector("#tags_list").replaceChildren();
             reloadTags();
             return;
         }
@@ -177,7 +178,7 @@ function reloadTags(){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.querySelector("#tags_list").innerHTML=this.responseText;
-            console.log("Tags reloaded");
+            alert("Tags reloaded");
         }
     };
     xhttp.open("get", "tags_reload.php", true);
