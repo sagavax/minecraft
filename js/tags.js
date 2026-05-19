@@ -174,11 +174,10 @@ function CreateTagInTagSphere(tagName){
 
 function reloadTags(){
     var xhttp = new XMLHttpRequest();
-    var search_text = document.getElementById("search_string").value;
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.querySelector("#tags_list").innerHTML=this.responseText;
-            //document.getElementById("notes_list").innerHTML = this.responseText;
+            console.log("Tags reloaded");
         }
     };
     xhttp.open("get", "tags_reload.php", true);
