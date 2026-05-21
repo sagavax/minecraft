@@ -2947,6 +2947,7 @@ button[name="add_modpack"] {
     box-sizing: border-box;
     font-family: 'Noto Sans', sans-serif;
     font-weight: bold;
+    background: #2C2A20;
 }
 
 #new_video input[name="video_title"] {
@@ -2969,23 +2970,15 @@ button[name="add_modpack"] {
     margin-top:10px
 }
 
-#new_note input, #new_note textarea, #new_note select {
-    margin-top:10px;
-    margin-bottom:10px;
-    border-radius: 5px;
-    border: 1px #fdf376 solid;
-    color: #fdf376;
-    background: #0f2031;
-}
-
+#new_note input,
+#new_note textarea,
 #new_note select {
-    /* height:45px; */
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
     border: 1px #fdf376 solid;
     color: #fdf376;
-    background: #0f2031;
-    /* background: #eff3f4; */
-    font-family: 'Noto Sans', sans-serif;
+    background: #2C2A20;
 }
 
 
@@ -4285,9 +4278,11 @@ button[name="add_modpack"] {
     .search_wrap input {
         width: 80%;
         font-family:'Note sans',sans-serif;
+        background: #2C2A20;
     }
     .new_note_category select {
-        width: 90%
+        width: 90%;
+        background: #2C2A20;
     }
     .new_note_category label {
         display: none
@@ -4683,6 +4678,7 @@ background: #eff3f4;
 
 #new_note textarea {
     min-height: 120px;
+    background: #2C2A20;
 }
 
 #new_note_action button {
