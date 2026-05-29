@@ -3260,7 +3260,7 @@ button[name="add_modpack"] {
     width: 100%;
     text-transform: uppercase;
     font-weight: bold;
-    border:1px #fdf376 solid;
+    border:1px #2C2A20 solid;
 }
 #edit_video select {
     margin-bottom: 5px;
@@ -3522,6 +3522,7 @@ button[name="add_modpack"] {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    gap:5px;
 }
 
 .video_action button {
