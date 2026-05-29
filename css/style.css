@@ -359,7 +359,7 @@ dialog {
 
 select {
     font-family: 'Noto Sans', sans-serif;
-    border: 1px #fdf376 solid;
+    border: 1px #2C2A20 solid;
     /* background: #eff3f4; */
     color: #fdf376;
     background: #2C2A20;
@@ -381,7 +381,7 @@ input {
     box-sizing: border-box;
     color: #fdf376;
     background: #2C2A20;
-    border: 1px #fdf376 solid;
+    border: 1px #2C2A20 solid;
     padding: 10px;
     outline: none;
     border-radius: 5px;
