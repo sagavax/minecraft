@@ -134,8 +134,8 @@ dialog {
     width: 100%;    
     background: white;
     border-radius: 5px;
-    border: 1px #d1d1d1 solid;
-    background-color: #fcfafa;
+    border: 1px #fdf376 solid;
+    background: #2C2A20;
     /* background: #eff3f4 */
 }
 
