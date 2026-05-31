@@ -1089,8 +1089,8 @@ input[name="search_image"]{
     margin-top:20px;
 }
 
-input[name="modpack_index_id"]{
-    font-weight: normal;
+input[name="modpack_index_id"]:placeholder {
+     font-weight: normal;
 }   
 
 
