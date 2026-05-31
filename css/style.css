@@ -132,10 +132,10 @@ dialog {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;    
-    background: white;
     border-radius: 5px;
     border: 1px #fdf376 solid;
     background: #2C2A20;
+    color: #fdf376;
     /* background: #eff3f4 */
 }
 
@@ -1088,6 +1088,10 @@ button[name="save_description"]{
 input[name="search_image"]{
     margin-top:20px;
 }
+
+input[name="modpack_index_id"]{
+    font-weight: normal;
+}   
 
 
 .no_base {
