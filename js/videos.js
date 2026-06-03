@@ -1071,7 +1071,7 @@ function fetchLatestVideo() {
                         <button name="delete_video" type="button" class="button app_badge" video-id="${data.video_id}"><i class="fas fa-times"></i></button><button class='button app_badge video_edition'>${data.video_edition}</button>
                     </div>
                     <div class='video_tags_wrap' video-id="${data.video_id}"><div class='videos_tags'></div><button class='button small_button' name='new_tag' title='Add new tag(s)'><i class='fa fa-plus'></i></button></div>
-                    <div class='video_modpack_information_wrap'><div class='video_modpack_info'><button class='button yellow_button' name='change_modpack' title='change modpack'>${selectedModpackName !== null ? selectedModpackName : '<i class="fa fa-plus"></i>'} No modpack</button></div><div class='video_mods'><button class='button yellow_button' name='add_mod' title='add mod(s)'>${selectedModName !== null ? selectedModName : '<i class="fa fa-plus"></i>'} Add mod(s)</button></div></div>
+                    <div class='video_modpack_information_wrap'><div class='video_modpack_info'><button class='button yellow_button' name='change_modpack' title='change modpack'>${selectedModpackName !== null ? selectedModpackName : '<i class="fa fa-plus"></i> Add modpack'}</button></div><div class='video_mods'><button class='button yellow_button' name='add_mod' title='add mod(s)'>${selectedModName !== null ? selectedModName : '<i class="fa fa-plus"></i> Add mod(s)'}</button></div></div>
                 </div>
                 <div class='video_banner_list'></div>
                 <div class='video_action_play'>
