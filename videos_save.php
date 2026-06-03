@@ -2,6 +2,14 @@
          include("includes/dbconnect.php");
          include("includes/functions.php");
  
+          /*video_title: Best Power Sources and Setups in All The Mods 10
+          video_url : https://www.youtube.com/watch?v=G7j_yPg_BMc&t=205s
+          edition java
+          modpack_vanila 1
+          category: 0
+          modpack: 72
+          video_source : YouTube
+          */
         
           $video_name=mysqli_real_escape_string($link, $_POST['video_title']);
           $video_url=mysqli_real_escape_string($link, $_POST['video_url']);
@@ -35,6 +43,9 @@
           //echo $save_video;
           $result=mysqli_query($link, $save_video) or die("MySQLi ERROR: ".mysqli_error($link));
 
+
+
+
               
         $diary_text="Minecraft IS: Bolo pridane nove video s nazvom <strong>$video_name</strong>";
         $add_to_diary="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
@@ -51,13 +62,15 @@
         $add_video_mod = "INSERT INTO videos_mods (video_id, cat_id) VALUES ($newest_video_id,$mod_id)";
         mysqli_query($link, $add_video_mod) or die("MySQLi ERROR: ".mysqli_error($link));    
 
-       //add to modpacks
-       $add_video_modpack = "INSERT INTO videos_modpacks (video_id, modpack_id) VALUES ($newest_video_id,$modpack_id)";
-       mysqli_query($link, $add_video_modpack) or die("MySQLi ERROR: ".mysqli_error($link));    
+
+
+        //add to modpacks
+        $add_video_modpack = "INSERT INTO videos_modpacks (video_id, modpack_id) VALUES ($newest_video_id,$modpack_id)";
+        mysqli_query($link, $add_video_modpack) or die("MySQLi ERROR: ".mysqli_error($link));    
        
 
 
-  $response = ['success' => true, 'message' => 'Video added successfully!'];
+        $response = ['success' => true, 'message' => 'Video added successfully!'];
 
         // Make sure to return a JSON response
         header('Access-Control-Allow-Origin: *'); // Allow all domains
