@@ -5811,6 +5811,7 @@ input[name="base_name"] {
     margin-bottom: 20px;
 }
 
+
 .tab_view_wrap button {
     min-width: 70px;
     border-radius: 6px;
@@ -5830,6 +5831,17 @@ input[name="base_name"] {
 .task_view_wrap {
     display: flex;
     width: 100%;
+}
+
+.tab_view_modpacks {
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    gap:10px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top:30px;
+    margin-bottom: 20px;
 }
 
 
@@ -7363,3 +7375,4 @@ input[name="search_mods"] {
         flex-wrap: wrap;
         gap:10px;
     }
+
