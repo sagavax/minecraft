@@ -1029,16 +1029,17 @@ document.querySelector('.modal_new_video form').addEventListener('submit', funct
         
         // Display your message based on the response
         ShowMessage("Video added successfully!");
-
-        //remove selected mod and modpack from session storage
-        sessionStorage.removeItem("selected_modpack");
-        sessionStorage.removeItem("selected_mod");
         
         // Fetch and display the latest video in the list
         fetchLatestVideo();
 
         // Clear the form fields and reset the form
         clearNewVideoform();
+        
+        //remove selected mod and modpack from session storage
+        sessionStorage.removeItem("selected_modpack");
+        sessionStorage.removeItem("selected_mod");
+        
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -1118,6 +1119,9 @@ function clearNewVideoform(){
     document.querySelector('select[name="edition"]').value = "java";   
     document.querySelector('select[name="modpack"]').value = "0";   
     document.querySelector('.modal_new_video').close();
+
+    sessionStorage.removeItem("selected_modpack");
+    sessionStorage.removeItem("selected_mod");
 }
 
 function exportCSV() {
