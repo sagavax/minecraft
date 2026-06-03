@@ -49,9 +49,20 @@ const selectMod = document.querySelector('select[name="category"]');
 
 const new_modpack_wrapper = document.querySelector(".new_modpack_wrapper");
 
+const tab_view_modpacks = document.querySelector(".tab_view_modpacks");
+
 
 //hide the new video form
 document.querySelector("#video_tags_wrap").style.display="none";
+
+
+tab_view_modpacks.addEventListener("click", function(event){
+    if(event.target.tagName==="BUTTON"){
+        filterModpacks(event.target.getAttribute("modpack-id"));
+    }
+});
+
+
 
 video_tags_map_header_button.addEventListener("click", function(){
     const videoTagsWrap = document.querySelector("#video_tags_wrap");
@@ -1495,5 +1506,17 @@ function reloadModpacks(){
         }
     };
     xhttp.open("GET", "modpacks_modal.php", true);
+    xhttp.send();
+  }
+
+  function filterModpacks(modpackId){
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".videos_list").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", `videos_filter.php?modpack_id=${modpackId}`, true);
     xhttp.send();
   }
