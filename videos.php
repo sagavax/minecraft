@@ -88,6 +88,19 @@
                             <button typpe="button" name="eport_farms_cvs" class="button small_button"
                                 title='Export farms'><i class="fas fa-file-export"></i></button>
                         </div>
+
+                        <div class="tab_view_modpacks">
+                            <?php
+
+                                $get_videos_modapcks = "SELECT a.modpack_id,b.modpack_name from videos_modpacks a, modpacks b WHERE a.modpack_id NOT IN (0) and a.modpack_id = b.modpack_id GROUP BY b.modpack_name ORDER BY b.modpack_name ASC";
+                                $result_modpacks=mysqli_query($link, $get_videos_modapcks) or die("MySQL ERROR: ".mysqli_error($link));
+                                while ($row_modpacks = mysqli_fetch_array($result_modpacks)) {
+                                    $modpack_id = $row_modpacks['modpack_id'];
+                                    $modpack_name=$row_modpacks['modpack_name'];
+                                    echo "<button type='button' class='button small_button' name='modpack' modpack-id=$modpack_id>$modpack_name</button>";
+                                }
+                                ?>
+                        </div>    
                     </div><!-- wrap -->
 
 
