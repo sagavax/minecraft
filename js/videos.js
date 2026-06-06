@@ -811,7 +811,7 @@ function videos_display_as(source){
 //restore back original style for he url in new video form
 function clear_video_url_style(){
     video_url.style.borderWidth = "1px";
-    video_url.style.borderColor = "#d1d1d1";
+    video_url.style.borderColor = "#2C2A20";
     document.getElementById("video_url").value = "";
     document.getElementById("video_title").value = "";
     document.querySelector('select[name="edition"]').value = "java";   
