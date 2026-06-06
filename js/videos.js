@@ -247,14 +247,6 @@ modal_modpack_input.addEventListener("keydown", function(event) {
     });
 
 
-   
-    closeModpackButton.addEventListener("click", function() {
-        document.querySelector(".inner_modpack_layer input").value="";
-        document.querySelector(".modal_modpack").style.display = "none";
-    });
-
-
-
     //clear search input
     //const search_wrap = document.querySelector(".search_wrap");
 
