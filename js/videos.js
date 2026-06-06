@@ -1047,7 +1047,7 @@ document.querySelector('.modal_new_video form').addEventListener('submit', funct
 
 //gat latest video and display him in the list
 function fetchLatestVideo() {
-    fetch('videos_reload_lastest.php') // Corrected the typo in the URL
+    fetch('videos_reload_latest.php') // Corrected the typo in the URL
     .then(response => response.json())
     .then(data => {
         // Assuming 'data' contains the latest video record
