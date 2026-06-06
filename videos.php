@@ -296,7 +296,7 @@
         <dialog class="modal_modpack">
             <div class='inner_modpack_layer'>
                 <!-- <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button> -->
-                <input type="text" name="modpack_name" placeholder="name of the modpack ...." autocomplete="off">
+                <input type="text" name="modpack_name" placeholder="type name of the modpack and press enter...." autocomplete="off">
             </div>
         </dialog>
 
