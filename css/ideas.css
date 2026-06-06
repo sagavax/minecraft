@@ -141,3 +141,15 @@ dialog ul li:hover {
     align-items: center;
     gap: 5px;
 }
+
+.idea {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px #d1d1d1 solid;
+    padding: 3px;
+    background: #2C2A20;
+    min-height: 50px;
+    /*border-radius: 5px;*/
+}
