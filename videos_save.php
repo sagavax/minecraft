@@ -13,6 +13,12 @@
         
           $video_name=mysqli_real_escape_string($link, $_POST['video_title']);
           $video_url=mysqli_real_escape_string($link, $_POST['video_url']);
+          $modpack_vanilla = intval($_POST['modpack_vanilla']); //mysqli_real_escape_string($link, $_POST['modpack_vanilla']);
+
+          if($modpack_vanilla == 0){
+            //mod
+            $modpack_id = getIdOfVanillaMinecraft();
+          }
           
           if (!isset($_POST['category'])) {
             $mod_id = 0;

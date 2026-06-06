@@ -2,6 +2,17 @@
 include("dbconnect.php");
 
 
+function getIdOfVanillaMinecraft() {
+	global $link;
+	$query = "SELECT modpack_id FROM modpacks WHERE modpack_name = 'Vanilla Minecraft' LIMIT 1";
+	$result = mysqli_query($link, $query) or die(mysqli_error($link));
+	if ($result && mysqli_num_rows($result) > 0) {
+		$row = mysqli_fetch_array($result);
+		return $row['modpack_id'];
+	}
+	return null; // Ak nenajdeme žádný modpack s vanilkou, vrátíme null
+}
+
 function asciiOnly(string $text): string {
     return preg_replace('/[^\x20-\x7E]/', '', $text);
 }
