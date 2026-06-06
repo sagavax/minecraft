@@ -6360,6 +6360,10 @@ input[name="search_mods"] {
      font-size: 16px;
    }
 
+   input[name="modpack_name"]::placeholder {
+    font-weight: normal;
+   }
+
    .new_modpack_wrapper {
     display: flex;
     flex-wrap: wrap;

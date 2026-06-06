@@ -238,13 +238,6 @@ modal_modpack_input.addEventListener("keydown", function(event) {
     }
 });
 
-modal_modpack_input.addEventListener("input", function(){
-    modpackExists(modal_modpack_input.value);
-    
-})
-
-
-
      //const closeCommButton = document.querySelector(".inner_comment_layer button");
 
       closeCommButton.addEventListener("click", function() {
