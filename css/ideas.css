@@ -185,6 +185,10 @@ dialog ul li:hover {
     font-weight: bolder;
 }
 
+.new_idea form input::placeholder {
+    font-weight: normal;
+}
+
 .new_idea form textarea {
     margin-top: 10px;
     width: 100%;
