@@ -1,20 +1,35 @@
 const modpack = document.querySelector(".modpack");
+const modpack_name = document.querySelector("input[name='modpack_name']");
 const modpack_description = document.querySelector(".modpack_description");
 const modpack_status = document.querySelector("select[name='modpack_status']");
 const modpack_image = document.querySelector("input[name='modpack_image']");
 const modpack_index_id = document.querySelector("input[name='modpack_index_id']");
 const modpack_url = document.querySelector("input[name='modpack_url']");
 
+
+
+modpack_name.addEventListener("input", (e) => {
+  const modpack_name = document.querySelector("input[name='modpack_name']").value;
+  const url = new URL(window.location.href);
+  const modpackId = url.searchParams.get("modpack_id");
+  modpackChangeName(modpackId, modpack_name);
+  ShowMessage("Modpack name has been updated ...");
+});
+
 modpack_index_id.addEventListener("input", (e) => {
   const modpack_index_id = document.querySelector("input[name='modpack_index_id']").value; 
-  modpackChangeModpackIndexId(modpack_index_id);
+  const url = new URL(window.location.href);
+  const modpackId = url.searchParams.get("modpack_id");
+  modpackChangeModpackIndexId(modpackId, modpack_index_id);
   ShowMessage("Modpack Index id has been updated ...");
 });
 
 
 modpack_url.addEventListener("input", (e) => {
   const modpack_url = document.querySelector("input[name='modpack_url']").value; 
-  modpackUpdateUrl(modpack_url);
+  const url = new URL(window.location.href);
+  const modpackId = url.searchParams.get("modpack_id");
+  modpackUpdateUrl(modpackId, modpack_url);
   ShowMessage("Modpack URL has been updated ...");
 });
 
@@ -22,7 +37,9 @@ modpack_url.addEventListener("input", (e) => {
 modpack_image.addEventListener("input", (e) => {
   const modpack_image = document.querySelector("input[name='modpack_image']").value; 
   console.log(modpack_image);
-  modpackChangeImage(modpack_image);
+  const url = new URL(window.location.href);
+  const modpackId = url.searchParams.get("modpack_id");
+  modpackChangeImage(modpackId, modpack_image);
   document.querySelector(".modpack_pic_wrap img").src = modpack_image;
   ShowMessage("Modpack image has been updated ...");
 });
@@ -111,5 +128,14 @@ function modpackUpdateUrl(link) {
   xhttp.open("POST", "modpack_url_update.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var data = "modpack_url=" + encodeURIComponent(link)+ "&modpack_id=" + encodeURIComponent(modpackId);
+  xhttp.send(data);
+}
+
+function modpackChangeName(modpackId, name) {
+  const url = new URL(window.location.href);  
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "modpack_name_update.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  var data = "modpack_id=" + encodeURIComponent(modpackId) + "&modpack_name=" + encodeURIComponent(name);
   xhttp.send(data);
 }
