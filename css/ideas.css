@@ -170,6 +170,16 @@ dialog ul li:hover {
     height: 50px;
 }
 
+.new_idea_action button {
+    padding: 6px 12px;
+    border: 1px #fdf376 solid;
+    border-radius: 5px;
+    background: #fdf376;
+    color: #0f2031;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100px;
+}
 
 .new_idea form {
     padding:15px;
@@ -198,9 +208,9 @@ dialog ul li:hover {
 .new_idea form select {
     margin-top: 10px;
     width: 100%;
-    font-weight: bolder;
+    font-weight: normal;
     box-sizing: border-box;
-    padding: 0.75rem 1rem
+    padding: 0.75rem 1rem;
 }
 
 .new_idea,
