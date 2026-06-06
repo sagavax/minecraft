@@ -1053,8 +1053,15 @@ function fetchLatestVideo() {
         // Assuming 'data' contains the latest video record
         // Append the latest video record to the beginning of the list
         const latestVideoContainer = document.querySelector('.videos_list');
-        const selectedModpackName = sessionStorage.getItem("selected_modpack");
+        const selectedModpackVanila = document.querySelector(".modal_new_video select[name='modpack_vanila']").value;
+        let selectedModpackName;
+        if(selectedModpackVanila === "0"){
+            selectedModpackName = "Vanilla Minecraft";
+        } else {
+            selectedModpackName = sessionStorage.getItem("selected_modpack");
+        }
         const selectedModName = sessionStorage.getItem("selected_mod");
+        
         const videoHTML = `
             <div class="video" video-id="${data.video_id}">
                 <div class="video_thunb"><img src="${data.video_thumbnail}"></div>
