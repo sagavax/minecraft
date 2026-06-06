@@ -13,23 +13,17 @@
         
           $video_name=mysqli_real_escape_string($link, $_POST['video_title']);
           $video_url=mysqli_real_escape_string($link, $_POST['video_url']);
-          $modpack_vanilla = intval($_POST['modpack_vanilla']); //mysqli_real_escape_string($link, $_POST['modpack_vanilla']);
+          $modpack_vanila = intval($_POST['modpack_vanila']); //mysqli_real_escape_string($link, $_POST['modpack_vanilla']);
 
-          if($modpack_vanilla == 0){
-            //mod
-            $modpack_id = getIdOfVanillaMinecraft();
-          }
-          
-          if (!isset($_POST['category'])) {
-            $mod_id = 0;
+         if ($modpack_vanila == 0) {
+              // defaultne Vanilla Minecraft
+              $modpack_id = getIdOfVanillaMinecraft();
           } else {
-            $mod_id = mysqli_real_escape_string($link, $_POST['category']);
-          }
-          
-          if (!isset($_POST['modpack'])) {
-            $modpack_id = 0;
-          } else {
-            $modpack_id = mysqli_real_escape_string($link, $_POST['modpack']);
+              if (!isset($_POST['modpack']) || $_POST['modpack'] === '') {
+                  $modpack_id = 0;
+              } else {
+                  $modpack_id = mysqli_real_escape_string($link, $_POST['modpack']);
+              }
           }
           
           //echo $modpack_id;
@@ -49,9 +43,6 @@
           //echo $save_video;
           $result=mysqli_query($link, $save_video) or die("MySQLi ERROR: ".mysqli_error($link));
 
-
-
-
               
         $diary_text="Minecraft IS: Bolo pridane nove video s nazvom <strong>$video_name</strong>";
         $add_to_diary="INSERT INTO app_log (diary_text, date_added) VALUES ('$diary_text',now())";
@@ -65,9 +56,12 @@
         $newest_video_id = $row_newest['newest'];
 
         //add to mods 
-        $add_video_mod = "INSERT INTO videos_mods (video_id, cat_id) VALUES ($newest_video_id,$mod_id)";
-        mysqli_query($link, $add_video_mod) or die("MySQLi ERROR: ".mysqli_error($link));    
-
+        if(isset($_POST['category']) && !empty($_POST['category'])){
+            $mod_id = mysqli_real_escape_string($link, $_POST['category']);
+            $add_video_mod = "INSERT INTO videos_mods (video_id, cat_id) VALUES ($newest_video_id,$mod_id)";
+            mysqli_query($link, $add_video_mod) or die("MySQLi ERROR: ".mysqli_error($link));    
+        }
+        
 
 
         //add to modpacks

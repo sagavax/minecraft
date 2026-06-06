@@ -4,7 +4,12 @@ include("dbconnect.php");
 
 function getIdOfVanillaMinecraft() {
 	global $link;
-	$query = "SELECT modpack_id FROM modpacks WHERE modpack_name = 'Vanilla Minecraft' LIMIT 1";
+	$query = "SELECT modpack_id FROM modpacks WHERE modpack_name = 'Vanilla Minecraft'";
+	
+	/* $file=fopen("modpack_id.txt", "a") or die("Unable to open file!");
+    fwrite($file, $query);
+	fclose($file); */
+
 	$result = mysqli_query($link, $query) or die(mysqli_error($link));
 	if ($result && mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_array($result);
