@@ -170,3 +170,63 @@ dialog.show {
     display: flex;
     justify-content: flex-end;
 }
+
+.bug_comment, .bug_comment_new {
+    background: #0f2031;
+     color: #fdf376;
+    border: 1px #fdf376 solid;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 20px;
+}
+
+
+
+.bug_comment_new {
+    margin-top: 20px;
+    margin-left:0;
+    padding:15px
+}
+
+.bug_comment,.bug_comment_new, .idea_comment,.idea_comment_new  {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.bug_comment_new h4 {
+    margin-top: 10px;
+    margin-bottom:10px;
+}
+
+.bug_comment_new input {
+    margin-bottom: 10px;
+}
+
+.bug_comment::before, .idea_comment::before {
+  content: "";
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.bug_comment::after, .idea_comment::after {
+     content: "";
+            display: table;
+            clear: both;
+}
+
+.bug_top_banner{
+   height:30px;
+   background: #fdf376;
+   }
