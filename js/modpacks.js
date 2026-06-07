@@ -3,7 +3,7 @@ localStorage.setItem("modpack_id", "");
 const modpack_list = document.querySelector(".modpack_list");
 const tab_view = document.querySelector(".tab_view");
 const search_wrap_input = document.querySelector(".search_wrap input");
-const new_modpack = document.querySelector("#new_modpack .action");
+const new_modpack = document.querySelector("#new_modpack");
 
 new_modpack.addEventListener("click", function (event){
   if(event.target.tagName==="BUTTON"){

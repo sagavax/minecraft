@@ -10,6 +10,7 @@
 
      $update_modpack_index_id = "UPDATE modpacks SET modpack_index_id=$modpack_index_id WHERE modpack_id=$modpack_id";
      $result = mysqli_query($link, $update_modpack_index_id) or die("MySQLi ERROR: ".mysqli_error($link));
+     echo json_encode(['success' => true, 'modpack_id' => $modpack_id, 'message' => 'Modpack index id updated successfully.']);
 
 
      //add to log

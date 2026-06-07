@@ -8,6 +8,7 @@
 
    $update_modpack_link = "UPDATE modpacks set modpack_url='$url' where modpack_id=$modpack_id";
    $result = mysqli_query($link, $update_modpack_link) or die(mysqli_error($link)); 
+   echo json_encode(['success' => true, 'modpack_id' => $modpack_id, 'message' => 'Modpack url updated successfully.']);
 
    //add a log entry
    $action = "Modpack URL updated to $url";

@@ -11,6 +11,7 @@
 
     $update_image = "UPDATE modpacks SET modpack_image='$image_url' WHERE modpack_id=$modpack_id";
     $result = mysqli_query($link, $update_image) or die("MySQLi ERROR: ".mysqli_error($link));
+    echo json_encode(['success' => true, 'modpack_id' => $modpack_id, 'message' => 'Modpack image updated successfully.']);
 
     //add to log
     $diary_text="Bol zmeneny obrazok modpacku s id $modpack_id";

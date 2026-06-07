@@ -37,7 +37,8 @@
         </div>
         <div class="content">
             <div class='list'>
-
+                <div class="list_title"><H2>Videos</H2></div>
+                <div class="list_description"><h3> List of all videos from Minecratf - vanila and modded minraft</h3></div>
                 <!--<div class="fab fab-icon-holder" onclick="document.getElementById('new_video').style.display='flex'">-->
                 <div class="new_video fab-icon-holder" >
                     <i class="fas fa-plus" title="Add new video" onclick="showNewVideoForm()"></i>
@@ -366,6 +367,11 @@
 
 
 <dialog class="modal_new_video">
+    
+    <div class="info_message_overlay">
+        <h2>Videos already exists</h2>
+    </div>
+
     <div class="inner_new_video_layer">
           <div class="video_top_bar"><button type="button" class="close_modal" title="hide"><i class="fa fa-times"></i></button></div>
             <form action="videos_save.php" enctype="multipart/form-data" method="post">

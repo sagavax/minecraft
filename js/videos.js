@@ -607,12 +607,14 @@ function checkVideoExists() {
 
             const video_url = document.getElementById("video_url");
             if (this.responseText == 1) {
-
+                /* 
                 video_url.style.borderWidth = "3px";
                 video_url.style.borderColor = "#e74c3c";
-                setTimeout(clear_video_url_style,2000);
-                //ShowMessage("Video already exists!!");
-                
+                //setTimeout(clear_video_url_style,2000);
+                ShowMessage("Video already exists!!"); */
+                document.querySelector(".inner_new_video_layer").style.display = "none";
+                document.querySelector(".info_message_overlay").style.display = "flex";
+                setTimeout(clear_video_url_style,2000)
                 return false;
             } else {
                 video_url.style.borderWidth = "3px";
@@ -810,8 +812,10 @@ function videos_display_as(source){
 
 //restore back original style for he url in new video form
 function clear_video_url_style(){
-    video_url.style.borderWidth = "1px";
-    video_url.style.borderColor = "#2C2A20";
+   /*  video_url.style.borderWidth = "1px";
+    video_url.style.borderColor = "#2C2A20"; */
+    document.querySelector(".inner_new_video_layer").style.display = "block";
+    document.querySelector(".info_message_overlay").style.display = "none";
     document.getElementById("video_url").value = "";
     document.getElementById("video_title").value = "";
     document.querySelector('select[name="edition"]').value = "java";   

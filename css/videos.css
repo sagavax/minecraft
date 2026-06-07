@@ -42,14 +42,58 @@
     padding:10px;
 }
 
-   .video_tags_map_wrap button {
+.video_tags_map_wrap button {
     display: flex;
-        height: 35px;
+    height: 40px;
    align-items: center;
    background: #fdf376;
    border: 1px#fdf376 solid;
    border-radius: 5px;
 }
+
+
+.tag_creation_action {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap:10px;
+    margin-top: 20px;
+    }
+
+.tag_creation_action button {
+    height: 45px;
+    display: flex;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    }
+
+    .tag_creation_action input {
+        height: 45px;
+        /* border: 1px #fdf376 solid; */
+        border-radius: 6px;
+        padding-left: 15px;
+        box-sizing: border-box;
+        font-family: 'Noto Sans', sans-serif;
+        margin:0;
+    }
+
+    .tag_creation_action input::placeholder {
+        font-weight: normal;
+    }
+
+    input[name="video_title"] {
+     margin-bottom: 10px;
+    }
+
+    .tag_applications {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap:10px;
+    }
 
 
 /* ---- Grid / card view ---- */
@@ -199,7 +243,8 @@
 .modal_new_video {
     top: 25%;
     left: 20%;
-    width: 60%;
+    width: 1650px;
+    height: 550px;
     background: #0f2031;
     border: 1px #fdf376 solid;
     border-radius: 6px;
@@ -209,6 +254,8 @@
 
 .inner_new_video_layer {
     padding:10px;
+    height: 100%;
+    width:100%;
 }
 
 
@@ -313,4 +360,22 @@
 /* ---- videos_wrap scroll offset (split from #videos_wrap, #tasks_wrap) ---- */
 #videos_wrap {
     margin-top: 50px;
+}
+
+.info_message_overlay{
+    display: none;
+    background: white;
+    height:100%;
+    width:100%;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100; */
+    align-items: center;
+    justify-content: center;
+}
+
+.info_message_overlay h2 {
+    color: #0f2031;
+    font-size: 20px;
 }

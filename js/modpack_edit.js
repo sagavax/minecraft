@@ -74,17 +74,23 @@ modpack.addEventListener("focusout", (e) => {
 
 
 function SaveModPackDescription() {
-    const modpack_description = document.querySelector(".modpack_description").innerText;
-    
-    const url = new URL(window.location.href);
-    // získať query parameter
-    const modpackId = url.searchParams.get("modpack_id");
+  
+  const xhttp = new XMLHttpRequest();
+  const url = new URL(window.location.href);
+  const modpackId = url.searchParams.get("modpack_id");
+  const modpack_description = document.querySelector(".modpack_description").innerText;
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "modpack_description_update.php", true);
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+           
+    }
+  };
+
+  xhttp.open("POST", "modpack_description_update.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "modpack_id=" + encodeURIComponent(modpackId) + "&modpack_description=" + encodeURIComponent(modpack_description);
     xhttp.send(data);
+    
 }
 
 function modpackChangeStatus(status){
@@ -99,10 +105,7 @@ function modpackChangeStatus(status){
 }
 
 
-function modpackChangeImage(modpack_image) {
-  const url = new URL(window.location.href);
-  // získať query parameter
-  const modpackId = url.searchParams.get("modpack_id");
+function modpackChangeImage(modpackId, modpack_image) {
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "modpack_image_update.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -110,9 +113,7 @@ function modpackChangeImage(modpack_image) {
   xhttp.send(data);
 }
 
-function modpackChangeModpackIndexId(indexId) {
-  const url = new URL(window.location.href);
-  const modpackId = url.searchParams.get("modpack_id");
+function modpackChangeModpackIndexId(modpackId, indexId) {
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "modpack_index_id_update.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -121,9 +122,7 @@ function modpackChangeModpackIndexId(indexId) {
 }
 
 
-function modpackUpdateUrl(link) {
- const url = new URL(window.location.href);  
- const modpackId = url.searchParams.get("modpack_id"); 
+function modpackUpdateUrl(modpackId, link) {
  const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "modpack_url_update.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
