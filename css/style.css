@@ -1,3 +1,5 @@
+@import url('tasks.css');
+
 *{
     margin: 0;
     padding:0;
@@ -508,16 +510,13 @@ input::placeholder {
 .search,
 .vanila_note_act,
 #notes,
-#tasks,
 #ideas,
 #images,
 .base_note,
 .base_wall,
 .new_video_select_action_wrap,
-.new_task_select_action_wrap,
 .videos_list,
 .videos_cards,
-.tasks,
 .button_wrap,
 .search_wrap,
 .new_note_category,
@@ -525,20 +524,8 @@ input::placeholder {
 .note,
 .notes_list,
 .note_action,
-.task,
-#task_edit,
-.task_text,
 .note_text,
 .note_footer,
-.task_category,
-.subtask,
-.subtask_action,
-#new_task,
-.task_completed,
-.subtasks,
-.new_task_textarea,
-.new_task_action,
-#task_list,
 #new_cat,
 #categories_list,
 #tags_list,
@@ -550,8 +537,6 @@ input::placeholder {
 .modpack_image,
 .modpack_description,
 #modpack_list,
-.new_task_category,
-.new_task_modpack,
 #new_note,
 #new_video,
 .video_mods_wrap,
@@ -584,7 +569,6 @@ input::placeholder {
 .display_as,
 .insert_new_image,
 #drag_and_drop,
-.task_text,
 #fileuploadInfo,
 .action_back,
 #upload_new_video,
@@ -799,12 +783,11 @@ input::placeholder {
 
 
 .notes_action,
-.task_action,
 .picture_action,
 .bug_action,
 .image_action
 {
-   /*  width: 100%; */    
+   /*  width: 100%; */
     display: flex;
     align-items: center;
     height: 45px;
@@ -831,10 +814,6 @@ input::placeholder {
     justify-content: flex-end;
 }
 
-.task_action button {
-    height:40px;
-    width: 40px;
-}
 
 
 .note_edit {
@@ -1122,6 +1101,8 @@ input[name="modpack_index_id"]::placeholder {
     flex-direction: column;
     width: 70%;
     border-radius: 0px;
+    box-sizing: border-box;
+    padding-left:10px;
 }
 
 
@@ -1695,7 +1676,7 @@ button[name="enter_modpack"] {
 
 
 .new_note,
-.new_task, .new_bug {
+.new_bug {
     box-sizing: border-box;
     padding: 3px;
 }
@@ -1738,25 +1719,7 @@ button[name="add_modpack"] {
     height: 100%;
 }
 
-.search_task_wrap {
-    display: flex;
-    width: 100%;
-    height: 60px;
-    align-items: center;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-}
-
-.search_task_wrap input {
-    height: 50px;
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px #d1d1d1 solid;
-    background: white;
-}
-
-.new_video_selects_wrap select,
-.new_task_selects_wrap select {
+.new_video_selects_wrap select {
     height: 35px !important;
     margin-top: 5px;
     width: 100%;
@@ -1769,14 +1732,6 @@ button[name="add_modpack"] {
 }
 
 /* #videos_wrap margin-top moved to videos.css */
-#tasks_wrap {
-    margin-top: 50px;
-}
-
-#tasks_wrap {
-    display: flex;
-   flex-direction: column;
-}
 
 
 .note,
@@ -2156,15 +2111,7 @@ button[name="add_modpack"] {
     gap: 20px;
 }
 
-.task_text {
-    min-height: 70px;
-}
-
-.task_category {
-    height: 19%;
-}
-
-#task_list, .bug_list, .bug_comments_list, .ideas_list, .ideas_comment_list {
+.bug_list, .bug_comments_list, .ideas_list, .ideas_comment_list {
     margin-top: 30px;
     width: 100%;
     height: auto;
@@ -2175,9 +2122,7 @@ button[name="add_modpack"] {
     flex-direction: column;
 }
 
-#new_task,
 .modpack {
-
     box-sizing: border-box;
     width: 100%;
 }
@@ -2221,26 +2166,8 @@ button[name="add_modpack"] {
 
 
 
-#new_task, .new_bug, .new_idea {
+.new_bug, .new_idea {
     padding: 5px;
-}
-
-#new_task form {
-    width: 100%;
-}
-
-
-#task_edit{
-    background: #0f2031;
-     color: #fdf376;
-    border: 1px #fdf376 solid;
-    box-sizing: border-box;
-    padding: 5px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-left: 20px;
 }
 
 
@@ -2262,23 +2189,6 @@ button[name="add_modpack"] {
 
 
 
-#task_edit textarea,
-#task_edit select {
-    width: 100%;
-    background: #eff3f4;
-    height: 45px;
-    border: 1px #d1d1d1 solid;
-    margin-bottom: 5px;
-}
-
-
-.edit_task_action {
-    display:flex;
-    justify-content: flex-end;
-    gap:10px
-}
-
-
 .new_note_category select {
     width: 80%;
 }
@@ -2295,29 +2205,6 @@ button[name="add_modpack"] {
     line-height: 30px;
 }
 
-.new_task_category button {
-    width: 10%;
-}
-
-
-.task {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    border: 1px #d1d1d1 solid;
-    padding: 3px;
-    background: #fff;
-    min-height: 50px;
-    /*border-radius: 5px;*/
-}
-
-.task_wrap {
-    border: 1px #ddd solid;
-    box-sizing: border-box;
-    padding: 5px;
-}
-
 .middle_button {
     padding: 12px 24px;
 }
@@ -2325,36 +2212,6 @@ button[name="add_modpack"] {
 .small_button {
     padding: 6px 12px;
 }
-
-.task {
-    margin-top: 3px;
-    background-color: #0f2031;
-    color: #fff;
-    border: 1px #fdf376 solid;
-    border-radius: 5px;
-}
-
-
-
-.task_id {
-    float: left;
-    width: 100%;
-    color: #75c54f;
-    font-weight: bold;
-}
-
-.task_action button {
-    display: inline;
-    margin-right: 5px;
-}
-
-.task_action_no_cat {
-    float: left;
-    height: 38%;
-    margin-top: 15px;
-    width: 100%;
-}
-
 
 .dialog_status {
     top: 30%;
@@ -2375,45 +2232,8 @@ button[name="add_modpack"] {
 
 
 
-.subtask_action {
-    margin-top: 20px;
-}
-
-
-.task_wrap {
-    margin-top: 10px;
-}
-
-.task_completed {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fdf376;
-    border: #fdf376 1px solid;
-    font-size: 16px;
-    border-radius: 5px;
-    padding: 6px 12px;
-    height: 100%;
-    color:#fff;
-    width: 100px;
-}
-
 .small_font {
     font-size: 8px;
-}
-
-.subtask_text {
-    height: 30px;
-    line-height: 30px;
-    float: left;
-    margin-left: 5px;
-    width: 550px;
-    font-style: italic;
-}
-
-.subtask_text_input {
-    width: 92%;
-    border: 1px solid #ededed;
 }
 
 .list_wrap {
@@ -2548,7 +2368,6 @@ button[name="add_modpack"] {
 #new_note,
 #new_modpack,
 #new_video,
-#new_task,
 #upload_new_video,
 #mod_description,
 #new_influencer{
@@ -2645,8 +2464,7 @@ button[name="add_modpack"] {
 #upload_new_video input,
 #new_video textarea,
 #new_influencer textarea,
-#new_image textarea,
-#new_task textarea {
+#new_image textarea {
     box-sizing: border-box;
     font-family: 'Noto Sans', sans-serif;
     font-weight: bold;
@@ -2932,13 +2750,13 @@ button[name="add_modpack"] {
     padding:10px;
 }
 
-.video_top_bar, .task_top_bar {
+.video_top_bar {
     height:40px;
     display: flex;
     justify-content: flex-end;
 }
 
-.video_top_bar button, .task_top_bar button  {
+.video_top_bar button {
     background-color: #0f2031;
     color: #fdf376;
     border-radius: 50%;
@@ -3139,17 +2957,15 @@ button[name="add_modpack"] {
 }
 
 .span_mod,
-.span_modpack,.span_task_completed,.nr_of_comments, .span_fixed, .span_mod {
+.span_modpack,.nr_of_comments, .span_fixed, .span_mod {
     display: flex;
     margin-left: 5px;
     background: #fdf376;
     color: #0f2031;
     padding: 6px 12px;
     border-radius: 0px;
-    align-items: center;    
+    align-items: center;
  }
-
- .task_completed
 
 .span_modpack, .nr_of_comments, .span_fixed {
     margin-right: 0px;
@@ -3206,11 +3022,6 @@ button[name="add_modpack"] {
     color: #fff;
 }
 
-.span_task_completed {
-    background-color: #fdf376;
-    margin-right:5px;
-}
-
 .video_action span {
     margin-right: 5px;
 }
@@ -3224,7 +3035,6 @@ button[name="add_modpack"] {
     /*border-top: 1px #d1d1d1 solid;*/
     height: 45px;
     box-sizing: border-box;
-    padding: 3px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -3775,7 +3585,7 @@ button[name="add_modpack"] {
     left:20%;
     width: 60%;
     box-sizing: border-box;
-    padding:10px;
+    padding:20px;
     border: #fdf376  1px solid;
 }
 
@@ -3844,15 +3654,6 @@ button[name="add_modpack"] {
     /*flex: 1;*/
 }
 
-.tasks_view  {
-    display: flex;
-    height: auto;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    width: 100%;
-}
-
 .image_radios {
     display: flex;
     height:45px;
@@ -3863,7 +3664,7 @@ button[name="add_modpack"] {
 
 
 
-.tasks_view input[type='radio'], .image_radios input[type='radio'] {
+.image_radios input[type='radio'] {
     width: 35px;
 }
 
@@ -3871,17 +3672,8 @@ button[name="add_modpack"] {
     height:35px;
 }
 
-.tasks_view label, .image_radios label {
-       height: 35px;
-   
-}
-
-.tasks {
-    margin-top: 35px;
-}
-
-.tasks h3 {
-    margin-bottom:20px;
+.image_radios label {
+    height: 35px;
 }
 
 .modlist {
@@ -3914,9 +3706,6 @@ button[name="add_modpack"] {
     .search_wrap input {
         width: 100%
     }
-    .task_modpacks {
-       height:100%
-    }
     .videos_action {
         width: 30%
     }
@@ -3932,7 +3721,6 @@ button[name="add_modpack"] {
     }
     .mod_modpack,
     .notes_action,
-    .task_action,
     .bug_comment_action,
     .idea_comment_action
      {
@@ -4082,7 +3870,6 @@ button[name="add_modpack"] {
 }
 
 
-.task_footer,
 .note_footer,
 .idea_footer,
 .bug_footer
@@ -4098,10 +3885,6 @@ button[name="add_modpack"] {
     margin-bottom: 10px;
 }
 
-.task_footer {
-    gap:5px;
-}
-
 .note_footer button {
     border: 1px solid;
     border-radius: 5px;
@@ -4112,16 +3895,14 @@ button[name="add_modpack"] {
     margin-left: 5px;
 }
 
-.task_footer,
 .idea_footer {
     height:auto;
-   
 }
 
 
 
 
-.task_body, .bug_text, .idea_text, .idea_comm_text {
+.bug_text, .idea_text, .idea_comm_text {
     padding: 10px 10px 20px 10px;
 /*    min-height: 70px;*/
     font-weight: 300;
@@ -4137,7 +3918,7 @@ button[name="add_modpack"] {
     font-size: 18px;
 }
 
-.task_view,  .videos_radio_buttons {
+.videos_radio_buttons {
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
@@ -4145,10 +3926,6 @@ button[name="add_modpack"] {
     justify-content: flex-start;
     height: 50px;
     width:100%;
-}
-
-.task_view button {
-    border-radius: 6px;
 }
 
 .brand_radio {
@@ -4196,56 +3973,13 @@ button[name="add_modpack"] {
     font-size: 36px; /* Adjust size as needed */
 }
 
-.task_view {
-    gap:10px;
-    justify-content: flex-end;
-}
-
-
-
-
-.task_view input[type="radio"], 
- .videos_radio_buttons input[type="radio"] {
-    height:30px;
-    width: 40px;
-    gap: 10px;
-}
-
-
 .videos_radio_buttons input[type="radio"] {
     height:25px;
     width: 25px;
 }
 
-.task_view_radio_buttons label, .videos_radio_buttons label {
-    padding: 10px 20px;
-    /*border: lightgrey solid 1px;*/
-    margin: 0;
-    display: table-cell;
-    font-family: sans-serif;
-}
-
 .videos_radio_buttons label  {
     padding:0;
-}
-
-.task_view_radio_buttons input {
-    display: none;
-    margin: 0;
-}
-
-.task_view_radio_buttons input[type=radio]+label {
-    color: #555;
-}
-
-.task_view_radio_buttons input[type=radio]:checked+label {
-    color: white;
-    background-color: #fdf376;
-    border-color: #fdf376;
-}
-
-.task_view_radio_buttons button {
-    margin-left: 20px;
 }
 
 #new_note_wrap>* {
@@ -4273,15 +4007,12 @@ button[name="add_modpack"] {
     padding: 10px;
 }
 
-#new_note_wrap textarea,
-#new_task_wrap textarea {
+#new_note_wrap textarea {
     height: 80%;
     box-sizing: border-box;
 }
 
-
-
-#new_task,.new_bug, #new_vanilla_task {
+.new_bug {
     background: #0f2031;
     display: flex;
     box-sizing: border-box;
@@ -4300,32 +4031,6 @@ button[name="add_modpack"] {
     border: 1px #fdf376 solid;
 }
 
-
-#new_vanilla_task select {
-background: #eff3f4;
-}
-
-#new_vanilla_task {
-    box-sizing: border-box;
-    padding:10px;
-}
-
-
-#new_task {
-    display:none;
-}
-
-
-#new_task form,  #new_vanilla_task form {
-    display: flex;
-    flex-direction: column;
-}
-
-#new_task select,  #new_vanilla_task select {
-    height:45px;
-    margin-top: 5px;
-    font-family: 'Noto sans',sans-serif;
-}
 
 #new_note_footer {
     max-width: 100%;
@@ -4556,13 +4261,12 @@ td.zakladna_popis {
     box-sizing: border-box;
 }
 
-.modpack_list_description, 
+.modpack_list_description,
 .modpack_list_seeds,
 .modpack_list_mods,
 .modpack_list_images,
 .modpack_list_bases,
 .modpack_list_notes,
-.modpack_list_tasks,
 .modpack_list_videos
  {
     display: flex;
@@ -4595,45 +4299,6 @@ td.zakladna_popis {
         height:60%
     }
 
-
-   .task_modpacks {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    box-sizing: border-box;
-    height:auto;
-     }
-
-    .task_modpacks button {
-        height: 40px;        
-        border:1px #0b9ed0 solid;
-        background: #0b9ed0;
-        color: #fff;
-        padding: 6px 12px;
-        border-radius: 5px;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        cursor: pointer;
-        outline: 0;
-        font-size: large;
-    }
-
-.info_task {
-    display: none;
-    align-items: center;
-    justify-content: flex-start;
-    gap:10px;
-    margin: 10px;
-    background: green;
-    color: #fff;
-    padding: 5px 10px;
-}
-
-
-.task_status {
-    /* width:150px; */
-}
 
 .dialog_modpacks {
     position: fixed;
@@ -4670,18 +4335,6 @@ td.zakladna_popis {
 .dialog_add_new_link input, .dialog_add_new_link textarea {
     height: 100%;
    
-}
-
-
-.no_tasks {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-    width: 100%;
-    border: 1px #d1d1d1 solid;
-    background: #f5f5f5;
-    border-radius: 5px;
 }
 
 
@@ -5284,20 +4937,7 @@ input[name="base_name"] {
 }
 
 
-.base_note_tasks_ideas_wrap {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    box-sizing: border-box;
-     margin-left: 10px;
-     align-items: center;
-     justify-content: center;
-     box-sizing: border-box;
-     gap:10px;
-}
-
 .base_nr_notes,
-.base_nr_tasks,
 .base_nr_ideas {
     width: 100px;
     display: flex;
@@ -5313,10 +4953,6 @@ input[name="base_name"] {
     border-radius: 6px;
 }
 
-
-.base_nr_tasks span {
-    /*background: #0b9ed0;*/
-}
 
 .base_note {
     min-height: 100px;
@@ -5338,8 +4974,7 @@ input[name="base_name"] {
 }
 
 
-#add_new_note,
-#add_new_task {
+#add_new_note {
     color: #565656;
     font-weight: bold;
     height: 40px;
@@ -5361,23 +4996,12 @@ input[name="base_name"] {
     font-size: 16px;
 }
 
-#add_new_task i {
-    color: #0b9ed0;
-    font-size: 16px;
-}
-
 #add_new_note:hover {
     background: #fdf376;
     color: #fff
 }
 
-#add_new_task:hover {
-    background: #0b9ed0;
-    color: #fff;
-}
-
-#add_new_note:hover i,
-#add_new_task:hover i {
+#add_new_note:hover i {
     color: #fff;
 }
 
@@ -5418,11 +5042,6 @@ input[name="base_name"] {
 
 
 
-#new_task select {
-    background: #eff3f4;
-    border: 1px #d1d1d1 solid;
-}
-
 /*#new_note button {
     float: right;
     margin-right: 0;
@@ -5440,7 +5059,6 @@ input[name="base_name"] {
 }
 
 .new_note_action,
-.new_task_action,
 .bug_comment_action,
 .idea_comment_action,
 .bug_new_comment_wrap
@@ -5451,10 +5069,6 @@ input[name="base_name"] {
     height: 50px;
 }
 
-.new_task_action {
-    margin-top: 10px;
-}
-
 .idea_comm_action, .idea_comm_action form {
     display: flex;
     justify-content: flex-end;
@@ -5462,8 +5076,7 @@ input[name="base_name"] {
 }
 
 
-.new_note_action button:nth-child(1),
-.new_task_action button:nth-child(1) {
+.new_note_action button:nth-child(1) {
     margin-right: 5px;
 }
 
@@ -5513,11 +5126,6 @@ input[name="base_name"] {
 
 
 /* .tab_view_export — moved to videos.css */
-
-.task_view_wrap {
-    display: flex;
-    width: 100%;
-}
 
 /* .tab_view_modpacks — moved to videos.css */
 
@@ -5600,14 +5208,14 @@ input[name="base_name"] {
     cursor: pointer;
 }
 
-.vanilla_task ,.vanilla_idea{
+.vanilla_idea{
     display: flex;
     flex-direction: column;
     background: aliceblue;
 }
 
 
-#notes, #tasks, #ideas, #images {
+#notes, #ideas, #images {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -5619,7 +5227,7 @@ input[name="base_name"] {
 }
 
 
-.base_notes_list, .base_tasks_list, .base_ideas_list, .base_images_list {
+.base_notes_list, .base_ideas_list, .base_images_list {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -5627,30 +5235,18 @@ input[name="base_name"] {
 }
 
 
-.create_base_task {
-    position: absolute;
-    top:20%;
-    left:20%;
-    width: 60%;
-    flex-direction: column;
-}
-
-.new_base_note, .new_base_task, .new_base_idea, .new_base_image{
+.new_base_note, .new_base_idea, .new_base_image{
     display: flex;
     flex-direction: column;
 }
 
 
-.new_base_idea, .new_base_note,.new_base_task, .new_base_image, .create_base_task {
+.new_base_idea, .new_base_note, .new_base_image {
     border: 1px #d1d1d1 solid;
     background: white;
     box-sizing: border-box;
     padding:10px;
 
-}
-
-.base_tasks_list button:hover {
-    cursor: pointer;
 }
 
 .new_base_image form, .new_base_idea form {
@@ -5796,11 +5392,11 @@ input[name="base_name"] {
 }
 
 
-.new_base_note textarea, .new_base_task textarea, .new_base_idea textarea {
+.new_base_note textarea, .new_base_idea textarea {
     height: 100px;
 }
 
-.new_base_note button, .new_base_task button, .new_base_idea button {
+.new_base_note button, .new_base_idea button {
     margin-top: 10px;
 }
 
@@ -6641,8 +6237,8 @@ input[name="search_mods"] {
         font-size: 14px;
         height:30px;
         width: 30px;
-        top:0;
-        right:5px;
+        top:10px;
+        right:10px;
         justify-content: center;
         align-items: center;
         border:0px;
@@ -7023,42 +6619,4 @@ input[name="search_mods"] {
     margin-top: 5px;
 }
 
-.tag_creation_action {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap:10px;
-    margin-top: 20px;
-    }
-
-.tag_creation_action button {
-    height: 45px;
-    display: flex;
-    gap:10px;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    }
-    .tag_creation_action input {
-        height: 45px;
-        border: 1px #d1d1d1 solid;
-        border-radius: 6px;
-        padding: 5px;
-        box-sizing: border-box;
-        font-family: 'Noto Sans', sans-serif;
-        margin:0;
-    }
-
-
-    input[name="video_title"] {
-     margin-bottom: 10px;
-    }
-
-    .tag_applications {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap:10px;
-    }
 
