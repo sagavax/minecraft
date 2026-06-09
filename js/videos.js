@@ -288,6 +288,10 @@ modal_modpack_input.addEventListener("keydown", function(event) {
                     const letterButton = event.target.innerText;
                     sortVideosTagsByLetters(letterButton);
                 } else if (event.target.name === "create_tag"){
+                    if(modal_new_video_tags_input.value==""){
+                        alert("Input cannot be empty!");
+                        return;
+                    }
                     createTag(modal_new_video_tags_input.value);
                 }
             }
