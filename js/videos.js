@@ -1034,12 +1034,22 @@ document.querySelector('.modal_new_video form').addEventListener('submit', funct
         // Display your message based on the response
         ShowMessage("Video added successfully!");
         
+        // Read session values before they are cleared
+        const selectedModpackVanilaVal = document.querySelector(".modal_new_video select[name='modpack_vanila']").value;
+        let selectedModpackNameVal;
+        if(selectedModpackVanilaVal === "0"){
+            selectedModpackNameVal = "Vanilla Minecraft";
+        } else {
+            selectedModpackNameVal = sessionStorage.getItem("selected_modpack");
+        }
+        const selectedModNameVal = sessionStorage.getItem("selected_mod");
+
         // Fetch and display the latest video in the list
-        fetchLatestVideo();
+        fetchLatestVideo(selectedModpackNameVal, selectedModNameVal);
 
         // Clear the form fields and reset the form
         clearNewVideoform();
-        
+
         //remove selected mod and modpack from session storage
         sessionStorage.removeItem("selected_modpack");
         sessionStorage.removeItem("selected_mod");
@@ -1054,21 +1064,13 @@ document.querySelector('.modal_new_video form').addEventListener('submit', funct
 
 
 //gat latest video and display him in the list
-function fetchLatestVideo() {
+function fetchLatestVideo(selectedModpackName, selectedModName) {
     fetch('videos_reload_latest.php') // Corrected the typo in the URL
     .then(response => response.json())
     .then(data => {
         // Assuming 'data' contains the latest video record
         // Append the latest video record to the beginning of the list
         const latestVideoContainer = document.querySelector('.videos_list');
-        const selectedModpackVanila = document.querySelector(".modal_new_video select[name='modpack_vanila']").value;
-        let selectedModpackName;
-        if(selectedModpackVanila === "0"){
-            selectedModpackName = "Vanilla Minecraft";
-        } else {
-            selectedModpackName = sessionStorage.getItem("selected_modpack");
-        }
-        const selectedModName = sessionStorage.getItem("selected_mod");
         
         const videoHTML = `
             <div class="video" video-id="${data.video_id}">
