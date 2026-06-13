@@ -843,7 +843,6 @@ input::placeholder {
 }
 
 .note_edit input {
-    height:45px;
     background: white;
     font-weight: bolder;
     margin-bottom: 5px ;
