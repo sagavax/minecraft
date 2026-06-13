@@ -364,7 +364,6 @@
 
 .info_message_overlay{
     display: none;
-    background: #a12e2e;
     height:100%;
     width:100%;
     /* position: fixed;
@@ -377,7 +376,7 @@
 
 .info_message_overlay h2 {
     color: white;
-    font-size: 60px;
+    font-size: 40px;
     font-family: 'Noto Sans', sans-serif;
     font-weight: bold;
 }

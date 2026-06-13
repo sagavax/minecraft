@@ -608,7 +608,6 @@ function checkVideoExists() {
 
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
             const video_url = document.getElementById("video_url");
             if (this.responseText == 1) {
                 /* 
@@ -618,12 +617,18 @@ function checkVideoExists() {
                 ShowMessage("Video already exists!!"); */
                 document.querySelector(".inner_new_video_layer").style.display = "none";
                 document.querySelector(".info_message_overlay").style.display = "flex";
-                setTimeout(clear_video_url_style,2000)
-                return false;
+                document.querySelector(".info_message_overlay").style.backgroundColor = "#e74c3c";
+                document.querySelector(".info_message_overlay").innerHTML = "<h2>Video already exists!!</h2>";
+                setTimeout(clearVideoUrlStyle("error"),2000)
+
             } else {
-                video_url.style.borderWidth = "3px";
-                video_url.style.borderColor = "#27ae60";
-                
+                //video_url.style.borderWidth = "3px";
+               // video_url.style.borderColor = "#27ae60";
+                document.querySelector(".inner_new_video_layer").style.display = "none";
+                document.querySelector(".info_message_overlay").style.display = "flex";
+                document.querySelector(".info_message_overlay").style.backgroundColor = "#27ae60";
+                document.querySelector(".info_message_overlay").innerHTML = "<h2>New video!</h2>";
+                setTimeout(clearVideoUrlStyle("success"),2000);
             }
         }
     };
@@ -815,14 +820,19 @@ function videos_display_as(source){
 }
 
 //restore back original style for he url in new video form
-function clear_video_url_style(){
+function clearVideoUrlStyle(status){
    /*  video_url.style.borderWidth = "1px";
-    video_url.style.borderColor = "#2C2A20"; */
-    document.querySelector(".inner_new_video_layer").style.display = "block";
-    document.querySelector(".info_message_overlay").style.display = "none";
-    document.getElementById("video_url").value = "";
-    document.getElementById("video_title").value = "";
-    document.querySelector('select[name="edition"]').value = "java";   
+    ideo_url.style.borderColor = "#2C2A20"; */
+    if(status==="error"){
+        document.querySelector(".inner_new_video_layer").style.display = "block";
+        document.querySelector(".info_message_overlay").style.display = "none";
+        document.getElementById("video_url").value = "";
+        document.getElementById("video_title").value = "";
+        document.querySelector('select[name="edition"]').value = "java";       
+    } else if (status==="success") {
+         document.querySelector(".inner_new_video_layer").style.display = "block";
+        document.querySelector(".info_message_overlay").style.display = "none";
+    }    
 };
 
 
@@ -1522,3 +1532,4 @@ function reloadModpacks(){
     xhttp.open("GET", `videos_filter.php?modpack_id=${modpackId}`, true);
     xhttp.send();
   }
+

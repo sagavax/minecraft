@@ -368,9 +368,7 @@
 
 <dialog class="modal_new_video">
     
-    <div class="info_message_overlay">
-        <h2>Videos already exists</h2>
-    </div>
+    <div class="info_message_overlay"></div>
 
     <div class="inner_new_video_layer">
           <div class="video_top_bar"><button type="button" class="close_modal" title="hide"><i class="fa fa-times"></i></button></div>
