@@ -2757,7 +2757,6 @@ button[name="add_modpack"] {
     font-family:'Noto Sans',sans-serif;
     display: flex;
     font-size: 16px;
-    height:48px;
     width: 100%;
     text-transform: uppercase;
     font-weight: bold;
