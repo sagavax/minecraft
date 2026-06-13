@@ -186,7 +186,7 @@ function saveNewIdea(ideaTitle, ideaText, ideaPriority, ideaStatus) {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
             const response = JSON.parse(this.responseText);
-            if(response.message === "Idea created successfully") {
+            if(response.success === "idea created successfully") {
                 alert("Idea added successfully!");
                 console.log("Idea added successfully!");
                 //fetchLatestIdeas();

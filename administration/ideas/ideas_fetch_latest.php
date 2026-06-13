@@ -5,7 +5,7 @@ $api_host = ($currServer == 'localhost') ? "http://localhost/bugbuster" : "https
 
 $curl = curl_init();
 curl_setopt_array($curl, [
-    CURLOPT_URL => $api_host."/api/api.php?endpoint=bugs&action=latest",
+    CURLOPT_URL => $api_host."/api/api.php?endpoint=ideas&action=latest",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER => [
         "Accept: application/json"
