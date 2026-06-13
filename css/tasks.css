@@ -411,7 +411,6 @@
 }
 
 #new_task select,  #new_vanilla_task select {
-    height:45px;
     margin-top: 5px;
     font-family: 'Noto sans',sans-serif;
 }
