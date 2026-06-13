@@ -230,3 +230,53 @@ dialog.show {
    height:30px;
    background: #fdf376;
    }
+
+   .new_bug {
+    box-sizing: border-box;
+    padding: 3px;
+}
+
+.new_bug {
+    background: #0f2031;
+    display: flex;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    flex-direction: column;
+    border: 1px #fdf376 solid;
+    border-radius: 6px;
+    padding:15px;
+}
+
+.new_bug form select, .new_idea form select{
+    width:100%;
+    /* /height:45px; */
+    margin-top:10px;
+    /* background: #eff3f4; */
+    border: 1px #fdf376 solid;
+}
+
+.bugs_action {
+     box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-end;
+    gap:5px;
+}
+
+.new_bug_action {
+    margin-top:10px
+}
+
+.new_bug input {
+    font-weight: bolder;
+}
+
+.bug_list, .bug_comments_list {
+    margin-top: 30px;
+    width: 100%;
+    height: auto;
+}
+
+.bug_list, .bug_comments_list{
+    display: flex;
+    flex-direction: column;
+}

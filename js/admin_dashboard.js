@@ -7,7 +7,7 @@ const routes = {
   bugs: "bugs/index.php",
   app_log: "app_log.php",
   maintenance: "maintenance.php",
-  settings: "settings.php",
+  settings: "administration/index.php",
   dashboard_back: "../dashboard.php"
 };
 

@@ -364,7 +364,7 @@
 
 .info_message_overlay{
     display: none;
-    background: white;
+    background: #a12e2e;
     height:100%;
     width:100%;
     /* position: fixed;

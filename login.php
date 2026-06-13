@@ -18,17 +18,17 @@
       
       if($overeni == 1) {
           $row = mysqli_fetch_array($result);
-          echo "<div class='overlay'><div class='logon_information success'><i class='fa fa-check-circle'></i></div></div>"; 
-          echo "<script>setTimeout(function(){
+          //echo "<div class='overlay'><div class='logon_information success'><i class='fa fa-check-circle'></i></div></div>"; 
+          /*echo "<script>setTimeout(function(){
             window.location = 'dashboard.php';
-          }, 3000)</script>";
+          }, 3000)</script>";  */
 
           //header("location:dashboard.php");
           } elseif ($overeni==0) {
-            echo "<div class='overlay'><div class='logon_information error'><i class='fas fa-times-circle'></i></div></div>";
-            echo "<script>setTimeout(function(){
+            //echo "<div class='overlay'><div class='logon_information error'><i class='fas fa-times-circle'></i></div></div>";
+            /*echo "<script>setTimeout(function(){
               window.location = 'index.php';
-            }, 3000)</script>";
+            }, 3000)</script>";*/
             /*echo "<script>alert('Bad username or password');
          location.href='index.php';</script>";*/
           }
