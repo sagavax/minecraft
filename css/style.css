@@ -1491,8 +1491,7 @@ button[name="enter_modpack"] {
 #note_title input {
     box-sizing: border-box;
     border: 1px #d1d1d1 solid;
-    padding: 5px;
-    height: 45px;
+    padding: 10px 15px;
     font-weight: bold;
 }
 
