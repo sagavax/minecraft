@@ -71,10 +71,9 @@
     }
 
     .tag_creation_action input {
-        height: 45px;
         /* border: 1px #fdf376 solid; */
         border-radius: 6px;
-        padding-left: 15px;
+        padding: 10px 15px;
         box-sizing: border-box;
         font-family: 'Noto Sans', sans-serif;
         margin:0;
