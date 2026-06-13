@@ -1711,7 +1711,6 @@ button[name="add_modpack"] {
 }
 
 .new_video_selects_wrap select {
-    height: 35px !important;
     margin-top: 5px;
     width: 100%;
     border: 1px #d1d1d1 solid;
