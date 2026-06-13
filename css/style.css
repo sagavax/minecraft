@@ -2927,7 +2927,6 @@ button[name="add_modpack"] {
 
 .modpack_status select {
     width: 100px;
-    height: 30px;
 }
 
 .modpack_url span {
