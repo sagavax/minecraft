@@ -377,5 +377,7 @@
 
 .info_message_overlay h2 {
     color: #0f2031;
-    font-size: 20px;
+    font-size: 60px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 500;
 }
