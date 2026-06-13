@@ -8,42 +8,6 @@ const modal_add_comment = document.querySelector('.modal_add_comment');
 
 
 
-/* bug_footer.addEventListener('click', function(event) {
-    if(event.target.classList.contains('bug_status')) {
-        const bugId = event.target.closest(".bug").getAttribute('bug-id');
-        sessionStorage.setItem('bug_id', bugId);
-        console.log(bugId);
-        modal_show_status.showModal();
-    } else if(event.target.classList.contains('bug_priority')) {
-        const bugId = event.target.closest(".bug").getAttribute('bug-id');
-        sessionStorage.setItem('bug_id', bugId);
-        console.log(bugId);
-        modal_show_priority.showModal();
-    } else if (event.target.classList.contains('nr_of_comments')) {
-        const bugId = event.target.closest(".bug").getAttribute('bug-id');
-        sessionStorage.setItem('bug_id', bugId);
-        console.log(bugId);
-        localBugComments(bugId);
-    } else if (event.target.tagName === 'BUTTON') {
-        if(event.target.name === "delete_bug"){
-            const bugId = event.target.closest(".bug").getAttribute('bug-id');
-            sessionStorage.setItem('bug_id', bugId);
-            console.log(bugId);
-            removeBug(bugId);
-        } else if(event.target.name === "mark_fixed"){
-            const bugId = event.target.closest(".bug").getAttribute('bug-id');
-            sessionStorage.setItem('bug_id', bugId);
-            console.log(bugId);
-            markBugAsFixed(bugId);
-        } else if(event.target.name === "see_bug_details"){
-            const bugId = event.target.closest(".bug").getAttribute('bug-id');
-            sessionStorage.setItem('bug_id', bugId);
-            console.log(bugId);
-            window.location.href = `bug.php?bug_id=${bugId}`;
-        }
-    }
-}); */
-
 modal_add_comment.addEventListener("click", function(event) {
     if(event.target.name === "create_comment"){
         const bugId = sessionStorage.getItem('bug_id');
@@ -206,9 +170,11 @@ function SaveBug(bugTitle, bugDescription, bugPriority, bugStatus) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText === "Bug created successfully") {
+             const response = JSON.parse(this.responseText);
+             if(response.message==="Bug created successfully"){
                 alert("Bug added successfully!");
                 console.log("Bug added successfully!");
+                fetchLatestBugs();
             }
         }
     };
@@ -250,4 +216,17 @@ function SaveComment(bugId, commentText) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var params = "bug_id=" + encodeURIComponent(bugId) + "&comment_text=" + encodeURIComponent(commentText);
     xhttp.send(params);
+    }
+
+
+    function fetchLatestBugs(){
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            // Check if the request is complete and was successful
+            if (this.readyState == 4 && this.status == 200) {
+                document.querySelector(".bugs_list").innerHTML =+ this.responseText;
+            }
+        };
+        xhttp.open("GET", "bugs_fetch_latest.php", true);
+        xhttp.send();
     }

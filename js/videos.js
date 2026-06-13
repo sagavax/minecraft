@@ -610,16 +610,12 @@ function checkVideoExists() {
         if (this.readyState == 4 && this.status == 200) {
             const video_url = document.getElementById("video_url");
             if (this.responseText == 1) {
-                /* 
-                video_url.style.borderWidth = "3px";
-                video_url.style.borderColor = "#e74c3c";
-                //setTimeout(clear_video_url_style,2000);
-                ShowMessage("Video already exists!!"); */
+               
                 document.querySelector(".inner_new_video_layer").style.display = "none";
                 document.querySelector(".info_message_overlay").style.display = "flex";
                 document.querySelector(".info_message_overlay").style.backgroundColor = "#e74c3c";
                 document.querySelector(".info_message_overlay").innerHTML = "<h2>Video already exists!!</h2>";
-                setTimeout(clearVideoUrlStyle("error"),2000)
+                setTimeout(() => clearVideoUrlStyle("error"), 2000);
 
             } else {
                 //video_url.style.borderWidth = "3px";
@@ -628,7 +624,7 @@ function checkVideoExists() {
                 document.querySelector(".info_message_overlay").style.display = "flex";
                 document.querySelector(".info_message_overlay").style.backgroundColor = "#27ae60";
                 document.querySelector(".info_message_overlay").innerHTML = "<h2>New video!</h2>";
-                setTimeout(clearVideoUrlStyle("success"),2000);
+                setTimeout(() => clearVideoUrlStyle("success"), 2000);
             }
         }
     };

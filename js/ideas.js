@@ -185,6 +185,12 @@ function saveNewIdea(ideaTitle, ideaText, ideaPriority, ideaStatus) {
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
+            const response = JSON.parse(this.responseText);
+            if(response.message === "Idea created successfully") {
+                alert("Idea added successfully!");
+                console.log("Idea added successfully!");
+                //fetchLatestIdeas();
+            }
             
         }
     };
@@ -192,4 +198,17 @@ function saveNewIdea(ideaTitle, ideaText, ideaPriority, ideaStatus) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var params = "idea_title=" + encodeURIComponent(ideaTitle) + "&idea_text=" + encodeURIComponent(ideaText) + "&idea_priority=" + encodeURIComponent(ideaPriority) + "&idea_status=" + encodeURIComponent(ideaStatus);
     xhttp.send(params);
+}
+
+function fetchLatestIdeas(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Check if the request is complete and was successful
+        if (this.readyState == 4 && this.status == 200) {
+                document.querySelector(".ideas_list").innerHTML = this.responseText;
+            }
+            
+        }
+    xhttp.open("GET", "ideas_fetch_latest.php", true);
+    xhttp.send();
 }
