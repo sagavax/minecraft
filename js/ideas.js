@@ -183,15 +183,12 @@ function moveIdeaToApply($ideaId) {
 function saveNewIdea(ideaTitle, ideaText, ideaPriority, ideaStatus) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
             const response = JSON.parse(this.responseText);
             if(response.success === "idea created successfully") {
                 alert("Idea added successfully!");
-                console.log("Idea added successfully!");
-                //fetchLatestIdeas();
+                fetchLatestIdeas();
             }
-            
         }
     };
     xhttp.open("POST", "ideas_create.php", true);
@@ -203,12 +200,34 @@ function saveNewIdea(ideaTitle, ideaText, ideaPriority, ideaStatus) {
 function fetchLatestIdeas(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
-                document.querySelector(".ideas_list").innerHTML = this.responseText;
-            }
-            
+            const ideas = JSON.parse(this.responseText);
+            if (!ideas || ideas.length === 0) return;
+
+            const idea = ideas[0];
+            const isApplied = idea.is_implemented == 1;
+            const actionButtons = isApplied
+                ? "<div class='span_modpack'>applied</div>"
+                : `<button type='button' name='delete_idea' class='button small_button'><i class='fa fa-times'></i></button>
+                   <button type='button' name='to_apply' class='button small_button'><i class='fa fa-check'></i></button>`;
+
+            const html = `<div class="idea" idea-id="${idea.idea_id}">
+                <div class="idea_title">${idea.idea_title}</div>
+                <div class="idea_text">${idea.idea_text}</div>
+                <div class="idea_footer">
+                    <input type="hidden" name="idea_id" value="${idea.idea_id}">
+                    <input type="hidden" name="is_applied" value="${idea.is_implemented}">
+                    <div class="nr_of_comments">${idea.count_comments} comment(s)</div>
+                    <div class="idea_status">${idea.idea_status}</div>
+                    <div class="idea_priority">${idea.idea_priority}</div>
+                    <button type='button' name='see_idea_details' class='button small_button'><i class='fa fa-eye'></i></button>
+                    ${actionButtons}
+                </div>
+            </div>`;
+
+            document.querySelector('.ideas_list').insertAdjacentHTML('afterbegin', html);
         }
+    };
     xhttp.open("GET", "ideas_fetch_latest.php", true);
     xhttp.send();
 }
