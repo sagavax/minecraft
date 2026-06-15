@@ -250,6 +250,11 @@ function SaveComment(bugId, commentText) {
                 </div>`;
 
                 document.querySelector('.bug_list').insertAdjacentHTML('afterbegin', html);
+                const newBug = document.querySelector(`.bug[bug-id="${bug.bug_id}"]`);
+                newBug.style.backgroundColor = "#686143";
+                setTimeout(() => {
+                    newBug.style.backgroundColor = "#2C2A20";
+                }, 2000)
             }
         };
         xhttp.open("GET", "bugs_fetch_latest.php", true);

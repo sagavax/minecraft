@@ -226,6 +226,12 @@ function fetchLatestIdeas(){
             </div>`;
 
             document.querySelector('.ideas_list').insertAdjacentHTML('afterbegin', html);
+             document.querySelector('.ideas_list').insertAdjacentHTML('afterbegin', html);
+                const newBug = document.querySelector(`.idea[idea-id="${idea.idea_id}"]`);
+                newBug.style.backgroundColor = "#686143";
+                setTimeout(() => {
+                    newBug.style.backgroundColor = "#2C2A20";
+                }, 2000)
         }
     };
     xhttp.open("GET", "ideas_fetch_latest.php", true);
