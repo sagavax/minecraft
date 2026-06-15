@@ -222,9 +222,34 @@ function SaveComment(bugId, commentText) {
     function fetchLatestBugs(){
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-            // Check if the request is complete and was successful
             if (this.readyState == 4 && this.status == 200) {
-                document.querySelector(".bugs_list").innerHTML =+ this.responseText;
+                const bugs = JSON.parse(this.responseText);
+                if (!bugs || bugs.length === 0) return;
+
+                const bug = bugs[0];
+                const isFixed = bug.is_fixed == 1;
+                const fixedLabel = isFixed ? "<div class='span_fixed'>fixed</div>" : "";
+                const addComment = "<button type='button' title='add comment' name='add_comment' class='button small_button'><i class='fa fa-comment'></i></button>";
+                const actionButtons = isFixed
+                    ? "<button type='button' name='see_bug_details' title='bug details' class='button small_button'><i class='fa fa-eye'></i></button>"
+                    : `<button type='button' name='see_bug_details' title='bug details' class='button small_button'><i class='fa fa-eye'></i></button>
+                       <button type='button' name='move_to_ideas' title='move to ideas' class='button small_button'><i class='fas fa-chevron-right'></i></button>
+                       <button type='button' name='mark_fixed' title='mark as fixed' class='button small_button'><i class='fa fa-check'></i></button>
+                       <button type='button' name='bug_remove' title='remove bug' class='button small_button'><i class='fa fa-times'></i></button>
+                       ${addComment}`;
+
+                const html = `<div class="bug" bug-id="${bug.bug_id}">
+                    <div class="bug_title">${bug.bug_title} ${fixedLabel}</div>
+                    <div class="bug_text">${bug.bug_text}</div>
+                    <div class="bug_footer">
+                        <div class="bug_status ${bug.bug_status}">${bug.bug_status}</div>
+                        <div class="bug_priority ${bug.bug_priority}">${bug.bug_priority}</div>
+                        <div class="nr_of_comments">${bug.count_comments} comments</div>
+                        <div class="bug_action">${actionButtons}</div>
+                    </div>
+                </div>`;
+
+                document.querySelector('.bug_list').insertAdjacentHTML('afterbegin', html);
             }
         };
         xhttp.open("GET", "bugs_fetch_latest.php", true);
