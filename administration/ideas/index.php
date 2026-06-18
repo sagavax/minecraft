@@ -98,13 +98,11 @@
                       </div>
                </form>
               </div><!-- new idea-->
-              <h1>Dáta z API</h1>
+               <div class="ideas_list">
 
-             <div class="ideas_list">
-
-    <?php if ($errorMessage): ?>
-    <p class="error-message"><?= htmlspecialchars($errorMessage) ?></p>
-                <?php elseif ($data): ?>
+                <?php if ($errorMessage): ?>
+                <p class="error-message"><?= htmlspecialchars($errorMessage) ?></p>
+                    <?php elseif ($data): ?>
                     <?php foreach ($data as $idea):
                         $idea_id        = $idea['idea_id'];
                         $idea_title     = $idea['idea_title'];
@@ -145,10 +143,8 @@
                     <p>Žiadne nápady.</p>
                 <?php endif; ?>
 
-                </div><!-- ideas_list-->
-             
+                </div><!-- ideas_list-->             
             </div><!-- list-->
-
         </div><!--content-->
       </div><!--main_wrap-->
       
