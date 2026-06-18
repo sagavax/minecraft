@@ -6,8 +6,11 @@ $modpack_id = $_POST['modpack_id'];
 $video_id = $_POST['video_id'];
 
 
-$change_modpack = "UPDATE videos_modpacks SET modpack_id=$modpack_id WHERE video_id=$video_id";
+$change_modpack = "INSERT INTO videos_modpacks (video_id, modpack_id) VALUES ($video_id, $modpack_id) ON DUPLICATE KEY UPDATE modpack_id = VALUES(modpack_id)";
+//echo $change_modpack;
 $result = mysqli_query($link, $change_modpack) or die(mysqli_error($link));
+//success encode to json
+echo json_encode(["success" => true, "message" => "Modpack has been changed successfully", "modpackId" => $modpack_id]);
 
 
 //insert into diary
