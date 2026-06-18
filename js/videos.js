@@ -1368,8 +1368,8 @@ function addModforVideo(videoId, modId){
           document.querySelector(".info_message").style.display = "flex";
           document.querySelector(".info_message").style.backgroundColor = "#27ae60";
           document.querySelector(".info_message").style.color = "white";
+          document.querySelector(".info_message").style.height = "120px";
           document.querySelector(".info_message").innerHTML = "Mod has been added successfully!";
-          document.querySelector("button[name='close_modal']").style.display = "none";
           document.querySelector(".video_mods_alphabet").style.display = "none";
           document.querySelector(".video_mods_list").style.display = "none";
         }

@@ -442,7 +442,6 @@ function convertLinks($string) {
 		while ($row = mysqli_fetch_array($result)) {
 			   $tag_id= $row['tag_id'];
 			   $tag_name= $row['tag_name'];
-
 			   $tags .= "<button class='modal_tag' name='$tag_name' tag-id=$tag_id>$tag_name</button>";
 			   }
 	

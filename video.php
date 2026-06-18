@@ -102,7 +102,7 @@ while ($row = mysqli_fetch_array($result)) {
                 }
                  
                 echo "<div class='video_info'>";
-                    echo "<div class='video_tags_list'>".VideoTags($video_id)."<button name='add_new_tag' class='button small_button'><i class='fa fa-plus'></i></button></div></div>";
+                    echo "<div class='video_tags_list'>".VideoTags($video_id)."<button name='add_new_tag' class='button small_button'><i class='fa fa-plus'></i> Add tag(s)</button></div></div>";
                 
                 //echo "<div class='video_comm_info'></div>";
                 echo "<div class='video_comments_wrap'>";

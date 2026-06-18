@@ -320,7 +320,6 @@
 <dialog class="modal_modpack_mods">
     <div class="inner_modpack_mods_layer">
         <div class="info_message"></div>
-        <button type="button" class='close_inner_modal' name="close_modal"><i class='fa fa-times'></i></button>
         <div class="video_mods_alphabet">
             <?php 
                         foreach (range('A', 'Z') as $char) {
@@ -455,3 +454,10 @@
        </div>
        <div class="notification_message"></div>
    </dialog>    
+
+   <dialog class="modal_assigned_mods">
+       <div class="inner_assigned_mods">
+            <div class="assigned_mods"></div>
+       </div>
+       <div class="notification_message"></div>
+   </dialog>
