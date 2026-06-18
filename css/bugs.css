@@ -50,7 +50,7 @@
     padding: 5px;
     border-radius: 4px;
     color:#555;
-    border:1px #d1d1d1 solid;
+    border:1px #fdf376 solid;
 }
 
 .bug_status,.bug_priority {
@@ -62,7 +62,7 @@
     min-width: 100px;
     padding:6px 12px;
     height:38px;
-    border:1px #d1d1d1 solid;
+    border:1px #fdf376 solid;
     border-radius: 5px;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .bug_status {
-    border:1px #666 solid;
+    border:1px #fdf376 solid;
     
 }
 
@@ -106,7 +106,7 @@ dialog.show {
     height: 100%;
     display: flex;
         gap: 5px;
-        border: 1px #d1d1d1 solid;
+        border: 1px #fdf376 solid;
         padding: 10px;
         border-radius: 5px;
 }
@@ -125,7 +125,7 @@ dialog.show {
 
 .bug_added_date {
     background-color: #008000;
-    color: #fff;
+    color: #fdf376;
     padding: 8px 20px;
     border-radius: 0px;
     align-items: center;
@@ -139,7 +139,7 @@ dialog.show {
     height:40%;
     width: 50%;
     box-sizing: border-box;
-    background-color: #0f2031;
+    background-color: #121212;
     border: 2px #fdf376 solid;
     border-radius: 6px;        
 }
@@ -172,7 +172,7 @@ dialog.show {
 }
 
 .bug_comment, .bug_comment_new {
-    background: #0f2031;
+    background: #121212;
      color: #fdf376;
     border: 1px #fdf376 solid;
     box-sizing: border-box;
@@ -237,7 +237,7 @@ dialog.show {
 }
 
 .new_bug {
-    background: #0f2031;
+    background: #121212;
     display: flex;
     box-sizing: border-box;
     margin-bottom: 10px;
