@@ -18,7 +18,7 @@ body {
     font-family: 'Noto Sans', sans-serif;
     font-size: 16px;
     /* color: #2C2A20; */
-    color: white;
+    color: #fdf376;
     background-color: #0f2031;
     
     outline: none;
@@ -238,7 +238,7 @@ dialog {
 }
 
 .submenu a {
-    color: #fff;
+    color: #fdf376;
 }
 
 .content {
