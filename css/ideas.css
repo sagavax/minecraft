@@ -1,7 +1,7 @@
 /* Definovanie premenných pre farby */
 :root {
  /*    --color-low: black;
-    --color-medium-text: white;
+    --color-medium-text: #121212;
     --color-medium-bg: blue;
     --color-high-bg: orange;
     --color-critical-bg: red; */
@@ -66,7 +66,7 @@
     cursor: pointer;
     padding: 6px 12px;
     height:38px;
-    border:1px #666 solid;
+    border:1px #fdf376 solid;
 }
 
 .idea_comment_new form {
@@ -117,10 +117,6 @@ dialog ul li:hover {
     gap: 5px;
 }
 
-.idea_status {
-    border: 1px #666 solid;
-}
-
 .idea_status,
 .idea_priority {
     display: flex;
@@ -133,6 +129,7 @@ dialog ul li:hover {
     padding: 6px 12px;
     height: 38px;
     box-sizing: border-box;
+    border: 1px #fdf376 solid;
 }
 
 .idea_comm_action {
@@ -147,9 +144,9 @@ dialog ul li:hover {
     flex-direction: column;
     margin-bottom: 10px;
     box-sizing: border-box;
-    border: 1px #d1d1d1 solid;
+    border: 1px #fdf376 solid;
     padding: 3px;
-    background: #2C2A20;
+    background: #121212;
     min-height: 50px;
     /*border-radius: 5px;*/
 }
@@ -175,7 +172,7 @@ dialog ul li:hover {
     border: 1px #fdf376 solid;
     border-radius: 5px;
     background: #fdf376;
-    color: #0f2031;
+    color: #121212;
     font-weight: bold;
     cursor: pointer;
     width: 100px;
@@ -202,7 +199,7 @@ dialog ul li:hover {
 .new_idea form textarea {
     margin-top: 10px;
     width: 100%;
-    font-weight: bolder;
+    font-weight: normal;
 }
 
 .new_idea form select {
@@ -213,13 +210,9 @@ dialog ul li:hover {
     padding: 10px 15px;
 }
 
-.new_idea,
-.idea_comment_new  {
-    margin-left:0;
-}
 
  .new_idea, .idea_comment_new,.idea_comment {
-    background: #0f2031;
+    background: #121212;
      color: #fdf376;
     border: 1px #fdf376 solid;
     box-sizing: border-box;
@@ -229,6 +222,10 @@ dialog ul li:hover {
     flex-direction: column;
     gap: 5px;
     margin-left: 20px;
+}
+
+.new_idea {
+    margin-left:0;
 }
 
  .idea_top_banner{
@@ -246,7 +243,7 @@ dialog ul li:hover {
 }
 
 .ideas_list, .ideas_comment_list {
-    margin-top: 30px;
+    margin-top: 50px;
     width: 100%;
     height: auto;
 }
