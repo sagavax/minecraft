@@ -25,6 +25,7 @@ const modal_new_video_tags_closeButton = document.querySelector(".modal_new_tags
 
 
 const modal_change_modpack = document.querySelector(".modal_change_modpack");
+const modal_change_mod = document.querySelector(".modal_change_mod");
 
 
 const selectElement =document.querySelector('select[name="modpack_vanila"]');
@@ -152,14 +153,13 @@ selectElement.addEventListener("change", (event) => {
 });
 
 
-
+//add mod for video
 video_mods_list.addEventListener("click", function(event){
     if(event.target.tagName==="BUTTON"){
         const videoId = sessionStorage.getItem("video_id");
         const modId = event.target.getAttribute("mod-id");
         console.log(modId);
-        addModforVideo(videoId, modId);
-        
+        addModforVideo(videoId, modId);        
     }
 });
 
@@ -255,47 +255,47 @@ modal_modpack_input.addEventListener("keydown", function(event) {
     })
 
 
-        modal_new_video_tags.addEventListener("click", function(event){
-            if(event.target.tagName === "BUTTON"){
-                console.log(event.target.name);
+    modal_new_video_tags.addEventListener("click", function(event){
+        if(event.target.tagName === "BUTTON"){
+            console.log(event.target.name);
+            
+            if(event.target.name === "add_new_tag"){
+                const tagId = event.target.getAttribute("tag-id");
+                const videoId = sessionStorage.getItem("video_id");
                 
-                if(event.target.name === "add_new_tag"){
-                    const tagId = event.target.getAttribute("tag-id");
-                    const videoId = sessionStorage.getItem("video_id");
-                    
-                    console.log(tagId, videoId);
-                    
-                    // Kontrola duplicity
-                    if(existingVideoTags.includes(tagId)){
-                        alert("Tag already exists!");
-                        return;
-                    }
-                    
-                    // Ulož tag
-                    const selector = '.video_tags_wrap[video-id="' + videoId + '"]';
-
-                    //
-                    document.querySelector(selector).insertAdjacentHTML("afterbegin", '<button class="tag_button" tag-id="'+tagId+'">'+event.target.innerText+'</button>');
-                    savetoVideoTagList(tagId, videoId);
-                    
-                    // Pridaj do array pre ďalšie kontroly v tejto session
-                    existingVideoTags.push(tagId);
-                    
-                    // Odstráň z modálneho zoznamu
-                    document.querySelector(".modal_new_tags .tags_list").removeChild(event.target);
-                    
-                } else if(event.target.name === "letter"){ // ← else if
-                    const letterButton = event.target.innerText;
-                    sortVideosTagsByLetters(letterButton);
-                } else if (event.target.name === "create_tag"){
-                    if(modal_new_video_tags_input.value==""){
-                        alert("Input cannot be empty!");
-                        return;
-                    }
-                    createTag(modal_new_video_tags_input.value);
+                console.log(tagId, videoId);
+                
+                // Kontrola duplicity
+                if(existingVideoTags.includes(tagId)){
+                    alert("Tag already exists!");
+                    return;
                 }
+                
+                // Ulož tag
+                const selector = '.video_tags_wrap[video-id="' + videoId + '"]';
+
+                //
+                document.querySelector(selector).insertAdjacentHTML("afterbegin", '<button class="tag_button" tag-id="'+tagId+'">'+event.target.innerText+'</button>');
+                savetoVideoTagList(tagId, videoId);
+                
+                // Pridaj do array pre ďalšie kontroly v tejto session
+                existingVideoTags.push(tagId);
+                
+                // Odstráň z modálneho zoznamu
+                document.querySelector(".modal_new_tags .tags_list").removeChild(event.target);
+                
+            } else if(event.target.name === "letter"){ // ← else if
+                const letterButton = event.target.innerText;
+                sortVideosTagsByLetters(letterButton);
+            } else if (event.target.name === "create_tag"){
+                if(modal_new_video_tags_input.value==""){
+                    alert("Input cannot be empty!");
+                    return;
+                }
+                createTag(modal_new_video_tags_input.value);
             }
-        });
+        }
+    });
 
       modal_new_video_tags_input.addEventListener("input", function(event){
             TagAutocomplete(event.target.value);
@@ -428,6 +428,48 @@ modal_modpack_input.addEventListener("keydown", function(event) {
         }
     });
 
+
+    document.querySelector('.modal_new_video form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    const formData = new FormData(this); // Create a FormData object from the form
+
+    fetch('videos_save.php', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json()) // Assuming the response is JSON
+    .then(data => {
+        
+        // Display your message based on the response
+        ShowMessage("Video added successfully!");
+        
+        // Read session values before they are cleared
+        const selectedModpackVanilaVal = document.querySelector(".modal_new_video select[name='modpack_vanila']").value;
+        let selectedModpackNameVal;
+        if(selectedModpackVanilaVal === "0"){
+            selectedModpackNameVal = "Vanilla Minecraft";
+        } else {
+            selectedModpackNameVal = sessionStorage.getItem("selected_modpack");
+        }
+        const selectedModNameVal = sessionStorage.getItem("selected_mod");
+
+        // Fetch and display the latest video in the list
+        fetchLatestVideo(selectedModpackNameVal, selectedModNameVal);
+
+        // Clear the form fields and reset the form
+        clearNewVideoform();
+
+        //remove selected mod and modpack from session storage
+        sessionStorage.removeItem("selected_modpack");
+        sessionStorage.removeItem("selected_mod");
+        
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        //document.getElementById('message').innerText = 'An error occurred';
+    });
+});
 
 
    function search_the_video(text) {
@@ -1025,47 +1067,6 @@ function ShowMessage(text){
 
 
 //create new video
-document.querySelector('.modal_new_video form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent the default form submission
-
-    const formData = new FormData(this); // Create a FormData object from the form
-
-    fetch('videos_save.php', {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json()) // Assuming the response is JSON
-    .then(data => {
-        
-        // Display your message based on the response
-        ShowMessage("Video added successfully!");
-        
-        // Read session values before they are cleared
-        const selectedModpackVanilaVal = document.querySelector(".modal_new_video select[name='modpack_vanila']").value;
-        let selectedModpackNameVal;
-        if(selectedModpackVanilaVal === "0"){
-            selectedModpackNameVal = "Vanilla Minecraft";
-        } else {
-            selectedModpackNameVal = sessionStorage.getItem("selected_modpack");
-        }
-        const selectedModNameVal = sessionStorage.getItem("selected_mod");
-
-        // Fetch and display the latest video in the list
-        fetchLatestVideo(selectedModpackNameVal, selectedModNameVal);
-
-        // Clear the form fields and reset the form
-        clearNewVideoform();
-
-        //remove selected mod and modpack from session storage
-        sessionStorage.removeItem("selected_modpack");
-        sessionStorage.removeItem("selected_mod");
-        
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        //document.getElementById('message').innerText = 'An error occurred';
-    });
-});
 
 
 
@@ -1091,7 +1092,7 @@ function fetchLatestVideo(selectedModpackName, selectedModName) {
                         <button name="delete_video" type="button" class="button app_badge" video-id="${data.video_id}"><i class="fas fa-times"></i></button><button class='button app_badge video_edition'>${data.video_edition}</button>
                     </div>
                     <div class='video_tags_wrap' video-id="${data.video_id}"><div class='videos_tags'></div><button class='button small_button' name='new_tag' title='Add new tag(s)'><i class='fa fa-plus'></i></button></div>
-                    <div class='video_modpack_information_wrap'><div class='video_modpack_info'><button class='button yellow_button' name='change_modpack' title='change modpack'>${selectedModpackName !== null ? selectedModpackName : '<i class="fa fa-plus"></i> Add modpack'}</button></div><div class='video_mods'><button class='button yellow_button' name='add_mod' title='add mod(s)'>${selectedModName !== null ? selectedModName : '<i class="fa fa-plus"></i> Add mod(s)'}</button></div></div>
+                    <div class='video_modpack_information_wrap'><div class='video_modpack_info'><button class='button yellow_button' name='change_modpack' title='change modpack'>${selectedModpackName !== null ? selectedModpackName : '<i class="fa fa-plus"></i> Add modpack'}</button></div><div class='video_mods'><button class='button yellow_button' name='change_mod' title='add mod(s)'>${selectedModName !== null ? selectedModName : '<i class="fa fa-plus"></i> Add mod(s)'}</button></div></div>
                 </div>
                 <div class='video_banner_list'></div>
                 <div class='video_action_play'>
@@ -1363,8 +1364,22 @@ function addModforVideo(videoId, modId){
     xhttp.onreadystatechange = function() {
         // Check if the request is complete and was successful
         if (this.readyState == 4 && this.status == 200) {
-         ShowMessage("Mod has been added successfully!");
+         //ShowMessage("Mod has been added successfully!");
+          document.querySelector(".info_message").style.display = "flex";
+          document.querySelector(".info_message").style.backgroundColor = "#27ae60";
+          document.querySelector(".info_message").style.color = "white";
+          document.querySelector(".info_message").innerHTML = "Mod has been added successfully!";
+          document.querySelector("button[name='close_modal']").style.display = "none";
+          document.querySelector(".video_mods_alphabet").style.display = "none";
+          document.querySelector(".video_mods_list").style.display = "none";
         }
+
+        setTimeout(function() {
+            document.querySelector(".info_message").style.display = "none";
+            document.querySelector(".video_mods_alphabet").style.display = "flex";
+            document.querySelector(".video_mods_list").style.display = "flex";
+            document.querySelector("button[name='close_modal']").style.display = "flex";
+        }, 2000);
     };
     xhttp.open("POST", "videos_mods_add_mod.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
