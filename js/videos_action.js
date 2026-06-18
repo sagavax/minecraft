@@ -125,9 +125,9 @@ videosContainer.addEventListener('click', function(event) {
                 console.log("change modpack");
                 document.querySelector(".modal_change_modpack").showModal();
                 break;
-            case 'add_mod':
+            case 'change_mod':
                 //const videoId = sessionStorage.getItem("video_id"); // ← OPRAV: bolo to AŽ za break sessionStorage.setItem("video_id", videoId);
-                console.log("add mod");
+                console.log("change / add mod");
                 //check what typpe of game Vanilla or modded it is.
                 console.log(sessionStorage.getItem("video_id")); // ← OPRAV: bolo to AŽ za break {sessionStorage.getItem("video_id") 
                 if(document.querySelector(`.video[video-id='${sessionStorage.getItem("video_id")}'] .video_modpack_info button[name='change_modpack']`).innerText=="Vanilla Minecraft"){
