@@ -319,7 +319,8 @@
 
 <dialog class="modal_modpack_mods">
     <div class="inner_modpack_mods_layer">
-        <button type="button" class='close_inner_modal'><i class='fa fa-times'></i></button>
+        <div class="info_message"></div>
+        <button type="button" class='close_inner_modal' name="close_modal"><i class='fa fa-times'></i></button>
         <div class="video_mods_alphabet">
             <?php 
                         foreach (range('A', 'Z') as $char) {
@@ -337,7 +338,6 @@
                         $mod_name = $row['cat_name'];
                         $mod_id = $row['cat_id']; 
                         echo "<button mod-id=$mod_id class='button small_button'>$mod_name</button>";
-
                     }
 
                 ?>
