@@ -290,11 +290,15 @@ function GetVideoMods($video_id) {
 	//echo $get_video_modpack;
 	$result=mysqli_query($link, $get_video_mods);
 	if ($result && mysqli_num_rows($result) > 0) {
-		while ($row = mysqli_fetch_array($result)) {
+		if(mysqli_num_rows($result) == 1){
+			$row = mysqli_fetch_array($result);
 			$mod_name = $row['cat_name'];
 			$mod_id = $row['cat_id'];
-			$mod_list .= "<button class='button yellow_button' name='change_mod' mod-id=$mod_id>$mod_name</button>";
-		}
+			$mod_list = "<button class='button yellow_button' name='change_mod' mod-id=$mod_id>$mod_name</button>";
+		} if(mysqli_num_rows($result) > 1){
+			$num_of_mods = mysqli_num_rows($result);
+			$mod_list = "<button class='button yellow_button' name='change_mod' >$num_of_mods mods</button>";
+		}		
 	} else {
 		$mod_list = "<button class='button yellow_button' name='change_mod'><i class='fa fa-plus'></i> Add mod(s)</button>"; // Alebo nechaj prázdne: $mod_list = "";	
 	}	
