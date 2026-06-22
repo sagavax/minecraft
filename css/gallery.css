@@ -325,3 +325,41 @@ button[name="save_description"] {
   font-style: italic;
   pointer-events: none;
 }
+
+
+.no_gallery_found {
+    justify-content: flex-start;
+    border: 0px solid #d1d1d1;
+    gap: 10px;
+}
+
+
+.modal_new_gallery,.modal_change_gallery,.modal_add_news {
+    width:40%;
+    height:300px;
+    top:30%;
+    left: 30%;
+    position: fixed;
+    z-index: 100;
+}
+
+.modal_change_gallery {
+    border-radius: 5px;
+    border: 1px #d1d1d1 solid;
+}
+
+.modal_change_gallery input {
+    margin-top:35px;
+}
+
+
+.modal_change_gallery button {
+    background-color: #fdf376;
+    border:1px #fdf376 solid;
+}
+
+.modal_change_gallery button[name="close_gallery_modal"] {
+    color:#fdf376;
+    background-color: #0f2031;
+    border-color: #0f2031;
+}
