@@ -1057,65 +1057,8 @@ input[name="modpack_index_id"]::placeholder {
 }
 
 
-.no_gallery_found {
-    justify-content: flex-start;
-    border: 0px solid #d1d1d1;
-    gap: 10px;
-}
-
-
-.modal_new_gallery,.modal_change_gallery,.modal_add_news {
-    width:40%;
-    height:300px;
-    top:30%;
-    left: 30%;
-    position: fixed;
-    z-index: 100;
-}
-
-.modal_change_gallery {
-    border-radius: 5px;
-    border: 1px #d1d1d1 solid;
-}
-
-.modal_change_gallery input {
-    margin-top:35px;
-}
-
-
-.modal_change_gallery button {
-    background-color: #fdf376;
-    border:1px #fdf376 solid;
-}
-
-.modal_change_gallery button[name="close_gallery_modal"] {
-    color:#fdf376;
-    background-color: #0f2031;
-    border-color: #0f2031;
-}
-
 /* .modal_minecraft_edition, .inner_new_video_layer, .inner_minecraft_edition — moved to videos.css */
 
-
-.video_details {
-   border: 1px #d1d1d1 solid;
-    background: #fff;
-    display: flex;
-    border-radius: 4px;
-    padding: 15px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-    flex-direction: column;
-}
-
-
-.video_list_details {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    border-radius: 0px;
-    box-sizing: border-box;
-    padding-left:10px;
-}
 
 
 
@@ -1231,6 +1174,7 @@ input[name="modpack_index_id"]::placeholder {
     display: flex;
     margin-bottom: 20px;
     margin-left:15px;
+    gap: 10px;
 }
 
 .comment_delete {
