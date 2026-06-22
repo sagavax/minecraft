@@ -132,13 +132,20 @@ image_description.addEventListener("click", function(event){
 
 image_description.addEventListener("blur", function(event){
     var new_description = document.querySelector(".image_description").innerText;
+    if(new_description==""){
+      console.log("no change");
+      document.querySelector(".notification_message").style.display = "none";
+      return;
+    }
     if(old_description==new_description){
       //ziadna zmena. nic sa nebude ukladat
       console.log("no change");
+      document.querySelector(".notification_message").style.display = "none";
       return;  
     } else {
-    document.querySelector(".notification_message").style.display = "none";  
-    console.log("image_description saved");
+    document.querySelector(".notification_message").style.display = "none"; 
+    //ShowMessage("Description saved!"); 
+    //console.log("image_description saved");
     const pictureId = sessionStorage.getItem("picture_id");
     image_description.removeAttribute("contenteditable");
     saveImageDescrition(pictureId,new_description);
@@ -367,26 +374,6 @@ saveImageName(image_name);
     xhttp.send(data);
  }
 
- function saveImageDescription(pictureId, new_description) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          alert("Popis obrázku uložený!");
-      } else if (this.readyState == 4) {
-          // Ošetrenie chýb pri neúspešnej požiadavke
-          console.error("Chyba pri ukladaní popisu: " + this.status);
-      }
-  };
-
-  // Opravený preklep z "nre_description" na "new_description"
-  var data = "image_id=" + pictureId + "&description=" + encodeURIComponent(new_description);
-
-  // Odoslanie POST požiadavky
-  xhttp.open("POST", "image_save_description.php", true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send(data);
-}
-
 
  function addTagToImage(tagId){
    var xhttp = new XMLHttpRequest();
@@ -426,7 +413,7 @@ function saveImageDescrition(pictureId, new_description) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-          alert("Popis obrázku uložený!");
+          ShowMessage("Description of the image has been saved!");
       } else if (this.readyState == 4) {
           // Ošetrenie chýb pri neúspešnej požiadavke
           console.error("Chyba pri ukladaní popisu: " + this.status);
