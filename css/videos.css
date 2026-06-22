@@ -270,6 +270,26 @@
     border: 1px #fdf376 solid;
 }
 
+
+   .video_mods_list {
+    margin-top:40px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    display: flex;  
+    gap: 10px;
+    padding: 5px;
+   }
+
+
+.modal_new_tags input {
+    margin-top:50px;
+}
+
+.modal_new_tags button {
+    background-color:#fdf376;
+    border: 1px #fdf376 solid;
+}
+
 .inner_minecraft_edition button {
   margin-top: 10px;
   margin-right: 10px;
@@ -378,4 +398,246 @@
     font-size: 40px;
     font-family: 'Noto Sans', sans-serif;
     font-weight: bold;
+}
+
+ .videos_list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+
+.video {
+    display: flex;
+    height: 260px;
+    padding: 0;
+    margin-top:10px;
+    aspect-ratio: 16 / 9;
+    box-sizing: border-box;
+}
+
+
+.video_body {
+    box-sizing: border-box;
+    padding:10px;
+    height: 100%;
+    width: 80%;
+}
+
+.video_banner_list {
+    width: 10%;
+}
+
+.video_action_play {
+    position: relative;
+    height: 100%;
+    width: 10%;
+    background: #fdf376;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.video_play_button {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 6px solid white;
+    background: #fdf376;
+    position: absolute;
+    top: 75px;
+    left: -45px;
+    transition-duration: 0.5s;
+}
+
+
+.video_play_button:hover {
+    background: #fdf376;
+}
+
+.video_play_button div {
+    color: #fff;
+    font-size: 30px;
+    position: relative;
+    height: 100px;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.video_play_button div a {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    color: #fff;
+    
+}
+
+.video_play_button div a i {
+ margin-top:-12px;
+ font-size: 40px;
+}
+
+
+.video_thunb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 400px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    }
+
+/* .video_card_thumb — moved to videos.css */
+
+
+.video_modpacks {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: white;
+    border: 1px #d1d1d1 solid;
+}
+
+.video_modpacks header {
+    width: 100%;
+    height:45px;
+    display: flex;
+    box-sizing: border-box;
+    padding:5px;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.video_modpacks header button {
+    height: 35px;
+    width: 35px;
+}
+
+
+.video_modpacks main,.video_modpack_information_wrap {
+    display: flex;
+    width: 100%;
+}
+
+.video_modpacks main {
+    flex-wrap: wrap;
+}
+
+.video_modpack_information_wrap {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.video_modpack_information_wrap button {
+    border-radius: 5px;
+    min-height: 40px;
+    font-size: large;
+}
+
+.video_modpack_info,.video_mods {
+    display: flex;
+    /* border: 1px #ccc solid; */    
+    justify-content: center;
+    align-items: center;
+    gap:5px
+}
+
+.video_modpack_info button {
+    height: 50px;
+}
+
+.video_mods {
+    margin-left: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.video_modpacks button {
+    margin: 5px;
+    height: 45px;
+    display: flex;
+    width: auto;
+
+}
+
+
+.video_thunb img {
+    width: 100%;
+    height: 100%; /* Maintain the aspect ratio of the image */
+    display: block;
+    margin: 0 auto;
+}
+
+.video_name {
+    height: 65%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+/* .video_card_name — moved to videos.css */
+
+.video_name {
+    margin-top:10px;
+    height:50px;
+    margin-bottom: 10px;
+}
+
+.video_name span {
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.video_name {
+    font-weight: bold;
+}
+
+.video_details_name_wrap {
+    display: flex;
+    margin-bottom:10px;
+}
+
+.video_details_name_wrap button[name="save_chnages"]{
+    display:none
+}
+
+.video_details_name {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    font-weight: bold;
+}
+
+
+.video_details {
+   border: 1px #d1d1d1 solid;
+    background: #fff;
+    display: flex;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+}
+
+
+.video_list_details {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    border-radius: 0px;
+    box-sizing: border-box;
+    padding-left:10px;
 }
