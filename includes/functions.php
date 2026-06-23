@@ -22,7 +22,7 @@ function asciiOnly(string $text): string {
     return preg_replace('/[^\x20-\x7E]/', '', $text);
 }
 
-function GetModListModpackIndex($modpack_id) {
+function GetModListModpackIndex(int$modpack_id) {
 	global $link;
 	//get modpack index id 
 	$modpack_index_id = GetModPackIndexID($modpack_id);
@@ -42,7 +42,7 @@ function GetModListModpackIndex($modpack_id) {
 }
 
 
-function GetModPackIndexID($modpack_id){
+function GetModPackIndexID(int $modpack_id){
 	global $link;
 	$get_modpack_index_id = "SELECT modpack_index_id FROM modpacks WHERE modpack_id = $modpack_id";
 	$result = mysqli_query($link, $get_modpack_index_id) or die(mysqli_error($link));
@@ -52,7 +52,7 @@ function GetModPackIndexID($modpack_id){
 }
 
 
-function GetNotesCoordinates($note_id) {
+function GetNotesCoordinates(int $note_id) {
 	global $link;
 	$get_coordinates = "SELECT coord_x, coord_y, coord_z FROM notes_coordinates WHERE note_id = $note_id";
 	$result = mysqli_query($link, $get_coordinates) or die(mysqli_error($link));
@@ -70,7 +70,7 @@ function GetNotesCoordinates($note_id) {
 			
 }
 
-function GetInfluencerName($influencer_id){
+function GetInfluencerName(int $influencer_id){
 	global $link;
 	$sql = "SELECT influencer_name FROM influencers WHERE id = $influencer_id";
 	$result = mysqli_query($link, $sql) or die(mysqli_error($link));
@@ -105,7 +105,7 @@ function GetCountInfluencers() {
 }
 
 
-function GetImageGallery($image_id) { 
+function GetImageGallery(int $image_id) { 
 	global $link;
 	$get_gallery = "SELECT a.gallery_id, b.gallery_name 
 	                FROM pictures_gallery_images a, picture_galleries b 
@@ -120,7 +120,7 @@ function GetImageGallery($image_id) {
 	}
 }
 
-function GetImageGalleryName($image_id) { 
+function GetImageGalleryName(int $image_id) { 
 	global $link;
 	$get_gallery = "SELECT a.gallery_id, b.gallery_name 
 	                FROM pictures_gallery_images a, picture_galleries b 
@@ -151,7 +151,7 @@ function GetAllImageGalleries(){
 	echo $gallery;
 }
 
-function GetCountImagesInGallery($gallery_id){
+function GetCountImagesInGallery(int $gallery_id){
 	global $link;
 	$query = "SELECT count(*) as count from pictures_gallery_images where gallery_id=$gallery_id";
 	$result=mysqli_query($link, $query) or die(mysqli_error($link));
@@ -218,7 +218,7 @@ function linkVideoToModpack(mysqli $link, int $video_id, int $modpack_id): void 
     }
 }
 
-function GetImageModpack($image_id) {
+function GetImageModpack(int $image_id) {
 	global $link;
 	$get_image_modpack = "SELECT b.modpack_id, b.modpack_name from pictures_modpacks a, modpacks b WHERE image_id = $image_id and a.modpack_id = b.modpack_id";
 	//echo $get_image_modpack;
@@ -267,7 +267,7 @@ function GetListModpacks() {
 }
 
 
-function GetVideoName($video_id) {
+function GetVideoName(int $video_id) {
 	global $link;
 	//$mod_list="";
 	$get_video_name = "SELECT video_title from videos WHERE video_id = $video_id";
@@ -283,7 +283,7 @@ function GetVideoName($video_id) {
 
 
 
-function GetVideoMods($video_id) {
+function GetVideoMods(int $video_id) {
 	global $link;
 	$mod_list="";
 	$get_video_mods = "SELECT b.cat_id, b.cat_name from videos_mods a, mods b WHERE video_id = $video_id and a.cat_id = b.cat_id";
@@ -294,13 +294,13 @@ function GetVideoMods($video_id) {
 			$row = mysqli_fetch_array($result);
 			$mod_name = $row['cat_name'];
 			$mod_id = $row['cat_id'];
-			$mod_list = "<button class='button yellow_button' name='change_mod' mod-id=$mod_id>$mod_name</button>";
+			$mod_list = "<button class='button yellow_button' name='change_mod' mod-count=1 >$mod_name</button>";
 		} if(mysqli_num_rows($result) > 1){
 			$num_of_mods = mysqli_num_rows($result);
-			$mod_list = "<button class='button yellow_button' name='change_mod' >$num_of_mods mods</button>";
+			$mod_list = "<button class='button yellow_button' name='change_mod' mod-count=$num_of_mods >$num_of_mods mods</button>";
 		}		
 	} else {
-		$mod_list = "<button class='button yellow_button' name='change_mod'><i class='fa fa-plus'></i> Add mod(s)</button>"; // Alebo nechaj prázdne: $mod_list = "";	
+		$mod_list = "<button class='button yellow_button' name='change_mod' mod-count=0><i class='fa fa-plus'></i> Add mod(s)</button>"; // Alebo nechaj prázdne: $mod_list = "";	
 	}	
 	return $mod_list;
 }
@@ -308,7 +308,7 @@ function GetVideoMods($video_id) {
 
 
 
-function GetVideoModpack($video_id) {
+function GetVideoModpack(int $video_id) {
 	global $link;
 	$get_video_modpack = "SELECT b.modpack_id, b.modpack_name from videos_modpacks a, modpacks b WHERE video_id = $video_id and a.modpack_id = b.modpack_id";
 	//echo $get_video_modpack;
@@ -326,7 +326,7 @@ function GetVideoModpack($video_id) {
 }
 
 
-function GetAttachedImages($note_id) {
+function GetAttachedImages(int $note_id) {
     global $link;
     
     $query = "SELECT COUNT(*) as images_count 
@@ -356,7 +356,7 @@ function GetCountAllBasesImages(){
 }
 
 	
-function convertLinks($string) {
+function convertLinks(string $string) {
     // Convert YouTube links
     $string = preg_replace(
         '#https?://youtu\.be/([a-zA-Z0-9_-]+)#i',
@@ -455,12 +455,12 @@ function convertLinks($string) {
 
 
 
-  function GetLastestRecVideoTags($video_id){
+  function GetLastestRecVideoTags(int $video_id){
   	global $link;
   	$latest_rec = "SELECT a.video_id, a.tag_id, b.tag_name from video_tags a, tags_list b where a.video_id=$video_id and a.tag_id = b.tag_id ORDER BY a.video_id DESC LIMIT 1";
   }	
 
-  function GetCountVideoTags($video_id){
+  function GetCountVideoTags(int $video_id){
   	global $link;
   	    //get total numbers of records
   	    $tags ="";
@@ -478,7 +478,7 @@ function convertLinks($string) {
   }
 
 
-  function GetImageTagListArray($picture_id) {
+  function GetImageTagListArray(int $picture_id) {
     global $link;
 
     // Optimalizovaný SQL dopyt
@@ -497,7 +497,7 @@ function convertLinks($string) {
     return json_encode($tags_array);
 }
 
-function GetImageTagListByLetter($letter){
+function GetImageTagListByLetter(string $letter){
 
 	global $link;
 
@@ -516,7 +516,7 @@ function GetImageTagListByLetter($letter){
 }
 
 
- function GetImageTags($picture_id) {
+ function GetImageTags(int $picture_id) {
 	global $link;
 	$count_all ="SELECT a.image_id, a.tag_id, b.tag_name from pictures_tags a, tags_list b where a.image_id=$picture_id and a.tag_id = b.tag_id";
 		$count_result=mysqli_query($link, $count_all);
@@ -538,7 +538,7 @@ function GetImageTagListByLetter($letter){
 
 
 
-  function GetImageTagList($picture_id) {
+  function GetImageTagList(int $picture_id) {
 	global $link;
 	$count_all ="SELECT a.image_id, a.tag_id, b.tag_name from pictures_tags a, tags_list b where a.image_id=$picture_id and a.tag_id = b.tag_id";
 		$count_result=mysqli_query($link, $count_all);
@@ -562,7 +562,7 @@ function GetImageTagListByLetter($letter){
   }
 
 
-  function GetVideoTagList($video_id) {
+  function GetVideoTagList(int $video_id) {
 	global $link;
 	$count_all ="SELECT a.video_id, a.tag_id, b.tag_name from video_tags a, tags_list b where a.video_id=$video_id and a.tag_id = b.tag_id";
 		$count_result=mysqli_query($link, $count_all);
@@ -634,7 +634,7 @@ function GetImageTagListByLetter($letter){
  
 } */
 
-function VideoTags($video_id){
+function VideoTags(int $video_id){
   	global $link;
   	    $tags ="";
   	 	
@@ -660,7 +660,7 @@ function VideoTags($video_id){
 
 
 
-  function getYouTubeVideoId($url) {
+  function getYouTubeVideoId(string $url) {
             $parsedUrl = parse_url($url);
             
             if (isset($parsedUrl['query'])) {
@@ -711,7 +711,7 @@ function GetCountLogRecords(){
 }
 
 
-function GetBaseNameByID($base_id){
+function GetBaseNameByID(int $base_id){
 	global $link;
 	$query="SELECT base_id, base_name from vanila_bases WHERE base_id=$base_id";
 	$result=mysqli_query($link, $query);
@@ -724,7 +724,7 @@ function GetBaseNameByID($base_id){
 
 
 
-function GetModName($mod_id) {
+function GetModName(int $mod_id) {
 	global $link;
 	$mod_name="";
 	if($mod_id==0){
@@ -754,7 +754,7 @@ function GetModpackImage(){
 
 
 
-function GetModPackName($modpack_id){
+function GetModPackName(int $modpack_id){
 	global $link;
 	$modpack_name="";
 	$get_modpack_name="SELECT modpack_name from modpacks where modpack_id=$modpack_id";
@@ -802,7 +802,7 @@ function GetCountIdeas(){
 	return $nr_of_ideas;	
 }
 
-function GetCountIdeaComments($idea_id){
+function GetCountIdeaComments(int $idea_id){
 	  $currAddress = $_SERVER['SERVER_NAME'];
       if($currAddress == 'localhost') {
           $api_host = "http://localhost/bugbuster";
@@ -854,7 +854,7 @@ function GetCountBugs(){
 }
 
 
-function GetCountBugComments($bug_id){
+function GetCountBugComments(int $bug_id){
 	 $currAddress = $_SERVER['SERVER_NAME'];
       if($currAddress == 'localhost') {
           $api_host = "http://localhost/bugbuster";
@@ -896,7 +896,7 @@ function GetCountBugComments($bug_id){
 }
 
 
-function GetCountModpackMods($modpack_id){
+function GetCountModpackMods(int $modpack_id){
 	global $link;
 	$query = "SELECT COUNT(*) as nr_of_mods from modpack_mods WHERE modpack_id=$modpack_id";
 	$result=mysqli_query($link, $query);
@@ -907,7 +907,7 @@ function GetCountModpackMods($modpack_id){
 
 
 
-function GetModList($modpack_id){
+function GetModList(int $modpack_id){
 	global $link;
 	$list="<ul>";
 	$sql="SELECT * from modpack_mods where modpack_id=$modpack_id";
@@ -922,7 +922,7 @@ function GetModList($modpack_id){
 	//   return $mod;
 }
 
-function createThumbnail($image_name,$new_width,$new_height,$uploadDir,$moveToDir)
+function createThumbnail(string $image_name,int $new_width,int $new_height,string $uploadDir,string $moveToDir)
 {
     $path = $uploadDir . '/' . $image_name;
 
@@ -932,7 +932,7 @@ function createThumbnail($image_name,$new_width,$new_height,$uploadDir,$moveToDi
         $src_img = imagecreatefrompng($path);
     }
     if($mime['mime']=='image/jpg' || $mime['mime']=='image/jpeg' || $mime['mime']=='image/pjpeg') {
-        $src_img = imagecreatefromjpeg($path);
+       $src_img = imagecreatefromjpeg($path);
     }   
 
     $old_x          =   imageSX($src_img);
@@ -980,7 +980,7 @@ function createThumbnail($image_name,$new_width,$new_height,$uploadDir,$moveToDi
 
 //https://www.9lessons.info/2014/07/ajax-upload-and-resize-image-with-php.html
 
-function compressImage($ext,$uploadedfile,$path,$actual_image_name,$newwidth)
+function compressImage(string $ext,string $uploadedfile,string $path,string $actual_image_name,int $newwidth)
 {
 
 if($ext=="jpg" || $ext=="jpeg" )
@@ -1016,7 +1016,7 @@ function is_category_in_sync($cat_id){
 
 
 
-function modpacks ($module){
+function modpacks(string $module){
 	global $link;
 	echo "<ul>";
 	if($module=="tasks"){
@@ -1026,7 +1026,7 @@ function modpacks ($module){
 		$sql="SELECT DISTINCTROW a.modpack_id, b.modpack_name from notes a, modpacks b where a.modpack_id=b.modpack_id";
 	}
 
-	$result=mysqli_query($link, $sql);
+	$result=mysqli_query($link,$sql);
 	while($row = mysqli_fetch_array($result)) {
 		$modpack_name=$row['modpack_name'];
 		$modpack_id=$row['modpack_id'];
@@ -1081,7 +1081,7 @@ function uuid() {
  }
 
 
- function GetNrOfComments($video_id){
+ function GetNrOfComments(int $video_id){
 	 global $link;
 	 $sql ="SELECT COUNT(*) as nr_of_comments from video_comments where video_id=".$video_id;
 	 $result=mysqli_query($link, $sql);
@@ -1091,7 +1091,7 @@ function uuid() {
     
  }
 
-function  GetNrOfImageComments($picture_id){
+function  GetNrOfImageComments(int $picture_id){
 	global $link;
 	$sql ="SELECT COUNT(*) as nr_of_comments from picture_comments where pic_id=$picture_id";
 	$result=mysqli_query($link, $sql);
@@ -1120,7 +1120,7 @@ function  GetNrOfImageComments($picture_id){
 	return $nr_notes;
   }  
 
-	function GetVanillaBaseName($base_id){
+	function GetVanillaBaseName(int $base_id){
 		global $link;
 		$sql="SELECT base_name from vanila_bases where base_id=$base_id";
 		$result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
@@ -1333,7 +1333,7 @@ function  GetNrOfImageComments($picture_id){
 	return $max_id;
   }
 
-  function GetCountBaseTasks($base_id){
+  function GetCountBaseTasks(int $base_id){
 	global $link;  
 	  $nr_tasks = "SELECT COUNT(*) as nr_base_tasks from vanila_base_tasks WHERE base_id=".$base_id;
 	  $result = mysqli_query($link, $nr_tasks) or die("MySQLi ERROR: ".mysqli_error($link));
@@ -1343,7 +1343,7 @@ function  GetNrOfImageComments($picture_id){
 	  return $nr_base_tasks;
   }
 
-  function GetCountBaseNotes($base_id){
+  function GetCountBaseNotes(int $base_id){
 	global $link;
 	$sql="SELECT count(*) as nr_of_notes from vanila_base_notes where base_id=$base_id";
 	//echo $sql;
@@ -1354,7 +1354,7 @@ function  GetNrOfImageComments($picture_id){
 	return $nr_of_notes;
 }
 
- function GetCountBaseIdeas($base_id){
+ function GetCountBaseIdeas(int $base_id){
 	global $link;
 	$sql="SELECT count(*) as nr_of_ideas from vanila_base_ideas where base_id=$base_id";
 	//echo $sql;
@@ -1365,7 +1365,7 @@ function  GetNrOfImageComments($picture_id){
 	return $nr_of_ideas;
 }
 
-  function GetCountModpackBaseTasks($base_id){
+  function GetCountModpackBaseTasks(int $base_id){
 	global $link;  
 	  $nr_tasks = "SELECT COUNT(*) as nr_base_tasks from modpack_base_tasks WHERE base_id=".$base_id;
 	  $result = mysqli_query($link, $nr_tasks) or die("MySQLi ERROR: ".mysqli_error($link));
@@ -1375,7 +1375,7 @@ function  GetNrOfImageComments($picture_id){
 	  return $nr_base_tasks;
   }
 
-  function GetCountModpackBaseNotes($base_id){
+  function GetCountModpackBaseNotes(int $base_id){
 	global $link;
 	$sql="SELECT count(*) as nr_of_notes from modpack_base_notes where base_id=$base_id";
 	//echo $sql;
@@ -1386,7 +1386,7 @@ function  GetNrOfImageComments($picture_id){
 	return $nr_of_notes;
 }
 
- function GetCountModpackBaseIdeas($base_id){
+ function GetCountModpackBaseIdeas(int $base_id){
 	global $link;
 	$sql="SELECT count(*) as nr_of_ideas from modpack_base_ideas where base_id=$base_id";
 	//echo $sql;
