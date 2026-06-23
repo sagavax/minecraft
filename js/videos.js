@@ -52,6 +52,7 @@ const new_modpack_wrapper = document.querySelector(".new_modpack_wrapper");
 
 const tab_view_modpacks = document.querySelector(".tab_view_modpacks");
 
+let modsCount = 0;
 
 //hide the new video form
 document.querySelector("#video_tags_wrap").style.display="none";
@@ -159,7 +160,10 @@ video_mods_list.addEventListener("click", function(event){
         const videoId = sessionStorage.getItem("video_id");
         const modId = event.target.getAttribute("mod-id");
         console.log(modId);
-        addModforVideo(videoId, modId);        
+        //add mod for video
+        addModforVideo(videoId, modId);
+        //count mod for video
+        //console.log(modsCount);        
     }
 });
 
@@ -1372,13 +1376,21 @@ function addModforVideo(videoId, modId){
           document.querySelector(".info_message").innerHTML = "Mod has been added successfully!";
           document.querySelector(".video_mods_alphabet").style.display = "none";
           document.querySelector(".video_mods_list").style.display = "none";
+
+          //count mods
+          let modsCount = document.querySelector(".video[video-id='" + videoId + "'] button[name='change_mod']").getAttribute("mod-count");
+          let newModsCount = parseInt(modsCount) + 1;
+          document.querySelector(".video[video-id='" + videoId + "'] button[name='change_mod']").setAttribute("mod-count", newModsCount);
+          if(newModsCount>1){
+              document.querySelector(".video[video-id='" + videoId + "'] button[name='change_mod']").innerHTML = newModsCount + " mods";
+          }
         }
 
         setTimeout(function() {
             document.querySelector(".info_message").style.display = "none";
             document.querySelector(".video_mods_alphabet").style.display = "flex";
             document.querySelector(".video_mods_list").style.display = "flex";
-            document.querySelector("button[name='close_modal']").style.display = "flex";
+            //document.querySelector("button[name='close_modal']").style.display = "flex";
         }, 2000);
     };
     xhttp.open("POST", "videos_mods_add_mod.php", true);
