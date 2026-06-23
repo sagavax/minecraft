@@ -1366,32 +1366,43 @@ function sortTagsByChar(char){
 function addModforVideo(videoId, modId){
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        // Check if the request is complete and was successful
-        if (this.readyState == 4 && this.status == 200) {
-         //ShowMessage("Mod has been added successfully!");
-          document.querySelector(".info_message").style.display = "flex";
-          document.querySelector(".info_message").style.backgroundColor = "#27ae60";
-          document.querySelector(".info_message").style.color = "white";
-          document.querySelector(".info_message").style.height = "120px";
-          document.querySelector(".info_message").innerHTML = "Mod has been added successfully!";
-          document.querySelector(".video_mods_alphabet").style.display = "none";
-          document.querySelector(".video_mods_list").style.display = "none";
+    if (this.readyState == 4 && this.status == 200) {
+        const response = JSON.parse(this.responseText);
 
-          //count mods
-          let modsCount = document.querySelector(".video[video-id='" + videoId + "'] button[name='change_mod']").getAttribute("mod-count");
-          let newModsCount = parseInt(modsCount) + 1;
-          document.querySelector(".video[video-id='" + videoId + "'] button[name='change_mod']").setAttribute("mod-count", newModsCount);
-          if(newModsCount>1){
-              document.querySelector(".video[video-id='" + videoId + "'] button[name='change_mod']").innerHTML = newModsCount + " mods";
-          }
+        if (response.success) {
+            document.querySelector(".info_message").style.display = "flex";
+            document.querySelector(".info_message").style.backgroundColor = "#27ae60";
+            document.querySelector(".info_message").style.color = "white";
+            document.querySelector(".info_message").style.height = "120px";
+            document.querySelector(".info_message").innerHTML = "Mod has been added successfully!";
+
+            document.querySelector(".video_mods_alphabet").style.display = "none";
+            document.querySelector(".video_mods_list").style.display = "none";
+
+            let modsButton = document.querySelector(".video[video-id='" + videoId + "'] button[name='change_mod']");
+            let modsCount = modsButton.getAttribute("mod-count");
+            let newModsCount = parseInt(modsCount) + 1;
+
+            modsButton.setAttribute("mod-count", newModsCount);
+
+            if (newModsCount > 1) {
+                modsButton.innerHTML = newModsCount + " mods";
+            }
+
+        } else if (response.error === "duplicate") {
+            document.querySelector(".info_message").style.display = "flex";
+            document.querySelector(".info_message").style.backgroundColor = "#c0392b";
+            document.querySelector(".info_message").style.color = "white";
+            document.querySelector(".info_message").style.height = "120px";
+            document.querySelector(".info_message").innerHTML = "Found duplicate mod!";
         }
 
         setTimeout(function() {
             document.querySelector(".info_message").style.display = "none";
             document.querySelector(".video_mods_alphabet").style.display = "flex";
             document.querySelector(".video_mods_list").style.display = "flex";
-            //document.querySelector("button[name='close_modal']").style.display = "flex";
         }, 2000);
+        }
     };
     xhttp.open("POST", "videos_mods_add_mod.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
