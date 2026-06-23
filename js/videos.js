@@ -1366,50 +1366,49 @@ function sortTagsByChar(char){
 function addModforVideo(videoId, modId){
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        const response = JSON.parse(this.responseText);
+        if (this.readyState == 4 && this.status == 200) {
+            const response = JSON.parse(this.responseText);
+            const infoMessage = document.querySelector(".info_message");
 
-        if (response.success) {
-            document.querySelector(".info_message").style.display = "flex";
-            document.querySelector(".info_message").style.backgroundColor = "#27ae60";
-            document.querySelector(".info_message").style.color = "white";
-            document.querySelector(".info_message").style.height = "120px";
-            document.querySelector(".info_message").innerHTML = "Mod has been added successfully!";
+            if (response.success) {
+                infoMessage.style.display = "flex";
+                infoMessage.style.backgroundColor = "#27ae60";
+                infoMessage.style.color = "white";
+                infoMessage.style.height = "120px";
+                infoMessage.innerHTML = "Mod has been added successfully!";
 
-            document.querySelector(".video_mods_alphabet").style.display = "none";
-            document.querySelector(".video_mods_list").style.display = "none";
+                document.querySelector(".video_mods_alphabet").style.display = "none";
+                document.querySelector(".video_mods_list").style.display = "none";
 
-            let modsButton = document.querySelector(".video[video-id='" + videoId + "'] button[name='change_mod']");
-            let modsCount = modsButton.getAttribute("mod-count");
-            let newModsCount = parseInt(modsCount) + 1;
+                let modsButton = document.querySelector(".video[video-id='" + videoId + "'] button[name='change_mod']");
+                let newModsCount = parseInt(modsButton.getAttribute("mod-count")) + 1;
+                modsButton.setAttribute("mod-count", newModsCount);
 
-            modsButton.setAttribute("mod-count", newModsCount);
+                if (newModsCount > 1) {
+                    modsButton.innerHTML = newModsCount + " mods";
+                }
 
-            if (newModsCount > 1) {
-                modsButton.innerHTML = newModsCount + " mods";
+            } else if (response.error === "duplicate") {
+                infoMessage.style.display = "flex";
+                infoMessage.style.backgroundColor = "#c0392b";
+                infoMessage.style.color = "white";
+                infoMessage.style.height = "120px";
+                infoMessage.innerHTML = "Found duplicate mod!";
             }
 
-        } else if (response.error === "duplicate") {
-            document.querySelector(".info_message").style.display = "flex";
-            document.querySelector(".info_message").style.backgroundColor = "#c0392b";
-            document.querySelector(".info_message").style.color = "white";
-            document.querySelector(".info_message").style.height = "120px";
-            document.querySelector(".info_message").innerHTML = "Found duplicate mod!";
-        }
-
-        setTimeout(function() {
-            document.querySelector(".info_message").style.display = "none";
-            document.querySelector(".video_mods_alphabet").style.display = "flex";
-            document.querySelector(".video_mods_list").style.display = "flex";
-        }, 2000);
+            setTimeout(function() {
+                infoMessage.style.display = "none";
+                document.querySelector(".video_mods_alphabet").style.display = "flex";
+                document.querySelector(".video_mods_list").style.display = "flex";
+            }, 2000);
         }
     };
     xhttp.open("POST", "videos_mods_add_mod.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    // Send the request with the videoId and modpackId
+    // Send the request with the videoId and modId
     const params = "videoId=" + encodeURIComponent(videoId) + "&modId=" + encodeURIComponent(modId);
-    xhttp.send(params);  
+    xhttp.send(params);
 }
 
 
