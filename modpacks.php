@@ -55,7 +55,7 @@
             <button class="button small_button" name="add_modpack" title="add new modpack" onclick="document.getElementById('new_modpack').showModal()"><i class="fa fa-plus"></i></button>  
             
          <div class="dashboard_header">Modpack list</div>
-         <div class="search_wrap"><input type="search" placeholder="Search modpack here" autocomplete="off" spellcheck="false"></div>
+         <div class="search_wrap"><input type="text" placeholder="Search modpack here" autocomplete="off" spellcheck="false"></div>
 
 
          <div class="tab_view">
@@ -71,9 +71,8 @@
           
              <?php
                 //$sql="SELECT * from modpacks where order by load_order ASC";
-                $sql="SELECT * from modpacks where is_active=1 and modpack_id not in (1) UNION ALL 
-                SELECT * from modpacks where is_active=0";
-                $result=mysqli_query($link, $sql);
+                $get_modpacks="SELECT * from modpacks where is_active=1 ORDER BY modpack_id DESC";
+                $result=mysqli_query($link, $get_modpacks) or die("MySQLi ERROR: ".mysqli_error($link));
                 while (
                     $row = mysqli_fetch_array($result)){
                         $modpack_id=$row['modpack_id'];
