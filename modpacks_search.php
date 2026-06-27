@@ -2,8 +2,14 @@
     include("includes/dbconnect.php");
 
     $search_modpack = mysqli_real_escape_string($link, $_GET['search']);
+    if(($search_modpack)===""){
+        $search_modpack = "SELECT * from modpacks where is_active=1 ORDER BY modpack_id DESC";
+    } else {
+      $search_modpack = "SELECT * from modpacks WHERE modpack_name LIKE '%$search_modpack%' ORDER BY modpack_name ASC";
+    }
 
-    $search_modpack = "SELECT * from modpacks WHERE modpack_name LIKE '%$search_modpack%'";
+    echo $search_modpack;
+
     mysqli_query($link, $search_modpack) or die(mysqli_error($link));
 
     $result=mysqli_query($link, $search_modpack);
