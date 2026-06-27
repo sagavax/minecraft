@@ -19,7 +19,7 @@ new_modpack.addEventListener("click", function (event){
 
 
 search_wrap_input.addEventListener("keyup", () => {
-  search_modpack(search_wrap_input.value);
+  searchModpack(search_wrap_input.value);
 });
 
 tab_view.addEventListener("click", (event) => {
@@ -76,13 +76,14 @@ function modpackChangeStatus(status, modpack_id) {
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
       alert("Status zmenený!");
+      reloadModpacks();
     }
   };
   xmlHttp.open("GET", "modpack_status.php?status=" + modpack_status + "&modpack_id=" + modpack_id);
   xmlHttp.send();
 }
 
-function search_modpack(modpack) {
+function searchModpack(modpack) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -148,5 +149,17 @@ function showModpacksGrid(){
     modpacks.innerHTML = this.responseText;
   }
   xhttp.open("GET", "modpacks_grid.php", true);
+  xhttp.send();
+}
+
+function reloadModpacks(){
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    var modpacks = document.querySelector(".modpack_list");
+    modpacks.replaceChildren();
+    modpacks.innerHTML = "Loading modpacks...";
+    modpacks.innerHTML = this.responseText;
+  }
+  xhttp.open("POST", "modpacks_reload.php", true);
   xhttp.send();
 }
