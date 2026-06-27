@@ -59,6 +59,7 @@
 
 
          <div class="tab_view">
+             <div class="active_tab"></div>
              <button class="button small_button" name="show_list">List</button>
              <button class="button small_button" name="show_grid">Grid</button> 
              <button class="button small_button" name="active">Active</button>

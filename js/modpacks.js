@@ -24,14 +24,16 @@ search_wrap_input.addEventListener("keyup", () => {
 
 tab_view.addEventListener("click", (event) => {
   if (event.target.tagName == "BUTTON") {
+    document.querySelector(".active_tab").innerHTML = event.target.innerHTML;
+    //event.target.style.backgroundColor = "#fdf376";
     if (event.target.name ==="show_list"){
     showModpacksList();
   } else if ( event.target.name ==="show_grid"){
     showModpacksGrid();
   } else {
-    document.querySelectorAll(".tab_view button").forEach(button => { button.style.backgroundColor = "#aadd77"; });
+    document.querySelectorAll(".tab_view button").forEach(button => { button.style.backgroundColor = "#fdf376"; });
     
-    event.target.style.backgroundColor = "#52a535";
+    event.target.style.backgroundColor = "#f0e430";
     show_modpacks(event.target.name);
      } 
   }

@@ -4880,6 +4880,19 @@ input[name="base_name"] {
 }
 
 
+.active_tab {
+    width:100%;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: 'Noto Sans',sans-serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height:100%;
+}
+
 #notes, #ideas, #images {
     display: flex;
     flex-direction: column;
