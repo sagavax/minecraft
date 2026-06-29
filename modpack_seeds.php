@@ -15,8 +15,8 @@
 
 
 <div class="modpack_seeds_wrap">
+    <div class="no_seeds"><input type="text" name="new_seed" placeholder="type seed number / name here..."><button type="button" name="add_seed" class="button small_button" title="Add new seed"><i class="fa fa-plus"></i></button></div>
     <div class="modpack_seeds">
-        <div class="no_seeds"><button type="button" name="add_seed" class="button small_button" title="Add new seed"><i class="fa fa-plus"></i></button></div>
         <?php
             $modpack_id = $_GET['modpack_id'];
             $get_seeds="SELECT * from modpack_seeds where modpack_id=$modpack_id";
@@ -30,12 +30,14 @@
                 $seed = $row['seed'];
                 $seed_description = $row['seed_description'];
                 $added_date = $row['added_date'];
-                  echo "<div class='seed' seed-id='".$seed_id."'>";  
+                echo "<div class='seed' seed-id='".$seed_id."'>";  
                     echo "<div class='seed_number'>".$seed."</div>";
                     echo "<button class='button small_button' name='delete_seed' type='button' title='Delete seed'><i class='fa fa-times'></i></button>";
-                  echo "</div>";// modpack_seed_wrap    
+                echo "</div>";// modpack_seed_wrap    
                 }
-          }
-    ?>
+            }
+        ?>
+    </div><!-- div modpack_seeds-->
+   </div><!-- div modpack_seeds_wrap--> 
 </div>
 
