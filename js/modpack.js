@@ -15,23 +15,28 @@ const modpack_mods_urls = document.querySelector(".modpack_mods_urls");
 const modal_new_base = document.getElementById('modal_new_base');
 const modal_new_link_name = document.querySelector('.dialog_link_name');
 //const input_search_mod = document.querySelector('input[name="search_mods"]');
-const modal_new_seed = document.querySelector(".modal_new_seed");
 
-
-modal_new_seed.addEventListener("click", function(e) {
-    if (e.target.tagName === "BUTTON" && e.target.name==="create_new_seed") {
-        if(document.querySelector(".modal_new_seed input").value === "") {
+list.addEventListener("click", function(e) {
+    if (!e.target.closest(".modpack_seeds_wrap")) return;
+    const button = e.target.closest("button");
+    if (!button) return;
+    if (button.name === "add_seed") {
+        if(document.querySelector(".no_seeds input").value === "") {
             alert("Please fill in the seed name.");
             return;
         }
-        const seedNumber = document.querySelector(".modal_new_seed input").value.trim();
+        const seedNumber = document.querySelector(".no_seeds input").value.trim();
         const urlParams = new URLSearchParams(window.location.search);
         const modpackId = urlParams.get('modpack_id');
         addNewSeed(seedNumber, modpackId);
-        modal_new_seed.close();
-        document.querySelector(".modal_new_seed input").value = "";
+        document.querySelector(".no_seeds input").value = "";
+    } else if (button.name === "delete_seed") {
+        const seedEl = button.closest(".seed");
+        const seedId = seedEl.getAttribute("seed-id");
+        deleteSeed(seedId);
+        seedEl.remove();
     }
-})
+});
 
 
 /* document.querySelector('input[name="search_mods"]').addEventListener("input", function(event) {
@@ -220,7 +225,6 @@ document.querySelector(".list").addEventListener("click", function(event) {
     
     case "add_seed":
         // add seed
-        modal_new_seed.showModal();
         break;
 
     case "delete_seed":
@@ -997,8 +1001,22 @@ function addNewSeed(seedNumber, modpackId){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-       document.querySelector(".modpack_seeds").innerHTML = this.responseText;
-       alert("Seed added");
+        const response = JSON.parse(this.responseText);
+        if(response.error){
+          alert(response.error);
+          return;
+        } 
+        if(response.success){
+           const parent = document.querySelector(".modpack_seeds");
+           const childToAdd = document.createElement('div');
+           childToAdd.classList.add('seed');
+           childToAdd.setAttribute('seed-id', response.seedId);
+           childToAdd.innerHTML = `<div class='seed_number'>${seedNumber}</div><button class='button small_button' name='delete_seed' type='button' title='Delete seed'><i class='fa fa-times'></i></button>`;
+           parent.insertBefore(childToAdd, parent.lastChild);
+           alert("Seed has been added");
+          return;
+        }
+       
     }
   };
   xhttp.open("POST", `modpack_seed_add.php`, true);
@@ -1009,13 +1027,6 @@ function addNewSeed(seedNumber, modpackId){
  
 function deleteSeed(seedId){
   var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-       document.querySelector(".modpack_seeds").innerHTML = this.responseText;
-       document.querySelector(`.seed[seed-id='${button.closest(".seed").getAttribute("seed-id")}']`).remove();
-       alert("Seed deleted");
-    }
-  };
   xhttp.open("POST", `modpack_seed_delete.php`, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   const data = "seed_id="+encodeURIComponent(seedId);
