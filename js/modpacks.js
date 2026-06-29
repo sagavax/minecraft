@@ -24,7 +24,7 @@ search_wrap_input.addEventListener("keyup", () => {
 
 tab_view.addEventListener("click", (event) => {
   if (event.target.tagName == "BUTTON") {
-    document.querySelector(".active_tab").innerHTML = event.target.innerHTML;
+    document.querySelector(".active_tab").innerHTML = "Active tab: " + event.target.innerHTML;
     //event.target.style.backgroundColor = "#fdf376";
     if (event.target.name ==="show_list"){
     showModpacksList();
