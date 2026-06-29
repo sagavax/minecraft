@@ -236,6 +236,7 @@ modal_modpack_input.addEventListener("keydown", function(event) {
         if(modal_modpack_input.value=="") {
             alert("Input cannot be empty!");
         } else {
+            modal_modpack_input.value=="";
             ShowMessage("New modpack <b>"+modal_modpack_input.value+"</b> has been created")
             createNewModpack(modal_modpack_input.value);
         }
@@ -1137,7 +1138,7 @@ function getVideosTags(video_id) {
 
 function clearNewVideoform(){
     video_url.style.borderWidth = "1px";
-    video_url.style.borderColor = "#d1d1d1";
+    //video_url.style.borderColor = "#d1d1d1";
     document.getElementById("video_url").value = "";
     document.getElementById("video_title").value = "";
     document.querySelector('select[name="edition"]').value = "java";   
