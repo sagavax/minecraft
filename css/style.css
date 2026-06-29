@@ -740,7 +740,7 @@ input::placeholder {
 
 .modpack_name {
     display: flex;
-    width:20%;
+    width:30%;
     align-items: center;
     justify-content: flex-end;
     box-sizing: border-box;
@@ -1845,6 +1845,7 @@ button[name="add_modpack"] {
 
 .modpack input[name="modpack_name"] {
     font-weight: bolder;
+    width: 100%;
 }
 
 .modpack input[name="modpack_name"]::placeholder {
@@ -2231,21 +2232,42 @@ button[name="add_modpack"] {
 
 .modpack_seeds {
     border-radius: 5px;
-    background: #fff;
-    border: 1px #d1d1d1 solid;
+    color: #fdf376;
+    background: #0f2031;
     display: flex;
     flex-direction: column;
     width: 100%;
     padding:5px;
 }
 
+.modpack_seeds_wrap {
+     color: #fdf376;
+    background: #0f2031;
+    border:1px #fdf376 solid;
+}
+
 .no_seeds {
     width: 100%;
+    height:60px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    border-bottom: 1px #d1d1d1 solid;
+    border-bottom: 1px #fdf376 solid;
     padding: 5px;
+    gap:10px;
+}
+
+.no_seeds button {
+    width:80px;
+}
+
+.no_seeds input {
+    width: 100%;
+    border: 1px #fdf376 solid;
+    color: #fdf376;
+    background: #2C2A20;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: normal
 }
 
 #new_modpack form input,
@@ -3295,6 +3317,14 @@ button[name="add_modpack"] {
     box-sizing: border-box;
     padding:20px;
     border: #fdf376  1px solid;
+}
+
+.new_modpack_wrapper button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+    width:130px
 }
 
 /* .modal_new_video — moved to videos.css */
@@ -4882,7 +4912,7 @@ input[name="base_name"] {
 
 .active_tab {
     width:100%;
-    color: #fff;
+    color: #fdf376;
     padding: 6px 12px;
     border-radius: 6px;
     font-family: 'Noto Sans',sans-serif;
@@ -4890,6 +4920,7 @@ input[name="base_name"] {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+
     height:100%;
 }
 
@@ -5485,7 +5516,7 @@ input[name="search_mods"] {
    .modal_modpack {
     box-sizing: border-box;
     padding:10px;
-    height:100px;
+    height:120px;
    }
 
    .modal_video_tags {
@@ -5521,6 +5552,7 @@ input[name="search_mods"] {
     font-family: 'Noto Sans',sans-serif;
     font-weight: bold;
     border-radius: 5px;
+    min-width: 60px;
    }
 
    .change_modpack_list button:hover {
@@ -5751,6 +5783,7 @@ input[name="search_mods"] {
    .modal_modpack input {
      margin:0;
      width: 100%;
+     height:50px;
    }
 
    .modal_new_tags input {
