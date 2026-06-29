@@ -14,6 +14,7 @@ modpack_name.addEventListener("input", (e) => {
   const modpackId = url.searchParams.get("modpack_id");
   modpackChangeName(modpackId, modpack_name);
   ShowMessage("Modpack name has been updated ...");
+  document.querySelector(".modpack_name").innerHTML = modpack_name;
 });
 
 modpack_index_id.addEventListener("input", (e) => {
