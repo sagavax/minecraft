@@ -359,7 +359,7 @@
                     }
                 ?>
         </div><!-- change modpack list-->
-        <div class='new_modpack_wrapper'><input type='text' name='modpack_name' placeholder='name of the modpack ....' autocomplete='off'><button class='button small_button' name='add_new_modpack' title='Add new modpack'><i class='fa fa-plus'></i> Add Modpack</button></div>
+        <div class='new_modpack_wrapper'><input type='text' name='modpack_name' placeholder='name of the modpack ....' autocomplete='off'><button class='button small_button' name='add_new_modpack' title='Add new modpack'><i class='fa fa-plus'></i>Modpack</button></div>
         <div class="notification_message"></div>
     </div><!-- inner change modpack layer-->
 </dialog>
