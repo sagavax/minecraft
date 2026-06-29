@@ -11,6 +11,10 @@
     //echo $add_seed;
     $result = mysqli_query($link, $add_seed) or die("MySQLi ERROR: " . mysqli_error($link));
 
+    $seed_id = mysqli_insert_id($link);
+
+    echo json_encode(["success" => true, "message" => "Seed has been added successfully", "seedId" => $seed_id]);
+
 
     //add to log
     $diary_text="Bol pridany seed cislo $seed_number";
