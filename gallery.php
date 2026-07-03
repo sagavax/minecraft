@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script type="text/javascript" src="js/gallery.js" defer=""></script>
-    <script type="text/javascript" src="js/message.js" defer=""></script>
+    <script type="text/javascript" src="js/gallery.js?<?php echo time(); ?>" defer=""></script>
+    <script type="text/javascript" src="js/message.js?<?php echo time(); ?>" defer=""></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
   
