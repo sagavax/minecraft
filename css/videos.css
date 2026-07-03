@@ -257,6 +257,18 @@
     width:100%;
 }
 
+.modal_new_video input,
+.modal_new_video select {
+    font-size: 18px;
+    padding: 14px 16px;
+    border: 1px #fdf376 solid;
+    border-radius: 5px;
+}
+
+.modal_new_video input::placeholder {
+    font-weight: normal;
+}
+
 
 /* ---- Modal: Minecraft edition picker ---- */
 .modal_minecraft_edition {
