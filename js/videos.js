@@ -689,6 +689,13 @@ function set_readonly(object){
     object.setAttribute("readonly", true);
 }
 
+document.getElementById("video_title").addEventListener("dblclick", function(){
+    remove_readonly(this);
+});
+document.getElementById("video_title").addEventListener("blur", function(){
+    set_readonly(this);
+});
+
 
 //source videos by mod
 
