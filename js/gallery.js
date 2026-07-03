@@ -21,6 +21,11 @@ const image_galleries = document.querySelector(".image_galleries");
 add_new_image.addEventListener("click", function(event){
   if(event.target.tagName==="BUTTON"){
     if(event.target.name==="add_new_ext_pic"){
+      const imageUrl = document.querySelector(".add_new_image input[name='image_url']").value;
+      if(imageUrl===""){
+          ShowMessage("Please enter image URL.");
+          return;
+        }
       saveImage();
     }
   }
@@ -228,7 +233,7 @@ function checkImageExists(imageUrl) {
               inputField.style.border = "2px solid red";
 
               setTimeout(() => {
-                  inputField.style.border = "1px solid #d1d1d1";
+                  inputField.style.border = "";
                   inputField.value = "";
               }, 3000);
           } else {
@@ -236,7 +241,7 @@ function checkImageExists(imageUrl) {
               inputField.style.border = "2px solid green";
 
               setTimeout(() => {
-                  inputField.style.border = "1px solid #d1d1d1";
+                  inputField.style.border = "";
               }, 3000);
           }
       }
@@ -339,6 +344,9 @@ function saveImage() {
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
+      const response = JSON.parse(this.responseText);
+      const imageID = response.image_id;
+
       ShowMessage("Image saved successfully!");
 
       // Vyčistiť formulár
@@ -346,8 +354,16 @@ function saveImage() {
       document.querySelector('.add_new_image input[name="image_url"]').value = "";
       document.querySelector('textarea[name="image_description"]').value = "";
 
-      // Zavolajme hneď po uložení funkciu na získanie ID
-      fetchLatestImageIDAndInsert(imageName, imageUrl);
+      const imageList = document.querySelector('.gallery_wrap');
+      if (!imageList) return;
+      const html = `
+        <div class="gallery_item" id="${imageID}">
+            <img src="${imageUrl}" alt="${imageName}">
+            <div class="gallery_item_description">${imageDescription}</div>
+        </div>
+      `;
+
+      imageList.insertAdjacentHTML("afterbegin", html);
     }
   };
 
@@ -360,44 +376,6 @@ function saveImage() {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(data);
 }
-
-function fetchLatestImageIDAndInsert(imageName, imageUrl) {
-  const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      const imageID = this.responseText;
-
-      // Prípadne definuj tieto premenné, ak ich potrebuješ z niekadiaľ:
-      const modpackID = "";   // ← sem si daj správne ID
-      const modpackName = ""; // ← a tu názov modpacku, ak je dostupný
-
-      const imageList = document.querySelector('#picture_list');
-      const html = `
-        <div class="picture" image-id="${imageID}">
-          <div class="picture_name">${imageName}</div>
-          <div class="pic" image-id="${imageID}">
-            <img src="${imageUrl}" alt="${imageName}">
-          </div>
-          <div class="picture_footer">
-            <div class="picture_action" image-id="${imageID}">
-              <button class="button blue_button" modpack-id="${modpackID || 2}" name="image_modpack" type="button">${modpackName || "Vanilla Minecraft"}</button>
-              <button class="button small_button" name="add_tag" type="button"><i class="fas fa-tag"></i></button>
-              <button class="button small_button" name="add_comment" type="button"><i class="fa fa-comment"></i></button>
-              <button class="button small_button" name="view_image" type="button"><i class="fa fa-eye"></i></button>
-              <button class="button small_button" name="delete_image" type="button"><i class="fa fa-times"></i></button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      imageList.insertAdjacentHTML("afterbegin", html);
-    }
-  };
-
-  xhttp.open("GET", "images_get_latest_id.php", true);
-  xhttp.send();
-}
-
 
 function loadLatestImage(){
   const latestImageId = sessionStorage.getItem("latest_image_id");
