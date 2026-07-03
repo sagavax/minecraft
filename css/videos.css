@@ -269,6 +269,10 @@
     font-weight: normal;
 }
 
+.modal_new_video .modpack_container select {
+    font-size: 16px;
+}
+
 
 /* ---- Modal: Minecraft edition picker ---- */
 .modal_minecraft_edition {
