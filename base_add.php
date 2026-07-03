@@ -15,9 +15,18 @@
         $modpack_id = $_POST['modpack_id'];
         $create_modpack_base = "INSERT INTO modpack_bases (modpack_id, base_name, coord_x, coord_y, coord_z, added_date) VALUES ($modpack_id,'$base_name','$coord_x', '$coord_y', '$coord_z',now())";
         $result = mysqli_query($link, $create_modpack_base) or die(mysqli_error($link));
+
+        $base_id = mysqli_insert_id($link);
+
+        echo json_encode(["success" => true, "message" => "Base has been added successfully", "baseId" => $base_id, "baseName" => $base_name, "modpackId" => $modpack_id]);
+
     } else {
         $create_vanilla_base = "INSERT INTO vanilla_bases (coord_x, coord_y, coord_z, added_date)  VALUES ($modpack_id,'$coord_x', '$coord_y', '$coord_z',now())";
         $result = mysqli_query($link, $create_modpack_base) or die(mysqli_error($link));
+
+        $base_id = mysqli_insert_id($link);    
+
+        echo json_encode(["success" => true, "message" => "Base has been added successfully", "baseId" => $base_id, "baseName" => $base_name]);
     }
 
 
