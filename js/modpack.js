@@ -59,7 +59,7 @@ modal_new_link_name.addEventListener("click", function(e) {
 })
 
 
-
+//add new base
 modal_new_base.addEventListener("click", function(e) {
     if (e.target.tagName === "BUTTON" && e.target.name==="add_base") {
         const modpackId = sessionStorage.getItem("modpack_id");
@@ -69,10 +69,13 @@ modal_new_base.addEventListener("click", function(e) {
         const over_x = modal_new_base.querySelector('input[name="over_x"]').value;
         const over_y = modal_new_base.querySelector('input[name="over_y"]').value;
         const over_z = modal_new_base.querySelector('input[name="over_z"]').value;
-        if (base_name === "" || over_x === "" || over_y === "" || over_z === "") {
-            alert("Please fill in all the fields.");
+        if (base_name === "" ){
+            alert("Please fill the name the base.");
             return;
-        } 
+        } else if ( over_x === "" || over_y === "" || over_z === "") {
+            alert("Please add coordinates.");
+            return;
+        }
            addNewModpackBase(modpackId, base_name, base_description, over_x, over_y, over_z);
            modal_new_base.close();
      } else if (e.target.tagName === "BUTTON" && e.target.name==="return_to_vanilla") {
@@ -923,6 +926,7 @@ function addNewModpackBase(modpackId, base_name, base_description, coord_x, coor
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
        // Refresh the bases content after adding
+       alert("Baza bola pridana");
        LoadPage('bases');
     }
   };
