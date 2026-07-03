@@ -1024,7 +1024,8 @@ input[name="modpack_index_id"]::placeholder {
     height:60px;
     justify-content: flex-start;
     box-sizing: border-box;
-    border: 1px solid #d1d1d1;
+    background: #0f2031;
+    border:1px #fdf376 solid;
     padding: 5px;
 }
 
@@ -2112,8 +2113,8 @@ button[name="add_modpack"] {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border: 1px #d1d1d1 solid;
-    background: #fff;
+     background: #0f2031;
+    border:1px #fdf376 solid;
     border-radius: 5px;
 }
 
@@ -3579,6 +3580,8 @@ button[name="add_modpack"] {
     width:60%;
     top:20%;
     left:20%;
+    box-sizing: border-box;
+    padding: 15px
 }
 
 #new_base form {
@@ -3592,7 +3595,7 @@ button[name="add_modpack"] {
     width: 100px;
     height: 40px;
     background: #fdf376;
-    color: #fff;
+    color: #0f2031;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -4356,7 +4359,7 @@ td.zakladna_popis {
     width: 100%;
     display: flex;
     margin-top: 20px;
-    background-color: white;
+    background: #0f2031;
     }
 
 #base_location_outworld {
@@ -4364,6 +4367,7 @@ td.zakladna_popis {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
+    background: #0f2031;
 }
 
 #base_location_outworld input {
@@ -4372,6 +4376,7 @@ td.zakladna_popis {
     text-align: center;
     font-weight: bold;
     font-size: 25px;
+    border:1px #fdf376 solid;
 }
 
 #base_location_nether {
@@ -4467,8 +4472,8 @@ td.zakladna_popis {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    border: 1px #d1d1d1 solid;
-    background-color: #fff;
+    border: 1px #fdf376 solid;
+    background-color: #0f2031;
     padding:10px;
     margin-bottom: 10px;
     border-radius: 6px;
@@ -4492,7 +4497,7 @@ button[name="modal_new_base"] {
 .base_screen_thumb {
     height:100%;
     width: 300px;
-    border:1px #d1d1d1 solid;
+    border: 1px #fdf376 solid;
     margin-right:10px;
 }
 
@@ -4548,6 +4553,8 @@ button[name="modal_new_base"] {
 input[name="base_name"] {
     font-weight: bold;
     font-size: 16px;
+    border:1px #fdf376 solid;
+    margin-bottom: 5px;
 }
 
 .base_short_desc {
@@ -4624,6 +4631,7 @@ input[name="base_name"] {
 .base_actions_card button[name="delete_base"] {
     width:20%;
     background-color: red;
+    border: 1px red solid;
 }
 
 
@@ -4633,13 +4641,14 @@ input[name="base_name"] {
 
 
 .base_nr_notes,
-.base_nr_ideas {
+.base_nr_ideas,
+.base_nr_tasks  {
     width: 100px;
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: #0f2031;
     align-items: center;
-    color:#555;
+    color:#fdf376;
     font-weight: bold;
     cursor: pointer;
     border:2px #fdf376 solid;
@@ -4651,9 +4660,9 @@ input[name="base_name"] {
 
 .base_note {
     min-height: 100px;
-    border: 1px #d1d1d1 solid;
+    border:1px #fdf376 solid;
     margin-bottom: 10px;
-    background-color: #fff;
+   background-color: #0f2031;
     padding: 10px;
     box-sizing: border-box;
   }
