@@ -271,6 +271,7 @@
 
 .modal_new_video .modpack_container select {
     font-size: 16px;
+    text-transform: none;
 }
 
 
