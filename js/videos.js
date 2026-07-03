@@ -437,6 +437,11 @@ modal_modpack_input.addEventListener("keydown", function(event) {
     document.querySelector('.modal_new_video form').addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent the default form submission
 
+    if(video_url.value===""){
+        ShowMessage("Please enter video URL.");
+        return;
+    }
+
     const formData = new FormData(this); // Create a FormData object from the form
 
     fetch('videos_save.php', {
