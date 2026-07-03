@@ -55,6 +55,11 @@
    }
   
    .circle i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.05em;
+    height: 1.05em;
     background-color: white;
     border-radius: 50%;
    }
