@@ -126,6 +126,10 @@ image_tags_map.childNodes.forEach(node => {
 add_new_image.addEventListener("click", function(event){
   if(event.target.tagName==="BUTTON"){
     if(event.target.name==="add_new_ext_pic"){
+      if(document.querySelector(".add_new_image input[name='image_url']").value===""){
+        ShowMessage("Please fill in all required fields.");
+        return;
+      }
       saveImage();
     }
   }
@@ -350,6 +354,7 @@ xhttp.send(data);
 }
 
 
+
 function checkImageExists(imageUrl) {
   const xhttp = new XMLHttpRequest();
 
@@ -362,7 +367,7 @@ function checkImageExists(imageUrl) {
               inputField.style.border = "2px solid red";
 
               setTimeout(() => {
-                  inputField.style.border = "1px solid #d1d1d1";
+                  inputField.style.border = "";
                   inputField.value = "";
               }, 3000);
           } else {
@@ -370,7 +375,7 @@ function checkImageExists(imageUrl) {
               inputField.style.border = "2px solid green";
 
               setTimeout(() => {
-                  inputField.style.border = "1px solid #d1d1d1";
+                  inputField.style.border = "";
               }, 3000);
           }
       }
@@ -470,9 +475,15 @@ function saveImage() {
   const imageUrl = document.querySelector('.add_new_image input[name="image_url"]').value;
   const imageDescription = document.querySelector('textarea[name="image_description"]').value;
 
+  
+
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
+     
+      response = JSON.parse(this.responseText);
+      const imageID = response.image_id;
+           
       ShowMessage("Image saved successfully!");
 
       // Vyčistiť formulár
@@ -481,7 +492,21 @@ function saveImage() {
       document.querySelector('textarea[name="image_description"]').value = "";
 
       // Zavolajme hneď po uložení funkciu na získanie ID
-      fetchLatestImageIDAndInsert(imageName, imageUrl);
+      //fetchLatestImageIDAndInsert(imageName, imageUrl);
+
+
+
+       const imageList = document.querySelector('.gallery_wrap');
+      const html = `
+        <div class="gallery_item" id="${imageID}">
+            <img src="${imageUrl}" alt="${imageName}">
+            <div class="gallery_item_description">${imageDescription}</div>
+        </div>
+      `;
+
+      imageList.insertAdjacentHTML("afterbegin", html); 
+
+
     }
   };
 
