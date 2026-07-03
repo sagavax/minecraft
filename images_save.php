@@ -18,6 +18,8 @@
   
         //get latest id;
         $image_id = mysqli_insert_id($link);
+
+        echo json_encode(array("status" => "success", "message" => "Image added successfully", "image_id" => $image_id));
         
         //upated_mods
         $cat_id=0;
