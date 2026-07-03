@@ -6,13 +6,20 @@
     border: 1px #fdf376 solid;
     border-radius: 4px;
     box-sizing: border-box;
-    padding:10px;
+    padding:15px;
 }
 
 .add_new_image input {
     width: 100%;
     padding: 5x;
     margin-bottom: 10px;
+}
+
+.add_new_image textarea {
+    width: 100%;
+    padding: 5x;
+    margin-bottom: 10px;
+    border : 0;
 }
 
 
@@ -206,10 +213,10 @@ input[name="search_image"] {
     padding:5px;
 }
 
-.custom-context-menu { position: fixed; background:#fff; border:1px solid #e5e7eb; border-radius:8px; box-shadow:0 8px 20px rgba(0,0,0,.12); padding:6px; z-index:9999; width: 200px; height: auto;}
+.custom-context-menu { position: fixed; background:#0f2031; border: 1px #fdf376 solid; border-radius:8px; box-shadow:0 8px 20px rgba(0,0,0,.12); padding:6px; z-index:9999; width: 200px; height: auto;}
 .custom-context-menu ul { margin:0; padding:0; list-style:none; }
 .context-menu-item { padding:8px 10px; border-radius:6px; cursor:pointer; }
-.context-menu-item:hover { background:#f3f4f6; }
+.context-menu-item:hover { background:#4165ad; }
 
 .picture_comments{
     margin-top:20px;
