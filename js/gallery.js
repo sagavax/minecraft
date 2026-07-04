@@ -31,23 +31,20 @@ add_new_image.addEventListener("click", function(event){
   }
 })
 
-
 image_url_input.addEventListener("input", function(event) {
   checkImageExists(image_url_input.value);
-}) 
+})
 
 image_url_input.addEventListener("dragover", function(event) {
-event.target.style.backgroundColor = "#d2f9be82";
-console.log("drag over");
+  image_url_input.style.backgroundColor = "#d2f9be82";
 })
 
-image_url_input.addEventListener("dragleave", function(event) {
-image_url_input.style.backgroundColor = "#eff3f4";
+["dragleave", "drop"].forEach(function(eventName) {
+  image_url_input.addEventListener(eventName, function(event) {
+    image_url_input.style.backgroundColor = "#eff3f4";
+  })
 })
 
-image_url_input.addEventListener("drop", function(event) {
-image_url_input.style.backgroundColor = "#eff3f4";
-})
 
 modal_new_gallery.addEventListener("click", function(event) {
   if(event.target.tagName === "BUTTON" && event.target.name==="create_gallery"){
