@@ -424,9 +424,15 @@ select[name="alert_category"] {
 
 .modal_add_new_image input {
     width: 100%;
-    padding: 5px;
+    font-size: 18px;
+    padding: 14px 16px;
     margin-top: 5px;
     margin-bottom: 5px;
     border: 1px #fdf376 solid;
+    border-radius: 5px;
+}
+
+.modal_add_new_image input::placeholder {
+    font-weight: normal;
 }
 
