@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script type="text/javascript" src="js/gallery.js?<?php echo time(); ?>" defer=""></script>
-    <script type="text/javascript" src="js/message.js?<?php echo time(); ?>" defer=""></script>
+    <script type="text/javascript" src="js/gallery.js?<?php echo time(); ?>" defer></script>
+    <script type="text/javascript" src="js/message.js?<?php echo time(); ?>" defer></script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   </head>
   
@@ -30,18 +30,10 @@
         </div>
         <div class="content">
           <div class="list">
-            <div class="add_new_image">
-                 <input type="text" name="image_name" placeholder="Picture title" autocomplete="off">
-                    <input type="text" name="image_url" placeholder="Image URL" autocomplete="off" id="image_url">
-                    <textarea name="image_description" placeholder="Something about..."></textarea>
-                    <div class="action">
-                        <button type="button" name="add_new_ext_pic" class="button pull-right">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    </div>
-                </div><!-- add_new_image -->
-
-                 <div class="image_galleries">
+             <div class="image_galleries">
+                <div class="new_gallery fab-icon-holder" >
+                    <i class="fas fa-plus" title="Add new gallery" onclick="showNewGalleryForm()"></i>
+                </div>
                 <div class="gallery_view_tabs">
                     <!-- <button type="button" class="button small_button" name="all_galleris">All</button> -->
                     <button type="button" class="button small_button gallery_tab" name="modpacks_galleries" title="Modpacks">Modpacks</button>
@@ -119,3 +111,14 @@
               <?php echo GetAllImageGalleries() ?>
           </div>
   </dialog>
+
+<dialog class="modal_add_new_image">
+    <input type="text" name="image_name" placeholder="Picture title" autocomplete="off">
+    <input type="text" name="image_url" placeholder="Image URL" autocomplete="off" id="image_url">
+    <textarea name="image_description" placeholder="Something about..."></textarea>
+    <div class="action">
+        <button type="button" name="add_new_ext_pic" class="button pull-right">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+</dialog><!-- add_new_image -->
