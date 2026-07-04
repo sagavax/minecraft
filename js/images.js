@@ -135,19 +135,25 @@ add_new_image.addEventListener("click", function(event){
   }
 })
 
-image_url_input.addEventListener("input", function(event) {
-  checkImageExists(image_url_input.value);
-})
+if(image_url_input){
+  image_url_input.addEventListener("input", function(event) {
+    checkImageExists(image_url_input.value);
+  })
+}
 
+if(image_url_input){
 image_url_input.addEventListener("dragover", function(event) {
   image_url_input.style.backgroundColor = "#d2f9be82";
 })
+}
 
+if(image_url_input){
 ["dragleave", "drop"].forEach(function(eventName) {
   image_url_input.addEventListener(eventName, function(event) {
     image_url_input.style.backgroundColor = "#eff3f4";
   })
 })
+}
 
 /* picture_modpacks.addEventListener("click", function(event){
   if (event.target.tagName === "BUTTON"){
@@ -675,4 +681,8 @@ function reloadGalleries(){
   };
   xhttp.open("GET", "pictures_all_galleries.php", true);
   xhttp.send();
+}
+
+function showNewGalleryForm() {
+  modal_add_new_image.showModal();
 }

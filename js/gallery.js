@@ -18,6 +18,10 @@ const image_url_input = document.querySelector(".add_new_image input[name='image
 
 const image_galleries = document.querySelector(".image_galleries");
 
+const modal_add_new_image = document.querySelector(".modal_add_new_image");
+
+
+if(add_new_image){
 add_new_image.addEventListener("click", function(event){
   if(event.target.tagName==="BUTTON"){
     if(event.target.name==="add_new_ext_pic"){
@@ -30,20 +34,27 @@ add_new_image.addEventListener("click", function(event){
     }
   }
 })
+}
 
+if(image_url_input){
 image_url_input.addEventListener("input", function(event) {
   checkImageExists(image_url_input.value);
 })
+}
 
-image_url_input.addEventListener("dragover", function(event) {
-  image_url_input.style.backgroundColor = "#d2f9be82";
-})
+if(image_url_input){
+  image_url_input.addEventListener("dragover", function(event) {
+    image_url_input.style.backgroundColor = "#d2f9be82";
+  })
+}
 
+if(image_url_input){
 ["dragleave", "drop"].forEach(function(eventName) {
   image_url_input.addEventListener(eventName, function(event) {
     image_url_input.style.backgroundColor = "#eff3f4";
   })
 })
+}
 
 
 modal_new_gallery.addEventListener("click", function(event) {
@@ -675,4 +686,9 @@ function CreateContextMenu(event, imageId) {
       }
     };
   }, 10);
+}
+
+
+function showNewGalleryForm() {
+ modal_add_new_image.showModal();
 }
