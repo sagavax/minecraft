@@ -8,7 +8,7 @@ const new_modpack = document.querySelector("#new_modpack");
 new_modpack.addEventListener("click", function (event){
   if(event.target.tagName==="BUTTON"){
     if(event.target.name ==="add_new_modpack"){
-      create_modpack();
+      createModpack();
       new_modpack.close();
       } else if (event.target.name === "move_back"){
       console.log("Move back ...");
@@ -96,7 +96,7 @@ function searchModpack(modpack) {
   xhttp.send();
 }
 
-function create_modpack() {
+function createModpack() {
   const modpack_name = document.querySelector('input[name="modpack_name"]').value;
   const modpack_version = document.querySelector('input[name="modpack_version"]').value;
   const modpack_author = document.querySelector('input[name="modpack_author"]').value;
