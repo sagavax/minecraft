@@ -2134,6 +2134,14 @@ button[name="add_modpack"] {
 #new_modpack input,
 #new_modpack textarea {
     margin-top: 10px;
+    font-size: 18px;
+    padding: 14px 16px;
+    border: 1px #fdf376 solid;
+    border-radius: 5px;
+}
+
+#new_modpack input::placeholder {
+    font-weight: normal;
 }
 
 #new_modpack input[name="modpack_name"] {
