@@ -100,7 +100,7 @@
       </div>
       
       <dialog id="new_modpack">
-           <h3>Add new modpack:<h3>
+           <h3>Add new modpack:</h3>
               <input type="text" name="modpack_name" placeholder="Modpack's name" autocomplete="off"> 
               <input type="text" name="modpack_version" placeholder="Modpack's version" autocomplete="off">
               <input type="text" name="modpack_author" placeholder="Modpack's author" autocomplete="off" >
