@@ -2119,18 +2119,21 @@ button[name="add_modpack"] {
 
 
 
-#new_modpack,#mod_description {
-    /* display: flex; */
-    padding:10px;
-    width:60%;
-    top:20%;
-    left:22%;
+#new_modpack,
+#mod_description {
+    padding: 10px;
+    width: 60%;
+    top: 20%;
+    left: 22%;
     flex-direction: column;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    padding: 15px;
 }
 
-#new_modpack input, #new_modpack textarea {
-    margin-top:10px;
+#new_modpack input,
+#new_modpack textarea {
+    margin-top: 10px;
 }
 
 #new_modpack input[name="modpack_name"] {
@@ -2143,8 +2146,8 @@ button[name="add_modpack"] {
 
 #new_modpack h3 {
     font-size: 16px;
-    margin-top:8px;
-    margin-bottom: 8px
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 #new_cat form {
