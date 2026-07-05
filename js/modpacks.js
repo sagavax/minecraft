@@ -8,6 +8,10 @@ const new_modpack = document.querySelector("#new_modpack");
 new_modpack.addEventListener("click", function (event){
   if(event.target.tagName==="BUTTON"){
     if(event.target.name ==="add_new_modpack"){
+      if(document.querySelector("#new_modpack input[name='modpack_name']").value===""){
+        alert("Please enter a modpack name.");
+        return;
+      }
       createModpack();
       new_modpack.close();
       } else if (event.target.name === "move_back"){
