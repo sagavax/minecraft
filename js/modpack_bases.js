@@ -1,4 +1,14 @@
 // Use event delegation to handle clicks on dynamically loaded content
+const base_description_card = document.querySelectorAll(".base_description_card");
+
+
+base_description_card.addEventListener("onkeyup", function(e) {
+    if(base_description_card.length>200){
+        modal_base_description_extended.showModal();
+        document.querySelector("textarea[name='base_description_extended']").value = base_description_card.innerText;
+    }
+});
+
 document.addEventListener("click", function(e) {
     // Check if the click happened within a .modpack_bases element
     const modpack_bases = e.target.closest(".modpack_bases");
