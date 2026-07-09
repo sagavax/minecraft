@@ -96,7 +96,8 @@ ul {
 dialog {
     border:1px #fdf376 solid;
     border-radius: 5px;
-    background-color: #1c3a59;
+    /* background-color: #1c3a59; */
+    background-color: #1f3f5f;
     font-family: 'Noto Sans', sans-serif;
 }
 
@@ -3686,7 +3687,7 @@ button[name="add_modpack"] {
 .brand_radio .fab, .videos_radio_buttons .fab {
     height: 60px;
     width: 30px;
-    background: #0f2031; 
+    background-color: #1f3f5f;
     display: flex;
     align-items: center;
     justify-content: center;
