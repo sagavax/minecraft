@@ -325,6 +325,23 @@ function GetVideoModpack(int $video_id) {
 	return $modpack_name;
 }
 
+function GetVideoModpackBadge(int $video_id) {
+	global $link;
+	$get_video_modpack = "SELECT b.modpack_id, b.modpack_name from videos_modpacks a, modpacks b WHERE video_id = $video_id and a.modpack_id = b.modpack_id";
+	//echo $get_video_modpack;
+	$result=mysqli_query($link, $get_video_modpack);
+	if ($result && $row = mysqli_fetch_array($result)) {
+		$modpack_name = $row['modpack_name'];
+		$modpack_id = $row['modpack_id'];
+		$modpack_name = "$modpack_name";
+	} else {
+		$modpack_name = "No modpack"; // Alebo nechaj prázdne: $modpack_name = "";
+	}
+
+
+	return $modpack_name;
+}
+
 
 function GetAttachedImages(int $note_id) {
     global $link;
