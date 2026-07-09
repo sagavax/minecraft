@@ -128,6 +128,65 @@ dialog {
 }
 
 
+  .modal, .modal_modpack,.modal_video_tags,.modal_image, .modal_video_category, .modal_modpack_mods{
+    padding:5px;
+    min-height:100px;
+    width: 40%;
+    position: fixed;
+    top:35%;
+    left:40%;
+    /* background: #0f2031; */
+    border: 2px #fdf376 solid;
+    border-radius: 6px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+   }     
+
+   .modal_modpack {
+    box-sizing: border-box;
+    padding:10px;
+    height:120px;
+   }
+
+   .modal_video_tags {
+    padding:10px;
+   }
+
+   .modal_video_tags button {
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 16px;
+    border-radius: 5px;
+   }
+
+
+   
+.modal_add_new_comment,.modal_new_seed {
+    top:20%;
+    left:30%;
+    height:250px;
+    width:60%;
+    box-sizing: border-box;
+    padding:10px;
+    border-radius: 5px;
+    border:1px #fdf376 solid;
+}
+
+.modal_new_seed {
+    height: 130px;
+    width: 500px;
+}
+
+
+.modal_add_new_comment textarea {
+    height:160px;
+}
+
+
 .modpack_description {
     min-height: 100px;
     box-sizing: border-box;
@@ -2920,26 +2979,6 @@ button[name="add_modpack"] {
     height: 80%;
 }
 
-.modal_add_new_comment,.modal_new_seed {
-    top:20%;
-    left:30%;
-    height:250px;
-    width:60%;
-    box-sizing: border-box;
-    padding:10px;
-    border-radius: 5px;
-    border:1px #d1d1d1 solid;
-}
-
-.modal_new_seed {
-    height: 130px;
-    width: 500px;
-}
-
-
-.modal_add_new_comment textarea {
-    height:160px;
-}
 
 .dialog_mods, .modal_add_coordinates {
     top:20%;
@@ -5516,40 +5555,7 @@ input[name="search_mods"] {
       }  
 
 
-   .modal, .modal_modpack,.modal_video_tags,.modal_image, .modal_video_category, .modal_modpack_mods{
-    padding:5px;
-    min-height:100px;
-    width: 40%;
-    position: fixed;
-    top:35%;
-    left:40%;
-    background: #0f2031;
-    border: 2px #fdf376 solid;
-    border-radius: 6px;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-   }     
-
-   .modal_modpack {
-    box-sizing: border-box;
-    padding:10px;
-    height:120px;
-   }
-
-   .modal_video_tags {
-    padding:10px;
-   }
-
-   .modal_video_tags button {
-    height: 35px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    font-size: 16px;
-    border-radius: 5px;
-   }
+ 
 
    .change_modpack_list {
     margin-top:20px;
