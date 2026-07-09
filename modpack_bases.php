@@ -59,4 +59,9 @@
     ?>
 </div><!-- modpack bases -->
 
-    
+<dialog class="base_description_extended">
+    <div class="inner_layer">
+        <button type="button" class="close_inner_modal"><i class="fa fa-times"></i></button>
+        <textarea name="base_description_extended" placeholder="base description ...." autocomplete="off"></textarea>
+    </div>
+</dialog>    
