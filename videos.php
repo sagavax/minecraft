@@ -196,7 +196,7 @@
                             echo "<div class='video' video-id=$video_id>";
                                     echo "<div class='video_thunb'><img src='$video_thumb'></div>";
                                     echo "<div class='video_list_details'>"; // video details start here
-                                       echo "<div class='video_name'><span>$video_name</span></div>";
+                                       echo "<div class='video_name'><span>$video_name</span> <div class='video_modpack_badge'>".GetVideoModpackBadge($video_id)."</div></div>";
                                        echo "<div class='video_action'>";
                                          if($see_later==0) {
                                           echo "<button name='watch_later' type='button' title='Watch later' class='button app_badge' video-id='$video_id'><i class='far fa-clock'></i></button>";
