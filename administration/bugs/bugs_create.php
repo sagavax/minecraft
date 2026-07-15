@@ -1,11 +1,11 @@
 <?php
     include '../../includes/dbconnect.php';
      
-    $bug_title = mysqli_real_escape_string($link,$_POST['bug_title']) ?? '';
-    $bug_text = mysqli_real_escape_string($link,$_POST['bug_description']);   
+    $bug_title = $_POST['bug_title'];
+    $bug_text = $_POST['bug_description'];   
 
-    $bug_priority = mysqli_real_escape_string($link,$_POST['bug_priority'] );
-    $bug_status = mysqli_real_escape_string($link,$_POST['bug_status']);
+    $bug_priority = $_POST['bug_priority'];
+    $bug_status = $_POST['bug_status'];
      
 
     $data = [
@@ -16,7 +16,7 @@
     'bug_application' => 'minecraft'
 ];
 
-$api_host = (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'localhost') ? 'http://localhost/bugbuster' : 'https://bugbuster.sk';
+$api_host = (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'localhost') ? 'http://localhost/bugbuster' : 'https://bugbuster.tmisura.sk';
 
 
 $curl = curl_init();
