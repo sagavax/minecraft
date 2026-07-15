@@ -2,11 +2,10 @@
 
     include '../../includes/dbconnect.php';
      
-    $idea_title = mysqli_real_escape_string($link,$_POST['idea_title']) ?? '';
-    $idea_text = mysqli_real_escape_string($link,$_POST['idea_text']);   
-
-    $idea_priority = mysqli_real_escape_string($link,$_POST['idea_priority'] );
-    $idea_status = mysqli_real_escape_string($link,$_POST['idea_status']);
+    $idea_title = $_POST['idea_title'];
+    $idea_text = $_POST['idea_text'];
+    $idea_priority = $_POST['idea_priority'];
+    $idea_status = $_POST['idea_status'];
      
 
     $data = [
@@ -17,7 +16,7 @@
     'idea_application' => 'minecraft'
 ];
 
-$api_host = (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'localhost') ? 'http://localhost/bugbuster' : 'https://bugbuster.sk';
+$api_host = (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'localhost') ? 'http://localhost/bugbuster' : 'https://bugbuster.tmisura.sk';
 
 
 $curl = curl_init();
