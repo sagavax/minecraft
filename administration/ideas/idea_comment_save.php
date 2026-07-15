@@ -8,8 +8,8 @@
 
 
     $idea_id = $_POST['idea_id'];
-    $idea_comment = mysqli_real_escape_string($link,$_POST['comment']);
-    $idea_comment_header = mysqli_real_escape_string($link,$_POST['comment_title']);
+    $idea_comment = $_POST['comment'];
+    $idea_comment_header = $_POST['comment_title'];
 
     $data = [
         'idea_comment' => $idea_comment,

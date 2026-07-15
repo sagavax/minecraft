@@ -5,7 +5,7 @@
      
 
 $bug_id = $_POST['bug_id'];
-$bug_status = mysqli_real_escape_string($link,$_POST['bug_status']);
+$bug_status = $_POST['bug_status'];
 
 
 //$update_status = "UPDATE bugs SET status='$bug_status' WHERE bug_id=$bug_id";

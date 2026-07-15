@@ -4,7 +4,7 @@
  include "../../includes/functions.php";
      
 
-$idea_priority=mysqli_real_escape_string($link,$_POST['idea_priority']);
+$idea_priority=$_POST['idea_priority'];
 $idea_id = $_POST['idea_id'];
 
 /* $update_prioty = "UPDATE ideas SET priority='$idea_priority' WHERE idea_id=$idea_id";

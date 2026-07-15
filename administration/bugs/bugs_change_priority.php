@@ -4,7 +4,7 @@
  include "../../includes/functions.php";
      
 
-$bug_priority=mysqli_real_escape_string($link,$_POST['bug_priority']);
+$bug_priority=$_POST['bug_priority'];
 $bug_id = $_POST['bug_id'];
 
 /* $update_prioty = "UPDATE bugs SET priority='$bug_priority' WHERE bug_id=$bug_id";

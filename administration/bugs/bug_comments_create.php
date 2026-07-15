@@ -6,8 +6,8 @@
 
 
     $bug_id = $_POST['bug_id'];
-    $bug_comment = mysqli_real_escape_string($link,$_POST['comment_text']);
-    $bug_comment_header = mysqli_real_escape_string($link,$_POST['comment_header']);
+    $bug_comment = $_POST['comment_text'];
+    $bug_comment_header = $_POST['comment_header'];
 
     $data = [
         'bug_comment' => $bug_comment,
