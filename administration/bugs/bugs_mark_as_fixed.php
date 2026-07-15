@@ -1,6 +1,6 @@
 <?php
 
-    $bug_id = $_POST['bug_id'];
+  $bug_id = $_POST['bug_id'];
 
   $data = ['bug_id' => $bug_id, 'bug_status' => 'fixed'];
 
