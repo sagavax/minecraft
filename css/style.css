@@ -1765,6 +1765,8 @@ button[name="add_modpack"] {
 
 .video > * {
      background: #0f2031;
+     background: #1e3e5e;
+     background: #222;
 }
 
 .note, .bug {
