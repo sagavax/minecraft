@@ -17,7 +17,7 @@
     'idea_application' => 'minecraft'
 ];
 
-$api_host = (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'localhost') ? 'http://localhost/bugbuster' : 'https://bugbuster.sk';
+$api_host = (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'localhost') ? 'http://localhost/bugbuster' : 'https://bugbuster.tmisura.sk';
 
 
 $curl = curl_init();
