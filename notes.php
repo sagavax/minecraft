@@ -43,17 +43,25 @@
          
             <div id="new_note">
               <div class="new_note_header">
-                <h4>New note</h4>
+                <h4><i class="fa fa-sticky-note"></i> New note</h4>
                 <button class="button small_button"><i class="fa fa-times"></i></button>
             </div><!--new note header -->
-            
-            <form action="" method="POST" accept-charset="utf-8">
-                    <input type="text" name="note_title" placeholder="title" value="" autocomplete="off">
-                    <textarea name="note_text" placeholder="new text here..."></textarea>
-                     <select name="modpack">
-                        <?php 
+
+            <form action="" method="POST" accept-charset="utf-8" class="new_note_form">
+                    <div class="field_group">
+                        <i class="fa fa-heading field_icon"></i>
+                        <input type="text" name="note_title" placeholder="Title" value="" autocomplete="off">
+                    </div>
+                    <div class="field_group field_group_textarea">
+                        <i class="fa fa-align-left field_icon"></i>
+                        <textarea name="note_text" placeholder="Write your note here..."></textarea>
+                    </div>
+                    <div class="field_group field_group_select">
+                        <i class="fa fa-cubes field_icon"></i>
+                        <select name="modpack">
+                        <?php
                         //echo "modpack:".$modpack_id;
-                        
+
                         echo "<option value=0> -- Select modpack -- </option>";
                         $sql="SELECT * from modpacks ORDER BY modpack_id ASC";
                         $result=mysqli_query($link, $sql) or die(mysqli_error($link));
@@ -61,15 +69,16 @@
                             $modpack_id=$row['modpack_id'];
                             $modpack_name=$row['modpack_name'];
                         echo "<option value=$modpack_id>$modpack_name</option>";
-                        }	
+                        }
                      ?>
-                    </select> 
-                
+                        </select>
+                    </div>
+
                   <div class="note_action">
-                    <button name='note_add' type='submit' class='button small_button'>Add</button>
+                    <button name='note_add' type='submit' class='button small_button'><i class="fa fa-plus"></i> Add note</button>
                 </div><!--- note action --->
-                
-              </form>    
+
+              </form>
 
             </div><!-- new note -->
 
