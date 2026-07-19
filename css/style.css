@@ -4673,12 +4673,103 @@ background: #eff3f4;
     border: 1px #fdf376 solid;
     background: #0f2031;
     border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 
 #new_note textarea {
     min-height: 120px;
     background: #2C2A20;
+}
+
+/* Modern "New note" form */
+.new_note_header h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fdf376;
+    margin: 0;
+}
+
+.new_note_form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+#new_note .field_group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#new_note .field_icon {
+    position: absolute;
+    left: 14px;
+    top: 25px;
+    transform: translateY(-50%);
+    color: #fdf376;
+    opacity: 0.7;
+    font-size: 15px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#new_note .field_group input,
+#new_note .field_group select,
+#new_note .field_group textarea {
+    padding-left: 40px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#new_note .field_group_textarea .field_icon {
+    top: 24px;
+}
+
+#new_note .field_group textarea {
+    resize: vertical;
+}
+
+#new_note input,
+#new_note textarea,
+#new_note select {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+#new_note input:hover,
+#new_note textarea:hover,
+#new_note select:hover {
+    border-color: #ffe98a;
+}
+
+#new_note input:focus,
+#new_note textarea:focus,
+#new_note select:focus {
+    border-color: #fdf376;
+    box-shadow: 0 0 0 3px rgba(253, 243, 118, 0.25);
+    background-color: #23291c;
+}
+
+#new_note .field_group_select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%23fdf376' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+}
+
+#new_note .note_action button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: auto;
+    padding: 10px 24px;
 }
 
 #new_note_action button {
