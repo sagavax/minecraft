@@ -33,6 +33,7 @@
 .sessions_list .info_message {
     background-color: #0f2031;
     color: #fdf376;
+    border: none;
 }
 
 .session_row {
