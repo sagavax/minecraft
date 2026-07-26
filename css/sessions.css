@@ -1,0 +1,230 @@
+/* Game sessions module */
+
+.sessions_list_wrap {
+    box-sizing: border-box;
+}
+
+.sessions_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.session_card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 1px #fdf376 solid;
+    background-color: #0f2031;
+    padding: 10px;
+    border-radius: 6px;
+    color: #fdf376;
+}
+
+.session_modpack_name {
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Noto Sans', sans-serif;
+    margin-bottom: 5px;
+}
+
+.session_seed {
+    border: 1px #d1d1d1 solid;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+.session_date_created {
+    font-size: 13px;
+    color: #d1d1d1;
+    margin-bottom: 10px;
+}
+
+.session_basic_info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.session_nr_notes,
+.session_nr_tasks {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: #0f2031;
+    color: #fdf376;
+    font-weight: bold;
+    border: 2px #fdf376 solid;
+    height: 40px;
+    border-radius: 6px;
+}
+
+.session_actions_card {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.session_actions_card button {
+    height: 40px;
+    border-radius: 6px;
+}
+
+.session_actions_card button[name="delete_session"] {
+    background-color: red;
+    border: 1px red solid;
+}
+
+/* session detail page */
+
+#basic_session_info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#basic_session_info select,
+#basic_session_info input[name="session_seed"] {
+    font-weight: bold;
+}
+
+.session_wall {
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.session_wall_tabs {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    box-sizing: border-box;
+}
+
+.session_wall_tabs button {
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+    height: 80%;
+    border-left: 1px white solid;
+}
+
+.session_wall_tabs button:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.session_wall_tabs button:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+#notes, #tasks, #bases {
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.new_session_note,
+.new_session_task,
+.new_session_base {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.new_session_base {
+    flex-direction: row;
+    align-items: center;
+}
+
+.session_notes_list,
+.session_tasks_list,
+.session_bases_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.session_note,
+.session_task,
+.session_base {
+    min-height: 60px;
+    border: 1px #fdf376 solid;
+    background-color: #0f2031;
+    color: #fdf376;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.session_note_header {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.task_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.task_action {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.task_priorita {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 10px;
+    background: #d1d1d1;
+    color: #222;
+}
+
+.session_task.priorita_high .task_priorita {
+    background: #e05353;
+    color: #fff;
+}
+
+.session_task.priorita_normal .task_priorita {
+    background: #fdf376;
+    color: #222;
+}
+
+.session_task.priorita_low .task_priorita {
+    background: #75c54f;
+    color: #fff;
+}
+
+.span_task_completed {
+    color: #75c54f;
+    font-weight: bold;
+}
+
+.session_base_name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.session_note_act,
+.session_base_act {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
