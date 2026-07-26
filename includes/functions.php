@@ -1413,3 +1413,64 @@ function  GetNrOfImageComments(int $picture_id){
 
 	return $nr_of_ideas;
  }
+
+ //game sessions module
+
+ function GetCountGameSessions(){
+	global $link;
+	$sql="SELECT count(*) as nr_of_sessions from game_sessions";
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$nr_of_sessions=$row['nr_of_sessions'];
+
+	return $nr_of_sessions;
+ }
+
+ function GetCountSessionNotes(int $session_id){
+	global $link;
+	$sql="SELECT count(*) as nr_of_notes from game_session_notes where session_id=$session_id";
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$nr_of_notes=$row['nr_of_notes'];
+
+	return $nr_of_notes;
+ }
+
+ function GetCountSessionTasks(int $session_id){
+	global $link;
+	$sql="SELECT count(*) as nr_of_tasks from game_session_tasks where session_id=$session_id";
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$nr_of_tasks=$row['nr_of_tasks'];
+
+	return $nr_of_tasks;
+ }
+
+ function GetCountSessionBases(int $session_id){
+	global $link;
+	$sql="SELECT count(*) as nr_of_bases from game_sessions_bases where session_id=$session_id";
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$nr_of_bases=$row['nr_of_bases'];
+
+	return $nr_of_bases;
+ }
+
+ function GetSessionModpackName(int $modpack_id){
+	global $link;
+	$sql="SELECT modpack_name from modpacks where modpack_id=$modpack_id";
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+
+	return $row ? $row['modpack_name'] : "";
+ }
+
+ function GetNextSessionBaseName(int $session_id){
+	global $link;
+	$sql="SELECT count(*) as nr_of_bases from game_sessions_bases where session_id=$session_id";
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$next_index = intval($row['nr_of_bases']) + 1;
+
+	return "base_".$next_index;
+ }
