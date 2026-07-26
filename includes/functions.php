@@ -1456,6 +1456,36 @@ function  GetNrOfImageComments(int $picture_id){
 	return $nr_of_bases;
  }
 
+ function GetCountAllSessionNotes(){
+	global $link;
+	$sql="SELECT count(*) as nr_of_notes from game_session_notes";
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$nr_of_notes=$row['nr_of_notes'];
+
+	return $nr_of_notes;
+ }
+
+ function GetCountAllSessionTasks(){
+	global $link;
+	$sql="SELECT count(*) as nr_of_tasks from game_session_tasks";
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$nr_of_tasks=$row['nr_of_tasks'];
+
+	return $nr_of_tasks;
+ }
+
+ function GetCountAllSessionBases(){
+	global $link;
+	$sql="SELECT count(*) as nr_of_bases from game_sessions_bases";
+	$result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+	$row = mysqli_fetch_array($result);
+	$nr_of_bases=$row['nr_of_bases'];
+
+	return $nr_of_bases;
+ }
+
  function GetSessionModpackName(int $modpack_id){
 	global $link;
 	$sql="SELECT modpack_name from modpacks where modpack_id=$modpack_id";
