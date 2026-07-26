@@ -44,6 +44,7 @@
                           <div class="tile" tile-id='gallery'><div class='tile_title'><i class="fa fa-image"></i>Gallery</div><div class="tile_info"><span><?php echo GetCountImages(); ?> images</span></div></div>
                           <div class="tile" tile-id='influencers'><div class='tile_title'><i class="fa fa-user"></i>Influencers</div><div class="tile_info"><span><?php //echo GetCountInfluencers(); ?> influencers</span></div></div>
                           <div class="tile"  tile-id='vanilla'><div class='tile_title'><i class="fa fa-cube"></i>Vanilla</div><div class="tile_info"><span><?php echo GetCountBases()." bases ,".GetCountVanilaVideos()." videos,".GetCountVanilaNotes()." notes"; ?></span></div></div>
+                          <div class="tile" tile-id='game_sessions'><div class='tile_title'><i class="fa fa-gamepad"></i>Game sessions</div><div class="tile_info"><span><?php echo GetCountGameSessions()." sessions, ".GetCountAllSessionNotes()." notes, ".GetCountAllSessionTasks()." tasks, ".GetCountAllSessionBases()." bases"; ?></span></div></div>
                           <div class="tile" tile-id='admin'><div class='tile_title'><i class="fa fa-cog"></i>Administration</div><div class="tile_info">Ideas, bugs, logs, maintenance, settings<span></span></div></div>
                         </div><!-- tile list -->
                       
