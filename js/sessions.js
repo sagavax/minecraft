@@ -4,25 +4,26 @@ const new_session = document.querySelector("#new_session");
 
 if (new_session) {
     new_session.addEventListener("click", function (event) {
-        if (event.target.tagName === "BUTTON") {
-            if (event.target.name === "add_new_session") {
-                const modpackId = document.querySelector("select[name='session_modpack_id']").value;
-                const seed = document.querySelector("input[name='session_seed']").value;
+        const button = event.target.closest("button");
+        if (!button) return;
 
-                if (modpackId === "") {
-                    alert("Please select a modpack.");
-                    return;
-                }
+        if (button.name === "add_new_session") {
+            const modpackId = document.querySelector("select[name='session_modpack_id']").value.trim();
+            const seed = document.querySelector("input[name='session_seed']").value.trim();
 
-                if (seed === "") {
-                    alert("Please enter a seed.");
-                    return;
-                }
-
-                createSession(modpackId, seed);
-            } else if (event.target.name === "move_back") {
-                new_session.close();
+            if (modpackId === "") {
+                alert("Please select a modpack.");
+                return;
             }
+
+            if (seed === "") {
+                alert("Please enter a seed.");
+                return;
+            }
+
+            createSession(modpackId, seed);
+        } else if (button.name === "move_back") {
+            new_session.close();
         }
     });
 }
@@ -51,9 +52,13 @@ if (sessions_list) {
 function createSession(modpackId, seed) {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            new_session.close();
-            window.location.reload();
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                new_session.close();
+                window.location.reload();
+            } else {
+                alert(this.responseText || "Failed to create the game session.");
+            }
         }
     };
     xhttp.open("POST", "session_create.php", true);
