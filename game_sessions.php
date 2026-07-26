@@ -84,7 +84,7 @@
               </select>
               <input type="text" name="session_seed" placeholder="Seed" autocomplete="off">
               <div class="action">
-                 <button type="button" name="add_new_session" class="button pull-right"><i class="fa fa-plus"></i></button>
+                 <button type="button" name="add_new_session" class="button pull-right"><i class="fa fa-plus"></i> Create</button>
                  <button type="button" name="move_back" class="button pull-right"><i class="fa fa-arrow-left"></i></button>
               </div>
        </dialog>
