@@ -1,5 +1,16 @@
 /* Game sessions module */
 
+#new_session  {
+    top:20%;
+    left:20%;
+    height:250px;
+    width:60%;
+    box-sizing: border-box;
+    padding:15px;
+    border-radius: 5px;
+    border:1px #fdf376 solid;
+}
+
 .sessions_list_wrap {
     box-sizing: border-box;
 }
