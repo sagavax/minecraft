@@ -3,12 +3,7 @@
     include("includes/functions.php");
 
     $modpack_id = intval($_POST['modpack_id']);
-    $seed = mysqli_real_escape_string($link, trim($_POST['seed']));
-
-    if ($modpack_id <= 0 || $seed === "") {
-        http_response_code(400);
-        die("Please select a modpack and enter a seed.");
-    }
+    $seed = mysqli_real_escape_string($link, $_POST['seed']);
 
     $sql="INSERT INTO game_sessions (modpack_id, seed, date_created) VALUES ($modpack_id, '$seed', now())";
     $result = mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));

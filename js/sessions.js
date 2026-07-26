@@ -52,13 +52,9 @@ if (sessions_list) {
 function createSession(modpackId, seed) {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                new_session.close();
-                window.location.reload();
-            } else {
-                alert(this.responseText || "Failed to create the game session.");
-            }
+        if (this.readyState == 4 && this.status == 200) {
+            new_session.close();
+            window.location.reload();
         }
     };
     xhttp.open("POST", "session_create.php", true);
