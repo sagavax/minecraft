@@ -31,7 +31,12 @@
 
             <div class="dashboard_header">Game sessions</div>
 
-            <div class="sessions_list">
+            <div class="tab_view_list_grid">
+                <button type="button" name="cards" class="button small_button">Grid</button>
+                <button type="button" name="list" class="button small_button">List</button>
+            </div>
+
+            <div class="sessions_list" id="sessions_list">
                 <?php include "game_sessions_display_as_cards.php"; ?>
             </div><!-- sessions_list -->
           </div><!-- sessions_list_wrap -->

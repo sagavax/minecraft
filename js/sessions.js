@@ -1,6 +1,16 @@
 // game_sessions.php - sessions list page
 const sessions_list = document.querySelector(".sessions_list");
 const new_session = document.querySelector("#new_session");
+const sessions_view_toggle = document.querySelector(".tab_view_list_grid");
+
+if (sessions_view_toggle) {
+    sessions_view_toggle.addEventListener("click", function (event) {
+        const button = event.target.closest("button");
+        if (!button) return;
+
+        sessions_display_as(button.name);
+    });
+}
 
 if (new_session) {
     new_session.addEventListener("click", function (event) {
@@ -33,7 +43,7 @@ if (sessions_list) {
         const button = event.target.closest("button");
         if (!button) return;
 
-        const card = button.closest(".session_card");
+        const card = button.closest("[session-id]");
         if (!card) return;
 
         const sessionId = card.getAttribute("session-id");
@@ -47,6 +57,18 @@ if (sessions_list) {
             }
         }
     });
+}
+
+function sessions_display_as(source) {
+    const xhttp = new XMLHttpRequest();
+    const url = source === "list" ? "game_sessions_display_as_list.php" : "game_sessions_display_as_cards.php";
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("sessions_list").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
 }
 
 function createSession(modpackId, seed) {

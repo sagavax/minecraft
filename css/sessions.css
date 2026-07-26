@@ -15,11 +15,63 @@
     box-sizing: border-box;
 }
 
+.tab_view_list_grid {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
 .sessions_list {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     margin-top: 15px;
+}
+
+.session_row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+    border: 1px #fdf376 solid;
+    background-color: #0f2031;
+    padding: 10px;
+    border-radius: 6px;
+    color: #fdf376;
+}
+
+.session_row_modpack_name {
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Noto Sans', sans-serif;
+    flex: 1;
+}
+
+.session_row_seed {
+    border: 1px #d1d1d1 solid;
+    border-radius: 5px;
+    padding: 5px;
+    word-break: break-word;
+}
+
+.session_row_date_created {
+    font-size: 13px;
+    color: #d1d1d1;
+    white-space: nowrap;
+}
+
+.session_row_info {
+    display: flex;
+    gap: 5px;
+}
+
+.session_row_info .session_nr_notes,
+.session_row_info .session_nr_tasks {
+    flex: none;
+    padding: 0 10px;
 }
 
 .session_card {
