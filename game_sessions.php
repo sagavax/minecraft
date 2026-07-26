@@ -26,7 +26,7 @@
         </div>
         <div class="content">
 
-          <div class="sessions_list_wrap">
+          <div class="list sessions_list_wrap">
             <button class="button small_button" name="modal_new_session" title="Add new session" onclick="document.getElementById('new_session').showModal()"><i class="fa fa-plus"></i></button>
 
             <div class="dashboard_header">Game sessions</div>
