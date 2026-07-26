@@ -4,6 +4,7 @@
     <li><a href="tasks.php">Tasks</a></li>
     <li><a href="mods.php">Mods</a></li>
     <li><a href="modpacks.php">Modpacks</a></li>
+    <li><a href="game_sessions.php">Game sessions</a></li>
     <li><a href="videos.php">Videos</a></li>
     <li><a href="gallery.php">Gallery</a></li>
     <li><a href="influencers.php">Influencers</a></li>
