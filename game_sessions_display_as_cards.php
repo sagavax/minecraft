@@ -1,6 +1,6 @@
 <?php
-    include "includes/dbconnect.php";
-    include "includes/functions.php";
+    include_once "includes/dbconnect.php";
+    include_once "includes/functions.php";
 
     $sql="SELECT * from game_sessions ORDER BY id DESC";
     $result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
