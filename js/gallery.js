@@ -352,30 +352,50 @@ function saveImage() {
 
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      const response = JSON.parse(this.responseText);
-      const imageID = response.image_id;
+    if (this.readyState !== 4) return;
 
-      ShowMessage("Image saved successfully!");
-
-      // Vyčistiť formulár
-      document.querySelector('.modal_add_new_image input[name="image_name"]').value = "";
-      document.querySelector('.modal_add_new_image input[name="image_url"]').value = "";
-      document.querySelector('textarea[name="image_description"]').value = "";
-
-      document.querySelector(".modal_add_new_image").close();
-
-      const imageList = document.querySelector('.gallery_wrap');
-      if (!imageList) return;
-      const html = `
-        <div class="gallery_item" id="${imageID}">
-            <img src="${imageUrl}" alt="${imageName}">
-            <div class="gallery_item_description">${imageDescription}</div>
-        </div>
-      `;
-
-      imageList.insertAdjacentHTML("afterbegin", html);
+    if (this.status !== 200) {
+      console.error("saveImage failed:", this.status, this.responseText);
+      ShowMessage("Could not save image (server error " + this.status + ").");
+      return;
     }
+
+    let response;
+    try {
+      response = JSON.parse(this.responseText);
+    } catch (e) {
+      console.error("saveImage: invalid JSON response:", JSON.stringify(this.responseText));
+      ShowMessage("Could not save image (unexpected server response).");
+      return;
+    }
+
+    if (!response || response.status !== "success") {
+      console.error("saveImage: server reported failure:", response);
+      ShowMessage(response && response.message ? response.message : "Could not save image.");
+      return;
+    }
+
+    const imageID = response.image_id;
+
+    ShowMessage("Image saved successfully!");
+
+    // Vyčistiť formulár
+    document.querySelector('.modal_add_new_image input[name="image_name"]').value = "";
+    document.querySelector('.modal_add_new_image input[name="image_url"]').value = "";
+    document.querySelector('textarea[name="image_description"]').value = "";
+
+    document.querySelector(".modal_add_new_image").close();
+
+    const imageList = document.querySelector('.gallery_wrap');
+    if (!imageList) return;
+    const html = `
+      <div class="gallery_item" id="${imageID}">
+          <img src="${imageUrl}" alt="${imageName}">
+          <div class="gallery_item_description">${imageDescription}</div>
+      </div>
+    `;
+
+    imageList.insertAdjacentHTML("afterbegin", html);
   };
 
   const data = 
