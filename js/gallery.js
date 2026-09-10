@@ -13,7 +13,7 @@ const modal_new_gallery_input = document.querySelector(".modal_new_gallery input
 const modal_new_gallery_textarea = document.querySelector(".modal_new_gallery textarea[name='gallery_description']");
 const modal_new_gallery_select = document.querySelector(".modal_new_gallery select[name='gallery_category']");
 
-const add_new_image = document.querySelector(".add_new_image");
+//const add_new_image = document.querySelector(".add_new_image");
 const image_url_input = document.querySelector(".add_new_image input[name='image_url']");
 
 const image_galleries = document.querySelector(".image_galleries");
@@ -21,11 +21,12 @@ const image_galleries = document.querySelector(".image_galleries");
 const modal_add_new_image = document.querySelector(".modal_add_new_image");
 
 
-if(add_new_image){
-add_new_image.addEventListener("click", function(event){
+if(modal_add_new_image){
+modal_add_new_image.addEventListener("click", function(event){
   if(event.target.tagName==="BUTTON"){
     if(event.target.name==="add_new_ext_pic"){
-      const imageUrl = document.querySelector(".add_new_image input[name='image_url']").value;
+      const imageUrl = document.querySelector(".modal_add_new_image input[name='image_url']").value;
+      console.log("Image URL:", imageUrl);
       if(imageUrl===""){
           ShowMessage("Please enter image URL.");
           return;
@@ -237,7 +238,7 @@ function checkImageExists(imageUrl) {
           if (this.responseText === "true") {
               ShowMessage("Image already exists!");
 
-              const inputField = document.querySelector(".add_new_image input[name='image_url']");
+              const inputField = document.querySelector(".modal_add_new_image input[name='image_url']");
               inputField.style.border = "2px solid red";
 
               setTimeout(() => {
@@ -245,7 +246,7 @@ function checkImageExists(imageUrl) {
                   inputField.value = "";
               }, 3000);
           } else {
-              const inputField = document.querySelector(".add_new_image input[name='image_url']");
+              const inputField = document.querySelector(".modal_add_new_image input[name='image_url']");
               inputField.style.border = "2px solid green";
 
               setTimeout(() => {
@@ -334,7 +335,7 @@ function addComment(imageId, commentText){
    xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           ShowMessage("Comment added successfully!");
-         modal_add_new_comment.close();
+         document.querySelector(".modal_add_new_comment").close();
       }
      };
    data = "image_id="+imageId+"&comment_text="+commentText;
@@ -345,8 +346,8 @@ function addComment(imageId, commentText){
 }
 
 function saveImage() {
-  const imageName = document.querySelector('.add_new_image input[name="image_name"]').value;
-  const imageUrl = document.querySelector('.add_new_image input[name="image_url"]').value;
+  const imageName = document.querySelector('.modal_add_new_image input[name="image_name"]').value;
+  const imageUrl = document.querySelector('.modal_add_new_image input[name="image_url"]').value; 
   const imageDescription = document.querySelector('textarea[name="image_description"]').value;
 
   const xhttp = new XMLHttpRequest();
@@ -358,9 +359,11 @@ function saveImage() {
       ShowMessage("Image saved successfully!");
 
       // Vyčistiť formulár
-      document.querySelector('.add_new_image input[name="image_name"]').value = "";
-      document.querySelector('.add_new_image input[name="image_url"]').value = "";
+      document.querySelector('.modal_add_new_image input[name="image_name"]').value = "";
+      document.querySelector('.modal_add_new_image input[name="image_url"]').value = "";
       document.querySelector('textarea[name="image_description"]').value = "";
+
+      document.querySelector(".modal_add_new_image").close();
 
       const imageList = document.querySelector('.gallery_wrap');
       if (!imageList) return;
