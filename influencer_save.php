@@ -4,7 +4,7 @@ include "includes/dbconnect.php";
 include "includes/functions.php";
 
 // Validacia - kontrola ci su povinne polia vyplnene
-if (empty($_POST['influencer_name']) || empty($_POST['influencer_url'])) {
+if (empty($_POST['influencer_name']) || empty($_POST['influencer_url']) || empty($_POST['influencer_image'])) {
     header("Location: influencers.php");
     exit();
 }

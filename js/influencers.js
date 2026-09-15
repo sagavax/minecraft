@@ -3,7 +3,7 @@ const influencer_list = document.querySelector(".influencer_list");
 const modal_change_modpack = document.querySelector(".modal_change_modpack");
 const new_influencer_input_influencer_name = document.querySelector("#new_influencer input[name='influencer_name']");
 const new_influencer_input_influencer_link = document.querySelector("#new_influencer input[name='influencer_url']");
-
+const new_influencer_input_influencer_image = document.querySelector("#new_influencer input[name='influencer_image']");
 
 
 document.querySelector(".influencer_modpacks").style.background = "transparent";
@@ -42,10 +42,11 @@ new_influencer.addEventListener("submit", (event) => {
     if(submitter && submitter.name === "add_new_influencer"){
         if(
             new_influencer_input_influencer_name.value === "" ||
-            new_influencer_input_influencer_link.value === ""
+            new_influencer_input_influencer_link.value === "" ||
+            new_influencer_input_influencer_image.value === ""
         ) {
             event.preventDefault();
-            ShowMessage("Please enter a name or a link for the influencer.");
+            ShowMessage("Please enter a name, link, and image for the influencer.");
             return;
         } 
     }
