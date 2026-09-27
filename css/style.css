@@ -690,6 +690,8 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
+    color:#222;
+    font-weight: bold;
 }
 
 .influencer_image {
@@ -1181,7 +1183,7 @@ input[name="modpack_index_id"]::placeholder {
     border: 1px #d1d1d1 solid;
     box-sizing: border-box;
     padding: 10px;
-    background: #eff3f4;
+    background-color: #2a4866;
     position: relative;
     flex-wrap: wrap;
     word-break: break-word;
@@ -1763,6 +1765,8 @@ button[name="add_modpack"] {
 .video_details {
     background-color: #0f2031;
      border: 2px #fdf376 solid;
+     box-sizing: border-box;
+    padding: 25px;
 }
 
 .video > * {
@@ -2158,6 +2162,8 @@ button[name="add_modpack"] {
 
 #new_influencer {
     margin-top: 15px;
+    background-color: #2a4866;
+    padding:20px;
 }
 
 #new_tag h4 {
