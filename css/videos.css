@@ -34,6 +34,14 @@
     gap:10px;
    }
 
+ .video_tags_map_header header {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+ }
 
 .video_tags_map {
     display: flex;
