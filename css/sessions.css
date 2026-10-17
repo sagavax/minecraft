@@ -3,7 +3,7 @@
 #new_session  {
     top:20%;
     left:20%;
-    height:250px;
+    height:350px;
     width:60%;
     box-sizing: border-box;
     padding:15px;
@@ -298,4 +298,12 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 5px;
+}
+
+
+.session_spawn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
 }

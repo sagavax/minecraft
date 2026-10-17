@@ -19,7 +19,7 @@ if (new_session) {
 
         if (button.name === "add_new_session") {
             const modpackId = document.querySelector("select[name='session_modpack_id']").value.trim();
-            const seed = document.querySelector("input[name='session_seed']").value.trim();
+            const seed = document.querySelector("select[name='session_seed']").value.trim();
 
             if (modpackId === "") {
                 alert("Please select a modpack.");
@@ -31,7 +31,11 @@ if (new_session) {
                 return;
             }
 
-            createSession(modpackId, seed);
+            const session_spawn_x = document.querySelector("input[name='session_spawn_x']").value.trim();
+            const session_spawn_y = document.querySelector("input[name='session_spawn_y']").value.trim();
+            const session_spawn_z = document.querySelector("input[name='session_spawn_z']").value.trim();
+
+            createSession(modpackId, seed, session_spawn_x, session_spawn_y, session_spawn_z);
         } else if (button.name === "move_back") {
             new_session.close();
         }
@@ -71,7 +75,7 @@ function sessions_display_as(source) {
     xhttp.send();
 }
 
-function createSession(modpackId, seed) {
+function createSession(modpackId, seed, spawnX, spawnY, spawnZ) {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -81,7 +85,8 @@ function createSession(modpackId, seed) {
     };
     xhttp.open("POST", "session_create.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    const data = "modpack_id=" + encodeURIComponent(modpackId) + "&seed=" + encodeURIComponent(seed);
+    const data = "modpack_id=" + encodeURIComponent(modpackId) + "&seed=" + encodeURIComponent(seed)+"&spawn_x=" + encodeURIComponent(spawnX) +"&spawn_y=" + encodeURIComponent(spawnY) +
+        "&spawn_z=" + encodeURIComponent(spawnZ);
     xhttp.send(data);
 }
 

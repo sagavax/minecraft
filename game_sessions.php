@@ -56,7 +56,22 @@
                       }
                   ?>
               </select>
-              <input type="text" name="session_seed" placeholder="Seed" autocomplete="off">
+              <select name="session_seed">
+                  <option value="">-- Select seed --</option>
+                <?php
+                    $sql="SELECT seed_id, seed from modpack_seeds ORDER BY seed_id ASC";
+                    $result=mysqli_query($link, $sql) or die("MySQLi ERROR: ".mysqli_error($link));
+                    while ($row = mysqli_fetch_array($result)){
+                        echo "<option value='".htmlspecialchars($row['seed'], ENT_QUOTES)."'>".htmlspecialchars($row['seed'], ENT_QUOTES)."</option>";
+                    }
+                ?>
+              </select>
+              <div class="session_spawn">
+                  <label for="session_spawn">Spawn coordinates:</label>
+                  <input type="text" name="session_spawn_x" placeholder="X" autocomplete="off">
+                  <input type="text" name="session_spawn_y" placeholder="Y" autocomplete="off">
+                  <input type="text" name="session_spawn_z" placeholder="Z" autocomplete="off">
+              </div>
               <div class="action">
                  <button type="button" name="add_new_session" class="button pull-right"><i class="fa fa-plus"></i> Create</button>
                  <button type="button" name="move_back" class="button pull-right"><i class="fa fa-arrow-left"></i></button>
