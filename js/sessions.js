@@ -35,6 +35,32 @@ if (new_session) {
         } else if (button.name === "move_back") {
             new_session.close();
         }
+
+        if (button.name === "add_new_seed") {
+            document.querySelector(".create_new_seed_wrap").style.display = "flex";
+            document.querySelector(".create_new_seed_wrap").style.height = "145px";
+            document.querySelector("#new_session").style.height = "400px";
+            document.querySelector("input[name='create_new_seed']").focus();
+            document.querySelector("input[name='create_new_seed']").value = "";
+            document.querySelector("button[name='cancel_new_seed']").style.display = "flex";
+            document.querySelector("button[name='cancel_new_seed']").style.alignItems
+             = "center";
+             document.querySelector("button[name='cancel_new_seed']").style.justifyContent = "center";
+        }
+        if(button.name === "create_new_seed") {
+            const newSeedInput = document.querySelector("input[name='create_new_seed']").value.trim();
+            if (newSeedInput === "") {
+                alert("Please enter a new seed.");
+                return;
+            }
+
+            createNewSeed(newSeedInput);
+        }
+
+        if(button.name === "cancel_new_seed") {
+            document.querySelector(".create_new_seed_wrap").style.display = "none";
+            document.querySelector("#new_session").style.height = "250px";
+        }
     });
 }
 
@@ -331,5 +357,31 @@ function removeSessionBase(baseId) {
     xhttp.open("POST", "session_base_remove.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     const data = "base_id=" + encodeURIComponent(baseId);
+    xhttp.send(data);
+}
+
+
+function createNewSeed(newSeed) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const seedList = document.querySelector("select[name='seed_list']");
+            const option = document.createElement("option");
+            option.value = newSeed;
+            option.textContent = newSeed;
+            seedList.appendChild(option);
+        }
+        const response = JSON.parse(this.responseText);
+        if (response.success) {
+            alert("New seed created successfully.");
+        } else if (response.info) {
+            alert(response.message);
+        } else {
+            alert("Error creating new seed: " + response.error);
+        }
+    };
+    xhttp.open("POST", "seed_create.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    const data = "seed=" + encodeURIComponent(newSeed);
     xhttp.send(data);
 }

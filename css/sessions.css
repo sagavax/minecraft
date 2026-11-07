@@ -299,3 +299,59 @@
     justify-content: flex-end;
     margin-top: 5px;
 }
+
+.create_new_seed_wrap {
+    flex:1;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    border: 1px #fdf376 solid;
+    padding:15px;
+    position: relative;
+}
+
+.create_new_seed_wrap button[name='cancel_new_seed'] {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #2a4866;
+    color: #fdf376;
+    border: none;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding:5px;
+}
+
+.create_new_seed_wrap button {
+    height: 45px;
+    border-radius: 6px;
+    width: 120px;
+}
+
+.create_new_seed_wrap input {
+    height:45px;
+}
+
+.seeds_list_wrap {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 45px;
+}
+
+.seeds_list_wrap select {
+    display: flex;   
+    flex: 1;
+    border-radius: 6px;
+
+}
+
+.seed_list_wrap button {
+    height: 40px;
+    border-radius: 6px;
+    height: 45px;
+}
