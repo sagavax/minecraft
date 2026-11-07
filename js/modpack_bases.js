@@ -1,11 +1,13 @@
 // Use event delegation to handle clicks on dynamically loaded content
-const base_description_card = document.querySelectorAll(".base_description_card");
+document.addEventListener("keyup", function(e) {
+    if (!(e.target instanceof Element)) return;
+    const descriptionCard = e.target.closest(".base_description_card");
+    if (!descriptionCard || descriptionCard.innerText.length <= 200) return;
 
-
-base_description_card.addEventListener("onkeyup", function(e) {
-    if(base_description_card.length>200){
-        modal_base_description_extended.showModal();
-        document.querySelector("textarea[name='base_description_extended']").value = base_description_card.innerText;
+    const modal = document.querySelector(".base_description_extended");
+    if (!modal.open) {
+        modal.showModal();
+        document.querySelector("textarea[name='base_description_extended']").value = descriptionCard.innerText;
     }
 });
 
