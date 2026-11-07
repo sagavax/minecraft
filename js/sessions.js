@@ -361,23 +361,40 @@ function removeSessionBase(baseId) {
 }
 
 
+let seedCreationInProgress = false;
+
 function createNewSeed(newSeed) {
+    if (seedCreationInProgress) return;
+    seedCreationInProgress = true;
+
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState !== 4) return;
+
+        let response;
+        try {
+            response = JSON.parse(this.responseText);
+        } catch (error) {
+            seedCreationInProgress = false;
+            console.error("Invalid response while creating seed.", error);
+            alert("Error creating new seed: Invalid server response.");
+            return;
+        }
+
+        seedCreationInProgress = false;
+        if (response.success) {
             const seedList = document.querySelector("select[name='seed_list']");
             const option = document.createElement("option");
             option.value = newSeed;
             option.textContent = newSeed;
             seedList.appendChild(option);
-        }
-        const response = JSON.parse(this.responseText);
-        if (response.success) {
-            alert("New seed created successfully.");
+            alert(response.message);
+            document.querySelector(".create_new_seed_wrap").style.display = "none";
+            document.querySelector("#new_session").style.height = "250px";
         } else if (response.info) {
             alert(response.message);
         } else {
-            alert("Error creating new seed: " + response.error);
+            alert("Error creating new seed: " + (response.error || "Unknown error."));
         }
     };
     xhttp.open("POST", "seed_create.php", true);
