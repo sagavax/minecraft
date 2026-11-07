@@ -1,21 +1,36 @@
 <?php
 
     include("includes/dbconnect.php");
-    include("includes/functions.php");
 
+    header("Content-Type: application/json; charset=utf-8");
 
-    $new_seed = isset($_POST['create_new_seed']) ? $_POST['create_new_seed'] : '';
-
-    //check if seed already exists
-    $check_seed = "SELECT seed FROM modpack_seeds WHERE seed='$new_seed'";
-    $seed_result = mysqli_query($link, $check_seed) or die("MySQLi ERROR: ".mysqli_error($link));
-    if (mysqli_num_rows($seed_result) > 0) {
-        json_encode(array("status" => "info", "message" => "Seed already exists."));
+    if (!isset($_POST['seed']) || !is_string($_POST['seed']) || trim($_POST['seed']) === '') {
+        http_response_code(400);
+        echo json_encode(["success" => false, "error" => "Seed is required."]);
         exit;
-    } else {
-        //create new seed
-        $create_new_seed = "INSERT INTO modpack_seeds (seed) VALUES ('$new_seed')";
-        $result=mysqli_query($link, $create_new_seed) or die("MySQLi ERROR: ".mysqli_error($link));
     }
 
-    json_encode(array("status" => "success", "message" => "New seed created successfully."));
+    $new_seed = trim($_POST['seed']);
+    $escaped_seed = mysqli_real_escape_string($link, $new_seed);
+
+    $check_seed = mysqli_query($link, "SELECT seed FROM modpack_seeds WHERE seed = '$escaped_seed'");
+    if (!$check_seed) {
+        http_response_code(500);
+        echo json_encode(["success" => false, "error" => "Unable to check whether the seed already exists."]);
+        exit;
+    }
+    if (mysqli_num_rows($check_seed) > 0) {
+        mysqli_free_result($check_seed);
+        echo json_encode(["success" => false, "info" => true, "message" => "Seed already exists."]);
+        exit;
+    }
+    mysqli_free_result($check_seed);
+
+    $create_new_seed = mysqli_query($link, "INSERT INTO modpack_seeds (seed, added_date) VALUES ('$escaped_seed', NOW())");
+    if (!$create_new_seed) {
+        http_response_code(500);
+        echo json_encode(["success" => false, "error" => "Unable to create the seed."]);
+        exit;
+    }
+
+    echo json_encode(["success" => true, "message" => "New seed created successfully."]);
