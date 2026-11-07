@@ -1,7 +1,17 @@
 // game_sessions.php - sessions list page
 const sessions_list = document.querySelector(".sessions_list");
+const sessions_list_wrap = document.querySelector(".sessions_list_wrap");
 const new_session = document.querySelector("#new_session");
 const sessions_view_toggle = document.querySelector(".tab_view_list_grid");
+
+if (sessions_list_wrap && new_session) {
+    sessions_list_wrap.addEventListener("click", function (event) {
+        const button = event.target.closest("button");
+        if (button && button.name === "add_new_session") {
+            new_session.showModal();
+        }
+    });
+}
 
 if (sessions_view_toggle) {
     sessions_view_toggle.addEventListener("click", function (event) {
@@ -19,7 +29,7 @@ if (new_session) {
 
         if (button.name === "add_new_session") {
             const modpackId = document.querySelector("select[name='session_modpack_id']").value.trim();
-            const seed = document.querySelector("input[name='session_seed']").value.trim();
+            const seed = document.querySelector("select[name='seed_list']").value.trim();
 
             if (modpackId === "") {
                 alert("Please select a modpack.");
@@ -27,7 +37,7 @@ if (new_session) {
             }
 
             if (seed === "") {
-                alert("Please enter a seed.");
+                alert("Please select a seed.");
                 return;
             }
 

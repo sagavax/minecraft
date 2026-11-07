@@ -27,7 +27,13 @@
         <div class="content">
 
           <div class="list sessions_list_wrap">
-            <button class="button small_button" name="modal_new_session" title="Add new session" onclick="document.getElementById('new_session').showModal()"><i class="fa fa-plus"></i></button>
+            <div class="list_sessions_header">
+              <div class="list_header_title">Game sessions</div>
+              <div class="list_header_actions">
+                <button type="button" name="add_new_session" class="button"><i class="fa fa-plus"></i> Add new session</button>
+               </div><!-- list_header_actions -->
+            </div><!-- list_header --> 
+            
 
             <div class="dashboard_header">Game sessions</div>
 
