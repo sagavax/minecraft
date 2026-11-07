@@ -13,6 +13,7 @@
 
 ?>
 
+<link rel="stylesheet" href="css/modpack_seeds.css?<?php echo time(); ?>">
 
 <div class="modpack_seeds_wrap">
     <div class="no_seeds"><input type="text" name="new_seed" placeholder="type seed number / name here..."><button type="button" name="add_seed" class="button small_button" title="Add new seed"><i class="fa fa-plus"></i></button></div>

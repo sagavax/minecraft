@@ -2298,59 +2298,6 @@ button[name="add_modpack"] {
 }
 
 
-.seed, .seed_number {
-    width: 100%;
-    display: flex;
-    box-sizing: border-box;
-    padding:5px;
-    align-items: center;
-    cursor: pointer;
-}
-
-.seed:hover {
-    background-color: #d2f9be82
-}
-
-.modpack_seeds {
-    border-radius: 5px;
-    color: #fdf376;
-    background: #0f2031;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding:5px;
-}
-
-.modpack_seeds_wrap {
-     color: #fdf376;
-    background: #0f2031;
-    border:1px #fdf376 solid;
-}
-
-.no_seeds {
-    width: 100%;
-    height:60px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    border-bottom: 1px #fdf376 solid;
-    padding: 5px;
-    gap:10px;
-}
-
-.no_seeds button {
-    width:80px;
-}
-
-.no_seeds input {
-    width: 100%;
-    border: 1px #fdf376 solid;
-    color: #fdf376;
-    background: #2C2A20;
-    font-family: 'Noto Sans', sans-serif;
-    font-weight: normal
-}
-
 #new_modpack form input,
 #new_video input,
 #new_influencer input,
@@ -6429,5 +6376,4 @@ input[name="search_mods"] {
     font-weight: bold;
     margin-top: 5px;
 }
-
 
