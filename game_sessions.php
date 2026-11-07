@@ -27,15 +27,13 @@
         <div class="content">
 
           <div class="list sessions_list_wrap">
-            <div class="list_sessions_header">
-              <div class="list_header_title">Game sessions</div>
-              <div class="list_header_actions">
-                <button type="button" name="add_new_session" class="button"><i class="fa fa-plus"></i> Add new session</button>
-               </div><!-- list_header_actions -->
-            </div><!-- list_header --> 
-            
-
-            <div class="dashboard_header">Game sessions</div>
+              
+              <div class="dashboard_header">
+                  <div class="dashboard_header_title">Game sessions</div>
+                  <div class="dashboard_header_actions">
+                    <button type="button" name="add_new_session" class="button"><i class="fa fa-plus"></i> Add new session</button>
+                 </div>
+            </div>     
 
             <div class="tab_view_list_grid">
                 <button type="button" name="cards" class="button small_button">Grid</button>

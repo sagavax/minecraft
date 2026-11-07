@@ -364,19 +364,19 @@
     gap: 10px;
     margin-bottom: 15px;
 }
-.list_header_title {
+.dashboard_header_title {
     font-weight: bold;
     font-size: 18px;
     width: 100%;
 }
-.list_header_actions {
+.dashboard_header_actions {
     display: flex;
     align-items: center;
     height:45px;
     box-sizing: border-box;
 }
 
-.list_header_actions button {
+.dashboard_header_actions button {
     height: 100%;
     border-radius: 6px;
     padding: 5px;
