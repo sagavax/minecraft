@@ -43,9 +43,18 @@
     box-sizing: border-box;
     padding-left: 10px;
     font-weight: bolder;
-    background-color: #fdf376;
-    color:#0f2031;
+    color: #fdf376;
+    background-color: #0f2031;
     border-radius: 5px;
+}
+
+.picture_name:focus {
+    border-color: #fdf376;
+    border-width: 1px;
+    border-style: solid;
+    display: flex;
+    align-items: center;
+    background: #2C2A20;
 }
 
 

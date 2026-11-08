@@ -41,6 +41,7 @@ modal_change_gallery.addEventListener("click", function(event) {
      const galleryName = event.target.innerText;
      const imageId = sessionStorage.getItem("picture_id");
      const oldName = document.querySelector(".picture_modpacks button[name='change_gallery']").innerText;
+     console.log("oldName: ", oldName);
      if(oldName==galleryName){
       ShowMessage("Gallery has not been changed!");
       return;
@@ -58,10 +59,20 @@ modal_change_gallery.addEventListener("click", function(event) {
     }
 })
 
-modal_change_gallery_input .addEventListener("keyup", function(event){
+modal_change_gallery_input.addEventListener("keyup", function(event){
   searchGallery(event.target.value);
 })
 
+modal_change_gallery_input.addEventListener("keydown", function(event){
+  if(event.key==="Enter"){
+    const newGalleryName = modal_change_gallery_input.value.trim();
+    if (checkIfGalleryExist(newGalleryName)) {
+      ShowMessage("Gallery already exists!");
+      return;
+    }
+    createNewGallery();
+  }
+})
 
 modal_change_modpack.addEventListener("click", function(event) {
   // Skontrolujeme, či kliknutie bolo na tlačidlo s atribútom 'modpack-id'
@@ -508,7 +519,7 @@ function createNewGallery(){
   if (checkIfGalleryExist(newGalleryName)) {
     ShowMessage("Gallery already exists!");
     return;
-  } 
+  }
 
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -583,4 +594,25 @@ document.querySelector("button[name='add_comment']").addEventListener("click", f
 
 function go_back(){
   window.history.back();
+}
+
+
+function checkIfGalleryExist(galleryName) {
+  if (!galleryName) return false;
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        const response = json.parse(this.responseText);
+        if (response.exists) {
+          ShowMessage("Gallery already exists!");
+          return true;
+        } else {
+          return false;
+        }
+      }
+   }
+   var data = "galler_name=" + galleryName;
+  xhttp.open("POST", "picture_check_gallery_exists.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
 }
