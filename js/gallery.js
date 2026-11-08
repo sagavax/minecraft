@@ -732,3 +732,17 @@ function removeImage(imageId) {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(data);
 }  
+
+
+function removeImageFromGallery(imageId, galleryId) {
+  const xhttp = new XMLHttpRequest(); 
+   xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      ShowMessage("Image has been from gallery!");      
+    }
+  };
+  const data = "image_id=" + encodeURIComponent(imageId) + "gallery_id=" + encodeURIComponent(galleryId);
+  xhttp.open("POST", "images_remove_from_gallery.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}
