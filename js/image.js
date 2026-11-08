@@ -165,16 +165,39 @@ setTimeout(function() {
 
 var image_name_div = document.querySelector(".picture_name");
 
-image_name_div.contentEditable=false;
-image_name_div.addEventListener("click",function(){
-image_name_div.contentEditable = 'true';
-//alert("meno");
-})  
+var old_image_name = image_name_div.innerText.trim();
+
+image_name_div.contentEditable = false;
+
+image_name_div.addEventListener("click", function () {
+  if (image_name_div.isContentEditable) return; // úprava už beží
+  old_image_name = image_name_div.innerText.trim();
+  image_name_div.contentEditable = true;
+  image_name_div.focus();
+});
+
+image_name_div.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    image_name_div.blur();
+  } else if (event.key === "Escape") {
+    image_name_div.innerText = old_image_name;
+    image_name_div.blur();
+  }
+});
 
 image_name_div.addEventListener("blur", function () {
-image_name_div.contentEditable = false;  // Corrected line
-var image_name = image_name_div.innerText;
-saveImageName(image_name);
+  image_name_div.contentEditable = false;
+  var image_name = image_name_div.innerText.trim();
+
+  if (image_name === "") {            // prázdne meno → vrátiť späť
+    image_name_div.innerText = old_image_name;
+    return;
+  }
+  if (image_name === old_image_name) return; // bez zmeny
+
+  saveImageName(image_name);
+  old_image_name = image_name;
 });
 
 
