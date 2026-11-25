@@ -715,3 +715,34 @@ function CreateContextMenu(event, imageId) {
 function showNewGalleryForm() {
  modal_add_new_image.showModal();
 }
+
+function removeImage(imageId) {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      ShowMessage("Image has been deleted successfully!");
+      const imageElement = document.getElementById(imageId);
+      if (imageElement) {
+        imageElement.remove();
+      }
+    }
+  };
+  const data = "image_id=" + encodeURIComponent(imageId);
+  xhttp.open("POST", "images_delete.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}  
+
+
+function removeImageFromGallery(imageId, galleryId) {
+  const xhttp = new XMLHttpRequest(); 
+   xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      ShowMessage("Image has been from gallery!");      
+    }
+  };
+  const data = "image_id=" + encodeURIComponent(imageId) + "gallery_id=" + encodeURIComponent(galleryId);
+  xhttp.open("POST", "images_remove_from_gallery.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(data);
+}

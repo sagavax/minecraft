@@ -13,18 +13,21 @@
 
 ?>
 
+<link rel="stylesheet" href="css/modpack_seeds.css?<?php echo time(); ?>">
 
 <div class="modpack_seeds_wrap">
-    <div class="no_seeds"><input type="text" name="new_seed" placeholder="type seed number / name here..."><button type="button" name="add_seed" class="button small_button" title="Add new seed"><i class="fa fa-plus"></i></button></div>
-    <div class="modpack_seeds">
+    <div class="new_modpack_seed"><input type="text" name="new_seed" placeholder="type seed number / name here..."><button type="button" name="add_seed" class="button small_button" title="Add new seed"><i class="fa fa-plus"></i></button></div>
+
         <?php
             $modpack_id = $_GET['modpack_id'];
             $get_seeds="SELECT * from modpack_seeds where modpack_id=$modpack_id";
             $result = mysqli_query($link, $get_seeds) or die("MySQLi ERROR: ".mysqli_error($link));
-            if(mysqli_num_rows($result) == 0){
-                
-            } else {
-                while ($row = mysqli_fetch_array($result)) {
+            if (mysqli_num_rows($result) == 0) {
+                echo "<div class='no_seeds'>No seeds found for this modpack.</div>";    
+            } else {    
+
+             echo "<div class='modpack_seeds'>";
+            while ($row = mysqli_fetch_array($result)) {
                 $seed_id = $row['seed_id'];
                 $modpack_id = $row['modpack_id'];
                 $seed = $row['seed'];
@@ -34,10 +37,10 @@
                     echo "<div class='seed_number'>".$seed."</div>";
                     echo "<button class='button small_button' name='delete_seed' type='button' title='Delete seed'><i class='fa fa-times'></i></button>";
                 echo "</div>";// modpack_seed_wrap    
-                }
+            }
+            echo "</div><!-- div modpack_seeds -->";
             }
         ?>
-    </div><!-- div modpack_seeds-->
+
    </div><!-- div modpack_seeds_wrap--> 
 </div>
-

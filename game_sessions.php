@@ -27,9 +27,13 @@
         <div class="content">
 
           <div class="list sessions_list_wrap">
-            <button class="button small_button" name="modal_new_session" title="Add new session" onclick="document.getElementById('new_session').showModal()"><i class="fa fa-plus"></i></button>
-
-            <div class="dashboard_header">Game sessions</div>
+              
+              <div class="dashboard_header">
+                  <div class="dashboard_header_title">Game sessions</div>
+                  <div class="dashboard_header_actions">
+                    <button type="button" name="add_new_session" class="button"><i class="fa fa-plus"></i> Add new session</button>
+                 </div>
+            </div>     
 
             <div class="tab_view_list_grid">
                 <button type="button" name="cards" class="button small_button">Grid</button>
@@ -56,6 +60,7 @@
                       }
                   ?>
               </select>
+<<<<<<< HEAD
               <select name="session_seed">
                   <option value="">-- Select seed --</option>
                 <?php
@@ -72,6 +77,32 @@
                   <input type="text" name="session_spawn_y" placeholder="Y" autocomplete="off">
                   <input type="text" name="session_spawn_z" placeholder="Z" autocomplete="off">
               </div>
+=======
+               <div class="seeds_list_wrap">
+                <select name="seed_list">
+                  <option value="">-- Select seed --</option>
+                   <?php
+                        //get list of available seeds
+                        $get_seeds = "SELECT seed FROM modpack_seeds ORDER BY seed ASC";
+                        $result=mysqli_query($link, $get_seeds) or die("MySQLi ERROR: ".mysqli_error($link));
+                        while ($row = mysqli_fetch_array($result)){
+                            echo "<option value='".$row['seed']."'>".$row['seed']."</option>";
+                        }
+                    ?>
+                  </select>
+                  <button type="button" name="add_new_seed" class="button small_button"><i class="fa fa-plus"></i></button>
+                </div><!-- seeds_list_wrap -->
+               
+                <div class="new_seed_wrap">
+                  <div class="create_new_seed_wrap">
+                   <input type="text" name="create_new_seed" id="create_new_seed" placeholder="Enter new seed">
+                   <button type="button" name="create_new_seed" class="button small_button">new seed</button>
+                   <button type="button" name="cancel_new_seed" class="button small_button"><i class="fa fa-times"></i></button>
+               </div><!-- create_new_seed_wrap -->
+              
+              
+              
+>>>>>>> 4ba4e3af7aff42cd6b4b10aa8b3f69c565d7f365
               <div class="action">
                  <button type="button" name="add_new_session" class="button pull-right"><i class="fa fa-plus"></i> Create</button>
                  <button type="button" name="move_back" class="button pull-right"><i class="fa fa-arrow-left"></i></button>

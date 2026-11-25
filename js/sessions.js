@@ -1,7 +1,17 @@
 // game_sessions.php - sessions list page
 const sessions_list = document.querySelector(".sessions_list");
+const sessions_list_wrap = document.querySelector(".sessions_list_wrap");
 const new_session = document.querySelector("#new_session");
 const sessions_view_toggle = document.querySelector(".tab_view_list_grid");
+
+if (sessions_list_wrap && new_session) {
+    sessions_list_wrap.addEventListener("click", function (event) {
+        const button = event.target.closest("button");
+        if (button && button.name === "add_new_session") {
+            new_session.showModal();
+        }
+    });
+}
 
 if (sessions_view_toggle) {
     sessions_view_toggle.addEventListener("click", function (event) {
@@ -19,7 +29,11 @@ if (new_session) {
 
         if (button.name === "add_new_session") {
             const modpackId = document.querySelector("select[name='session_modpack_id']").value.trim();
+<<<<<<< HEAD
             const seed = document.querySelector("select[name='session_seed']").value.trim();
+=======
+            const seed = document.querySelector("select[name='seed_list']").value.trim();
+>>>>>>> 4ba4e3af7aff42cd6b4b10aa8b3f69c565d7f365
 
             if (modpackId === "") {
                 alert("Please select a modpack.");
@@ -27,7 +41,7 @@ if (new_session) {
             }
 
             if (seed === "") {
-                alert("Please enter a seed.");
+                alert("Please select a seed.");
                 return;
             }
 
@@ -38,6 +52,32 @@ if (new_session) {
             createSession(modpackId, seed, session_spawn_x, session_spawn_y, session_spawn_z);
         } else if (button.name === "move_back") {
             new_session.close();
+        }
+
+        if (button.name === "add_new_seed") {
+            document.querySelector(".create_new_seed_wrap").style.display = "flex";
+            document.querySelector(".create_new_seed_wrap").style.height = "145px";
+            document.querySelector("#new_session").style.height = "400px";
+            document.querySelector("input[name='create_new_seed']").focus();
+            document.querySelector("input[name='create_new_seed']").value = "";
+            document.querySelector("button[name='cancel_new_seed']").style.display = "flex";
+            document.querySelector("button[name='cancel_new_seed']").style.alignItems
+             = "center";
+             document.querySelector("button[name='cancel_new_seed']").style.justifyContent = "center";
+        }
+        if(button.name === "create_new_seed") {
+            const newSeedInput = document.querySelector("input[name='create_new_seed']").value.trim();
+            if (newSeedInput === "") {
+                alert("Please enter a new seed.");
+                return;
+            }
+
+            createNewSeed(newSeedInput);
+        }
+
+        if(button.name === "cancel_new_seed") {
+            document.querySelector(".create_new_seed_wrap").style.display = "none";
+            document.querySelector("#new_session").style.height = "250px";
         }
     });
 }
@@ -336,5 +376,48 @@ function removeSessionBase(baseId) {
     xhttp.open("POST", "session_base_remove.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     const data = "base_id=" + encodeURIComponent(baseId);
+    xhttp.send(data);
+}
+
+
+let seedCreationInProgress = false;
+
+function createNewSeed(newSeed) {
+    if (seedCreationInProgress) return;
+    seedCreationInProgress = true;
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState !== 4) return;
+
+        let response;
+        try {
+            response = JSON.parse(this.responseText);
+        } catch (error) {
+            seedCreationInProgress = false;
+            console.error("Invalid response while creating seed.", error);
+            alert("Error creating new seed: Invalid server response.");
+            return;
+        }
+
+        seedCreationInProgress = false;
+        if (response.success) {
+            const seedList = document.querySelector("select[name='seed_list']");
+            const option = document.createElement("option");
+            option.value = newSeed;
+            option.textContent = newSeed;
+            seedList.appendChild(option);
+            alert(response.message);
+            document.querySelector(".create_new_seed_wrap").style.display = "none";
+            document.querySelector("#new_session").style.height = "250px";
+        } else if (response.info) {
+            alert(response.message);
+        } else {
+            alert("Error creating new seed: " + (response.error || "Unknown error."));
+        }
+    };
+    xhttp.open("POST", "seed_create.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    const data = "seed=" + encodeURIComponent(newSeed);
     xhttp.send(data);
 }
